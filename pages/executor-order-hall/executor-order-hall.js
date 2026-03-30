@@ -41,57 +41,48 @@ Page({
 
     this.setData({ loading: true });
 
-    // TODO: 调用云函数获取订单列表
-    // wx.cloud.callFunction({
-    //   name: 'getAvailableOrders',
-    //   data: {
-    //     page: this.data.page,
-    //     pageSize: this.data.pageSize,
-    //     type: this.data.filterType,
-    //     sortBy: this.data.filterDistance
-    //   }
-    // })
+    // 调用云函数获取订单列表
+    wx.cloud.callFunction({
+      name: 'getAvailableOrders',
+      data: {
+        page: this.data.page,
+        pageSize: this.data.pageSize,
+        type: this.data.filterType,
+        sortBy: this.data.filterDistance
+      },
+      success: (res) => {
+        const orders = isRefresh ? [] : this.data.orders;
+        const newOrders = res.result?.data || [];
+        
+        this.setData({
+          orders: [...orders, ...newOrders],
+          loading: false,
+          noMore: newOrders.length < this.data.pageSize,
+          page: this.data.page + 1
+        });
 
-    // 模拟数据
-    setTimeout(() => {
-      const mockOrders = isRefresh ? [] : this.data.orders;
-      
-      if (this.data.page === 1) {
-        // 生成模拟订单
-        for (let i = 0; i < 5; i++) {
-          mockOrders.push({
-            id: Date.now() + i,
-            title: '心理疏导服务',
-            type: '心理咨询',
-            price: 200 + i * 50,
-            location: '北京市朝阳区' + (i + 1) + '号',
-            distance: i * 0.5 + 0.3 + 'km',
-            serviceTime: '2026-03-29 14:00',
-            requester: '李女士',
-            description: '需要专业的心理疏导服务，帮助缓解工作压力',
-            publishTime: i + 1 + '分钟前',
-            isUrgent: i === 0,
-            grabbing: false,
-            grabbed: false
+        if (isRefresh) {
+          wx.stopPullDownRefresh();
+          wx.showToast({
+            title: '已更新',
+            icon: 'success'
           });
         }
-      }
-
-      this.setData({
-        orders: mockOrders,
-        loading: false,
-        noMore: this.data.page >= 3, // 模拟 3 页后没有更多
-        page: this.data.page + 1
-      });
-
-      if (isRefresh) {
-        wx.stopPullDownRefresh();
+      },
+      fail: (err) => {
+        console.error('[加载订单失败]', err);
+        this.setData({ loading: false });
+        
+        if (isRefresh) {
+          wx.stopPullDownRefresh();
+        }
+        
         wx.showToast({
-          title: '已更新',
-          icon: 'success'
+          title: '加载失败，请重试',
+          icon: 'none'
         });
       }
-    }, 1000);
+    });
   },
 
   // ========== 刷新订单 ==========
@@ -154,34 +145,53 @@ Page({
       [`orders[${orderIndex}].grabbing`]: true
     });
 
-    // TODO: 调用云函数抢单
-    // wx.cloud.callFunction({
-    //   name: 'grabOrder',
-    //   data: { orderId }
-    // })
+    // 调用云函数抢单
+    wx.cloud.callFunction({
+      name: 'grabOrder',
+      data: { orderId }
+    }).then((res) => {
+      if (res.result?.success) {
+        this.setData({
+          [`orders[${orderIndex}].grabbing`]: false,
+          [`orders[${orderIndex}].grabbed`]: true
+        });
 
-    console.log('抢单:', orderId);
+        wx.showToast({
+          title: '抢单成功',
+          icon: 'success',
+          duration: 2000
+        });
 
-    // 模拟抢单
-    setTimeout(() => {
+        // 跳转到任务详情
+        setTimeout(() => {
+          wx.navigateTo({
+            url: `/pages/executor-task-detail/executor-task-detail?id=${orderId}`
+          });
+        }, 1500);
+      } else {
+        // 抢单失败，恢复状态
+        this.setData({
+          [`orders[${orderIndex}].grabbing`]: false
+        });
+
+        wx.showToast({
+          title: res.result?.message || '抢单失败',
+          icon: 'none'
+        });
+      }
+    }).catch((err) => {
+      console.error('[抢单失败]', err);
+      
+      // 抢单失败，恢复状态
       this.setData({
-        [`orders[${orderIndex}].grabbing`]: false,
-        [`orders[${orderIndex}].grabbed`]: true
+        [`orders[${orderIndex}].grabbing`]: false
       });
 
       wx.showToast({
-        title: '抢单成功',
-        icon: 'success',
-        duration: 2000
+        title: '抢单失败，请重试',
+        icon: 'none'
       });
-
-      // 跳转到任务详情
-      setTimeout(() => {
-        wx.navigateTo({
-          url: `/pages/executor-task-detail/executor-task-detail?id=${orderId}`
-        });
-      }, 1500);
-    }, 1000);
+    });
   },
 
   // ========== 订单详情 ==========
