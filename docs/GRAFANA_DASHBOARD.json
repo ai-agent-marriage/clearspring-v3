@@ -1,0 +1,336 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "canary-release-monitor",
+    "title": "灰度发布监控仪表板",
+    "tags": ["canary", "release", "monitoring"],
+    "timezone": "Asia/Shanghai",
+    "schemaVersion": 38,
+    "version": 1,
+    "refresh": "30s",
+    "panels": [
+      {
+        "id": 1,
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+        "type": "stat",
+        "title": "日活跃用户数 (DAU)",
+        "targets": [
+          {
+            "expr": "count(count by (user_id) (app_page_view_total))",
+            "legendFormat": "DAU"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" },
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 1000 },
+                { "color": "red", "value": 5000 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 2,
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+        "type": "stat",
+        "title": "功能使用率",
+        "targets": [
+          {
+            "expr": "sum(rate(app_feature_usage_total[5m])) / sum(rate(app_page_view_total[5m])) * 100",
+            "legendFormat": "使用率 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "steps": [
+                { "color": "red", "value": null },
+                { "color": "yellow", "value": 30 },
+                { "color": "green", "value": 60 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 3,
+        "gridPos": { "h": 8, "w": 8, "x": 0, "y": 8 },
+        "type": "gauge",
+        "title": "崩溃率",
+        "targets": [
+          {
+            "expr": "sum(rate(app_crash_total[5m])) / sum(rate(app_session_start_total[5m])) * 100",
+            "legendFormat": "崩溃率 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "max": 1,
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 0.05 },
+                { "color": "red", "value": 0.1 }
+              ]
+            }
+          }
+        },
+        "alert": {
+          "name": "崩溃率告警",
+          "conditions": [
+            {
+              "evaluator": { "params": [0.1], "type": "gt" },
+              "operator": { "type": "and" },
+              "query": { "params": ["A", "5m", "now"] },
+              "reducer": { "params": [], "type": "avg" },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "崩溃率超过 0.1%，需要立即关注！",
+          "noDataState": "no_data",
+          "notifications": []
+        }
+      },
+      {
+        "id": 4,
+        "gridPos": { "h": 8, "w": 8, "x": 8, "y": 8 },
+        "type": "gauge",
+        "title": "接口错误率",
+        "targets": [
+          {
+            "expr": "sum(rate(api_error_total[5m])) / sum(rate(api_request_total[5m])) * 100",
+            "legendFormat": "错误率 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "max": 5,
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 0.5 },
+                { "color": "red", "value": 1 }
+              ]
+            }
+          }
+        },
+        "alert": {
+          "name": "接口错误率告警",
+          "conditions": [
+            {
+              "evaluator": { "params": [1], "type": "gt" },
+              "operator": { "type": "and" },
+              "query": { "params": ["A", "5m", "now"] },
+              "reducer": { "params": [], "type": "avg" },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "接口错误率超过 1%，需要立即关注！",
+          "noDataState": "no_data",
+          "notifications": []
+        }
+      },
+      {
+        "id": 5,
+        "gridPos": { "h": 8, "w": 8, "x": 16, "y": 8 },
+        "type": "stat",
+        "title": "用户反馈数量",
+        "targets": [
+          {
+            "expr": "sum(increase(feedback_submitted_total[24h]))",
+            "legendFormat": "24h 反馈数"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "steps": [
+                { "color": "green", "value": null },
+                { "color": "yellow", "value": 3 },
+                { "color": "red", "value": 5 }
+              ]
+            }
+          }
+        },
+        "alert": {
+          "name": "用户反馈告警",
+          "conditions": [
+            {
+              "evaluator": { "params": [5], "type": "gt" },
+              "operator": { "type": "and" },
+              "query": { "params": ["A", "24h", "now"] },
+              "reducer": { "params": [], "type": "sum" },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "alerting",
+          "frequency": "1h",
+          "handler": 1,
+          "message": "24 小时内用户反馈超过 5 个，需要关注！",
+          "noDataState": "no_data",
+          "notifications": []
+        }
+      },
+      {
+        "id": 6,
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+        "type": "graph",
+        "title": "崩溃率趋势 (7 天)",
+        "targets": [
+          {
+            "expr": "sum(rate(app_crash_total[5m])) / sum(rate(app_session_start_total[5m])) * 100",
+            "legendFormat": "崩溃率",
+            "refId": "A"
+          }
+        ],
+        "yAxes": [
+          {
+            "format": "percent",
+            "label": "崩溃率 %",
+            "min": 0,
+            "max": 1
+          }
+        ],
+        "xAxis": {
+          "mode": "time"
+        },
+        "timeFrom": "7d"
+      },
+      {
+        "id": 7,
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+        "type": "graph",
+        "title": "接口错误率趋势 (7 天)",
+        "targets": [
+          {
+            "expr": "sum(rate(api_error_total[5m])) / sum(rate(api_request_total[5m])) * 100",
+            "legendFormat": "错误率",
+            "refId": "A"
+          }
+        ],
+        "yAxes": [
+          {
+            "format": "percent",
+            "label": "错误率 %",
+            "min": 0,
+            "max": 5
+          }
+        ],
+        "xAxis": {
+          "mode": "time"
+        },
+        "timeFrom": "7d"
+      },
+      {
+        "id": 8,
+        "gridPos": { "h": 8, "w": 24, "x": 0, "y": 24 },
+        "type": "table",
+        "title": "用户反馈详情",
+        "targets": [
+          {
+            "expr": "feedback_submitted_total",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {},
+              "renameByName": {
+                "Time": "时间",
+                "Value": "数量",
+                "type": "反馈类型"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "gridPos": { "h": 8, "w": 12, "x": 0, "y": 32 },
+        "type": "stat",
+        "title": "灰度用户数",
+        "targets": [
+          {
+            "expr": "count(canary_user_active)",
+            "legendFormat": "灰度用户数"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": { "mode": "palette-classic" }
+          }
+        }
+      },
+      {
+        "id": 10,
+        "gridPos": { "h": 8, "w": 12, "x": 12, "y": 32 },
+        "type": "stat",
+        "title": "灰度进度",
+        "targets": [
+          {
+            "expr": "canary_release_progress",
+            "legendFormat": "进度 %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "steps": [
+                { "color": "blue", "value": null }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "environment",
+          "type": "query",
+          "datasource": "Prometheus",
+          "query": "label_values(environment)",
+          "refresh": 1,
+          "current": {
+            "text": "staging",
+            "value": "staging"
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": false,
+          "iconColor": "red",
+          "name": "发布事件",
+          "type": "dashboard"
+        }
+      ]
+    }
+  }
+}
