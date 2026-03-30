@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skills": {
+    "memory-setup-openclaw": {
+      "version": "1.0.0",
+      "installedAt": 1774825081967
+    },
+    "elite-longterm-memory": {
+      "version": "1.2.3",
+      "installedAt": 1774825141989
+    },
+    "ontology": {
+      "version": "1.0.4",
+      "installedAt": 1774825682521
+    },
+    "proactive-agent": {
+      "version": "3.1.0",
+      "installedAt": 1774825742722
+    },
+    "self-improving-agent": {
+      "version": "3.0.10",
+      "installedAt": 1774825922519
+    },
+    "agent-team-orchestration": {
+      "version": "1.0.0",
+      "installedAt": 1774835942307
+    },
+    "multi-team-coding": {
+      "version": "1.0.0",
+      "installedAt": 1774836063201
+    }
+  }
+}
