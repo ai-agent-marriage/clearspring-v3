@@ -1,0 +1,78 @@
+<!-- 自主护生记录详情页 -->
+<view class="container">
+  <!-- 记录状态卡片 -->
+  <view class="status-card card {{record.status === 1 ? 'status-success' : 'status-rejected'}}">
+    <view class="status-icon">{{record.status === 1 ? '✓' : '✗'}}</view>
+    <view class="status-text">{{record.status === 1 ? '护生圆满' : '已驳回'}}</view>
+    <view class="status-desc">{{record.status === 1 ? '功德无量，随喜赞叹' : '请根据反馈重新提交'}}</view>
+  </view>
+
+  <!-- 记录详情区 -->
+  <view class="detail-section card">
+    <view class="section-title">护生信息</view>
+    
+    <view class="detail-item">
+      <text class="detail-label">护生日期</text>
+      <text class="detail-value">{{record.date}}</text>
+    </view>
+    
+    <view class="detail-item">
+      <text class="detail-label">投放水域</text>
+      <text class="detail-value">{{record.address}}</text>
+    </view>
+    
+    <view class="detail-item">
+      <text class="detail-label">护生物种</text>
+      <text class="detail-value">{{record.speciesName}}</text>
+    </view>
+    
+    <view class="detail-item">
+      <text class="detail-label">投放数量</text>
+      <text class="detail-value">{{record.quantity}} 尾</text>
+    </view>
+    
+    <view class="detail-item" wx:if="{{record.wish}}">
+      <text class="detail-label">护生心愿</text>
+      <text class="detail-value detail-wish">{{record.wish}}</text>
+    </view>
+    
+    <view class="detail-item">
+      <text class="detail-label">提交时间</text>
+      <text class="detail-value detail-time">{{record.submitTime}}</text>
+    </view>
+  </view>
+
+  <!-- 现场照片区 -->
+  <view class="photos-section card">
+    <view class="section-title">现场照片</view>
+    <view class="photo-grid">
+      <view 
+        class="photo-item" 
+        wx:for="{{record.images}}" 
+        wx:key="*this"
+        data-index="{{index}}"
+        bindtap="previewImage"
+      >
+        <image 
+          class="photo-image" 
+          src="{{item}}" 
+          mode="aspectFill"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 证书卡片 -->
+  <view class="cert-section card">
+    <view class="section-title">护生证书</view>
+    <view class="cert-card">
+      <image class="cert-thumb" src="{{record.certUrl}}" mode="aspectFill" />
+      <button class="btn-cert" bindtap="viewCertificate">查看证书</button>
+    </view>
+  </view>
+
+  <!-- 页面底部按钮 -->
+  <view class="footer" wx:if="{{canEdit}}">
+    <button class="btn-edit" bindtap="editRecord">编辑修改</button>
+  </view>
+</view>

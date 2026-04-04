@@ -1,0 +1,48 @@
+<!-- 护生证书预览页 -->
+<view class="container">
+  <!-- 顶部透明导航栏 -->
+  <view class="custom-nav" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-back" bindtap="goBack">
+      <text class="back-icon">‹</text>
+      <text class="back-text">返回</text>
+    </view>
+  </view>
+
+  <!-- 证书展示区 -->
+  <view class="cert-display">
+    <!-- 9:16 比例证书高清原图 -->
+    <view class="cert-image-wrapper">
+      <image 
+        class="cert-image" 
+        src="{{cert.certUrl}}" 
+        mode="aspectFill"
+      />
+    </view>
+  </view>
+
+  <!-- 证书信息区 -->
+  <view class="cert-info card">
+    <view class="info-item">
+      <text class="info-label">证书名称</text>
+      <text class="info-value">{{cert.certName}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">获得时间</text>
+      <text class="info-value">{{cert.date}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">证书编号</text>
+      <text class="info-value cert-no">{{cert.certNo}}</text>
+    </view>
+    <view class="info-content">
+      <text class="content-label">证书内容</text>
+      <text class="content-text">{{cert.content}}</text>
+    </view>
+  </view>
+
+  <!-- 页面底部操作区 -->
+  <view class="footer">
+    <button class="btn-action btn-save" bindtap="saveToAlbum">保存到相册</button>
+    <button class="btn-action btn-share" bindtap="shareToFriend">分享给好友</button>
+  </view>
+</view>

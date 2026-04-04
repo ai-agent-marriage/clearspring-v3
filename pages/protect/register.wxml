@@ -1,0 +1,131 @@
+<!-- 免费自主护生登记页 -->
+<view class="container">
+  <!-- 顶部强制合规承诺书 -->
+  <view class="compliance-card card">
+    <view class="compliance-title">📜 科学护生合规承诺书</view>
+    <view class="compliance-content">
+      <text class="compliance-text">
+        本人郑重承诺：
+        1. 本次护生活动严格遵守《中华人民共和国野生动物保护法》及相关法规
+        2. 所放生物种为本地原生种，非外来入侵物种
+        3. 投放水域为政府指定的合规水域
+        4. 投放数量科学合理，不影响水域生态平衡
+        5. 护生过程文明有序，不破坏周边环境
+        6. 如有违反，愿承担相应法律责任
+      </text>
+    </view>
+    <view class="compliance-checkbox" bindtap="toggleAgree">
+      <view class="checkbox {{agree ? 'checked' : ''}}">
+        <text wx:if="{{agree}}">✓</text>
+      </view>
+      <text class="checkbox-label">我已阅读并同意上述承诺</text>
+    </view>
+  </view>
+
+  <!-- 表单填写区 -->
+  <view class="form-section card">
+    <view class="form-title">填写护生信息</view>
+    
+    <!-- 护生日期 -->
+    <view class="form-item">
+      <text class="form-label">护生日期 <text class="required">*</text></text>
+      <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+        <view class="form-picker">
+          <text>{{form.date}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 投放水域 -->
+    <view class="form-item">
+      <text class="form-label">投放水域 <text class="required">*</text></text>
+      <picker mode="selector" range="{{waterAreas}}" value="{{waterAreas.indexOf(form.waterArea)}}" bindchange="onWaterAreaChange">
+        <view class="form-picker">
+          <text wx:if="{{form.waterArea}}">{{form.waterArea}}</text>
+          <text wx:else class="placeholder">请选择合规水域</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 护生物种 -->
+    <view class="form-item">
+      <text class="form-label">护生物种 <text class="required">*</text></text>
+      <picker mode="selector" range-key="name" range="{{speciesList}}" bindchange="onSpeciesChange">
+        <view class="form-picker">
+          <text wx:if="{{form.species}}">{{form.species}}</text>
+          <text wx:else class="placeholder">请选择物种</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 投放数量 -->
+    <view class="form-item">
+      <text class="form-label">投放数量（尾）<text class="required">*</text></text>
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入数量" 
+        value="{{form.quantity}}" 
+        bindinput="onQuantityInput"
+      />
+    </view>
+
+    <!-- 现场照片上传 -->
+    <view class="form-item">
+      <text class="form-label">现场照片 <text class="required">*</text></text>
+      <view class="image-uploader">
+        <view 
+          class="image-item" 
+          wx:for="{{form.images}}" 
+          wx:key="*this"
+        >
+          <image 
+            class="image-thumb" 
+            src="{{item}}" 
+            mode="aspectFill"
+            data-index="{{index}}"
+            bindtap="previewImage"
+          />
+          <view 
+            class="image-delete" 
+            data-index="{{index}}"
+            bindtap="deleteImage"
+          >
+            <text>×</text>
+          </view>
+        </view>
+        <view 
+          class="image-add" 
+          wx:if="{{form.images.length < 6}}"
+          bindtap="uploadImages"
+        >
+          <text class="add-icon">+</text>
+          <text class="add-text">上传照片</text>
+        </view>
+      </view>
+      <text class="form-tip">最多上传 6 张，支持拍照/相册选择</text>
+    </view>
+
+    <!-- 护生心愿 -->
+    <view class="form-item">
+      <text class="form-label">护生心愿（可选）</text>
+      <textarea 
+        class="form-textarea" 
+        placeholder="写下您的美好祝愿（最多 200 字）" 
+        value="{{form.wish}}" 
+        bindinput="onWishInput"
+        maxlength="200"
+        auto-height
+      />
+      <text class="form-tip">{{form.wish.length}}/200</text>
+    </view>
+  </view>
+
+  <!-- 页面底部吸底按钮 -->
+  <view class="footer">
+    <button class="btn-submit" bindtap="submitRecord">提交护生记录</button>
+  </view>
+</view>

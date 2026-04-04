@@ -15,7 +15,16 @@
     "pages/executor-camera/executor-camera",
     "pages/executor-evidence/executor-evidence",
     "pages/executor-income/executor-income",
-    "pages/executor-profile/executor-profile"
+    "pages/executor-profile/executor-profile",
+    "pages/zen/home1",
+    "pages/zen/home2",
+    "pages/zen/species-list",
+    "pages/zen/species-detail",
+    "pages/zen/share",
+    "pages/protect/index",
+    "pages/protect/register",
+    "pages/protect/detail",
+    "pages/protect/cert-preview"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -56,5 +65,8 @@
     ]
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "usingComponents": {
+    "painter": "/components/painter/painter"
+  }
 }
