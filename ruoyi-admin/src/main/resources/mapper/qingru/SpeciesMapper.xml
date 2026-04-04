@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.SpeciesMapper">
+
+    <resultMap type="com.ruoyi.qingru.entity.Species" id="SpeciesResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="scientificName"    column="scientific_name"    />
+        <result property="type"    column="type"    />
+        <result property="isForbid"    column="is_forbid"    />
+        <result property="remark"    column="remark"    />
+        <result property="protectLevel"    column="protect_level"    />
+        <result property="suitableHabitat"    column="suitable_habitat"    />
+        <result property="bestTime"    column="best_time"    />
+        <result property="sort"    column="sort"    />
+    </resultMap>
+
+    <!-- 查询物种列表 -->
+    <select id="selectList" parameterType="java.util.Map" resultMap="SpeciesResult">
+        SELECT id, name, scientific_name, type, is_forbid, remark,
+               protect_level, suitable_habitat, best_time, sort
+        FROM species
+        WHERE 1=1
+        <if test="type != null">
+            AND type = #{type}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (name LIKE CONCAT('%', #{keyword}, '%')
+                 OR scientific_name LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        ORDER BY sort ASC, id DESC
+    </select>
+
+    <!-- 根据 ID 查询物种详情 -->
+    <select id="selectById" parameterType="Long" resultMap="SpeciesResult">
+        SELECT id, name, scientific_name, type, is_forbid, remark,
+               protect_level, suitable_habitat, best_time, sort
+        FROM species
+        WHERE id = #{id}
+    </select>
+
+</mapper>
