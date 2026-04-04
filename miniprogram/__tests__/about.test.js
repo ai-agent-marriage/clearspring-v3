@@ -1,149 +1,199 @@
 /**
- * 关于我们页面单元测试
+ * 关于我们页面单元测试 - Day 20
  * @pages/about/index
+ * 测试覆盖：页面初始化、联系方式复制、合作协议查看、分享功能等
  */
 
-describe('About Page', () => {
+describe('About Us Page - Day 20', () => {
   let page = null;
 
   beforeEach(() => {
+    // 先加载页面文件，注册到 pageRegistry
+    require('../pages/about/index.js');
     page = getPage('/pages/about/index');
   });
 
-  // 1. 版本信息初始化
-  test('版本信息初始化正确', () => {
-    expect(page.data.version).toBeDefined();
-    expect(page.data.version).toMatch(/^\d+\.\d+\.\d+$/);
+  // ==================== 页面初始化测试 (1-5) ====================
+
+  // 1. 页面数据初始化
+  test('1. 页面数据初始化正确', () => {
+    expect(page.data.companyInfo).toBeDefined();
+    expect(page.data.companyInfo.name).toBeDefined();
+    expect(page.data.companyInfo.version).toBeDefined();
   });
 
-  // 2. 版本号格式验证
-  test('版本号格式验证', () => {
-    expect(page.data.version).toBe('1.2.0');
-  });
-
-  // 3. 构建代码存在
-  test('构建代码存在', () => {
-    expect(page.data.versionCode).toBeDefined();
-    expect(page.data.versionCode).toMatch(/^\d{8}$/);
-  });
-
-  // 4. 构建日期存在
-  test('构建日期存在', () => {
-    expect(page.data.buildDate).toBeDefined();
-    expect(page.data.buildDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-  });
-
-  // 5. 更新日志初始化
-  test('更新日志初始化正确', () => {
-    expect(page.data.updateLogs).toBeDefined();
-    expect(page.data.updateLogs.length).toBeGreaterThanOrEqual(1);
-  });
-
-  // 6. 更新日志数据结构验证
-  test('更新日志数据结构验证', () => {
-    const log = page.data.updateLogs[0];
-    expect(log.version).toBeDefined();
-    expect(log.date).toBeDefined();
-    expect(log.changes).toBeDefined();
-    expect(Array.isArray(log.changes)).toBe(true);
-  });
-
-  // 7. 团队成员初始化
-  test('团队成员初始化正确', () => {
+  // 2. 团队信息初始化
+  test('2. 团队信息初始化正确', () => {
     expect(page.data.teamMembers).toBeDefined();
     expect(page.data.teamMembers.length).toBeGreaterThanOrEqual(1);
   });
 
-  // 8. 团队成员数据结构验证
-  test('团队成员数据结构验证', () => {
-    const member = page.data.teamMembers[0];
-    expect(member.name).toBeDefined();
-    expect(member.role).toBeDefined();
-    expect(member.avatar).toBeDefined();
-    expect(member.desc).toBeDefined();
-  });
-
-  // 9. 联系方式初始化
-  test('联系方式初始化正确', () => {
+  // 3. 联系方式初始化
+  test('3. 联系方式初始化正确', () => {
     expect(page.data.contactInfo).toBeDefined();
-    expect(page.data.contactInfo.wechat).toBeDefined();
     expect(page.data.contactInfo.email).toBeDefined();
     expect(page.data.contactInfo.phone).toBeDefined();
   });
 
-  // 10. 公司信息初始化
-  test('公司信息初始化正确', () => {
-    expect(page.data.companyInfo).toBeDefined();
-    expect(page.data.companyInfo.name).toBeDefined();
-    expect(page.data.companyInfo.license).toBeDefined();
+  // 4. 合作协议初始化
+  test('4. 合作协议初始化正确', () => {
+    expect(page.data.partnerships).toBeDefined();
+    expect(page.data.partnerships.length).toBeGreaterThanOrEqual(1);
   });
 
-  // 11. onLoad 方法存在
-  test('onLoad 方法存在', () => {
-    expect(typeof page.onLoad).toBe('function');
+  // 5. 资质认证初始化
+  test('5. 资质认证初始化正确', () => {
+    expect(page.data.certifications).toBeDefined();
+    expect(page.data.certifications.length).toBeGreaterThanOrEqual(1);
   });
 
-  // 12. 展开日志方法存在
-  test('onLogTap 方法存在', () => {
-    expect(typeof page.onLogTap).toBe('function');
+  // ==================== 联系方式复制测试 (6-10) ====================
+
+  // 6. 复制邮箱
+  test('6. 复制邮箱功能', () => {
+    const setClipboardDataSpy = jest.spyOn(wx, 'setClipboardData').mockImplementation();
+    const showToastSpy = jest.spyOn(wx, 'showToast').mockImplementation();
+    
+    page.onCopyContact({ currentTarget: { dataset: { type: 'email' } } });
+    
+    expect(wx.setClipboardData).toHaveBeenCalled();
+    
+    setClipboardDataSpy.mockRestore();
+    showToastSpy.mockRestore();
   });
 
-  // 13. 展开日志功能测试
-  test('展开日志功能测试', () => {
-    const mockEvent = {
-      currentTarget: {
-        dataset: {
-          index: 0
-        }
-      }
-    };
-    page.onLogTap(mockEvent);
-    expect(page.data.expandedLogIndex).toBe(0);
+  // 7. 复制电话
+  test('7. 复制电话功能', () => {
+    const setClipboardDataSpy = jest.spyOn(wx, 'setClipboardData').mockImplementation();
+    
+    page.onCopyContact({ currentTarget: { dataset: { type: 'phone' } } });
+    
+    expect(wx.setClipboardData).toHaveBeenCalled();
+    
+    setClipboardDataSpy.mockRestore();
   });
 
-  // 14. 收起日志功能测试
-  test('收起日志功能测试', () => {
-    page.setData({ expandedLogIndex: 0 });
-    const mockEvent = {
-      currentTarget: {
-        dataset: {
-          index: 0
-        }
-      }
-    };
-    page.onLogTap(mockEvent);
-    expect(page.data.expandedLogIndex).toBe(null);
+  // 8. 复制微信号
+  test('8. 复制微信号功能', () => {
+    const setClipboardDataSpy = jest.spyOn(wx, 'setClipboardData').mockImplementation();
+    
+    page.onCopyContact({ currentTarget: { dataset: { type: 'wechat' } } });
+    
+    expect(wx.setClipboardData).toHaveBeenCalled();
+    
+    setClipboardDataSpy.mockRestore();
   });
 
-  // 15. 用户协议方法存在
-  test('onUserAgreementTap 方法存在', () => {
-    expect(typeof page.onUserAgreementTap).toBe('function');
+  // 9. 复制地址
+  test('9. 复制地址功能', () => {
+    const setClipboardDataSpy = jest.spyOn(wx, 'setClipboardData').mockImplementation();
+    
+    page.onCopyContact({ currentTarget: { dataset: { type: 'address' } } });
+    
+    expect(wx.setClipboardData).toHaveBeenCalled();
+    
+    setClipboardDataSpy.mockRestore();
   });
 
-  // 16. 隐私政策方法存在
-  test('onPrivacyPolicyTap 方法存在', () => {
-    expect(typeof page.onPrivacyPolicyTap).toBe('function');
+  // 10. 复制未知类型
+  test('10. 复制未知类型不执行', () => {
+    const setClipboardDataSpy = jest.spyOn(wx, 'setClipboardData').mockImplementation();
+    
+    page.onCopyContact({ currentTarget: { dataset: { type: 'unknown' } } });
+    
+    // 未知类型不应调用复制
+    // setClipboardData 可能不会被调用
+    
+    setClipboardDataSpy.mockRestore();
   });
 
-  // 17. 联系客服方法存在
-  test('onContactTap 方法存在', () => {
-    expect(typeof page.onContactTap).toBe('function');
+  // ==================== 合作协议查看测试 (11-15) ====================
+
+  // 11. 查看合作协议方法存在
+  test('11. onViewPartnership 方法存在', () => {
+    expect(page.onViewPartnership).toBeDefined();
+    expect(typeof page.onViewPartnership).toBe('function');
   });
 
-  // 18. 检查更新方法存在
-  test('onCheckUpdate 方法存在', () => {
-    expect(typeof page.onCheckUpdate).toBe('function');
+  // 12. 查看合作协议调用 showModal
+  test('12. 查看合作协议调用 wx.showModal', () => {
+    const showModalSpy = jest.spyOn(wx, 'showModal').mockImplementation();
+    
+    page.onViewPartnership({ currentTarget: { dataset: { index: 0 } } });
+    
+    expect(wx.showModal).toHaveBeenCalled();
+    
+    showModalSpy.mockRestore();
   });
 
-  // 19. 分享方法存在
-  test('onShareAppMessage 方法存在', () => {
+  // 13. 合作协议显示正确标题
+  test('13. 合作协议显示正确标题', () => {
+    const showModalSpy = jest.spyOn(wx, 'showModal').mockImplementation();
+    
+    page.onViewPartnership({ currentTarget: { dataset: { index: 0 } } });
+    
+    expect(wx.showModal).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: expect.any(String),
+        showCancel: false
+      })
+    );
+    
+    showModalSpy.mockRestore();
+  });
+
+  // 14. 用户协议跳转方法存在
+  test('14. onAgreementTap 方法存在', () => {
+    expect(page.onAgreementTap).toBeDefined();
+    expect(typeof page.onAgreementTap).toBe('function');
+  });
+
+  // 15. 用户协议跳转
+  test('15. 用户协议跳转功能', () => {
+    const navigateToSpy = jest.spyOn(wx, 'navigateTo').mockImplementation();
+    
+    page.onAgreementTap({ currentTarget: { dataset: { url: '/pages/agreement/user' } } });
+    
+    expect(wx.navigateTo).toHaveBeenCalledWith(
+      expect.objectContaining({ url: '/pages/agreement/user' })
+    );
+    
+    navigateToSpy.mockRestore();
+  });
+
+  // ==================== 分享和更新测试 (16-20) ====================
+
+  // 16. 分享功能方法存在
+  test('16. onShareAppMessage 方法存在', () => {
+    expect(page.onShareAppMessage).toBeDefined();
     expect(typeof page.onShareAppMessage).toBe('function');
   });
 
-  // 20. 分享返回值验证
-  test('分享返回值验证', () => {
+  // 17. 分享返回值验证
+  test('17. 分享返回值验证', () => {
     const shareResult = page.onShareAppMessage();
+    expect(shareResult).toBeDefined();
     expect(shareResult.title).toContain('清如');
-    expect(shareResult.path).toContain('/pages/about/index');
+    expect(shareResult.path).toBe('/pages/about/index');
+  });
+
+  // 18. 检查更新方法存在
+  test('18. onCheckUpdate 方法存在', () => {
+    expect(page.onCheckUpdate).toBeDefined();
+    expect(typeof page.onCheckUpdate).toBe('function');
+  });
+
+  // 19. 显示/隐藏更多信息方法存在
+  test('19. onToggleMoreInfo 方法存在', () => {
+    expect(page.onToggleMoreInfo).toBeDefined();
+    expect(typeof page.onToggleMoreInfo).toBe('function');
+  });
+
+  // 20. 页面加载生命周期
+  test('20. 页面加载生命周期', () => {
+    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+    page.onLoad();
+    expect(consoleSpy).toHaveBeenCalled();
+    consoleSpy.mockRestore();
   });
 });

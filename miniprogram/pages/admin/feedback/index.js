@@ -16,19 +16,19 @@ Page({
 
   onLoad() {
     // 加载反馈统计数据
-    this.loadFeedbackStats()
+    this.loadFeedbackStats();
   },
 
   onShow() {
     // 每次显示时刷新数据
-    this.loadFeedbackStats()
+    this.loadFeedbackStats();
   },
 
   onPullDownRefresh() {
     // 下拉刷新
     this.loadFeedbackStats().then(() => {
-      wx.stopPullDownRefresh()
-    })
+      wx.stopPullDownRefresh();
+    });
   },
 
   // 加载反馈统计数据
@@ -45,15 +45,15 @@ Page({
             pendingFeedback: 12,
             processedFeedback: 244
           }
-        })
-        resolve()
-      }, 300)
-    })
+        });
+        resolve();
+      }, 300);
+    });
   },
 
   // 菜单点击事件
   onMenuTap(e) {
-    const { path } = e.currentTarget.dataset
+    const { path } = e.currentTarget.dataset;
     if (path) {
       wx.navigateTo({
         url: path,
@@ -61,9 +61,9 @@ Page({
           wx.showToast({
             title: '页面暂未开放',
             icon: 'none'
-          })
+          });
         }
-      })
+      });
     }
   },
 
@@ -71,13 +71,13 @@ Page({
   onSubmitFeedback() {
     wx.navigateTo({
       url: '/pages/admin/feedback/submit'
-    })
+    });
   },
 
   // 查看待处理
   onViewPending() {
     wx.navigateTo({
       url: '/pages/admin/feedback/manage?status=pending'
-    })
+    });
   }
-})
+});

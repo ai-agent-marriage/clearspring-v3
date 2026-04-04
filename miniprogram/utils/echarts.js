@@ -13,44 +13,43 @@
  * @returns {object} ECharts 实例
  */
 export function initChart(canvasId, option, options = {}) {
-  const { theme = null, callback = null } = options
+  const { theme = null, callback = null } = options;
   
   return new Promise((resolve, reject) => {
-    const query = wx.createSelectorQuery()
+    const query = wx.createSelectorQuery();
     
     query.select(`#${canvasId}`)
       .fields({ node: true, size: true })
       .exec((res) => {
         if (!res[0]) {
-          reject(new Error(`Canvas element #${canvasId} not found`))
-          return
+          reject(new Error(`Canvas element #${canvasId} not found`));
+          return;
         }
 
-        const canvas = res[0].node
-        const ctx = canvas.getContext('2d')
-        const dpr = wx.getSystemInfoSync().pixelRatio
+        const canvas = res[0].node;
+        const dpr = wx.getSystemInfoSync().pixelRatio;
         
         // 设置 Canvas 尺寸
-        canvas.width = res[0].width * dpr
-        canvas.height = res[0].height * dpr
+        canvas.width = res[0].width * dpr;
+        canvas.height = res[0].height * dpr;
         
         // 初始化 ECharts 实例
         const chart = echarts.init(canvas, theme, {
           renderer: 'canvas',
           devicePixelRatio: dpr
-        })
+        });
         
         // 设置配置项
-        chart.setOption(option)
+        chart.setOption(option);
         
         // 执行回调
         if (callback && typeof callback === 'function') {
-          callback(chart)
+          callback(chart);
         }
         
-        resolve(chart)
-      })
-  })
+        resolve(chart);
+      });
+  });
 }
 
 /**
@@ -62,28 +61,27 @@ export function initChart(canvasId, option, options = {}) {
  */
 export function initChartSync(canvasInfo, option, theme = null) {
   if (!canvasInfo) {
-    console.warn('Canvas info is null')
-    return null
+    console.warn('Canvas info is null');
+    return null;
   }
 
-  const canvas = canvasInfo.node
-  const ctx = canvas.getContext('2d')
-  const dpr = wx.getSystemInfoSync().pixelRatio
+  const canvas = canvasInfo.node;
+  const dpr = wx.getSystemInfoSync().pixelRatio;
   
   // 设置 Canvas 尺寸
-  canvas.width = canvasInfo.width * dpr
-  canvas.height = canvasInfo.height * dpr
+  canvas.width = canvasInfo.width * dpr;
+  canvas.height = canvasInfo.height * dpr;
   
   // 初始化 ECharts 实例
   const chart = echarts.init(canvas, theme, {
     renderer: 'canvas',
     devicePixelRatio: dpr
-  })
+  });
   
   // 设置配置项
-  chart.setOption(option)
+  chart.setOption(option);
   
-  return chart
+  return chart;
 }
 
 /**
@@ -92,7 +90,7 @@ export function initChartSync(canvasInfo, option, theme = null) {
  */
 export function disposeChart(chart) {
   if (chart && typeof chart.dispose === 'function') {
-    chart.dispose()
+    chart.dispose();
   }
 }
 
@@ -104,7 +102,7 @@ export function disposeChart(chart) {
  */
 export function updateChart(chart, option, notMerge = false) {
   if (chart && typeof chart.setOption === 'function') {
-    chart.setOption(option, notMerge)
+    chart.setOption(option, notMerge);
   }
 }
 
@@ -114,7 +112,7 @@ export function updateChart(chart, option, notMerge = false) {
  */
 export function resizeChart(chart) {
   if (chart && typeof chart.resize === 'function') {
-    chart.resize()
+    chart.resize();
   }
 }
 
@@ -141,7 +139,7 @@ export function createZenTheme() {
     primaryColor: '#4A5D4E',
     secondaryColor: '#8FB396',
     accentColor: '#FFA500'
-  }
+  };
 }
 
 /**
@@ -150,7 +148,7 @@ export function createZenTheme() {
  * @returns {object} 深色主题配置
  */
 export function createDarkTheme() {
-  return createZenTheme()
+  return createZenTheme();
 }
 
 /**
@@ -162,7 +160,7 @@ export function createPrimaryTheme() {
     primaryColor: '#4A5D4E',
     secondaryColor: '#8FB396',
     accentColor: '#409EFF'
-  }
+  };
 }
 
 /**
@@ -189,7 +187,7 @@ export function getStitchThemeColors() {
       '#F56C6C',
       '#909399'
     ]
-  }
+  };
 }
 
 /**
@@ -201,11 +199,11 @@ export function getStitchThemeColors() {
  */
 export function createGradient(chart, type = 'linear', colors = []) {
   if (type === 'linear') {
-    return new echarts.graphic.LinearGradient(0, 0, 0, 1, colors)
+    return new echarts.graphic.LinearGradient(0, 0, 0, 1, colors);
   } else if (type === 'radial') {
-    return new echarts.graphic.RadialGradient(0.5, 0.5, 1, colors)
+    return new echarts.graphic.RadialGradient(0.5, 0.5, 1, colors);
   }
-  return colors[0]
+  return colors[0];
 }
 
 /**
@@ -216,17 +214,17 @@ export function createGradient(chart, type = 'linear', colors = []) {
  */
 export function sampleData(data, maxPoints = 100) {
   if (!data || data.length <= maxPoints) {
-    return data
+    return data;
   }
   
-  const step = Math.ceil(data.length / maxPoints)
-  const sampled = []
+  const step = Math.ceil(data.length / maxPoints);
+  const sampled = [];
   
   for (let i = 0; i < data.length; i += step) {
-    sampled.push(data[i])
+    sampled.push(data[i]);
   }
   
-  return sampled
+  return sampled;
 }
 
 /**
@@ -241,10 +239,10 @@ export function createOptimizedOption(baseOption, options = {}) {
     largeThreshold = 2000,
     progressive = 400,
     progressiveThreshold = 3000
-  } = options
+  } = options;
   
   // 为 series 添加性能优化配置
-  const optimizedOption = { ...baseOption }
+  const optimizedOption = { ...baseOption };
   
   if (optimizedOption.series) {
     optimizedOption.series = optimizedOption.series.map(series => ({
@@ -253,10 +251,10 @@ export function createOptimizedOption(baseOption, options = {}) {
       largeThreshold,
       progressive,
       progressiveThreshold
-    }))
+    }));
   }
   
-  return optimizedOption
+  return optimizedOption;
 }
 
 /**
@@ -266,15 +264,15 @@ export function createOptimizedOption(baseOption, options = {}) {
  * @returns {function} 防抖后的函数
  */
 export function debounce(func, wait = 300) {
-  let timeout
+  let timeout;
   return function executedFunction(...args) {
     const later = () => {
-      clearTimeout(timeout)
-      func(...args)
-    }
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-  }
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }
 
 /**
@@ -283,24 +281,24 @@ export function debounce(func, wait = 300) {
  * @param {object} options - 选项
  */
 export function createResponsiveChart(chart, options = {}) {
-  const { onResize = null } = options
+  const { onResize = null } = options;
   
   // 监听窗口大小变化
   const resizeHandler = debounce(() => {
     if (chart && !chart.isDisposed()) {
-      chart.resize()
+      chart.resize();
       if (onResize) {
-        onResize(chart)
+        onResize(chart);
       }
     }
-  }, 300)
+  }, 300);
   
   // 微信小程序中使用 onWindowResize
   if (wx.onWindowResize) {
-    wx.onWindowResize(resizeHandler)
+    wx.onWindowResize(resizeHandler);
   }
   
-  return resizeHandler
+  return resizeHandler;
 }
 
 /**
@@ -309,7 +307,7 @@ export function createResponsiveChart(chart, options = {}) {
  */
 export function removeResponsiveListener(resizeHandler) {
   if (wx.offWindowResize && resizeHandler) {
-    wx.offWindowResize(resizeHandler)
+    wx.offWindowResize(resizeHandler);
   }
 }
 
@@ -325,7 +323,7 @@ export function showChartLoading(chart) {
       textColor: themeColors.text,
       maskColor: 'rgba(255, 255, 255, 0.8)',
       zlevel: 2
-    })
+    });
   }
 }
 
@@ -335,7 +333,7 @@ export function showChartLoading(chart) {
  */
 export function hideChartLoading(chart) {
   if (chart && typeof chart.hideLoading === 'function') {
-    chart.hideLoading()
+    chart.hideLoading();
   }
 }
 
@@ -346,19 +344,19 @@ export function hideChartLoading(chart) {
  * @returns {string} Base64 图片数据
  */
 export function exportChartToDataURL(chart, options = {}) {
-  if (!chart) return null
+  if (!chart) return null;
   
   const {
     pixelRatio = 2,
     backgroundColor = '#fff',
     type = 'png'
-  } = options
+  } = options;
   
   return chart.getDataURL({
     pixelRatio,
     backgroundColor,
     type
-  })
+  });
 }
 
 /**
@@ -367,19 +365,19 @@ export function exportChartToDataURL(chart, options = {}) {
  * @returns {Promise<object>} 图表实例映射
  */
 export async function initCharts(chartConfigs) {
-  const charts = {}
+  const charts = {};
   
   for (const config of chartConfigs) {
-    const { id, option, theme } = config
+    const { id, option, theme } = config;
     try {
-      const chart = await initChart(id, option, { theme })
-      charts[id] = chart
+      const chart = await initChart(id, option, { theme });
+      charts[id] = chart;
     } catch (error) {
-      console.error(`Failed to init chart ${id}:`, error)
+      console.error(`Failed to init chart ${id}:`, error);
     }
   }
   
-  return charts
+  return charts;
 }
 
 /**
@@ -388,6 +386,6 @@ export async function initCharts(chartConfigs) {
  */
 export function disposeCharts(charts) {
   Object.values(charts).forEach(chart => {
-    disposeChart(chart)
-  })
+    disposeChart(chart);
+  });
 }

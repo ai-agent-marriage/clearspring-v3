@@ -5,11 +5,11 @@ Page({
   },
 
   onLoad() {
-    this.loadUserInfo()
+    this.loadUserInfo();
   },
 
   loadUserInfo() {
-    const userInfo = wx.getStorageSync('userInfo')
-    this.setData({ userInfo })
+    const userInfo = wx.getStorageSync('userInfo');
+    this.setData({ userInfo });
   }
-})
+});

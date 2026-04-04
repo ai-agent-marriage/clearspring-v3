@@ -1,15 +1,15 @@
 // pages/admin/stats/trend.js
-import * as echarts from 'echarts'
-import { getStitchThemeColors, createGradient } from '../../../utils/echarts'
+import * as echarts from 'echarts';
+import { getStitchThemeColors } from '../../../utils/echarts';
 import {
   fetchTrendData,
   showLoading,
   hideLoading,
   showError,
   showSuccess
-} from '../../../utils/api'
+} from '../../../utils/api';
 
-const themeColors = getStitchThemeColors()
+const themeColors = getStitchThemeColors();
 
 Page({
   data: {
@@ -25,112 +25,111 @@ Page({
   },
 
   async onLoad() {
-    this.setData({ loading: true, loadingTip: '初始化趋势分析...' })
+    this.setData({ loading: true, loadingTip: '初始化趋势分析...' });
     try {
-      await this.fetchTrendData()
-      this.initChart()
-      showSuccess('数据加载成功')
+      await this.fetchTrendData();
+      this.initChart();
+      showSuccess('数据加载成功');
     } catch (error) {
-      console.error('Failed to load trend data:', error)
-      const errorMsg = error?.message || '加载趋势数据失败'
-      this.setData({ error: errorMsg, loading: false })
-      showError(errorMsg)
+      console.error('Failed to load trend data:', error);
+      const errorMsg = error?.message || '加载趋势数据失败';
+      this.setData({ error: errorMsg, loading: false });
+      showError(errorMsg);
     } finally {
-      this.setData({ loading: false })
-      hideLoading()
+      this.setData({ loading: false });
+      hideLoading();
     }
   },
 
   onReady() {
-    this.initChart()
+    this.initChart();
   },
 
   onUnload() {
     if (this.data.trendChart) {
-      this.data.trendChart.dispose()
+      this.data.trendChart.dispose();
     }
   },
 
   // 获取趋势数据
   async fetchTrendData() {
     try {
-      this.setData({ loadingTip: '获取趋势数据...' })
+      this.setData({ loadingTip: '获取趋势数据...' });
       
       // 真实 API 调用（生产环境）
       try {
-        const data = await fetchTrendData(this.data.timeRange, this.data.metrics)
-        this.setData({ tableData: data.list || data })
-        return
+        const data = await fetchTrendData(this.data.timeRange, this.data.metrics);
+        this.setData({ tableData: data.list || data });
+        return;
       } catch (apiError) {
-        console.warn('API 调用失败，使用 Mock 数据:', apiError)
+        console.warn('API 调用失败，使用 Mock 数据:', apiError);
         // API 失败时使用 Mock 数据（开发/降级模式）
       }
       
       // 生成 Mock 数据
-      await new Promise(resolve => setTimeout(resolve, 300))
-      this.generateTableData()
+      await new Promise(resolve => setTimeout(resolve, 300));
+      this.generateTableData();
     } catch (error) {
-      console.error('Fetch trend error:', error)
-      throw error
+      console.error('Fetch trend error:', error);
+      throw error;
     }
   },
 
   // 生成表格数据
   generateTableData() {
-    const days = this.data.timeRange === '7' ? 7 : this.data.timeRange === '30' ? 30 : 90
-    const data = []
+    const days = this.data.timeRange === '7' ? 7 : this.data.timeRange === '30' ? 30 : 90;
+    const data = [];
     
     for (let i = days; i >= 1; i--) {
-      const date = new Date()
-      date.setDate(date.getDate() - i)
-      const dateStr = `${date.getMonth() + 1}-${date.getDate()}`
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateStr = `${date.getMonth() + 1}-${date.getDate()}`;
       
       data.push({
         date: dateStr,
         orders: Math.floor(Math.random() * 200) + 50,
         amount: Math.floor(Math.random() * 50000) + 10000,
         users: Math.floor(Math.random() * 50) + 10
-      })
+      });
     }
     
-    this.setData({ tableData: data })
+    this.setData({ tableData: data });
   },
 
   // 初始化图表
   initChart() {
-    const query = wx.createSelectorQuery()
+    const query = wx.createSelectorQuery();
     
     query.select('#trendChart')
       .fields({ node: true, size: true })
       .exec((res) => {
         if (res[0]) {
-          const canvas = res[0].node
-          const ctx = canvas.getContext('2d')
-          const dpr = wx.getSystemInfoSync().pixelRatio
+          const canvas = res[0].node;
+          const dpr = wx.getSystemInfoSync().pixelRatio;
           
-          canvas.width = res[0].width * dpr
-          canvas.height = res[0].height * dpr
+          canvas.width = res[0].width * dpr;
+          canvas.height = res[0].height * dpr;
           
           const chart = echarts.init(canvas, null, {
             renderer: 'canvas',
             devicePixelRatio: dpr
-          })
+          });
           
-          this.renderChart(chart)
-          this.setData({ trendChart: chart })
+          this.renderChart(chart);
+          this.setData({ trendChart: chart });
         }
-      })
+      });
   },
 
   // 渲染图表
   renderChart(chart) {
-    const data = this.data.tableData
-    const dates = data.map(item => item.date)
-    const orderData = data.map(item => item.orders)
-    const amountData = data.map(item => item.amount)
-    const userData = data.map(item => item.users)
+    const data = this.data.tableData;
+    const dates = data.map(item => item.date);
+    const orderData = data.map(item => item.orders);
+    const amountData = data.map(item => item.amount);
+    const userData = data.map(item => item.users);
 
-    const series = []
+    const series = [];
     
     if (this.data.metrics.includes('orders')) {
       series.push({
@@ -146,7 +145,7 @@ Page({
           borderWidth: 2,
           borderColor: '#fff'
         }
-      })
+      });
     }
     
     if (this.data.metrics.includes('amount')) {
@@ -164,7 +163,7 @@ Page({
           borderWidth: 2,
           borderColor: '#fff'
         }
-      })
+      });
     }
     
     if (this.data.metrics.includes('users')) {
@@ -182,7 +181,7 @@ Page({
           borderWidth: 2,
           borderColor: '#fff'
         }
-      })
+      });
     }
 
     const option = {
@@ -274,61 +273,61 @@ Page({
         }
       ],
       series: series
-    }
+    };
 
-    chart.setOption(option)
+    chart.setOption(option);
   },
 
   // 选择时间范围
   selectTimeRange(e) {
-    const range = e.currentTarget.dataset.range
-    this.setData({ timeRange: range })
-    this.generateTableData()
+    const range = e.currentTarget.dataset.range;
+    this.setData({ timeRange: range });
+    this.generateTableData();
     
     if (this.data.trendChart) {
-      this.renderChart(this.data.trendChart)
+      this.renderChart(this.data.trendChart);
     }
   },
 
   // 切换指标
   toggleMetric(e) {
-    const metric = e.currentTarget.dataset.metric
-    const metrics = this.data.metrics
+    const metric = e.currentTarget.dataset.metric;
+    const metrics = this.data.metrics;
     
-    const index = metrics.indexOf(metric)
+    const index = metrics.indexOf(metric);
     if (index > -1) {
-      metrics.splice(index, 1)
+      metrics.splice(index, 1);
     } else {
-      metrics.push(metric)
+      metrics.push(metric);
     }
     
-    this.setData({ metrics })
+    this.setData({ metrics });
     
     if (this.data.trendChart) {
-      this.renderChart(this.data.trendChart)
+      this.renderChart(this.data.trendChart);
     }
   },
 
   // 切换图表类型
   toggleChartType() {
-    const type = this.data.chartType === 'line' ? 'bar' : 'line'
-    this.setData({ chartType: type })
+    const type = this.data.chartType === 'line' ? 'bar' : 'line';
+    this.setData({ chartType: type });
     
     if (this.data.trendChart) {
-      this.renderChart(this.data.trendChart)
+      this.renderChart(this.data.trendChart);
     }
   },
 
   // 导出图表数据
   async exportChartData() {
     try {
-      const { exportChartToImage } = await import('../../../utils/export')
+      const { exportChartToImage } = await import('../../../utils/export');
       
-      showLoading('生成图表图片...')
+      showLoading('生成图表图片...');
       
       if (this.data.trendChart) {
-        const filePath = await exportChartToImage(this.data.trendChart, '趋势图表')
-        hideLoading()
+        await exportChartToImage(this.data.trendChart, '趋势图表');
+        hideLoading();
         
         // 提示用户保存或分享
         wx.showModal({
@@ -339,68 +338,68 @@ Page({
               wx.shareAppMessage({
                 title: '数据统计趋势图',
                 path: '/pages/admin/stats/trend'
-              })
+              });
             }
           }
-        })
+        });
       } else {
-        hideLoading()
-        showError('图表未加载')
+        hideLoading();
+        showError('图表未加载');
       }
     } catch (error) {
-      console.error('Export chart error:', error)
-      hideLoading()
-      showError('导出失败，请重试')
+      console.error('Export chart error:', error);
+      hideLoading();
+      showError('导出失败，请重试');
     }
   },
 
   // 导出表格
   async exportTable() {
     try {
-      const { exportToExcel, exportToCSV } = await import('../../../utils/export')
+      const { exportToExcel, exportToCSV } = await import('../../../utils/export');
       
       wx.showActionSheet({
         itemList: ['导出 Excel', '导出 CSV'],
         success: async (res) => {
-          const format = res.tapIndex === 0 ? 'excel' : 'csv'
+          const format = res.tapIndex === 0 ? 'excel' : 'csv';
           
-          showLoading(`生成${format === 'excel' ? 'Excel' : 'CSV'}...`)
+          showLoading(`生成${format === 'excel' ? 'Excel' : 'CSV'}...`);
           
           try {
-            const data = this.data.tableData
+            const data = this.data.tableData;
             const headers = [
               { key: 'date', label: '日期' },
               { key: 'orders', label: '订单数' },
               { key: 'amount', label: '成交金额' },
               { key: 'users', label: '用户增长' }
-            ]
+            ];
             
-            const filename = `趋势数据_${this.data.timeRange}天`
+            const filename = `趋势数据_${this.data.timeRange}天`;
             
             if (format === 'excel') {
-              await exportToExcel(data, headers, filename)
+              await exportToExcel(data, headers, filename);
             } else {
-              await exportToCSV(data, headers, filename)
+              await exportToCSV(data, headers, filename);
             }
             
-            hideLoading()
+            hideLoading();
           } catch (exportError) {
-            console.error('Export error:', exportError)
-            hideLoading()
-            showError('导出失败，请重试')
+            console.error('Export error:', exportError);
+            hideLoading();
+            showError('导出失败，请重试');
           }
         }
-      })
+      });
     } catch (error) {
-      console.error('Export module load error:', error)
-      showError('导出功能不可用')
+      console.error('Export module load error:', error);
+      showError('导出功能不可用');
     }
   },
 
   // 下拉刷新
   onPullDownRefresh() {
     this.onLoad().finally(() => {
-      wx.stopPullDownRefresh()
-    })
+      wx.stopPullDownRefresh();
+    });
   }
-})
+});

@@ -11,4 +11,4 @@ module.exports = {
   },
   write: jest.fn(() => new ArrayBuffer(100)),
   writeFile: jest.fn()
-}
+};

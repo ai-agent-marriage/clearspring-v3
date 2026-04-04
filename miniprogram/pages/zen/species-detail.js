@@ -19,9 +19,9 @@ Page({
   },
 
   onLoad(options) {
-    const { id } = options
+    const { id } = options;
     if (id) {
-      this.loadSpeciesDetail(id)
+      this.loadSpeciesDetail(id);
     }
   },
 
@@ -56,28 +56,28 @@ Page({
         requirements: '',
         warnings: '严禁投放！发现请立即上报'
       }
-    }
+    };
 
-    const species = speciesData[id] || this.data.species
-    this.setData({ species })
+    const species = speciesData[id] || this.data.species;
+    this.setData({ species });
   },
 
   /**
    * 去护生
    */
   onReleaseTap() {
-    const { isForbid } = this.data.species
+    const { isForbid } = this.data.species;
     
     if (isForbid) {
       wx.showToast({
         icon: 'none',
         title: '该物种禁止投放'
-      })
-      return
+      });
+      return;
     }
 
     wx.navigateTo({
       url: '/pages/release/release'
-    })
+    });
   }
-})
+});

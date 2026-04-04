@@ -30,28 +30,28 @@ Page({
   },
 
   onLoad() {
-    this.loadRecords()
+    this.loadRecords();
   },
 
   onPullDownRefresh() {
-    this.setData({ page: 1, hasMore: true })
+    this.setData({ page: 1, hasMore: true });
     this.loadRecords(true).then(() => {
-      wx.stopPullDownRefresh()
-      wx.showToast({ title: '刷新成功', icon: 'success' })
-    })
+      wx.stopPullDownRefresh();
+      wx.showToast({ title: '刷新成功', icon: 'success' });
+    });
   },
 
   onReachBottom() {
     if (!this.data.loading && this.data.hasMore) {
-      this.loadMore()
+      this.loadMore();
     }
   },
 
   // 加载消息记录（分页加载）
   loadRecords(refresh = false) {
-    if (this.data.loading) return Promise.resolve()
+    if (this.data.loading) return Promise.resolve();
     
-    this.setData({ loading: true })
+    this.setData({ loading: true });
     
     return new Promise((resolve) => {
       // wx.cloud.callFunction({
@@ -135,56 +135,56 @@ Page({
             content: '您的订单已取消，如有问题请联系客服',
             templateId: 'ORDER_CANCEL'
           }
-        ]
+        ];
         
-        const records = refresh ? mockRecords : [...this.data.records, ...mockRecords]
+        const records = refresh ? mockRecords : [...this.data.records, ...mockRecords];
         this.setData({
           records,
           filteredRecords: records,
           hasMore: this.data.page < 5,
           page: this.data.page + 1,
           loading: false
-        })
-        resolve()
-      }, 500)
-    })
+        });
+        resolve();
+      }, 500);
+    });
   },
 
   // 加载更多
   loadMore() {
-    this.loadRecords()
+    this.loadRecords();
   },
 
   // 切换筛选栏
   toggleFilter() {
-    this.setData({ showFilter: !this.data.showFilter })
+    this.setData({ showFilter: !this.data.showFilter });
   },
 
   // 日期范围选择
   onDateRangeChange(e) {
-    const value = e.detail.value
-    const range = this.data.dateRangeOptions[value]
-    this.setData({ filterDateRange: range })
+    const value = e.detail.value;
+    const range = this.data.dateRangeOptions[value];
+    this.setData({ filterDateRange: range });
   },
 
   // 消息类型选择
   onTypeChange(e) {
-    const value = e.detail.value
-    this.setData({ filterType: value })
+    const value = e.detail.value;
+    this.setData({ filterType: value });
   },
 
   // 发送状态选择
   onStatusChange(e) {
-    const value = e.detail.value
-    this.setData({ filterStatus: value })
+    const value = e.detail.value;
+    this.setData({ filterStatus: value });
   },
 
   // 应用筛选（实时筛选）
   applyFilter() {
-    this.setData({ showFilter: false, page: 1, hasMore: true })
-    this.loadRecords(true)
+    this.setData({ showFilter: false, page: 1, hasMore: true });
+    this.loadRecords(true);
     
-    wx.showToast({ title: '筛选完成', icon: 'success' })
+    wx.showToast({ title: '筛选完成', icon: 'success' });
   },
 
   // 重置筛选
@@ -193,15 +193,15 @@ Page({
       filterDateRange: '近 7 天',
       filterType: 'all',
       filterStatus: 'all'
-    })
+    });
   },
 
   // 查看详情
   viewDetail(e) {
-    const index = e.currentTarget.dataset.index
-    const record = this.data.filteredRecords[index]
+    const index = e.currentTarget.dataset.index;
+    const record = this.data.filteredRecords[index];
     
-    wx.vibrateShort({ type: 'light' })
+    wx.vibrateShort({ type: 'light' });
     
     wx.showModal({
       title: record.title,
@@ -209,15 +209,15 @@ Page({
       showCancel: false,
       confirmText: '关闭',
       confirmColor: '#4A5D4E'
-    })
+    });
   },
 
   // 重新发送
   resend(e) {
-    const index = e.currentTarget.dataset.index
-    const record = this.data.filteredRecords[index]
+    const index = e.currentTarget.dataset.index;
+    const record = this.data.filteredRecords[index];
     
-    wx.vibrateShort({ type: 'medium' })
+    wx.vibrateShort({ type: 'medium' });
     
     wx.showModal({
       title: '重新发送',
@@ -225,40 +225,40 @@ Page({
       confirmColor: '#4A5D4E',
       success: (res) => {
         if (res.confirm) {
-          wx.showLoading({ title: '发送中...' })
+          wx.showLoading({ title: '发送中...' });
           
           // 模拟发送
           setTimeout(() => {
-            wx.hideLoading()
-            wx.showToast({ title: '发送成功', icon: 'success' })
+            wx.hideLoading();
+            wx.showToast({ title: '发送成功', icon: 'success' });
             
             // 更新状态
-            const key = `filteredRecords[${index}].status`
-            const statusNameKey = `filteredRecords[${index}].statusName`
+            const key = `filteredRecords[${index}].status`;
+            const statusNameKey = `filteredRecords[${index}].statusName`;
             this.setData({
               [key]: 1,
               [statusNameKey]: '成功'
-            })
+            });
             
             // 同步到总记录
-            const recordIndex = this.data.records.findIndex(r => r.id === record.id)
+            const recordIndex = this.data.records.findIndex(r => r.id === record.id);
             if (recordIndex >= 0) {
               this.setData({
                 [`records[${recordIndex}].status`]: 1,
                 [`records[${recordIndex}].statusName`]: '成功'
-              })
+              });
             }
-          }, 1000)
+          }, 1000);
         }
       }
-    })
+    });
   },
 
   // 导出数据（进度提示）
   exportData() {
-    if (this.data.exporting) return
+    if (this.data.exporting) return;
     
-    wx.vibrateShort({ type: 'light' })
+    wx.vibrateShort({ type: 'light' });
     
     wx.showModal({
       title: '导出数据',
@@ -266,34 +266,34 @@ Page({
       confirmColor: '#4A5D4E',
       success: (res) => {
         if (res.confirm) {
-          this.setData({ exporting: true, exportProgress: 0 })
+          this.setData({ exporting: true, exportProgress: 0 });
           
-          wx.showLoading({ title: '准备导出...', mask: true })
+          wx.showLoading({ title: '准备导出...', mask: true });
           
           // 模拟导出进度
-          let progress = 0
+          let progress = 0;
           const interval = setInterval(() => {
-            progress += 10
-            this.setData({ exportProgress: progress })
+            progress += 10;
+            this.setData({ exportProgress: progress });
             
             if (progress >= 100) {
-              clearInterval(interval)
-              wx.hideLoading()
+              clearInterval(interval);
+              wx.hideLoading();
               
               wx.showToast({
                 title: '导出成功',
                 icon: 'success',
                 duration: 2000
-              })
+              });
               
-              this.setData({ exporting: false, exportProgress: 0 })
+              this.setData({ exporting: false, exportProgress: 0 });
             } else {
               wx.showLoading({ 
                 title: `导出中... ${progress}%`, 
                 mask: true 
-              })
+              });
             }
-          }, 200)
+          }, 200);
           
           // wx.cloud.callFunction({
           //   name: 'exportMessageRecords',
@@ -315,31 +315,31 @@ Page({
           // })
         }
       }
-    })
+    });
   },
 
   // 刷新筛选后的列表
   refreshFilteredRecords() {
-    let filtered = [...this.data.records]
+    let filtered = [...this.data.records];
     
     // 按类型筛选
     if (this.data.filterType !== 'all') {
       filtered = filtered.filter(r => {
         if (this.data.filterType === 'order') {
-          return r.templateId && r.templateId.includes('ORDER')
+          return r.templateId && r.templateId.includes('ORDER');
         } else if (this.data.filterType === 'system') {
-          return r.templateId && r.templateId.includes('SYSTEM')
+          return r.templateId && r.templateId.includes('SYSTEM');
         }
-        return true
-      })
+        return true;
+      });
     }
     
     // 按状态筛选
     if (this.data.filterStatus !== 'all') {
-      const statusValue = this.data.filterStatus === 'success' ? 1 : 0
-      filtered = filtered.filter(r => r.status === statusValue)
+      const statusValue = this.data.filterStatus === 'success' ? 1 : 0;
+      filtered = filtered.filter(r => r.status === statusValue);
     }
     
-    this.setData({ filteredRecords: filtered })
+    this.setData({ filteredRecords: filtered });
   }
-})
+});

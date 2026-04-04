@@ -13,7 +13,7 @@ Page({
   },
 
   onLoad() {
-    this.loadTodayZen()
+    this.loadTodayZen();
   },
 
   /**
@@ -26,31 +26,31 @@ Page({
       '诸恶莫作，众善奉行',
       '慈悲为本，方便为门',
       '随缘消旧业，莫更造新殃'
-    ]
+    ];
 
-    const today = new Date().getDate()
-    const index = today % zenQuotes.length
+    const today = new Date().getDate();
+    const index = today % zenQuotes.length;
 
     this.setData({
       todayZen: zenQuotes[index]
-    })
+    });
   },
 
   /**
    * 跳转功能页面
    */
   onFunctionTap(e) {
-    const { path } = e.currentTarget.dataset
+    const { path } = e.currentTarget.dataset;
     
     if (path) {
       wx.navigateTo({
         url: path
-      })
+      });
     } else {
       wx.showToast({
         icon: 'none',
         title: '功能开发中'
-      })
+      });
     }
   },
 
@@ -60,6 +60,6 @@ Page({
   onScienceTap() {
     wx.navigateTo({
       url: '/pages/zen/science'
-    })
+    });
   }
-})
+});

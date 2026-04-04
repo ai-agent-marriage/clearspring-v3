@@ -1,16 +1,15 @@
 // pages/admin/stats/dashboard.js
-import * as echarts from 'echarts'
-import { getStitchThemeColors, createGradient } from '../../../utils/echarts'
+import * as echarts from 'echarts';
+import { getStitchThemeColors, createGradient } from '../../../utils/echarts';
 import {
   fetchDashboardData,
-  showLoading,
   hideLoading,
   showError,
   showSuccess
-} from '../../../utils/api'
+} from '../../../utils/api';
 
 // 获取 Stitch 主题色
-const themeColors = getStitchThemeColors()
+const themeColors = getStitchThemeColors();
 
 Page({
   data: {
@@ -32,70 +31,70 @@ Page({
   },
 
   async onLoad() {
-    this.setData({ loading: true, loadingTip: '初始化数据大屏...' })
+    this.setData({ loading: true, loadingTip: '初始化数据大屏...' });
     try {
-      await this.fetchDashboardData()
-      this.initCharts()
+      await this.fetchDashboardData();
+      this.initCharts();
       if (this.data.autoRefresh) {
-        this.startAutoRefresh()
+        this.startAutoRefresh();
       }
-      showSuccess('大屏数据已更新')
+      showSuccess('大屏数据已更新');
     } catch (error) {
-      console.error('Failed to load dashboard:', error)
-      const errorMsg = error?.message || '加载数据失败'
-      this.setData({ error: errorMsg, loading: false })
-      showError(errorMsg)
+      console.error('Failed to load dashboard:', error);
+      const errorMsg = error?.message || '加载数据失败';
+      this.setData({ error: errorMsg, loading: false });
+      showError(errorMsg);
     } finally {
-      this.setData({ loading: false })
-      hideLoading()
+      this.setData({ loading: false });
+      hideLoading();
     }
   },
 
   onReady() {
-    this.renderCharts()
+    this.renderCharts();
   },
 
   onUnload() {
     // 停止定时刷新
     if (this.refreshTimer) {
-      clearInterval(this.refreshTimer)
+      clearInterval(this.refreshTimer);
     }
     // 清理图表实例
-    const charts = ['trendChart', 'speciesChart', 'statusChart', 'rankChart']
+    const charts = ['trendChart', 'speciesChart', 'statusChart', 'rankChart'];
     charts.forEach(key => {
       if (this.data[key]) {
-        this.data[key].dispose()
+        this.data[key].dispose();
       }
-    })
+    });
   },
 
   // 获取仪表板数据
   async fetchDashboardData() {
     try {
-      this.setData({ loadingTip: '获取实时数据...' })
+      this.setData({ loadingTip: '获取实时数据...' });
       
       // 真实 API 调用（生产环境）
       try {
-        const data = await fetchDashboardData()
+        const data = await fetchDashboardData();
         this.setData({ 
           stats: data.stats || data,
           latestOrders: data.latestOrders || []
-        })
-        return
+        });
+        return;
       } catch (apiError) {
-        console.warn('API 调用失败，使用 Mock 数据:', apiError)
+        console.warn('API 调用失败，使用 Mock 数据:', apiError);
         // API 失败时使用 Mock 数据（开发/降级模式）
       }
       
       // Mock 数据（开发阶段使用）
-      await new Promise(resolve => setTimeout(resolve, 300))
+      await new Promise(resolve => setTimeout(resolve, 300));
       
       const stats = {
         totalUsers: 1256,
         totalOrders: 456,
         totalAmount: 125680,
         activeVolunteers: 89
-      }
+      };
       
       const latestOrders = [
         { id: 1, time: '15:58', info: '鱼类保护 - 张三', amount: '299' },
@@ -104,44 +103,43 @@ Page({
         { id: 4, time: '15:48', info: '鱼类保护 - 赵六', amount: '299' },
         { id: 5, time: '15:45', info: '鸟类保护 - 钱七', amount: '199' },
         { id: 6, time: '15:42', info: '植被修复 - 孙八', amount: '399' }
-      ]
+      ];
       
-      this.setData({ stats, latestOrders })
+      this.setData({ stats, latestOrders });
     } catch (error) {
-      console.error('Fetch dashboard error:', error)
-      throw error
+      console.error('Fetch dashboard error:', error);
+      throw error;
     }
   },
 
   // 刷新数据
   async refreshData() {
     try {
-      await this.fetchDashboardData()
+      await this.fetchDashboardData();
     } catch (error) {
-      console.error('Refresh data error:', error)
+      console.error('Refresh data error:', error);
     }
   },
 
   // 初始化图表
   initCharts() {
-    const query = wx.createSelectorQuery()
+    const query = wx.createSelectorQuery();
 
     // 订单趋势图
     query.select('#trendChart')
       .fields({ node: true, size: true })
       .exec((res) => {
         if (res[0]) {
-          const canvas = res[0].node
-          const ctx = canvas.getContext('2d')
-          const dpr = wx.getSystemInfoSync().pixelRatio
+          const canvas = res[0].node;
+          const dpr = wx.getSystemInfoSync().pixelRatio;
           
-          canvas.width = res[0].width * dpr
-          canvas.height = res[0].height * dpr
+          canvas.width = res[0].width * dpr;
+          canvas.height = res[0].height * dpr;
           
           const chart = echarts.init(canvas, null, {
             renderer: 'canvas',
             devicePixelRatio: dpr
-          })
+          });
           
           const option = {
             backgroundColor: 'transparent',
@@ -204,29 +202,28 @@ Page({
                 ])
               }
             }]
-          }
+          };
           
-          chart.setOption(option)
-          this.setData({ trendChart: chart })
+          chart.setOption(option);
+          this.setData({ trendChart: chart });
         }
-      })
+      });
 
     // 物种分布图
     query.select('#speciesChart')
       .fields({ node: true, size: true })
       .exec((res) => {
         if (res[0]) {
-          const canvas = res[0].node
-          const ctx = canvas.getContext('2d')
-          const dpr = wx.getSystemInfoSync().pixelRatio
+          const canvas = res[0].node;
+          const dpr = wx.getSystemInfoSync().pixelRatio;
           
-          canvas.width = res[0].width * dpr
-          canvas.height = res[0].height * dpr
+          canvas.width = res[0].width * dpr;
+          canvas.height = res[0].height * dpr;
           
           const chart = echarts.init(canvas, null, {
             renderer: 'canvas',
             devicePixelRatio: dpr
-          })
+          });
           
           const option = {
             backgroundColor: 'transparent',
@@ -248,33 +245,32 @@ Page({
               itemStyle: {
                 borderRadius: 8,
                 color: (params) => {
-                  return themeColors.chartColors[params.dataIndex % themeColors.chartColors.length]
+                  return themeColors.chartColors[params.dataIndex % themeColors.chartColors.length];
                 }
               }
             }]
-          }
+          };
           
-          chart.setOption(option)
-          this.setData({ speciesChart: chart })
+          chart.setOption(option);
+          this.setData({ speciesChart: chart });
         }
-      })
+      });
 
     // 订单状态分布（环形图）
     query.select('#statusChart')
       .fields({ node: true, size: true })
       .exec((res) => {
         if (res[0]) {
-          const canvas = res[0].node
-          const ctx = canvas.getContext('2d')
-          const dpr = wx.getSystemInfoSync().pixelRatio
+          const canvas = res[0].node;
+          const dpr = wx.getSystemInfoSync().pixelRatio;
           
-          canvas.width = res[0].width * dpr
-          canvas.height = res[0].height * dpr
+          canvas.width = res[0].width * dpr;
+          canvas.height = res[0].height * dpr;
           
           const chart = echarts.init(canvas, null, {
             renderer: 'canvas',
             devicePixelRatio: dpr
-          })
+          });
           
           const option = {
             backgroundColor: 'transparent',
@@ -305,8 +301,8 @@ Page({
                     themeColors.chartColors[3], // 执行中 - 蓝色
                     themeColors.chartColors[6], // 待确认 - 红色
                     themeColors.chartColors[4]  // 已完成 - 绿色
-                  ]
-                  return colors[params.dataIndex]
+                  ];
+                  return colors[params.dataIndex];
                 }
               },
               label: {
@@ -314,29 +310,28 @@ Page({
                 color: themeColors.text
               }
             }]
-          }
+          };
           
-          chart.setOption(option)
-          this.setData({ statusChart: chart })
+          chart.setOption(option);
+          this.setData({ statusChart: chart });
         }
-      })
+      });
 
     // 志愿者排行榜
     query.select('#rankChart')
       .fields({ node: true, size: true })
       .exec((res) => {
         if (res[0]) {
-          const canvas = res[0].node
-          const ctx = canvas.getContext('2d')
-          const dpr = wx.getSystemInfoSync().pixelRatio
+          const canvas = res[0].node;
+          const dpr = wx.getSystemInfoSync().pixelRatio;
           
-          canvas.width = res[0].width * dpr
-          canvas.height = res[0].height * dpr
+          canvas.width = res[0].width * dpr;
+          canvas.height = res[0].height * dpr;
           
           const chart = echarts.init(canvas, null, {
             renderer: 'canvas',
             devicePixelRatio: dpr
-          })
+          });
           
           const option = {
             backgroundColor: 'transparent',
@@ -369,12 +364,12 @@ Page({
                 borderRadius: [0, 10, 10, 0]
               }
             }]
-          }
+          };
           
-          chart.setOption(option)
-          this.setData({ rankChart: chart })
+          chart.setOption(option);
+          this.setData({ rankChart: chart });
         }
-      })
+      });
   },
 
   // 渲染图表
@@ -385,8 +380,8 @@ Page({
   // 开始自动刷新
   startAutoRefresh() {
     this.refreshTimer = setInterval(() => {
-      this.refreshData()
-    }, 30000) // 每 30 秒刷新一次
+      this.refreshData();
+    }, 30000); // 每 30 秒刷新一次
   },
 
   // 刷新数据
@@ -397,12 +392,12 @@ Page({
       time: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }),
       info: `鱼类保护 - 用户${Math.floor(Math.random() * 1000)}`,
       amount: `${Math.floor(Math.random() * 500) + 100}`
-    }
+    };
     
-    const orders = this.data.latestOrders
-    orders.unshift(newOrder)
-    orders.pop()
+    const orders = this.data.latestOrders;
+    orders.unshift(newOrder);
+    orders.pop();
     
-    this.setData({ latestOrders: orders })
+    this.setData({ latestOrders: orders });
   }
-})
+});

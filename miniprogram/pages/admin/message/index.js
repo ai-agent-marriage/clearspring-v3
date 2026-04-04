@@ -39,31 +39,31 @@ Page({
   },
 
   onLoad() {
-    this.loadStats()
-    this.loadUnreadCount()
+    this.loadStats();
+    this.loadUnreadCount();
     // 启动定时刷新（每 30 秒）
-    this.startAutoRefresh()
+    this.startAutoRefresh();
   },
 
   onUnload() {
     // 清理定时器
     if (this.refreshTimer) {
-      clearTimeout(this.refreshTimer)
+      clearTimeout(this.refreshTimer);
     }
   },
 
   // 启动自动刷新
   startAutoRefresh() {
     this.refreshTimer = setTimeout(() => {
-      this.loadStats()
-      this.loadUnreadCount()
-      this.startAutoRefresh()
-    }, 30000)
+      this.loadStats();
+      this.loadUnreadCount();
+      this.startAutoRefresh();
+    }, 30000);
   },
 
   // 加载统计数据（实时数据接入）
   loadStats() {
-    this.setData({ loading: true })
+    this.setData({ loading: true });
     
     // 模拟云函数调用（实际使用时取消注释）
     // wx.cloud.callFunction({
@@ -93,8 +93,8 @@ Page({
         },
         lastUpdateTime: new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }),
         loading: false
-      })
-    }, 500)
+      });
+    }, 500);
   },
 
   // 加载未读消息数
@@ -107,16 +107,16 @@ Page({
     // })
     
     // 模拟数据
-    this.setData({ unreadCount: 5 })
+    this.setData({ unreadCount: 5 });
   },
 
   // 跳转到菜单页面（带点击反馈）
   goToMenu(e) {
-    const path = e.currentTarget.dataset.path
-    const name = e.currentTarget.dataset.name
+    const path = e.currentTarget.dataset.path;
+    const name = e.currentTarget.dataset.name;
     
     // 点击反馈
-    wx.vibrateShort({ type: 'light' })
+    wx.vibrateShort({ type: 'light' });
     
     wx.navigateTo({
       url: path,
@@ -124,34 +124,34 @@ Page({
         wx.showToast({
           title: `${name}页面开发中`,
           icon: 'none'
-        })
+        });
       }
-    })
+    });
   },
 
   // 发送测试消息（优化反馈）
   sendTestMessage() {
-    wx.vibrateShort({ type: 'medium' })
+    wx.vibrateShort({ type: 'medium' });
     
-    wx.showLoading({ title: '发送中...' })
+    wx.showLoading({ title: '发送中...' });
     
     // 模拟发送
     setTimeout(() => {
-      wx.hideLoading()
+      wx.hideLoading();
       wx.showToast({
         title: '发送成功',
         icon: 'success',
         duration: 2000
-      })
+      });
       
       // 刷新统计
-      this.loadStats()
-    }, 1000)
+      this.loadStats();
+    }, 1000);
   },
 
   // 查看发送记录
   viewRecords() {
-    wx.vibrateShort({ type: 'light' })
+    wx.vibrateShort({ type: 'light' });
     
     wx.navigateTo({
       url: '/pages/admin/message/records',
@@ -159,9 +159,9 @@ Page({
         wx.showToast({
           title: '页面开发中',
           icon: 'none'
-        })
+        });
       }
-    })
+    });
   },
 
   // 下拉刷新
@@ -170,11 +170,11 @@ Page({
       this.loadStats(),
       this.loadUnreadCount()
     ]).then(() => {
-      wx.stopPullDownRefresh()
+      wx.stopPullDownRefresh();
       wx.showToast({
         title: '刷新成功',
         icon: 'success'
-      })
-    })
+      });
+    });
   }
-})
+});

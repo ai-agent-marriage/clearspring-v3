@@ -39,4 +39,4 @@ module.exports = {
     // 最大缓存数量
     maxCount: 100
   }
-}
+};

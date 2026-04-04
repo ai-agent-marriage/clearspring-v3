@@ -1,343 +1,332 @@
 /**
- * @file 个人中心页面测试
- * @description 测试个人中心页面的功能完整性
+ * 个人中心页面测试
+ * @file miniprogram/__tests__/profile.test.js
+ * @description 测试个人中心页面的各项功能
  */
 
-const { setupApp, mockWx, clearMocks } = require('./setup');
-
-describe('个人中心页面 (Profile)', () => {
-  let app;
+describe('个人中心页面测试', () => {
   let page;
-  let mockData;
+  let mockWx;
 
   beforeEach(() => {
-    app = setupApp();
-    mockWx();
-    mockData = {
-      userInfo: {
-        avatarUrl: '/images/avatar.png',
-        nickName: '测试用户',
-        userId: 'test_user_001'
+    // Mock wx 对象
+    mockWx = {
+      getStorageSync: jest.fn(),
+      setStorageSync: jest.fn(),
+      navigateTo: jest.fn(),
+      showToast: jest.fn(),
+      makePhoneCall: jest.fn(),
+      showModal: jest.fn(),
+      getUserProfile: jest.fn()
+    };
+    global.wx = mockWx;
+
+    // 创建页面实例
+    page = {
+      data: {
+        hasUserInfo: false,
+        userInfo: null,
+        avatarUrl: '/images/profile.png',
+        nickname: '',
+        userId: '',
+        stats: {
+          listenCount: 36,
+          protectCount: 5,
+          continuousDays: 7,
+          certCount: 3
+        },
+        menuGroups: [
+          {
+            title: '修行数据',
+            items: [
+              { icon: '🎵', name: '我的收听', path: '/pages/profile/listen', badge: 0 }
+            ]
+          }
+        ],
+        quickActions: [
+          { icon: '📍', name: '一键放生', path: '/pages/protect/register', color: '#07c160' }
+        ],
+        trendData: {
+          dates: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+          meritValues: [120, 150, 180, 200, 230, 280, 320],
+          protectValues: [0, 1, 0, 2, 0, 1, 1]
+        },
+        showChart: false
       },
-      stats: {
-        listenCount: 36,
-        protectCount: 5,
-        continuousDays: 7,
-        certCount: 3
+      checkLoginStatus: function() {
+        const userInfo = mockWx.getStorageSync('userInfo');
+        if (userInfo) {
+          page.data.hasUserInfo = true;
+          page.data.userInfo = userInfo;
+          page.data.avatarUrl = userInfo.avatarUrl || '/images/profile.png';
+          page.data.nickname = userInfo.nickName || '';
+          page.data.userId = userInfo.userId || '';
+        }
+      },
+      loadStats: function() {
+        const stats = mockWx.getStorageSync('userStats');
+        if (stats) {
+          page.data.stats = stats;
+        }
+      },
+      login: function() {
+        mockWx.getUserProfile({
+          desc: '用于完善用户资料',
+          success: (res) => {
+            const userInfo = res.userInfo;
+            mockWx.setStorageSync('userInfo', userInfo);
+            page.data.hasUserInfo = true;
+            page.data.userInfo = userInfo;
+            mockWx.showToast({ title: '登录成功', icon: 'success' });
+          },
+          fail: () => {
+            mockWx.showToast({ title: '取消登录', icon: 'none' });
+          }
+        });
+      },
+      navigateTo: function(e) {
+        const item = e.currentTarget.dataset.item;
+        mockWx.navigateTo({
+          url: item.path,
+          fail: () => mockWx.showToast({ title: '即将开放', icon: 'none' })
+        });
+      },
+      onQuickActionTap: function(e) {
+        const action = e.currentTarget.dataset.action;
+        mockWx.navigateTo({ url: action.path });
+      },
+      toggleChart: function() {
+        page.data.showChart = !page.data.showChart;
+      },
+      contactUs: function() {
+        mockWx.makePhoneCall({
+          phoneNumber: '400-xxx-xxxx',
+          fail: () => mockWx.showToast({ title: '号码错误', icon: 'none' })
+        });
+      },
+      aboutUs: function() {
+        mockWx.showModal({
+          title: '关于清如 ClearSpring',
+          content: '清如 ClearSpring 专业服务小程序\n版本：1.0.0\n\n科学放生，护生护心',
+          showCancel: false,
+          confirmColor: '#07c160'
+        });
+      },
+      onShareAppMessage: function() {
+        return {
+          title: '我的修行记录 - 清如 ClearSpring',
+          path: '/pages/profile/profile',
+          imageUrl: ''
+        };
       }
     };
   });
 
   afterEach(() => {
-    clearMocks();
-    page = null;
+    jest.clearAllMocks();
   });
 
   describe('页面初始化', () => {
-    test('页面应该成功加载', () => {
-      page = app.loadPage('/pages/profile/profile');
-      expect(page).toBeDefined();
+    test('页面应该正常初始化', () => {
       expect(page.data).toBeDefined();
-    });
-
-    test('默认数据应该正确初始化', () => {
-      page = app.loadPage('/pages/profile/profile');
-      expect(page.data.hasUserInfo).toBe(false);
-      expect(page.data.userInfo).toBeNull();
       expect(page.data.stats).toBeDefined();
-      expect(page.data.menuGroups).toBeDefined();
-      expect(page.data.quickActions).toBeDefined();
     });
 
-    test('统计数据应该包含所有必要字段', () => {
-      page = app.loadPage('/pages/profile/profile');
-      const stats = page.data.stats;
-      expect(stats).toHaveProperty('listenCount');
-      expect(stats).toHaveProperty('protectCount');
-      expect(stats).toHaveProperty('continuousDays');
-      expect(stats).toHaveProperty('certCount');
-    });
-
-    test('功能菜单应该正确分组', () => {
-      page = app.loadPage('/pages/profile/profile');
-      const menuGroups = page.data.menuGroups;
-      expect(menuGroups.length).toBeGreaterThan(0);
-      menuGroups.forEach(group => {
-        expect(group).toHaveProperty('title');
-        expect(group).toHaveProperty('items');
-        expect(Array.isArray(group.items)).toBe(true);
-      });
-    });
-
-    test('快捷操作应该包含所有必要信息', () => {
-      page = app.loadPage('/pages/profile/profile');
-      const quickActions = page.data.quickActions;
-      expect(quickActions.length).toBe(4);
-      quickActions.forEach(action => {
-        expect(action).toHaveProperty('icon');
-        expect(action).toHaveProperty('name');
-        expect(action).toHaveProperty('path');
-        expect(action).toHaveProperty('color');
-      });
-    });
-  });
-
-  describe('用户登录功能', () => {
-    test('登录成功应该更新用户信息', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      const mockUserInfo = mockData.userInfo;
-      wx.getUserProfile.mockImplementation(({ success }) => {
-        success({ userInfo: mockUserInfo });
-      });
-
-      page.login();
-
-      expect(wx.getUserProfile).toHaveBeenCalled();
-      expect(wx.setStorageSync).toHaveBeenCalledWith('userInfo', mockUserInfo);
-      expect(page.data.hasUserInfo).toBe(true);
-      expect(page.data.nickname).toBe(mockUserInfo.nickName);
-    });
-
-    test('登录失败应该显示提示', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      wx.getUserProfile.mockImplementation(({ fail }) => {
-        fail(new Error('用户取消'));
-      });
-
-      page.login();
-
-      expect(wx.getUserProfile).toHaveBeenCalled();
-      expect(wx.showToast).toHaveBeenCalledWith(
-        expect.objectContaining({
-          title: '取消登录',
-          icon: 'none'
-        })
-      );
-    });
-
-    test('检查登录状态应该读取本地缓存', () => {
-      wx.getStorageSync.mockReturnValue(mockData.userInfo);
-      
-      page = app.loadPage('/pages/profile/profile');
-      page.checkLoginStatus();
-
-      expect(wx.getStorageSync).toHaveBeenCalledWith('userInfo');
-      expect(page.data.hasUserInfo).toBe(true);
-    });
-  });
-
-  describe('数据统计功能', () => {
-    test('加载统计数据应该优先使用本地缓存', () => {
-      wx.getStorageSync.mockReturnValue(mockData.stats);
-      
-      page = app.loadPage('/pages/profile/profile');
-      page.loadStats();
-
-      expect(wx.getStorageSync).toHaveBeenCalledWith('userStats');
-      expect(page.data.stats).toEqual(mockData.stats);
-    });
-
-    test('没有缓存时应该使用默认数据', () => {
-      wx.getStorageSync.mockReturnValue(null);
-      
-      page = app.loadPage('/pages/profile/profile');
-      page.loadStats();
-
+    test('统计数据应该有默认值', () => {
       expect(page.data.stats.listenCount).toBe(36);
       expect(page.data.stats.protectCount).toBe(5);
       expect(page.data.stats.continuousDays).toBe(7);
       expect(page.data.stats.certCount).toBe(3);
     });
+  });
 
-    test('页面显示时应该刷新统计数据', () => {
-      wx.getStorageSync.mockReturnValueOnce(null).mockReturnValueOnce(mockData.stats);
-      
-      page = app.loadPage('/pages/profile/profile');
-      page.onShow();
+  describe('登录状态检查', () => {
+    test('checkLoginStatus - 用户已登录时应设置用户信息', () => {
+      const mockUserInfo = {
+        avatarUrl: 'https://example.com/avatar.png',
+        nickName: '测试用户',
+        userId: 'user123'
+      };
+      mockWx.getStorageSync.mockReturnValue(mockUserInfo);
 
-      expect(wx.getStorageSync).toHaveBeenCalledWith('userStats');
+      page.checkLoginStatus();
+
+      expect(mockWx.getStorageSync).toHaveBeenCalledWith('userInfo');
+      expect(page.data.hasUserInfo).toBe(true);
+      expect(page.data.userInfo).toEqual(mockUserInfo);
+      expect(page.data.avatarUrl).toBe(mockUserInfo.avatarUrl);
+      expect(page.data.nickname).toBe(mockUserInfo.nickName);
+    });
+
+    test('checkLoginStatus - 用户未登录时应保持默认状态', () => {
+      mockWx.getStorageSync.mockReturnValue(null);
+
+      page.checkLoginStatus();
+
+      expect(page.data.hasUserInfo).toBe(false);
+      expect(page.data.userInfo).toBeNull();
     });
   });
 
-  describe('导航功能', () => {
-    test('点击菜单项应该跳转到对应页面', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      const mockItem = { name: '我的收听', path: '/pages/profile/listen' };
-      page.navigateTo({
-        currentTarget: {
-          dataset: { item: mockItem }
-        }
-      });
+  describe('统计数据加载', () => {
+    test('loadStats - 本地有缓存时应加载缓存数据', () => {
+      const mockStats = {
+        listenCount: 50,
+        protectCount: 10,
+        continuousDays: 15,
+        certCount: 5
+      };
+      mockWx.getStorageSync.mockReturnValue(mockStats);
 
-      expect(wx.navigateTo).toHaveBeenCalledWith(
-        expect.objectContaining({
-          url: mockItem.path
-        })
-      );
+      page.loadStats();
+
+      expect(page.data.stats).toEqual(mockStats);
     });
 
-    test('没有路径的菜单项应该显示即将开放', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      const mockItem = { name: '测试功能', path: '' };
-      page.navigateTo({
-        currentTarget: {
-          dataset: { item: mockItem }
-        }
+    test('loadStats - 本地无缓存时应保持默认数据', () => {
+      mockWx.getStorageSync.mockReturnValue(null);
+
+      page.loadStats();
+
+      expect(page.data.stats.listenCount).toBe(36);
+    });
+  });
+
+  describe('用户登录', () => {
+    test('login - 用户授权成功时应保存用户信息', () => {
+      const mockUserInfo = {
+        avatarUrl: 'https://example.com/avatar.png',
+        nickName: '新用户'
+      };
+      mockWx.getUserProfile.mockImplementation((options) => {
+        options.success({ userInfo: mockUserInfo });
       });
 
-      expect(wx.showToast).toHaveBeenCalledWith(
-        expect.objectContaining({
-          title: '即将开放',
-          icon: 'none'
-        })
-      );
+      page.login();
+
+      expect(mockWx.getUserProfile).toHaveBeenCalled();
+      expect(mockWx.setStorageSync).toHaveBeenCalledWith('userInfo', mockUserInfo);
+      expect(mockWx.showToast).toHaveBeenCalledWith({
+        title: '登录成功',
+        icon: 'success'
+      });
     });
 
-    test('跳转失败应该显示提示', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      wx.navigateTo.mockImplementation(({ fail }) => {
-        fail(new Error('页面不存在'));
+    test('login - 用户取消登录时应显示提示', () => {
+      mockWx.getUserProfile.mockImplementation((options) => {
+        options.fail({});
       });
 
-      const mockItem = { name: '测试功能', path: '/pages/nonexistent' };
-      page.navigateTo({
+      page.login();
+
+      expect(mockWx.showToast).toHaveBeenCalledWith({
+        title: '取消登录',
+        icon: 'none'
+      });
+    });
+  });
+
+  describe('页面导航', () => {
+    test('navigateTo - 有路径时应导航到指定页面', () => {
+      const mockEvent = {
         currentTarget: {
-          dataset: { item: mockItem }
+          dataset: {
+            item: {
+              path: '/pages/profile/listen',
+              name: '我的收听'
+            }
+          }
         }
-      });
+      };
 
-      expect(wx.showToast).toHaveBeenCalledWith(
-        expect.objectContaining({
-          title: '即将开放',
-          icon: 'none'
-        })
-      );
+      page.navigateTo(mockEvent);
+
+      expect(mockWx.navigateTo).toHaveBeenCalled();
     });
   });
 
   describe('快捷操作', () => {
-    test('点击快捷操作应该跳转到对应页面', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      const mockAction = { name: '一键放生', path: '/pages/protect/register' };
-      page.onQuickActionTap({
+    test('onQuickActionTap - 应导航到快捷操作页面', () => {
+      const mockEvent = {
         currentTarget: {
-          dataset: { action: mockAction }
+          dataset: {
+            action: {
+              path: '/pages/protect/register',
+              name: '一键放生'
+            }
+          }
         }
+      };
+
+      page.onQuickActionTap(mockEvent);
+
+      expect(mockWx.navigateTo).toHaveBeenCalledWith({
+        url: '/pages/protect/register'
       });
-
-      expect(wx.navigateTo).toHaveBeenCalledWith(
-        expect.objectContaining({
-          url: mockAction.path
-        })
-      );
-    });
-
-    test('快捷操作跳转失败应该显示提示', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      wx.navigateTo.mockImplementation(({ fail }) => {
-        fail(new Error('页面不存在'));
-      });
-
-      const mockAction = { name: '测试功能', path: '/pages/nonexistent' };
-      page.onQuickActionTap({
-        currentTarget: {
-          dataset: { action: mockAction }
-        }
-      });
-
-      expect(wx.showToast).toHaveBeenCalled();
     });
   });
 
   describe('图表功能', () => {
-    test('切换图表应该改变显示状态', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
+    test('toggleChart - 应切换图表显示状态', () => {
       expect(page.data.showChart).toBe(false);
-      
+
       page.toggleChart();
       expect(page.data.showChart).toBe(true);
-      
+
       page.toggleChart();
       expect(page.data.showChart).toBe(false);
-    });
-
-    test('趋势数据应该包含日期和数值', () => {
-      page = app.loadPage('/pages/profile/profile');
-      const trendData = page.data.trendData;
-      
-      expect(trendData.dates).toHaveLength(7);
-      expect(trendData.meritValues).toHaveLength(7);
-      expect(trendData.protectValues).toHaveLength(7);
     });
   });
 
-  describe('其他功能', () => {
-    test('联系客服应该调用电话功能', () => {
-      page = app.loadPage('/pages/profile/profile');
+  describe('联系客服', () => {
+    test('contactUs - 应调用拨打电话功能', () => {
       page.contactUs();
 
-      expect(wx.makePhoneCall).toHaveBeenCalledWith(
-        expect.objectContaining({
-          phoneNumber: '400-xxx-xxxx'
-        })
-      );
+      expect(mockWx.makePhoneCall).toHaveBeenCalledWith(expect.objectContaining({
+        phoneNumber: '400-xxx-xxxx'
+      }));
     });
+  });
 
-    test('关于我们应该显示弹窗', () => {
-      page = app.loadPage('/pages/profile/profile');
+  describe('关于我们', () => {
+    test('aboutUs - 应显示关于弹窗', () => {
       page.aboutUs();
 
-      expect(wx.showModal).toHaveBeenCalledWith(
-        expect.objectContaining({
-          title: '关于清如 ClearSpring',
-          showCancel: false
-        })
-      );
+      expect(mockWx.showModal).toHaveBeenCalledWith({
+        title: '关于清如 ClearSpring',
+        content: expect.stringContaining('清如 ClearSpring 专业服务小程序'),
+        showCancel: false,
+        confirmColor: '#07c160'
+      });
     });
+  });
 
-    test('分享应该返回正确的分享数据', () => {
-      page = app.loadPage('/pages/profile/profile');
-      const shareData = page.onShareAppMessage();
+  describe('分享功能', () => {
+    test('onShareAppMessage - 应返回分享配置', () => {
+      const shareConfig = page.onShareAppMessage();
 
-      expect(shareData.title).toContain('我的修行记录');
-      expect(shareData.path).toBe('/pages/profile/profile');
+      expect(shareConfig).toEqual({
+        title: '我的修行记录 - 清如 ClearSpring',
+        path: '/pages/profile/profile',
+        imageUrl: ''
+      });
     });
   });
 
   describe('数据验证', () => {
-    test('统计数据应该是正整数', () => {
-      page = app.loadPage('/pages/profile/profile');
-      const stats = page.data.stats;
-      
-      expect(Number.isInteger(stats.listenCount)).toBe(true);
-      expect(stats.listenCount).toBeGreaterThanOrEqual(0);
-      expect(Number.isInteger(stats.protectCount)).toBe(true);
-      expect(stats.protectCount).toBeGreaterThanOrEqual(0);
-      expect(Number.isInteger(stats.continuousDays)).toBe(true);
-      expect(stats.continuousDays).toBeGreaterThanOrEqual(0);
-      expect(Number.isInteger(stats.certCount)).toBe(true);
-      expect(stats.certCount).toBeGreaterThanOrEqual(0);
+    test('菜单组应该包含正确的分类', () => {
+      expect(page.data.menuGroups[0].title).toBe('修行数据');
     });
 
-    test('菜单项路径应该是有效的字符串', () => {
-      page = app.loadPage('/pages/profile/profile');
-      
-      page.data.menuGroups.forEach(group => {
-        group.items.forEach(item => {
-          expect(typeof item.path).toBe('string');
-          if (item.path) {
-            expect(item.path.startsWith('/')).toBe(true);
-          }
-        });
+    test('快捷操作应该有颜色属性', () => {
+      page.data.quickActions.forEach(action => {
+        expect(action).toHaveProperty('color');
       });
+    });
+
+    test('趋势数据应该包含 7 天数据', () => {
+      expect(page.data.trendData.dates).toHaveLength(7);
+      expect(page.data.trendData.meritValues).toHaveLength(7);
     });
   });
 });

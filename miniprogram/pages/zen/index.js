@@ -7,6 +7,6 @@ Page({
   onLoad() {
     this.setData({
       zenQuote: '禅理页面'
-    })
+    });
   }
-})
+});

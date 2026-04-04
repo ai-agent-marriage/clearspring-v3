@@ -2,7 +2,7 @@
 // 海报生成工具类
 /* global getCurrentPages */
 
-import { dailyZenPoster, speciesPoster } from './poster-template'
+import { dailyZenPoster, speciesPoster } from './poster-template';
 
 export function generateDailyZenPoster(zenQuote, author, bgUrl, qrcodeContent) {
   return new Promise((resolve, reject) => {
@@ -11,43 +11,43 @@ export function generateDailyZenPoster(zenQuote, author, bgUrl, qrcodeContent) {
         ...dailyZenPoster,
         views: dailyZenPoster.views.map(view => {
           if (view.type === 'image' && view.css.top === 0) {
-            return { ...view, url: bgUrl || view.url }
+            return { ...view, url: bgUrl || view.url };
           }
           if (view.type === 'text' && view.css.top === 400) {
-            return { ...view, text: zenQuote }
+            return { ...view, text: zenQuote };
           }
           if (view.type === 'text' && view.css.top === 700) {
-            return { ...view, text: `—— ${author}` }
+            return { ...view, text: `—— ${author}` };
           }
           if (view.type === 'qrcode') {
-            return { ...view, content: qrcodeContent || view.content }
+            return { ...view, content: qrcodeContent || view.content };
           }
-          return view
+          return view;
         })
-      }
+      };
 
-      const pages = getCurrentPages()
-      const currentPage = pages[pages.length - 1]
-      const painter = currentPage.selectComponent('#painter')
+      const pages = getCurrentPages();
+      const currentPage = pages[pages.length - 1];
+      const painter = currentPage.selectComponent('#painter');
 
       if (!painter) {
-        reject(new Error('未找到 painter 组件'))
-        return
+        reject(new Error('未找到 painter 组件'));
+        return;
       }
 
       painter.paint({
         config: posterConfig,
         success: (res) => {
-          resolve(res.tempFilePath)
+          resolve(res.tempFilePath);
         },
         fail: (err) => {
-          reject(err)
+          reject(err);
         }
-      })
+      });
     } catch (error) {
-      reject(error)
+      reject(error);
     }
-  })
+  });
 }
 
 export function generateSpeciesPoster(species, bgUrl, qrcodeContent) {
@@ -57,46 +57,46 @@ export function generateSpeciesPoster(species, bgUrl, qrcodeContent) {
         ...speciesPoster,
         views: speciesPoster.views.map(view => {
           if (view.type === 'image' && view.css.top === 0) {
-            return { ...view, url: bgUrl || view.url }
+            return { ...view, url: bgUrl || view.url };
           }
           if (view.type === 'text' && view.css.top === 300) {
-            return { ...view, text: species.name }
+            return { ...view, text: species.name };
           }
           if (view.type === 'text' && view.css.top === 400) {
-            return { ...view, text: species.scientificName }
+            return { ...view, text: species.scientificName };
           }
           if (view.type === 'text' && view.css.top === 550) {
-            return { ...view, text: species.remark }
+            return { ...view, text: species.remark };
           }
           if (view.type === 'qrcode') {
-            return { ...view, content: qrcodeContent || view.content }
+            return { ...view, content: qrcodeContent || view.content };
           }
-          return view
+          return view;
         })
-      }
+      };
 
-      const pages = getCurrentPages()
-      const currentPage = pages[pages.length - 1]
-      const painter = currentPage.selectComponent('#painter')
+      const pages = getCurrentPages();
+      const currentPage = pages[pages.length - 1];
+      const painter = currentPage.selectComponent('#painter');
 
       if (!painter) {
-        reject(new Error('未找到 painter 组件'))
-        return
+        reject(new Error('未找到 painter 组件'));
+        return;
       }
 
       painter.paint({
         config: posterConfig,
         success: (res) => {
-          resolve(res.tempFilePath)
+          resolve(res.tempFilePath);
         },
         fail: (err) => {
-          reject(err)
+          reject(err);
         }
-      })
+      });
     } catch (error) {
-      reject(error)
+      reject(error);
     }
-  })
+  });
 }
 
 export function savePosterToAlbum(filePath) {
@@ -113,32 +113,32 @@ export function savePosterToAlbum(filePath) {
                 content: '需要相册权限才能保存海报，是否前往设置？',
                 success: (modalRes) => {
                   if (modalRes.confirm) {
-                    wx.openSetting()
+                    wx.openSetting();
                   }
                 }
-              })
-              reject(new Error('未授权'))
+              });
+              reject(new Error('未授权'));
             }
-          })
+          });
         } else {
-          doSave()
+          doSave();
         }
       }
-    })
+    });
 
     function doSave() {
       wx.saveImageToPhotosAlbum({
         filePath: filePath,
         success: () => {
-          wx.showToast({ title: '已保存到相册', icon: 'success' })
-          resolve(true)
+          wx.showToast({ title: '已保存到相册', icon: 'success' });
+          resolve(true);
         },
         fail: (err) => {
-          reject(err)
+          reject(err);
         }
-      })
+      });
     }
-  })
+  });
 }
 
-export default { generateDailyZenPoster, generateSpeciesPoster, savePosterToAlbum }
+export default { generateDailyZenPoster, generateSpeciesPoster, savePosterToAlbum };

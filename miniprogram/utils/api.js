@@ -3,7 +3,7 @@
  * 提供统计相关的数据接口调用
  */
 
-import request from './request'
+import request from './request';
 
 /**
  * 获取仪表盘统计数据
@@ -14,11 +14,11 @@ export async function fetchDashboardStats() {
     const res = await request({
       url: '/api/stats/dashboard',
       method: 'GET'
-    })
-    return res.data
+    });
+    return res.data;
   } catch (error) {
-    console.error('Fetch dashboard stats error:', error)
-    throw error
+    console.error('Fetch dashboard stats error:', error);
+    throw error;
   }
 }
 
@@ -31,11 +31,11 @@ export async function fetchDashboardData() {
     const res = await request({
       url: '/api/stats/dashboard',
       method: 'GET'
-    })
-    return res.data
+    });
+    return res.data;
   } catch (error) {
-    console.error('Fetch dashboard data error:', error)
-    throw error
+    console.error('Fetch dashboard data error:', error);
+    throw error;
   }
 }
 
@@ -54,11 +54,11 @@ export async function fetchTrendData(timeRange = '7', metrics = ['orders', 'amou
         timeRange,
         metrics: metrics.join(',')
       }
-    })
-    return res.data
+    });
+    return res.data;
   } catch (error) {
-    console.error('Fetch trend data error:', error)
-    throw error
+    console.error('Fetch trend data error:', error);
+    throw error;
   }
 }
 
@@ -71,11 +71,11 @@ export async function fetchSpeciesDistribution() {
     const res = await request({
       url: '/api/stats/species-distribution',
       method: 'GET'
-    })
-    return res.data
+    });
+    return res.data;
   } catch (error) {
-    console.error('Fetch species distribution error:', error)
-    throw error
+    console.error('Fetch species distribution error:', error);
+    throw error;
   }
 }
 
@@ -93,11 +93,11 @@ export async function exportStatsData(options = {}) {
       url: '/api/stats/export',
       method: 'GET',
       data: options
-    })
-    return res.data
+    });
+    return res.data;
   } catch (error) {
-    console.error('Export stats data error:', error)
-    throw error
+    console.error('Export stats data error:', error);
+    throw error;
   }
 }
 
@@ -110,7 +110,7 @@ export async function exportStatsData(options = {}) {
 export async function uploadImage(filePath, options = {}) {
   try {
     // 先压缩图片
-    const compressedPath = await compressImage(filePath, options)
+    const compressedPath = await compressImage(filePath, options);
     
     // 上传到云存储
     const res = await request({
@@ -118,11 +118,11 @@ export async function uploadImage(filePath, options = {}) {
       method: 'POST',
       filePath: compressedPath,
       name: 'image'
-    })
-    return res.data
+    });
+    return res.data;
   } catch (error) {
-    console.error('Upload image error:', error)
-    throw error
+    console.error('Upload image error:', error);
+    throw error;
   }
 }
 
@@ -135,7 +135,7 @@ export async function uploadImage(filePath, options = {}) {
  * @returns {Promise<string>} 压缩后的图片路径
  */
 export function compressImage(src, options = {}) {
-  const { quality = 80, maxWidth = 1024 } = options
+  const { quality = 80, maxWidth = 1024 } = options;
   
   return new Promise((resolve, reject) => {
     wx.compressImage({
@@ -143,13 +143,13 @@ export function compressImage(src, options = {}) {
       quality,
       compressedWidth: maxWidth,
       success: (res) => {
-        resolve(res.tempFilePath)
+        resolve(res.tempFilePath);
       },
       fail: (error) => {
-        reject(error)
+        reject(error);
       }
-    })
-  })
+    });
+  });
 }
 
 /**
@@ -160,14 +160,14 @@ export function showLoading(title = '加载中...') {
   wx.showLoading({
     title,
     mask: true
-  })
+  });
 }
 
 /**
  * 隐藏加载提示
  */
 export function hideLoading() {
-  wx.hideLoading()
+  wx.hideLoading();
 }
 
 /**
@@ -179,7 +179,7 @@ export function showError(message = '操作失败') {
     title: message,
     icon: 'none',
     duration: 2000
-  })
+  });
 }
 
 /**
@@ -191,5 +191,5 @@ export function showSuccess(message = '操作成功') {
     title: message,
     icon: 'success',
     duration: 2000
-  })
+  });
 }

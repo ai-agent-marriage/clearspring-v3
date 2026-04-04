@@ -40,7 +40,7 @@ export const dailyZenPoster = {
       css: { top: 1820, left: 440, width: 200, fontSize: 28, color: '#ffffff', textAlign: 'center' }
     }
   ]
-}
+};
 
 export const speciesPoster = {
   width: 1080,
@@ -81,6 +81,6 @@ export const speciesPoster = {
       css: { top: 1600, left: 440, width: 200, height: 200 }
     }
   ]
-}
+};
 
-export default { dailyZenPoster, speciesPoster }
+export default { dailyZenPoster, speciesPoster };

@@ -66,6 +66,7 @@ class CacheManager {
    * @param {number} ttl - 可选的自定义过期时间 (ms)
    * @param {boolean} persist - 是否持久化到本地存储
    */
+  // eslint-disable-next-line no-unused-vars
   set(key, data, ttl = this.defaultTTL, persist = true) {
     const timestamp = Date.now();
     const cacheData = { data, timestamp };

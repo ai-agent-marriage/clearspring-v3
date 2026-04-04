@@ -32,10 +32,10 @@ const CONFIG = {
   
   // 是否启用调试日志
   DEBUG: false
-}
+};
 
 // ========== 内存缓存 ==========
-const memoryCache = new Map()
+const memoryCache = new Map();
 
 // ========== 缓存统计 ==========
 const stats = {
@@ -44,10 +44,10 @@ const stats = {
   sets: 0,      // 设置次数
   deletes: 0,   // 删除次数
   cleanups: 0   // 清理次数
-}
+};
 
 // ========== 清理定时器 ==========
-let cleanupTimer = null
+let cleanupTimer = null;
 
 /**
  * 初始化缓存系统
@@ -55,16 +55,16 @@ let cleanupTimer = null
  */
 function init() {
   if (CONFIG.DEBUG) {
-    console.log('[Cache] 初始化缓存系统')
+    console.log('[Cache] 初始化缓存系统');
   }
   
   // 从本地存储恢复缓存
   if (CONFIG.ENABLE_STORAGE) {
-    restoreFromStorage()
+    restoreFromStorage();
   }
   
   // 启动自动清理定时器
-  startCleanupTimer()
+  startCleanupTimer();
 }
 
 /**
@@ -72,22 +72,12 @@ function init() {
  */
 function startCleanupTimer() {
   if (cleanupTimer) {
-    clearInterval(cleanupTimer)
+    clearInterval(cleanupTimer);
   }
   
   cleanupTimer = setInterval(() => {
-    cleanup()
-  }, CONFIG.CLEANUP_INTERVAL)
-}
-
-/**
- * 停止自动清理定时器
- */
-function stopCleanupTimer() {
-  if (cleanupTimer) {
-    clearInterval(cleanupTimer)
-    cleanupTimer = null
-  }
+    cleanup();
+  }, CONFIG.CLEANUP_INTERVAL);
 }
 
 /**
@@ -96,7 +86,7 @@ function stopCleanupTimer() {
  * @returns {string} 带前缀的 key
  */
 function makeKey(key) {
-  return `${CONFIG.PREFIX}${key}`
+  return `${CONFIG.PREFIX}${key}`;
 }
 
 /**
@@ -105,7 +95,7 @@ function makeKey(key) {
  * @returns {string} 原始 key
  */
 function removeKeyPrefix(key) {
-  return key.replace(CONFIG.PREFIX, '')
+  return key.replace(CONFIG.PREFIX, '');
 }
 
 /**
@@ -117,41 +107,41 @@ function removeKeyPrefix(key) {
  */
 function set(key, value, expireSeconds = CONFIG.DEFAULT_EXPIRE) {
   try {
-    const fullKey = makeKey(key)
-    const now = Date.now()
-    const expireTime = expireSeconds > 0 ? now + expireSeconds * 1000 : null
+    const fullKey = makeKey(key);
+    const now = Date.now();
+    const expireTime = expireSeconds > 0 ? now + expireSeconds * 1000 : null;
     
     const cacheItem = {
       value: value,
       expire: expireTime,
       createTime: now,
       accessTime: now
-    }
+    };
     
     // 写入内存缓存
-    memoryCache.set(fullKey, cacheItem)
+    memoryCache.set(fullKey, cacheItem);
     
     // 检查内存缓存大小，超出则清理最久未使用的
     if (memoryCache.size > CONFIG.MAX_MEMORY_ITEMS) {
-      evictOldest()
+      evictOldest();
     }
     
     // 写入本地存储
     if (CONFIG.ENABLE_STORAGE) {
-      saveToStorage(fullKey, cacheItem)
+      saveToStorage(fullKey, cacheItem);
     }
     
     // 更新统计
-    stats.sets++
+    stats.sets++;
     
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] SET: ${key}, expire: ${expireSeconds}s`)
+      console.log(`[Cache] SET: ${key}, expire: ${expireSeconds}s`);
     }
     
-    return true
+    return true;
   } catch (error) {
-    console.error('[Cache] SET 失败:', error)
-    return false
+    console.error('[Cache] SET 失败:', error);
+    return false;
   }
 }
 
@@ -163,22 +153,22 @@ function set(key, value, expireSeconds = CONFIG.DEFAULT_EXPIRE) {
  */
 function get(key, expireSeconds) {
   try {
-    const fullKey = makeKey(key)
-    const cacheItem = memoryCache.get(fullKey)
+    const fullKey = makeKey(key);
+    const cacheItem = memoryCache.get(fullKey);
     
     // 内存缓存未命中，尝试从本地存储加载
     if (!cacheItem && CONFIG.ENABLE_STORAGE) {
-      const stored = loadFromStorage(fullKey)
+      const stored = loadFromStorage(fullKey);
       if (stored) {
-        memoryCache.set(fullKey, stored)
-        return getCachedValue(key, stored, expireSeconds)
+        memoryCache.set(fullKey, stored);
+        return getCachedValue(key, stored, expireSeconds);
       }
     }
     
-    return getCachedValue(key, cacheItem, expireSeconds)
+    return getCachedValue(key, cacheItem, expireSeconds);
   } catch (error) {
-    console.error('[Cache] GET 失败:', error)
-    return null
+    console.error('[Cache] GET 失败:', error);
+    return null;
   }
 }
 
@@ -191,46 +181,46 @@ function get(key, expireSeconds) {
  */
 function getCachedValue(key, cacheItem, expireSeconds) {
   if (!cacheItem) {
-    stats.misses++
+    stats.misses++;
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] MISS: ${key}`)
+      console.log(`[Cache] MISS: ${key}`);
     }
-    return null
+    return null;
   }
   
-  const now = Date.now()
+  const now = Date.now();
   
   // 检查是否过期
   if (cacheItem.expire && now > cacheItem.expire) {
-    remove(key)
-    stats.misses++
+    remove(key);
+    stats.misses++;
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] EXPIRED: ${key}`)
+      console.log(`[Cache] EXPIRED: ${key}`);
     }
-    return null
+    return null;
   }
   
   // 如果传入了 expireSeconds，验证是否匹配
   if (expireSeconds !== undefined && cacheItem.expire) {
-    const remaining = cacheItem.expire - now
+    const remaining = cacheItem.expire - now;
     if (remaining <= 0) {
-      remove(key)
-      stats.misses++
-      return null
+      remove(key);
+      stats.misses++;
+      return null;
     }
   }
   
   // 更新访问时间
-  cacheItem.accessTime = now
-  memoryCache.set(makeKey(key), cacheItem)
+  cacheItem.accessTime = now;
+  memoryCache.set(makeKey(key), cacheItem);
   
-  stats.hits++
+  stats.hits++;
   
   if (CONFIG.DEBUG) {
-    console.log(`[Cache] HIT: ${key}`)
+    console.log(`[Cache] HIT: ${key}`);
   }
   
-  return cacheItem.value
+  return cacheItem.value;
 }
 
 /**
@@ -239,19 +229,19 @@ function getCachedValue(key, cacheItem, expireSeconds) {
  * @returns {boolean} 是否存在
  */
 function has(key) {
-  const fullKey = makeKey(key)
-  const cacheItem = memoryCache.get(fullKey)
+  const fullKey = makeKey(key);
+  const cacheItem = memoryCache.get(fullKey);
   
   if (!cacheItem) {
-    return false
+    return false;
   }
   
   if (cacheItem.expire && Date.now() > cacheItem.expire) {
-    remove(key)
-    return false
+    remove(key);
+    return false;
   }
   
-  return true
+  return true;
 }
 
 /**
@@ -261,31 +251,31 @@ function has(key) {
  */
 function remove(key) {
   try {
-    const fullKey = makeKey(key)
+    const fullKey = makeKey(key);
     
     // 从内存缓存删除
-    const deleted = memoryCache.delete(fullKey)
+    const deleted = memoryCache.delete(fullKey);
     
     // 从本地存储删除
     if (CONFIG.ENABLE_STORAGE) {
       try {
-        wx.removeStorageSync(fullKey)
+        wx.removeStorageSync(fullKey);
       } catch (e) {
         // 忽略存储删除失败
       }
     }
     
     if (deleted) {
-      stats.deletes++
+      stats.deletes++;
       if (CONFIG.DEBUG) {
-        console.log(`[Cache] REMOVE: ${key}`)
+        console.log(`[Cache] REMOVE: ${key}`);
       }
     }
     
-    return deleted
+    return deleted;
   } catch (error) {
-    console.error('[Cache] REMOVE 失败:', error)
-    return false
+    console.error('[Cache] REMOVE 失败:', error);
+    return false;
   }
 }
 
@@ -296,33 +286,33 @@ function remove(key) {
 function clear() {
   try {
     // 清空内存缓存
-    memoryCache.clear()
+    memoryCache.clear();
     
     // 清空本地存储
     if (CONFIG.ENABLE_STORAGE) {
       try {
-        const keys = getAllStorageKeys()
+        const keys = getAllStorageKeys();
         keys.forEach(key => {
           if (key.startsWith(CONFIG.PREFIX)) {
-            wx.removeStorageSync(key)
+            wx.removeStorageSync(key);
           }
-        })
+        });
       } catch (e) {
         // 忽略存储清空失败
       }
     }
     
     // 重置统计
-    resetStats()
+    resetStats();
     
     if (CONFIG.DEBUG) {
-      console.log('[Cache] CLEAR ALL')
+      console.log('[Cache] CLEAR ALL');
     }
     
-    return true
+    return true;
   } catch (error) {
-    console.error('[Cache] CLEAR 失败:', error)
-    return false
+    console.error('[Cache] CLEAR 失败:', error);
+    return false;
   }
 }
 
@@ -332,15 +322,15 @@ function clear() {
  * @returns {number} 成功设置的数量
  */
 function setBatch(items) {
-  let successCount = 0
+  let successCount = 0;
   
   items.forEach(item => {
     if (set(item.key, item.value, item.expire)) {
-      successCount++
+      successCount++;
     }
-  })
+  });
   
-  return successCount
+  return successCount;
 }
 
 /**
@@ -349,13 +339,13 @@ function setBatch(items) {
  * @returns {Object} 缓存值对象 {key: value}
  */
 function getBatch(keys) {
-  const result = {}
+  const result = {};
   
   keys.forEach(key => {
-    result[key] = get(key)
-  })
+    result[key] = get(key);
+  });
   
-  return result
+  return result;
 }
 
 /**
@@ -364,15 +354,15 @@ function getBatch(keys) {
  * @returns {number} 成功删除的数量
  */
 function removeBatch(keys) {
-  let successCount = 0
+  let successCount = 0;
   
   keys.forEach(key => {
     if (remove(key)) {
-      successCount++
+      successCount++;
     }
-  })
+  });
   
-  return successCount
+  return successCount;
 }
 
 /**
@@ -381,46 +371,46 @@ function removeBatch(keys) {
  */
 function cleanup() {
   try {
-    const now = Date.now()
-    let count = 0
+    const now = Date.now();
+    let count = 0;
     
     // 清理内存缓存
     memoryCache.forEach((cacheItem, key) => {
       if (cacheItem.expire && now > cacheItem.expire) {
-        memoryCache.delete(key)
-        count++
+        memoryCache.delete(key);
+        count++;
       }
-    })
+    });
     
     // 清理本地存储
     if (CONFIG.ENABLE_STORAGE) {
-      const keys = getAllStorageKeys()
+      const keys = getAllStorageKeys();
       keys.forEach(key => {
         if (key.startsWith(CONFIG.PREFIX)) {
           try {
-            const item = wx.getStorageSync(key)
+            const item = wx.getStorageSync(key);
             if (item && item.expire && now > item.expire) {
-              wx.removeStorageSync(key)
-              count++
+              wx.removeStorageSync(key);
+              count++;
             }
           } catch (e) {
             // 忽略单个缓存读取失败
           }
         }
-      })
+      });
     }
     
     if (count > 0) {
-      stats.cleanups += count
+      stats.cleanups += count;
       if (CONFIG.DEBUG) {
-        console.log(`[Cache] CLEANUP: ${count} items`)
+        console.log(`[Cache] CLEANUP: ${count} items`);
       }
     }
     
-    return count
+    return count;
   } catch (error) {
-    console.error('[Cache] CLEANUP 失败:', error)
-    return 0
+    console.error('[Cache] CLEANUP 失败:', error);
+    return 0;
   }
 }
 
@@ -429,8 +419,8 @@ function cleanup() {
  * @returns {Object} 统计信息
  */
 function getStats() {
-  const total = stats.hits + stats.misses
-  const hitRate = total > 0 ? ((stats.hits / total) * 100).toFixed(2) : 0
+  const total = stats.hits + stats.misses;
+  const hitRate = total > 0 ? ((stats.hits / total) * 100).toFixed(2) : 0;
   
   return {
     hits: stats.hits,
@@ -441,38 +431,38 @@ function getStats() {
     cleanups: stats.cleanups,
     memorySize: memoryCache.size,
     maxMemorySize: CONFIG.MAX_MEMORY_ITEMS
-  }
+  };
 }
 
 /**
  * 重置统计信息
  */
 function resetStats() {
-  stats.hits = 0
-  stats.misses = 0
-  stats.sets = 0
-  stats.deletes = 0
-  stats.cleanups = 0
+  stats.hits = 0;
+  stats.misses = 0;
+  stats.sets = 0;
+  stats.deletes = 0;
+  stats.cleanups = 0;
 }
 
 /**
  * 逐出最久未使用的缓存项
  */
 function evictOldest() {
-  let oldestKey = null
-  let oldestTime = Infinity
+  let oldestKey = null;
+  let oldestTime = Infinity;
   
   memoryCache.forEach((cacheItem, key) => {
     if (cacheItem.accessTime < oldestTime) {
-      oldestTime = cacheItem.accessTime
-      oldestKey = key
+      oldestTime = cacheItem.accessTime;
+      oldestKey = key;
     }
-  })
+  });
   
   if (oldestKey) {
-    memoryCache.delete(oldestKey)
+    memoryCache.delete(oldestKey);
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] EVICT: ${removeKeyPrefix(oldestKey)}`)
+      console.log(`[Cache] EVICT: ${removeKeyPrefix(oldestKey)}`);
     }
   }
 }
@@ -484,16 +474,16 @@ function evictOldest() {
  */
 function saveToStorage(key, cacheItem) {
   try {
-    wx.setStorageSync(key, cacheItem)
+    wx.setStorageSync(key, cacheItem);
   } catch (error) {
     // 存储空间不足时，清理部分缓存
     if (error.errMsg && error.errMsg.includes('exceed')) {
-      cleanup()
+      cleanup();
       // 重试一次
       try {
-        wx.setStorageSync(key, cacheItem)
+        wx.setStorageSync(key, cacheItem);
       } catch (e) {
-        console.warn('[Cache] 存储空间不足，跳过本地存储')
+        console.warn('[Cache] 存储空间不足，跳过本地存储');
       }
     }
   }
@@ -506,9 +496,9 @@ function saveToStorage(key, cacheItem) {
  */
 function loadFromStorage(key) {
   try {
-    return wx.getStorageSync(key) || null
+    return wx.getStorageSync(key) || null;
   } catch (error) {
-    return null
+    return null;
   }
 }
 
@@ -518,10 +508,10 @@ function loadFromStorage(key) {
  */
 function getAllStorageKeys() {
   try {
-    const info = wx.getStorageInfoSync()
-    return info.keys || []
+    const info = wx.getStorageInfoSync();
+    return info.keys || [];
   } catch (error) {
-    return []
+    return [];
   }
 }
 
@@ -530,29 +520,29 @@ function getAllStorageKeys() {
  */
 function restoreFromStorage() {
   try {
-    const keys = getAllStorageKeys()
-    const now = Date.now()
-    let count = 0
+    const keys = getAllStorageKeys();
+    const now = Date.now();
+    let count = 0;
     
     keys.forEach(key => {
       if (key.startsWith(CONFIG.PREFIX) && memoryCache.size < CONFIG.MAX_MEMORY_ITEMS) {
         try {
-          const item = wx.getStorageSync(key)
+          const item = wx.getStorageSync(key);
           if (item && (!item.expire || now < item.expire)) {
-            memoryCache.set(key, item)
-            count++
+            memoryCache.set(key, item);
+            count++;
           }
         } catch (e) {
           // 忽略单个缓存加载失败
         }
       }
-    })
+    });
     
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] 从存储恢复 ${count} 项缓存`)
+      console.log(`[Cache] 从存储恢复 ${count} 项缓存`);
     }
   } catch (error) {
-    console.error('[Cache] 恢复存储失败:', error)
+    console.error('[Cache] 恢复存储失败:', error);
   }
 }
 
@@ -565,24 +555,24 @@ async function preload(items) {
   const promises = items.map(async item => {
     // 如果缓存已存在且未过期，跳过
     if (has(item.key)) {
-      return
+      return;
     }
     
     // 调用加载器获取数据
     try {
-      const data = await item.loader()
+      const data = await item.loader();
       if (data !== null && data !== undefined) {
-        set(item.key, data, item.expire)
+        set(item.key, data, item.expire);
       }
     } catch (error) {
-      console.error(`[Cache] 预加载失败 ${item.key}:`, error)
+      console.error(`[Cache] 预加载失败 ${item.key}:`, error);
     }
-  })
+  });
   
-  await Promise.all(promises)
+  await Promise.all(promises);
   
   if (CONFIG.DEBUG) {
-    console.log('[Cache] 预加载完成')
+    console.log('[Cache] 预加载完成');
   }
 }
 
@@ -613,4 +603,4 @@ module.exports = {
   
   // 配置（只读）
   config: CONFIG
-}
+};

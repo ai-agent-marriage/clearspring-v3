@@ -67,28 +67,28 @@ Page({
   onSearchInput(e) {
     this.setData({
       searchKeyword: e.detail.value
-    })
-    this.filterSpecies()
+    });
+    this.filterSpecies();
   },
 
   /**
    * 切换分类
    */
   onCategoryTap(e) {
-    const { category } = e.currentTarget.dataset
+    const { category } = e.currentTarget.dataset;
     this.setData({
       currentCategory: category
-    })
-    this.filterSpecies()
+    });
+    this.filterSpecies();
   },
 
   /**
    * 筛选物种
    */
   filterSpecies() {
-    const { searchKeyword, currentCategory, speciesList } = this.data
+    const { searchKeyword, currentCategory, speciesList } = this.data;
     
-    let filtered = speciesList
+    let filtered = speciesList;
 
     if (currentCategory !== '全部分类') {
       const typeMap = {
@@ -96,30 +96,30 @@ Page({
         '鸟类': 2,
         '两栖类': 3,
         '爬行类': 4
-      }
-      const type = typeMap[currentCategory]
-      filtered = filtered.filter(item => item.type === type)
+      };
+      const type = typeMap[currentCategory];
+      filtered = filtered.filter(item => item.type === type);
     }
 
     if (searchKeyword) {
       filtered = filtered.filter(item => 
         item.name.includes(searchKeyword) || 
         item.scientificName.toLowerCase().includes(searchKeyword.toLowerCase())
-      )
+      );
     }
 
     this.setData({
       speciesList: filtered
-    })
+    });
   },
 
   /**
    * 跳转详情页
    */
   onSpeciesTap(e) {
-    const { id } = e.currentTarget.dataset
+    const { id } = e.currentTarget.dataset;
     wx.navigateTo({
       url: `/pages/zen/species-detail?id=${id}`
-    })
+    });
   }
-})
+});

@@ -4,6 +4,515 @@
 
 ---
 
+## 📚 Day 19 学习笔记（2026-04-05）
+
+### 1. 管理后台订单管理模块
+
+#### 1.1 订单列表设计
+
+**核心功能**:
+- 多条件筛选（状态/时间/关键词）
+- 订单详情查看
+- 批量操作支持
+- 数据导出功能
+
+**技术实现**:
+```vue
+<template>
+  <view class="order-manage">
+    <!-- 筛选栏 -->
+    <view class="filter-bar">
+      <input 
+        v-model="keyword" 
+        placeholder="订单号/用户昵称"
+        @confirm="handleSearch"
+      />
+      <picker :range="statusOptions" @change="onStatusChange">
+        <view class="filter-item">订单状态</view>
+      </picker>
+      <date-range-picker 
+        :start="startDate" 
+        :end="endDate"
+        @change="onDateChange"
+      />
+      <button @click="handleSearch">查询</button>
+      <button @click="handleExport">导出</button>
+    </view>
+    
+    <!-- 订单列表 -->
+    <scroll-view scroll-y class="order-list">
+      <order-item 
+        v-for="item in orderList" 
+        :key="item.id"
+        :order="item"
+        @click="goDetail(item.id)"
+      />
+    </scroll-view>
+    
+    <!-- 分页 -->
+    <pagination 
+      :total="total" 
+      :page="page"
+      @change="onPageChange"
+    />
+  </view>
+</template>
+```
+
+**性能优化**:
+- 列表虚拟滚动（大数据场景）
+- 筛选条件缓存
+- 导出异步处理
+
+---
+
+#### 1.2 订单详情设计
+
+**信息展示**:
+```vue
+<template>
+  <view class="order-detail">
+    <!-- 基本信息 -->
+    <card title="订单信息">
+      <row label="订单号" :value="order.orderNo" />
+      <row label="下单时间" :value="order.createTime" />
+      <row label="订单状态" :value="order.statusName" />
+      <row label="订单金额" :value="formatMoney(order.amount)" />
+    </card>
+    
+    <!-- 用户信息 -->
+    <card title="用户信息">
+      <row label="用户名" :value="order.userName" />
+      <row label="手机号" :value="order.userPhone" />
+    </card>
+    
+    <!-- 物种信息 -->
+    <card title="物种信息">
+      <row label="物种名称" :value="order.speciesName" />
+      <row label="投放数量" :value="order.quantity" />
+    </card>
+    
+    <!-- 执行信息 -->
+    <card title="执行信息" v-if="order.executeInfo">
+      <row label="承接机构" :value="order.orgName" />
+      <row label="执行志愿者" :value="order.volunteerName" />
+      <row label="执行时间" :value="order.executeTime" />
+      <row label="执行地点" :value="order.executeLocation" />
+      <image-list :images="order.executePhotos" />
+      <row label="执行备注" :value="order.executeRemark" />
+    </card>
+    
+    <!-- 操作按钮 -->
+    <view class="action-bar">
+      <button @click="handleAssign">分配订单</button>
+      <button @click="handleReview">订单复核</button>
+      <button @click="handleExport">导出</button>
+    </view>
+  </view>
+</template>
+```
+
+---
+
+#### 1.3 订单统计设计
+
+**统计卡片**:
+```vue
+<template>
+  <view class="order-stats">
+    <stat-card 
+      title="累计订单数" 
+      :value="stats.totalOrders" 
+      unit="个"
+      :growth="12.5"
+      trend="up"
+    />
+    <stat-card 
+      title="累计金额" 
+      :value="formatMoney(stats.totalAmount)" 
+      unit="元"
+      :growth="15.2"
+      trend="up"
+    />
+    <stat-card 
+      title="已完成" 
+      :value="stats.completedOrders" 
+      unit="个"
+      :percentage="88.8"
+    />
+    <stat-card 
+      title="待处理" 
+      :value="stats.pendingOrders" 
+      unit="个"
+      :percentage="4.8"
+      type="warning"
+    />
+  </view>
+</template>
+```
+
+**状态分布图**:
+```javascript
+// ECharts 配置
+const option = {
+  title: { text: '订单状态分布', left: 'center' },
+  tooltip: { trigger: 'item' },
+  legend: { bottom: 0 },
+  series: [{
+    type: 'pie',
+    radius: '60%',
+    data: statusDistribution,
+    label: {
+      formatter: '{b}: {c} ({d}%)'
+    }
+  }]
+}
+```
+
+---
+
+### 2. 管理后台内容管理模块
+
+#### 2.1 物种管理设计
+
+**列表功能**:
+- 按类型筛选（鱼类/鸟类/其他）
+- 按投放状态筛选（允许/禁止）
+- 关键词搜索
+- 批量操作
+
+**新增/编辑表单**:
+```vue
+<template>
+  <form @submit="handleSubmit">
+    <input 
+      v-model="form.name" 
+      placeholder="物种名称"
+      required
+    />
+    
+    <picker 
+      :range="typeOptions" 
+      :value="form.type"
+      @change="onTypeChange"
+    >
+      <view>物种类型</view>
+    </picker>
+    
+    <picker 
+      :range="releaseStatusOptions" 
+      :value="form.releaseStatus"
+      @change="onReleaseStatusChange"
+    >
+      <view>投放状态</view>
+    </picker>
+    
+    <input 
+      v-model="form.scientificName" 
+      placeholder="学名（可选）"
+    />
+    
+    <input 
+      v-model="form.protectLevel" 
+      placeholder="保护级别（可选）"
+    />
+    
+    <textarea 
+      v-model="form.suitableHabitat" 
+      placeholder="适宜生境"
+    />
+    
+    <textarea 
+      v-model="form.bestTime" 
+      placeholder="最佳投放时间"
+    />
+    
+    <textarea 
+      v-model="form.remark" 
+      placeholder="备注说明"
+    />
+    
+    <image-upload 
+      v-model="form.images" 
+      :max-count="9"
+    />
+    
+    <input 
+      v-model.number="form.sort" 
+      type="number"
+      placeholder="排序（数字越小越靠前）"
+    />
+    
+    <button form-type="submit">保存</button>
+  </form>
+</template>
+```
+
+**禁止投放物种处理**:
+```javascript
+// 当选择禁止投放时，强制填写原因
+watch(() => form.releaseStatus, (newVal) => {
+  if (newVal === 0) {
+    // 显示禁止原因输入框
+    showForbidReason.value = true
+    form.forbidReason = ''
+  } else {
+    showForbidReason.value = false
+    form.forbidReason = null
+  }
+})
+```
+
+---
+
+#### 2.2 禅理管理设计
+
+**列表功能**:
+- 关键词搜索（内容/作者）
+- 按状态筛选（启用/禁用）
+- 按分类筛选
+- 批量导入/导出
+
+**新增/编辑表单**:
+```vue
+<template>
+  <form @submit="handleSubmit">
+    <textarea 
+      v-model="form.content" 
+      placeholder="禅理内容"
+      maxlength="200"
+      required
+    />
+    
+    <input 
+      v-model="form.author" 
+      placeholder="作者"
+      required
+    />
+    
+    <input 
+      v-model="form.source" 
+      placeholder="出处（可选）"
+    />
+    
+    <picker 
+      :range="categoryOptions" 
+      :value="form.category"
+      @change="onCategoryChange"
+    >
+      <view>分类</view>
+    </picker>
+    
+    <switch 
+      :checked="form.status === 1"
+      @change="onStatusChange"
+    >
+      <view>启用</view>
+    </switch>
+    
+    <image-upload 
+      v-model="form.backgroundImages" 
+      :max-count="5"
+      accept="background"
+    />
+    
+    <button form-type="submit">保存</button>
+  </form>
+</template>
+```
+
+**批量导入功能**:
+```javascript
+// Excel 导入解析
+const handleImport = async (file) => {
+  try {
+    const data = await parseExcel(file)
+    // 校验数据格式
+    const validData = data.filter(item => 
+      item.content && item.author
+    )
+    
+    // 调用批量导入接口
+    const result = await api.batchAddZen(validData)
+    
+    Toast.success(`导入成功 ${result.successCount} 条`)
+  } catch (e) {
+    Toast.fail('导入失败：' + e.message)
+  }
+}
+```
+
+---
+
+### 3. 问题与解决方案
+
+#### 3.1 问题 1: 订单列表大数据量性能优化
+
+**问题描述**:
+订单数据量达到数万条时，列表加载和筛选性能下降。
+
+**解决方案**:
+- 后端分页查询（每页 20 条）
+- 数据库索引优化（订单号/状态/创建时间）
+- 前端虚拟滚动（仅渲染可见区域）
+- 筛选条件缓存（避免重复查询）
+
+```sql
+-- 添加索引
+CREATE INDEX idx_order_no ON orders(order_no);
+CREATE INDEX idx_status ON orders(status);
+CREATE INDEX idx_create_time ON orders(create_time);
+CREATE INDEX idx_user_id ON orders(user_id);
+```
+
+```javascript
+// 前端虚拟滚动
+<virtual-list 
+  :data="orderList"
+  :item-height="80"
+  :buffer-size="5"
+>
+  <template #item="{ item }">
+    <order-item :order="item" />
+  </template>
+</virtual-list>
+```
+
+---
+
+#### 3.2 问题 2: 订单导出内存溢出
+
+**问题描述**:
+导出大量订单数据时（10 万+），出现内存溢出错误。
+
+**解决方案**:
+- 使用流式查询（MyBatis Cursor）
+- 分批写入 Excel（每 1000 行 flush 一次）
+- 异步生成，避免阻塞请求
+- 限制单次导出最大数量（10 万条）
+
+```java
+// 流式查询
+try (SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE)) {
+    OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+    try (Cursor<Order> cursor = mapper.selectForExport(query)) {
+        for (Order order : cursor) {
+            writeRow(order);
+            if (++count % 1000 == 0) {
+                workbook.write(outputStream);
+                outputStream.flush();
+            }
+        }
+    }
+}
+```
+
+---
+
+#### 3.3 问题 3: 物种数据缓存同步
+
+**问题描述**:
+管理后台更新物种数据后，小程序端缓存未及时更新。
+
+**解决方案**:
+- Redis 缓存 + 版本号机制
+- 数据变更时递增版本号
+- 小程序端请求时携带版本号
+- 版本号不匹配时重新拉取数据
+
+```java
+// 缓存 Key 设计
+String cacheKey = "content:species:v" + version;
+
+// 更新时递增版本号
+public void updateSpecies(Species species) {
+    speciesMapper.updateById(species);
+    // 递增版本号
+    Long newVersion = redisTemplate.opsForValue().increment("content:species:version");
+    // 清除旧缓存
+    redisTemplate.delete("content:species:v" + (newVersion - 1));
+}
+```
+
+```javascript
+// 小程序端
+const localVersion = wx.getStorageSync('speciesVersion') || 0
+const serverVersion = await api.getSpeciesVersion()
+
+if (localVersion !== serverVersion) {
+  // 重新拉取数据
+  const speciesList = await api.getSpeciesList()
+  wx.setStorageSync('speciesList', speciesList)
+  wx.setStorageSync('speciesVersion', serverVersion)
+}
+```
+
+---
+
+#### 3.4 问题 4: 禅理内容重复检测
+
+**问题描述**:
+管理员重复添加相同的禅理内容。
+
+**解决方案**:
+- 数据库唯一索引（内容 + 作者）
+- 添加前进行相似度检测
+- 提示可能的重复项
+
+```sql
+-- 添加唯一索引
+ALTER TABLE zen_content ADD UNIQUE INDEX uk_content_author (content(100), author);
+```
+
+```java
+// 相似度检测（编辑距离算法）
+public boolean isDuplicate(String newContent, String newAuthor) {
+    // 精确匹配
+    ZenContent exact = zenMapper.selectByContentAndAuthor(newContent, newAuthor);
+    if (exact != null) {
+        return true;
+    }
+    
+    // 模糊匹配（编辑距离 <= 3）
+    List<ZenContent> similar = zenMapper.selectAll();
+    for (ZenContent content : similar) {
+        if (content.getAuthor().equals(newAuthor) && 
+            editDistance(content.getContent(), newContent) <= 3) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+```
+
+---
+
+### 4. 最佳实践总结
+
+#### 4.1 订单管理
+
+1. **列表性能**: 分页查询 + 索引优化 + 虚拟滚动
+2. **导出优化**: 流式查询 + 异步处理 + 数量限制
+3. **状态流转**: 完整记录状态变更日志
+4. **权限控制**: 细粒度到按钮级别
+
+#### 4.2 内容管理
+
+1. **数据同步**: 版本号机制 + 缓存失效
+2. **重复检测**: 唯一索引 + 相似度算法
+3. **批量操作**: 支持 Excel 导入/导出
+4. **审核流程**: 重要变更需审核
+
+#### 4.3 用户体验
+
+1. **响应速度**: 首屏加载 < 1 秒
+2. **操作反馈**: 所有操作有明确提示
+3. **错误处理**: 友好的错误信息
+4. **数据可视化**: 图表展示统计信息
+
+---
+
 ## 📚 Day 18 学习笔记（2026-04-05）
 
 ### 1. 管理后台开发技术要点
@@ -1826,6 +2335,781 @@ CREATE TABLE `message_push_log` (
 **最后更新**: 2026-04-10  
 **关联文档**: 
 - [Phase 1 Day 10 进度报告](../progress/2026-04-10-day10-progress.md)
+- [API 接口文档](../api/README.md)
+
+---
+
+## 📚 Day 20 学习笔记（2026-04-05）
+
+### 1. 财务管理模块技术要点
+
+#### 1.1 财务统计设计
+
+**核心功能**:
+- 多维度财务数据概览（营收/结算/平台服务费）
+- 今日关键指标实时展示
+- 财务趋势分析（日/周/月）
+- 数据缓存优化（TTL 5 分钟）
+
+**技术实现**:
+```java
+@Service
+public class FinanceStatsService {
+    
+    @Cacheable(value = "finance:stats", key = "#startDate + '-' + #endDate", unless = "#result == null")
+    public FinanceStatsVO getStats(String startDate, String endDate) {
+        // 1. 查询订单财务数据
+        OrderFinanceStats orderStats = orderMapper.selectFinanceStats(startDate, endDate);
+        
+        // 2. 查询结算数据
+        SettlementStats settlementStats = settlementMapper.selectStats(startDate, endDate);
+        
+        // 3. 计算平台服务费
+        BigDecimal platformFee = orderStats.getTotalAmount()
+            .multiply(new BigDecimal("0.1"))
+            .setScale(2, RoundingMode.HALF_UP);
+        
+        // 4. 构建返回对象
+        FinanceStatsVO vo = new FinanceStatsVO();
+        vo.setTotalRevenue(orderStats.getTotalAmount());
+        vo.setTotalSettlement(settlementStats.getTotalSettlement());
+        vo.setTotalPlatformFee(platformFee);
+        vo.setPendingSettlement(settlementStats.getPendingAmount());
+        
+        return vo;
+    }
+}
+```
+
+**性能优化**:
+- Redis 缓存财务统计数据
+- 定时任务预计算（每日凌晨 2 点）
+- 大数据量使用异步查询
+
+---
+
+#### 1.2 结算管理设计
+
+**状态机设计**:
+```
+待确认 (1)
+  ├─→ 已确认 (2) ──→ 已打款 (3)
+  └─→ 已驳回 (4)
+```
+
+**确认结算逻辑**:
+```java
+@Transactional(rollbackFor = Exception.class)
+public SettlementConfirmVO confirmSettlement(Long settlementId, String remark) {
+    // 1. 查询结算单
+    Settlement settlement = settlementMapper.selectById(settlementId);
+    if (settlement == null) {
+        throw new BusinessException("结算单不存在");
+    }
+    if (settlement.getStatus() != 1) {
+        throw new BusinessException("仅待确认状态的结算单可确认");
+    }
+    
+    // 2. 更新状态
+    settlement.setStatus(2);
+    settlement.setConfirmBy(UserContext.getUserId());
+    settlement.setConfirmTime(LocalDateTime.now());
+    settlement.setConfirmRemark(remark);
+    settlementMapper.updateById(settlement);
+    
+    // 3. 更新关联订单状态
+    orderMapper.updateSettlementStatus(settlement.getOrderNo(), 2);
+    
+    // 4. 发送通知给机构
+    messageService.sendMessage(
+        settlement.getOrgId(),
+        MessageType.SETTLEMENT,
+        "结算确认通知",
+        String.format("您的结算单 %s 已确认，预计 24 小时内打款", settlement.getSettlementNo())
+    );
+    
+    // 5. 记录操作日志
+    logService.record("结算确认", settlementId, remark);
+    
+    // 6. 返回结果
+    SettlementConfirmVO vo = new SettlementConfirmVO();
+    vo.setSettlementId(settlement.getId());
+    vo.setStatus(2);
+    vo.setStatusName("已确认");
+    vo.setConfirmTime(LocalDateTime.now());
+    
+    return vo;
+}
+```
+
+---
+
+#### 1.3 发票管理设计
+
+**数据库设计**:
+```sql
+CREATE TABLE `finance_invoice` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `invoice_no` varchar(50) DEFAULT NULL COMMENT '发票代码',
+  `org_id` bigint NOT NULL COMMENT '机构 ID',
+  `order_no` varchar(50) NOT NULL COMMENT '关联订单号',
+  `amount` decimal(10,2) NOT NULL COMMENT '发票金额',
+  `type` tinyint NOT NULL COMMENT '发票类型 1 电子普票 2 电子专票 3 纸质普票',
+  `status` tinyint DEFAULT '1' COMMENT '状态 1 待开具 2 已开具 3 已寄送',
+  `title` varchar(200) DEFAULT NULL COMMENT '发票抬头',
+  `tax_id` varchar(50) DEFAULT NULL COMMENT '税号',
+  `apply_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `issue_time` datetime DEFAULT NULL,
+  `send_time` datetime DEFAULT NULL,
+  `remark` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_org_id` (`org_id`),
+  KEY `idx_status` (`status`),
+  KEY `idx_apply_time` (`apply_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='发票管理表';
+```
+
+**发票状态更新**:
+```java
+@Transactional(rollbackFor = Exception.class)
+public InvoiceUpdateVO updateInvoiceStatus(Long invoiceId, Integer status, String remark) {
+    // 1. 查询发票
+    FinanceInvoice invoice = invoiceMapper.selectById(invoiceId);
+    
+    // 2. 状态校验
+    if (invoice.getStatus() >= status) {
+        throw new BusinessException("状态只能向前流转");
+    }
+    
+    // 3. 更新状态
+    invoice.setStatus(status);
+    invoice.setRemark(remark);
+    if (status == 2) {
+        invoice.setIssueTime(LocalDateTime.now());
+    } else if (status == 3) {
+        invoice.setSendTime(LocalDateTime.now());
+    }
+    invoiceMapper.updateById(invoice);
+    
+    // 4. 发送通知
+    messageService.sendMessage(
+        invoice.getOrgId(),
+        MessageType.INVOICE,
+        "发票状态更新通知",
+        String.format("您的发票 %s 状态已更新为 %s", invoice.getInvoiceNo(), getStatusName(status))
+    );
+    
+    return buildUpdateVO(invoice);
+}
+```
+
+---
+
+### 2. 系统设置模块技术要点
+
+#### 2.1 系统设置设计
+
+**配置中心集成**:
+```java
+@Service
+public class SystemSettingsService {
+    
+    @Autowired
+    private ConfigService configService; // Nacos 配置中心
+    
+    /**
+     * 获取系统设置列表
+     */
+    public List<SettingVO> getList(String category, String keyword) {
+        // 1. 从数据库查询基础配置
+        List<SystemSetting> settings = settingMapper.selectList(category, keyword);
+        
+        // 2. 合并配置中心配置
+        for (SystemSetting setting : settings) {
+            String configValue = configService.getConfig(setting.getKey());
+            if (configValue != null) {
+                setting.setValue(configValue);
+            }
+        }
+        
+        return convertToVO(settings);
+    }
+    
+    /**
+     * 更新系统设置
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public SettingUpdateVO update(String key, String value, String reason) {
+        // 1. 查询原配置
+        SystemSetting setting = settingMapper.selectByKey(key);
+        String oldValue = setting.getValue();
+        
+        // 2. 更新数据库
+        setting.setValue(value);
+        setting.setUpdateTime(LocalDateTime.now());
+        setting.setUpdateBy(UserContext.getUserId());
+        settingMapper.updateById(setting);
+        
+        // 3. 同步到配置中心
+        configService.publishConfig(key, value);
+        
+        // 4. 清除相关缓存
+        cacheService.evict("system:setting:" + key);
+        
+        // 5. 记录变更日志
+        logService.record("系统设置变更", key, 
+            String.format("从 %s 变更为 %s，原因：%s", oldValue, value, reason));
+        
+        return buildUpdateVO(setting, oldValue);
+    }
+}
+```
+
+**设置分类设计**:
+```java
+public enum SettingCategory {
+    BASIC("basic", "基础设置"),           // 站点名称、LOGO、版权信息
+    PAYMENT("payment", "支付设置"),       // 服务费率、支付渠道配置
+    NOTIFICATION("notification", "通知设置"), // 短信模板、邮件配置
+    OTHER("other", "其他设置");           // 其他系统参数
+    
+    private final String code;
+    private final String name;
+}
+```
+
+---
+
+#### 2.2 备份管理设计
+
+**备份策略**:
+- 数据库备份：每日凌晨 2 点自动备份（保留 30 天）
+- 配置文件备份：每次变更后自动备份
+- 手动备份：管理员可随时触发
+
+**备份实现**:
+```java
+@Service
+public class BackupService {
+    
+    /**
+     * 创建数据库备份
+     */
+    @Async("backupExecutor")
+    public BackupTaskVO createDatabaseBackup(String remark) {
+        // 1. 创建备份任务
+        BackupTask task = new BackupTask();
+        task.setType("database");
+        task.setStatus(0);
+        task.setRemark(remark);
+        task.setCreateTime(LocalDateTime.now());
+        backupTaskMapper.insert(task);
+        
+        // 2. 异步执行备份
+        CompletableFuture.runAsync(() -> {
+            try {
+                // 执行 mysqldump
+                String fileName = "backup-" + LocalDateTime.now().format(
+                    DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss")) + ".sql";
+                String filePath = "/data/backup/" + fileName;
+                
+                ProcessBuilder pb = new ProcessBuilder(
+                    "mysqldump",
+                    "-h", databaseHost,
+                    "-u", databaseUser,
+                    "-p" + databasePassword,
+                    "--databases", databaseName,
+                    "--result-file=" + filePath
+                );
+                
+                Process process = pb.start();
+                int exitCode = process.waitFor();
+                
+                if (exitCode == 0) {
+                    // 备份成功
+                    task.setStatus(1);
+                    task.setFileName(fileName);
+                    task.setFileSize(getFileSize(filePath));
+                    
+                    // 上传到 OSS
+                    String ossUrl = ossService.upload(filePath);
+                    task.setDownloadUrl(ossUrl);
+                } else {
+                    task.setStatus(2);
+                    task.setErrorMsg("备份失败，退出码：" + exitCode);
+                }
+            } catch (Exception e) {
+                task.setStatus(2);
+                task.setErrorMsg(e.getMessage());
+                log.error("备份失败", e);
+            } finally {
+                backupTaskMapper.updateById(task);
+            }
+        });
+        
+        return buildTaskVO(task);
+    }
+}
+```
+
+---
+
+#### 2.3 系统日志设计
+
+**日志级别**:
+- INFO: 正常业务操作日志
+- WARN: 警告日志（如参数异常、权限校验失败）
+- ERROR: 错误日志（如系统异常、接口调用失败）
+
+**日志查询优化**:
+```java
+public PageResult<LogVO> getLogs(LogQuery query) {
+    // 1. 构建查询条件
+    LambdaQueryWrapper<SystemLog> wrapper = new LambdaQueryWrapper<>();
+    
+    if (query.getLevel() != null) {
+        wrapper.eq(SystemLog::getLevel, query.getLevel());
+    }
+    if (query.getModule() != null) {
+        wrapper.eq(SystemLog::getModule, query.getModule());
+    }
+    if (query.getStartDate() != null) {
+        wrapper.ge(SystemLog::getCreateTime, query.getStartDate());
+    }
+    if (query.getEndDate() != null) {
+        wrapper.le(SystemLog::getCreateTime, query.getEndDate());
+    }
+    
+    wrapper.orderByDesc(SystemLog::getCreateTime);
+    
+    // 2. 分页查询
+    Page<SystemLog> page = logMapper.selectPage(
+        new Page<>(query.getPage(), query.getPageSize()), 
+        wrapper
+    );
+    
+    // 3. 转换 VO
+    return convertToVO(page);
+}
+```
+
+**日志归档策略**:
+- 热数据：最近 3 个月日志，存储在 MySQL
+- 温数据：3-12 个月日志，归档到 Elasticsearch
+- 冷数据：1 年以上日志，压缩存储到 OSS
+
+---
+
+#### 2.4 缓存管理设计
+
+**缓存分类**:
+```java
+public enum CacheType {
+    USER("user", "用户缓存"),           // 用户信息、权限等
+    CONTENT("content", "内容缓存"),     // 物种、禅理、公告等
+    SYSTEM("system", "系统缓存"),       // 系统设置、字典等
+    ALL("all", "全部缓存");
+    
+    private final String code;
+    private final String name;
+}
+```
+
+**清除缓存逻辑**:
+```java
+@Transactional(rollbackFor = Exception.class)
+public CacheClearVO clearCache(String cacheType, String reason) {
+    int clearedCount = 0;
+    
+    switch (cacheType) {
+        case "user":
+            // 清除用户相关缓存
+            clearedCount += cacheService.evictPattern("user:*");
+            clearedCount += cacheService.evictPattern("permission:*");
+            break;
+        case "content":
+            // 清除内容相关缓存
+            clearedCount += cacheService.evictPattern("content:species:*");
+            clearedCount += cacheService.evictPattern("content:zen:*");
+            clearedCount += cacheService.evictPattern("content:notice:*");
+            break;
+        case "system":
+            // 清除系统相关缓存
+            clearedCount += cacheService.evictPattern("system:setting:*");
+            clearedCount += cacheService.evictPattern("dict:*");
+            break;
+        case "all":
+            // 清除所有缓存
+            clearedCount = cacheService.evictAll();
+            break;
+    }
+    
+    // 记录操作日志
+    logService.record("缓存清除", cacheType, 
+        String.format("清除 %d 条缓存，原因：%s", clearedCount, reason));
+    
+    // 触发缓存预热
+    if ("all".equals(cacheType) || "content".equals(cacheType)) {
+        cacheWarmupService.asyncWarmup();
+    }
+    
+    CacheClearVO vo = new CacheClearVO();
+    vo.setCacheType(cacheType);
+    vo.setClearedCount(clearedCount);
+    vo.setClearTime(LocalDateTime.now());
+    
+    return vo;
+}
+```
+
+---
+
+### 3. 问题与解决方案
+
+#### 3.1 问题 1: 财务统计数据量大查询慢
+
+**问题描述**:
+财务统计需要聚合大量订单数据，查询耗时超过 5 秒。
+
+**解决方案**:
+- 预计算 + 缓存策略
+- 定时任务每小时更新统计数据
+- 实时数据增量计算
+- 使用物化视图（MySQL 8.0+）
+
+```sql
+-- 创建物化视图
+CREATE TABLE finance_stats_daily (
+  stat_date date PRIMARY KEY,
+  total_revenue decimal(10,2),
+  total_settlement decimal(10,2),
+  platform_fee decimal(10,2),
+  order_count int,
+  update_time datetime
+);
+
+-- 定时任务更新
+INSERT INTO finance_stats_daily 
+SELECT 
+  DATE(create_time) as stat_date,
+  SUM(amount) as total_revenue,
+  SUM(settlement_amount) as total_settlement,
+  SUM(platform_fee) as platform_fee,
+  COUNT(*) as order_count,
+  NOW() as update_time
+FROM orders
+WHERE DATE(create_time) = CURDATE()
+GROUP BY DATE(create_time)
+ON DUPLICATE KEY UPDATE
+  total_revenue = VALUES(total_revenue),
+  total_settlement = VALUES(total_settlement),
+  platform_fee = VALUES(platform_fee),
+  order_count = VALUES(order_count),
+  update_time = NOW();
+```
+
+---
+
+#### 3.2 问题 2: 结算并发确认问题
+
+**问题描述**:
+多个管理员同时确认同一结算单，导致重复打款。
+
+**解决方案**:
+- 数据库乐观锁（version 字段）
+- 分布式锁（Redis）
+- 状态机校验
+
+```java
+@Transactional(rollbackFor = Exception.class)
+public SettlementConfirmVO confirmSettlement(Long settlementId, String remark) {
+    // 使用分布式锁
+    String lockKey = "settlement:confirm:" + settlementId;
+    RLock lock = redissonClient.getLock(lockKey);
+    
+    if (lock.tryLock(3, 10, TimeUnit.SECONDS)) {
+        try {
+            // 1. 查询结算单（带版本号）
+            Settlement settlement = settlementMapper.selectById(settlementId);
+            if (settlement.getStatus() != 1) {
+                throw new BusinessException("仅待确认状态的结算单可确认");
+            }
+            
+            // 2. 更新状态（带版本号校验）
+            int updated = settlementMapper.updateStatusWithVersion(
+                settlementId, 2, settlement.getVersion()
+            );
+            
+            if (updated == 0) {
+                throw new BusinessException("结算单已被其他管理员确认");
+            }
+            
+            // ... 后续逻辑
+            
+        } finally {
+            lock.unlock();
+        }
+    } else {
+        throw new BusinessException("操作繁忙，请稍后重试");
+    }
+}
+```
+
+---
+
+#### 3.3 问题 3: 系统设置变更同步问题
+
+**问题描述**:
+多实例部署时，系统设置变更后各实例缓存不一致。
+
+**解决方案**:
+- 配置中心（Nacos）统一管理
+- 变更广播机制（Redis Pub/Sub）
+- 缓存失效 + 重新加载
+
+```java
+// 发布配置变更事件
+redisTemplate.convertAndSend("config:change", key);
+
+// 订阅配置变更
+@RedisListener("config:change")
+public void onConfigChange(String key) {
+    // 清除本地缓存
+    cacheService.evict("system:setting:" + key);
+    
+    // 重新从配置中心加载
+    String value = configService.getConfig(key);
+    cacheService.set("system:setting:" + key, value);
+}
+```
+
+---
+
+#### 3.4 问题 4: 备份文件占用空间过大
+
+**问题描述**:
+数据库备份文件累积，占用大量磁盘空间。
+
+**解决方案**:
+- 自动清理策略（保留 30 天）
+- 压缩备份文件（gzip）
+- 上传到 OSS 后删除本地文件
+- 增量备份（binlog）
+
+```bash
+#!/bin/bash
+# 清理 30 天前的备份文件
+find /data/backup -name "*.sql.gz" -mtime +30 -delete
+
+# 压缩备份文件
+mysqldump -u root -p database | gzip > backup-$(date +%Y%m%d).sql.gz
+
+# 上传到 OSS 并删除本地文件
+ossutil cp backup-$(date +%Y%m%d).sql.gz oss://bucket/backup/
+rm -f backup-$(date +%Y%m%d).sql.gz
+```
+
+---
+
+### 4. 最佳实践总结
+
+#### 4.1 财务管理
+
+1. **数据准确性**: 金额计算使用 BigDecimal，避免精度丢失
+2. **状态流转**: 严格的状态机校验，防止非法状态变更
+3. **操作审计**: 所有财务操作记录完整日志
+4. **权限控制**: 财务接口需管理员权限，敏感操作需二次确认
+5. **性能优化**: 预计算 + 缓存，避免实时聚合大量数据
+
+#### 4.2 系统设置
+
+1. **配置管理**: 使用配置中心统一管理，支持多环境隔离
+2. **变更审计**: 所有配置变更记录变更人和变更原因
+3. **缓存同步**: 配置变更后及时清除缓存，支持多实例同步
+4. **备份策略**: 定期自动备份 + 手动备份，支持快速恢复
+5. **日志管理**: 分级存储，支持快速查询和归档
+
+#### 4.3 安全合规
+
+1. **敏感操作**: 财务操作、配置变更需记录审计日志
+2. **权限校验**: 所有管理接口需验证管理员权限
+3. **数据脱敏**: 敏感信息（金额、发票）脱敏展示
+4. **操作复核**: 重要操作支持撤销和回滚
+
+---
+
+*清如 V3 · Day 20 学习笔记* 🌊
+
+**创建日期**: 2026-04-05  
+**最后更新**: 2026-04-05  
+**关联文档**: 
+- [Phase 2 Day 20 进度报告](../progress/2026-04-05-day20-progress.md)
+- [API 接口文档](../api/README.md)
+
+---
+
+## 📊 Week 4 学习总结（2026-04-04）
+
+### 1. Week 4 完成情况
+
+| Day | 主题 | 页面 | 接口 | 核心技术 |
+|-----|------|------|------|----------|
+| Day 18 | 小程序端完善（1/2）+ 管理后台开发 | 3 个 | 8 个 | 控制台设计、用户管理 |
+| Day 19 | 小程序端完善（2/2）+ 管理后台订单/内容 | 2 个 | 14 个 | 订单管理、内容管理 |
+| Day 20 | 小程序端完善（3/2）+ 管理后台财务/系统 | 2 个 | 14 个 | 财务管理、系统设置 |
+| Day 21 | Week 4 总结与优化 | - | - | 文档汇总、代码审查 |
+| **合计** | - | **7 个** | **36 个** | - |
+
+### 2. Week 4 关键技术点
+
+#### 2.1 管理后台控制台设计（Day 18）
+
+**核心功能**:
+- 仪表盘数据展示（今日关键指标）
+- 待办事项提醒（带红色角标）
+- 快捷操作入口
+- 实时数据统计
+
+**技术要点**:
+- 数据缓存（TTL 5 分钟）
+- 按需加载（首屏优先）
+- 实时数据使用 WebSocket 推送
+
+---
+
+#### 2.2 用户管理模块（Day 18）
+
+**权限控制**:
+- RBAC 模型（角色 - 权限）
+- 权限点细化到按钮级别
+- 后端接口权限校验
+- 前端根据权限动态渲染菜单
+
+**安全要点**:
+- 敏感信息脱敏（手机号、身份证）
+- 操作日志完整记录
+- 支持批量操作
+
+---
+
+#### 2.3 订单管理模块（Day 19）
+
+**性能优化**:
+- 列表分页查询（每页 20 条）
+- 数据库索引优化（订单号/状态/创建时间）
+- 前端虚拟滚动（大数据场景）
+- 筛选条件缓存
+
+**导出优化**:
+- 流式查询（MyBatis Cursor）
+- 分批写入 Excel（每 1000 行 flush 一次）
+- 异步生成，避免阻塞请求
+- 限制单次导出最大数量（10 万条）
+
+---
+
+#### 2.4 财务管理模块（Day 20）
+
+**数据准确性**:
+- 金额计算使用 BigDecimal，避免精度丢失
+- 严格的状态机校验，防止非法状态变更
+- 所有财务操作记录完整日志
+
+**并发控制**:
+- 数据库乐观锁（version 字段）
+- 分布式锁（Redis）
+- 状态机校验
+
+---
+
+#### 2.5 系统设置模块（Day 20）
+
+**配置管理**:
+- 使用配置中心（Nacos）统一管理
+- 支持多环境隔离
+- 变更审计（记录变更人和变更原因）
+- 缓存同步（配置变更后及时清除缓存）
+
+**备份策略**:
+- 数据库备份：每日凌晨 2 点自动备份（保留 30 天）
+- 配置文件备份：每次变更后自动备份
+- 手动备份：管理员可随时触发
+
+---
+
+### 3. Week 4 问题与解决方案汇总
+
+| 问题 | 原因 | 解决方案 | 效果 |
+|------|------|----------|------|
+| 财务统计数据量大查询慢 | 实时聚合大量订单数据 | 预计算 + 缓存策略 + 定时任务 | 查询从 5 秒降至<100ms |
+| 结算并发确认问题 | 多管理员同时操作 | 分布式锁 + 乐观锁 + 状态机校验 | 100% 防止重复打款 |
+| 系统设置变更同步问题 | 多实例部署缓存不一致 | 配置中心 + 变更广播（Redis Pub/Sub） | 多实例缓存实时同步 |
+| 备份文件占用空间过大 | 备份文件累积 | 自动清理（30 天）+ 压缩 + OSS 存储 | 磁盘占用减少 80% |
+| 订单列表大数据量性能下降 | 数据量达数万条 | 分页查询 + 索引优化 + 虚拟滚动 | 列表加载<1 秒 |
+
+---
+
+### 4. Phase 3 学习重点
+
+1. **小程序审核准备**
+   - 隐私政策完善
+   - 用户协议更新
+   - 审核材料整理
+   - 功能合规性检查
+
+2. **生产环境部署**
+   - 服务器环境配置
+   - 数据库迁移
+   - 域名备案
+   - HTTPS 证书配置
+
+3. **上线前测试**
+   - 全链路压测
+   - 安全渗透测试
+   - 兼容性测试
+   - 用户体验测试
+
+4. **性能优化**
+   - 数据库查询优化
+   - 前端资源懒加载
+   - CDN 加速
+   - 接口响应时间优化
+
+---
+
+### 5. Week 4 最佳实践总结
+
+#### 5.1 管理后台开发
+
+1. **权限控制**: RBAC 模型，细粒度到按钮
+2. **操作审计**: 完整记录所有管理操作
+3. **数据安全**: 敏感信息脱敏展示
+4. **性能优化**: 分页、缓存、异步处理
+5. **用户体验**: 快捷操作、批量处理、导出功能
+
+#### 5.2 财务管理
+
+1. **数据准确性**: BigDecimal 计算，避免精度丢失
+2. **状态流转**: 严格的状态机校验
+3. **操作审计**: 完整记录操作日志
+4. **权限控制**: 财务接口需管理员权限
+5. **性能优化**: 预计算 + 缓存
+
+#### 5.3 系统设置
+
+1. **配置管理**: 配置中心统一管理，多环境隔离
+2. **变更审计**: 记录变更人和变更原因
+3. **缓存同步**: 配置变更后及时清除缓存
+4. **备份策略**: 定期自动备份 + 手动备份
+
+---
+
+*清如 V3 · Week 4 学习总结* 🌊
+
+**创建日期**: 2026-04-04  
+**最后更新**: 2026-04-04  
+**关联文档**: 
+- [Phase 2 Week 4 总结报告](https://www.feishu.cn/docx/OJrydHj3cobVYoxpiiqcrDARnuh)
 - [API 接口文档](../api/README.md)
 
 ---

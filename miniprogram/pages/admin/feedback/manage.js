@@ -73,31 +73,31 @@ Page({
     if (options.status === 'pending') {
       this.setData({
         filterStatus: '1'
-      })
+      });
     }
     
     // 加载反馈列表
-    this.loadFeedbackList()
+    this.loadFeedbackList();
   },
 
   onShow() {
     // 刷新列表
-    this.loadFeedbackList()
+    this.loadFeedbackList();
   },
 
   onPullDownRefresh() {
     this.setData({
       page: 1,
       feedbackList: []
-    })
+    });
     this.loadFeedbackList().then(() => {
-      wx.stopPullDownRefresh()
-    })
+      wx.stopPullDownRefresh();
+    });
   },
 
   onReachBottom() {
     if (this.data.hasMore && !this.data.isLoading) {
-      this.loadFeedbackList()
+      this.loadFeedbackList();
     }
   },
 
@@ -105,36 +105,36 @@ Page({
   onToggleFilter() {
     this.setData({
       showFilter: !this.data.showFilter
-    })
+    });
   },
 
   // 选择反馈类型
   onTypeChange(e) {
-    const { value } = e.detail
+    const { value } = e.detail;
     this.setData({
       filterType: value,
       page: 1,
       feedbackList: []
-    })
-    this.loadFeedbackList()
+    });
+    this.loadFeedbackList();
   },
 
   // 选择处理状态
   onStatusChange(e) {
-    const { value } = e.detail
+    const { value } = e.detail;
     this.setData({
       filterStatus: value,
       page: 1,
       feedbackList: []
-    })
-    this.loadFeedbackList()
+    });
+    this.loadFeedbackList();
   },
 
   // 加载反馈列表
   loadFeedbackList() {
     this.setData({
       isLoading: true
-    })
+    });
 
     return new Promise((resolve) => {
       // TODO: 替换为实际 API 调用
@@ -147,8 +147,8 @@ Page({
 
       // 模拟数据加载
       setTimeout(() => {
-        const newList = this.getFilteredList()
-        const hasMore = newList.length >= this.data.page * this.data.pageSize
+        const newList = this.getFilteredList();
+        const hasMore = newList.length >= this.data.page * this.data.pageSize;
         
         this.setData({
           feedbackList: this.data.page === 1 
@@ -157,58 +157,58 @@ Page({
           isLoading: false,
           hasMore: hasMore,
           page: this.data.page + 1
-        })
-        resolve()
-      }, 500)
-    })
+        });
+        resolve();
+      }, 500);
+    });
   },
 
   // 获取筛选后的列表
   getFilteredList() {
-    let list = [...this.data.feedbackList]
+    let list = [...this.data.feedbackList];
     
     // 类型筛选
     if (this.data.filterType !== 'all') {
-      list = list.filter(item => item.type === this.data.filterType)
+      list = list.filter(item => item.type === this.data.filterType);
     }
     
     // 状态筛选
     if (this.data.filterStatus !== 'all') {
-      list = list.filter(item => item.status.toString() === this.data.filterStatus)
+      list = list.filter(item => item.status.toString() === this.data.filterStatus);
     }
     
-    return list
+    return list;
   },
 
   // 查看详情
   onViewDetail(e) {
-    const { id } = e.currentTarget.dataset
+    const { id } = e.currentTarget.dataset;
     wx.navigateTo({
       url: `/pages/admin/feedback/detail?id=${id}`
-    })
+    });
   },
 
   // 处理反馈
   onProcess(e) {
-    const { id } = e.currentTarget.dataset
+    const { id } = e.currentTarget.dataset;
     
     wx.showModal({
       title: '处理反馈',
       content: '确认标记为已处理？',
       success: (res) => {
         if (res.confirm) {
-          this.processFeedback(id)
+          this.processFeedback(id);
         }
       }
-    })
+    });
   },
 
   // 回复反馈
   onReply(e) {
-    const { id } = e.currentTarget.dataset
+    const { id } = e.currentTarget.dataset;
     wx.navigateTo({
       url: `/pages/admin/feedback/reply?id=${id}`
-    })
+    });
   },
 
   // 处理反馈
@@ -223,19 +223,19 @@ Page({
           ...item,
           status: 2,
           statusName: '已处理'
-        }
+        };
       }
-      return item
-    })
+      return item;
+    });
 
     this.setData({
       feedbackList: list
-    })
+    });
 
     wx.showToast({
       title: '处理成功',
       icon: 'success'
-    })
+    });
   },
 
   // 导出数据
@@ -245,17 +245,17 @@ Page({
       content: '将导出当前筛选条件下的所有反馈数据为 Excel 文件，是否继续？',
       success: (res) => {
         if (res.confirm) {
-          this.exportFeedback()
+          this.exportFeedback();
         }
       }
-    })
+    });
   },
 
   // 导出反馈
   exportFeedback() {
     wx.showLoading({
       title: '导出中...'
-    })
+    });
 
     // TODO: 替换为实际 API 调用
     // api.exportFeedback({
@@ -265,12 +265,12 @@ Page({
 
     // 模拟导出
     setTimeout(() => {
-      wx.hideLoading()
+      wx.hideLoading();
       wx.showToast({
         title: '导出成功',
         icon: 'success'
-      })
-    }, 1500)
+      });
+    }, 1500);
   },
 
   // 重置筛选
@@ -280,7 +280,7 @@ Page({
       filterStatus: 'all',
       page: 1,
       feedbackList: []
-    })
-    this.loadFeedbackList()
+    });
+    this.loadFeedbackList();
   }
-})
+});

@@ -9,7 +9,7 @@ Page({
   },
 
   onLoad() {
-    this.loadRandomZenQuote()
+    this.loadRandomZenQuote();
   },
 
   /**
@@ -27,42 +27,42 @@ Page({
       { text: '知止而后有定，定而后能静，静而后能安', author: '大学' },
       { text: '上善若水，水善利万物而不争', author: '道德经' },
       { text: '祸兮福之所倚，福兮祸之所伏', author: '道德经' }
-    ]
+    ];
 
-    const randomIndex = Math.floor(Math.random() * zenQuotes.length)
-    const quote = zenQuotes[randomIndex]
+    const randomIndex = Math.floor(Math.random() * zenQuotes.length);
+    const quote = zenQuotes[randomIndex];
 
     this.setData({
       zenQuote: quote.text,
       author: quote.author,
       isCollected: false
-    })
+    });
   },
 
   /**
    * 刷新禅理
    */
   onRefresh() {
-    wx.showLoading({ title: '加载中...' })
+    wx.showLoading({ title: '加载中...' });
     setTimeout(() => {
-      this.loadRandomZenQuote()
-      wx.hideLoading()
-    }, 300)
+      this.loadRandomZenQuote();
+      wx.hideLoading();
+    }, 300);
   },
 
   /**
    * 收藏禅理
    */
   onCollect() {
-    const { isCollected } = this.data
+    const { isCollected } = this.data;
     this.setData({
       isCollected: !isCollected
-    })
+    });
 
     wx.showToast({
       icon: 'none',
       title: isCollected ? '已取消收藏' : '已加入收藏'
-    })
+    });
   },
 
   /**
@@ -71,6 +71,6 @@ Page({
   onSwipeUp() {
     wx.switchTab({
       url: '/pages/zen/home2'
-    })
+    });
   }
-})
+});

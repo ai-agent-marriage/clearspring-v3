@@ -26,18 +26,18 @@ describe('消息推送集成测试', () => {
           }
         ]
       }
-    })
+    });
 
     const res = await wx.request({
       url: 'http://localhost:8080/api/message/template/list',
       method: 'GET'
-    })
+    });
     
-    expect(res.statusCode).toBe(200)
-    expect(res.data.code).toBe(200)
-    expect(res.data.data).toBeInstanceOf(Array)
-    expect(res.data.data.length).toBeGreaterThan(0)
-  })
+    expect(res.statusCode).toBe(200);
+    expect(res.data.code).toBe(200);
+    expect(res.data.data).toBeInstanceOf(Array);
+    expect(res.data.data.length).toBeGreaterThan(0);
+  });
   
   test('发送测试消息成功', async () => {
     // Mock wx.request 返回成功响应
@@ -51,7 +51,7 @@ describe('消息推送集成测试', () => {
           sendTime: '2026-04-10 10:30:00'
         }
       }
-    })
+    });
 
     const res = await wx.request({
       url: 'http://localhost:8080/api/message/send/test',
@@ -61,12 +61,12 @@ describe('消息推送集成测试', () => {
         templateId: 'ORDER_CREATE',
         data: { orderNo: 'PRO202604100001' }
       }
-    })
+    });
     
-    expect(res.statusCode).toBe(200)
-    expect(res.data.code).toBe(200)
-    expect(res.data.data.messageId).toBeDefined()
-  })
+    expect(res.statusCode).toBe(200);
+    expect(res.data.code).toBe(200);
+    expect(res.data.data.messageId).toBeDefined();
+  });
 
   test('新增消息模板成功', async () => {
     // Mock wx.request 返回成功响应
@@ -81,7 +81,7 @@ describe('消息推送集成测试', () => {
           templateId: 'TEST_TEMPLATE'
         }
       }
-    })
+    });
 
     const res = await wx.request({
       url: 'http://localhost:8080/api/message/template/add',
@@ -93,12 +93,12 @@ describe('消息推送集成测试', () => {
         content: '测试内容',
         enabled: 1
       }
-    })
+    });
     
-    expect(res.statusCode).toBe(200)
-    expect(res.data.code).toBe(200)
-    expect(res.data.data.id).toBeDefined()
-  })
+    expect(res.statusCode).toBe(200);
+    expect(res.data.code).toBe(200);
+    expect(res.data.data.id).toBeDefined();
+  });
 
   test('更新消息模板成功', async () => {
     // Mock wx.request 返回成功响应
@@ -109,7 +109,7 @@ describe('消息推送集成测试', () => {
         msg: 'success',
         data: true
       }
-    })
+    });
 
     const res = await wx.request({
       url: 'http://localhost:8080/api/message/template/update',
@@ -119,11 +119,11 @@ describe('消息推送集成测试', () => {
         name: '更新后的模板名称',
         enabled: 0
       }
-    })
+    });
     
-    expect(res.statusCode).toBe(200)
-    expect(res.data.code).toBe(200)
-  })
+    expect(res.statusCode).toBe(200);
+    expect(res.data.code).toBe(200);
+  });
 
   test('获取消息记录列表成功', async () => {
     // Mock wx.request 返回成功响应
@@ -145,7 +145,7 @@ describe('消息推送集成测试', () => {
           total: 1
         }
       }
-    })
+    });
 
     const res = await wx.request({
       url: 'http://localhost:8080/api/message/records/list',
@@ -154,13 +154,13 @@ describe('消息推送集成测试', () => {
         pageNum: 1,
         pageSize: 10
       }
-    })
+    });
     
-    expect(res.statusCode).toBe(200)
-    expect(res.data.code).toBe(200)
-    expect(res.data.data.list).toBeInstanceOf(Array)
-    expect(res.data.data.total).toBeGreaterThanOrEqual(0)
-  })
+    expect(res.statusCode).toBe(200);
+    expect(res.data.code).toBe(200);
+    expect(res.data.data.list).toBeInstanceOf(Array);
+    expect(res.data.data.total).toBeGreaterThanOrEqual(0);
+  });
 
   test('导出消息记录成功', () => {
     // Mock wx.downloadFile - 直接验证调用
@@ -168,17 +168,17 @@ describe('消息推送集成测试', () => {
       success({
         tempFilePath: '/tmp/message_records.xlsx',
         errMsg: 'downloadFile:ok'
-      })
-    })
+      });
+    });
 
     wx.downloadFile({
       url: 'http://localhost:8080/api/message/records/export',
       success: (res) => {
-        expect(res.tempFilePath).toBeDefined()
-        expect(res.errMsg).toContain('ok')
+        expect(res.tempFilePath).toBeDefined();
+        expect(res.errMsg).toContain('ok');
       }
-    })
+    });
     
-    expect(wx.downloadFile).toHaveBeenCalled()
-  })
-})
+    expect(wx.downloadFile).toHaveBeenCalled();
+  });
+});
