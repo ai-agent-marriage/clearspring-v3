@@ -1,7 +1,12 @@
 package com.ruoyi.qingru.service;
 
 import com.ruoyi.qingru.entity.OrderExportDTO;
+import com.ruoyi.qingru.entity.PieData;
+import com.ruoyi.qingru.entity.RankData;
+import com.ruoyi.qingru.entity.TrendData;
 import com.ruoyi.qingru.mapper.OrderProtectMapper;
+import com.ruoyi.qingru.mapper.UserMapper;
+import com.ruoyi.qingru.mapper.VolunteerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -10,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -21,6 +27,12 @@ public class ExportService {
     
     @Autowired
     private OrderProtectMapper orderMapper;
+    
+    @Autowired
+    private UserMapper userMapper;
+    
+    @Autowired
+    private VolunteerMapper volunteerMapper;
     
     /**
      * 导出订单报表（Excel）
@@ -84,5 +96,152 @@ public class ExportService {
         
         log.info("导出订单报表成功，orderCount={}", orders.size());
         return baos.toByteArray();
+    }
+    
+    /**
+     * 导出统计数据（Excel）
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param type 导出类型 (orders/volunteers/orgs)
+     * @return Excel 文件字节数组
+     * @throws IOException IO 异常
+     */
+    public byte[] exportStatsData(String startDate, String endDate, String type) throws IOException {
+        log.info("导出统计数据，startDate={}, endDate={}, type={}", startDate, endDate, type);
+        
+        Workbook workbook = new XSSFWorkbook();
+        
+        if ("orders".equals(type)) {
+            exportOrdersSheet(workbook, startDate, endDate);
+        } else if ("volunteers".equals(type)) {
+            exportVolunteersSheet(workbook, startDate, endDate);
+        } else if ("orgs".equals(type)) {
+            exportOrgsSheet(workbook, startDate, endDate);
+        }
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        workbook.write(baos);
+        workbook.close();
+        
+        return baos.toByteArray();
+    }
+    
+    /**
+     * 导出统计数据（CSV）
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param type 导出类型 (orders/volunteers/orgs)
+     * @return CSV 字符串
+     */
+    public String exportStatsCsv(String startDate, String endDate, String type) {
+        log.info("导出 CSV 统计数据，startDate={}, endDate={}, type={}", startDate, endDate, type);
+        
+        StringBuilder csv = new StringBuilder();
+        
+        if ("orders".equals(type)) {
+            csv.append("日期，订单数，金额\n");
+            List<TrendData> trendData = orderMapper.selectTrend(startDate, endDate, "day");
+            for (TrendData data : trendData) {
+                csv.append(data.getDate()).append(",")
+                   .append(data.getValue()).append(",0\n");
+            }
+        } else if ("volunteers".equals(type)) {
+            csv.append("排名，姓名，服务时长\n");
+            List<RankData> rankData = volunteerMapper.selectRank(100);
+            for (int i = 0; i < rankData.size(); i++) {
+                RankData r = rankData.get(i);
+                csv.append(i + 1).append(",")
+                   .append(r.getName()).append(",")
+                   .append(r.getValue()).append("\n");
+            }
+        } else if ("orgs".equals(type)) {
+            csv.append("排名，机构，订单数\n");
+            List<RankData> rankData = orderMapper.selectOrgRank(100);
+            for (int i = 0; i < rankData.size(); i++) {
+                RankData r = rankData.get(i);
+                csv.append(i + 1).append(",")
+                   .append(r.getName()).append(",")
+                   .append(r.getValue()).append("\n");
+            }
+        }
+        
+        return csv.toString();
+    }
+    
+    /**
+     * 导出订单数据表
+     */
+    private void exportOrdersSheet(Workbook workbook, String startDate, String endDate) throws IOException {
+        Sheet sheet = workbook.createSheet("订单统计");
+        
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("日期");
+        header.createCell(1).setCellValue("订单数");
+        header.createCell(2).setCellValue("金额");
+        
+        List<TrendData> trendData = orderMapper.selectTrend(startDate, endDate, "day");
+        int rowNum = 1;
+        for (TrendData data : trendData) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(data.getDate());
+            row.createCell(1).setCellValue(data.getValue().intValue());
+            row.createCell(2).setCellValue(0);
+        }
+        
+        for (int i = 0; i < 3; i++) {
+            sheet.autoSizeColumn(i);
+        }
+    }
+    
+    /**
+     * 导出志愿者数据表
+     */
+    private void exportVolunteersSheet(Workbook workbook, String startDate, String endDate) throws IOException {
+        Sheet sheet = workbook.createSheet("志愿者统计");
+        
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("排名");
+        header.createCell(1).setCellValue("姓名");
+        header.createCell(2).setCellValue("服务时长");
+        
+        List<RankData> rankData = volunteerMapper.selectRank(100);
+        int rowNum = 1;
+        for (int i = 0; i < rankData.size(); i++) {
+            RankData r = rankData.get(i);
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(i + 1);
+            row.createCell(1).setCellValue(r.getName());
+            row.createCell(2).setCellValue(r.getValue());
+        }
+        
+        for (int i = 0; i < 3; i++) {
+            sheet.autoSizeColumn(i);
+        }
+    }
+    
+    /**
+     * 导出机构数据表
+     */
+    private void exportOrgsSheet(Workbook workbook, String startDate, String endDate) throws IOException {
+        Sheet sheet = workbook.createSheet("机构统计");
+        
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("排名");
+        header.createCell(1).setCellValue("机构");
+        header.createCell(2).setCellValue("订单数");
+        
+        List<RankData> rankData = orderMapper.selectOrgRank(100);
+        int rowNum = 1;
+        for (int i = 0; i < rankData.size(); i++) {
+            RankData r = rankData.get(i);
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(i + 1);
+            row.createCell(1).setCellValue(r.getName());
+            row.createCell(2).setCellValue(r.getValue());
+        }
+        
+        for (int i = 0; i < 3; i++) {
+            sheet.autoSizeColumn(i);
+        }
     }
 }

@@ -164,4 +164,57 @@ public interface OrderProtectMapper {
             @Param("orgId") Long orgId,
             @Param("startDate") String startDate,
             @Param("endDate") String endDate);
+    
+    /**
+     * 统计订单总数
+     * @return 订单数量
+     */
+    @Select("SELECT COUNT(*) FROM order_protect")
+    int countTotal();
+    
+    /**
+     * 统计订单总金额
+     * @return 总金额
+     */
+    @Select("SELECT IFNULL(SUM(amount), 0) FROM order_protect")
+    java.math.BigDecimal sumTotalAmount();
+    
+    /**
+     * 统计今日订单数
+     * @return 订单数量
+     */
+    @Select("SELECT COUNT(*) FROM order_protect WHERE DATE(create_time) = CURDATE()")
+    int countToday();
+    
+    /**
+     * 统计今日成交金额
+     * @return 总金额
+     */
+    @Select("SELECT IFNULL(SUM(amount), 0) FROM order_protect WHERE DATE(create_time) = CURDATE()")
+    java.math.BigDecimal sumTodayAmount();
+    
+    /**
+     * 查询订单趋势数据
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param groupBy 分组方式 (day/week/month)
+     * @return 趋势数据列表
+     */
+    List<com.ruoyi.qingru.entity.TrendData> selectTrend(
+            @Param("startDate") String startDate,
+            @Param("endDate") String endDate,
+            @Param("groupBy") String groupBy);
+    
+    /**
+     * 查询物种分布数据
+     * @return 物种分布列表
+     */
+    List<com.ruoyi.qingru.entity.PieData> selectSpeciesDistribution();
+    
+    /**
+     * 查询机构排行榜（按订单数）
+     * @param limit 限制数量
+     * @return 排行榜数据
+     */
+    List<com.ruoyi.qingru.entity.RankData> selectOrgRank(@Param("limit") Integer limit);
 }

@@ -118,4 +118,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </if>
     </select>
     
+    <!-- 查询志愿者排行榜（按服务时长） -->
+    <select id="selectRank" resultType="com.ruoyi.qingru.entity.RankData">
+        select 
+            id,
+            real_name as name,
+            total_hours as value,
+            0 as rank
+        from volunteer
+        where status = 1
+        order by total_hours desc
+        limit #{limit}
+    </select>
+    
 </mapper>

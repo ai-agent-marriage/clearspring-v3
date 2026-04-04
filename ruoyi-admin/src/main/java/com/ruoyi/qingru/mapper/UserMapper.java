@@ -59,4 +59,11 @@ public interface UserMapper {
      */
     @Select("SELECT COUNT(*) FROM order_protect")
     int countTotalOrders();
+    
+    /**
+     * 统计累计用户总数
+     * @return 用户数量
+     */
+    @Select("SELECT COUNT(*) FROM user")
+    int countTotal();
 }

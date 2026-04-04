@@ -75,4 +75,18 @@ public interface VolunteerMapper {
     int countActiveByOrgId(@Param("orgId") Long orgId,
                             @Param("startDate") String startDate,
                             @Param("endDate") String endDate);
+    
+    /**
+     * 统计活跃志愿者总数
+     * @return 数量
+     */
+    @Select("SELECT COUNT(*) FROM volunteer WHERE status = 1")
+    int countActive();
+    
+    /**
+     * 查询志愿者排行榜（按服务时长）
+     * @param limit 限制数量
+     * @return 排行榜数据
+     */
+    List<com.ruoyi.qingru.entity.RankData> selectRank(@Param("limit") Integer limit);
 }

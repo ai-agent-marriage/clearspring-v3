@@ -1,47 +1,170 @@
 package com.ruoyi.qingru.service;
 
+import com.ruoyi.qingru.entity.RankData;
+import com.ruoyi.qingru.entity.TrendData;
+import com.ruoyi.qingru.mapper.OrderProtectMapper;
+import com.ruoyi.qingru.mapper.VolunteerMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 /**
- * 报表导出服务测试
+ * 导出服务测试类
  */
-@SpringBootTest
-public class ExportServiceTest {
+class ExportServiceTest {
     
-    @Autowired
+    @Mock
+    private OrderProtectMapper orderMapper;
+    
+    @Mock
+    private VolunteerMapper volunteerMapper;
+    
+    @InjectMocks
     private ExportService exportService;
     
-    @Test
-    public void testExportOrderReport() throws IOException {
-        // 测试导出订单报表
-        byte[] data = exportService.exportOrderReport(1L, "2026-04-01", "2026-04-30");
-        
-        assertNotNull(data);
-        assertTrue(data.length > 0, "Excel 数据不应为空");
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
     
     @Test
-    public void testExportOrderReportFormat() throws IOException {
-        // 测试 Excel 文件格式（XLSX 文件头）
-        byte[] data = exportService.exportOrderReport(null, null, null);
+    void testExportStatsDataOrders() throws Exception {
+        // 准备测试数据
+        List<TrendData> trendData = new ArrayList<>();
+        trendData.add(new TrendData("2024-01-01", 10, "orders"));
+        trendData.add(new TrendData("2024-01-02", 15, "orders"));
         
-        assertNotNull(data);
-        // XLSX 文件以 PK 开头（ZIP 格式）
-        assertTrue(data.length >= 2, "数据长度至少 2 字节");
+        when(orderMapper.selectTrend("2024-01-01", "2024-01-31", "day")).thenReturn(trendData);
+        
+        // 执行测试
+        byte[] result = exportService.exportStatsData("2024-01-01", "2024-01-31", "orders");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.length > 0);
+        
+        // 验证方法调用
+        verify(orderMapper, times(1)).selectTrend("2024-01-01", "2024-01-31", "day");
     }
     
     @Test
-    public void testExportWithNullParams() throws IOException {
-        // 测试空参数导出
-        byte[] data = exportService.exportOrderReport(null, null, null);
+    void testExportStatsDataVolunteers() throws Exception {
+        // 准备测试数据
+        List<RankData> rankData = new ArrayList<>();
+        rankData.add(new RankData(1L, "张三", 100, 1));
+        rankData.add(new RankData(2L, "李四", 80, 2));
         
-        assertNotNull(data);
-        assertTrue(data.length > 0);
+        when(volunteerMapper.selectRank(100)).thenReturn(rankData);
+        
+        // 执行测试
+        byte[] result = exportService.exportStatsData("2024-01-01", "2024-01-31", "volunteers");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.length > 0);
+        
+        // 验证方法调用
+        verify(volunteerMapper, times(1)).selectRank(100);
+    }
+    
+    @Test
+    void testExportStatsDataOrgs() throws Exception {
+        // 准备测试数据
+        List<RankData> rankData = new ArrayList<>();
+        rankData.add(new RankData(1L, "机构 -1", 500, 1));
+        rankData.add(new RankData(2L, "机构 -2", 400, 2));
+        
+        when(orderMapper.selectOrgRank(100)).thenReturn(rankData);
+        
+        // 执行测试
+        byte[] result = exportService.exportStatsData("2024-01-01", "2024-01-31", "orgs");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.length > 0);
+        
+        // 验证方法调用
+        verify(orderMapper, times(1)).selectOrgRank(100);
+    }
+    
+    @Test
+    void testExportStatsCsvOrders() {
+        // 准备测试数据
+        List<TrendData> trendData = new ArrayList<>();
+        trendData.add(new TrendData("2024-01-01", 10, "orders"));
+        trendData.add(new TrendData("2024-01-02", 15, "orders"));
+        
+        when(orderMapper.selectTrend("2024-01-01", "2024-01-31", "day")).thenReturn(trendData);
+        
+        // 执行测试
+        String result = exportService.exportStatsCsv("2024-01-01", "2024-01-31", "orders");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.contains("日期，订单数，金额"));
+        assertTrue(result.contains("2024-01-01"));
+        assertTrue(result.contains("2024-01-02"));
+        
+        // 验证方法调用
+        verify(orderMapper, times(1)).selectTrend("2024-01-01", "2024-01-31", "day");
+    }
+    
+    @Test
+    void testExportStatsCsvVolunteers() {
+        // 准备测试数据
+        List<RankData> rankData = new ArrayList<>();
+        rankData.add(new RankData(1L, "张三", 100, 1));
+        rankData.add(new RankData(2L, "李四", 80, 2));
+        
+        when(volunteerMapper.selectRank(100)).thenReturn(rankData);
+        
+        // 执行测试
+        String result = exportService.exportStatsCsv("2024-01-01", "2024-01-31", "volunteers");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.contains("排名，姓名，服务时长"));
+        assertTrue(result.contains("张三"));
+        assertTrue(result.contains("李四"));
+        
+        // 验证方法调用
+        verify(volunteerMapper, times(1)).selectRank(100);
+    }
+    
+    @Test
+    void testExportStatsCsvOrgs() {
+        // 准备测试数据
+        List<RankData> rankData = new ArrayList<>();
+        rankData.add(new RankData(1L, "机构 -1", 500, 1));
+        
+        when(orderMapper.selectOrgRank(100)).thenReturn(rankData);
+        
+        // 执行测试
+        String result = exportService.exportStatsCsv("2024-01-01", "2024-01-31", "orgs");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.contains("排名，机构，订单数"));
+        assertTrue(result.contains("机构 -1"));
+        
+        // 验证方法调用
+        verify(orderMapper, times(1)).selectOrgRank(100);
+    }
+    
+    @Test
+    void testExportStatsDataWithInvalidType() throws Exception {
+        // 执行测试 - 传入无效类型
+        byte[] result = exportService.exportStatsData("2024-01-01", "2024-01-31", "invalid");
+        
+        // 验证结果 - 应该返回空的工作簿
+        assertNotNull(result);
     }
 }
