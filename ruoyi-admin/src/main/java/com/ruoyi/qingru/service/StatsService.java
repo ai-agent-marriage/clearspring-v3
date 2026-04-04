@@ -6,10 +6,13 @@ import com.ruoyi.qingru.mapper.UserMapper;
 import com.ruoyi.qingru.mapper.VolunteerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * 数据统计服务类
@@ -33,6 +36,7 @@ public class StatsService {
      * @param endDate 结束日期
      * @return 仪表盘统计数据
      */
+    @Cacheable(value = "stats:dashboard", key = "#startDate + '-' + #endDate", unless = "#result == null")
     public StatsDashboard getDashboard(String startDate, String endDate) {
         log.info("获取仪表盘统计数据，startDate={}, endDate={}", startDate, endDate);
         
@@ -57,7 +61,8 @@ public class StatsService {
      * @param groupBy 分组方式 (day/week/month)
      * @return 趋势数据列表
      */
-    public List<TrendData> getOrderTrend(String startDate, String endDate, String groupBy) {
+    @Cacheable(value = "stats:trend", key = "#startDate + '-' + #endDate + '-' + #groupBy", unless = "#result == null")
+    public List<TrendData> getTrend(String startDate, String endDate, String groupBy) {
         log.info("获取订单趋势数据，startDate={}, endDate={}, groupBy={}", startDate, endDate, groupBy);
         return orderMapper.selectTrend(startDate, endDate, groupBy);
     }
@@ -66,8 +71,39 @@ public class StatsService {
      * 获取物种分布数据
      * @return 物种分布列表
      */
+    @Cacheable(value = "stats:species", unless = "#result == null")
     public List<PieData> getSpeciesDistribution() {
         log.info("获取物种分布数据");
         return orderMapper.selectSpeciesDistribution();
+    }
+    
+    /**
+     * 获取志愿者排行榜
+     * @param limit 限制数量
+     * @return 排行榜数据列表
+     */
+    @Cacheable(value = "stats:rank:volunteer", key = "#limit", unless = "#result == null")
+    public List<RankData> getVolunteerRank(Integer limit) {
+        log.info("获取志愿者排行榜，limit={}", limit);
+        List<RankData> rankList = volunteerMapper.selectRank(limit);
+        for (int i = 0; i < rankList.size(); i++) {
+            rankList.get(i).setRank(i + 1);
+        }
+        return rankList;
+    }
+    
+    /**
+     * 获取机构排行榜
+     * @param limit 限制数量
+     * @return 排行榜数据列表
+     */
+    @Cacheable(value = "stats:rank:org", key = "#limit", unless = "#result == null")
+    public List<RankData> getOrgRank(Integer limit) {
+        log.info("获取机构排行榜，limit={}", limit);
+        List<RankData> rankList = orderMapper.selectOrgRank(limit);
+        for (int i = 0; i < rankList.size(); i++) {
+            rankList.get(i).setRank(i + 1);
+        }
+        return rankList;
     }
 }

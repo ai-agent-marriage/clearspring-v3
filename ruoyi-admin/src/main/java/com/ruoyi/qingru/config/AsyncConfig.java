@@ -1,8 +1,13 @@
 package com.ruoyi.qingru.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 异步任务配置
@@ -12,6 +17,20 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class AsyncConfig {
 
-    // 使用 Spring 默认的异步执行器
-    // 如需自定义线程池，可添加 @Bean 方法配置 TaskExecutor
+    /**
+     * 异步任务线程池配置
+     */
+    @Bean("statsExecutor")
+    public Executor statsExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(100);
+        executor.setThreadNamePrefix("stats-async-");
+        executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.setWaitForTasksToCompleteOnShutdown(true);
+        executor.setAwaitTerminationSeconds(60);
+        executor.initialize();
+        return executor;
+    }
 }

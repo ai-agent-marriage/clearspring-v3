@@ -24,8 +24,8 @@ public class NoticeService {
         // 初始化示例数据
         Date now = new Date();
         NOTICE_MAP.put(1L, new Notice(1L, "系统维护通知", "系统将于本周六凌晨 2:00-4:00 进行维护，请提前保存数据。", 1, now, now));
-        NOTICE_MAP.put(2L, "新功能上线", "新增物种管理功能，支持物种信息的增删改查。", 1, now, now));
-        NOTICE_MAP.put(3L, "版本更新公告", "V2.0 版本已上线，优化了用户体验。", 2, null, now));
+        NOTICE_MAP.put(2L, new Notice(2L, "新功能上线", "新增物种管理功能，支持物种信息的增删改查。", 1, now, now));
+        NOTICE_MAP.put(3L, new Notice(3L, "版本更新公告", "V2.0 版本已上线，优化了用户体验。", 2, null, now));
     }
 
     /**

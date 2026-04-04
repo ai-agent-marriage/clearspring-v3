@@ -1,8 +1,10 @@
 package com.ruoyi.qingru.service;
 
+import com.opencsv.CSVWriter;
 import com.ruoyi.qingru.entity.OrderExportDTO;
 import com.ruoyi.qingru.entity.PieData;
 import com.ruoyi.qingru.entity.RankData;
+import com.ruoyi.qingru.entity.StatsDashboard;
 import com.ruoyi.qingru.entity.TrendData;
 import com.ruoyi.qingru.mapper.OrderProtectMapper;
 import com.ruoyi.qingru.mapper.UserMapper;
@@ -11,10 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -102,7 +106,7 @@ public class ExportService {
      * 导出统计数据（Excel）
      * @param startDate 开始日期
      * @param endDate 结束日期
-     * @param type 导出类型 (orders/volunteers/orgs)
+     * @param type 导出类型 (orders/volunteers/orgs/dashboard)
      * @return Excel 文件字节数组
      * @throws IOException IO 异常
      */
@@ -117,7 +121,30 @@ public class ExportService {
             exportVolunteersSheet(workbook, startDate, endDate);
         } else if ("orgs".equals(type)) {
             exportOrgsSheet(workbook, startDate, endDate);
+        } else if ("dashboard".equals(type)) {
+            exportDashboardSheet(workbook, startDate, endDate);
         }
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        workbook.write(baos);
+        workbook.close();
+        
+        return baos.toByteArray();
+    }
+    
+    /**
+     * 导出趋势数据（Excel）
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @param groupBy 分组方式
+     * @return Excel 文件字节数组
+     * @throws IOException IO 异常
+     */
+    public byte[] exportTrendData(String startDate, String endDate, String groupBy) throws IOException {
+        log.info("导出趋势数据，startDate={}, endDate={}, groupBy={}", startDate, endDate, groupBy);
+        
+        Workbook workbook = new XSSFWorkbook();
+        exportTrendSheet(workbook, startDate, endDate, groupBy);
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         workbook.write(baos);
@@ -238,6 +265,80 @@ public class ExportService {
             row.createCell(0).setCellValue(i + 1);
             row.createCell(1).setCellValue(r.getName());
             row.createCell(2).setCellValue(r.getValue());
+        }
+        
+        for (int i = 0; i < 3; i++) {
+            sheet.autoSizeColumn(i);
+        }
+    }
+    
+    /**
+     * 导出仪表盘数据表
+     */
+    private void exportDashboardSheet(Workbook workbook, String startDate, String endDate) throws IOException {
+        Sheet sheet = workbook.createSheet("仪表盘统计");
+        
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("指标");
+        header.createCell(1).setCellValue("数值");
+        
+        // 获取仪表盘数据
+        StatsDashboard dashboard = new StatsDashboard();
+        dashboard.setTotalUsers((long) userMapper.countTotal());
+        dashboard.setTotalOrders((long) orderMapper.countTotal());
+        dashboard.setTotalAmount(orderMapper.sumTotalAmount());
+        dashboard.setActiveVolunteers((long) volunteerMapper.countActive());
+        dashboard.setTodayOrders((long) orderMapper.countToday());
+        dashboard.setTodayAmount(orderMapper.sumTodayAmount());
+        
+        int rowNum = 1;
+        Row row = sheet.createRow(rowNum++);
+        row.createCell(0).setCellValue("累计用户数");
+        row.createCell(1).setCellValue(dashboard.getTotalUsers() != null ? dashboard.getTotalUsers() : 0);
+        
+        row = sheet.createRow(rowNum++);
+        row.createCell(0).setCellValue("累计订单数");
+        row.createCell(1).setCellValue(dashboard.getTotalOrders() != null ? dashboard.getTotalOrders() : 0);
+        
+        row = sheet.createRow(rowNum++);
+        row.createCell(0).setCellValue("累计成交金额");
+        row.createCell(1).setCellValue(dashboard.getTotalAmount() != null ? dashboard.getTotalAmount().doubleValue() : 0);
+        
+        row = sheet.createRow(rowNum++);
+        row.createCell(0).setCellValue("活跃志愿者数");
+        row.createCell(1).setCellValue(dashboard.getActiveVolunteers() != null ? dashboard.getActiveVolunteers() : 0);
+        
+        row = sheet.createRow(rowNum++);
+        row.createCell(0).setCellValue("今日订单数");
+        row.createCell(1).setCellValue(dashboard.getTodayOrders() != null ? dashboard.getTodayOrders() : 0);
+        
+        row = sheet.createRow(rowNum++);
+        row.createCell(0).setCellValue("今日成交金额");
+        row.createCell(1).setCellValue(dashboard.getTodayAmount() != null ? dashboard.getTodayAmount().doubleValue() : 0);
+        
+        for (int i = 0; i < 2; i++) {
+            sheet.autoSizeColumn(i);
+        }
+    }
+    
+    /**
+     * 导出趋势数据表
+     */
+    private void exportTrendSheet(Workbook workbook, String startDate, String endDate, String groupBy) throws IOException {
+        Sheet sheet = workbook.createSheet("趋势统计");
+        
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("日期");
+        header.createCell(1).setCellValue("订单数");
+        header.createCell(2).setCellValue("指标");
+        
+        List<TrendData> trendData = orderMapper.selectTrend(startDate, endDate, groupBy);
+        int rowNum = 1;
+        for (TrendData data : trendData) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(data.getDate());
+            row.createCell(1).setCellValue(data.getValue().intValue());
+            row.createCell(2).setCellValue(data.getMetric() != null ? data.getMetric() : "orders");
         }
         
         for (int i = 0; i < 3; i++) {

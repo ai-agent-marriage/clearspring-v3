@@ -2,6 +2,7 @@ package com.ruoyi.qingru.controller;
 
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.qingru.entity.PieData;
+import com.ruoyi.qingru.entity.RankData;
 import com.ruoyi.qingru.entity.StatsDashboard;
 import com.ruoyi.qingru.entity.TrendData;
 import com.ruoyi.qingru.service.StatsService;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/stats")
+@RequestMapping("/api/stats")
 public class StatsController {
     
     @Autowired
@@ -51,12 +52,12 @@ public class StatsController {
      */
     @GetMapping("/trend")
     public R<List<TrendData>> getTrend(
-            @RequestParam String startDate,
-            @RequestParam String endDate,
+            @RequestParam(required = false, defaultValue = "") String startDate,
+            @RequestParam(required = false, defaultValue = "") String endDate,
             @RequestParam(defaultValue = "day") String groupBy) {
         log.info("获取订单趋势数据，startDate={}, endDate={}, groupBy={}", startDate, endDate, groupBy);
         try {
-            List<TrendData> trendData = statsService.getOrderTrend(startDate, endDate, groupBy);
+            List<TrendData> trendData = statsService.getTrend(startDate, endDate, groupBy);
             return R.ok(trendData, "获取成功");
         } catch (Exception e) {
             log.error("获取订单趋势数据失败", e);
@@ -76,6 +77,42 @@ public class StatsController {
             return R.ok(pieData, "获取成功");
         } catch (Exception e) {
             log.error("获取物种分布数据失败", e);
+            return R.fail("获取失败：" + e.getMessage());
+        }
+    }
+    
+    /**
+     * 获取志愿者排行榜
+     * @param limit 限制数量
+     * @return 排行榜数据列表
+     */
+    @GetMapping("/rank/volunteer")
+    public R<List<RankData>> getVolunteerRank(
+            @RequestParam(defaultValue = "10") Integer limit) {
+        log.info("获取志愿者排行榜，limit={}", limit);
+        try {
+            List<RankData> rankList = statsService.getVolunteerRank(limit);
+            return R.ok(rankList, "获取成功");
+        } catch (Exception e) {
+            log.error("获取志愿者排行榜失败", e);
+            return R.fail("获取失败：" + e.getMessage());
+        }
+    }
+    
+    /**
+     * 获取机构排行榜
+     * @param limit 限制数量
+     * @return 排行榜数据列表
+     */
+    @GetMapping("/rank/org")
+    public R<List<RankData>> getOrgRank(
+            @RequestParam(defaultValue = "10") Integer limit) {
+        log.info("获取机构排行榜，limit={}", limit);
+        try {
+            List<RankData> rankList = statsService.getOrgRank(limit);
+            return R.ok(rankList, "获取成功");
+        } catch (Exception e) {
+            log.error("获取机构排行榜失败", e);
             return R.fail("获取失败：" + e.getMessage());
         }
     }

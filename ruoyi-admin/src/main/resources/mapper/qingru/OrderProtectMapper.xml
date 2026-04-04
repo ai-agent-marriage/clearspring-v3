@@ -180,7 +180,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         order by op.create_time desc
     </select>
     
-    <!-- 查询订单趋势数据 -->
+    <!-- 查询订单趋势数据（优化：使用索引友好的日期范围查询） -->
     <select id="selectTrend" resultType="com.ruoyi.qingru.entity.TrendData">
         <if test="groupBy == 'day'">
             select 
@@ -188,14 +188,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 COUNT(*) as value,
                 'orders' as metric
             from order_protect
-            where 1=1
+            where create_time is not null
             <if test="startDate != null and startDate != ''">
-                and DATE(create_time) &gt;= #{startDate}
+                and create_time &gt;= CONCAT(#{startDate}, ' 00:00:00')
             </if>
             <if test="endDate != null and endDate != ''">
-                and DATE(create_time) &lt;= #{endDate}
+                and create_time &lt;= CONCAT(#{endDate}, ' 23:59:59')
             </if>
-            group by DATE_FORMAT(create_time, '%Y-%m-%d')
+            group by DATE(create_time)
             order by date
         </if>
         <if test="groupBy == 'week'">
@@ -204,14 +204,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 COUNT(*) as value,
                 'orders' as metric
             from order_protect
-            where 1=1
+            where create_time is not null
             <if test="startDate != null and startDate != ''">
-                and DATE(create_time) &gt;= #{startDate}
+                and create_time &gt;= CONCAT(#{startDate}, ' 00:00:00')
             </if>
             <if test="endDate != null and endDate != ''">
-                and DATE(create_time) &lt;= #{endDate}
+                and create_time &lt;= CONCAT(#{endDate}, ' 23:59:59')
             </if>
-            group by DATE_FORMAT(create_time, '%Y-%u')
+            group by YEARWEEK(create_time)
             order by date
         </if>
         <if test="groupBy == 'month'">
@@ -220,37 +220,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 COUNT(*) as value,
                 'orders' as metric
             from order_protect
-            where 1=1
+            where create_time is not null
             <if test="startDate != null and startDate != ''">
-                and DATE(create_time) &gt;= #{startDate}
+                and create_time &gt;= CONCAT(#{startDate}, ' 00:00:00')
             </if>
             <if test="endDate != null and endDate != ''">
-                and DATE(create_time) &lt;= #{endDate}
+                and create_time &lt;= CONCAT(#{endDate}, ' 23:59:59')
             </if>
             group by DATE_FORMAT(create_time, '%Y-%m')
             order by date
         </if>
     </select>
     
-    <!-- 查询物种分布数据 -->
+    <!-- 查询物种分布数据（优化：使用索引） -->
     <select id="selectSpeciesDistribution" resultType="com.ruoyi.qingru.entity.PieData">
         select 
             s.name,
-            COUNT(op.id) as value
-        from order_protect op
+            COUNT(op.species_id) as value
+        from order_protect op USE INDEX (idx_species_id)
         inner join species s on op.species_id = s.id
+        where op.species_id is not null
         group by s.id, s.name
         order by value desc
+        limit 20
     </select>
     
-    <!-- 查询机构排行榜（按订单数） -->
+    <!-- 查询机构排行榜（按订单数，优化：使用索引） -->
     <select id="selectOrgRank" resultType="com.ruoyi.qingru.entity.RankData">
         select 
             org_id as id,
             CONCAT('机构-', org_id) as name,
             COUNT(*) as value,
             0 as rank
-        from order_protect
+        from order_protect USE INDEX (idx_org_id)
+        where org_id is not null
         group by org_id
         order by value desc
         limit #{limit}

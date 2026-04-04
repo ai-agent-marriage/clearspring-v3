@@ -167,4 +167,55 @@ class ExportServiceTest {
         // 验证结果 - 应该返回空的工作簿
         assertNotNull(result);
     }
+    
+    @Test
+    void testExportTrendData() throws Exception {
+        // 准备测试数据
+        List<TrendData> trendData = new ArrayList<>();
+        trendData.add(new TrendData("2024-01-01", 10, "orders"));
+        trendData.add(new TrendData("2024-01-02", 15, "orders"));
+        trendData.add(new TrendData("2024-01-03", 12, "orders"));
+        
+        when(orderMapper.selectTrend("2024-01-01", "2024-01-31", "day")).thenReturn(trendData);
+        
+        // 执行测试
+        byte[] result = exportService.exportTrendData("2024-01-01", "2024-01-31", "day");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.length > 0);
+        
+        // 验证方法调用
+        verify(orderMapper, times(1)).selectTrend("2024-01-01", "2024-01-31", "day");
+    }
+    
+    @Test
+    void testExportTrendDataWeekly() throws Exception {
+        // 准备测试数据
+        List<TrendData> trendData = new ArrayList<>();
+        trendData.add(new TrendData("2024-W01", 50, "orders"));
+        trendData.add(new TrendData("2024-W02", 60, "orders"));
+        
+        when(orderMapper.selectTrend("2024-01-01", "2024-01-31", "week")).thenReturn(trendData);
+        
+        // 执行测试
+        byte[] result = exportService.exportTrendData("2024-01-01", "2024-01-31", "week");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.length > 0);
+        
+        // 验证方法调用
+        verify(orderMapper, times(1)).selectTrend("2024-01-01", "2024-01-31", "week");
+    }
+    
+    @Test
+    void testExportStatsDataDashboard() throws Exception {
+        // 执行测试 - dashboard 类型
+        byte[] result = exportService.exportStatsData("2024-01-01", "2024-01-31", "dashboard");
+        
+        // 验证结果
+        assertNotNull(result);
+        assertTrue(result.length > 0);
+    }
 }
