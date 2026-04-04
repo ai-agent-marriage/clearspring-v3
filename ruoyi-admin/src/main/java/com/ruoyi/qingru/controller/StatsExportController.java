@@ -2,20 +2,23 @@ package com.ruoyi.qingru.controller;
 
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.qingru.service.ExportService;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 统计数据导出控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/api/stats/export")
 public class StatsExportController {
+    private static final Logger log = LoggerFactory.getLogger(StatsExportController.class);
+
     
     @Autowired
     private ExportService exportService;

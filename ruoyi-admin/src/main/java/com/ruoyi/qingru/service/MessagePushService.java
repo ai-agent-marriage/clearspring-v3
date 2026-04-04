@@ -9,14 +9,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 消息推送服务类
  * 提供异步消息推送功能，支持重试机制和推送记录持久化
  */
-@Slf4j
 @Service
 public class MessagePushService {
+    private static final Logger log = LoggerFactory.getLogger(MessagePushService.class);
+
 
     @Autowired
     private MessageService messageService;

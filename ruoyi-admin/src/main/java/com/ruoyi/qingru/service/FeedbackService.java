@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 用户反馈服务类
  */
-@Slf4j
 @Service
 public class FeedbackService {
+    private static final Logger log = LoggerFactory.getLogger(FeedbackService.class);
+
     
     @Autowired
     private FeedbackMapper feedbackMapper;

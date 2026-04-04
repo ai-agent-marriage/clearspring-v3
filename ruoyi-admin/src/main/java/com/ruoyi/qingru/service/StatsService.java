@@ -13,13 +13,16 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 数据统计服务类
  */
-@Slf4j
 @Service
 public class StatsService {
+    private static final Logger log = LoggerFactory.getLogger(StatsService.class);
+
     
     @Autowired
     private UserMapper userMapper;

@@ -6,14 +6,17 @@ import com.ruoyi.qingru.service.PosterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 海报生成控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/poster")
 public class PosterController {
+    private static final Logger log = LoggerFactory.getLogger(PosterController.class);
+
     
     @Autowired
     private PosterService posterService;

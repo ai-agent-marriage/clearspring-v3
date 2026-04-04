@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 /**
  * 数据统计仪表盘
  */
-@Data
 public class StatsDashboard {
     
     /**
@@ -38,4 +37,47 @@ public class StatsDashboard {
      * 今日成交金额
      */
     private BigDecimal todayAmount;
+
+
+    public Long getTotalUsers() {
+        return totalUsers;
+    }
+    public void setTotalUsers(Long totalUsers) {
+        this.totalUsers = totalUsers;
+    }
+
+    public Long getTotalOrders() {
+        return totalOrders;
+    }
+    public void setTotalOrders(Long totalOrders) {
+        this.totalOrders = totalOrders;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public Long getActiveVolunteers() {
+        return activeVolunteers;
+    }
+    public void setActiveVolunteers(Long activeVolunteers) {
+        this.activeVolunteers = activeVolunteers;
+    }
+
+    public Long getTodayOrders() {
+        return todayOrders;
+    }
+    public void setTodayOrders(Long todayOrders) {
+        this.todayOrders = todayOrders;
+    }
+
+    public BigDecimal getTodayAmount() {
+        return todayAmount;
+    }
+    public void setTodayAmount(BigDecimal todayAmount) {
+        this.todayAmount = todayAmount;
+    }
 }

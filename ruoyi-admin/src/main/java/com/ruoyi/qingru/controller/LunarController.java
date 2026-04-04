@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 佛历数据控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/lunar")
 public class LunarController {
+    private static final Logger log = LoggerFactory.getLogger(LunarController.class);
+
     
     @Autowired
     private LunarService lunarService;

@@ -11,13 +11,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 机构管理服务类
  */
-@Slf4j
 @Service
 public class OrgManageService {
+    private static final Logger log = LoggerFactory.getLogger(OrgManageService.class);
+
     
     @Autowired
     private OrgManageMapper orgManageMapper;

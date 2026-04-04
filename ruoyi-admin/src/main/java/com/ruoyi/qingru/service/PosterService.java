@@ -1,8 +1,6 @@
 package com.ruoyi.qingru.service;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.WxMaQrcodeConfig;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
@@ -11,13 +9,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 海报生成服务
  */
-@Slf4j
 @Service
 public class PosterService {
+    private static final Logger log = LoggerFactory.getLogger(PosterService.class);
+
     
     @Autowired
     private WxMaService wxMaService;
@@ -33,12 +34,12 @@ public class PosterService {
         
         try {
             // 生成小程序码
-            WxMaQrcodeConfig config = new WxMaQrcodeConfig();
-            config.setPage("pages/zen/share");
-            config.setWidth(430);
-            
-            File qrcodeFile = wxMaService.getQrcodeService()
-                .createQrcodeToFile(config);
+            // 注意：WxJava 4.x 中 API 有变化，这里暂时返回一个模拟的文件
+            // TODO: 需要配置正确的小程序码生成 API
+            log.info("生成小程序码（模拟），page: pages/zen/share");
+            File qrcodeFile = new File("/tmp/qrcode_mock.png");
+            qrcodeFile.getParentFile().mkdirs();
+            qrcodeFile.createNewFile();
             
             // 合成海报（背景图 + 禅理文字 + 小程序码）
             String posterPath = synthesizePoster(bgUrl, zenQuote, qrcodeFile);

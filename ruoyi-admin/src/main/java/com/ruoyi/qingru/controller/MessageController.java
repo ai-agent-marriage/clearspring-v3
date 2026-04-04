@@ -10,15 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 消息管理控制器
  * 提供微信订阅消息和站内信管理接口
  */
-@Slf4j
 @RestController
 @RequestMapping("/api/message")
 public class MessageController {
+    private static final Logger log = LoggerFactory.getLogger(MessageController.class);
+
 
     @Autowired
     private MessageService messageService;
@@ -42,7 +45,7 @@ public class MessageController {
      * @return 操作结果
      */
     @PostMapping("/subscribe/send")
-    public R<Void> sendSubscribeMessage(@RequestBody TestMessageRequest request) {
+    public R<String> sendSubscribeMessage(@RequestBody TestMessageRequest request) {
         log.info("发送微信订阅消息，openid: {}, templateId: {}", request.getOpenid(), request.getTemplateId());
         try {
             messageService.sendSubscribeMessage(request.getOpenid(), request.getTemplateId(), request.getData());

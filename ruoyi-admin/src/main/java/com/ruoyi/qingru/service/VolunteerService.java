@@ -11,13 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 志愿者服务类
  */
-@Slf4j
 @Service
 public class VolunteerService {
+    private static final Logger log = LoggerFactory.getLogger(VolunteerService.class);
+
     
     @Autowired
     private VolunteerMapper volunteerMapper;

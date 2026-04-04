@@ -6,7 +6,6 @@ import java.util.Date;
 /**
  * 任务执行结果实体类
  */
-@Data
 public class TaskExecute {
     /**
      * 主键 ID
@@ -67,4 +66,89 @@ public class TaskExecute {
      * 创建时间
      */
     private Date createTime;
+
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    public Long getVolunteerId() {
+        return volunteerId;
+    }
+    public void setVolunteerId(Long volunteerId) {
+        this.volunteerId = volunteerId;
+    }
+
+    public Date getExecuteTime() {
+        return executeTime;
+    }
+    public void setExecuteTime(Date executeTime) {
+        this.executeTime = executeTime;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getRealQuantity() {
+        return realQuantity;
+    }
+    public void setRealQuantity(Integer realQuantity) {
+        this.realQuantity = realQuantity;
+    }
+
+    public String getImages() {
+        return images;
+    }
+    public void setImages(String images) {
+        this.images = images;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getAuditReason() {
+        return auditReason;
+    }
+    public void setAuditReason(String auditReason) {
+        this.auditReason = auditReason;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

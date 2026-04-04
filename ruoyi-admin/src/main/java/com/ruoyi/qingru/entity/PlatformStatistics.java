@@ -7,7 +7,6 @@ import java.util.Date;
 /**
  * 平台统计数据实体类
  */
-@Data
 public class PlatformStatistics {
     
     /**
@@ -44,4 +43,54 @@ public class PlatformStatistics {
      * 统计日期
      */
     private Date statisticsDate;
+
+
+    public Integer getTotalUsers() {
+        return totalUsers;
+    }
+    public void setTotalUsers(Integer totalUsers) {
+        this.totalUsers = totalUsers;
+    }
+
+    public Integer getDailyActiveUsers() {
+        return dailyActiveUsers;
+    }
+    public void setDailyActiveUsers(Integer dailyActiveUsers) {
+        this.dailyActiveUsers = dailyActiveUsers;
+    }
+
+    public Integer getTotalOrders() {
+        return totalOrders;
+    }
+    public void setTotalOrders(Integer totalOrders) {
+        this.totalOrders = totalOrders;
+    }
+
+    public BigDecimal getTotalRevenue() {
+        return totalRevenue;
+    }
+    public void setTotalRevenue(BigDecimal totalRevenue) {
+        this.totalRevenue = totalRevenue;
+    }
+
+    public BigDecimal getOrderCompletionRate() {
+        return orderCompletionRate;
+    }
+    public void setOrderCompletionRate(BigDecimal orderCompletionRate) {
+        this.orderCompletionRate = orderCompletionRate;
+    }
+
+    public BigDecimal getContentAuditRate() {
+        return contentAuditRate;
+    }
+    public void setContentAuditRate(BigDecimal contentAuditRate) {
+        this.contentAuditRate = contentAuditRate;
+    }
+
+    public Date getStatisticsDate() {
+        return statisticsDate;
+    }
+    public void setStatisticsDate(Date statisticsDate) {
+        this.statisticsDate = statisticsDate;
+    }
 }

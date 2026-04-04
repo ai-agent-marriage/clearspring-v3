@@ -3,7 +3,7 @@ package com.ruoyi.qingru.config;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import com.ruoyi.common.constant.HttpStatus;
 import com.ruoyi.common.constant.HttpStatus;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.text.Convert;
@@ -78,7 +79,7 @@ public class GlobalExceptionHandler
      * 权限校验异常 - 403
      */
     @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    
     public AjaxResult handleAccessDeniedException(AccessDeniedException e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
@@ -115,7 +116,7 @@ public class GlobalExceptionHandler
      * 请求方式不支持 - 405
      */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ResponseStatus(org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED)
     public AjaxResult handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException e,
             HttpServletRequest request)
     {
@@ -123,7 +124,7 @@ public class GlobalExceptionHandler
         String method = request.getMethod();
         log.error("[方法不支持] 请求地址'{}', 不支持'{}'请求", requestURI, method);
         
-        Map<String, Object> error = buildErrorResponse(HttpStatus.METHOD_NOT_ALLOWED, 
+        Map<String, Object> error = buildErrorResponse(HttpStatus.ERROR, 
             String.format("不支持'%s'请求方法", e.getMethod()), requestURI, method);
         
         return AjaxResult.error(e.getMessage());
@@ -133,7 +134,7 @@ public class GlobalExceptionHandler
      * 请求路径中缺少必需的路径变量 - 400
      */
     @ExceptionHandler(MissingPathVariableException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(org.springframework.http.HttpStatus.BAD_REQUEST)
     public AjaxResult handleMissingPathVariableException(MissingPathVariableException e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
@@ -150,7 +151,7 @@ public class GlobalExceptionHandler
      * 请求参数类型不匹配 - 400
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(org.springframework.http.HttpStatus.BAD_REQUEST)
     public AjaxResult handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e, 
             HttpServletRequest request)
     {
@@ -176,7 +177,7 @@ public class GlobalExceptionHandler
      * 自定义验证异常 - 400
      */
     @ExceptionHandler(BindException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(org.springframework.http.HttpStatus.BAD_REQUEST)
     public AjaxResult handleBindException(BindException e)
     {
         log.error("[参数验证失败] 错误信息'{}'", e.getMessage());
@@ -192,7 +193,7 @@ public class GlobalExceptionHandler
      * 自定义验证异常 - 400
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(org.springframework.http.HttpStatus.BAD_REQUEST)
     public AjaxResult handleMethodArgumentNotValidException(MethodArgumentNotValidException e)
     {
         log.error("[参数验证失败] 错误信息'{}'", e.getMessage());
@@ -208,7 +209,7 @@ public class GlobalExceptionHandler
      * 演示模式异常 - 403
      */
     @ExceptionHandler(DemoModeException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    
     public AjaxResult handleDemoModeException(DemoModeException e)
     {
         return AjaxResult.error("演示模式，不允许操作");
@@ -218,14 +219,14 @@ public class GlobalExceptionHandler
      * 拦截未知的运行时异常 - 500
      */
     @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR)
     public AjaxResult handleRuntimeException(RuntimeException e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
         String method = request.getMethod();
         log.error("[运行时异常] 请求地址'{}', 方法'{}', 错误'{}'", requestURI, method, e.getMessage(), e);
         
-        Map<String, Object> error = buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, 
+        Map<String, Object> error = buildErrorResponse(HttpStatus.ERROR, 
             "服务器内部错误，请稍后重试", requestURI, method);
         logAuditLog("RUNTIME_ERROR", requestURI, method, error);
         
@@ -236,14 +237,14 @@ public class GlobalExceptionHandler
      * 系统异常 - 500
      */
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR)
     public AjaxResult handleException(Exception e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
         String method = request.getMethod();
         log.error("[系统异常] 请求地址'{}', 方法'{}', 错误'{}'", requestURI, method, e.getMessage(), e);
         
-        Map<String, Object> error = buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, 
+        Map<String, Object> error = buildErrorResponse(HttpStatus.ERROR, 
             "服务器内部错误，请稍后重试", requestURI, method);
         logAuditLog("SYSTEM_ERROR", requestURI, method, error);
         

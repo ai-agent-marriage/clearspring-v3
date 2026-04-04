@@ -12,13 +12,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 证书服务类
  */
-@Slf4j
 @Service
 public class CertificateService {
+    private static final Logger log = LoggerFactory.getLogger(CertificateService.class);
+
     
     @Autowired
     private CertificateMapper certificateMapper;

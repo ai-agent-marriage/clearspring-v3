@@ -7,14 +7,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 结算控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/settlement")
 public class SettlementController {
+    private static final Logger log = LoggerFactory.getLogger(SettlementController.class);
+
     
     @Autowired
     private SettlementService settlementService;

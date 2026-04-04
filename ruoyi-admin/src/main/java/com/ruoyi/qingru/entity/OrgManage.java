@@ -6,7 +6,6 @@ import java.util.Date;
 /**
  * 机构管理实体类
  */
-@Data
 public class OrgManage {
     /**
      * 主键 ID
@@ -57,4 +56,75 @@ public class OrgManage {
      * 更新时间
      */
     private Date updateTime;
+
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getCreditCode() {
+        return creditCode;
+    }
+    public void setCreditCode(String creditCode) {
+        this.creditCode = creditCode;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getTotalOrders() {
+        return totalOrders;
+    }
+    public void setTotalOrders(Integer totalOrders) {
+        this.totalOrders = totalOrders;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }

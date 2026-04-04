@@ -1,19 +1,22 @@
 package com.ruoyi.qingru.service;
 
+import cn.binarywang.wx.miniapp.api.WxMaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import wechat.miniapp.api.WxMaService;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 内容审核服务类
  * 提供文本、图片内容审核功能
  */
-@Slf4j
 @Service
 public class ContentAuditService {
+    private static final Logger log = LoggerFactory.getLogger(ContentAuditService.class);
+
 
     @Autowired(required = false)
     private WxMaService wxMaService;

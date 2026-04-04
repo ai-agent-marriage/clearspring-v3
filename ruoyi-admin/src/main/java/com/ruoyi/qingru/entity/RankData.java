@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 /**
  * 排行榜数据
  */
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class RankData {
@@ -31,4 +30,33 @@ public class RankData {
      * 排名
      */
     private Integer rank;
+
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+    public void setRank(Integer rank) {
+        this.rank = rank;
+    }
 }

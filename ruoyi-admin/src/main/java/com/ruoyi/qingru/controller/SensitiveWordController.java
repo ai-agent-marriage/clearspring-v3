@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 敏感词管理控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/content/sensitive-word")
 public class SensitiveWordController {
+    private static final Logger log = LoggerFactory.getLogger(SensitiveWordController.class);
+
     
     @Autowired
     private SensitiveWordService sensitiveWordService;

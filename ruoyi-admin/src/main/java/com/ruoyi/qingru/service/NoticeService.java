@@ -7,14 +7,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 公告服务类
  * 提供公告信息管理
  */
-@Slf4j
 @Service
 public class NoticeService {
+    private static final Logger log = LoggerFactory.getLogger(NoticeService.class);
+
 
     // 使用 ConcurrentHashMap 模拟数据库存储
     private static final Map<Long, Notice> NOTICE_MAP = new ConcurrentHashMap<>();

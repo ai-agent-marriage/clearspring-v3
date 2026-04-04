@@ -21,13 +21,16 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 报表导出服务类
  */
-@Slf4j
 @Service
 public class ExportService {
+    private static final Logger log = LoggerFactory.getLogger(ExportService.class);
+
     
     @Autowired
     private OrderProtectMapper orderMapper;

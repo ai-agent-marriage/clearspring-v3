@@ -7,14 +7,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 帮助文档服务类
  * 提供帮助文档管理
  */
-@Slf4j
 @Service
 public class HelpDocService {
+    private static final Logger log = LoggerFactory.getLogger(HelpDocService.class);
+
 
     // 使用 ConcurrentHashMap 模拟数据库存储
     private static final Map<Long, HelpDoc> HELP_DOC_MAP = new ConcurrentHashMap<>();

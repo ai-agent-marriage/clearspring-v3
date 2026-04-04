@@ -7,14 +7,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 敏感词服务类
  * 提供敏感词管理
  */
-@Slf4j
 @Service
 public class SensitiveWordService {
+    private static final Logger log = LoggerFactory.getLogger(SensitiveWordService.class);
+
 
     // 使用 ConcurrentHashMap 模拟数据库存储
     private static final Map<Long, SensitiveWord> SENSITIVE_WORD_MAP = new ConcurrentHashMap<>();

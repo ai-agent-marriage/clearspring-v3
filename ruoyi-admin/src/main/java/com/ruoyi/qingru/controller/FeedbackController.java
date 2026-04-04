@@ -7,14 +7,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 用户反馈控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/feedback")
 public class FeedbackController {
+    private static final Logger log = LoggerFactory.getLogger(FeedbackController.class);
+
     
     @Autowired
     private FeedbackService feedbackService;
@@ -83,7 +86,7 @@ public class FeedbackController {
      * @return 操作结果
      */
     @PostMapping("/process/{id}")
-    public R<Void> processFeedback(@PathVariable Long id, 
+    public R<String> processFeedback(@PathVariable Long id, 
                                    @RequestParam String reply) {
         log.info("处理反馈，id={}, reply={}", id, reply);
         
@@ -102,7 +105,7 @@ public class FeedbackController {
      * @return 操作结果
      */
     @DeleteMapping("/delete/{id}")
-    public R<Void> deleteFeedback(@PathVariable Long id) {
+    public R<String> deleteFeedback(@PathVariable Long id) {
         log.info("删除反馈，id={}", id);
         
         try {

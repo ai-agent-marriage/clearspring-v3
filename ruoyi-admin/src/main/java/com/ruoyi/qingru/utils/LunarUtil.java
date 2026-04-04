@@ -2,11 +2,16 @@ package com.ruoyi.qingru.utils;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -26,12 +31,15 @@ public class LunarUtil {
     private String scriptPath;
     
     private static String SCRIPT_PATH;
+    private static final Logger staticLog = LoggerFactory.getLogger(LunarUtil.class);
     
     @PostConstruct
     public void init() {
         SCRIPT_PATH = scriptPath;
-        log.info("LunarUtil 初始化，脚本路径：{}", SCRIPT_PATH);
+        staticLog.info("LunarUtil 初始化，脚本路径：{}", SCRIPT_PATH);
     }
+    
+    private static final Logger log = staticLog;
     
     /**
      * 获取今日佛历信息
@@ -63,7 +71,7 @@ public class LunarUtil {
      * @return 佛历信息
      */
     public static LunarInfo getLunarByDate(int year, int month, int day) {
-        return executeLunarScript("date", year, month, day);
+        return executeLunarScript("date", String.valueOf(year), String.valueOf(month), String.valueOf(day));
     }
     
     /**
@@ -98,7 +106,7 @@ public class LunarUtil {
             command[1] = SCRIPT_PATH;
             System.arraycopy(args, 0, command, 2, args.length);
             
-            log.debug("执行 lunar 脚本：{}", Arrays.toString(command));
+            staticLog.debug("执行 lunar 脚本：{}", Arrays.toString(command));
             
             // 执行脚本
             ProcessBuilder pb = new ProcessBuilder(command);
@@ -118,13 +126,13 @@ public class LunarUtil {
             // 等待进程结束
             int exitCode = process.waitFor();
             if (exitCode != 0) {
-                log.error("lunar 脚本执行失败，exitCode={}", exitCode);
+                staticLog.error("lunar 脚本执行失败，exitCode={}", exitCode);
                 return null;
             }
             
             // 解析 JSON 结果
             String json = output.toString();
-            log.debug("lunar 脚本输出：{}", json);
+            staticLog.debug("lunar 脚本输出：{}", json);
             
             JSONObject jsonObject = JSON.parseObject(json);
             LunarInfo info = new LunarInfo();
@@ -177,14 +185,14 @@ public class LunarUtil {
             return info;
             
         } catch (IOException e) {
-            log.error("执行 lunar 脚本 IO 异常", e);
+            staticLog.error("执行 lunar 脚本 IO 异常", e);
             return null;
         } catch (InterruptedException e) {
-            log.error("执行 lunar 脚本被中断", e);
+            staticLog.error("执行 lunar 脚本被中断", e);
             Thread.currentThread().interrupt();
             return null;
         } catch (Exception e) {
-            log.error("执行 lunar 脚本异常", e);
+            staticLog.error("执行 lunar 脚本异常", e);
             return null;
         }
     }
@@ -192,7 +200,9 @@ public class LunarUtil {
     /**
      * 佛历信息
      */
-    @lombok.Data
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class LunarInfo {
         // 公历
         private Integer solarYear;
@@ -215,7 +225,18 @@ public class LunarUtil {
         // 宜忌
         private String yi;
         private String ji;
-        private boolean suitableForProtect;
+        private Boolean suitableForProtect;
+        
+        public String getYi() { return yi; }
+        public void setYi(String yi) { this.yi = yi; }
+        public String getJi() { return ji; }
+        public void setJi(String ji) { this.ji = ji; }
+        public Boolean isSuitableForProtect() {
+            return suitableForProtect != null && suitableForProtect;
+        }
+        public void setSuitableForProtect(Boolean suitableForProtect) {
+            this.suitableForProtect = suitableForProtect;
+        }
         
         /**
          * 获取完整的佛历描述

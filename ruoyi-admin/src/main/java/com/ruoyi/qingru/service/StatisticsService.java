@@ -10,13 +10,16 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 统计服务类
  */
-@Slf4j
 @Service
 public class StatisticsService {
+    private static final Logger log = LoggerFactory.getLogger(StatisticsService.class);
+
     
     @Autowired
     private OrderProtectMapper orderMapper;

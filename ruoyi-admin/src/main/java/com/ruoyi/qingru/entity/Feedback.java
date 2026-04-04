@@ -6,7 +6,6 @@ import java.util.Date;
 /**
  * 用户反馈实体类
  */
-@Data
 public class Feedback {
     /**
      * 主键 ID
@@ -57,4 +56,75 @@ public class Feedback {
      * 创建时间
      */
     private Date createTime;
+
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getImages() {
+        return images;
+    }
+    public void setImages(String images) {
+        this.images = images;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getReply() {
+        return reply;
+    }
+    public void setReply(String reply) {
+        this.reply = reply;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

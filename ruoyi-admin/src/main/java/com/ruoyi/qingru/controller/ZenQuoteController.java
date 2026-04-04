@@ -6,14 +6,17 @@ import com.ruoyi.qingru.service.ZenQuoteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 禅理内容控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/zen")
 public class ZenQuoteController {
+    private static final Logger log = LoggerFactory.getLogger(ZenQuoteController.class);
+
     
     @Autowired
     private ZenQuoteService zenQuoteService;

@@ -10,13 +10,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 志愿者任务服务类
  */
-@Slf4j
 @Service
 public class VolunteerTaskService {
+    private static final Logger log = LoggerFactory.getLogger(VolunteerTaskService.class);
+
     
     @Autowired
     private VolunteerTaskMapper volunteerTaskMapper;

@@ -7,14 +7,17 @@ import com.ruoyi.qingru.service.StatisticsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 数据统计控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/statistics")
 public class StatisticsController {
+    private static final Logger log = LoggerFactory.getLogger(StatisticsController.class);
+
     
     @Autowired
     private StatisticsService statisticsService;

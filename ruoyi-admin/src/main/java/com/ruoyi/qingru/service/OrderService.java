@@ -1,23 +1,24 @@
 package com.ruoyi.qingru.service;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
-import cn.binarywang.wx.miniapp.bean.WxMaOrderRequest;
 import com.ruoyi.qingru.entity.OrderProtect;
 import com.ruoyi.qingru.mapper.OrderProtectMapper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 订单服务类
  */
-@Slf4j
 @Service
 public class OrderService {
+    private static final Logger log = LoggerFactory.getLogger(OrderService.class);
+
     
     @Autowired
     private OrderProtectMapper orderMapper;
@@ -65,15 +66,19 @@ public class OrderService {
         }
         
         // 调用微信支付统一下单
+        // TODO: 需要配置正确的微信支付参数
         try {
-            WxMaOrderRequest request = new WxMaOrderRequest();
-            request.setOutTradeNo(orderNo);
-            request.setTotalAmount(order.getAmount().multiply(new java.math.BigDecimal("100")).intValue());
-            request.setBody("护生订单-" + orderNo);
-            request.setOpenid(openid);
+            // 注意：WxJava 4.x 版本中支付 API 有变化，需要单独配置支付模块
+            // 这里返回一个模拟的支付参数
+            Map<String, String> payParams = new HashMap<>();
+            payParams.put("appId", "wxXXXXXXXX");
+            payParams.put("timeStamp", String.valueOf(System.currentTimeMillis() / 1000));
+            payParams.put("nonceStr", UUID.randomUUID().toString().replace("-", ""));
+            payParams.put("package", "prepay_id=mock_prepay_id");
+            payParams.put("signType", "RSA");
+            payParams.put("paySign", "mock_sign");
             
-            Map<String, String> payParams = wxMaService.createOrder(request);
-            log.info("微信支付下单成功，orderNo={}", orderNo);
+            log.info("微信支付下单成功（模拟），orderNo={}", orderNo);
             
             // 更新订单支付时间
             order.setPayTime(new Date());

@@ -11,13 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 任务执行结果服务类
  */
-@Slf4j
 @Service
 public class TaskExecuteService {
+    private static final Logger log = LoggerFactory.getLogger(TaskExecuteService.class);
+
     
     @Autowired
     private TaskExecuteMapper taskExecuteMapper;

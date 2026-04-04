@@ -11,13 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 结算服务类
  */
-@Slf4j
 @Service
 public class SettlementService {
+    private static final Logger log = LoggerFactory.getLogger(SettlementService.class);
+
     
     @Autowired
     private SettlementMapper settlementMapper;

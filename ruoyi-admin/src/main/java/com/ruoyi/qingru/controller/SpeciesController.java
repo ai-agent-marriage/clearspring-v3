@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 物种管理控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/content/species")
 public class SpeciesController {
+    private static final Logger log = LoggerFactory.getLogger(SpeciesController.class);
+
     
     @Autowired
     private SpeciesService speciesService;

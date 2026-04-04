@@ -7,14 +7,17 @@ import com.ruoyi.qingru.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 登录控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/user")
 public class LoginController {
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+
     
     @Autowired
     private LoginService loginService;

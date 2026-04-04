@@ -3,6 +3,7 @@ package com.ruoyi.qingru.mapper;
 import com.ruoyi.qingru.entity.OrderProtect;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
@@ -171,6 +172,14 @@ public interface OrderProtectMapper {
      */
     @Select("SELECT COUNT(*) FROM order_protect")
     int countTotal();
+    
+    /**
+     * 统计机构订单总数
+     * @param orgId 机构 ID
+     * @return 订单数量
+     */
+    @Select("SELECT COUNT(*) FROM order_protect WHERE org_id = #{orgId}")
+    int countByOrgId(@Param("orgId") Long orgId);
     
     /**
      * 统计订单总金额

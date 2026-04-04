@@ -1,5 +1,6 @@
 package com.ruoyi.qingru.service;
 
+import com.ruoyi.qingru.entity.ZenQuote;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -36,13 +37,26 @@ public class ZenQuoteService {
 
     /**
      * 获取每日禅语（根据日期固定）
+     * @param date 日期字符串（可选，忽略，仅用于兼容接口）
      * @return 禅语对象
      */
-    public ZenQuote getDailyQuote() {
+    public ZenQuote getDailyQuote(String date) {
         Calendar calendar = Calendar.getInstance();
         int dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
         int index = dayOfYear % QUOTES.size();
         return QUOTES.get(index);
+    }
+
+    /**
+     * 根据 ID 获取禅语
+     * @param id 禅语 ID
+     * @return 禅语对象
+     */
+    public ZenQuote getQuoteById(Long id) {
+        if (id == null || id < 0 || id >= QUOTES.size()) {
+            return QUOTES.get(0); // 默认返回第一个
+        }
+        return QUOTES.get(id.intValue());
     }
 
     /**

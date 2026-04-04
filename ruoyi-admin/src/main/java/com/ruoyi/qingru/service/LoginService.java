@@ -9,13 +9,16 @@ import com.ruoyi.qingru.utils.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 登录服务
  */
-@Slf4j
 @Service
 public class LoginService {
+    private static final Logger log = LoggerFactory.getLogger(LoginService.class);
+
     
     @Autowired
     private WxMaService wxMaService;

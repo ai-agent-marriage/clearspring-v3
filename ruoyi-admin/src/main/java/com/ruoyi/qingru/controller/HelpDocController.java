@@ -7,14 +7,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 帮助文档管理控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/content/help")
 public class HelpDocController {
+    private static final Logger log = LoggerFactory.getLogger(HelpDocController.class);
+
     
     @Autowired
     private HelpDocService helpDocService;

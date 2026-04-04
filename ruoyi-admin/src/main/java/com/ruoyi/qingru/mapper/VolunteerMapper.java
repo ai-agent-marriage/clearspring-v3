@@ -3,6 +3,7 @@ package com.ruoyi.qingru.mapper;
 import com.ruoyi.qingru.entity.Volunteer;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**

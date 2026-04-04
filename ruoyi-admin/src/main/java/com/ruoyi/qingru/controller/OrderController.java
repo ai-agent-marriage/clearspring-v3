@@ -2,21 +2,23 @@ package com.ruoyi.qingru.controller;
 
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.qingru.entity.OrderProtect;
+import com.ruoyi.qingru.entity.ReviewRequest;
 import com.ruoyi.qingru.service.OrderService;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * 订单控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/order")
 public class OrderController {
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
+
     
     @Autowired
     private OrderService orderService;
@@ -101,19 +103,27 @@ public class OrderController {
     /**
      * 支付请求
      */
-    @Data
     public static class PayRequest {
         private String orderNo;
         private String openid;
+        
+        public String getOrderNo() { return orderNo; }
+        public void setOrderNo(String orderNo) { this.orderNo = orderNo; }
+        public String getOpenid() { return openid; }
+        public void setOpenid(String openid) { this.openid = openid; }
     }
     
     /**
      * 确认请求
      */
-    @Data
     public static class ConfirmRequest {
         private Integer score;
         private String comment;
+        
+        public Integer getScore() { return score; }
+        public void setScore(Integer score) { this.score = score; }
+        public String getComment() { return comment; }
+        public void setComment(String comment) { this.comment = comment; }
     }
     
     /**

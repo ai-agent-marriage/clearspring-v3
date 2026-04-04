@@ -1,20 +1,22 @@
 package com.ruoyi.qingru.controller;
 
 import com.ruoyi.qingru.service.ExportService;
-import lombok.extern.slf4j.Slf4j;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
  * 报表导出控制器
  */
-@Slf4j
 @RestController
 @RequestMapping("/export")
 public class ExportController {
+    private static final Logger log = LoggerFactory.getLogger(ExportController.class);
+
     
     @Autowired
     private ExportService exportService;
