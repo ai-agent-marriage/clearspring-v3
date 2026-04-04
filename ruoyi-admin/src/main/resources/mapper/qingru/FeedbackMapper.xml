@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.FeedbackMapper">
+    
+    <resultMap type="Feedback" id="FeedbackResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="type"    column="type"    />
+        <result property="title"    column="title"    />
+        <result property="content"    column="content"    />
+        <result property="images"    column="images"    />
+        <result property="contact"    column="contact"    />
+        <result property="status"    column="status"    />
+        <result property="reply"    column="reply"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+    
+    <insert id="insert" parameterType="Feedback" useGeneratedKeys="true" keyProperty="id">
+        insert into feedback
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="type != null">type,</if>
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="images != null">images,</if>
+            <if test="contact != null">contact,</if>
+            <if test="status != null">status,</if>
+            <if test="reply != null">reply,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="type != null">#{type},</if>
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="images != null">#{images},</if>
+            <if test="contact != null">#{contact},</if>
+            <if test="status != null">#{status},</if>
+            <if test="reply != null">#{reply},</if>
+            sysdate(),
+        </trim>
+    </insert>
+    
+    <select id="selectById" parameterType="Long" resultMap="FeedbackResult">
+        select id, user_id, type, title, content, images, contact, status, reply, create_time
+        from feedback
+        where id = #{id}
+    </select>
+    
+    <select id="selectByCondition" resultMap="FeedbackResult">
+        select id, user_id, type, title, content, images, contact, status, reply, create_time
+        from feedback
+        <where>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <select id="countByCondition" resultType="Integer">
+        select count(1) from feedback
+        <where>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    
+    <update id="update" parameterType="Feedback">
+        update feedback
+        <trim prefix="set" suffixOverrides=",">
+            <if test="status != null">status = #{status},</if>
+            <if test="reply != null">reply = #{reply},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <delete id="deleteById" parameterType="Long">
+        delete from feedback where id = #{id}
+    </delete>
+    
+</mapper>
