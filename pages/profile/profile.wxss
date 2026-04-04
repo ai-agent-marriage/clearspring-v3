@@ -1,6 +1,58 @@
+/* pages/profile/profile.wxss */
+
 page {
   background-color: #f5f5f5;
+  --spacing-1: 16rpx;
+  --spacing-2: 24rpx;
+  --spacing-3: 32rpx;
+  --spacing-4: 48rpx;
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --text-main: #333;
+  --text-dim: #999;
+  --gold-main: #D4B87B;
+  --gold-dim: #6E5E00;
 }
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+}
+
+/* ========== 通用卡片样式 ========== */
+
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-2);
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2);
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.card-action {
+  font-size: 24rpx;
+  color: var(--gold-main);
+  padding: 8rpx 16rpx;
+  background: rgba(212, 184, 123, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+/* ========== 用户信息卡片 ========== */
 
 .profile-card {
   background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
@@ -10,7 +62,7 @@ page {
 .user-info {
   display: flex;
   align-items: center;
-  padding: 24rpx;
+  padding: var(--spacing-2);
 }
 
 .avatar {
@@ -18,7 +70,7 @@ page {
   height: 128rpx;
   border-radius: 50%;
   border: 4rpx solid rgba(255, 255, 255, 0.3);
-  margin-right: 24rpx;
+  margin-right: var(--spacing-2);
   background-color: #fff;
 }
 
@@ -44,8 +96,131 @@ page {
   border: none;
   border-radius: 32rpx;
   font-size: 28rpx;
-  margin: 0 24rpx 24rpx;
+  margin: 0 var(--spacing-2) var(--spacing-2);
+  padding: 16rpx 32rpx;
 }
+
+/* ========== 数据统计卡片 ========== */
+
+.stats-card {
+  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-1);
+  padding: var(--spacing-2);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-1);
+  background: rgba(212, 184, 123, 0.05);
+  border-radius: var(--radius-md);
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--gold-main);
+  line-height: 1;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* ========== 图表容器 ========== */
+
+.chart-container {
+  padding: var(--spacing-2);
+  border-top: 1rpx solid #f0f0f0;
+  background: #fafafa;
+}
+
+.chart-bar-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200rpx;
+  padding: var(--spacing-1);
+  background: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-1);
+}
+
+.chart-bar {
+  width: 48rpx;
+  background: linear-gradient(180deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: all 0.3s ease;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 var(--spacing-1);
+}
+
+.chart-label {
+  font-size: 20rpx;
+  color: var(--text-dim);
+  width: 48rpx;
+  text-align: center;
+}
+
+/* ========== 快捷操作卡片 ========== */
+
+.quick-actions-card {
+  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+}
+
+.quick-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-1);
+  transition: all 0.2s ease;
+}
+
+.quick-action-item:active {
+  transform: scale(0.95);
+}
+
+.quick-action-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+
+.quick-action-emoji {
+  font-size: 40rpx;
+}
+
+.quick-action-name {
+  font-size: 24rpx;
+  color: var(--text-main);
+  text-align: center;
+}
+
+/* ========== 菜单列表 ========== */
 
 .menu-list {
   display: flex;
@@ -56,20 +231,63 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24rpx 0;
+  padding: var(--spacing-2);
   border-bottom: 1rpx solid #f0f0f0;
+  transition: all 0.2s ease;
 }
 
 .menu-item:last-child {
   border-bottom: none;
 }
 
+.menu-item:active {
+  background-color: #fafafa;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: var(--spacing-2);
+  width: 48rpx;
+  text-align: center;
+}
+
 .menu-name {
   font-size: 28rpx;
-  color: #333;
+  color: var(--text-main);
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.menu-badge {
+  min-width: 32rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: #fff;
+  font-size: 20rpx;
+  border-radius: 16rpx;
+  padding: 0 12rpx;
 }
 
 .menu-arrow {
   color: #ccc;
-  font-size: 28rpx;
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+/* ========== 底部留白 ========== */
+
+.footer-space {
+  height: var(--spacing-4);
 }

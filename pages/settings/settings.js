@@ -12,7 +12,8 @@ Page({
     notifications: {
       activity: true,
       merit: false,
-      system: true
+      system: true,
+      subscribeMessage: true
     },
     
     // 外观设置
@@ -103,6 +104,41 @@ Page({
     });
   },
 
+  // 订阅消息开关
+  onSubscribeMessageChange(e) {
+    const value = e.detail.value;
+    this.setData({
+      'notifications.subscribeMessage': value
+    });
+    this.saveSettings();
+    
+    if (value) {
+      // 请求订阅消息授权
+      wx.requestSubscribeMessage({
+        tmplIds: ['MESSAGE_TEMPLATE_ID'],
+        success: (res) => {
+          console.log('订阅消息授权成功', res);
+          wx.showToast({
+            title: '已开启推送',
+            icon: 'success'
+          });
+        },
+        fail: (err) => {
+          console.log('订阅消息授权失败', err);
+          this.setData({
+            'notifications.subscribeMessage': false
+          });
+          this.saveSettings();
+        }
+      });
+    } else {
+      wx.showToast({
+        title: '已关闭推送',
+        icon: 'none'
+      });
+    }
+  },
+
   // 宣纸风格开关
   onXuanPaperChange(e) {
     this.setData({
@@ -164,7 +200,14 @@ Page({
   // 隐私政策
   onPrivacyTap() {
     wx.navigateTo({
-      url: '/pages/webview/webview?url=privacy'
+      url: '/pages/privacy/privacy'
+    });
+  },
+
+  // 用户协议
+  onUserAgreementTap() {
+    wx.navigateTo({
+      url: '/pages/agreement/agreement'
     });
   },
 

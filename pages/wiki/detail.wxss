@@ -1,0 +1,415 @@
+/* pages/wiki/detail.wxss */
+
+page {
+  background-color: #f5f5f5;
+  --spacing-1: 16rpx;
+  --spacing-2: 24rpx;
+  --spacing-3: 32rpx;
+  --spacing-4: 48rpx;
+  --radius-sm: 8rpx;
+  --radius-md: 16rpx;
+  --radius-lg: 24rpx;
+  --text-main: #333;
+  --text-dim: #999;
+  --gold-main: #D4B87B;
+  --gold-dim: #6E5E00;
+  --success: #07c160;
+  --error-soft: #FF6B6B;
+}
+
+.container {
+  padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+/* ========== 顶部导航 ========== */
+
+.detail-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  z-index: 100;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.back-icon {
+  font-size: 48rpx;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.back-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.icon-btn {
+  padding: 16rpx;
+}
+
+.favorite-icon {
+  font-size: 40rpx;
+}
+
+.share-btn {
+  padding: 16rpx;
+  background: none;
+  border: none;
+  font-size: 40rpx;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+/* ========== 详情内容 ========== */
+
+.detail-content {
+  padding: var(--spacing-2);
+}
+
+/* ========== 物种图片 ========== */
+
+.species-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400rpx;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--spacing-2);
+}
+
+.species-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+}
+
+.species-category {
+  position: absolute;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  padding: 8rpx 24rpx;
+  background: rgba(7, 193, 96, 0.9);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 32rpx;
+}
+
+/* ========== 基本信息 ========== */
+
+.info-section {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.info-header {
+  margin-bottom: var(--spacing-2);
+}
+
+.species-name {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 700;
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  color: var(--text-main);
+  margin-bottom: 8rpx;
+}
+
+.species-latin {
+  display: block;
+  font-size: 24rpx;
+  font-style: italic;
+  color: var(--text-dim);
+  font-family: 'Times New Roman', serif;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-2);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.info-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* ========== 描述区域 ========== */
+
+.desc-section,
+.tips-section,
+.warnings-section,
+.article-header,
+.article-content,
+.guide-header,
+.guide-content,
+.references-section {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.section-title.warning {
+  color: var(--error-soft);
+}
+
+.desc-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 1.8;
+  display: block;
+}
+
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: var(--spacing-2);
+}
+
+.feature-tag {
+  padding: 8rpx 20rpx;
+  background: rgba(212, 184, 123, 0.15);
+  color: var(--gold-dim);
+  font-size: 24rpx;
+  border-radius: 32rpx;
+}
+
+/* ========== 放生建议 ========== */
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  padding: var(--spacing-1) 0;
+}
+
+.tip-icon {
+  font-size: 28rpx;
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ========== 注意事项 ========== */
+
+.warning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  padding: var(--spacing-1) 0;
+}
+
+.warning-icon {
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  background: linear-gradient(135deg, #FF9A44 0%, #FF6B35 100%);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.warning-text {
+  font-size: 26rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ========== 文章样式 ========== */
+
+.article-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-2);
+  line-height: 1.4;
+}
+
+.article-meta {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.article-tags .tag {
+  padding: 8rpx 20rpx;
+  background: rgba(212, 184, 123, 0.15);
+  color: var(--gold-dim);
+  font-size: 24rpx;
+  border-radius: 32rpx;
+}
+
+.markdown-content {
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+.content-text {
+  display: block;
+}
+
+/* ========== 指南样式 ========== */
+
+.guide-category {
+  display: inline-block;
+  padding: 8rpx 24rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 32rpx;
+  margin-bottom: var(--spacing-2);
+}
+
+.guide-title {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  font-family: 'Songti SC', 'STSong', 'SimSun', serif;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-1);
+  line-height: 1.4;
+}
+
+.guide-update {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-dim);
+  margin-top: var(--spacing-1);
+}
+
+/* ========== 参考依据 ========== */
+
+.reference-item {
+  padding: var(--spacing-1) 0;
+  border-left: 4rpx solid var(--gold-main);
+  padding-left: var(--spacing-2);
+}
+
+.reference-text {
+  font-size: 26rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* ========== 底部操作栏 ========== */
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--spacing-2) + env(safe-area-inset-bottom)) var(--spacing-2) var(--spacing-2);
+  background: #fff;
+  border-top: 1rpx solid #f0f0f0;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+  padding: var(--spacing-1);
+  background: none;
+  border: none;
+}
+
+.bar-item::after {
+  border: none;
+}
+
+.bar-icon {
+  font-size: 40rpx;
+}
+
+.bar-text {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.share-bar-item {
+  background: none;
+  border: none;
+}
+
+.share-bar-item::after {
+  border: none;
+}

@@ -1,3 +1,4 @@
+<!--pages/profile/profile.wxml-->
 <view class="container">
   <!-- 用户信息卡片 -->
   <view class="card profile-card">
@@ -11,12 +12,84 @@
     <button class="login-btn" wx:if="{{!hasUserInfo}}" bindtap="login">登录/注册</button>
   </view>
 
-  <!-- 功能列表 -->
-  <view class="card">
+  <!-- 数据概览卡片 -->
+  <view class="card stats-card">
+    <view class="card-header">
+      <text class="card-title">修行概览</text>
+      <text class="card-action" bindtap="toggleChart">{{showChart ? '收起图表' : '查看趋势'}}</text>
+    </view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{stats.listenCount}}</text>
+        <text class="stat-label">听闻次数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.protectCount}}</text>
+        <text class="stat-label">护生次数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.continuousDays}}</text>
+        <text class="stat-label">连续天数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.certCount}}</text>
+        <text class="stat-label">获得证书</text>
+      </view>
+    </view>
+    
+    <!-- 趋势图表 (条件显示) -->
+    <view class="chart-container" wx:if="{{showChart}}">
+      <view class="chart-bar-container">
+        <view class="chart-bar" wx:for="{{trendData.meritValues}}" wx:key="*this" style="height: {{item / 3.2}}rpx;"></view>
+      </view>
+      <view class="chart-labels">
+        <text class="chart-label" wx:for="{{trendData.dates}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="card quick-actions-card">
+    <view class="card-header">
+      <text class="card-title">快捷操作</text>
+    </view>
+    <view class="quick-actions-grid">
+      <view 
+        class="quick-action-item" 
+        wx:for="{{quickActions}}" 
+        wx:key="name"
+        bindtap="onQuickActionTap"
+        data-action="{{item}}"
+      >
+        <view class="quick-action-icon" style="background: {{item.color}}20;">
+          <text class="quick-action-emoji">{{item.icon}}</text>
+        </view>
+        <text class="quick-action-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能菜单 - 修行数据 -->
+  <view class="card" wx:for="{{menuGroups}}" wx:key="title">
+    <view class="card-header">
+      <text class="card-title">{{item.title}}</text>
+    </view>
     <view class="menu-list">
-      <view class="menu-item" wx:for="{{menuItems}}" wx:key="id" bindtap="navigateTo">
-        <text class="menu-name">{{item.name}}</text>
-        <text class="menu-arrow">></text>
+      <view 
+        class="menu-item" 
+        wx:for="{{item.items}}" 
+        wx:key="name"
+        bindtap="navigateTo"
+        data-item="{{item}}"
+      >
+        <view class="menu-left">
+          <text class="menu-icon">{{item.icon}}</text>
+          <text class="menu-name">{{item.name}}</text>
+        </view>
+        <view class="menu-right">
+          <text class="menu-badge" wx:if="{{item.badge > 0}}">{{item.badge}}</text>
+          <text class="menu-arrow">›</text>
+        </view>
       </view>
     </view>
   </view>
@@ -25,13 +98,29 @@
   <view class="card">
     <view class="menu-list">
       <view class="menu-item" bindtap="contactUs">
-        <text class="menu-name">联系客服</text>
-        <text class="menu-arrow">></text>
+        <view class="menu-left">
+          <text class="menu-icon">📞</text>
+          <text class="menu-name">联系客服</text>
+        </view>
+        <text class="menu-arrow">›</text>
       </view>
       <view class="menu-item" bindtap="aboutUs">
-        <text class="menu-name">关于我们</text>
-        <text class="menu-arrow">></text>
+        <view class="menu-left">
+          <text class="menu-icon">ℹ️</text>
+          <text class="menu-name">关于我们</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" bindtap="navigateTo" data-item="{{{name: '设置', path: '/pages/settings/settings'}}}">
+        <view class="menu-left">
+          <text class="menu-icon">⚙️</text>
+          <text class="menu-name">设置</text>
+        </view>
+        <text class="menu-arrow">›</text>
       </view>
     </view>
   </view>
+
+  <!-- 底部留白 -->
+  <view class="footer-space"></view>
 </view>
