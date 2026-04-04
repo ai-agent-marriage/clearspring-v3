@@ -19,13 +19,23 @@ const mockWx = {
 global.wx = mockWx
 
 // 辅助函数：创建页面实例
+// 使用 setup.js 中定义的 getPage 函数
 function createPage(path) {
-  const pages = {
-    '/pages/admin/message/index': require('../pages/admin/message/index.js'),
-    '/pages/admin/message/subscribe': require('../pages/admin/message/subscribe.js'),
-    '/pages/admin/message/records': require('../pages/admin/message/records.js')
+  // 先加载页面文件（这会调用 Page() 并注册到 pageRegistry）
+  try {
+    if (path === '/pages/admin/message/index') {
+      require('../pages/admin/message/index.js')
+    } else if (path === '/pages/admin/message/subscribe') {
+      require('../pages/admin/message/subscribe.js')
+    } else if (path === '/pages/admin/message/records') {
+      require('../pages/admin/message/records.js')
+    }
+  } catch (e) {
+    // 如果页面文件加载失败，使用 mock 数据
+    console.warn(`Failed to load page ${path}: ${e.message}`)
   }
-  return pages[path]
+  // 使用 setup.js 中的 getPage 获取页面实例
+  return global.getPage(path)
 }
 
 // ==================== 首页测试 ====================

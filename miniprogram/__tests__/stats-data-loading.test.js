@@ -262,7 +262,7 @@ describe('Stats Data Loading & Error Handling', () => {
       expect(isRefreshing).toBe(true)
     })
 
-    it('should stop refresh animation after completion', () => {
+    it('should stop refresh animation after completion', async () => {
       wx.stopPullDownRefresh = jest.fn()
       
       const refresh = async () => {
@@ -270,7 +270,7 @@ describe('Stats Data Loading & Error Handling', () => {
         wx.stopPullDownRefresh()
       }
 
-      refresh()
+      await refresh()
       expect(wx.stopPullDownRefresh).toHaveBeenCalled()
     })
   })

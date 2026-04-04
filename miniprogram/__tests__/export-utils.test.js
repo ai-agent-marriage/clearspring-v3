@@ -33,18 +33,6 @@ global.wx = {
   saveFileToDisk: jest.fn()
 }
 
-// Mock wx-xlsx
-jest.mock('wx-xlsx', () => {
-  return {
-    utils: {
-      aoa_to_sheet: jest.fn(() => ({})),
-      book_new: jest.fn(() => ({})),
-      book_append_sheet: jest.fn()
-    },
-    write: jest.fn(() => new ArrayBuffer(100))
-  }
-})
-
 describe('Export Utils - Excel Export', () => {
   let exportUtils
   let XLSX

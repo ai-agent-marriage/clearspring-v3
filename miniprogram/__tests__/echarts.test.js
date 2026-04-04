@@ -17,13 +17,13 @@ describe('ECharts Utils', () => {
   })
 
   describe('createDarkTheme', () => {
-    it('should return dark theme configuration', () => {
+    it('should return zen theme configuration (dark theme is deprecated)', () => {
       const theme = createDarkTheme()
 
-      expect(theme.backgroundColor).toBe('#1a1a2e')
-      expect(theme.textStyle.color).toBe('#ffffff')
-      expect(theme.axisLine.lineStyle.color).toBe('rgba(255, 255, 255, 0.3)')
-      expect(theme.splitLine.lineStyle.color).toBe('rgba(255, 255, 255, 0.1)')
+      expect(theme.backgroundColor).toBe('#EFEEE9')
+      expect(theme.textStyle.color).toBe('#333333')
+      expect(theme.axisLine.lineStyle.color).toBe('rgba(74, 93, 78, 0.3)')
+      expect(theme.splitLine.lineStyle.color).toBe('rgba(74, 93, 78, 0.1)')
     })
   })
 
@@ -32,7 +32,7 @@ describe('ECharts Utils', () => {
       const theme = createPrimaryTheme()
 
       expect(theme.primaryColor).toBe('#4A5D4E')
-      expect(theme.secondaryColor).toBe('#FFA500')
+      expect(theme.secondaryColor).toBe('#8FB396')
       expect(theme.accentColor).toBe('#409EFF')
     })
   })

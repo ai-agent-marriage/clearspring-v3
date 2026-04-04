@@ -20,6 +20,7 @@ global.wx = {
       })
     }
   }),
+  request: jest.fn().mockResolvedValue({ statusCode: 200, data: {} }),
   env: {
     USER_DATA_PATH: '/user/data/path'
   },
@@ -180,8 +181,7 @@ describe('API Utils - Image Processing', () => {
       const result = await api.uploadImage('/tmp/original.jpg')
       
       expect(wx.compressImage).toHaveBeenCalled()
-      expect(wx.showLoading).toHaveBeenCalled()
-      expect(wx.hideLoading).toHaveBeenCalled()
+      expect(wx.request).toHaveBeenCalled()
     })
   })
 

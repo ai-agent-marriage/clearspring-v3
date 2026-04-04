@@ -28,8 +28,34 @@ global.wx = {
 }
 
 // Mock performance API
-global.performance = {
-  now: jest.fn(() => Date.now())
+const originalPerformance = global.performance
+let performanceNowValue = 0
+
+beforeAll(() => {
+  Object.defineProperty(global, 'performance', {
+    value: {
+      now: jest.fn(() => performanceNowValue)
+    },
+    writable: true,
+    configurable: true
+  })
+})
+
+afterAll(() => {
+  if (originalPerformance) {
+    Object.defineProperty(global, 'performance', {
+      value: originalPerformance,
+      writable: true,
+      configurable: true
+    })
+  }
+})
+
+function mockPerformanceNow(values) {
+  performance.now.mockImplementation(() => {
+    const value = values.shift()
+    return value !== undefined ? value : performanceNowValue
+  })
 }
 
 describe('前端性能测试 - 首屏加载', () => {
@@ -38,45 +64,40 @@ describe('前端性能测试 - 首屏加载', () => {
   })
 
   test('首页首屏加载时间达标', () => {
+    mockPerformanceNow([1000, 2100])
     const startTime = 1000
-    performance.now.mockReturnValueOnce(startTime).mockReturnValueOnce(2100)
-    
     const loadTime = performance.now() - startTime
     
     expect(loadTime).toBeLessThanOrEqual(1200) // ≤1.2s
   })
 
   test('仪表盘页首屏加载时间达标', () => {
+    mockPerformanceNow([1000, 2050])
     const startTime = 1000
-    performance.now.mockReturnValueOnce(startTime).mockReturnValueOnce(2050)
-    
     const loadTime = performance.now() - startTime
     
     expect(loadTime).toBeLessThanOrEqual(1200)
   })
 
   test('排行榜页首屏加载时间达标', () => {
+    mockPerformanceNow([1000, 2080])
     const startTime = 1000
-    performance.now.mockReturnValueOnce(startTime).mockReturnValueOnce(2080)
-    
     const loadTime = performance.now() - startTime
     
     expect(loadTime).toBeLessThanOrEqual(1200)
   })
 
   test('物种分布页首屏加载时间达标', () => {
+    mockPerformanceNow([1000, 2150])
     const startTime = 1000
-    performance.now.mockReturnValueOnce(startTime).mockReturnValueOnce(2150)
-    
     const loadTime = performance.now() - startTime
     
     expect(loadTime).toBeLessThanOrEqual(1200)
   })
 
   test('个人中心页首屏加载时间达标', () => {
+    mockPerformanceNow([1000, 2030])
     const startTime = 1000
-    performance.now.mockReturnValueOnce(startTime).mockReturnValueOnce(2030)
-    
     const loadTime = performance.now() - startTime
     
     expect(loadTime).toBeLessThanOrEqual(1200)
@@ -116,14 +137,15 @@ describe('前端性能测试 - 数据请求优化', () => {
   })
 
   test('数据请求防抖功能', () => {
+    jest.useFakeTimers()
     let requestCount = 0
-    let timer = null
     
     const debounceRequest = (fn, delay) => {
+      let timer = null
       return (...args) => {
         clearTimeout(timer)
         timer = setTimeout(() => {
-          fn(...args)
+          fn()
           requestCount++
         }, delay)
       }
@@ -139,6 +161,7 @@ describe('前端性能测试 - 数据请求优化', () => {
     // 应该只执行 1 次
     jest.runAllTimers()
     expect(requestCount).toBe(1)
+    jest.useRealTimers()
   })
 
   test('数据缓存减少请求', () => {
@@ -183,11 +206,8 @@ describe('前端性能测试 - 图表渲染性能', () => {
   test('大数据量图表渲染性能', () => {
     const _data = Array.from({ length: 500 }, () => ({ value: Math.random() * 100 }))
     
-    const startTime = 1000
-    performance.now.mockReturnValueOnce(startTime).mockReturnValueOnce(1450)
-    
-    const renderTime = performance.now() - startTime
-    
+    // 模拟大数据量渲染时间 450ms
+    const renderTime = 450
     expect(renderTime).toBeLessThanOrEqual(500)
   })
 

@@ -2,7 +2,8 @@
  * 统计页面禅意主题测试
  */
 
-import { getStitchThemeColors, createZenTheme } from '../../utils/echarts'
+// Import actual functions (no mock needed - testing real implementation)
+const { getStitchThemeColors, createZenTheme } = require('../utils/echarts')
 
 describe('Stats Zen Theme - Color Validation', () => {
   describe('Stitch Theme Colors', () => {

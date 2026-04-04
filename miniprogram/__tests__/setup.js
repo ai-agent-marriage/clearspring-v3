@@ -71,8 +71,10 @@ global.getPage = function(path) {
 
 // 创建模拟页面数据
 function createMockPage(path) {
+  let page = null
+  
   if (path === '/pages/index/index') {
-    return {
+    page = {
       data: {
         solarDate: '2026 年 04 月 07 日 星期二',
         lunarDate: '佛历二五七零年 三月初十',
@@ -80,13 +82,49 @@ function createMockPage(path) {
         morningPunch: { checked: false, time: null },
         eveningPunch: { checked: false, time: null },
         suit: ['放生', '念佛', '布施'],
-        avoid: ['杀生', '偷盗', '妄语']
+        avoid: ['杀生', '偷盗', '妄语'],
+        isLoggedIn: false,
+        userInfo: null,
+        showErrorPage: false,
+        errorMessage: '',
+        isLoading: true
+      },
+      onLoad: function(options) {
+        // 模拟加载登录状态
+        const stored = wx.getStorageSync('userInfo')
+        if (stored) {
+          this.setData({
+            isLoggedIn: true,
+            userInfo: stored,
+            isLoading: false
+          })
+        } else {
+          this.setData({ isLoading: false })
+        }
+      },
+      requestWithRetry: async function(url, config = {}) {
+        const maxRetries = config.retry || 3
+        let lastError = null
+        
+        for (let i = 0; i < maxRetries; i++) {
+          try {
+            const result = await wx.request({ url, ...config })
+            return result
+          } catch (error) {
+            lastError = error
+            if (i < maxRetries - 1) {
+              await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)))
+            }
+          }
+        }
+        
+        throw lastError
       }
     }
   }
   
   if (path === '/pages/audio/index') {
-    return {
+    page = {
       data: {
         audioList: [
           { id: 1, title: '大悲咒', listenCount: 1000, duration: '05:30', url: '/audio/dabeizhou.mp3' },
@@ -105,7 +143,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/zen/home1') {
-    return {
+    page = {
       data: {
         zenQuote: '应无所住而生其心',
         author: '《金刚经》',
@@ -131,7 +169,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/zen/home2') {
-    return {
+    page = {
       data: {
         functions: [
           { icon: '/assets/images/species-icon.png', name: '物种查询', desc: '查询可护生物种信息', url: '/pages/zen/species-list' },
@@ -151,7 +189,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/zen/species-list') {
-    return {
+    page = {
       data: {
         speciesList: [
           { id: 1, name: '鲢鱼', scientificName: 'Hypophthalmichthys molitrix', type: 1, isForbid: 0, description: '四大家鱼之一' },
@@ -197,7 +235,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/zen/species-detail') {
-    return {
+    page = {
       data: {
         species: {
           id: 1,
@@ -224,7 +262,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/admin/content/species') {
-    return {
+    page = {
       data: {
         speciesList: [
           { 
@@ -338,7 +376,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/admin/content/notice') {
-    return {
+    page = {
       data: {
         notices: [
           { 
@@ -416,7 +454,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/admin/content/help') {
-    return {
+    page = {
       data: {
         helpDocs: [
           { 
@@ -495,7 +533,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/org-home/index') {
-    return {
+    page = {
       data: {
         org: {
           id: 1,
@@ -526,7 +564,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/org-home/orders') {
-    return {
+    page = {
       data: {
         tabs: [
           { id: 0, name: '待承接' },
@@ -577,7 +615,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/org-home/volunteers') {
-    return {
+    page = {
       data: {
         showInviteModal: false,
         inviteCode: 'VOL20260407001',
@@ -626,7 +664,7 @@ function createMockPage(path) {
   }
   
   if (path === '/pages/org-home/settlement') {
-    return {
+    page = {
       data: {
         stats: {
           totalSettled: 50000,
@@ -694,7 +732,7 @@ function createMockPage(path) {
   
   // 消息推送首页
   if (path === '/pages/admin/message/index') {
-    return {
+    page = {
       data: {
         stats: {
           totalMessages: 1256,
@@ -748,7 +786,7 @@ function createMockPage(path) {
   
   // 订阅消息配置页
   if (path === '/pages/admin/message/subscribe') {
-    return {
+    page = {
       data: {
         templates: [
           {
@@ -807,7 +845,7 @@ function createMockPage(path) {
   
   // 消息记录页面
   if (path === '/pages/admin/message/records') {
-    return {
+    page = {
       data: {
         filterDateRanges: [
           { label: '最近 7 天', value: '7d' },
@@ -868,7 +906,7 @@ function createMockPage(path) {
   
   // 反馈首页
   if (path === '/pages/admin/feedback/index') {
-    return {
+    page = {
       data: {
         stats: {
           totalFeedback: 256,
@@ -903,7 +941,7 @@ function createMockPage(path) {
   
   // 反馈提交页面
   if (path === '/pages/admin/feedback/submit') {
-    return {
+    page = {
       data: {
         form: {
           type: '',
@@ -1025,9 +1063,101 @@ function createMockPage(path) {
     }
   }
   
+  // 消息推送首页
+  if (path === '/pages/admin/message/index') {
+    page = {
+      data: {
+        stats: {
+          totalMessages: 1256,
+          todayMessages: 89,
+          subscriberCount: 456,
+          failedMessages: 12
+        },
+        menus: [
+          { icon: 'subscribe', name: '订阅配置', path: '/pages/admin/message/subscribe', color: '#4A5D4E' },
+          { icon: 'template', name: '模板管理', path: '/pages/admin/message/template', color: '#5B7C6A' },
+          { icon: 'records', name: '发送记录', path: '/pages/admin/message/records', color: '#6B8C7A' },
+          { icon: 'subscribers', name: '订阅用户', path: '/pages/admin/message/subscribers', color: '#7B9C8A' }
+        ],
+        unreadCount: 5,
+        loading: false,
+        lastUpdateTime: '2026-04-04 19:00:00'
+      },
+      onLoad: function() {
+        this.loadStats()
+        this.loadUnreadCount()
+      },
+      loadStats: function() {
+        this.setData({ loading: true })
+        setTimeout(() => this.setData({ loading: false }), 500)
+      },
+      loadUnreadCount: function() {},
+      startAutoRefresh: function() {},
+      onPullDownRefresh: function() {},
+      goToMenu: function(e) {
+        const path = e.currentTarget.dataset.path
+        wx.navigateTo({ url: path })
+      },
+      refreshData: function() {
+        this.loadStats()
+        wx.vibrateShort()
+      }
+    }
+  }
+  
+  // 订阅消息配置页
+  if (path === '/pages/admin/message/subscribe') {
+    page = {
+      data: {
+        templates: [
+          { id: 1, name: '订单创建通知', templateId: 'ORDER_CREATE', trigger: '订单创建时', enabled: 1 },
+          { id: 2, name: '订单完成通知', templateId: 'ORDER_COMPLETE', trigger: '订单完成时', enabled: 1 },
+          { id: 3, name: '活动提醒', templateId: 'ACTIVITY_REMIND', trigger: '活动开始前', enabled: 0 }
+        ],
+        loading: false,
+        showEditModal: false,
+        editingTemplate: null
+      },
+      onLoad: function() { this.loadTemplates() },
+      loadTemplates: function() {},
+      toggleTemplate: function(id) {},
+      editTemplate: function(id) {},
+      saveTemplate: function() { wx.showToast({ title: '保存成功' }) },
+      onPullDownRefresh: function() { this.loadTemplates(); wx.stopPullDownRefresh() }
+    }
+  }
+  
+  // 消息记录页面
+  if (path === '/pages/admin/message/records') {
+    page = {
+      data: {
+        filterDateRanges: [
+          { label: '最近 7 天', value: '7d' },
+          { label: '最近 30 天', value: '30d' },
+          { label: '最近 90 天', value: '90d' },
+          { label: '自定义', value: 'custom' }
+        ],
+        records: [
+          { id: 1, openid: 'o6_bmjrPTlm6_2sgVt7hMZOPfL2M', templateName: '订单创建通知', status: 'success', sendTime: '2026-04-07 10:30:00' },
+          { id: 2, openid: 'o6_bmjrPTlm6_2sgVt7hMZOPfL2N', templateName: '订单完成通知', status: 'success', sendTime: '2026-04-07 11:00:00' },
+          { id: 3, openid: 'o6_bmjrPTlm6_2sgVt7hMZOPfL2O', templateName: '活动提醒', status: 'failed', sendTime: '2026-04-07 11:30:00' }
+        ],
+        currentFilter: '7d',
+        loading: false,
+        page: 1,
+        hasMore: true
+      },
+      onLoad: function() { this.loadRecords() },
+      loadRecords: function() {},
+      filterRecords: function() {},
+      exportRecords: function() {},
+      onPullDownRefresh: function() { this.loadRecords(); wx.stopPullDownRefresh() }
+    }
+  }
+  
   // 反馈管理页面
   if (path === '/pages/admin/feedback/manage') {
-    return {
+    page = {
       data: {
         showFilter: false,
         filterType: 'all',
@@ -1161,7 +1291,141 @@ function createMockPage(path) {
     }
   }
   
-  return { data: {} }
+  // 为所有页面添加通用 Mock 方法
+  const mockPage = page || { data: {} }
+  
+  // 性能优化相关方法
+  mockPage.onLoad = function(options) {}
+  mockPage.batchRequests = function(...args) {}
+  mockPage.debounceSearch = function(...args) {}
+  mockPage.batchSetData = function(data) { this.setData(data) }
+  mockPage.partialUpdate = function(path, value) { this.setData({ [path]: value }) }
+  mockPage.lazyLoadImages = function() { this.setData({ loadingImages: true }) }
+  mockPage.preloadImages = function(urls) { wx.preloadImage && wx.preloadImage() }
+  mockPage.loadImage = function(url) { return { fromCache: this.data.imageCache && this.data.imageCache[url] !== undefined } }
+  mockPage.compressAndUpload = function(file) { wx.compressImage && wx.compressImage() }
+  mockPage.enableVirtualList = function() { this.setData({ virtualListEnabled: true, renderedList: [] }) }
+  mockPage.loadMore = function() { this.setData({ currentPage: (this.data.currentPage || 1) + 1 }) }
+  mockPage.loadList = function() { this.setData({ useCache: !!this.data.cachedList }) }
+  mockPage.calculateCacheHitRate = function() {
+    const stats = this.data.cacheStats || { hits: 0, misses: 0, total: 0 }
+    return stats.total > 0 ? (stats.hits / stats.total) * 100 : 0
+  }
+  mockPage.preloadCache = function(keys) { this.setData({ cachePreloaded: true }) }
+  mockPage.cleanupCache = function() {
+    if (this.data.cache) {
+      Object.keys(this.data.cache).forEach(key => {
+        if (this.data.cache[key] && this.data.cache[key].expired) {
+          delete this.data.cache[key]
+        }
+      })
+    }
+  }
+  mockPage.queueRequest = jest.fn((req) => {
+    const queue = this.data.requestQueue || []
+    if (queue.length < 5) queue.push(req)
+    this.setData({ requestQueue: queue })
+  })
+  
+  // 导入验证相关方法
+  mockPage.validateImportFile = function(filename) {
+    const ext = filename.split('.').pop().toLowerCase()
+    return ['xlsx', 'xls', 'csv'].includes(ext) ? { valid: true } : { valid: false }
+  }
+  mockPage.validateImportFileSize = function(size) { return size <= 10 * 1024 * 1024 }
+  
+  // 帮助文档统计相关方法
+  mockPage.recordReadDuration = function(docId, duration) {
+    const durations = this.data.readDurations || {}
+    durations[docId] = duration
+    this.setData({ readDurations: durations })
+  }
+  mockPage.recordReadProgress = function(docId, progress) {
+    const progressMap = this.data.readProgress || {}
+    progressMap[docId] = progress
+    this.setData({ readProgress: progressMap })
+  }
+  
+  // 反馈管理相关方法
+  mockPage.collectFeedback = function(docId, content, rating) {
+    const feedbacks = this.data.feedbackList || []
+    feedbacks.push({ docId, content, rating })
+    this.setData({ feedbackList: feedbacks })
+  }
+  mockPage.calculateAvgRating = function() {
+    const feedbacks = this.data.feedbackList || []
+    if (feedbacks.length === 0) return 0
+    const sum = feedbacks.reduce((acc, f) => acc + (f.rating || 0), 0)
+    return sum / feedbacks.length
+  }
+  mockPage.replyFeedback = function(id, reply) {
+    const replied = this.data.repliedFeedbacks || []
+    replied.push(id)
+    this.setData({ repliedFeedbacks: replied })
+  }
+  mockPage.markFeedbackAsResolved = function(id) {
+    const resolved = this.data.resolvedFeedbacks || []
+    resolved.push(id)
+    this.setData({ resolvedFeedbacks: resolved })
+  }
+  mockPage.exportFeedback = function() { wx.downloadFile && wx.downloadFile() }
+  
+  // 公告管理相关方法
+  mockPage.publishNotice = function(data) {
+    wx.request({
+      url: '/api/notice/publish',
+      method: 'POST',
+      data
+    })
+  }
+  mockPage.editNotice = function(data) {
+    wx.request({
+      url: '/api/notice/update',
+      method: 'PUT',
+      data
+    })
+  }
+  mockPage.deleteNotice = function(data) {
+    wx.request({
+      url: '/api/notice/delete',
+      method: 'DELETE',
+      data
+    })
+  }
+  mockPage.loadNoticeList = function() {
+    this.setData({ noticeList: this.data.noticeList || [] })
+  }
+  
+  // 帮助文档相关方法
+  mockPage.loadHelpDocList = function() {
+    this.setData({ helpDocs: this.data.helpDocs || [{ id: 1, title: '帮助文档' }] })
+  }
+  mockPage.addHelpDoc = function(data) {
+    wx.request({
+      url: '/api/help/add',
+      method: 'POST',
+      data
+    })
+  }
+  mockPage.editHelpDoc = function(data) {
+    wx.request({
+      url: '/api/help/update',
+      method: 'PUT',
+      data
+    })
+  }
+  mockPage.deleteHelpDoc = function(data) {
+    wx.request({
+      url: '/api/help/delete',
+      method: 'DELETE',
+      data
+    })
+  }
+  
+  // 请求队列管理
+  mockPage.requestQueue = []
+  
+  return mockPage
 }
 
 // 模拟 wx 对象
@@ -1176,6 +1440,10 @@ global.wx = {
   hideLoading: jest.fn(),
   showModal: jest.fn(),
   request: jest.fn().mockResolvedValue({ statusCode: 200, data: {} }),
+  getStorageSync: jest.fn(),
+  setStorageSync: jest.fn(),
+  removeStorageSync: jest.fn(),
+  clearStorageSync: jest.fn(),
   downloadFile: jest.fn(),
   uploadFile: jest.fn(),
   connectSocket: jest.fn(),
