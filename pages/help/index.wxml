@@ -1,0 +1,78 @@
+<!--pages/help/index.wxml-->
+<view class="container">
+  <!-- 搜索区域 -->
+  <view class="search-section">
+    <view class="search-bar" bindtap="onSearchToggle">
+      <view class="search-icon">🔍</view>
+      <text class="search-placeholder" wx:if="{{!showSearch}}">搜索问题</text>
+      <input 
+        wx:if="{{showSearch}}"
+        class="search-input"
+        placeholder="输入关键词搜索"
+        value="{{searchKeyword}}"
+        focus="{{searchFocus}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view class="search-cancel" wx:if="{{showSearch}}" bindtap="onSearchToggle">取消</view>
+    </view>
+  </view>
+
+  <!-- 分类标签 -->
+  <view class="category-section">
+    <scroll-view scroll-x class="category-scroll">
+      <view class="category-list">
+        <view 
+          class="category-item {{currentCategory === '全部' ? 'active' : ''}}"
+          data-category="全部"
+          bindtap="onCategoryTap"
+        >全部</view>
+        <view 
+          class="category-item {{currentCategory === item ? 'active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="*this"
+          data-category="{{item}}"
+          bindtap="onCategoryTap"
+        >{{item}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- FAQ 列表 -->
+  <view class="faq-section">
+    <view class="faq-count">共 {{filteredFaqs ? filteredFaqs.length : faqs.length}} 个问题</view>
+    
+    <view 
+      class="faq-item {{item.expanded ? 'expanded' : ''}}"
+      wx:for="{{filteredFaqs ? filteredFaqs : faqs}}"
+      wx:key="id"
+      data-index="{{index}}"
+      bindtap="onFaqTap"
+    >
+      <view class="faq-question">
+        <text class="question-text">{{item.question}}</text>
+        <text class="expand-icon">{{item.expanded ? '▲' : '▼'}}</text>
+      </view>
+      
+      <view class="faq-answer" wx:if="{{item.expanded}}">
+        <text>{{item.answer}}</text>
+        <view class="faq-category-tag">{{item.category}}</view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{(filteredFaqs ? filteredFaqs.length : faqs.length) === 0}}">
+      <text class="empty-icon">😕</text>
+      <text class="empty-text">未找到相关问题</text>
+      <text class="empty-hint">试试其他关键词或分类</text>
+    </view>
+  </view>
+
+  <!-- 联系客服按钮 -->
+  <view class="contact-section">
+    <button class="contact-btn" bindtap="onContactService">
+      <text class="contact-icon">📞</text>
+      <text>联系客服</text>
+    </button>
+  </view>
+</view>

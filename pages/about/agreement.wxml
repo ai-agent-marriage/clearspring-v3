@@ -1,0 +1,17 @@
+<!--pages/about/agreement.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">{{title}}</view>
+    <view class="update-time">最后更新：{{lastUpdate}}</view>
+  </view>
+  
+  <scroll-view class="content-scroll" scroll-y>
+    <view class="content">
+      <view class="content-text">{{content}}</view>
+    </view>
+  </scroll-view>
+  
+  <view class="footer">
+    <button class="agree-btn" bindtap="onAgree">我已阅读并同意</button>
+  </view>
+</view>

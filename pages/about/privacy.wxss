@@ -1,0 +1,64 @@
+/* pages/about/privacy.wxss */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.header {
+  padding: 40rpx 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.update-time {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.content-scroll {
+  flex: 1;
+  padding: 30rpx;
+}
+
+.content {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.content-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+.footer {
+  padding: 30rpx;
+  background-color: #fff;
+  border-top: 1rpx solid #eee;
+}
+
+.agree-btn {
+  background-color: #d4a76a;
+  color: #fff;
+  border-radius: 40rpx;
+  padding: 24rpx 0;
+  font-size: 32rpx;
+  border: none;
+}
+
+.agree-btn::after {
+  border: none;
+}

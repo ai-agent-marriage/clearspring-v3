@@ -1,0 +1,46 @@
+<!--pages/help/detail.wxml-->
+<view class="container">
+  <!-- 问题内容 -->
+  <view class="faq-content">
+    <view class="category-tag">{{category}}</view>
+    <view class="question">{{question}}</view>
+    <view class="answer">{{answer}}</view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-bar">
+    <button class="action-btn" bindtap="onCollectTap">
+      <text class="action-icon">{{isCollected ? '⭐' : '☆'}}</text>
+      <text>{{isCollected ? '已收藏' : '收藏'}}</text>
+    </button>
+    <button class="action-btn" bindtap="onCopyLinkTap">
+      <text class="action-icon">🔗</text>
+      <text>分享</text>
+    </button>
+    <button class="action-btn" bindtap="onFeedbackTap">
+      <text class="action-icon">✍️</text>
+      <text>反馈</text>
+    </button>
+  </view>
+
+  <!-- 相关问题 -->
+  <view class="related-section" wx:if="{{relatedFaqs.length > 0}}">
+    <view class="section-title">相关问题</view>
+    <view 
+      class="related-item"
+      wx:for="{{relatedFaqs}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onRelatedFaqTap"
+    >
+      <text class="related-icon">❯</text>
+      <text class="related-question">{{item.question}}</text>
+    </view>
+  </view>
+
+  <!-- 联系客服 -->
+  <view class="contact-section">
+    <text class="contact-text">仍有疑问？</text>
+    <button class="contact-btn" bindtap="onContactService">联系客服</button>
+  </view>
+</view>

@@ -1,0 +1,141 @@
+<!--pages/about/index.wxml-->
+<view class="container">
+  <!-- Logo 和版本信息 -->
+  <view class="header-section">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="app-name">清如 ClearSpring</view>
+    <view class="version-info">
+      <text class="version">v{{version}}</text>
+      <text class="build-code">Build {{versionCode}}</text>
+    </view>
+    <button class="check-update-btn" bindtap="onCheckUpdate">检查更新</button>
+  </view>
+
+  <!-- 更新日志 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">📋 更新日志</text>
+    </view>
+    <view class="update-logs">
+      <view 
+        class="log-item {{index === expandedLogIndex ? 'expanded' : ''}}"
+        wx:for="{{updateLogs}}"
+        wx:key="version"
+        data-index="{{index}}"
+        bindtap="onLogTap"
+      >
+        <view class="log-header">
+          <text class="log-version">{{item.version}}</text>
+          <text class="log-date">{{item.date}}</text>
+          <text class="log-expand">{{index === expandedLogIndex ? '▲' : '▼'}}</text>
+        </view>
+        <view class="log-content" wx:if="{{index === expandedLogIndex}}">
+          <view 
+            class="log-change"
+            wx:for="{{item.changes}}"
+            wx:key="*this"
+            wx:for-item="change"
+          >
+            <text class="change-icon">•</text>
+            <text>{{change}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 团队介绍 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">👥 团队介绍</text>
+    </view>
+    <view class="team-grid">
+      <view class="team-member" wx:for="{{teamMembers}}" wx:key="name">
+        <image class="member-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <view class="member-name">{{item.name}}</view>
+        <view class="member-role">{{item.role}}</view>
+        <view class="member-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 联系方式 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">📞 联系我们</text>
+    </view>
+    <view class="contact-list">
+      <view class="contact-item" bindtap="onContactTap">
+        <text class="contact-icon">💬</text>
+        <text class="contact-label">客服微信</text>
+        <text class="contact-value">{{contactInfo.wechat}}</text>
+        <text class="contact-arrow">❯</text>
+      </view>
+      <view class="contact-item">
+        <text class="contact-icon">📧</text>
+        <text class="contact-label">电子邮箱</text>
+        <text class="contact-value">{{contactInfo.email}}</text>
+      </view>
+      <view class="contact-item">
+        <text class="contact-icon">📱</text>
+        <text class="contact-label">服务热线</text>
+        <text class="contact-value">{{contactInfo.phone}}</text>
+      </view>
+      <view class="contact-item">
+        <text class="contact-icon">🕐</text>
+        <text class="contact-label">服务时间</text>
+        <text class="contact-value">{{contactInfo.workTime}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 公司信息 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">🏢 公司信息</text>
+    </view>
+    <view class="company-info">
+      <view class="info-item">
+        <text class="info-label">公司名称</text>
+        <text class="info-value">{{companyInfo.name}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">备案号</text>
+        <text class="info-value" bindtap="onLicenseTap">{{companyInfo.license}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">注册资本</text>
+        <text class="info-value">{{companyInfo.registered}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">成立时间</text>
+        <text class="info-value">{{companyInfo.founded}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 协议与政策 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">📄 协议与政策</text>
+    </view>
+    <view class="agreement-list">
+      <view class="agreement-item" bindtap="onUserAgreementTap">
+        <text class="agreement-icon">📋</text>
+        <text class="agreement-text">用户协议</text>
+        <text class="agreement-arrow">❯</text>
+      </view>
+      <view class="agreement-item" bindtap="onPrivacyPolicyTap">
+        <text class="agreement-icon">🔒</text>
+        <text class="agreement-text">隐私政策</text>
+        <text class="agreement-arrow">❯</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部版权信息 -->
+  <view class="footer">
+    <text class="copyright">© 2025-2026 北京清如科技有限公司</text>
+    <text class="slogan">让每一次善行都更有意义</text>
+  </view>
+</view>
