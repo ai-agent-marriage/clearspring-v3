@@ -115,4 +115,41 @@ public class OrderController {
         private Integer score;
         private String comment;
     }
+    
+    /**
+     * 取消订单
+     * @param orderNo 订单号
+     * @return 操作结果
+     */
+    @PutMapping("/cancel/{orderNo}")
+    public R<Void> cancelOrder(@PathVariable String orderNo) {
+        log.info("取消订单，orderNo={}", orderNo);
+        try {
+            orderService.updateOrderStatus(orderNo, 6);
+            return R.ok(null, "订单取消成功");
+        } catch (Exception e) {
+            log.error("取消订单失败", e);
+            return R.fail("取消失败：" + e.getMessage());
+        }
+    }
+    
+    /**
+     * 申请复核
+     * @param orderNo 订单号
+     * @param request 复核请求
+     * @return 操作结果
+     */
+    @PostMapping("/review/{orderNo}")
+    public R<Void> applyReview(
+            @PathVariable String orderNo,
+            @RequestBody ReviewRequest request) {
+        log.info("申请复核，orderNo={}, reason={}", orderNo, request.getReason());
+        try {
+            orderService.applyReview(orderNo, request.getReason());
+            return R.ok(null, "复核申请已提交");
+        } catch (Exception e) {
+            log.error("申请复核失败", e);
+            return R.fail("复核申请失败：" + e.getMessage());
+        }
+    }
 }
