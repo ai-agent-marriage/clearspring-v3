@@ -52,4 +52,29 @@ public interface OrderProtectMapper {
      * @return 订单数量
      */
     int countByUserId(@Param("userId") Long userId, @Param("status") Integer status);
+    
+    /**
+     * 查询未承接的订单列表（48 小时自动取消用）
+     * @return 未承接订单列表
+     */
+    List<OrderProtect> selectUnclaimedOrders();
+    
+    /**
+     * 查询可承接的订单列表
+     * @param orgId 机构 ID
+     * @param offset 偏移量
+     * @param limit 限制数量
+     * @return 可承接订单列表
+     */
+    List<OrderProtect> selectAvailableOrders(@Param("orgId") Long orgId,
+                                              @Param("offset") Integer offset,
+                                              @Param("limit") Integer limit);
+    
+    /**
+     * 更新订单状态
+     * @param orderNo 订单号
+     * @param status 新状态
+     * @return 影响行数
+     */
+    int updateStatus(@Param("orderNo") String orderNo, @Param("status") Integer status);
 }
