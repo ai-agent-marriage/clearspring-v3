@@ -7,33 +7,69 @@
     "pages/merit-forest/merit-forest",
     "pages/wiki/wiki",
     "pages/settings/settings",
-    "pages/executor-qualification/executor-qualification",
-    "pages/executor-status/executor-status",
     "pages/executor-home/executor-home",
     "pages/executor-order-hall/executor-order-hall",
     "pages/executor-assistant/executor-assistant",
-    "pages/executor-camera/executor-camera",
-    "pages/executor-evidence/executor-evidence",
-    "pages/executor-income/executor-income",
-    "pages/executor-profile/executor-profile",
-    "pages/zen/home1",
-    "pages/zen/home2",
-    "pages/zen/species-list",
-    "pages/zen/species-detail",
-    "pages/zen/share",
     "pages/protect/index",
     "pages/protect/register",
     "pages/protect/detail",
-    "pages/protect/cert-preview",
-    "pages/order/create",
-    "pages/order/confirm",
-    "pages/order/list",
-    "pages/order/detail",
-    "pages/org-home/index",
-    "pages/org-home/orders",
-    "pages/org-home/volunteers",
-    "pages/org-home/settlement"
+    "pages/protect/cert-preview"
   ],
+  "subPackages": [
+    {
+      "root": "pages/executor",
+      "pages": [
+        "executor-qualification/executor-qualification",
+        "executor-status/executor-status",
+        "executor-camera/executor-camera",
+        "executor-evidence/executor-evidence",
+        "executor-income/executor-income",
+        "executor-profile/executor-profile"
+      ]
+    },
+    {
+      "root": "pages/volunteer-home",
+      "pages": [
+        "index",
+        "tasks",
+        "task-detail",
+        "submit"
+      ]
+    },
+    {
+      "root": "pages/org-home",
+      "pages": [
+        "index",
+        "orders",
+        "volunteers",
+        "settlement"
+      ]
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        "create",
+        "confirm",
+        "list",
+        "detail"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": [
+        "pages/volunteer-home",
+        "pages/org-home"
+      ]
+    },
+    "pages/executor-home/executor-home": {
+      "network": "wifi",
+      "packages": [
+        "pages/executor"
+      ]
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
