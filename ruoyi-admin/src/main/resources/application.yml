@@ -145,3 +145,11 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+# 微信小程序配置
+wx:
+  miniapp:
+    appid: wxa914ecc15836bda6
+    secret: ${WX_MINIAPP_SECRET}
+    config-storage:
+      type: Jdbc
