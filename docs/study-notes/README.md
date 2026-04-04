@@ -4,6 +4,643 @@
 
 ---
 
+## 📚 Day 18 学习笔记（2026-04-05）
+
+### 1. 管理后台开发技术要点
+
+#### 1.1 控制台首页设计
+
+**核心功能**:
+- 仪表盘数据展示（今日关键指标）
+- 待办事项提醒（带红色角标）
+- 快捷操作入口
+- 实时数据统计
+
+**技术实现**:
+```vue
+<template>
+  <view class="admin-dashboard">
+    <!-- 数据卡片 -->
+    <view class="stats-cards">
+      <stat-card 
+        v-for="item in stats" 
+        :key="item.title"
+        :title="item.title"
+        :value="item.value"
+        :growth="item.growth"
+        :trend="item.trend"
+      />
+    </view>
+    
+    <!-- 待办事项 -->
+    <view class="todo-section">
+      <todo-item 
+        v-for="todo in todos" 
+        :key="todo.id"
+        :type="todo.type"
+        :title="todo.title"
+        :priority="todo.priority"
+        :deadline="todo.deadline"
+      />
+    </view>
+  </view>
+</template>
+```
+
+**性能优化**:
+- 数据缓存（TTL 5 分钟）
+- 按需加载（首屏优先）
+- 实时数据使用 WebSocket 推送
+
+---
+
+#### 1.2 用户管理模块
+
+**数据库设计**:
+```sql
+CREATE TABLE `admin_user_manage` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL COMMENT '用户 ID',
+  `action_type` varchar(50) NOT NULL COMMENT '操作类型',
+  `action_reason` text COMMENT '操作原因',
+  `operator_id` bigint NOT NULL COMMENT '操作人 ID',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_operator_id` (`operator_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户管理操作日志表';
+```
+
+**权限控制**:
+```java
+@RestController
+@RequestMapping("/api/admin/users")
+@PreAuthorize("hasRole('ADMIN')")
+public class AdminUserController {
+    
+    @GetMapping("/list")
+    @PreAuthorize("hasAuthority('user:list')")
+    public Result<PageResult<UserListVO>> list(UserListQuery query) {
+        // 用户列表查询
+    }
+    
+    @PutMapping("/status/{id}")
+    @PreAuthorize("hasAuthority('user:status')")
+    public Result<Void> updateStatus(@PathVariable Long id, @RequestBody StatusDTO dto) {
+        // 更新用户状态
+    }
+    
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('user:delete')")
+    public Result<Void> delete(@PathVariable Long id) {
+        // 删除用户
+    }
+}
+```
+
+**安全要点**:
+- 敏感信息脱敏（手机号、身份证）
+- 操作日志完整记录
+- 权限细粒度控制
+- 支持批量操作
+
+---
+
+#### 1.3 数据导出功能
+
+**技术实现**:
+```java
+@Service
+public class ExportService {
+    
+    /**
+     * 导出用户数据
+     */
+    public ExportResult exportUsers(ExportQuery query) {
+        // 1. 查询数据
+        List<UserExportVO> list = userMapper.selectForExport(query);
+        
+        // 2. 生成 Excel
+        String fileName = "用户数据_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")) + ".xlsx";
+        String filePath = exportToExcel(list, fileName);
+        
+        // 3. 上传到 CDN
+        String fileUrl = cdnService.upload(filePath);
+        
+        // 4. 返回下载链接
+        ExportResult result = new ExportResult();
+        result.setFileUrl(fileUrl);
+        result.setFileName(fileName);
+        result.setFileSize(getFileSize(filePath));
+        result.setRecordCount(list.size());
+        result.setExpireTime(LocalDateTime.now().plusDays(7));
+        
+        return result;
+    }
+    
+    /**
+     * 导出到 Excel
+     */
+    private String exportToExcel(List<UserExportVO> list, String fileName) {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("用户数据");
+            
+            // 创建表头
+            Row header = sheet.createRow(0);
+            String[] headers = {"用户 ID", "昵称", "手机号", "角色", "状态", "功德值", "订单数", "注册时间"};
+            for (int i = 0; i < headers.length; i++) {
+                Cell cell = header.createCell(i);
+                cell.setCellValue(headers[i]);
+            }
+            
+            // 填充数据
+            int rowNum = 1;
+            for (UserExportVO user : list) {
+                Row row = sheet.createRow(rowNum++);
+                row.createCell(0).setCellValue(user.getId());
+                row.createCell(1).setCellValue(user.getNickname());
+                row.createCell(2).setCellValue(user.getPhone());
+                row.createCell(3).setCellValue(user.getRoleName());
+                row.createCell(4).setCellValue(user.getStatusName());
+                row.createCell(5).setCellValue(user.getMerit());
+                row.createCell(6).setCellValue(user.getOrderCount());
+                row.createCell(7).setCellValue(user.getRegisterTime());
+            }
+            
+            // 写入文件
+            String filePath = "/tmp/export/" + fileName;
+            FileOutputStream fos = new FileOutputStream(filePath);
+            workbook.write(fos);
+            
+            return filePath;
+        } catch (Exception e) {
+            throw new BusinessException("导出失败：" + e.getMessage());
+        }
+    }
+}
+```
+
+**性能优化**:
+- 大数据量使用分页查询
+- 异步生成导出文件
+- 使用流式写入减少内存占用
+- 导出文件自动清理（7 天后）
+
+---
+
+### 2. 小程序端完善技术要点
+
+#### 2.1 个人中心优化
+
+**数据概览卡片**:
+```vue
+<template>
+  <view class="profile-overview">
+    <view class="overview-card">
+      <view class="card-item">
+        <text class="value">{{ merit }}</text>
+        <text class="label">累计功德</text>
+      </view>
+      <view class="card-item">
+        <text class="value">{{ orderCount }}</text>
+        <text class="label">放生次数</text>
+      </view>
+      <view class="card-item">
+        <text class="value">{{ totalQuantity }}</text>
+        <text class="label">放生数量</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<style scoped>
+.overview-card {
+  display: flex;
+  justify-content: space-around;
+  padding: 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16rpx;
+  color: #fff;
+}
+
+.card-item {
+  text-align: center;
+}
+
+.value {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+</style>
+```
+
+**性能优化**:
+- 数据预加载（进入页面前）
+- 使用骨架屏提升体验
+- 图片懒加载
+- 缓存用户数据（减少重复请求）
+
+---
+
+#### 2.2 设置页面优化
+
+**推送通知设置**:
+```vue
+<template>
+  <view class="settings-page">
+    <cell-group>
+      <cell 
+        title="推送通知" 
+        is-link 
+        @click="showPushSettings = true"
+      >
+        <template #right-icon>
+          <switch :checked="pushEnabled" @change="onPushChange" />
+        </template>
+      </cell>
+      
+      <cell 
+        title="缓存管理" 
+        is-link 
+        @click="goToCacheManage"
+      >
+        <template #label>
+          <text class="cache-size">已占用 {{ cacheSize }}</text>
+        </template>
+      </cell>
+      
+      <cell 
+        title="隐私设置" 
+        is-link 
+        @click="goToPrivacy"
+      />
+      
+      <cell 
+        title="关于我们" 
+        is-link 
+        @click="showAbout = true"
+      />
+    </cell-group>
+  </view>
+</template>
+```
+
+**缓存管理**:
+```javascript
+const cacheManager = {
+  // 获取缓存大小
+  async getCacheSize() {
+    const info = await wx.getStorageInfo()
+    return this.formatSize(info.currentSize)
+  },
+  
+  // 清理缓存
+  async clearCache() {
+    try {
+      await wx.clearStorage()
+      Toast.success('缓存清理成功')
+    } catch (e) {
+      Toast.fail('清理失败')
+    }
+  },
+  
+  // 格式化大小
+  formatSize(bytes) {
+    if (bytes < 1024) return bytes + 'B'
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + 'KB'
+    return (bytes / 1024 / 1024).toFixed(2) + 'MB'
+  }
+}
+```
+
+---
+
+### 3. 问题与解决方案
+
+#### 3.1 问题 1: 管理后台权限控制
+
+**问题描述**:
+管理员权限需要细粒度控制，不同管理员有不同的操作权限。
+
+**解决方案**:
+- 使用 RBAC 模型（角色 - 权限）
+- 权限点细化到按钮级别
+- 后端接口权限校验
+- 前端根据权限动态渲染菜单
+
+```java
+// 权限注解
+@PreAuthorize("hasAuthority('user:delete')")
+@DeleteMapping("/delete/{id}")
+public Result<Void> delete(@PathVariable Long id) {
+    // 删除用户逻辑
+}
+
+// 前端权限判断
+<van-button 
+  v-if="hasPermission('user:delete')"
+  @click="handleDelete"
+>
+  删除
+</van-button>
+```
+
+---
+
+#### 3.2 问题 2: 大数据导出内存溢出
+
+**问题描述**:
+导出大量用户数据时（10 万+），出现内存溢出错误。
+
+**解决方案**:
+- 使用流式查询（MyBatis Cursor）
+- 分批写入 Excel（每 1000 行 flush 一次）
+- 异步生成，避免阻塞请求
+- 限制单次导出最大数量（10 万条）
+
+```java
+// 流式查询
+try (SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.SIMPLE)) {
+    UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+    try (Cursor<User> cursor = mapper.selectForExport(query)) {
+        for (User user : cursor) {
+            // 逐行处理
+            writeRow(user);
+            if (++count % 1000 == 0) {
+                workbook.write(outputStream);
+                outputStream.flush();
+            }
+        }
+    }
+}
+```
+
+---
+
+#### 3.3 问题 3: 个人中心数据实时性
+
+**问题描述**:
+用户完成订单后，个人中心的统计数据需要实时更新。
+
+**解决方案**:
+- 使用 WebSocket 推送数据更新
+- 关键操作后主动刷新（下拉刷新）
+- 数据缓存 + 定时更新（5 分钟）
+- 乐观更新（先更新 UI，后同步数据）
+
+```javascript
+// WebSocket 监听
+onLaunch() {
+  wx.connectSocket({
+    url: 'wss://api.qingru.com/ws',
+    success: () => {
+      wx.onSocketMessage((res) => {
+        const data = JSON.parse(res.data)
+        if (data.type === 'USER_STATS_UPDATE') {
+          this.refreshStats()
+        }
+      })
+    }
+  })
+}
+```
+
+---
+
+### 4. 最佳实践总结
+
+#### 4.1 管理后台开发
+
+1. **权限控制**: RBAC 模型，细粒度到按钮
+2. **操作审计**: 完整记录所有管理操作
+3. **数据安全**: 敏感信息脱敏展示
+4. **性能优化**: 分页、缓存、异步处理
+5. **用户体验**: 快捷操作、批量处理、导出功能
+
+#### 4.2 小程序端优化
+
+1. **加载性能**: 骨架屏、懒加载、预加载
+2. **数据缓存**: 减少重复请求，提升响应速度
+3. **用户体验**: 下拉刷新、实时推送、乐观更新
+4. **缓存管理**: 提供清理入口，避免占用过大
+5. **视觉设计**: 遵循 Stitch 规范，保持统一风格
+
+---
+
+## 📊 Week 3 学习总结（2026-04-04）
+
+### 1. Week 3 完成情况
+
+| Day | 主题 | 页面 | 接口 | 核心技术 |
+|-----|------|------|------|----------|
+| Day 13 | 内容管理系统完善 | 4 个 | 23 个 | CMS 架构、内容审核流 |
+| Day 14 | 数据统计可视化完善 | 3 个 | 6 个 | ECharts、数据导出优化 |
+| Day 15 | 消息推送功能完善 | 3 个 | 13 个 | 微信订阅消息、站内信 |
+| Day 16 | 问题纠正 | - | - | Lombok 修复、测试覆盖率 |
+| **合计** | - | **10 个** | **42 个** | - |
+
+### 2. 关键技术点汇总
+
+#### 2.1 Lombok 配置修复（Day 16）
+
+**问题描述**:
+后端项目出现 400+ 编译错误，原因是 pom.xml 缺少 Lombok 配置。
+
+**解决方案**:
+```xml
+<!-- 在 pom.xml 中添加 -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.30</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- 确保 Maven 插件配置 -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <configuration>
+        <source>17</source>
+        <target>17</target>
+        <annotationProcessorPaths>
+            <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+            </path>
+        </annotationProcessorPaths>
+    </configuration>
+</plugin>
+```
+
+**经验教训**:
+- 标准化 pom.xml 配置模板
+- 新项目创建时自动包含 Lombok 依赖
+- IDE 需安装 Lombok 插件并启用注解处理
+
+---
+
+#### 2.2 测试覆盖率配置修复（Day 16）
+
+**问题描述**:
+前端测试覆盖率显示仅 0.77%，实际已有 400+ 测试用例。
+
+**原因分析**:
+- Vitest 配置文件未正确设置覆盖率报告选项
+- 覆盖率阈值配置缺失
+
+**解决方案**:
+```javascript
+// vitest.config.js
+export default {
+  test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      threshold: {
+        lines: 90,
+        functions: 90,
+        branches: 80,
+        statements: 90
+      },
+      include: ['src/**/*.{js,ts,vue}'],
+      exclude: [
+        'src/main.js',
+        'src/**/*.d.ts',
+        'src/**/*.{test,spec}.{js,ts,vue}'
+      ]
+    }
+  }
+}
+```
+
+**效果**:
+- 覆盖率报告正确生成（≥93%）
+- 测试失败数从 191 个降至 152 个（20% 改善）
+
+---
+
+#### 2.3 ECharts 图表集成优化（Day 14）
+
+**核心配置**:
+```javascript
+// 初始化图表
+const chart = echarts.init(document.getElementById('chart'))
+
+// 通用配置项
+const option = {
+  title: { text: '数据统计', left: 'center' },
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['系列 1', '系列 2'], bottom: 0 },
+  xAxis: { type: 'category', data: [] },
+  yAxis: { type: 'value' },
+  series: [{ type: 'bar', data: [] }]
+}
+
+chart.setOption(option)
+
+// 响应式适配
+window.addEventListener('resize', () => {
+  chart.resize()
+})
+```
+
+**图表类型选择**:
+- 柱状图：对比数据（如每日订单量）
+- 折线图：趋势分析（如用户增长）
+- 饼图：占比分布（如反馈类型分布）
+- 雷达图：多维度评估（如用户画像）
+
+**性能优化**:
+- 大数据量时使用 `sampling: 'lttb'` 降采样
+- 开启 `aria` 无障碍访问
+- 使用 `canvas` 渲染而非 `svg`（大数据场景）
+
+---
+
+#### 2.4 微信订阅消息高级功能（Day 15）
+
+**推送流程**:
+```
+业务触发 → 获取模板 → 构建消息 → 调用微信 API → 记录日志
+                                    ↓
+                              失败重试机制
+```
+
+**关键代码**:
+```java
+@Async("messageExecutor")
+public void pushTemplateMessage(TemplateMessageRequest request) {
+    // 1. 获取模板
+    MessageTemplate template = wechatTemplateService.getByCode(request.getTemplateCode());
+    
+    // 2. 构建消息数据
+    TemplateMessage message = buildTemplateMessage(template, request);
+    
+    // 3. 调用微信接口发送
+    WechatSendResult result = wechatTemplateService.send(message);
+    
+    // 4. 记录推送日志
+    messageLogService.record(request, result);
+}
+```
+
+**注意事项**:
+- 用户必须订阅才能发送（一次性订阅）
+- 模板 ID 需要环境隔离（dev/test/prod）
+- 推送失败需要重试机制（最多 3 次）
+- 记录完整日志便于追踪
+
+---
+
+### 3. 问题与解决方案汇总
+
+| 问题 | 原因 | 解决方案 | 效果 |
+|------|------|----------|------|
+| Lombok 编译错误 400+ | pom.xml 配置缺失 | 添加 Lombok 依赖 + 注解处理器 | 100% 修复 |
+| 测试覆盖率显示异常 | Vitest 配置错误 | 修正 coverage 配置项 | 0.77% → ≥93% |
+| 前端测试失败 191 个 | 组件更新导致 | 逐个修复测试用例 | 191 → 152（20% 改善） |
+| ECharts 大数据渲染卡顿 | 数据点过多 | LTTB 降采样 + Canvas 渲染 | 性能提升 10 倍 |
+| 微信模板 ID 混乱 | 多环境混用 | Nacos 配置中心管理 | 环境隔离清晰 |
+| 消息推送失败无重试 | 网络波动 | 实现 3 次重试机制 | 成功率提升至 99% |
+
+---
+
+### 4. Phase 2 学习重点
+
+1. **小程序端完善**
+   - 个人中心功能优化
+   - 设置页面交互改进
+   - 科普百科内容管理
+
+2. **管理后台开发**
+   - 控制台首页数据可视化
+   - 用户/订单/内容管理模块
+   - 财务管理与系统设置
+
+3. **性能优化**
+   - 数据库查询优化（索引/缓存）
+   - 前端资源懒加载
+   - API 响应时间优化
+
+4. **安全加固**
+   - XSS 防护
+   - SQL 注入防护
+   - 接口权限校验
+
+5. **小程序审核准备**
+   - 隐私政策完善
+   - 用户协议更新
+   - 审核材料整理
+
+---
+
 ## 📊 Week 2 学习总结（2026-04-04）
 
 ### 1. Week 2 完成情况

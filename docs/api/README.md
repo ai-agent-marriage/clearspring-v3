@@ -5501,3 +5501,419 @@ Day 16 对用户反馈系统进行了全面完善，新增 6 个接口，实现�
 5. `DELETE /feedback/delete/{id}` - 删除反馈
 
 ---
+
+## 🏢 二十五、管理后台接口（Phase 2 Day 18）
+
+### 25.1 控制台首页接口
+
+#### 25.1.1 获取仪表盘数据
+
+**接口详情**:
+- **接口名称**: 获取管理后台仪表盘数据
+- **请求方式**: GET
+- **接口地址**: `/api/admin/dashboard`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**: 无
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "today": {
+      "newUsers": 128,
+      "newOrders": 88,
+      "completedOrders": 76,
+      "settlementAmount": 34200,
+      "pendingReviews": 15
+    },
+    "alerts": [
+      {
+        "type": "warning",
+        "title": "待审核执行结果",
+        "count": 15,
+        "link": "/admin/reviews"
+      },
+      {
+        "type": "info",
+        "title": "待处理投诉",
+        "count": 3,
+        "link": "/admin/complaints"
+      }
+    ],
+    "quickStats": {
+      "activeOrgs": 42,
+      "activeVolunteers": 568,
+      "onlineUsers": 1256
+    }
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 管理员仪表盘核心数据
+- 包含今日关键指标
+- 显示待处理事项提醒
+
+---
+
+#### 25.1.2 获取概览统计
+
+**接口详情**:
+- **接口名称**: 获取平台概览统计
+- **请求方式**: GET
+- **接口地址**: `/api/admin/stats/overview`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| startDate | string | 否 | 开始日期 yyyy-MM-dd |
+| endDate | string | 否 | 结束日期 yyyy-MM-dd |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "totalUsers": 15680,
+    "totalOrders": 3256,
+    "totalOrgs": 45,
+    "totalVolunteers": 892,
+    "totalSettlement": 1456000,
+    "totalMerit": 32560,
+    "growth": {
+      "userGrowth": 8.3,
+      "orderGrowth": 12.5,
+      "revenueGrowth": 15.2
+    }
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 返回平台整体运营数据
+- 支持时间范围筛选
+- 包含增长率统计
+
+---
+
+#### 25.1.3 获取待办事项
+
+**接口详情**:
+- **接口名称**: 获取待办事项列表
+- **请求方式**: GET
+- **接口地址**: `/api/admin/todos`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| type | string | 否 | 待办类型：review/complaint/settlement |
+| limit | int | 否 | 返回数量，默认 10 |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "total": 25,
+    "list": [
+      {
+        "id": 1,
+        "type": "review",
+        "typeName": "执行结果审核",
+        "title": "订单 ORD202604050001 待审核",
+        "priority": "high",
+        "deadline": "2026-04-06 16:00:00",
+        "createTime": "2026-04-05 14:30:00"
+      },
+      {
+        "id": 2,
+        "type": "complaint",
+        "typeName": "投诉处理",
+        "title": "用户投诉处理",
+        "priority": "medium",
+        "deadline": "2026-04-07 12:00:00",
+        "createTime": "2026-04-05 10:00:00"
+      }
+    ]
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 返回管理员待处理事项
+- 支持按类型筛选
+- 包含优先级和截止时间
+
+---
+
+### 25.2 用户管理模块
+
+#### 25.2.1 获取用户列表
+
+**接口详情**:
+- **接口名称**: 获取用户列表
+- **请求方式**: GET
+- **接口地址**: `/api/admin/users/list`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| keyword | string | 否 | 搜索关键词（昵称/手机号） |
+| roleCode | string | 否 | 角色筛选：user/volunteer/org/admin |
+| status | int | 否 | 状态筛选：1 正常 0 禁用 |
+| page | int | 否 | 页码，默认 1 |
+| pageSize | int | 否 | 每页数量，默认 20 |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "total": 15680,
+    "list": [
+      {
+        "id": 1001,
+        "nickname": "张师兄",
+        "avatar": "https://xxx/avatar1.jpg",
+        "phone": "138****1234",
+        "roleCode": "user",
+        "roleName": "普通用户",
+        "status": 1,
+        "statusName": "正常",
+        "merit": 1560,
+        "orderCount": 25,
+        "registerTime": "2026-01-15 10:00:00",
+        "lastLoginTime": "2026-04-05 09:30:00"
+      }
+    ]
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 支持关键词搜索和筛选
+- 手机号脱敏展示
+- 包含用户基本统计信息
+
+---
+
+#### 25.2.2 获取用户详情
+
+**接口详情**:
+- **接口名称**: 获取用户详情
+- **请求方式**: GET
+- **接口地址**: `/api/admin/users/detail/{id}`
+- **是否需要登录**: 是（需管理员权限）
+
+**路径参数**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 用户 ID |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "id": 1001,
+    "openid": "o6_bmjrPTlm6_2sgVt7hMZOPfL2M",
+    "nickname": "张师兄",
+    "avatar": "https://xxx/avatar1.jpg",
+    "phone": "13800138000",
+    "roleCode": "user",
+    "roleName": "普通用户",
+    "status": 1,
+    "merit": 1560,
+    "totalOrderCount": 25,
+    "completedOrderCount": 22,
+    "totalQuantity": 1250,
+    "registerTime": "2026-01-15 10:00:00",
+    "lastLoginTime": "2026-04-05 09:30:00",
+    "orderList": [
+      {
+        "orderNo": "ORD202604050001",
+        "speciesName": "鲢鱼",
+        "quantity": 50,
+        "amount": 500,
+        "status": 5,
+        "createTime": "2026-04-05 10:00:00"
+      }
+    ]
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 返回用户完整信息
+- 包含订单历史记录
+- 手机号完整展示（管理员权限）
+
+---
+
+#### 25.2.3 更新用户状态
+
+**接口详情**:
+- **接口名称**: 更新用户状态
+- **请求方式**: PUT
+- **接口地址**: `/api/admin/users/status/{id}`
+- **是否需要登录**: 是（需管理员权限）
+
+**路径参数**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 用户 ID |
+
+**请求参数（Body）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| status | int | 是 | 状态 1 正常 0 禁用 |
+| reason | string | 否 | 操作原因 |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "更新成功",
+  "data": {
+    "id": 1001,
+    "status": 0,
+    "statusName": "禁用",
+    "updateTime": "2026-04-05 14:30:00",
+    "updateBy": 1,
+    "updateByName": "超级管理员"
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 禁用后用户无法登录
+- 记录操作日志
+- 发送站内信通知用户
+
+---
+
+#### 25.2.4 删除用户
+
+**接口详情**:
+- **接口名称**: 删除用户
+- **请求方式**: DELETE
+- **接口地址**: `/api/admin/users/delete/{id}`
+- **是否需要登录**: 是（需管理员权限）
+
+**路径参数**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 用户 ID |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "删除成功",
+  "data": null,
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 逻辑删除，更新 is_deleted 字段
+- 有未完成订单的用户不可删除
+- 记录操作日志备查
+
+---
+
+#### 25.2.5 导出用户数据
+
+**接口详情**:
+- **接口名称**: 导出用户数据
+- **请求方式**: GET
+- **接口地址**: `/api/admin/users/export`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| startDate | string | 否 | 开始日期 yyyy-MM-dd |
+| endDate | string | 否 | 结束日期 yyyy-MM-dd |
+| roleCode | string | 否 | 角色筛选 |
+| status | int | 否 | 状态筛选 |
+| format | string | 否 | 导出格式：xlsx/csv，默认 xlsx |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "导出成功",
+  "data": {
+    "fileUrl": "https://xxx/export/users-20260405.xlsx",
+    "fileName": "用户数据_20260405.xlsx",
+    "fileSize": "1.2MB",
+    "recordCount": 15680,
+    "expireTime": "2026-04-12 23:59:59"
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 支持按条件筛选导出
+- 导出文件保留 7 天
+- 大数据量时异步生成
+
+**Excel 列头**:
+- 用户 ID
+- 昵称
+- 手机号
+- 角色
+- 状态
+- 功德值
+- 订单数
+- 注册时间
+- 最后登录时间
+
+---
+
+*清如 V3 · API 接口文档 V1.12 更新完成* 🌊
+
+**文档版本**: V1.12  
+**创建日期**: 2026-04-04  
+**最后更新**: 2026-04-05  
+**Day 18 新增接口**: 
+- 控制台首页接口（3 个）：获取仪表盘数据、获取概览统计、获取待办事项
+- 用户管理模块（5 个）：获取用户列表、获取用户详情、更新用户状态、删除用户、导出用户数据
+- Day 18 新增接口总数：8 个
+- 累计接口总数：107+ 个
+
+---
