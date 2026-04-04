@@ -1,0 +1,174 @@
+<!-- pages/order/detail.wxml - 委托订单详情页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-header">
+    <text class="nav-title">订单详情</text>
+  </view>
+
+  <!-- 订单进度条 -->
+  <view class="progress-section card">
+    <view class="progress-bar">
+      <view 
+        class="progress-item {{item.active ? 'active' : ''}}" 
+        wx:for="{{progress}}" 
+        wx:key="step"
+      >
+        <view class="progress-dot {{item.active ? 'active' : ''}}">
+          <text class="dot-icon" wx:if="{{item.active}}">✓</text>
+        </view>
+        <view class="progress-info">
+          <text class="progress-step">{{item.step}}</text>
+          <text class="progress-time">{{item.time}}</text>
+        </view>
+        <view class="progress-line" wx:if="{{index < progress.length - 1}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单基础信息区 -->
+  <view class="info-section">
+    <view class="section-title">
+      <text class="title-icon">📋</text>
+      <text class="title-text">订单信息</text>
+    </view>
+
+    <view class="info-card card">
+      <view class="info-row">
+        <text class="info-label">订单编号</text>
+        <text class="info-value highlight">{{order.orderNo}}</text>
+      </view>
+      
+      <view class="info-row">
+        <text class="info-label">下单时间</text>
+        <text class="info-value">{{order.createTime}}</text>
+      </view>
+      
+      <view class="info-row" wx:if="{{order.payTime}}">
+        <text class="info-label">支付时间</text>
+        <text class="info-value">{{order.payTime}}</text>
+      </view>
+
+      <view class="info-divider"></view>
+
+      <view class="info-row">
+        <text class="info-label">承接机构</text>
+        <text class="info-value">{{order.orgName}}</text>
+      </view>
+      
+      <view class="info-row" wx:if="{{order.orgContact}}">
+        <text class="info-label">机构联系方式</text>
+        <text class="info-value">{{order.orgContact}}</text>
+      </view>
+
+      <view class="info-divider"></view>
+
+      <view class="info-row">
+        <text class="info-label">执行日期</text>
+        <text class="info-value">{{order.executeDate}}</text>
+      </view>
+      
+      <view class="info-row">
+        <text class="info-label">执行水域</text>
+        <text class="info-value">{{order.waterArea}}</text>
+      </view>
+      
+      <view class="info-row">
+        <text class="info-label">护生物种</text>
+        <text class="info-value">{{order.species}} × {{order.quantity}}份</text>
+      </view>
+
+      <view class="info-row" wx:if="{{order.extraServices.length > 0}}">
+        <text class="info-label">增值服务</text>
+        <view class="info-value-extra">
+          <text 
+            class="extra-tag" 
+            wx:for="{{order.extraServices}}" 
+            wx:key="*this"
+          >
+            {{item}}
+          </text>
+        </view>
+      </view>
+
+      <view class="info-row" wx:if="{{order.wish}}">
+        <text class="info-label">心愿寄语</text>
+        <text class="info-value wish">{{order.wish}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 执行材料区 -->
+  <view class="execute-section" wx:if="{{order.executeImages && order.executeImages.length > 0}}">
+    <view class="section-title">
+      <text class="title-icon">📸</text>
+      <text class="title-text">执行反馈</text>
+    </view>
+
+    <view class="execute-card card">
+      <view class="image-grid">
+        <view 
+          class="image-item" 
+          wx:for="{{order.executeImages}}" 
+          wx:key="*this"
+          data-url="{{item}}"
+          bindtap="previewImage"
+        >
+          <image class="image" src="{{item}}" mode="aspectFill" />
+          <view class="image-overlay">
+            <text class="overlay-icon">🔍</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="execute-docs">
+        <view class="doc-item">
+          <text class="doc-icon">📄</text>
+          <text class="doc-name">投放确认单</text>
+        </view>
+        <view class="doc-item">
+          <text class="doc-icon">📜</text>
+          <text class="doc-name">合规承诺书</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 金额明细区 -->
+  <view class="amount-section">
+    <view class="section-title">
+      <text class="title-icon">💰</text>
+      <text class="title-text">支付信息</text>
+    </view>
+
+    <view class="amount-card card">
+      <view class="amount-row">
+        <text class="amount-label">委托金</text>
+        <text class="amount-value">¥{{order.amount}}</text>
+      </view>
+      
+      <view class="amount-row">
+        <text class="amount-label">支付方式</text>
+        <text class="amount-value">{{order.payMethod}}</text>
+      </view>
+      
+      <view class="amount-row">
+        <text class="amount-label">支付流水号</text>
+        <text class="amount-value small">{{order.payNo}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作按钮区 -->
+  <view class="bottom-bar">
+    <!-- 待确认状态 -->
+    <block wx:if="{{order.status === 4}}">
+      <button class="btn-secondary" bindtap="applyReview">申请复核</button>
+      <button class="btn-primary" bindtap="confirmComplete">确认圆满完成</button>
+    </block>
+
+    <!-- 其他状态 -->
+    <block wx:else>
+      <button class="btn-secondary-full" bindtap="contactOrg">联系机构</button>
+    </block>
+  </view>
+</view>

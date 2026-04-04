@@ -1,0 +1,126 @@
+<!-- pages/order/confirm.wxml - 委托订单确认&支付页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-header">
+    <text class="nav-title">订单确认</text>
+  </view>
+
+  <!-- 订单信息区 -->
+  <view class="order-info-section">
+    <view class="section-title">
+      <text class="title-icon">📋</text>
+      <text class="title-text">订单信息</text>
+    </view>
+
+    <view class="info-card card">
+      <!-- 订单编号 -->
+      <view class="info-row">
+        <text class="info-label">订单编号</text>
+        <text class="info-value highlight">{{order.orderNo}}</text>
+      </view>
+
+      <!-- 执行日期 -->
+      <view class="info-row">
+        <text class="info-label">执行日期</text>
+        <text class="info-value">{{order.date}}</text>
+      </view>
+
+      <!-- 执行水域 -->
+      <view class="info-row">
+        <text class="info-label">执行水域</text>
+        <text class="info-value">{{order.waterArea}}</text>
+      </view>
+
+      <!-- 护生物种 -->
+      <view class="info-row">
+        <text class="info-label">护生物种</text>
+        <text class="info-value">{{order.species}} × {{order.quantity}}份</text>
+      </view>
+
+      <!-- 增值服务 -->
+      <view class="info-row" wx:if="{{order.extraServices.length > 0}}">
+        <text class="info-label">增值服务</text>
+        <view class="info-value-extra">
+          <text 
+            class="extra-tag" 
+            wx:for="{{order.extraServices}}" 
+            wx:key="*this"
+          >
+            {{item}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 心愿寄语 -->
+      <view class="info-row" wx:if="{{order.wish}}">
+        <text class="info-label">心愿寄语</text>
+        <text class="info-value wish">{{order.wish}}</text>
+      </view>
+
+      <!-- 委托方信息 -->
+      <view class="info-row">
+        <text class="info-label">委托方</text>
+        <text class="info-value">{{order.userInfo}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 金额明细区 -->
+  <view class="amount-section">
+    <view class="section-title">
+      <text class="title-icon">💰</text>
+      <text class="title-text">金额明细</text>
+    </view>
+
+    <view class="amount-card card">
+      <view class="amount-row">
+        <text class="amount-label">委托金</text>
+        <text class="amount-value">¥{{amount.baseAmount}}</text>
+      </view>
+      
+      <view class="amount-row" wx:if="{{amount.extraAmount > 0}}">
+        <text class="amount-label">增值服务费</text>
+        <text class="amount-value">¥{{amount.extraAmount}}</text>
+      </view>
+
+      <view class="amount-divider"></view>
+
+      <view class="amount-row total">
+        <text class="amount-label-total">订单总额</text>
+        <text class="amount-value-total">¥{{amount.totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 协议确认区 -->
+  <view class="agreement-section">
+    <view class="agreement-card card">
+      <view class="agreement-content">
+        <checkbox-group bindchange="toggleAgree">
+          <label class="checkbox-label">
+            <checkbox value="agree" checked="{{agree}}" color="#D4B87B"/>
+            <view class="checkbox-text-wrapper">
+              <text class="checkbox-text">我已阅读并同意</text>
+              <text class="checkbox-link" bindtap="viewAgreement">《护生委托服务协议》</text>
+            </view>
+          </label>
+        </checkbox-group>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部支付按钮 -->
+  <view class="bottom-bar">
+    <view class="amount-display">
+      <text class="display-label">应付总额</text>
+      <text class="display-value">¥{{amount.totalAmount}}</text>
+    </view>
+    <button 
+      class="pay-btn {{agree ? '' : 'disabled'}}" 
+      bindtap="submitAndPay"
+      disabled="{{!agree}}"
+    >
+      提交委托单并支付
+    </button>
+  </view>
+</view>

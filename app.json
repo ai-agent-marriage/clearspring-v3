@@ -24,7 +24,11 @@
     "pages/protect/index",
     "pages/protect/register",
     "pages/protect/detail",
-    "pages/protect/cert-preview"
+    "pages/protect/cert-preview",
+    "pages/order/create",
+    "pages/order/confirm",
+    "pages/order/list",
+    "pages/order/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

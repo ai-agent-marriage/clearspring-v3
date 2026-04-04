@@ -1,0 +1,316 @@
+/* pages/order/create.wxss - 付费委托护生下单页样式 */
+
+.container {
+  min-height: 100vh;
+  background-color: var(--bg-xuan);
+  padding-bottom: 140rpx;
+}
+
+/* 顶部导航栏 */
+.nav-header {
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  padding: 32rpx 24rpx;
+  text-align: center;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* 合规承诺书 */
+.compliance-card {
+  margin: var(--spacing-2);
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+}
+
+.compliance-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.compliance-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.compliance-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.compliance-content {
+  background: var(--bg-xuan);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.compliance-text {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.compliance-action {
+  padding-top: var(--spacing-1);
+  border-top: 1rpx solid #e8e8e8;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+  margin-left: 12rpx;
+}
+
+/* 表单区域 */
+.form-section {
+  padding: 0 var(--spacing-2);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin: var(--spacing-2) 0;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.title-icon {
+  margin-right: 12rpx;
+}
+
+.title-text {
+  flex: 1;
+}
+
+/* 表单项 */
+.form-item {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-1);
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.label-icon {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+
+.label-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.label-required {
+  color: var(--error-soft);
+  margin-left: 4rpx;
+}
+
+/* 选择器样式 */
+.picker-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.picker-spec {
+  color: var(--text-dim);
+  font-size: 24rpx;
+}
+
+.picker-arrow {
+  font-size: 32rpx;
+  color: var(--text-light);
+}
+
+/* 数量输入 */
+.quantity-input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.quantity-btn {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: var(--bg-xuan);
+  color: var(--gold-main);
+  font-size: 36rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2rpx solid var(--gold-main);
+}
+
+.quantity-btn:active {
+  opacity: 0.7;
+}
+
+.quantity-value {
+  width: 120rpx;
+  height: 64rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0 24rpx;
+}
+
+/* 增值服务 */
+.extra-services {
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  padding: 16rpx;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-sm);
+}
+
+.service-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  margin-left: 12rpx;
+}
+
+.service-name {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.service-price {
+  font-size: 28rpx;
+  color: var(--gold-main);
+  font-weight: 600;
+}
+
+/* 心愿寄语 */
+.wish-input {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 20rpx;
+  background: var(--bg-xuan);
+  border-radius: var(--radius-sm);
+  font-size: 28rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.wish-count {
+  text-align: right;
+  margin-top: 12rpx;
+}
+
+.count-text {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+/* 用户信息 */
+.user-info {
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.user-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+/* 底部金额栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 24rpx var(--spacing-2);
+  border-top: 1rpx solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.amount-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.amount-label {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.amount-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--gold-main);
+}
+
+.submit-btn {
+  width: 320rpx;
+  height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+
+.submit-btn:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
+  background: var(--text-light);
+}

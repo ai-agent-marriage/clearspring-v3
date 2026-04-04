@@ -1,0 +1,193 @@
+<!-- pages/order/create.wxml - 付费委托护生下单页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-header">
+    <text class="nav-title">护生委托服务</text>
+  </view>
+
+  <!-- 二次合规承诺书 -->
+  <view class="compliance-card card">
+    <view class="compliance-header">
+      <text class="compliance-icon">📜</text>
+      <text class="compliance-title">合规承诺书</text>
+    </view>
+    <view class="compliance-content">
+      <text class="compliance-text">
+        本人已了解并承诺遵守《科学护生合规承诺书》的所有条款，
+        确保委托护生的物种、水域、数量均符合当地法规要求，
+        不投放外来入侵物种，不破坏生态环境。
+      </text>
+    </view>
+    <view class="compliance-action">
+      <checkbox-group bindchange="toggleAgree">
+        <label class="checkbox-label">
+          <checkbox value="agree" checked="{{agree}}" color="#D4B87B"/>
+          <text class="checkbox-text">我已阅读并同意上述承诺</text>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <!-- 表单填写区 -->
+  <view class="form-section">
+    <view class="section-title">
+      <text class="title-icon">📝</text>
+      <text class="title-text">填写委托信息</text>
+    </view>
+
+    <!-- 护生执行日期 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">📅</text>
+        <text class="label-text">护生执行日期</text>
+        <text class="label-required">*</text>
+      </view>
+      <picker 
+        mode="date" 
+        value="{{form.date}}" 
+        start="{{minDate}}" 
+        end="{{maxDate}}"
+        bindchange="onDateChange"
+      >
+        <view class="picker-value">
+          <text class="picker-text">{{form.date || '请选择日期（未来 7-30 天）'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 执行水域 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">🌊</text>
+        <text class="label-text">执行水域</text>
+        <text class="label-required">*</text>
+      </view>
+      <picker 
+        mode="selector" 
+        range="{{waterAreas}}" 
+        range-key="name"
+        bindchange="onWaterAreaChange"
+      >
+        <view class="picker-value">
+          <text class="picker-text">{{form.waterArea || '请选择合规水域'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 护生物种与规格 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">🐟</text>
+        <text class="label-text">护生物种与规格</text>
+        <text class="label-required">*</text>
+      </view>
+      <picker 
+        mode="selector" 
+        range="{{species}}" 
+        range-key="name"
+        bindchange="onSpeciesChange"
+      >
+        <view class="picker-value">
+          <text class="picker-text">
+            {{form.species || '请选择物种'}}
+            <text class="picker-spec" wx:if="{{form.species}}">
+              ({{species.find(s => s.name === form.species).spec}})
+            </text>
+          </text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 投放份数 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">🔢</text>
+        <text class="label-text">投放份数</text>
+        <text class="label-required">*</text>
+      </view>
+      <view class="quantity-input">
+        <button class="quantity-btn" bindtap="onQuantityInput" data-type="decrease">-</button>
+        <input 
+          class="quantity-value" 
+          type="number" 
+          value="{{form.quantity}}" 
+          bindinput="onQuantityInput"
+        />
+        <button class="quantity-btn" bindtap="onQuantityInput" data-type="increase">+</button>
+      </view>
+    </view>
+
+    <!-- 增值服务 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">✨</text>
+        <text class="label-text">增值服务</text>
+      </view>
+      <view class="extra-services">
+        <checkbox-group bindchange="onExtraServiceChange">
+          <view class="service-list">
+            <label 
+              class="service-item" 
+              wx:for="{{extraServices}}" 
+              wx:key="id"
+            >
+              <checkbox value="{{item.id}}" color="#D4B87B"/>
+              <view class="service-info">
+                <text class="service-name">{{item.name}}</text>
+                <text class="service-price">¥{{item.price}}</text>
+              </view>
+            </label>
+          </view>
+        </checkbox-group>
+      </view>
+    </view>
+
+    <!-- 护生心愿寄语 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">💝</text>
+        <text class="label-text">护生心愿寄语</text>
+      </view>
+      <textarea 
+        class="wish-input" 
+        placeholder="写下您的美好祝愿（最多 200 字）" 
+        value="{{form.wish}}"
+        bindinput="onWishInput"
+        maxlength="200"
+        auto-height
+      />
+      <view class="wish-count">
+        <text class="count-text">{{form.wish.length}}/200</text>
+      </view>
+    </view>
+
+    <!-- 委托方信息 -->
+    <view class="form-item card">
+      <view class="form-label">
+        <text class="label-icon">👤</text>
+        <text class="label-text">委托方信息</text>
+      </view>
+      <view class="user-info">
+        <text class="user-text">{{form.userInfo}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部金额栏 -->
+  <view class="bottom-bar">
+    <view class="amount-section">
+      <text class="amount-label">委托金总额</text>
+      <text class="amount-value">¥{{totalAmount}}</text>
+    </view>
+    <button 
+      class="submit-btn {{agree ? '' : 'disabled'}}" 
+      bindtap="submitOrder"
+      disabled="{{!agree}}"
+    >
+      确认委托单
+    </button>
+  </view>
+</view>
