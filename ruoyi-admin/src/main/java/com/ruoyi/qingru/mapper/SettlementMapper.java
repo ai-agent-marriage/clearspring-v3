@@ -49,4 +49,17 @@ public interface SettlementMapper {
      * @return 影响行数
      */
     int update(Settlement settlement);
+    
+    /**
+     * 根据机构 ID 和状态查询结算单列表
+     * @param orgId 机构 ID
+     * @param status 状态（可选）
+     * @param offset 偏移量
+     * @param limit 限制数量
+     * @return 结算单列表
+     */
+    List<Settlement> selectByOrgIdAndStatus(@Param("orgId") Long orgId,
+                                             @Param("status") Integer status,
+                                             @Param("offset") Integer offset,
+                                             @Param("limit") Integer limit);
 }

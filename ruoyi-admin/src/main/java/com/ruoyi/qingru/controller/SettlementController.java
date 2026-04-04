@@ -69,4 +69,41 @@ public class SettlementController {
         List<Settlement> list = settlementService.getSettlementsByOrgId(orgId, pageNum, pageSize);
         return R.ok(list);
     }
+    
+    /**
+     * 获取机构结算列表（带状态过滤）
+     * @param orgId 机构 ID
+     * @param status 状态（可选）
+     * @param pageNum 页码
+     * @param pageSize 每页数量
+     * @return 结算单列表
+     */
+    @GetMapping("/org/list")
+    public R<List<Settlement>> getOrgSettlements(
+            @RequestParam Long orgId,
+            @RequestParam(required = false) Integer status,
+            @RequestParam(required = false) Integer pageNum,
+            @RequestParam(required = false) Integer pageSize) {
+        log.info("获取机构结算列表，orgId={}, status={}, pageNum={}, pageSize={}", 
+                orgId, status, pageNum, pageSize);
+        List<Settlement> list = settlementService.getOrgSettlements(orgId, status, pageNum, pageSize);
+        return R.ok(list, "获取成功");
+    }
+    
+    /**
+     * 批量结算
+     * @param settlementIds 结算单 ID 列表
+     * @return 操作结果
+     */
+    @PostMapping("/batch-settle")
+    public R<Void> batchSettle(@RequestBody List<Long> settlementIds) {
+        log.info("批量结算，count={}", settlementIds.size());
+        try {
+            settlementService.batchSettle(settlementIds);
+            return R.ok(null, "批量结算成功");
+        } catch (Exception e) {
+            log.error("批量结算失败", e);
+            return R.fail("批量结算失败：" + e.getMessage());
+        }
+    }
 }

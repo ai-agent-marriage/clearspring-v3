@@ -121,4 +121,40 @@ public class SettlementServiceTest {
             assertEquals(orgId, s.getOrgId(), "结算单应属于该机构");
         });
     }
+
+    /**
+     * 测试批量结算
+     * 验证可以批量更新结算单状态
+     */
+    @Test
+    public void testBatchSettle() {
+        java.util.List<Long> settlementIds = java.util.Arrays.asList(1L, 2L);
+
+        settlementService.batchSettle(settlementIds);
+
+        settlementIds.forEach(id -> {
+            Settlement settlement = settlementService.getById(id);
+            assertEquals(2, settlement.getStatus().intValue(), "结算单状态应为已结算");
+            assertNotNull(settlement.getSettlementTime(), "结算时间不应为空");
+        });
+    }
+
+    /**
+     * 测试获取机构结算列表（带状态过滤）
+     * 验证可以按状态筛选结算单
+     */
+    @Test
+    public void testGetOrgSettlements() {
+        Long orgId = 1L;
+        Integer status = 1; // 待结算
+
+        java.util.List<Settlement> settlements = settlementService.getOrgSettlements(
+                orgId, status, 1, 10);
+
+        assertNotNull(settlements, "结算列表不应为空");
+        settlements.forEach(s -> {
+            assertEquals(status, s.getStatus(), "结算单状态应为筛选状态");
+            assertEquals(orgId, s.getOrgId(), "结算单应属于该机构");
+        });
+    }
 }

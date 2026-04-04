@@ -49,4 +49,12 @@ public interface VolunteerMapper {
     List<Volunteer> selectByOrgId(@Param("orgId") Long orgId,
                                    @Param("offset") Integer offset,
                                    @Param("limit") Integer limit);
+    
+    /**
+     * 更新志愿者
+     * @param id 志愿者 ID
+     * @param volunteer 志愿者信息
+     * @return 影响行数
+     */
+    int updateById(@Param("id") Long id, @Param("volunteer") Volunteer volunteer);
 }

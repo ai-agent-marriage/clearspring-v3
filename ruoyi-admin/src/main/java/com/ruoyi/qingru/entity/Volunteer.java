@@ -1,6 +1,7 @@
 package com.ruoyi.qingru.entity;
 
 import lombok.Data;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -19,24 +20,44 @@ public class Volunteer {
     private Long userId;
     
     /**
-     * 机构 ID
+     * 真实姓名
      */
-    private Long orgId;
+    private String realName;
     
     /**
-     * 志愿者姓名
+     * 身份证号
      */
-    private String name;
+    private String idCard;
     
     /**
-     * 手机号
+     * 联系电话
      */
     private String phone;
     
     /**
-     * 状态 1 可用 0 禁用
+     * 所属机构 ID
+     */
+    private Long orgId;
+    
+    /**
+     * 状态 1 正常 0 禁用
      */
     private Integer status;
+    
+    /**
+     * 累计完成任务数
+     */
+    private Integer totalTasks;
+    
+    /**
+     * 累计公益服务时长
+     */
+    private Integer serviceHours;
+    
+    /**
+     * 合规执行率
+     */
+    private BigDecimal complianceRate;
     
     /**
      * 创建时间
