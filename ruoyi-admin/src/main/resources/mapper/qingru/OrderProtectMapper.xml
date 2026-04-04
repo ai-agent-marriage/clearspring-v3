@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.OrderProtectMapper">
+    
+    <resultMap type="OrderProtect" id="OrderProtectResult">
+        <result property="orderNo"    column="order_no"    />
+        <result property="userId"    column="user_id"    />
+        <result property="orgId"    column="org_id"    />
+        <result property="volunteerId"    column="volunteer_id"    />
+        <result property="speciesId"    column="species_id"    />
+        <result property="quantity"    column="quantity"    />
+        <result property="amount"    column="amount"    />
+        <result property="status"    column="status"    />
+        <result property="address"    column="address"    />
+        <result property="executeImages"    column="execute_images"    />
+        <result property="payTime"    column="pay_time"    />
+        <result property="completeTime"    column="complete_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+    
+    <insert id="insert" parameterType="OrderProtect">
+        insert into order_protect
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">order_no,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="orgId != null">org_id,</if>
+            <if test="volunteerId != null">volunteer_id,</if>
+            <if test="speciesId != null">species_id,</if>
+            <if test="quantity != null">quantity,</if>
+            <if test="amount != null">amount,</if>
+            <if test="status != null">status,</if>
+            <if test="address != null">address,</if>
+            <if test="executeImages != null">execute_images,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="orgId != null">#{orgId},</if>
+            <if test="volunteerId != null">#{volunteerId},</if>
+            <if test="speciesId != null">#{speciesId},</if>
+            <if test="quantity != null">#{quantity},</if>
+            <if test="amount != null">#{amount},</if>
+            <if test="status != null">#{status},</if>
+            <if test="address != null">#{address},</if>
+            <if test="executeImages != null">#{executeImages},</if>
+            sysdate(),
+        </trim>
+    </insert>
+    
+    <select id="selectByOrderNo" parameterType="String" resultMap="OrderProtectResult">
+        select order_no, user_id, org_id, volunteer_id, species_id, quantity, amount, 
+               status, address, execute_images, pay_time, complete_time, create_time, update_time
+        from order_protect
+        where order_no = #{orderNo}
+    </select>
+    
+    <select id="selectByUserId" resultMap="OrderProtectResult">
+        select order_no, user_id, org_id, volunteer_id, species_id, quantity, amount,
+               status, address, execute_images, pay_time, complete_time, create_time, update_time
+        from order_protect
+        where user_id = #{userId}
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <update id="update" parameterType="OrderProtect">
+        update order_protect
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orgId != null">org_id = #{orgId},</if>
+            <if test="volunteerId != null">volunteer_id = #{volunteerId},</if>
+            <if test="quantity != null">quantity = #{quantity},</if>
+            <if test="amount != null">amount = #{amount},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="executeImages != null">execute_images = #{executeImages},</if>
+            <if test="payTime != null">pay_time = #{payTime},</if>
+            <if test="completeTime != null">complete_time = #{completeTime},</if>
+            update_time = sysdate(),
+        </trim>
+        where order_no = #{orderNo}
+    </update>
+    
+    <select id="countByUserId" resultType="Integer">
+        select count(1) from order_protect
+        where user_id = #{userId}
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </select>
+    
+</mapper>

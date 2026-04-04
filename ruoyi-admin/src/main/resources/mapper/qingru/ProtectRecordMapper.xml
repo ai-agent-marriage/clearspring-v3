@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.ProtectRecordMapper">
+    
+    <resultMap type="ProtectRecord" id="ProtectRecordResult">
+        <result property="id"    column="id"    />
+        <result property="userOpenid"    column="user_openid"    />
+        <result property="speciesId"    column="species_id"    />
+        <result property="quantity"    column="quantity"    />
+        <result property="address"    column="address"    />
+        <result property="remark"    column="remark"    />
+        <result property="images"    column="images"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+    
+    <insert id="insert" parameterType="ProtectRecord" useGeneratedKeys="true" keyProperty="id">
+        insert into protect_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userOpenid != null">user_openid,</if>
+            <if test="speciesId != null">species_id,</if>
+            <if test="quantity != null">quantity,</if>
+            <if test="address != null">address,</if>
+            <if test="remark != null">remark,</if>
+            <if test="images != null">images,</if>
+            <if test="status != null">status,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userOpenid != null">#{userOpenid},</if>
+            <if test="speciesId != null">#{speciesId},</if>
+            <if test="quantity != null">#{quantity},</if>
+            <if test="address != null">#{address},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="images != null">#{images},</if>
+            <if test="status != null">#{status},</if>
+            sysdate(),
+        </trim>
+    </insert>
+    
+    <select id="selectById" parameterType="Long" resultMap="ProtectRecordResult">
+        select id, user_openid, species_id, quantity, address, remark, images, status, create_time
+        from protect_record
+        where id = #{id}
+    </select>
+    
+    <select id="selectByOpenid" resultMap="ProtectRecordResult">
+        select id, user_openid, species_id, quantity, address, remark, images, status, create_time
+        from protect_record
+        where user_openid = #{openid}
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <update id="update" parameterType="ProtectRecord">
+        update protect_record
+        <trim prefix="set" suffixOverrides=",">
+            <if test="quantity != null">quantity = #{quantity},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="images != null">images = #{images},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <select id="countByOpenid" parameterType="String" resultType="Integer">
+        select count(1) from protect_record
+        where user_openid = #{openid}
+    </select>
+    
+</mapper>
