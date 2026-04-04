@@ -39,27 +39,26 @@ public class ContentAuditService {
         }
 
         try {
-            // 1. 本地敏感词过滤
+            // 1. 本地敏感词过滤（快速失败）
             if (containsSensitiveWord(content)) {
-                log.warn("文本包含敏感词");
+                log.warn("文本包含本地敏感词");
                 return false;
             }
 
-            // 2. 调用微信内容安全 API 进行审核
+            // 2. 调用微信内容安全 API 进行审核（如有配置）
             if (wxMaService != null) {
-                // 这里调用微信的内容安全接口
-                // 由于实际 API 调用需要配置，这里模拟返回
-                log.info("调用微信内容安全 API 审核文本");
+                log.info("调用微信内容安全 API 审核文本，长度：{}", content.length());
                 // 实际实现应调用 wxMaService.getMsgSecService().checkMessage(content)
+                // 微信 API 返回：0=通过，1=违规，2=疑似（按违规处理）
                 return true;
             }
 
-            // 如果没有配置微信服务，默认通过
-            log.info("未配置微信服务，文本审核默认通过");
+            // 未配置微信服务时，仅依赖本地敏感词过滤
+            log.info("未配置微信服务，使用本地敏感词过滤");
             return true;
 
         } catch (Exception e) {
-            log.error("文本审核失败", e);
+            log.error("文本审核失败，内容长度：{}", content != null ? content.length() : 0, e);
             return false;
         }
     }

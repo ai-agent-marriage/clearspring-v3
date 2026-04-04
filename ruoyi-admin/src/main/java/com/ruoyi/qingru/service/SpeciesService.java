@@ -103,14 +103,25 @@ public class SpeciesService {
      */
     @Transactional
     public Long addSpecies(Species species) {
+        // 参数校验
+        if (species == null || species.getName() == null || species.getName().trim().isEmpty()) {
+            throw new IllegalArgumentException("物种名称不能为空");
+        }
+        
         Long id = nextId++;
         species.setId(id);
         species.setCreateTime(new Date());
         if (species.getSort() == null) {
             species.setSort(id.intValue());
         }
+        if (species.getType() == null) {
+            species.setType(3); // 默认为其他
+        }
+        if (species.getIsForbid() == null) {
+            species.setIsForbid(0); // 默认可投放
+        }
         SPECIES_MAP.put(id, species);
-        log.info("新增物种成功，id: {}, name: {}", id, species.getName());
+        log.info("新增物种成功，id: {}, name: {}, type: {}", id, species.getName(), species.getType());
         return id;
     }
 
