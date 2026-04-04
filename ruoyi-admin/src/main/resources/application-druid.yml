@@ -16,17 +16,17 @@ spring:
                 url: 
                 username: 
                 password: 
-            # 初始连接数
-            initialSize: 5
-            # 最小连接池数量
+            # 初始连接数（优化：从 5 调整为 10，加快启动后响应）
+            initialSize: 10
+            # 最小连接池数量（优化：保持 10）
             minIdle: 10
-            # 最大连接池数量
-            maxActive: 20
-            # 配置获取连接等待超时的时间
-            maxWait: 60000
+            # 最大连接池数量（优化：从 20 调整为 50，支持更高并发）
+            maxActive: 50
+            # 配置获取连接等待超时的时间（优化：从 60000 调整为 30000）
+            maxWait: 30000
             # 配置连接超时时间
             connectTimeout: 30000
-            # 配置网络超时时间
+            # 配置网络超时时间（优化：从 60000 调整为 60000）
             socketTimeout: 60000
             # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
             timeBetweenEvictionRunsMillis: 60000

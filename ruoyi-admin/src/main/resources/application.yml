@@ -81,15 +81,27 @@ spring:
       password:
       # 连接超时时间
       timeout: 10s
+      # 缓存配置（性能优化）
+      cache:
+        # 订单详情缓存时间（秒）
+        order-detail-ttl: 600
+        # 用户信息缓存时间（秒）
+        user-info-ttl: 1800
+        # 志愿者信息缓存时间（秒）
+        volunteer-info-ttl: 1800
+        # 统计数据缓存时间（秒）
+        statistics-ttl: 300
+        # 物种列表缓存时间（秒）
+        species-list-ttl: 3600
       lettuce:
         pool:
-          # 连接池中的最小空闲连接
-          min-idle: 0
-          # 连接池中的最大空闲连接
-          max-idle: 8
-          # 连接池的最大数据库连接数
-          max-active: 8
-          # #连接池最大阻塞等待时间（使用负值表示没有限制）
+          # 连接池中的最小空闲连接（优化：从 0 调整为 5）
+          min-idle: 5
+          # 连接池中的最大空闲连接（优化：从 8 调整为 20）
+          max-idle: 20
+          # 连接池的最大数据库连接数（优化：从 8 调整为 50）
+          max-active: 50
+          # 连接池最大阻塞等待时间（使用负值表示没有限制）
           max-wait: -1ms
 
 # token配置
