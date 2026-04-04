@@ -6,6 +6,7 @@ import com.ruoyi.qingru.entity.OrderProtect;
 import com.ruoyi.qingru.mapper.OrderProtectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -144,5 +145,125 @@ public class OrderService {
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         String random = String.format("%04d", new Random().nextInt(10000));
         return "PRO" + date + random;
+    }
+    
+    /**
+     * 根据订单号查询订单
+     * @param orderNo 订单号
+     * @return 订单
+     */
+    public OrderProtect getByOrderNo(String orderNo) {
+        return orderMapper.selectByOrderNo(orderNo);
+    }
+    
+    /**
+     * 订单状态流转
+     * 1 待承接 → 2 待执行 → 3 执行中 → 4 待确认 → 5 已完成 → 6 已结算
+     * @param orderNo 订单号
+     * @param newStatus 新状态
+     */
+    public void updateOrderStatus(String orderNo, Integer newStatus) {
+        log.info("订单状态流转，orderNo={}, newStatus={}", orderNo, newStatus);
+        
+        OrderProtect order = orderMapper.selectByOrderNo(orderNo);
+        if (order == null) {
+            throw new RuntimeException("订单不存在");
+        }
+        
+        // 验证状态流转是否合法
+        if (!isValidStatusTransition(order.getStatus(), newStatus)) {
+            throw new RuntimeException("订单状态流转不合法，从状态 " + order.getStatus() + " 不能流转到状态 " + newStatus);
+        }
+        
+        order.setStatus(newStatus);
+        if (newStatus == 5) { // 已完成
+            order.setCompleteTime(new Date());
+        }
+        
+        orderMapper.update(order);
+        log.info("订单状态更新成功，orderNo={}, oldStatus={}, newStatus={}", 
+                orderNo, order.getStatus(), newStatus);
+    }
+    
+    /**
+     * 验证状态流转是否合法
+     * @param fromStatus 原状态
+     * @param toStatus 目标状态
+     * @return 是否合法
+     */
+    private boolean isValidStatusTransition(Integer fromStatus, Integer toStatus) {
+        // 定义合法的状态流转
+        Map<Integer, List<Integer>> validTransitions = new HashMap<>();
+        validTransitions.put(1, Arrays.asList(2, 6));       // 待承接 → 待执行/已取消
+        validTransitions.put(2, Arrays.asList(3, 6));       // 待执行 → 执行中/已取消
+        validTransitions.put(3, Arrays.asList(4));          // 执行中 → 待确认
+        validTransitions.put(4, Arrays.asList(5));          // 待确认 → 已完成
+        validTransitions.put(5, Arrays.asList(6));          // 已完成 → 已结算
+        
+        return validTransitions.getOrDefault(fromStatus, new ArrayList<>()).contains(toStatus);
+    }
+    
+    /**
+     * 48 小时无机构承接自动取消
+     */
+    @Scheduled(cron = "0 0 * * * ?") // 每小时执行一次
+    public void autoCancelUnclaimedOrders() {
+        log.info("开始执行自动取消未承接订单任务");
+        
+        List<OrderProtect> orders = orderMapper.selectUnclaimedOrders();
+        int cancelledCount = 0;
+        
+        for (OrderProtect order : orders) {
+            long hoursSinceCreate = (System.currentTimeMillis() - order.getCreateTime().getTime()) / (1000 * 60 * 60);
+            if (hoursSinceCreate > 48) {
+                try {
+                    // 自动取消订单
+                    updateOrderStatus(order.getOrderNo(), 6);
+                    // 触发退款
+                    refundOrder(order.getOrderNo());
+                    cancelledCount++;
+                    log.info("自动取消订单成功，orderNo={}, 创建时间={}", order.getOrderNo(), order.getCreateTime());
+                } catch (Exception e) {
+                    log.error("自动取消订单失败，orderNo={}", order.getOrderNo(), e);
+                }
+            }
+        }
+        
+        log.info("自动取消未承接订单任务完成，共取消 {} 个订单", cancelledCount);
+    }
+    
+    /**
+     * 退款订单
+     * @param orderNo 订单号
+     */
+    private void refundOrder(String orderNo) {
+        log.info("执行订单退款，orderNo={}", orderNo);
+        // TODO: 调用微信支付退款接口
+        // 这里预留退款逻辑，实际项目中需要调用微信支付退款 API
+    }
+    
+    /**
+     * 申请复核
+     * @param orderNo 订单号
+     * @param reason 复核原因
+     */
+    public void applyReview(String orderNo, String reason) {
+        log.info("申请复核，orderNo={}, reason={}", orderNo, reason);
+        
+        OrderProtect order = orderMapper.selectByOrderNo(orderNo);
+        if (order == null) {
+            throw new RuntimeException("订单不存在");
+        }
+        
+        // TODO: 创建复核记录，通知管理员
+        log.info("复核申请已提交，orderNo={}, reason={}", orderNo, reason);
+    }
+    
+    /**
+     * 更新订单
+     * @param order 订单
+     */
+    public void update(OrderProtect order) {
+        orderMapper.update(order);
     }
 }
