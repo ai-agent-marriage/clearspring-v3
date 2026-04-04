@@ -7,7 +7,7 @@ describe('Feedback Manage Page', () => {
   let page = null
 
   beforeEach(() => {
-    page = getCurrentPages()[0]
+    page = getPage('/pages/admin/feedback/manage')
   })
 
   test('页面筛选数据初始化正确', () => {
@@ -35,6 +35,10 @@ describe('Feedback Manage Page', () => {
     expect(typeof page.loadFeedbackList).toBe('function')
   })
 
+  test('onToggleFilter 方法存在', () => {
+    expect(typeof page.onToggleFilter).toBe('function')
+  })
+
   test('onTypeChange 方法存在', () => {
     expect(typeof page.onTypeChange).toBe('function')
   })
@@ -43,21 +47,29 @@ describe('Feedback Manage Page', () => {
     expect(typeof page.onStatusChange).toBe('function')
   })
 
-  test('viewDetail 方法存在', () => {
-    expect(typeof page.viewDetail).toBe('function')
+  test('onViewDetail 方法存在', () => {
+    expect(typeof page.onViewDetail).toBe('function')
   })
 
-  test('exportFeedback 方法存在', () => {
-    expect(typeof page.exportFeedback).toBe('function')
+  test('onProcess 方法存在', () => {
+    expect(typeof page.onProcess).toBe('function')
   })
 
-  test('onPullDownRefresh 方法存在', () => {
-    expect(typeof page.onPullDownRefresh).toBe('function')
+  test('onReply 方法存在', () => {
+    expect(typeof page.onReply).toBe('function')
+  })
+
+  test('onExport 方法存在', () => {
+    expect(typeof page.onExport).toBe('function')
+  })
+
+  test('onResetFilter 方法存在', () => {
+    expect(typeof page.onResetFilter).toBe('function')
   })
 
   test('切换筛选栏显示状态', () => {
     const initialShowFilter = page.data.showFilter
-    page.setData({ showFilter: !initialShowFilter })
+    page.onToggleFilter()
     expect(page.data.showFilter).toBe(!initialShowFilter)
   })
 

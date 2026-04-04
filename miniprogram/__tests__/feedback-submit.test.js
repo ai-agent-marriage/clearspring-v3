@@ -7,7 +7,7 @@ describe('Feedback Submit Page', () => {
   let page = null
 
   beforeEach(() => {
-    page = getCurrentPages()[0]
+    page = getPage('/pages/admin/feedback/submit')
   })
 
   test('页面表单数据初始化正确', () => {
