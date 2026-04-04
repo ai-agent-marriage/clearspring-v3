@@ -215,6 +215,277 @@ function createMockPage(path) {
     }
   }
   
+  if (path === '/pages/admin/content/species') {
+    return {
+      data: {
+        speciesList: [
+          { 
+            id: 1, 
+            name: '鲢鱼', 
+            scientificName: 'Hypophthalmichthys molitrix', 
+            type: 1, 
+            typeName: '鱼类',
+            isForbid: 0,
+            statusName: '允许投放',
+            actions: ['编辑', '删除']
+          },
+          { 
+            id: 2, 
+            name: '鳙鱼', 
+            scientificName: 'Hypophthalmichthys nobilis', 
+            type: 1, 
+            typeName: '鱼类',
+            isForbid: 0,
+            statusName: '允许投放',
+            actions: ['编辑', '删除']
+          },
+          { 
+            id: 3, 
+            name: '草鱼', 
+            scientificName: 'Ctenopharyngodon idellus', 
+            type: 1, 
+            typeName: '鱼类',
+            isForbid: 0,
+            statusName: '允许投放',
+            actions: ['编辑', '删除']
+          },
+          { 
+            id: 4, 
+            name: '巴西龟', 
+            scientificName: 'Trachemys scripta elegans', 
+            type: 4, 
+            typeName: '爬行类',
+            isForbid: 1,
+            statusName: '禁止投放',
+            actions: ['编辑', '删除']
+          },
+          { 
+            id: 5, 
+            name: '鲫鱼', 
+            scientificName: 'Carassius auratus', 
+            type: 1, 
+            typeName: '鱼类',
+            isForbid: 0,
+            statusName: '允许投放',
+            actions: ['编辑', '删除']
+          }
+        ],
+        filterType: 0,
+        searchValue: '',
+        currentPage: 1,
+        pageSize: 20,
+        total: 5,
+        showAddModal: false,
+        showEditModal: false,
+        showDeleteConfirm: false,
+        showBatchDeleteConfirm: false,
+        selectedIds: [],
+        newSpecies: {
+          name: '',
+          scientificName: '',
+          type: 1,
+          isForbid: 0,
+          description: '',
+          habitat: '',
+          distribution: ''
+        },
+        editingSpecies: null,
+        deletingSpecies: null
+      },
+      search: function(keyword) {
+        if (!keyword || keyword.trim() === '') {
+          return
+        }
+        this.data.speciesList = this.data.speciesList.filter(item => {
+          return item.name.includes(keyword) || item.scientificName.toLowerCase().includes(keyword.toLowerCase())
+        })
+      },
+      filter: function() {
+        if (this.data.filterType === 0) {
+          return
+        }
+        this.data.speciesList = this.data.speciesList.filter(item => item.type === this.data.filterType)
+      },
+      showAddModal: function() {
+        this.data.showAddModal = true
+      },
+      editSpecies: function(species) {
+        this.data.editingSpecies = species
+        this.data.showEditModal = true
+      },
+      deleteSpecies: function(species) {
+        this.data.deletingSpecies = species
+        this.data.showDeleteConfirm = true
+      },
+      batchDelete: function() {
+        this.data.showBatchDeleteConfirm = true
+      },
+      exportSpecies: function() {
+        wx.downloadFile({
+          url: 'http://localhost:8080/api/content/species/export',
+          success: () => {}
+        })
+      }
+    }
+  }
+  
+  if (path === '/pages/admin/content/notice') {
+    return {
+      data: {
+        notices: [
+          { 
+            id: 1, 
+            title: '关于规范护生活动的通知', 
+            content: '请各位志愿者严格按照规定流程进行护生活动...',
+            status: 1,
+            statusName: '已发布',
+            createTime: '2026-04-01 10:00',
+            publishTime: '2026-04-01 12:00',
+            actions: ['编辑', '删除', '查看']
+          },
+          { 
+            id: 2, 
+            title: '春季护生活动安排', 
+            content: '春季是护生的黄金时期，请各机构做好准备工作...',
+            status: 1,
+            statusName: '已发布',
+            createTime: '2026-04-02 09:00',
+            publishTime: '2026-04-02 10:00',
+            actions: ['编辑', '删除', '查看']
+          },
+          { 
+            id: 3, 
+            title: '志愿者培训通知', 
+            content: '定于 4 月 15 日举行志愿者培训活动...',
+            status: 0,
+            statusName: '草稿',
+            createTime: '2026-04-03 14:00',
+            publishTime: null,
+            actions: ['编辑', '删除', '发布']
+          },
+          { 
+            id: 4, 
+            title: '护生物种更新公告', 
+            content: '系统已更新可护生物种列表，请查阅...',
+            status: 1,
+            statusName: '已发布',
+            createTime: '2026-04-04 08:00',
+            publishTime: '2026-04-04 09:00',
+            actions: ['编辑', '删除', '查看']
+          }
+        ],
+        currentPage: 1,
+        pageSize: 20,
+        total: 4,
+        showAddModal: false,
+        showEditModal: false,
+        showDeleteConfirm: false,
+        newNotice: {
+          title: '',
+          content: '',
+          status: 0
+        },
+        editingNotice: null,
+        deletingNotice: null
+      },
+      showAddModal: function() {
+        this.data.showAddModal = true
+      },
+      editNotice: function(notice) {
+        this.data.editingNotice = notice
+        this.data.showEditModal = true
+      },
+      deleteNotice: function(notice) {
+        this.data.deletingNotice = notice
+        this.data.showDeleteConfirm = true
+      },
+      publishNotice: function(notice) {
+        notice.status = 1
+        notice.statusName = '已发布'
+        notice.publishTime = new Date().toLocaleString()
+      }
+    }
+  }
+  
+  if (path === '/pages/admin/content/help') {
+    return {
+      data: {
+        helpDocs: [
+          { 
+            id: 1, 
+            title: '如何注册志愿者', 
+            category: '志愿者指南',
+            content: '第一步：打开小程序，点击「我的」...',
+            order: 1,
+            viewCount: 1200
+          },
+          { 
+            id: 2, 
+            title: '如何发起护生活动', 
+            category: '活动指南',
+            content: '第一步：进入「活动」页面...',
+            order: 2,
+            viewCount: 980
+          },
+          { 
+            id: 3, 
+            title: '物种投放注意事项', 
+            category: '护生指南',
+            content: '投放前请确认物种适合当地环境...',
+            order: 3,
+            viewCount: 850
+          },
+          { 
+            id: 4, 
+            title: '常见问题解答', 
+            category: '常见问题',
+            content: 'Q: 如何联系人工客服？A: 请点击「我的」-「联系客服」...',
+            order: 4,
+            viewCount: 750
+          },
+          { 
+            id: 5, 
+            title: '机构入驻流程', 
+            category: '机构指南',
+            content: '第一步：准备机构资质材料...',
+            order: 5,
+            viewCount: 520
+          }
+        ],
+        categories: ['全部', '志愿者指南', '活动指南', '护生指南', '常见问题', '机构指南'],
+        currentCategory: '全部',
+        searchValue: '',
+        showAddModal: false,
+        showEditModal: false,
+        newDoc: {
+          title: '',
+          category: '',
+          content: '',
+          order: 0
+        },
+        editingDoc: null
+      },
+      selectCategory: function(category) {
+        this.data.currentCategory = category
+      },
+      search: function(keyword) {
+        if (!keyword || keyword.trim() === '') {
+          return
+        }
+        this.data.helpDocs = this.data.helpDocs.filter(item => {
+          return item.title.includes(keyword) || item.content.includes(keyword)
+        })
+      },
+      showAddModal: function() {
+        this.data.showAddModal = true
+      },
+      editDoc: function(doc) {
+        this.data.editingDoc = doc
+        this.data.showEditModal = true
+      }
+    }
+  }
+  
   if (path === '/pages/org-home/index') {
     return {
       data: {
@@ -413,6 +684,180 @@ function createMockPage(path) {
     }
   }
   
+  // 消息推送首页
+  if (path === '/pages/admin/message/index') {
+    return {
+      data: {
+        stats: {
+          totalMessages: 1256,
+          todayMessages: 89,
+          subscriberCount: 456
+        },
+        menus: [
+          {
+            icon: '📩',
+            name: '订阅消息配置',
+            path: '/pages/admin/message/subscribe'
+          },
+          {
+            icon: '📄',
+            name: '消息模板管理',
+            path: '/pages/admin/message/template'
+          },
+          {
+            icon: '📝',
+            name: '消息发送记录',
+            path: '/pages/admin/message/records'
+          },
+          {
+            icon: '👥',
+            name: '订阅用户管理',
+            path: '/pages/admin/message/subscribers'
+          }
+        ]
+      },
+      onLoad: function() {
+        this.loadStats()
+      },
+      loadStats: function() {
+        // 加载统计数据
+      },
+      goToMenu: function(e) {
+        const path = e.currentTarget.dataset.path
+        wx.navigateTo({ url: path })
+      },
+      sendTestMessage: function() {
+        wx.showModal({
+          title: '发送测试消息',
+          content: '将向测试用户发送一条测试消息，是否继续？'
+        })
+      },
+      viewRecords: function() {
+        wx.navigateTo({ url: '/pages/admin/message/records' })
+      }
+    }
+  }
+  
+  // 订阅消息配置页
+  if (path === '/pages/admin/message/subscribe') {
+    return {
+      data: {
+        templates: [
+          {
+            id: 1,
+            name: '订单创建通知',
+            templateId: 'ORDER_CREATE',
+            trigger: '订单创建时',
+            content: '您的订单已创建成功',
+            enabled: 1,
+            createTime: '2026-04-01 10:00:00'
+          },
+          {
+            id: 2,
+            name: '订单完成通知',
+            templateId: 'ORDER_COMPLETE',
+            trigger: '订单完成时',
+            content: '您的订单已完成',
+            enabled: 1,
+            createTime: '2026-04-01 10:05:00'
+          },
+          {
+            id: 3,
+            name: '活动提醒',
+            templateId: 'ACTIVITY_REMIND',
+            trigger: '活动开始前',
+            content: '您报名的活动即将开始',
+            enabled: 0,
+            createTime: '2026-04-02 09:00:00'
+          }
+        ],
+        showEditModal: false,
+        editingTemplate: null
+      },
+      onLoad: function() {
+        this.loadTemplates()
+      },
+      loadTemplates: function() {
+        // 加载模板列表
+      },
+      toggleTemplate: function(id) {
+        const template = this.data.templates.find(t => t.id === id)
+        if (template) {
+          template.enabled = template.enabled === 1 ? 0 : 1
+        }
+      },
+      editTemplate: function(id) {
+        const template = this.data.templates.find(t => t.id === id)
+        this.data.editingTemplate = template
+        this.data.showEditModal = true
+      },
+      saveTemplate: function() {
+        wx.showToast({ title: '保存成功', icon: 'success' })
+      }
+    }
+  }
+  
+  // 消息记录页面
+  if (path === '/pages/admin/message/records') {
+    return {
+      data: {
+        filterDateRanges: [
+          { label: '最近 7 天', value: '7d' },
+          { label: '最近 30 天', value: '30d' },
+          { label: '最近 90 天', value: '90d' },
+          { label: '自定义', value: 'custom' }
+        ],
+        records: [
+          {
+            id: 1,
+            openid: 'o6_bmjrPTlm6_2sgVt7hMZOPfL2M',
+            templateId: 'ORDER_CREATE',
+            templateName: '订单创建通知',
+            status: 'success',
+            sendTime: '2026-04-07 10:30:00',
+            content: '{"orderNo":"PRO202604100001"}'
+          },
+          {
+            id: 2,
+            openid: 'o6_bmjrPTlm6_2sgVt7hMZOPfL2N',
+            templateId: 'ORDER_COMPLETE',
+            templateName: '订单完成通知',
+            status: 'success',
+            sendTime: '2026-04-07 11:00:00',
+            content: '{"orderNo":"PRO202604100002"}'
+          },
+          {
+            id: 3,
+            openid: 'o6_bmjrPTlm6_2sgVt7hMZOPfL2O',
+            templateId: 'ACTIVITY_REMIND',
+            templateName: '活动提醒',
+            status: 'failed',
+            sendTime: '2026-04-07 11:30:00',
+            content: '{"activityId":"ACT001"}'
+          }
+        ],
+        currentFilter: '7d',
+        startDate: '',
+        endDate: ''
+      },
+      onLoad: function() {
+        this.loadRecords()
+      },
+      loadRecords: function() {
+        // 加载消息记录
+      },
+      filterRecords: function() {
+        // 筛选记录
+      },
+      exportRecords: function() {
+        wx.downloadFile({
+          url: '/api/message/records/export',
+          success: () => {}
+        })
+      }
+    }
+  }
+  
   return { data: {} }
 }
 
@@ -427,7 +872,7 @@ global.wx = {
   showLoading: jest.fn(),
   hideLoading: jest.fn(),
   showModal: jest.fn(),
-  request: jest.fn(),
+  request: jest.fn().mockResolvedValue({ statusCode: 200, data: {} }),
   downloadFile: jest.fn(),
   uploadFile: jest.fn(),
   connectSocket: jest.fn(),
@@ -467,5 +912,18 @@ global.getApp = jest.fn(() => ({
   globalData: {
     userInfo: null,
     token: null
+  }
+}))
+
+// Mock echarts
+jest.mock('echarts', () => ({
+  init: jest.fn(() => ({
+    setOption: jest.fn(),
+    dispose: jest.fn(),
+    resize: jest.fn()
+  })),
+  graphic: {
+    LinearGradient: jest.fn((x0, y0, x1, y1, colors) => ({ type: 'linear', colors })),
+    RadialGradient: jest.fn((x, y, r, colors) => ({ type: 'radial', colors }))
   }
 }))
