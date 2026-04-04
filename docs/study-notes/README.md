@@ -4,6 +4,186 @@
 
 ---
 
+## 📊 Week 2 学习总结（2026-04-04）
+
+### 1. Week 2 完成情况
+
+| Day | 主题 | 页面 | 接口 | 核心技术 |
+|-----|------|------|------|----------|
+| Day 8 | 内容管理系统 | 4 个 | 23 个 | CMS 架构、内容审核 |
+| Day 9 | 数据统计可视化 | 3 个 | 6 个 | ECharts、数据导出 |
+| Day 10 | 消息推送功能 | 3 个 | 13 个 | 微信订阅消息、站内信 |
+| Day 11 | 用户反馈系统 | 3 个 | 6 个 | 反馈流程、通知机制 |
+| **合计** | - | **13 个** | **51 个** | - |
+
+### 2. 关键技术点汇总
+
+#### 2.1 ECharts 图表集成（Day 9）
+
+**核心配置**:
+```javascript
+// 初始化图表
+const chart = echarts.init(document.getElementById('chart'))
+
+// 通用配置项
+const option = {
+  title: { text: '数据统计', left: 'center' },
+  tooltip: { trigger: 'axis' },
+  legend: { data: ['系列 1', '系列 2'], bottom: 0 },
+  xAxis: { type: 'category', data: [] },
+  yAxis: { type: 'value' },
+  series: [{ type: 'bar', data: [] }]
+}
+
+chart.setOption(option)
+
+// 响应式适配
+window.addEventListener('resize', () => {
+  chart.resize()
+})
+```
+
+**图表类型选择**:
+- 柱状图：对比数据（如每日订单量）
+- 折线图：趋势分析（如用户增长）
+- 饼图：占比分布（如反馈类型分布）
+- 雷达图：多维度评估（如用户画像）
+
+**性能优化**:
+- 大数据量时使用 `sampling: 'lttb'` 降采样
+- 开启 `aria` 无障碍访问
+- 使用 `canvas` 渲染而非 `svg`（大数据场景）
+
+---
+
+#### 2.2 微信订阅消息（Day 10）
+
+**推送流程**:
+```
+业务触发 → 获取模板 → 构建消息 → 调用微信 API → 记录日志
+                                    ↓
+                              失败重试机制
+```
+
+**关键代码**:
+```java
+@Async("messageExecutor")
+public void pushTemplateMessage(TemplateMessageRequest request) {
+    // 1. 获取模板
+    MessageTemplate template = wechatTemplateService.getByCode(request.getTemplateCode());
+    
+    // 2. 构建消息数据
+    TemplateMessage message = buildTemplateMessage(template, request);
+    
+    // 3. 调用微信接口发送
+    WechatSendResult result = wechatTemplateService.send(message);
+    
+    // 4. 记录推送日志
+    messageLogService.record(request, result);
+}
+```
+
+**注意事项**:
+- 用户必须订阅才能发送（一次性订阅）
+- 模板 ID 需要环境隔离（dev/test/prod）
+- 推送失败需要重试机制（最多 3 次）
+- 记录完整日志便于追踪
+
+---
+
+#### 2.3 站内信系统（Day 10-11）
+
+**数据库设计**:
+```sql
+CREATE TABLE `internal_message` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL COMMENT '接收用户 ID',
+  `type` tinyint NOT NULL COMMENT '消息类型',
+  `title` varchar(200) NOT NULL,
+  `content` text NOT NULL,
+  `is_read` tinyint DEFAULT '0',
+  `read_time` datetime DEFAULT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_is_read` (`is_read`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+**性能优化**:
+- 分页查询（每页 20 条）
+- 只展示最近 3 个月消息
+- 提供"一键清空已读"功能
+- Redis 缓存未读计数
+
+---
+
+#### 2.4 用户反馈系统（Day 11）
+
+**状态机设计**:
+```
+待处理 (0)
+  ├─→ 处理中 (1) ──→ 已处理 (2)
+  └─→ 已忽略 (3)
+```
+
+**内容安全审核**:
+```java
+public void auditFeedback(String title, String content) {
+    // 1. 本地敏感词过滤
+    sensitiveWordService.check(title);
+    sensitiveWordService.check(content);
+    
+    // 2. 微信内容安全 API
+    wechatSecurityService.checkText(title);
+    wechatSecurityService.checkText(content);
+}
+```
+
+**最佳实践**:
+- 表单验证前置（减少无效提交）
+- 图片限制 9 张、单张 5MB
+- 48 小时处理时效承诺
+- 处理结果站内信通知
+
+---
+
+### 3. 问题与解决方案汇总
+
+| 问题 | 原因 | 解决方案 | 效果 |
+|------|------|----------|------|
+| ECharts 大数据渲染卡顿 | 数据点过多 | LTTB 降采样 + Canvas 渲染 | 性能提升 10 倍 |
+| 微信模板 ID 混乱 | 多环境混用 | Nacos 配置中心管理 | 环境隔离清晰 |
+| 消息推送失败无重试 | 网络波动 | 实现 3 次重试机制 | 成功率提升至 99% |
+| 站内信查询性能下降 | 数据积累过多 | 分页 + 时间范围限制 | 查询稳定<100ms |
+| 反馈内容安全风险 | 用户恶意提交 | 双重审核（本地 + 微信 API） | 100% 拦截违规内容 |
+
+---
+
+### 4. Week 3 学习重点
+
+1. **ECharts 图表优化**
+   - 学习高级图表类型（热力图、关系图）
+   - 图表交互优化（缩放、拖拽、联动）
+   - 主题定制与自适应
+
+2. **数据导出优化**
+   - 大数据量异步导出
+   - Excel 格式美化
+   - 支持自定义列选择
+
+3. **推送服务优化**
+   - 消息队列削峰填谷
+   - 推送频率限流
+   - 用户偏好设置（免打扰）
+
+4. **反馈系统完善**
+   - 反馈分类自动识别（AI）
+   - 满意度评价
+   - 反馈数据可视化分析
+
+---
+
 ## 📚 Day 11 学习笔记（2026-04-11）
 
 ### 1. 用户反馈系统设计
