@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index"
+  },
+  "navigationBarTitleText": "消息发送记录",
+  "navigationBarBackgroundColor": "#4A5D4E",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true
+}

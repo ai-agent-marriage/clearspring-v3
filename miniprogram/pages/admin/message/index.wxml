@@ -1,0 +1,46 @@
+<!--pages/admin/message/index.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <text class="nav-title">消息推送</text>
+  </view>
+
+  <!-- 数据概览卡片 -->
+  <view class="stats-section">
+    <view class="stats-card">
+      <view class="stats-label">累计发送消息数</view>
+      <view class="stats-value">{{stats.totalMessages}}</view>
+    </view>
+    <view class="stats-card">
+      <view class="stats-label">今日发送消息数</view>
+      <view class="stats-value">{{stats.todayMessages}}</view>
+    </view>
+    <view class="stats-card">
+      <view class="stats-label">订阅用户数</view>
+      <view class="stats-value">{{stats.subscriberCount}}</view>
+    </view>
+  </view>
+
+  <!-- 功能入口区 -->
+  <view class="menus-section">
+    <view class="section-title">功能管理</view>
+    <view class="menus-grid">
+      <view
+        class="menu-card"
+        wx:for="{{menus}}"
+        wx:key="name"
+        bindtap="goToMenu"
+        data-path="{{item.path}}"
+      >
+        <view class="menu-icon">{{item.icon}}</view>
+        <view class="menu-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作区 -->
+  <view class="quick-actions">
+    <button class="action-btn" bindtap="sendTestMessage">发送测试消息</button>
+    <button class="action-btn action-btn-outline" bindtap="viewRecords">查看发送记录</button>
+  </view>
+</view>

@@ -1,0 +1,113 @@
+<!--pages/admin/message/subscribe.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <text class="nav-title">订阅消息配置</text>
+  </view>
+
+  <!-- 模板列表区 -->
+  <view class="templates-section">
+    <view class="section-header">
+      <text class="section-title">消息模板</text>
+      <text class="section-count">共 {{templates.length}} 个</text>
+    </view>
+    
+    <view class="templates-list">
+      <view
+        class="template-card"
+        wx:for="{{templates}}"
+        wx:key="id"
+      >
+        <view class="template-header">
+          <view class="template-info">
+            <view class="template-name">{{item.name}}</view>
+            <view class="template-id">ID: {{item.templateId}}</view>
+          </view>
+          <switch
+            class="template-switch"
+            checked="{{item.enabled}}"
+            bindchange="toggleEnable"
+            data-index="{{index}}"
+            color="#4A5D4E"
+          />
+        </view>
+        
+        <view class="template-content">{{item.content}}</view>
+        
+        <view class="template-actions">
+          <button class="action-btn-small" bindtap="editTemplate" data-index="{{index}}">编辑</button>
+          <button class="action-btn-small" bindtap="testSend" data-index="{{index}}">测试</button>
+          <button class="action-btn-small action-btn-danger" bindtap="deleteTemplate" data-index="{{index}}">删除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 新增模板按钮 -->
+  <view class="add-btn-wrapper">
+    <button class="add-btn" bindtap="addTemplate">+ 新增模板</button>
+  </view>
+
+  <!-- 编辑弹窗 -->
+  <van-dialog
+    show="{{showEditDialog}}"
+    title="{{editingTemplate?.id ? '编辑模板' : '新增模板'}}"
+    show-cancel-button
+    confirm-button-color="#4A5D4E"
+    bind:confirm="saveTemplate"
+    bind:cancel="cancelEdit"
+  >
+    <view class="edit-form">
+      <view class="form-item">
+        <text class="form-label">模板名称</text>
+        <input
+          class="form-input"
+          placeholder="请输入模板名称"
+          value="{{editingTemplate?.name}}"
+          data-field="name"
+          bindinput="onInputChange"
+        />
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">模板 ID</text>
+        <input
+          class="form-input"
+          placeholder="请输入模板 ID"
+          value="{{editingTemplate?.templateId}}"
+          data-field="templateId"
+          bindinput="onInputChange"
+        />
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">触发条件</text>
+        <picker
+          class="form-picker"
+          mode="selector"
+          range="{{triggerOptions}}"
+          range-key="label"
+          value="{{triggerOptions.findIndex(item => item.value === editingTemplate?.trigger)}}"
+          bindchange="onTriggerChange"
+        >
+          <view class="picker-value">
+            {{editingTemplate?.trigger ? triggerOptions.find(item => item.value === editingTemplate.trigger)?.label : '请选择'}}
+          </view>
+        </picker>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">消息内容</text>
+        <textarea
+          class="form-textarea"
+          placeholder="请输入消息内容，支持变量如 {{orderNo}}"
+          value="{{editingTemplate?.content}}"
+          data-field="content"
+          bindinput="onInputChange"
+          maxlength="200"
+        />
+        <text class="form-tip">支持变量：{'{{orderNo}}'}, {'{{userName}}'} 等</text>
+      </view>
+    </view>
+  </van-dialog>
+</view>

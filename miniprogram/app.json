@@ -12,7 +12,13 @@
     "pages/order/index",
     "pages/profile/index",
     "pages/volunteer-home/index",
-    "pages/org-home/index"
+    "pages/org-home/index",
+    "pages/admin/stats/index",
+    "pages/admin/stats/dashboard",
+    "pages/admin/stats/trend",
+    "pages/admin/message/index",
+    "pages/admin/message/subscribe",
+    "pages/admin/message/records"
   ],
   "window": {
     "backgroundTextStyle": "light",

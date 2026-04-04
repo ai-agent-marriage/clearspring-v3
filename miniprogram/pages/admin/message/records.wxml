@@ -1,0 +1,121 @@
+<!--pages/admin/message/records.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <text class="nav-title">消息发送记录</text>
+    <view class="nav-actions">
+      <view class="nav-btn" bindtap="exportData">
+        <text class="nav-btn-text">导出</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-section">
+    <view class="filter-header" bindtap="toggleFilter">
+      <text class="filter-title">筛选条件</text>
+      <text class="filter-icon {{showFilter ? 'up' : ''}}">▼</text>
+    </view>
+    
+    <view class="filter-content {{showFilter ? 'show' : ''}}">
+      <view class="filter-item">
+        <text class="filter-label">时间范围</text>
+        <picker
+          mode="selector"
+          range="{{dateRangeOptions}}"
+          value="{{dateRangeOptions.indexOf(filterDateRange)}}"
+          bindchange="onDateRangeChange"
+        >
+          <view class="picker-value">{{filterDateRange}}</view>
+        </picker>
+      </view>
+      
+      <view class="filter-item">
+        <text class="filter-label">消息类型</text>
+        <picker
+          mode="selector"
+          range="{{typeOptions}}"
+          range-key="label"
+          value="{{typeOptions.findIndex(item => item.value === filterType)}}"
+          bindchange="onTypeChange"
+        >
+          <view class="picker-value">
+            {{typeOptions.find(item => item.value === filterType)?.label}}
+          </view>
+        </picker>
+      </view>
+      
+      <view class="filter-item">
+        <text class="filter-label">发送状态</text>
+        <picker
+          mode="selector"
+          range="{{statusOptions}}"
+          range-key="label"
+          value="{{statusOptions.findIndex(item => item.value === filterStatus)}}"
+          bindchange="onStatusChange"
+        >
+          <view class="picker-value">
+            {{statusOptions.find(item => item.value === filterStatus)?.label}}
+          </view>
+        </picker>
+      </view>
+      
+      <view class="filter-actions">
+        <button class="filter-btn filter-btn-reset" bindtap="resetFilter">重置</button>
+        <button class="filter-btn filter-btn-apply" bindtap="applyFilter">应用</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消息列表区 -->
+  <view class="records-section">
+    <view class="section-header">
+      <text class="section-title">发送记录</text>
+      <text class="section-count">共 {{records.length}} 条</text>
+    </view>
+    
+    <view class="records-list">
+      <view
+        class="record-card"
+        wx:for="{{records}}"
+        wx:key="id"
+      >
+        <view class="record-header">
+          <view class="record-title">{{item.title}}</view>
+          <view class="record-status status-{{item.statusName === '成功' ? 'success' : 'failed'}}">
+            {{item.statusName}}
+          </view>
+        </view>
+        
+        <view class="record-info">
+          <text class="record-label">接收用户：</text>
+          <text class="record-value">{{item.recipient}}</text>
+        </view>
+        
+        <view class="record-info">
+          <text class="record-label">发送时间：</text>
+          <text class="record-value">{{item.sendTime}}</text>
+        </view>
+        
+        <view class="record-content">{{item.content}}</view>
+        
+        <view class="record-actions">
+          <button class="action-btn-small" bindtap="viewDetail" data-index="{{index}}">详情</button>
+          <button 
+            class="action-btn-small action-btn-resend" 
+            bindtap="resend" 
+            data-index="{{index}}"
+            wx:if="{{item.status === 0}}"
+          >
+            重新发送
+          </button>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{records.length === 0}}">
+      <text class="empty-text">暂无消息记录</text>
+    </view>
+  </view>
+</view>
