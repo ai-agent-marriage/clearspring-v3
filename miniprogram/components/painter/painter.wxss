@@ -1,0 +1,7 @@
+/* components/painter/painter.wxss */
+.painter-container {
+  position: fixed;
+  top: -9999rpx;
+  left: -9999rpx;
+  z-index: -9999;
+}

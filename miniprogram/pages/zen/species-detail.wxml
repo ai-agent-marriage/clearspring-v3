@@ -1,0 +1,92 @@
+<!--pages/zen/species-detail.wxml-->
+<!--物种详情页-->
+
+<view class="container">
+  <!-- 禁止投放警示栏 -->
+  <view class="forbid-warning" wx:if="{{species.isForbid}}">
+    <text class="warning-icon">⚠️</text>
+    <text class="warning-text">该物种禁止投放，严禁放入自然水域！</text>
+  </view>
+
+  <!-- 头部区 -->
+  <view class="header-section">
+    <view class="species-image">
+      <text class="image-placeholder">📷</text>
+    </view>
+    <view class="species-basic">
+      <view class="species-name">{{species.name}}</view>
+      <view class="species-scientific">{{species.scientificName}}</view>
+      <view class="species-tag {{species.isForbid ? 'forbid' : 'allow'}}">
+        {{species.isForbid ? '禁止投放' : '可合规投放'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 信息详情区 -->
+  <view class="info-section">
+    <!-- 保护级别与生态属性 -->
+    <view class="info-card">
+      <view class="card-title">📊 保护级别与生态属性</view>
+      <view class="card-content">
+        <view class="info-row">
+          <text class="info-label">保护级别：</text>
+          <text class="info-value">{{species.protectLevel}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">生态属性：</text>
+          <text class="info-value">{{species.remark}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 适宜生境与投放时机 -->
+    <view class="info-card" wx:if="{{!species.isForbid}}">
+      <view class="card-title">🌊 适宜生境与投放时机</view>
+      <view class="card-content">
+        <view class="info-row">
+          <text class="info-label">适宜生境：</text>
+          <text class="info-value">{{species.suitableHabitat}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">最佳时机：</text>
+          <text class="info-value">{{species.bestTime}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 合规投放要求 -->
+    <view class="info-card" wx:if="{{!species.isForbid && species.requirements}}">
+      <view class="card-title">✅ 合规投放要求</view>
+      <view class="card-content">
+        <text class="info-text">{{species.requirements}}</text>
+      </view>
+    </view>
+
+    <!-- 特别提醒 -->
+    <view class="info-card" wx:if="{{species.warnings}}">
+      <view class="card-title">⚠️ 特别提醒</view>
+      <view class="card-content">
+        <text class="info-text warning">{{species.warnings}}</text>
+      </view>
+    </view>
+
+    <!-- 文化寓意 -->
+    <view class="info-card" wx:if="{{species.culture}}">
+      <view class="card-title">📖 文化寓意</view>
+      <view class="card-content">
+        <text class="info-text">{{species.culture}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-bar">
+    <button 
+      class="release-btn {{species.isForbid ? 'disabled' : ''}}" 
+      disabled="{{species.isForbid}}"
+      bindtap="onReleaseTap"
+    >
+      {{species.isForbid ? '禁止投放' : '去护生'}}
+    </button>
+  </view>
+</view>

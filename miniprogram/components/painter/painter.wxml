@@ -1,0 +1,7 @@
+<!--components/painter/painter.wxml-->
+<painter-container wx:if="{{isReady}}">
+  <canvas 
+    canvas-id="{{canvasId}}" 
+    style="width: {{config.width || 1080}}px; height: {{config.height || 1920}}px;"
+  />
+</painter-container>

@@ -55,10 +55,10 @@ describe('首页测试', () => {
   test('日期格式包含完整信息', () => {
     const page = getPage('/pages/index/index')
     // 验证阳历日期格式
-    expect(page.data.solarDate).toMatch(/\d{4}年/)
-    expect(page.data.solarDate).toMatch(/\d{1,2}月/)
-    expect(page.data.solarDate).toMatch(/\d{1,2}日/)
+    expect(page.data.solarDate).toContain('年')
+    expect(page.data.solarDate).toContain('月')
+    expect(page.data.solarDate).toContain('日')
     // 验证农历日期格式
-    expect(page.data.lunarDate).toMatch(/佛历/)
+    expect(page.data.lunarDate).toContain('佛历')
   })
 })

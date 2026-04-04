@@ -1,0 +1,91 @@
+/* pages/zen/home2.wxss */
+/* 功能聚合主页样式 */
+
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding-bottom: 40rpx;
+}
+
+.zen-card {
+  margin: 30rpx;
+  padding: 40rpx 30rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.zen-label {
+  font-size: 24rpx;
+  color: #8B9A8C;
+  margin-bottom: 20rpx;
+}
+
+.zen-text {
+  font-family: 'Noto Serif SC', 'Songti SC', serif;
+  font-size: 32rpx;
+  line-height: 1.8;
+  color: #4A5D4E;
+  font-weight: 500;
+}
+
+.function-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+  padding: 0 30rpx;
+  margin-top: 40rpx;
+}
+
+.function-item {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 40rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.function-icon {
+  font-size: 64rpx;
+  margin-bottom: 20rpx;
+}
+
+.function-name {
+  font-size: 30rpx;
+  color: #333333;
+  font-weight: 600;
+  margin-bottom: 10rpx;
+}
+
+.function-desc {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.science-entry {
+  display: flex;
+  align-items: center;
+  margin: 40rpx 30rpx 20rpx;
+  padding: 30rpx;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-radius: 16rpx;
+}
+
+.science-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.science-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #2e5c3e;
+  font-weight: 600;
+}
+
+.science-arrow {
+  font-size: 40rpx;
+  color: #4A5D4E;
+}

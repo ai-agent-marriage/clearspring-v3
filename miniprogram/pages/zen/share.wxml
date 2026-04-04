@@ -1,0 +1,98 @@
+<!--pages/zen/share.wxml-->
+<!--每日一禅分享页-->
+
+<view class="container">
+  <!-- 顶部透明导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-back" bindtap="onBack">
+      <text>‹</text>
+    </view>
+    <view class="nav-title">分享禅理</view>
+    <view class="nav-placeholder"></view>
+  </view>
+
+  <!-- 海报预览卡片 -->
+  <view class="poster-card">
+    <view class="poster-preview" style="background-image: url({{backgrounds[bgIndex].url}})">
+      <view class="poster-overlay"></view>
+      <view class="poster-content">
+        <view class="poster-quote">{{zenQuote}}</view>
+        <view class="poster-author">—— {{author}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 背景切换区 -->
+  <view class="bg-section">
+    <view class="section-title">选择背景</view>
+    <scroll-view class="bg-scroll" scroll-x>
+      <view class="bg-list">
+        <view 
+          class="bg-item {{bgIndex === index ? 'active' : ''}}"
+          wx:for="{{backgrounds}}"
+          wx:key="name"
+          wx:for-index="index"
+          style="background-image: url({{item.url}})"
+          bindtap="onBgTap"
+          data-index="{{index}}"
+        >
+          <view class="bg-name">{{item.name}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 文案编辑区 -->
+  <view class="edit-section">
+    <view class="section-title">文案</view>
+    <view class="edit-box">
+      <textarea 
+        class="edit-textarea"
+        placeholder="编辑禅理文案"
+        value="{{zenQuote}}"
+        bindinput="onQuoteInput"
+        disabled="{{!isEditing}}"
+      />
+      <view class="edit-actions" wx:if="{{isEditing}}">
+        <button class="edit-cancel" bindtap="onEditComplete">取消</button>
+        <button class="edit-confirm" bindtap="onEditComplete">完成</button>
+      </view>
+    </view>
+    <button class="edit-btn" wx:if="{{!isEditing}}" bindtap="onEditTap">
+      ✏️ 编辑文案
+    </button>
+  </view>
+
+  <!-- 底部生成按钮 -->
+  <view class="bottom-bar">
+    <button class="generate-btn" bindtap="onGeneratePoster">
+      生成海报
+    </button>
+  </view>
+
+  <!-- 分享弹窗 -->
+  <view class="share-modal" wx:if="{{showShareModal}}">
+    <view class="modal-mask" bindtap="onCloseShareModal"></view>
+    <view class="modal-content">
+      <view class="modal-title">分享方式</view>
+      <view class="share-grid">
+        <view class="share-item" data-method="wechat" bindtap="onShareMethod">
+          <view class="share-icon">💬</view>
+          <view class="share-name">微信好友</view>
+        </view>
+        <view class="share-item" data-method="moments" bindtap="onShareMethod">
+          <view class="share-icon">🌅</view>
+          <view class="share-name">朋友圈</view>
+        </view>
+        <view class="share-item" data-method="qq" bindtap="onShareMethod">
+          <view class="share-icon">🐧</view>
+          <view class="share-name">QQ 好友</view>
+        </view>
+        <view class="share-item" data-method="save" bindtap="onShareMethod">
+          <view class="share-icon">💾</view>
+          <view class="share-name">存相册</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
