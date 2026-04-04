@@ -940,6 +940,379 @@ GET /export/orders?orgId=1&startDate=2026-04-01&endDate=2026-04-30
 
 ---
 
+## 内容管理接口
+
+### 物种管理接口
+
+#### 1. 获取物种列表
+
+**接口**: `GET /content/species/list`
+
+**描述**: 获取物种列表，支持类型、是否禁止、关键词筛选和分页。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| type | integer | 否 | 类型：1 鱼类 2 鸟类 3 哺乳类 4 爬行类 5 两栖类 |
+| isForbid | integer | 否 | 是否禁止：0 否 1 是 |
+| keyword | string | 否 | 关键词，支持名称、学名、备注搜索 |
+| pageNum | integer | 否 | 页码，默认 1 |
+| pageSize | integer | 否 | 每页数量，默认 10 |
+
+**请求示例**:
+```
+GET /content/species/list?type=1&isForbid=0&keyword=鲤&pageNum=1&pageSize=10
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "操作成功",
+  "data": [
+    {
+      "id": 1,
+      "name": "鲢鱼",
+      "scientificName": "Hypophthalmichthys molitrix",
+      "type": 1,
+      "isForbid": 0,
+      "remark": "四大家鱼之一，滤食性鱼类",
+      "sort": 1,
+      "createTime": "2026-04-04 10:00:00"
+    }
+  ]
+}
+```
+
+---
+
+#### 2. 获取物种详情
+
+**接口**: `GET /content/species/detail/{id}`
+
+**描述**: 根据主键 ID 获取物种详细信息。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 物种 ID |
+
+**请求示例**:
+```
+GET /content/species/detail/1
+```
+
+---
+
+#### 3. 新增物种
+
+**接口**: `POST /content/species/add`
+
+**描述**: 新增物种信息。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| name | string | 是 | 物种名称 |
+| scientificName | string | 是 | 学名 |
+| type | integer | 是 | 类型 |
+| isForbid | integer | 是 | 是否禁止 |
+| remark | string | 否 | 备注 |
+| sort | integer | 否 | 排序 |
+
+**请求示例**:
+```json
+{
+  "name": "鲢鱼",
+  "scientificName": "Hypophthalmichthys molitrix",
+  "type": 1,
+  "isForbid": 0,
+  "remark": "四大家鱼之一",
+  "sort": 1
+}
+```
+
+---
+
+#### 4. 更新物种
+
+**接口**: `PUT /content/species/update/{id}`
+
+**描述**: 更新物种信息。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 物种 ID |
+| name | string | 否 | 物种名称 |
+| scientificName | string | 否 | 学名 |
+| type | integer | 否 | 类型 |
+| isForbid | integer | 否 | 是否禁止 |
+| remark | string | 否 | 备注 |
+| sort | integer | 否 | 排序 |
+
+---
+
+#### 5. 删除物种
+
+**接口**: `DELETE /content/species/delete/{id}`
+
+**描述**: 删除物种信息。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 物种 ID |
+
+---
+
+### 公告管理接口
+
+#### 1. 获取公告列表
+
+**接口**: `GET /content/notice/list`
+
+**描述**: 获取公告列表，支持状态筛选和分页。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| status | integer | 否 | 状态：1 已发布 2 草稿 3 已下架 |
+| keyword | string | 否 | 关键词 |
+| pageNum | integer | 否 | 页码 |
+| pageSize | integer | 否 | 每页数量 |
+
+---
+
+#### 2. 获取公告详情
+
+**接口**: `GET /content/notice/detail/{id}`
+
+**描述**: 根据 ID 获取公告详情。
+
+---
+
+#### 3. 新增公告
+
+**接口**: `POST /content/notice/add`
+
+**描述**: 新增公告。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| title | string | 是 | 公告标题 |
+| content | string | 是 | 公告内容 |
+| status | integer | 否 | 状态，默认 2（草稿） |
+
+---
+
+#### 4. 更新公告
+
+**接口**: `PUT /content/notice/update/{id}`
+
+**描述**: 更新公告信息。
+
+---
+
+#### 5. 删除公告
+
+**接口**: `DELETE /content/notice/delete/{id}`
+
+**描述**: 删除公告。
+
+---
+
+#### 6. 上架/下架公告
+
+**接口**: 
+- `PUT /content/notice/publish/{id}` - 上架
+- `PUT /content/notice/unpublish/{id}` - 下架
+
+---
+
+### 帮助文档接口
+
+#### 1. 获取帮助文档列表
+
+**接口**: `GET /content/help/list`
+
+**描述**: 获取帮助文档列表，支持分类筛选和分页。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| category | string | 否 | 分类 |
+| keyword | string | 否 | 关键词 |
+| pageNum | integer | 否 | 页码 |
+| pageSize | integer | 否 | 每页数量 |
+
+---
+
+#### 2. 获取帮助文档详情
+
+**接口**: `GET /content/help/detail/{id}`
+
+**描述**: 根据 ID 获取帮助文档详情（自动增加浏览次数）。
+
+---
+
+#### 3. 新增帮助文档
+
+**接口**: `POST /content/help/add`
+
+**描述**: 新增帮助文档。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| title | string | 是 | 文档标题 |
+| content | string | 是 | 文档内容 |
+| category | string | 否 | 分类 |
+| sort | integer | 否 | 排序 |
+
+---
+
+#### 4. 更新帮助文档
+
+**接口**: `PUT /content/help/update/{id}`
+
+**描述**: 更新帮助文档。
+
+---
+
+#### 5. 删除帮助文档
+
+**接口**: `DELETE /content/help/delete/{id}`
+
+**描述**: 删除帮助文档。
+
+---
+
+### 内容审核接口
+
+#### 1. 审核文本内容
+
+**接口**: 内部调用（通过 ContentAuditService）
+
+**方法**: `public boolean auditText(String content)`
+
+**描述**: 审核文本内容，包含本地敏感词过滤和微信内容安全 API 调用。
+
+**参数**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| content | string | 待审核的文本内容 |
+
+**返回**: boolean - true=通过，false=不通过
+
+---
+
+#### 2. 审核图片
+
+**接口**: 内部调用（通过 ContentAuditService）
+
+**方法**: `public boolean auditImage(String imageUrl)`
+
+**描述**: 审核图片内容，调用微信内容安全 API。
+
+**参数**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| imageUrl | string | 图片 URL |
+
+**返回**: boolean - true=通过，false=不通过
+
+---
+
+#### 3. 批量审核
+
+**接口**: 内部调用（通过 ContentAuditService）
+
+**方法**: `public Map<String, Boolean> batchAudit(List<String> contents)`
+
+**描述**: 批量审核文本内容。
+
+**参数**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| contents | List<String> | 待审核的内容列表 |
+
+**返回**: Map<内容，是否通过>
+
+---
+
+### 敏感词管理接口
+
+#### 1. 获取敏感词列表
+
+**接口**: `GET /content/sensitive-word/list`
+
+**描述**: 获取敏感词列表，支持级别、状态筛选和分页。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| level | integer | 否 | 敏感级别：1 低 2 中 3 高 |
+| status | integer | 否 | 状态：0 禁用 1 启用 |
+| keyword | string | 否 | 关键词 |
+| pageNum | integer | 否 | 页码 |
+| pageSize | integer | 否 | 每页数量 |
+
+---
+
+#### 2. 新增敏感词
+
+**接口**: `POST /content/sensitive-word/add`
+
+**描述**: 新增敏感词。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| word | string | 是 | 敏感词 |
+| level | integer | 否 | 敏感级别，默认 2 |
+| status | integer | 否 | 状态，默认 1（启用） |
+
+---
+
+#### 3. 删除敏感词
+
+**接口**: `DELETE /content/sensitive-word/delete/{id}`
+
+**描述**: 删除敏感词。
+
+---
+
+#### 4. 批量导入敏感词
+
+**接口**: `POST /content/sensitive-word/batch-import`
+
+**描述**: 批量导入敏感词。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| words | List<String> | 是 | 敏感词列表 |
+| level | integer | 否 | 敏感级别 |
+
+---
+
 ## 版本历史
 
 | 版本 | 日期 | 说明 |
@@ -947,3 +1320,4 @@ GET /export/orders?orgId=1&startDate=2026-04-01&endDate=2026-04-30
 | v1.0 | 2026-04-07 | 初始版本，包含佛历、禅理、物种、海报接口 |
 | v1.1 | 2026-04-07 | 新增护生记录、订单、证书接口，集成内容安全 API |
 | v1.2 | 2026-04-07 | 新增机构端接口、数据统计接口、后台管理接口、报表导出接口 |
+| v1.3 | 2026-04-04 | 新增内容管理接口：物种管理、公告管理、帮助文档、内容审核、敏感词管理 |
