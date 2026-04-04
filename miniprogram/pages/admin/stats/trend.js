@@ -1,5 +1,8 @@
 // pages/admin/stats/trend.js
 import * as echarts from 'echarts'
+import { getStitchThemeColors } from '../../../utils/echarts'
+
+const themeColors = getStitchThemeColors()
 
 Page({
   data: {
@@ -7,11 +10,25 @@ Page({
     metrics: ['orders', 'amount'],
     chartType: 'line',
     trendChart: null,
-    tableData: []
+    tableData: [],
+    loading: false,
+    error: null
   },
 
-  onLoad() {
-    this.generateTableData()
+  async onLoad() {
+    this.setData({ loading: true })
+    try {
+      await this.fetchTrendData()
+    } catch (error) {
+      console.error('Failed to load trend data:', error)
+      this.setData({ error: '加载趋势数据失败' })
+      wx.showToast({
+        title: '加载失败',
+        icon: 'none'
+      })
+    } finally {
+      this.setData({ loading: false })
+    }
   },
 
   onReady() {
@@ -21,6 +38,26 @@ Page({
   onUnload() {
     if (this.data.trendChart) {
       this.data.trendChart.dispose()
+    }
+  },
+
+  // 获取趋势数据
+  async fetchTrendData() {
+    try {
+      // TODO: 替换为真实 API 调用
+      // const res = await wx.cloud.callFunction({
+      //   name: 'stats',
+      //   data: { action: 'getTrendData', timeRange: this.data.timeRange }
+      // })
+      
+      // 模拟 API 延迟
+      await new Promise(resolve => setTimeout(resolve, 300))
+      
+      // 生成 Mock 数据
+      this.generateTableData()
+    } catch (error) {
+      console.error('Fetch trend error:', error)
+      throw error
     }
   },
 
@@ -87,7 +124,7 @@ Page({
         type: this.data.chartType === 'line' ? 'line' : 'bar',
         data: orderData,
         smooth: true,
-        itemStyle: { color: '#4A5D4E' }
+        itemStyle: { color: themeColors.primary }
       })
     }
     
@@ -98,7 +135,7 @@ Page({
         yAxisIndex: 1,
         data: amountData,
         smooth: true,
-        itemStyle: { color: '#FFA500' }
+        itemStyle: { color: themeColors.accent }
       })
     }
     
@@ -109,7 +146,7 @@ Page({
         yAxisIndex: 2,
         data: userData,
         smooth: true,
-        itemStyle: { color: '#409EFF' }
+        itemStyle: { color: themeColors.chartColors[3] }
       })
     }
 
@@ -121,7 +158,8 @@ Page({
       },
       legend: {
         data: series.map(s => s.name),
-        bottom: 0
+        bottom: 0,
+        textStyle: { color: themeColors.text }
       },
       grid: {
         left: '3%',
@@ -134,29 +172,35 @@ Page({
         boundaryGap: false,
         data: dates,
         axisLabel: {
-          rotate: 45
+          rotate: 45,
+          color: themeColors.textSecondary
         }
       },
       yAxis: [
         {
           type: 'value',
           name: '订单数',
-          position: 'left'
+          position: 'left',
+          axisLine: { lineStyle: { color: themeColors.border } },
+          splitLine: { lineStyle: { color: 'rgba(74, 93, 78, 0.1)' } }
         },
         {
           type: 'value',
           name: '金额',
           position: 'right',
           axisLabel: {
-            formatter: '{value}元'
-          }
+            formatter: '{value}元',
+            color: themeColors.textSecondary
+          },
+          axisLine: { lineStyle: { color: themeColors.border } }
         },
         {
           type: 'value',
           name: '用户',
           position: 'right',
           offset: 80,
-          show: this.data.metrics.includes('users')
+          show: this.data.metrics.includes('users'),
+          axisLine: { lineStyle: { color: themeColors.border } }
         }
       ],
       dataZoom: [

@@ -1,22 +1,39 @@
 // pages/admin/stats/index.js
 import * as echarts from 'echarts'
-import { initChart, disposeChart } from '../../../utils/echarts'
+import { initChart, disposeChart, getStitchThemeColors } from '../../../utils/echarts'
+
+const themeColors = getStitchThemeColors()
 
 Page({
   data: {
     stats: {
-      totalUsers: 1256,
-      totalOrders: 456,
-      totalAmount: 125680,
-      activeVolunteers: 89
+      totalUsers: 0,
+      totalOrders: 0,
+      totalAmount: 0,
+      activeVolunteers: 0
     },
     dateRange: '近 7 天',
     orderTrendChart: null,
-    speciesChart: null
+    speciesChart: null,
+    loading: false,
+    error: null
   },
 
-  onLoad() {
-    this.initCharts()
+  async onLoad() {
+    this.setData({ loading: true })
+    try {
+      await this.fetchStatsData()
+      this.initCharts()
+    } catch (error) {
+      console.error('Failed to load stats:', error)
+      this.setData({ error: '加载数据失败，请刷新重试' })
+      wx.showToast({
+        title: '加载失败',
+        icon: 'none'
+      })
+    } finally {
+      this.setData({ loading: false })
+    }
   },
 
   onReady() {
@@ -30,6 +47,33 @@ Page({
     }
     if (this.data.speciesChart) {
       disposeChart(this.data.speciesChart)
+    }
+  },
+
+  // 获取统计数据
+  async fetchStatsData() {
+    try {
+      // TODO: 替换为真实 API 调用
+      // const res = await wx.cloud.callFunction({
+      //   name: 'stats',
+      //   data: { action: 'getDashboardStats' }
+      // })
+      
+      // 模拟 API 延迟
+      await new Promise(resolve => setTimeout(resolve, 300))
+      
+      // Mock 数据（开发阶段使用）
+      const stats = {
+        totalUsers: 1256,
+        totalOrders: 456,
+        totalAmount: 125680,
+        activeVolunteers: 89
+      }
+      
+      this.setData({ stats })
+    } catch (error) {
+      console.error('Fetch stats error:', error)
+      throw error
     }
   },
 
@@ -55,18 +99,23 @@ Page({
           })
           
           const option = {
-            title: { text: '订单趋势' },
+            title: { text: '订单趋势', textStyle: { color: themeColors.text } },
             tooltip: { trigger: 'axis' },
             xAxis: {
               type: 'category',
-              data: ['4-1', '4-2', '4-3', '4-4', '4-5', '4-6', '4-7']
+              data: ['4-1', '4-2', '4-3', '4-4', '4-5', '4-6', '4-7'],
+              axisLine: { lineStyle: { color: themeColors.border } }
             },
-            yAxis: { type: 'value' },
+            yAxis: { 
+              type: 'value',
+              axisLine: { lineStyle: { color: themeColors.border } },
+              splitLine: { lineStyle: { color: 'rgba(74, 93, 78, 0.1)' } }
+            },
             series: [{
               data: [120, 200, 150, 80, 70, 110, 130],
               type: 'line',
               smooth: true,
-              itemStyle: { color: '#4A5D4E' }
+              itemStyle: { color: themeColors.primary }
             }]
           }
           
@@ -93,11 +142,12 @@ Page({
           })
           
           const option = {
-            title: { text: '物种分布' },
+            title: { text: '物种分布', textStyle: { color: themeColors.text } },
             tooltip: { trigger: 'item' },
             legend: {
               orient: 'horizontal',
-              bottom: '0'
+              bottom: '0',
+              textStyle: { color: themeColors.text }
             },
             series: [{
               type: 'pie',
@@ -108,10 +158,12 @@ Page({
                 { value: 55, name: '其他' }
               ],
               itemStyle: {
-                borderRadius: 8
+                borderRadius: 8,
+                color: (params) => themeColors.chartColors[params.dataIndex % themeColors.chartColors.length]
               },
               label: {
-                formatter: '{b}: {d}%'
+                formatter: '{b}: {d}%',
+                color: themeColors.text
               }
             }]
           }
@@ -181,6 +233,54 @@ Page({
           })
         }
       }
+    })
+  },
+
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.onLoad().finally(() => {
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  // 图片上传压缩
+  async uploadCompressedImage(imagePath) {
+    try {
+      // 压缩图片
+      const compressedPath = await this.compressImage(imagePath, {
+        quality: 80,
+        maxWidth: 1024
+      })
+      
+      // TODO: 上传到云存储
+      // const uploadResult = await wx.cloud.uploadFile({
+      //   cloudPath: `stats/${Date.now()}.jpg`,
+      //   filePath: compressedPath
+      // })
+      
+      return compressedPath
+    } catch (error) {
+      console.error('Image upload error:', error)
+      throw error
+    }
+  },
+
+  // 压缩图片
+  compressImage(imagePath, options = {}) {
+    const { quality = 80, maxWidth = 1024 } = options
+    
+    return new Promise((resolve, reject) => {
+      wx.compressImage({
+        src: imagePath,
+        quality,
+        compressedWidth: maxWidth,
+        success: (res) => {
+          resolve(res.tempFilePath)
+        },
+        fail: (error) => {
+          reject(error)
+        }
+      })
     })
   }
 })

@@ -119,26 +119,38 @@ export function resizeChart(chart) {
 }
 
 /**
- * 创建深色主题配置
- * @returns {object} 深色主题配置
+ * 创建禅意主题配置（浅色米白风格）
+ * @returns {object} 禅意主题配置
  */
-export function createDarkTheme() {
+export function createZenTheme() {
   return {
-    backgroundColor: '#1a1a2e',
+    backgroundColor: '#EFEEE9',
     textStyle: {
-      color: '#ffffff'
+      color: '#333333'
     },
     axisLine: {
       lineStyle: {
-        color: 'rgba(255, 255, 255, 0.3)'
+        color: 'rgba(74, 93, 78, 0.3)'
       }
     },
     splitLine: {
       lineStyle: {
-        color: 'rgba(255, 255, 255, 0.1)'
+        color: 'rgba(74, 93, 78, 0.1)'
       }
-    }
+    },
+    primaryColor: '#4A5D4E',
+    secondaryColor: '#8FB396',
+    accentColor: '#FFA500'
   }
+}
+
+/**
+ * 创建深色主题配置（已弃用，改用禅意主题）
+ * @deprecated 使用 createZenTheme 代替
+ * @returns {object} 深色主题配置
+ */
+export function createDarkTheme() {
+  return createZenTheme()
 }
 
 /**
@@ -148,8 +160,35 @@ export function createDarkTheme() {
 export function createPrimaryTheme() {
   return {
     primaryColor: '#4A5D4E',
-    secondaryColor: '#FFA500',
+    secondaryColor: '#8FB396',
     accentColor: '#409EFF'
+  }
+}
+
+/**
+ * 获取 Stitch 主题色板
+ * @returns {object} 主题色板配置
+ */
+export function getStitchThemeColors() {
+  return {
+    primary: '#4A5D4E',      // 主色 - 深绿
+    secondary: '#8FB396',    // 辅助色 - 浅绿
+    accent: '#FFA500',       // 强调色 - 橙色
+    background: '#EFEEE9',   // 背景色 - 米白
+    card: '#FFFFFF',         // 卡片色 - 纯白
+    text: '#333333',         // 主文字
+    textSecondary: '#666666',// 次要文字
+    border: 'rgba(74, 93, 78, 0.1)', // 边框色
+    chartColors: [           // 图表色板
+      '#4A5D4E',
+      '#8FB396',
+      '#FFA500',
+      '#409EFF',
+      '#67C23A',
+      '#E6A23C',
+      '#F56C6C',
+      '#909399'
+    ]
   }
 }
 
