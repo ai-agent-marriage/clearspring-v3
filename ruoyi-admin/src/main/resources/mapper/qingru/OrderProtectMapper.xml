@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ruoyi.qingru.mapper.OrderProtectMapper">
     
     <resultMap type="OrderProtect" id="OrderProtectResult">
+        <result property="id"    column="id"    />
         <result property="orderNo"    column="order_no"    />
         <result property="userId"    column="user_id"    />
         <result property="orgId"    column="org_id"    />
@@ -21,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateTime"    column="update_time"    />
     </resultMap>
     
-    <insert id="insert" parameterType="OrderProtect">
+    <insert id="insert" parameterType="OrderProtect" useGeneratedKeys="true" keyProperty="id">
         insert into order_protect
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="orderNo != null">order_no,</if>
@@ -52,14 +53,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <select id="selectByOrderNo" parameterType="String" resultMap="OrderProtectResult">
-        select order_no, user_id, org_id, volunteer_id, species_id, quantity, amount, 
+        select id, order_no, user_id, org_id, volunteer_id, species_id, quantity, amount, 
                status, address, execute_images, pay_time, complete_time, create_time, update_time
         from order_protect
         where order_no = #{orderNo}
     </select>
     
     <select id="selectByUserId" resultMap="OrderProtectResult">
-        select order_no, user_id, org_id, volunteer_id, species_id, quantity, amount,
+        select id, order_no, user_id, org_id, volunteer_id, species_id, quantity, amount,
                status, address, execute_images, pay_time, complete_time, create_time, update_time
         from order_protect
         where user_id = #{userId}
@@ -258,5 +259,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         order by value desc
         limit #{limit}
     </select>
+    
+    <!-- 根据状态查询订单列表 -->
+    <select id="selectByStatus" resultMap="OrderProtectResult">
+        select id, order_no, user_id, org_id, volunteer_id, species_id, quantity, amount,
+               status, address, execute_images, pay_time, complete_time, create_time, update_time
+        from order_protect
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </where>
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <!-- 根据 ID 查询订单 -->
+    <select id="selectById" resultMap="OrderProtectResult">
+        select id, order_no, user_id, org_id, volunteer_id, species_id, quantity, amount,
+               status, address, execute_images, pay_time, complete_time, create_time, update_time
+        from order_protect
+        where id = #{id}
+    </select>
+    
+    <!-- 删除订单 -->
+    <delete id="delete" parameterType="Long">
+        delete from order_protect where id = #{id}
+    </delete>
     
 </mapper>

@@ -44,7 +44,7 @@ public class AdminUserController {
             return R.ok(users, "获取成功");
         } catch (Exception e) {
             log.error("获取用户列表失败", e);
-            return R.fail("获取失败：" + e.getMessage());
+            return R.fail(null, "获取失败：" + e.getMessage());
         }
     }
 
@@ -61,7 +61,7 @@ public class AdminUserController {
             return R.ok(user, "获取成功");
         } catch (Exception e) {
             log.error("获取用户详情失败", e);
-            return R.fail("获取失败：" + e.getMessage());
+            return R.fail(null, "获取失败：" + e.getMessage());
         }
     }
 
@@ -76,10 +76,10 @@ public class AdminUserController {
         log.info("更新用户状态，id={}, status={}", id, status);
         try {
             adminUserService.updateStatus(id, status);
-            return R.ok("更新成功");
+            return R.ok(null, "更新成功");
         } catch (Exception e) {
             log.error("更新用户状态失败", e);
-            return R.fail("更新失败：" + e.getMessage());
+            return R.fail(null, "更新失败：" + e.getMessage());
         }
     }
 
@@ -93,10 +93,10 @@ public class AdminUserController {
         log.info("删除用户，id={}", id);
         try {
             adminUserService.delete(id);
-            return R.ok("删除成功");
+            return R.ok(null, "删除成功");
         } catch (Exception e) {
             log.error("删除用户失败", e);
-            return R.fail("删除失败：" + e.getMessage());
+            return R.fail(null, "删除失败：" + e.getMessage());
         }
     }
 

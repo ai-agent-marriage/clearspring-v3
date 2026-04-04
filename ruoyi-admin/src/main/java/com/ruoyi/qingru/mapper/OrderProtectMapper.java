@@ -233,4 +233,29 @@ public interface OrderProtectMapper {
      */
     @Select("SELECT COUNT(*) FROM order_protect WHERE DATE(create_time) = CURDATE()")
     int countTodayOrders();
+    
+    /**
+     * 根据状态查询订单列表（支持分页）
+     * @param status 状态（可选）
+     * @param offset 偏移量
+     * @param limit 限制数量
+     * @return 订单列表
+     */
+    List<OrderProtect> selectByStatus(@Param("status") Integer status,
+                                       @Param("offset") Integer offset,
+                                       @Param("limit") Integer limit);
+    
+    /**
+     * 根据 ID 查询订单
+     * @param id 订单 ID
+     * @return 订单
+     */
+    OrderProtect selectById(@Param("id") Long id);
+    
+    /**
+     * 删除订单
+     * @param id 订单 ID
+     * @return 影响行数
+     */
+    int delete(@Param("id") Long id);
 }

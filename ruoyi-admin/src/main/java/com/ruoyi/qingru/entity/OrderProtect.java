@@ -9,7 +9,12 @@ import java.util.Date;
  */
 public class OrderProtect {
     /**
-     * 订单号（主键）
+     * 自增 ID（主键）
+     */
+    private Long id;
+    
+    /**
+     * 订单号（唯一标识）
      */
     private String orderNo;
     
@@ -175,5 +180,12 @@ public class OrderProtect {
     }
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 }
