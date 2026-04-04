@@ -95,4 +95,89 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </if>
     </select>
     
+    <!-- 统计待承接订单数（状态=1） -->
+    <select id="countPendingOrders" resultType="Integer">
+        select count(1) from order_protect
+        where org_id = #{orgId} and status = 1
+    </select>
+    
+    <!-- 统计今日待执行订单数 -->
+    <select id="countTodayTasks" resultType="Integer">
+        select count(1) from order_protect
+        where org_id = #{orgId} 
+        and status in (2, 3)
+        and DATE(create_time) = CURDATE()
+    </select>
+    
+    <!-- 统计待用户确认订单数（状态=4） -->
+    <select id="countPendingConfirm" resultType="Integer">
+        select count(1) from order_protect
+        where org_id = #{orgId} and status = 4
+    </select>
+    
+    <!-- 统计累计圆满执行订单数（状态=5） -->
+    <select id="countCompletedOrders" resultType="Integer">
+        select count(1) from order_protect
+        where org_id = #{orgId} and status = 5
+    </select>
+    
+    <!-- 统计待处理用户异议订单数 -->
+    <select id="countPendingDispute" resultType="Integer">
+        select count(1) from order_protect
+        where org_id = #{orgId} and status = 6
+    </select>
+    
+    <!-- 统计机构订单总数 -->
+    <select id="countOrgOrders" resultType="Integer">
+        select count(1) from order_protect
+        where org_id = #{orgId}
+        <if test="startDate != null and startDate != ''">
+            and DATE(create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and DATE(create_time) &lt;= #{endDate}
+        </if>
+    </select>
+    
+    <!-- 统计机构订单总金额 -->
+    <select id="sumOrgAmount" resultType="java.math.BigDecimal">
+        select IFNULL(SUM(amount), 0) from order_protect
+        where org_id = #{orgId}
+        <if test="startDate != null and startDate != ''">
+            and DATE(create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and DATE(create_time) &lt;= #{endDate}
+        </if>
+    </select>
+    
+    <!-- 统计累计委托订单数 -->
+    <select id="countTotalOrders" resultType="Integer">
+        select count(1) from order_protect
+    </select>
+    
+    <!-- 导出订单数据 -->
+    <select id="selectForExport" resultMap="OrderProtectResult">
+        select 
+            op.order_no,
+            op.create_time,
+            s.name as species_name,
+            op.quantity,
+            op.amount,
+            op.status as status_name
+        from order_protect op
+        left join species s on op.species_id = s.id
+        where 1=1
+        <if test="orgId != null">
+            and op.org_id = #{orgId}
+        </if>
+        <if test="startDate != null and startDate != ''">
+            and DATE(op.create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and DATE(op.create_time) &lt;= #{endDate}
+        </if>
+        order by op.create_time desc
+    </select>
+    
 </mapper>

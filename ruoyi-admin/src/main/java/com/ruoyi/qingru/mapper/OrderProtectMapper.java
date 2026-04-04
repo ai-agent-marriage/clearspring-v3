@@ -77,4 +77,91 @@ public interface OrderProtectMapper {
      * @return 影响行数
      */
     int updateStatus(@Param("orderNo") String orderNo, @Param("status") Integer status);
+    
+    /**
+     * 统计待承接订单数（状态=1）
+     * @param orgId 机构 ID
+     * @return 订单数量
+     */
+    int countPendingOrders(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计今日待执行订单数
+     * @param orgId 机构 ID
+     * @return 订单数量
+     */
+    int countTodayTasks(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计待用户确认订单数（状态=4）
+     * @param orgId 机构 ID
+     * @return 订单数量
+     */
+    int countPendingConfirm(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计累计圆满执行订单数（状态=5）
+     * @param orgId 机构 ID
+     * @return 订单数量
+     */
+    int countCompletedOrders(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计待处理用户异议订单数
+     * @param orgId 机构 ID
+     * @return 订单数量
+     */
+    int countPendingDispute(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计机构订单总数
+     * @param orgId 机构 ID
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 订单数量
+     */
+    int countOrgOrders(@Param("orgId") Long orgId,
+                       @Param("startDate") String startDate,
+                       @Param("endDate") String endDate);
+    
+    /**
+     * 统计机构订单总金额
+     * @param orgId 机构 ID
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 总金额
+     */
+    java.math.BigDecimal sumOrgAmount(@Param("orgId") Long orgId,
+                                       @Param("startDate") String startDate,
+                                       @Param("endDate") String endDate);
+    
+    /**
+     * 统计累计注册用户数
+     * @return 用户数量
+     */
+    int countTotalUsers();
+    
+    /**
+     * 统计今日日活用户数
+     * @return 用户数量
+     */
+    int countDailyActiveUsers();
+    
+    /**
+     * 统计累计委托订单数
+     * @return 订单数量
+     */
+    int countTotalOrders();
+    
+    /**
+     * 导出订单数据
+     * @param orgId 机构 ID
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 订单列表
+     */
+    java.util.List<com.ruoyi.qingru.entity.OrderExportDTO> selectForExport(
+            @Param("orgId") Long orgId,
+            @Param("startDate") String startDate,
+            @Param("endDate") String endDate);
 }

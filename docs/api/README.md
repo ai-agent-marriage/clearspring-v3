@@ -664,9 +664,286 @@ GET /protect/record/detail/1
 
 ---
 
+## 机构端接口
+
+### 1. 获取机构工作台数据
+
+**接口**: `GET /org/manage/dashboard`
+
+**描述**: 获取机构工作台数据，包括待办订单、待执行任务、待办事项等。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| orgId | long | 是 | 机构 ID |
+
+**请求示例**:
+```
+GET /org/manage/dashboard?orgId=1
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "pendingOrders": 5,
+    "todayTasks": 3,
+    "pendingConfirm": 2,
+    "completedOrders": 120,
+    "todos": [
+      {"type": "audit", "title": "待审核执行材料", "count": 3},
+      {"type": "settle", "title": "待结算订单", "count": 2}
+    ]
+  }
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| pendingOrders | integer | 待承接订单数 |
+| todayTasks | integer | 今日待执行订单数 |
+| pendingConfirm | integer | 待用户确认订单数 |
+| completedOrders | integer | 累计圆满执行订单数 |
+| todos | array | 待办事项列表 |
+
+---
+
+### 2. 生成志愿者邀请码
+
+**接口**: `POST /org/manage/invite-code`
+
+**描述**: 生成志愿者邀请码，用于邀请新志愿者加入机构。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| orgId | long | 是 | 机构 ID |
+
+**请求示例**:
+```
+POST /org/manage/invite-code?orgId=1
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "生成成功",
+  "data": "INV1202604071234567890"
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| data | string | 志愿者邀请码 |
+
+---
+
+## 数据统计接口
+
+### 1. 获取机构统计数据
+
+**接口**: `GET /statistics/org`
+
+**描述**: 获取机构统计数据，包括订单数、金额、志愿者数、合规率等。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| orgId | long | 是 | 机构 ID |
+| startDate | string | 否 | 开始日期，格式：yyyy-MM-dd |
+| endDate | string | 否 | 结束日期，格式：yyyy-MM-dd |
+
+**请求示例**:
+```
+GET /statistics/org?orgId=1&startDate=2026-04-01&endDate=2026-04-30
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "orgId": 1,
+    "totalOrders": 150,
+    "totalAmount": 15000.00,
+    "totalVolunteers": 25,
+    "activeVolunteers": 18,
+    "complianceRate": 95.50,
+    "statisticsDate": "2026-04-07 15:00:00"
+  }
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| orgId | long | 机构 ID |
+| totalOrders | integer | 总订单数 |
+| totalAmount | decimal | 总金额 |
+| totalVolunteers | integer | 志愿者总数 |
+| activeVolunteers | integer | 活跃志愿者数 |
+| complianceRate | decimal | 合规执行率（%） |
+| statisticsDate | datetime | 统计日期 |
+
+---
+
+### 2. 获取平台统计数据
+
+**接口**: `GET /statistics/platform`
+
+**描述**: 获取平台统计数据（管理员权限），包括用户数、订单数、营收等。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| startDate | string | 否 | 开始日期 |
+| endDate | string | 否 | 结束日期 |
+
+**请求示例**:
+```
+GET /statistics/platform?startDate=2026-04-01&endDate=2026-04-30
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "totalUsers": 5000,
+    "dailyActiveUsers": 350,
+    "totalOrders": 2000,
+    "totalRevenue": 200000.00,
+    "orderCompletionRate": 85.00,
+    "contentAuditRate": 95.00,
+    "statisticsDate": "2026-04-07 15:00:00"
+  }
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| totalUsers | integer | 累计注册用户数 |
+| dailyActiveUsers | integer | 今日日活用户数 |
+| totalOrders | integer | 累计委托订单数 |
+| totalRevenue | decimal | 累计平台营收 |
+| orderCompletionRate | decimal | 订单完成率（%） |
+| contentAuditRate | decimal | 内容审核通过率（%） |
+| statisticsDate | datetime | 统计日期 |
+
+---
+
+## 后台管理接口
+
+### 1. 获取后台管理仪表盘数据
+
+**接口**: `GET /admin/dashboard`
+
+**描述**: 获取后台管理仪表盘数据。
+
+**请求参数**: 无
+
+**响应示例**: 同平台统计数据
+
+---
+
+### 2. 获取运营数据趋势
+
+**接口**: `GET /admin/trend`
+
+**描述**: 获取运营数据趋势，支持多种指标。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| metric | string | 是 | 指标名称：users/orders/revenue |
+| startDate | string | 是 | 开始日期 |
+| endDate | string | 是 | 结束日期 |
+
+**请求示例**:
+```
+GET /admin/trend?metric=users&startDate=2026-04-01&endDate=2026-04-30
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": [
+    {"date": "2026-04-01", "value": 120, "metric": "users"},
+    {"date": "2026-04-02", "value": 135, "metric": "users"},
+    {"date": "2026-04-03", "value": 128, "metric": "users"}
+  ]
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| date | string | 日期 |
+| value | number | 指标值 |
+| metric | string | 指标名称 |
+
+---
+
+## 报表导出接口
+
+### 1. 导出订单报表
+
+**接口**: `GET /export/orders`
+
+**描述**: 导出订单报表（Excel 格式）。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| orgId | long | 否 | 机构 ID |
+| startDate | string | 否 | 开始日期 |
+| endDate | string | 否 | 结束日期 |
+
+**请求示例**:
+```
+GET /export/orders?orgId=1&startDate=2026-04-01&endDate=2026-04-30
+```
+
+**响应**: Excel 文件下载
+
+**Excel 列说明**:
+
+| 列名 | 说明 |
+|------|------|
+| 订单号 | 订单编号 |
+| 下单时间 | 订单创建时间 |
+| 护生物种 | 物种名称 |
+| 数量 | 护生数量 |
+| 金额 | 订单金额 |
+| 状态 | 订单状态 |
+
+---
+
 ## 版本历史
 
 | 版本 | 日期 | 说明 |
 |------|------|------|
 | v1.0 | 2026-04-07 | 初始版本，包含佛历、禅理、物种、海报接口 |
 | v1.1 | 2026-04-07 | 新增护生记录、订单、证书接口，集成内容安全 API |
+| v1.2 | 2026-04-07 | 新增机构端接口、数据统计接口、后台管理接口、报表导出接口 |

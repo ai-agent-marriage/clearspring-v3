@@ -72,4 +72,33 @@ public interface TaskExecuteMapper {
      * @return 合规任务数
      */
     int countCompliantTasks(@Param("volunteerId") Long volunteerId);
+    
+    /**
+     * 统计待审核执行材料数
+     * @param orgId 机构 ID
+     * @return 数量
+     */
+    int countPendingAudit(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计机构执行任务总数
+     * @param orgId 机构 ID
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 数量
+     */
+    int countByOrgId(@Param("orgId") Long orgId,
+                     @Param("startDate") String startDate,
+                     @Param("endDate") String endDate);
+    
+    /**
+     * 统计机构合规执行任务数
+     * @param orgId 机构 ID
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 数量
+     */
+    int countCompliantByOrgId(@Param("orgId") Long orgId,
+                               @Param("startDate") String startDate,
+                               @Param("endDate") String endDate);
 }

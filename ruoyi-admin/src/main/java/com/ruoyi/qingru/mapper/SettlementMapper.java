@@ -62,4 +62,17 @@ public interface SettlementMapper {
                                              @Param("status") Integer status,
                                              @Param("offset") Integer offset,
                                              @Param("limit") Integer limit);
+    
+    /**
+     * 统计待结算订单数
+     * @param orgId 机构 ID
+     * @return 数量
+     */
+    int countPendingSettle(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计累计平台营收
+     * @return 总金额
+     */
+    java.math.BigDecimal sumTotalRevenue();
 }

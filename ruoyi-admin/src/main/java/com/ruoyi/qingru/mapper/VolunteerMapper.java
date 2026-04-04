@@ -57,4 +57,22 @@ public interface VolunteerMapper {
      * @return 影响行数
      */
     int updateById(@Param("id") Long id, @Param("volunteer") Volunteer volunteer);
+    
+    /**
+     * 统计机构志愿者总数
+     * @param orgId 机构 ID
+     * @return 数量
+     */
+    int countByOrgId(@Param("orgId") Long orgId);
+    
+    /**
+     * 统计机构活跃志愿者数
+     * @param orgId 机构 ID
+     * @param startDate 开始日期
+     * @param endDate 结束日期
+     * @return 数量
+     */
+    int countActiveByOrgId(@Param("orgId") Long orgId,
+                            @Param("startDate") String startDate,
+                            @Param("endDate") String endDate);
 }

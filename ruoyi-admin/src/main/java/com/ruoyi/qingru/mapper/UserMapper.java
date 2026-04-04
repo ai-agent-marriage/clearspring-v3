@@ -38,4 +38,25 @@ public interface UserMapper {
     @Update("UPDATE user SET nickname=#{nickname}, avatar=#{avatar}, phone=#{phone}, " +
             "role_code=#{roleCode}, org_id=#{orgId}, merit=#{merit} WHERE id=#{id}")
     int update(User user);
+    
+    /**
+     * 统计累计注册用户数
+     * @return 用户数量
+     */
+    @Select("SELECT COUNT(*) FROM user")
+    int countTotalUsers();
+    
+    /**
+     * 统计今日日活用户数
+     * @return 用户数量
+     */
+    @Select("SELECT COUNT(DISTINCT id) FROM user WHERE DATE(create_time) = CURDATE()")
+    int countDailyActiveUsers();
+    
+    /**
+     * 统计累计委托订单数
+     * @return 订单数量
+     */
+    @Select("SELECT COUNT(*) FROM order_protect")
+    int countTotalOrders();
 }

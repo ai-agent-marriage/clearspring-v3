@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.TaskExecuteMapper">
+    
+    <resultMap type="TaskExecute" id="TaskExecuteResult">
+        <result property="id"    column="id"    />
+        <result property="orderNo"    column="order_no"    />
+        <result property="volunteerId"    column="volunteer_id"    />
+        <result property="executeImages"    column="execute_images"    />
+        <result property="executeVideo"    column="execute_video"    />
+        <result property="remark"    column="remark"    />
+        <result property="status"    column="status"    />
+        <result property="auditStatus"    column="audit_status"    />
+        <result property="auditTime"    column="audit_time"    />
+        <result property="serviceHours"    column="service_hours"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+    
+    <insert id="insert" parameterType="TaskExecute" useGeneratedKeys="true" keyProperty="id">
+        insert into task_execute
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">order_no,</if>
+            <if test="volunteerId != null">volunteer_id,</if>
+            <if test="executeImages != null">execute_images,</if>
+            <if test="executeVideo != null">execute_video,</if>
+            <if test="remark != null">remark,</if>
+            <if test="status != null">status,</if>
+            <if test="auditStatus != null">audit_status,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">#{orderNo},</if>
+            <if test="volunteerId != null">#{volunteerId},</if>
+            <if test="executeImages != null">#{executeImages},</if>
+            <if test="executeVideo != null">#{executeVideo},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="status != null">#{status},</if>
+            <if test="auditStatus != null">#{auditStatus},</if>
+            sysdate(),
+        </trim>
+    </insert>
+    
+    <select id="selectById" parameterType="Long" resultMap="TaskExecuteResult">
+        select id, order_no, volunteer_id, execute_images, execute_video, remark,
+               status, audit_status, audit_time, service_hours, create_time, update_time
+        from task_execute
+        where id = #{id}
+    </select>
+    
+    <select id="selectByOrderNo" parameterType="String" resultMap="TaskExecuteResult">
+        select id, order_no, volunteer_id, execute_images, execute_video, remark,
+               status, audit_status, audit_time, service_hours, create_time, update_time
+        from task_execute
+        where order_no = #{orderNo}
+    </select>
+    
+    <select id="selectByVolunteerId" resultMap="TaskExecuteResult">
+        select id, order_no, volunteer_id, execute_images, execute_video, remark,
+               status, audit_status, audit_time, service_hours, create_time, update_time
+        from task_execute
+        where volunteer_id = #{volunteerId}
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <update id="update" parameterType="TaskExecute">
+        update task_execute
+        <trim prefix="set" suffixOverrides=",">
+            <if test="executeImages != null">execute_images = #{executeImages},</if>
+            <if test="executeVideo != null">execute_video = #{executeVideo},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="auditStatus != null">audit_status = #{auditStatus},</if>
+            <if test="auditTime != null">audit_time = #{auditTime},</if>
+            <if test="serviceHours != null">service_hours = #{serviceHours},</if>
+            update_time = sysdate(),
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <select id="countByVolunteerId" resultType="Integer">
+        select count(1) from task_execute
+        where volunteer_id = #{volunteerId}
+    </select>
+    
+    <select id="sumServiceHours" resultType="Integer">
+        select IFNULL(SUM(service_hours), 0) from task_execute
+        where volunteer_id = #{volunteerId}
+    </select>
+    
+    <select id="countCompliantTasks" resultType="Integer">
+        select count(1) from task_execute
+        where volunteer_id = #{volunteerId} and audit_status = 1
+    </select>
+    
+    <!-- 统计待审核执行材料数 -->
+    <select id="countPendingAudit" resultType="Integer">
+        select count(1) from task_execute te
+        inner join order_protect op on te.order_no = op.order_no
+        where op.org_id = #{orgId} and te.audit_status = 0
+    </select>
+    
+    <!-- 统计机构执行任务总数 -->
+    <select id="countByOrgId" resultType="Integer">
+        select count(1) from task_execute te
+        inner join order_protect op on te.order_no = op.order_no
+        where op.org_id = #{orgId}
+        <if test="startDate != null and startDate != ''">
+            and DATE(te.create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and DATE(te.create_time) &lt;= #{endDate}
+        </if>
+    </select>
+    
+    <!-- 统计机构合规执行任务数 -->
+    <select id="countCompliantByOrgId" resultType="Integer">
+        select count(1) from task_execute te
+        inner join order_protect op on te.order_no = op.order_no
+        where op.org_id = #{orgId} and te.audit_status = 1
+        <if test="startDate != null and startDate != ''">
+            and DATE(te.create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and DATE(te.create_time) &lt;= #{endDate}
+        </if>
+    </select>
+    
+</mapper>

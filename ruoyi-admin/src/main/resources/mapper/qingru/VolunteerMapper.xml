@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.VolunteerMapper">
+    
+    <resultMap type="Volunteer" id="VolunteerResult">
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="orgId"    column="org_id"    />
+        <result property="realName"    column="real_name"    />
+        <result property="phone"    column="phone"    />
+        <result property="idCard"    column="id_card"    />
+        <result property="skill"    column="skill"    />
+        <result property="status"    column="status"    />
+        <result property="totalTasks"    column="total_tasks"    />
+        <result property="totalHours"    column="total_hours"    />
+        <result property="rating"    column="rating"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+    
+    <select id="selectById" parameterType="Long" resultMap="VolunteerResult">
+        select id, user_id, org_id, real_name, phone, id_card, skill,
+               status, total_tasks, total_hours, rating, create_time, update_time
+        from volunteer
+        where id = #{id}
+    </select>
+    
+    <select id="selectByUserId" parameterType="Long" resultMap="VolunteerResult">
+        select id, user_id, org_id, real_name, phone, id_card, skill,
+               status, total_tasks, total_hours, rating, create_time, update_time
+        from volunteer
+        where user_id = #{userId}
+    </select>
+    
+    <insert id="insert" parameterType="Volunteer" useGeneratedKeys="true" keyProperty="id">
+        insert into volunteer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="orgId != null">org_id,</if>
+            <if test="realName != null">real_name,</if>
+            <if test="phone != null">phone,</if>
+            <if test="idCard != null">id_card,</if>
+            <if test="skill != null">skill,</if>
+            <if test="status != null">status,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="orgId != null">#{orgId},</if>
+            <if test="realName != null">#{realName},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="idCard != null">#{idCard},</if>
+            <if test="skill != null">#{skill},</if>
+            <if test="status != null">#{status},</if>
+            sysdate(),
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="Volunteer">
+        update volunteer
+        <trim prefix="set" suffixOverrides=",">
+            <if test="orgId != null">org_id = #{orgId},</if>
+            <if test="realName != null">real_name = #{realName},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="idCard != null">id_card = #{idCard},</if>
+            <if test="skill != null">skill = #{skill},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="totalTasks != null">total_tasks = #{totalTasks},</if>
+            <if test="totalHours != null">total_hours = #{totalHours},</if>
+            <if test="rating != null">rating = #{rating},</if>
+            update_time = sysdate(),
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <select id="selectByOrgId" resultMap="VolunteerResult">
+        select id, user_id, org_id, real_name, phone, id_card, skill,
+               status, total_tasks, total_hours, rating, create_time, update_time
+        from volunteer
+        where org_id = #{orgId}
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <update id="updateById">
+        update volunteer
+        <trim prefix="set" suffixOverrides=",">
+            <if test="volunteer.orgId != null">org_id = #{volunteer.orgId},</if>
+            <if test="volunteer.realName != null">real_name = #{volunteer.realName},</if>
+            <if test="volunteer.phone != null">phone = #{volunteer.phone},</if>
+            <if test="volunteer.idCard != null">id_card = #{volunteer.idCard},</if>
+            <if test="volunteer.skill != null">skill = #{volunteer.skill},</if>
+            <if test="volunteer.status != null">status = #{volunteer.status},</if>
+            update_time = sysdate(),
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <!-- 统计机构志愿者总数 -->
+    <select id="countByOrgId" resultType="Integer">
+        select count(1) from volunteer
+        where org_id = #{orgId}
+    </select>
+    
+    <!-- 统计机构活跃志愿者数 -->
+    <select id="countActiveByOrgId" resultType="Integer">
+        select count(DISTINCT v.id) from volunteer v
+        inner join task_execute te on v.id = te.volunteer_id
+        inner join order_protect op on te.order_no = op.order_no
+        where op.org_id = #{orgId}
+        <if test="startDate != null and startDate != ''">
+            and DATE(te.create_time) &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            and DATE(te.create_time) &lt;= #{endDate}
+        </if>
+    </select>
+    
+</mapper>
