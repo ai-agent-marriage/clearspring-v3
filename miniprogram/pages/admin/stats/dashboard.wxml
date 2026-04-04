@@ -1,0 +1,76 @@
+<!--pages/admin/stats/dashboard.wxml-->
+<view class="dashboard-container">
+  <!-- 顶部标题区 -->
+  <view class="header-section">
+    <text class="dashboard-title">清如·数据大屏</text>
+  </view>
+
+  <!-- 核心指标区 -->
+  <view class="metrics-section">
+    <view class="metric-card">
+      <view class="metric-label">累计用户数</view>
+      <view class="metric-value gradient-gold">{{stats.totalUsers}}</view>
+    </view>
+    <view class="metric-card">
+      <view class="metric-label">累计订单数</view>
+      <view class="metric-value gradient-gold">{{stats.totalOrders}}</view>
+    </view>
+    <view class="metric-card">
+      <view class="metric-label">累计成交金额</view>
+      <view class="metric-value gradient-gold">¥{{stats.totalAmount}}</view>
+    </view>
+    <view class="metric-card">
+      <view class="metric-label">活跃志愿者数</view>
+      <view class="metric-value gradient-gold">{{stats.activeVolunteers}}</view>
+    </view>
+  </view>
+
+  <!-- 图表区 2x2 网格 -->
+  <view class="charts-grid">
+    <!-- 左上：订单趋势图 -->
+    <view class="chart-box">
+      <view class="chart-title">订单趋势</view>
+      <view class="chart-wrapper">
+        <canvas type="2d" id="trendChart" class="chart-canvas"></canvas>
+      </view>
+    </view>
+
+    <!-- 右上：物种分布图 -->
+    <view class="chart-box">
+      <view class="chart-title">物种分布</view>
+      <view class="chart-wrapper">
+        <canvas type="2d" id="speciesChart" class="chart-canvas"></canvas>
+      </view>
+    </view>
+
+    <!-- 左下：订单状态分布 -->
+    <view class="chart-box">
+      <view class="chart-title">订单状态分布</view>
+      <view class="chart-wrapper">
+        <canvas type="2d" id="statusChart" class="chart-canvas"></canvas>
+      </view>
+    </view>
+
+    <!-- 右下：志愿者排行榜 -->
+    <view class="chart-box">
+      <view class="chart-title">志愿者排行榜</view>
+      <view class="chart-wrapper">
+        <canvas type="2d" id="rankChart" class="chart-canvas"></canvas>
+      </view>
+    </view>
+  </view>
+
+  <!-- 实时数据区 -->
+  <view class="realtime-section">
+    <view class="realtime-title">最新订单</view>
+    <view class="realtime-scroll">
+      <view class="scroll-content">
+        <view class="order-item" wx:for="{{latestOrders}}" wx:key="id">
+          <text class="order-time">{{item.time}}</text>
+          <text class="order-info">{{item.info}}</text>
+          <text class="order-amount">¥{{item.amount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

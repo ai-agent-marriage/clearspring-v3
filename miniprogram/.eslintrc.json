@@ -25,6 +25,12 @@
     "Page": "readonly",
     "Component": "readonly",
     "getApp": "readonly",
-    "getPage": "readonly"
+    "getPage": "readonly",
+    "getCurrentPages": "writable",
+    "jest": "readonly",
+    "describe": "readonly",
+    "test": "readonly",
+    "beforeEach": "readonly",
+    "expect": "readonly"
   }
 }

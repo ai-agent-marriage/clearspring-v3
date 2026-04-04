@@ -1,0 +1,46 @@
+<!--pages/admin/feedback/index.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <text class="nav-title">用户反馈</text>
+  </view>
+
+  <!-- 数据概览卡片 -->
+  <view class="stats-section">
+    <view class="stats-card">
+      <view class="stats-label">累计反馈数</view>
+      <view class="stats-value">{{stats.totalFeedback}}</view>
+    </view>
+    <view class="stats-card">
+      <view class="stats-label">待处理反馈</view>
+      <view class="stats-value pending">{{stats.pendingFeedback}}</view>
+    </view>
+    <view class="stats-card">
+      <view class="stats-label">已处理反馈</view>
+      <view class="stats-value processed">{{stats.processedFeedback}}</view>
+    </view>
+  </view>
+
+  <!-- 功能入口区 -->
+  <view class="menu-section">
+    <view class="section-title">功能入口</view>
+    <view class="menu-grid">
+      <view 
+        class="menu-card" 
+        wx:for="{{menus}}" 
+        wx:key="name"
+        bindtap="onMenuTap"
+        data-path="{{item.path}}"
+      >
+        <view class="menu-icon">{{item.icon}}</view>
+        <view class="menu-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作区 -->
+  <view class="quick-actions">
+    <button class="action-btn primary" bindtap="onSubmitFeedback">提交反馈</button>
+    <button class="action-btn secondary" bindtap="onViewPending">查看待处理</button>
+  </view>
+</view>

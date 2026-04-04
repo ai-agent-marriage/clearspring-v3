@@ -1,0 +1,129 @@
+/* pages/admin/stats/index.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部导航栏 */
+.nav-bar {
+  background-color: #4A5D4E;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-title {
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+/* 数据概览卡片 */
+.stats-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  padding: 20rpx;
+}
+
+.stats-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.stats-label {
+  color: #666666;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.stats-value {
+  color: #4A5D4E;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+/* 图表区 */
+.charts-section {
+  padding: 0 20rpx;
+}
+
+.chart-card {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.chart-title {
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.date-range {
+  display: flex;
+  gap: 20rpx;
+}
+
+.range-item {
+  color: #999999;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  background-color: #f5f5f5;
+}
+
+.range-item.active {
+  color: #ffffff;
+  background-color: #4A5D4E;
+}
+
+.chart-container {
+  width: 100%;
+  height: 400rpx;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* 快捷入口区 */
+.quick-actions {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.action-btn {
+  background-color: #4A5D4E;
+  color: #ffffff;
+  font-size: 30rpx;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  border: none;
+}
+
+.action-btn::after {
+  border: none;
+}

@@ -6,6 +6,14 @@
 // 模拟页面注册表
 const pageRegistry = {}
 
+// 模拟 getCurrentPages 函数
+global.getCurrentPages = function() {
+  // 返回当前页面栈，默认返回第一个页面
+  const firstPagePath = Object.keys(pageRegistry)[0] || '/pages/index/index'
+  const page = global.getPage(firstPagePath)
+  return [page]
+}
+
 // 模拟 Page 函数（全局）
 global.Page = function(options) {
   const path = options.__path__ || '/pages/index/index'
@@ -858,6 +866,301 @@ function createMockPage(path) {
     }
   }
   
+  // 反馈首页
+  if (path === '/pages/admin/feedback/index') {
+    return {
+      data: {
+        stats: {
+          totalFeedback: 256,
+          pendingFeedback: 12,
+          processedFeedback: 244
+        },
+        menus: [
+          { icon: '📝', name: '反馈提交', path: '/pages/admin/feedback/submit' },
+          { icon: '📋', name: '反馈管理', path: '/pages/admin/feedback/manage' },
+          { icon: '📊', name: '反馈统计', path: '/pages/admin/feedback/stats' },
+          { icon: '⚙️', name: '反馈设置', path: '/pages/admin/feedback/settings' }
+        ]
+      },
+      onLoad: function() {
+        this.loadFeedbackStats()
+      },
+      loadFeedbackStats: function() {
+        // 加载统计数据
+      },
+      onMenuTap: function(e) {
+        const path = e.currentTarget.dataset.path
+        wx.navigateTo({ url: path })
+      },
+      onSubmitFeedback: function() {
+        wx.navigateTo({ url: '/pages/admin/feedback/submit' })
+      },
+      onViewPending: function() {
+        wx.navigateTo({ url: '/pages/admin/feedback/manage?status=pending' })
+      }
+    }
+  }
+  
+  // 反馈提交页面
+  if (path === '/pages/admin/feedback/submit') {
+    return {
+      data: {
+        form: {
+          type: '',
+          title: '',
+          content: '',
+          images: [],
+          contact: ''
+        },
+        feedbackTypes: [
+          { value: 'suggestion', label: '功能建议' },
+          { value: 'bug', label: 'Bug 反馈' },
+          { value: 'other', label: '其他' }
+        ],
+        showTypeSelector: false,
+        selectedTypeIndex: -1,
+        isSubmitting: false,
+        showSuccessModal: false
+      },
+      onSelectType: function() {
+        this.setData({ showTypeSelector: true })
+      },
+      onConfirmType: function(e) {
+        const index = e.currentTarget.dataset.index
+        const type = this.data.feedbackTypes[index]
+        this.setData({
+          'form.type': type.value,
+          selectedTypeIndex: index,
+          showTypeSelector: false
+        })
+      },
+      onCancelType: function() {
+        this.setData({ showTypeSelector: false })
+      },
+      onTitleInput: function(e) {
+        this.setData({ 'form.title': e.detail.value })
+      },
+      onContentInput: function(e) {
+        const value = e.detail.value
+        if (value.length <= 500) {
+          this.setData({ 'form.content': value })
+        }
+      },
+      onContactInput: function(e) {
+        this.setData({ 'form.contact': e.detail.value })
+      },
+      onUploadImage: function() {
+        const currentCount = this.data.form.images.length
+        const maxCount = 6
+        const remaining = maxCount - currentCount
+
+        if (remaining <= 0) {
+          wx.showToast({
+            title: '最多上传 6 张图片',
+            icon: 'none'
+          })
+          return
+        }
+        
+        wx.chooseMedia({
+          count: remaining,
+          mediaType: ['image'],
+          sourceType: ['album', 'camera'],
+          sizeType: ['compressed'],
+          success: (res) => {
+            const tempFiles = res.tempFiles.map(file => file.tempFilePath)
+            const newImages = [...this.data.form.images, ...tempFiles]
+            this.setData({ 'form.images': newImages })
+          }
+        })
+      },
+      onPreviewImage: function(e) {
+        const index = e.currentTarget.dataset.index
+        wx.previewImage({
+          current: this.data.form.images[index],
+          urls: this.data.form.images
+        })
+      },
+      onDeleteImage: function(e) {
+        const index = e.currentTarget.dataset.index
+        const images = [...this.data.form.images]
+        images.splice(index, 1)
+        this.setData({ 'form.images': images })
+      },
+      onSubmit: function() {
+        const { form } = this.data
+        if (!form.type) {
+          wx.showToast({ title: '请选择反馈类型', icon: 'none' })
+          return
+        }
+        if (!form.title || form.title.trim() === '') {
+          wx.showToast({ title: '请填写反馈标题', icon: 'none' })
+          return
+        }
+        if (!form.content || form.content.trim() === '') {
+          wx.showToast({ title: '请填写反馈内容', icon: 'none' })
+          return
+        }
+        this.submitFeedback()
+      },
+      submitFeedback: function() {
+        this.setData({ isSubmitting: true })
+        setTimeout(() => {
+          this.setData({
+            isSubmitting: false,
+            showSuccessModal: true
+          })
+        }, 1000)
+      },
+      onCloseSuccessModal: function() {
+        this.setData({ showSuccessModal: false })
+        wx.navigateBack()
+      },
+      onReset: function() {
+        wx.showModal({
+          title: '提示',
+          content: '确定要清空表单吗？'
+        })
+      }
+    }
+  }
+  
+  // 反馈管理页面
+  if (path === '/pages/admin/feedback/manage') {
+    return {
+      data: {
+        showFilter: false,
+        filterType: 'all',
+        filterStatus: 'all',
+        feedbackList: [
+          {
+            id: 1,
+            type: 'suggestion',
+            typeName: '功能建议',
+            title: '希望增加数据统计功能',
+            submitTime: '2026-04-07 10:00:00',
+            status: 1,
+            statusName: '待处理'
+          },
+          {
+            id: 2,
+            type: 'bug',
+            typeName: 'Bug 反馈',
+            title: '订单页面加载失败',
+            submitTime: '2026-04-07 09:30:00',
+            status: 1,
+            statusName: '待处理'
+          },
+          {
+            id: 3,
+            type: 'suggestion',
+            typeName: '功能建议',
+            title: '建议优化搜索功能',
+            submitTime: '2026-04-06 16:20:00',
+            status: 2,
+            statusName: '已处理'
+          },
+          {
+            id: 4,
+            type: 'other',
+            typeName: '其他',
+            title: '其他问题反馈',
+            submitTime: '2026-04-06 14:15:00',
+            status: 2,
+            statusName: '已处理'
+          },
+          {
+            id: 5,
+            type: 'bug',
+            typeName: 'Bug 反馈',
+            title: '支付页面闪退问题',
+            submitTime: '2026-04-06 11:00:00',
+            status: 1,
+            statusName: '待处理'
+          }
+        ],
+        filterTypes: [
+          { value: 'all', label: '全部类型' },
+          { value: 'suggestion', label: '功能建议' },
+          { value: 'bug', label: 'Bug 反馈' },
+          { value: 'other', label: '其他' }
+        ],
+        filterStatuses: [
+          { value: 'all', label: '全部状态' },
+          { value: '1', label: '待处理' },
+          { value: '2', label: '已处理' }
+        ],
+        isLoading: false,
+        hasMore: true,
+        page: 1,
+        pageSize: 10
+      },
+      onLoad: function(options) {
+        if (options.status === 'pending') {
+          this.setData({ filterStatus: '1' })
+        }
+        this.loadFeedbackList()
+      },
+      loadFeedbackList: function() {
+        // 加载列表
+      },
+      onToggleFilter: function() {
+        this.setData({ showFilter: !this.data.showFilter })
+      },
+      onTypeChange: function(e) {
+        this.setData({
+          filterType: e.detail.value,
+          page: 1,
+          feedbackList: []
+        })
+        this.loadFeedbackList()
+      },
+      onStatusChange: function(e) {
+        this.setData({
+          filterStatus: e.detail.value,
+          page: 1,
+          feedbackList: []
+        })
+        this.loadFeedbackList()
+      },
+      onViewDetail: function(e) {
+        const id = e.currentTarget.dataset.id
+        wx.navigateTo({ url: `/pages/admin/feedback/detail?id=${id}` })
+      },
+      onProcess: function(e) {
+        const id = e.currentTarget.dataset.id
+        wx.showModal({
+          title: '处理反馈',
+          content: '确认标记为已处理？'
+        })
+      },
+      onReply: function(e) {
+        const id = e.currentTarget.dataset.id
+        wx.navigateTo({ url: `/pages/admin/feedback/reply?id=${id}` })
+      },
+      onExport: function() {
+        wx.showModal({
+          title: '导出数据',
+          content: '将导出当前筛选条件下的所有反馈数据为 Excel 文件，是否继续？'
+        })
+      },
+      onResetFilter: function() {
+        this.setData({
+          filterType: 'all',
+          filterStatus: 'all',
+          page: 1,
+          feedbackList: []
+        })
+        this.loadFeedbackList()
+      },
+      onPullDownRefresh: function() {
+        this.setData({ page: 1, feedbackList: [] })
+        this.loadFeedbackList()
+        wx.stopPullDownRefresh()
+      }
+    }
+  }
+  
   return { data: {} }
 }
 
@@ -904,7 +1207,9 @@ global.wx = {
   stopVoiceListen: jest.fn(),
   chooseVideo: jest.fn(),
   saveVideoToPhotosAlbum: jest.fn(),
-  saveImageToPhotosAlbum: jest.fn()
+  saveImageToPhotosAlbum: jest.fn(),
+  stopPullDownRefresh: jest.fn(),
+  startPullDownRefresh: jest.fn()
 }
 
 // 模拟 getApp 函数

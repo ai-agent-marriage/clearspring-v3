@@ -1,0 +1,137 @@
+/* pages/admin/feedback/index.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部导航栏 */
+.nav-bar {
+  background-color: #4A5D4E;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-title {
+  color: #ffffff;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+/* 数据概览卡片 */
+.stats-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20rpx;
+  padding: 20rpx;
+}
+
+.stats-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.stats-label {
+  color: #666666;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.stats-value {
+  color: #4A5D4E;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.stats-value.pending {
+  color: #FF6B6B;
+}
+
+.stats-value.processed {
+  color: #51CF66;
+}
+
+/* 功能入口区 */
+.menu-section {
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  color: #333333;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  padding-left: 10rpx;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.menu-card {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 40rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+}
+
+.menu-icon {
+  font-size: 64rpx;
+  margin-bottom: 16rpx;
+}
+
+.menu-name {
+  color: #333333;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+/* 快捷操作区 */
+.quick-actions {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 30rpx;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-btn::after {
+  border: none;
+}
+
+.action-btn.primary {
+  background-color: #4A5D4E;
+  color: #ffffff;
+}
+
+.action-btn.secondary {
+  background-color: #ffffff;
+  color: #4A5D4E;
+  border: 2rpx solid #4A5D4E;
+}
