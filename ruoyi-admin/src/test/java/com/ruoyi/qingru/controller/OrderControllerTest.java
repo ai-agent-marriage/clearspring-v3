@@ -2,6 +2,7 @@ package com.ruoyi.qingru.controller;
 
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.qingru.entity.OrderProtect;
+import com.ruoyi.qingru.entity.ReviewRequest;
 import com.ruoyi.qingru.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,9 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
@@ -39,66 +38,39 @@ class OrderControllerTest {
         testOrder = new OrderProtect();
         testOrder.setOrderNo("PRO202604040001");
         testOrder.setUserId(1L);
-        testOrder.setSpeciesId(1L);
-        testOrder.setQuantity(10);
         testOrder.setAmount(new BigDecimal("100.00"));
+        testOrder.setStatus(1);
     }
     
     @Test
-    void testCreateOrder() {
-        when(orderService.createOrder(any(OrderProtect.class))).thenReturn(testOrder);
+    void testCancelOrder() {
+        doNothing().when(orderService).updateOrderStatus("PRO202604040001", 6);
         
-        R<OrderProtect> result = orderController.createOrder(testOrder);
+        R<Void> result = orderController.cancelOrder("PRO202604040001");
         
-        assertNotNull(result);
         assertEquals(200, result.getCode());
-        assertNotNull(result.getData());
-        verify(orderService, times(1)).createOrder(any(OrderProtect.class));
+        verify(orderService, times(1)).updateOrderStatus("PRO202604040001", 6);
     }
     
     @Test
-    void testPayOrder() {
-        Map<String, String> payParams = new HashMap<>();
-        payParams.put("appId", "wx123456");
-        payParams.put("timeStamp", "1234567890");
+    void testCancelOrder_Failure() {
+        doThrow(new RuntimeException("订单不存在")).when(orderService).updateOrderStatus("NOT_EXIST", 6);
         
-        when(orderService.payOrder(anyString(), anyString())).thenReturn(payParams);
+        R<Void> result = orderController.cancelOrder("NOT_EXIST");
         
-        OrderController.PayRequest request = new OrderController.PayRequest();
-        request.setOrderNo("PRO202604040001");
-        request.setOpenid("test_openid");
-        
-        R<Map<String, String>> result = orderController.payOrder(request);
-        
-        assertNotNull(result);
-        assertEquals(200, result.getCode());
-        assertNotNull(result.getData());
+        assertNotEquals(200, result.getCode());
+        assertTrue(result.getMsg().contains("取消失败"));
     }
     
     @Test
-    void testGetMyOrders() {
-        List<OrderProtect> mockList = new ArrayList<>();
-        mockList.add(testOrder);
-        when(orderService.getMyOrders(anyLong(), any(), anyInt(), anyInt())).thenReturn(mockList);
+    void testApplyReview() {
+        ReviewRequest request = new ReviewRequest();
+        request.setReason("订单信息有误");
+        doNothing().when(orderService).applyReview("PRO202604040001", "订单信息有误");
         
-        R<List<OrderProtect>> result = orderController.getMyOrders(1L, null, 1, 10);
+        R<Void> result = orderController.applyReview("PRO202604040001", request);
         
-        assertNotNull(result);
         assertEquals(200, result.getCode());
-        assertEquals(1, result.getData().size());
-    }
-    
-    @Test
-    void testConfirmOrder() {
-        doNothing().when(orderService).confirmOrder(anyString(), anyInt(), anyString());
-        
-        OrderController.ConfirmRequest request = new OrderController.ConfirmRequest();
-        request.setScore(5);
-        request.setComment("很好的服务");
-        
-        R<Void> result = orderController.confirmOrder("PRO202604040001", request);
-        
-        assertNotNull(result);
-        assertEquals(200, result.getCode());
+        verify(orderService, times(1)).applyReview("PRO202604040001", "订单信息有误");
     }
 }
