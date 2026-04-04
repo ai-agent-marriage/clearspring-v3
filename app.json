@@ -53,6 +53,21 @@
         "list",
         "detail"
       ]
+    },
+    {
+      "root": "pages/help",
+      "pages": [
+        "index",
+        "detail"
+      ]
+    },
+    {
+      "root": "pages/about",
+      "pages": [
+        "index",
+        "agreement",
+        "privacy"
+      ]
     }
   ],
   "preloadRule": {
