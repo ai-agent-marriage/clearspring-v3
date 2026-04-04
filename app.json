@@ -28,7 +28,11 @@
     "pages/order/create",
     "pages/order/confirm",
     "pages/order/list",
-    "pages/order/detail"
+    "pages/order/detail",
+    "pages/org-home/index",
+    "pages/org-home/orders",
+    "pages/org-home/volunteers",
+    "pages/org-home/settlement"
   ],
   "window": {
     "backgroundTextStyle": "light",
