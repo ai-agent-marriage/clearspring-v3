@@ -5,17 +5,33 @@
     <text class="nav-title">订阅消息配置</text>
   </view>
 
+  <!-- 搜索栏 -->
+  <view class="search-section">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索模板名称或 ID"
+        value="{{searchKeyword}}"
+        bindinput="onSearch"
+        confirm-type="search"
+        bindconfirm="onSearch"
+      />
+      <text class="search-clear" wx:if="{{searchKeyword}}" bindtap="clearSearch">✕</text>
+    </view>
+  </view>
+
   <!-- 模板列表区 -->
   <view class="templates-section">
     <view class="section-header">
       <text class="section-title">消息模板</text>
-      <text class="section-count">共 {{templates.length}} 个</text>
+      <text class="section-count">共 {{filteredTemplates.length}} 个</text>
     </view>
     
-    <view class="templates-list">
+    <view class="templates-list" wx:if="{{filteredTemplates.length > 0}}">
       <view
         class="template-card"
-        wx:for="{{templates}}"
+        wx:for="{{filteredTemplates}}"
         wx:key="id"
       >
         <view class="template-header">
@@ -32,82 +48,127 @@
           />
         </view>
         
+        <view class="template-meta">
+          <view class="template-trigger">
+            <text class="meta-label">触发条件：</text>
+            <text class="meta-value">{{triggerOptions.find(t => t.value === item.trigger)?.label}}</text>
+          </view>
+        </view>
+        
         <view class="template-content">{{item.content}}</view>
         
         <view class="template-actions">
           <button class="action-btn-small" bindtap="editTemplate" data-index="{{index}}">编辑</button>
-          <button class="action-btn-small" bindtap="testSend" data-index="{{index}}">测试</button>
+          <button class="action-btn-small action-btn-test" bindtap="testSend" data-index="{{index}}">测试</button>
           <button class="action-btn-small action-btn-danger" bindtap="deleteTemplate" data-index="{{index}}">删除</button>
         </view>
       </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredTemplates.length === 0 && !loading}}">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">{{searchKeyword ? '未找到匹配的模板' : '暂无消息模板'}}</text>
+      <button class="empty-btn" wx:if="{{searchKeyword}}" bindtap="clearSearch">清空搜索</button>
+    </view>
+    
+    <!-- 加载状态 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">加载中...</text>
     </view>
   </view>
 
   <!-- 新增模板按钮 -->
   <view class="add-btn-wrapper">
-    <button class="add-btn" bindtap="addTemplate">+ 新增模板</button>
+    <button class="add-btn" bindtap="addTemplate">
+      <text class="add-btn-icon">+</text>
+      <text class="add-btn-text">新增模板</text>
+    </button>
   </view>
 
   <!-- 编辑弹窗 -->
-  <van-dialog
-    show="{{showEditDialog}}"
-    title="{{editingTemplate?.id ? '编辑模板' : '新增模板'}}"
-    show-cancel-button
-    confirm-button-color="#4A5D4E"
-    bind:confirm="saveTemplate"
-    bind:cancel="cancelEdit"
-  >
-    <view class="edit-form">
-      <view class="form-item">
-        <text class="form-label">模板名称</text>
-        <input
-          class="form-input"
-          placeholder="请输入模板名称"
-          value="{{editingTemplate?.name}}"
-          data-field="name"
-          bindinput="onInputChange"
-        />
+  <view class="dialog-mask" wx:if="{{showEditDialog}}" bindtap="cancelEdit">
+    <view class="dialog-content" catchtap="true">
+      <view class="dialog-header">
+        <text class="dialog-title">{{isEditing ? '编辑模板' : '新增模板'}}</text>
+        <text class="dialog-close" bindtap="cancelEdit">✕</text>
       </view>
       
-      <view class="form-item">
-        <text class="form-label">模板 ID</text>
-        <input
-          class="form-input"
-          placeholder="请输入模板 ID"
-          value="{{editingTemplate?.templateId}}"
-          data-field="templateId"
-          bindinput="onInputChange"
-        />
-      </view>
-      
-      <view class="form-item">
-        <text class="form-label">触发条件</text>
-        <picker
-          class="form-picker"
-          mode="selector"
-          range="{{triggerOptions}}"
-          range-key="label"
-          value="{{triggerOptions.findIndex(item => item.value === editingTemplate?.trigger)}}"
-          bindchange="onTriggerChange"
-        >
-          <view class="picker-value">
-            {{editingTemplate?.trigger ? triggerOptions.find(item => item.value === editingTemplate.trigger)?.label : '请选择'}}
+      <view class="edit-form">
+        <view class="form-item">
+          <view class="form-label-wrapper">
+            <text class="form-label">模板名称</text>
+            <text class="form-required">*</text>
           </view>
-        </picker>
+          <input
+            class="form-input {{formErrors.name ? 'input-error' : ''}}"
+            placeholder="请输入模板名称"
+            value="{{editingTemplate?.name}}"
+            data-field="name"
+            bindinput="onInputChange"
+          />
+          <text class="form-error" wx:if="{{formErrors.name}}">{{formErrors.name}}</text>
+        </view>
+        
+        <view class="form-item">
+          <view class="form-label-wrapper">
+            <text class="form-label">模板 ID</text>
+            <text class="form-required">*</text>
+          </view>
+          <input
+            class="form-input {{formErrors.templateId ? 'input-error' : ''}}"
+            placeholder="如：ORDER_CREATE"
+            value="{{editingTemplate?.templateId}}"
+            data-field="templateId"
+            bindinput="onInputChange"
+          />
+          <text class="form-error" wx:if="{{formErrors.templateId}}">{{formErrors.templateId}}</text>
+        </view>
+        
+        <view class="form-item">
+          <view class="form-label-wrapper">
+            <text class="form-label">触发条件</text>
+          </view>
+          <picker
+            class="form-picker"
+            mode="selector"
+            range="{{triggerOptions}}"
+            range-key="label"
+            value="{{triggerOptions.findIndex(item => item.value === editingTemplate?.trigger)}}"
+            bindchange="onTriggerChange"
+          >
+            <view class="picker-value">
+              {{editingTemplate?.trigger ? triggerOptions.find(item => item.value === editingTemplate.trigger)?.label : '请选择触发条件'}}
+            </view>
+          </picker>
+        </view>
+        
+        <view class="form-item">
+          <view class="form-label-wrapper">
+            <text class="form-label">消息内容</text>
+            <text class="form-required">*</text>
+          </view>
+          <textarea
+            class="form-textarea {{formErrors.content ? 'input-error' : ''}}"
+            placeholder="请输入消息内容，支持变量如 {{orderNo}}"
+            value="{{editingTemplate?.content}}"
+            data-field="content"
+            bindinput="onInputChange"
+            maxlength="200"
+          />
+          <view class="form-tip-wrapper">
+            <text class="form-tip">支持变量：{'{{orderNo}}'}, {'{{userName}}'} 等</text>
+            <text class="form-count">{{editingTemplate?.content?.length || 0}}/200</text>
+          </view>
+          <text class="form-error" wx:if="{{formErrors.content}}">{{formErrors.content}}</text>
+        </view>
       </view>
       
-      <view class="form-item">
-        <text class="form-label">消息内容</text>
-        <textarea
-          class="form-textarea"
-          placeholder="请输入消息内容，支持变量如 {{orderNo}}"
-          value="{{editingTemplate?.content}}"
-          data-field="content"
-          bindinput="onInputChange"
-          maxlength="200"
-        />
-        <text class="form-tip">支持变量：{'{{orderNo}}'}, {'{{userName}}'} 等</text>
+      <view class="dialog-footer">
+        <button class="dialog-btn dialog-btn-cancel" bindtap="cancelEdit">取消</button>
+        <button class="dialog-btn dialog-btn-confirm" bindtap="saveTemplate">保存</button>
       </view>
     </view>
-  </van-dialog>
+  </view>
 </view>

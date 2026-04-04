@@ -3,21 +3,39 @@
   <!-- 顶部导航栏 -->
   <view class="nav-bar">
     <text class="nav-title">消息推送</text>
+    <view class="nav-unread" wx:if="{{unreadCount > 0}}">
+      <text class="unread-badge">{{unreadCount > 99 ? '99+' : unreadCount}}</text>
+    </view>
   </view>
 
   <!-- 数据概览卡片 -->
   <view class="stats-section">
-    <view class="stats-card">
-      <view class="stats-label">累计发送消息数</view>
-      <view class="stats-value">{{stats.totalMessages}}</view>
+    <view class="stats-header">
+      <text class="stats-title">数据概览</text>
+      <text class="stats-update-time" wx:if="{{lastUpdateTime}}">更新于 {{lastUpdateTime}}</text>
     </view>
-    <view class="stats-card">
-      <view class="stats-label">今日发送消息数</view>
-      <view class="stats-value">{{stats.todayMessages}}</view>
-    </view>
-    <view class="stats-card">
-      <view class="stats-label">订阅用户数</view>
-      <view class="stats-value">{{stats.subscriberCount}}</view>
+    
+    <view class="stats-grid">
+      <view class="stats-card">
+        <view class="stats-icon">📊</view>
+        <view class="stats-value">{{stats.totalMessages}}</view>
+        <view class="stats-label">累计发送</view>
+      </view>
+      <view class="stats-card stats-card-today">
+        <view class="stats-icon">📅</view>
+        <view class="stats-value">{{stats.todayMessages}}</view>
+        <view class="stats-label">今日发送</view>
+      </view>
+      <view class="stats-card">
+        <view class="stats-icon">👥</view>
+        <view class="stats-value">{{stats.subscriberCount}}</view>
+        <view class="stats-label">订阅用户</view>
+      </view>
+      <view class="stats-card stats-card-warning" wx:if="{{stats.failedMessages > 0}}">
+        <view class="stats-icon">⚠️</view>
+        <view class="stats-value">{{stats.failedMessages}}</view>
+        <view class="stats-label">发送失败</view>
+      </view>
     </view>
   </view>
 
@@ -31,8 +49,12 @@
         wx:key="name"
         bindtap="goToMenu"
         data-path="{{item.path}}"
+        data-name="{{item.name}}"
+        hover-class="menu-card-hover"
       >
-        <view class="menu-icon">{{item.icon}}</view>
+        <view class="menu-icon-wrapper" style="background-color: {{item.color}}20;">
+          <view class="menu-icon" style="color: {{item.color}};">{{item.icon}}</view>
+        </view>
         <view class="menu-name">{{item.name}}</view>
       </view>
     </view>
@@ -40,7 +62,21 @@
 
   <!-- 快捷操作区 -->
   <view class="quick-actions">
-    <button class="action-btn" bindtap="sendTestMessage">发送测试消息</button>
-    <button class="action-btn action-btn-outline" bindtap="viewRecords">查看发送记录</button>
+    <view class="actions-title">快捷操作</view>
+    <view class="actions-grid">
+      <button class="action-btn action-btn-primary" bindtap="sendTestMessage" hover-class="action-btn-hover">
+        <text class="action-btn-icon">📤</text>
+        <text class="action-btn-text">发送测试</text>
+      </button>
+      <button class="action-btn action-btn-outline" bindtap="viewRecords" hover-class="action-btn-hover">
+        <text class="action-btn-icon">📋</text>
+        <text class="action-btn-text">查看记录</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-mask" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
   </view>
 </view>
