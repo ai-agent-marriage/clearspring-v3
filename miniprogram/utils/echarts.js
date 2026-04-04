@@ -1,6 +1,6 @@
 /**
  * ECharts 图表工具类封装
- * 提供统一的图表初始化和清理方法
+ * 提供统一的图表初始化、清理和性能优化方法
  */
 
 /**
@@ -206,4 +206,188 @@ export function createGradient(chart, type = 'linear', colors = []) {
     return new echarts.graphic.RadialGradient(0.5, 0.5, 1, colors)
   }
   return colors[0]
+}
+
+/**
+ * 优化大数据集渲染（数据采样）
+ * @param {array} data - 原始数据
+ * @param {number} maxPoints - 最大点数
+ * @returns {array} 采样后的数据
+ */
+export function sampleData(data, maxPoints = 100) {
+  if (!data || data.length <= maxPoints) {
+    return data
+  }
+  
+  const step = Math.ceil(data.length / maxPoints)
+  const sampled = []
+  
+  for (let i = 0; i < data.length; i += step) {
+    sampled.push(data[i])
+  }
+  
+  return sampled
+}
+
+/**
+ * 创建性能优化的图表配置
+ * @param {object} baseOption - 基础配置
+ * @param {object} options - 性能选项
+ * @returns {object} 优化后的配置
+ */
+export function createOptimizedOption(baseOption, options = {}) {
+  const {
+    large = false,
+    largeThreshold = 2000,
+    progressive = 400,
+    progressiveThreshold = 3000
+  } = options
+  
+  // 为 series 添加性能优化配置
+  const optimizedOption = { ...baseOption }
+  
+  if (optimizedOption.series) {
+    optimizedOption.series = optimizedOption.series.map(series => ({
+      ...series,
+      large,
+      largeThreshold,
+      progressive,
+      progressiveThreshold
+    }))
+  }
+  
+  return optimizedOption
+}
+
+/**
+ * 防抖函数（用于图表 resize）
+ * @param {function} func - 要执行的函数
+ * @param {number} wait - 等待时间（毫秒）
+ * @returns {function} 防抖后的函数
+ */
+export function debounce(func, wait = 300) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
+/**
+ * 创建响应式图表（自动适应屏幕）
+ * @param {object} chart - ECharts 实例
+ * @param {object} options - 选项
+ */
+export function createResponsiveChart(chart, options = {}) {
+  const { onResize = null } = options
+  
+  // 监听窗口大小变化
+  const resizeHandler = debounce(() => {
+    if (chart && !chart.isDisposed()) {
+      chart.resize()
+      if (onResize) {
+        onResize(chart)
+      }
+    }
+  }, 300)
+  
+  // 微信小程序中使用 onWindowResize
+  if (wx.onWindowResize) {
+    wx.onWindowResize(resizeHandler)
+  }
+  
+  return resizeHandler
+}
+
+/**
+ * 移除响应式监听
+ * @param {function} resizeHandler - resize 处理函数
+ */
+export function removeResponsiveListener(resizeHandler) {
+  if (wx.offWindowResize && resizeHandler) {
+    wx.offWindowResize(resizeHandler)
+  }
+}
+
+/**
+ * 创建加载动画
+ * @param {object} chart - ECharts 实例
+ */
+export function showChartLoading(chart) {
+  if (chart && typeof chart.showLoading === 'function') {
+    chart.showLoading({
+      text: '加载中...',
+      color: themeColors.primary,
+      textColor: themeColors.text,
+      maskColor: 'rgba(255, 255, 255, 0.8)',
+      zlevel: 2
+    })
+  }
+}
+
+/**
+ * 隐藏加载动画
+ * @param {object} chart - ECharts 实例
+ */
+export function hideChartLoading(chart) {
+  if (chart && typeof chart.hideLoading === 'function') {
+    chart.hideLoading()
+  }
+}
+
+/**
+ * 图表导出为图片
+ * @param {object} chart - ECharts 实例
+ * @param {object} options - 导出选项
+ * @returns {string} Base64 图片数据
+ */
+export function exportChartToDataURL(chart, options = {}) {
+  if (!chart) return null
+  
+  const {
+    pixelRatio = 2,
+    backgroundColor = '#fff',
+    type = 'png'
+  } = options
+  
+  return chart.getDataURL({
+    pixelRatio,
+    backgroundColor,
+    type
+  })
+}
+
+/**
+ * 批量初始化多个图表
+ * @param {array} chartConfigs - 图表配置数组
+ * @returns {Promise<object>} 图表实例映射
+ */
+export async function initCharts(chartConfigs) {
+  const charts = {}
+  
+  for (const config of chartConfigs) {
+    const { id, option, theme } = config
+    try {
+      const chart = await initChart(id, option, { theme })
+      charts[id] = chart
+    } catch (error) {
+      console.error(`Failed to init chart ${id}:`, error)
+    }
+  }
+  
+  return charts
+}
+
+/**
+ * 批量销毁图表
+ * @param {object} charts - 图表实例映射
+ */
+export function disposeCharts(charts) {
+  Object.values(charts).forEach(chart => {
+    disposeChart(chart)
+  })
 }
