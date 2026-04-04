@@ -19,10 +19,46 @@ global.Page = function(options) {
 // 模拟 getPage 函数
 global.getPage = function(path) {
   if (pageRegistry[path]) {
-    return pageRegistry[path]
+    const page = pageRegistry[path]
+    // 添加 setData 方法支持
+    if (!page.setData) {
+      page.setData = function(data) {
+        Object.keys(data).forEach(key => {
+          const keys = key.split('.')
+          if (keys.length === 1) {
+            this.data[key] = data[key]
+          } else {
+            let obj = this.data
+            for (let i = 0; i < keys.length - 1; i++) {
+              obj = obj[keys[i]]
+            }
+            obj[keys[keys.length - 1]] = data[key]
+          }
+        })
+      }
+    }
+    return page
   }
   // 如果页面未注册，返回默认模拟数据
-  return createMockPage(path)
+  const page = createMockPage(path)
+  // 添加 setData 方法支持
+  if (!page.setData) {
+    page.setData = function(data) {
+      Object.keys(data).forEach(key => {
+        const keys = key.split('.')
+        if (keys.length === 1) {
+          this.data[key] = data[key]
+        } else {
+          let obj = this.data
+          for (let i = 0; i < keys.length - 1; i++) {
+            obj = obj[keys[i]]
+          }
+          obj[keys[keys.length - 1]] = data[key]
+        }
+      })
+    }
+  }
+  return page
 }
 
 // 创建模拟页面数据
