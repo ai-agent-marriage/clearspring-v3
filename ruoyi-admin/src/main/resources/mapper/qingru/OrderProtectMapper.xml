@@ -287,4 +287,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         delete from order_protect where id = #{id}
     </delete>
     
+    <!-- 批量查询订单（优化导出功能，限制最大数量） -->
+    <select id="selectForExportWithLimit" resultMap="OrderProtectResult">
+        select id, order_no, user_id, org_id, volunteer_id, species_id, quantity, amount,
+               status, address, execute_images, pay_time, complete_time, create_time, update_time
+        from order_protect USE INDEX (idx_status_create_time)
+        <where>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </where>
+        order by create_time desc
+        limit #{maxCount}
+    </select>
+    
 </mapper>

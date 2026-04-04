@@ -3,21 +3,24 @@ package com.ruoyi.qingru.service;
 import com.ruoyi.qingru.entity.Species;
 import com.ruoyi.qingru.entity.ZenQuote;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 管理后台内容服务类
+ * 
+ * @author qingru
+ * @version 1.0
+ * @since 2026-04-04
  */
 @Service
 @Slf4j
 public class AdminContentService {
-    private static final Logger logger = LoggerFactory.getLogger(AdminContentService.class);
 
     // 物种数据（与 SpeciesService 共享数据源）
     private static final Map<Long, Species> SPECIES_MAP = new ConcurrentHashMap<>();
@@ -56,12 +59,13 @@ public class AdminContentService {
     }
 
     /**
-     * 获取物种列表
+     * 获取物种列表（带缓存）
      * @param type 类型（可选）
      * @param pageNum 页码
      * @param pageSize 每页数量
      * @return 物种列表
      */
+    @Cacheable(value = "content:species", key = "#type + ':' + #pageNum + ':' + #pageSize", unless = "#result == null")
     public List<Species> getSpeciesList(Integer type, Integer pageNum, Integer pageSize) {
         if (pageNum == null || pageNum < 1) {
             pageNum = 1;
@@ -70,7 +74,7 @@ public class AdminContentService {
             pageSize = 20;
         }
         
-        logger.info("获取物种列表，type={}, pageNum={}, pageSize={}", type, pageNum, pageSize);
+        log.info("获取物种列表，type={}, pageNum={}, pageSize={}", type, pageNum, pageSize);
         
         List<Species> result = new ArrayList<>(SPECIES_MAP.values());
         
@@ -96,12 +100,13 @@ public class AdminContentService {
     }
 
     /**
-     * 新增物种
+     * 新增物种（清除缓存）
      * @param species 物种信息
      */
     @Transactional
+    @CacheEvict(value = "content:species", allEntries = true)
     public void addSpecies(Species species) {
-        logger.info("新增物种，name={}, type={}", species.getName(), species.getType());
+        log.info("新增物种，name={}, type={}", species.getName(), species.getType());
         
         // 参数校验
         if (species == null || species.getName() == null || species.getName().trim().isEmpty()) {
@@ -122,17 +127,18 @@ public class AdminContentService {
         }
         
         SPECIES_MAP.put(id, species);
-        logger.info("新增物种成功，id={}, name={}", id, species.getName());
+        log.info("新增物种成功，id={}, name={}", id, species.getName());
     }
 
     /**
-     * 更新物种
+     * 更新物种（清除缓存）
      * @param id 物种 ID
      * @param species 物种信息
      */
     @Transactional
+    @CacheEvict(value = "content:species", allEntries = true)
     public void updateSpecies(Long id, Species species) {
-        logger.info("更新物种，id={}", id);
+        log.info("更新物种，id={}", id);
         
         Species existing = SPECIES_MAP.get(id);
         if (existing == null) {
@@ -159,31 +165,33 @@ public class AdminContentService {
             existing.setSort(species.getSort());
         }
         
-        logger.info("更新物种成功，id={}", id);
+        log.info("更新物种成功，id={}", id);
     }
 
     /**
-     * 删除物种
+     * 删除物种（清除缓存）
      * @param id 物种 ID
      */
     @Transactional
+    @CacheEvict(value = "content:species", allEntries = true)
     public void deleteSpecies(Long id) {
-        logger.info("删除物种，id={}", id);
+        log.info("删除物种，id={}", id);
         
         Species removed = SPECIES_MAP.remove(id);
         if (removed == null) {
             throw new RuntimeException("物种不存在，id=" + id);
         }
         
-        logger.info("删除物种成功，id={}, name={}", id, removed.getName());
+        log.info("删除物种成功，id={}, name={}", id, removed.getName());
     }
 
     /**
-     * 获取禅理列表
+     * 获取禅理列表（带缓存）
      * @param pageNum 页码
      * @param pageSize 每页数量
      * @return 禅理列表
      */
+    @Cacheable(value = "content:zen", key = "#pageNum + ':' + #pageSize", unless = "#result == null")
     public List<ZenQuote> getZenList(Integer pageNum, Integer pageSize) {
         if (pageNum == null || pageNum < 1) {
             pageNum = 1;
@@ -192,7 +200,7 @@ public class AdminContentService {
             pageSize = 20;
         }
         
-        logger.info("获取禅理列表，pageNum={}, pageSize={}", pageNum, pageSize);
+        log.info("获取禅理列表，pageNum={}, pageSize={}", pageNum, pageSize);
         
         List<ZenQuote> result = new ArrayList<>(ZEN_MAP.values());
         
@@ -210,12 +218,13 @@ public class AdminContentService {
     }
 
     /**
-     * 新增禅理
+     * 新增禅理（清除缓存）
      * @param zenQuote 禅理信息
      */
     @Transactional
+    @CacheEvict(value = "content:zen", allEntries = true)
     public void addZenQuote(ZenQuote zenQuote) {
-        logger.info("新增禅理，content={}, author={}", zenQuote.getContent(), zenQuote.getAuthor());
+        log.info("新增禅理，content={}, author={}", zenQuote.getContent(), zenQuote.getAuthor());
         
         // 参数校验
         if (zenQuote == null || zenQuote.getContent() == null || zenQuote.getContent().trim().isEmpty()) {
@@ -226,6 +235,6 @@ public class AdminContentService {
         zenQuote.setId(id);
         
         ZEN_MAP.put(id, zenQuote);
-        logger.info("新增禅理成功，id={}, content={}", id, zenQuote.getContent());
+        log.info("新增禅理成功，id={}, content={}", id, zenQuote.getContent());
     }
 }

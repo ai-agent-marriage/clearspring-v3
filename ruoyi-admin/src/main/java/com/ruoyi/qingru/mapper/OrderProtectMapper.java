@@ -258,4 +258,38 @@ public interface OrderProtectMapper {
      * @return 影响行数
      */
     int delete(@Param("id") Long id);
+    
+    /**
+     * 按状态统计订单数量（性能优化：使用 SQL 聚合）
+     * @param status 状态（null 表示统计所有）
+     * @return 订单数量
+     */
+    @Select("<script>" +
+            "SELECT COUNT(*) FROM order_protect" +
+            "<where>" +
+            "<if test='status != null'>status = #{status}</if>" +
+            "</where>" +
+            "</script>")
+    int countByStatus(@Param("status") Integer status);
+    
+    /**
+     * 按状态统计订单总金额（性能优化：使用 SQL 聚合）
+     * @param status 状态（null 表示统计所有）
+     * @return 总金额
+     */
+    @Select("<script>" +
+            "SELECT IFNULL(SUM(amount), 0) FROM order_protect" +
+            "<where>" +
+            "<if test='status != null'>status = #{status}</if>" +
+            "</where>" +
+            "</script>")
+    java.math.BigDecimal sumAmountByStatus(@Param("status") Integer status);
+    
+    /**
+     * 批量查询订单（优化导出功能，限制最大数量）
+     * @param status 状态
+     * @param maxCount 最大数量
+     * @return 订单列表
+     */
+    List<OrderProtect> selectForExportWithLimit(@Param("status") Integer status, @Param("maxCount") Integer maxCount);
 }

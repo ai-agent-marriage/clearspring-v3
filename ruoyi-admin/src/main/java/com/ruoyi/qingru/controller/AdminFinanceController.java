@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 public class AdminFinanceController {
     
-    private static final Logger logger = LoggerFactory.getLogger(AdminFinanceController.class);
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminFinanceController.class);
     
     @Autowired
     private AdminFinanceService adminFinanceService;
