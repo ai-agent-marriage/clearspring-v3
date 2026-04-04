@@ -10,6 +10,9 @@
  */
 
 describe('P0 问题修复验证 - 前端', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
   
   // P0-001: 首页数据加载失败导致白屏
   test('P0-001: 首页数据加载异常处理', () => {
