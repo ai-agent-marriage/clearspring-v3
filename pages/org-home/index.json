@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "机构工作台",
+  "navigationBarBackgroundColor": "#D4B87B",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {}
+}

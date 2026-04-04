@@ -1,0 +1,98 @@
+<!-- 清如 ClearSpring - 机构端首页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header glass">
+    <view class="header-title">机构工作台</view>
+    <view class="header-notification" bindtap="onNotification">
+      <text class="notification-icon">🔔</text>
+    </view>
+  </view>
+
+  <!-- 顶部机构信息区 -->
+  <view class="org-info-card card">
+    <view class="org-header">
+      <view class="org-name">{{org.name}}</view>
+      <view class="identity-tag">{{org.identity}}</view>
+    </view>
+    <view class="org-status-row">
+      <view class="status-badge audited" wx:if="{{org.audited}}">
+        <text class="status-icon">✅</text>
+        <text class="status-text">已审核</text>
+      </view>
+      <view class="org-total-orders">
+        <text class="total-label">累计执行订单</text>
+        <text class="total-value">{{org.totalOrders}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心数据看板 -->
+  <scroll-view class="stats-scroll" scroll-x="{{true}}" show-scrollbar="{{false}}">
+    <view class="stats-container">
+      <view class="stat-card">
+        <view class="stat-value text-warning">{{stats.pendingOrders}}</view>
+        <view class="stat-label">待承接订单</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value text-green">{{stats.todayTasks}}</view>
+        <view class="stat-label">今日待执行</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value text-info">{{stats.pendingConfirm}}</view>
+        <view class="stat-label">待用户确认</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value text-gold">{{stats.completedOrders}}</view>
+        <view class="stat-label">累计完成</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 待办事项区 -->
+  <view class="todos-section card">
+    <view class="section-header">
+      <text class="section-title">待办事项</text>
+    </view>
+    <view class="todos-list">
+      <view 
+        wx:for="{{todos}}" 
+        wx:key="type" 
+        class="todo-item"
+        data-type="{{item.type}}"
+        data-action="{{item.action}}"
+        bindtap="onTodoTap"
+      >
+        <view class="todo-left">
+          <text class="todo-title">{{item.title}}</text>
+          <view class="todo-badge" wx:if="{{item.count > 0}}">
+            <text class="badge-count">{{item.count}}</text>
+          </view>
+        </view>
+        <view class="todo-action">{{item.action}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心功能入口区 -->
+  <view class="functions-section">
+    <view class="functions-grid">
+      <view 
+        wx:for="{{functions}}" 
+        wx:key="name" 
+        class="function-card card"
+        data-path="{{item.path}}"
+        bindtap="onFunctionTap"
+      >
+        <view class="function-icon">{{item.icon}}</view>
+        <view class="function-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部固定按钮 -->
+  <view class="bottom-bar">
+    <button class="btn btn-switch" bindtap="onSwitchToProtect">
+      切换为祈福者视角
+    </button>
+  </view>
+</view>

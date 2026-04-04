@@ -1,0 +1,433 @@
+/* 清如 ClearSpring - 机构志愿者管理页样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: var(--spacing-4);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 顶部导航栏 ========== */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: rgba(212, 184, 123, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ========== 顶部操作区 ========== */
+.action-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.btn-invite {
+  width: 100%;
+  min-height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-1);
+}
+
+.btn-icon {
+  font-size: 36rpx;
+}
+
+.btn-invite:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* ========== 数据卡片 ========== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.stat-card {
+  padding: var(--spacing-2);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--green-main);
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.text-green {
+  color: var(--green-main);
+}
+
+.text-gold {
+  color: var(--gold-dim);
+}
+
+/* ========== 筛选栏 ========== */
+.filter-section {
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-radius: var(--radius-lg);
+}
+
+.filter-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-1) 0;
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.08);
+}
+
+.filter-item:last-child {
+  border-bottom: none;
+}
+
+.filter-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.filter-value {
+  font-size: 28rpx;
+  color: var(--text-dim);
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  padding-top: var(--spacing-2);
+}
+
+.btn-reset {
+  min-width: 120rpx;
+  min-height: 72rpx;
+  background: rgba(74, 93, 78, 0.1);
+  color: var(--green-main);
+  font-size: 26rpx;
+  border-radius: var(--radius-sm);
+  border: none;
+}
+
+.btn-apply {
+  min-width: 120rpx;
+  min-height: 72rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: var(--radius-sm);
+  border: none;
+}
+
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-1);
+  margin-bottom: var(--spacing-2);
+}
+
+.toggle-text {
+  font-size: 24rpx;
+  color: var(--gold-main);
+}
+
+/* ========== 志愿者列表区 ========== */
+.volunteers-section {
+  padding-bottom: var(--spacing-2);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-lg);
+  min-height: 400rpx;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: var(--spacing-2);
+}
+
+.empty-text {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-1);
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-3);
+}
+
+.btn-invite-empty {
+  min-width: 240rpx;
+  min-height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+}
+
+.volunteer-card {
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.volunteer-card:active {
+  transform: scale(0.98);
+}
+
+.volunteer-header {
+  margin-bottom: var(--spacing-2);
+}
+
+.volunteer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.volunteer-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8rpx;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.certified-badge {
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.volunteer-region {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.volunteer-stats {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: rgba(74, 93, 78, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.vol-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vol-stat-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--green-main);
+  margin-bottom: 4rpx;
+}
+
+.vol-stat-label {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.volunteer-actions {
+  display: flex;
+  gap: var(--spacing-1);
+  flex-wrap: wrap;
+}
+
+.btn-vol-action {
+  flex: 1;
+  min-width: 120rpx;
+  min-height: 64rpx;
+  font-size: 24rpx;
+  border-radius: var(--radius-sm);
+  border: none;
+}
+
+.btn-vol-action.btn-outline {
+  background: transparent;
+  color: var(--gold-main);
+  border: 2rpx solid var(--gold-main);
+}
+
+.btn-vol-action.btn-danger {
+  background: rgba(186, 26, 26, 0.1);
+  color: var(--error-soft);
+  border: 2rpx solid var(--error-soft);
+}
+
+.btn-vol-action:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* ========== 邀请码弹窗 ========== */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: var(--text-dim);
+  padding: var(--spacing-1);
+}
+
+.modal-body {
+  padding: var(--spacing-3);
+}
+
+.invite-code-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-3);
+  background: rgba(212, 184, 123, 0.1);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-3);
+}
+
+.invite-code-label {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-1);
+}
+
+.invite-code {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--gold-dim);
+  letter-spacing: 4rpx;
+}
+
+.invite-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.tip-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.modal-footer {
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+}
+
+.btn-copy {
+  flex: 1;
+  min-height: 88rpx;
+  background: rgba(74, 93, 78, 0.1);
+  color: var(--green-main);
+  font-size: 28rpx;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: none;
+}
+
+.btn-share {
+  flex: 1;
+  min-height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: none;
+}
+
+.btn-copy:active,
+.btn-share:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}

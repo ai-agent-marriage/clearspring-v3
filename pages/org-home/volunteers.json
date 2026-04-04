@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "志愿者团队",
+  "navigationBarBackgroundColor": "#D4B87B",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {}
+}

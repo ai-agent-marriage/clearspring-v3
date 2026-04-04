@@ -215,6 +215,204 @@ function createMockPage(path) {
     }
   }
   
+  if (path === '/pages/org-home/index') {
+    return {
+      data: {
+        org: {
+          id: 1,
+          name: '慈悲护生机构',
+          logo: '/assets/images/org-logo.png',
+          creditScore: 95
+        },
+        stats: {
+          pendingOrders: 5,
+          todayTasks: 3,
+          totalVolunteers: 128,
+          totalSettled: 50000
+        },
+        todos: [
+          { id: 1, title: '审核志愿者执行结果', action: 'audit', count: 3 },
+          { id: 2, title: '处理新订单', action: 'order', count: 5 },
+          { id: 3, title: '结算待确认', action: 'settlement', count: 2 }
+        ],
+        functions: [
+          { icon: 'order-icon', name: '订单管理', url: '/pages/org-home/orders' },
+          { icon: 'volunteer-icon', name: '志愿者管理', url: '/pages/org-home/volunteers' },
+          { icon: 'settlement-icon', name: '结算管理', url: '/pages/org-home/settlement' },
+          { icon: 'stats-icon', name: '数据统计', url: '/pages/org-home/stats' }
+        ],
+        showSwitchButton: true
+      }
+    }
+  }
+  
+  if (path === '/pages/org-home/orders') {
+    return {
+      data: {
+        tabs: [
+          { id: 0, name: '待承接' },
+          { id: 1, name: '进行中' },
+          { id: 2, name: '已完成' },
+          { id: 3, name: '已取消' }
+        ],
+        activeTab: 0,
+        showFilter: false,
+        orders: [
+          { 
+            id: 1, 
+            title: '放生活动订单', 
+            status: 1, 
+            amount: 500,
+            createTime: '2026-04-07 10:00',
+            actions: ['承接订单', '查看详情']
+          },
+          { 
+            id: 2, 
+            title: '护生活动订单', 
+            status: 2, 
+            amount: 800,
+            createTime: '2026-04-07 11:00',
+            actions: ['查看详情', '分配志愿者']
+          },
+          { 
+            id: 3, 
+            title: '救助活动订单', 
+            status: 1, 
+            amount: 300,
+            createTime: '2026-04-07 12:00',
+            actions: ['承接订单', '查看详情']
+          }
+        ],
+        filterOptions: {
+          status: [0, 1, 2, 3],
+          dateRange: null
+        }
+      },
+      switchTab: function(tabId) {
+        this.data.activeTab = tabId
+      },
+      toggleFilter: function() {
+        this.data.showFilter = !this.data.showFilter
+      }
+    }
+  }
+  
+  if (path === '/pages/org-home/volunteers') {
+    return {
+      data: {
+        showInviteModal: false,
+        inviteCode: 'VOL20260407001',
+        stats: {
+          totalVolunteers: 128,
+          activeVolunteers: 95,
+          newVolunteers: 12
+        },
+        volunteers: [
+          { 
+            id: 1, 
+            name: '张三', 
+            phone: '138****1234', 
+            status: 'active',
+            totalTasks: 25,
+            actions: ['查看详情', '发送通知', '评价']
+          },
+          { 
+            id: 2, 
+            name: '李四', 
+            phone: '139****5678', 
+            status: 'active',
+            totalTasks: 18,
+            actions: ['查看详情', '发送通知', '评价']
+          },
+          { 
+            id: 3, 
+            name: '王五', 
+            phone: '137****9012', 
+            status: 'inactive',
+            totalTasks: 10,
+            actions: ['查看详情', '发送通知']
+          }
+        ]
+      },
+      showInviteModal: function() {
+        this.data.showInviteModal = true
+      },
+      hideInviteModal: function() {
+        this.data.showInviteModal = false
+      },
+      copyInviteCode: function() {
+        wx.setClipboardData({ data: this.data.inviteCode })
+      }
+    }
+  }
+  
+  if (path === '/pages/org-home/settlement') {
+    return {
+      data: {
+        stats: {
+          totalSettled: 50000,
+          pendingSettlement: 5000,
+          thisMonth: 15000
+        },
+        tabs: [
+          { id: 0, name: '待结算' },
+          { id: 1, name: '结算记录' },
+          { id: 2, name: '发票管理' }
+        ],
+        activeTab: 0,
+        pendingSettlements: [
+          { 
+            id: 1, 
+            orderNo: 'ORD20260407001', 
+            amount: 500, 
+            status: 'pending',
+            createTime: '2026-04-07'
+          },
+          { 
+            id: 2, 
+            orderNo: 'ORD20260407002', 
+            amount: 800, 
+            status: 'pending',
+            createTime: '2026-04-07'
+          }
+        ],
+        settlementRecords: [
+          { 
+            id: 1, 
+            orderNo: 'ORD20260401001', 
+            amount: 1000, 
+            status: 'completed',
+            settlementTime: '2026-04-05'
+          }
+        ],
+        invoices: [
+          { 
+            id: 1, 
+            invoiceNo: 'INV202604001', 
+            amount: 5000,
+            status: 'uploaded',
+            uploadTime: '2026-04-06'
+          }
+        ]
+      },
+      switchTab: function(tabId) {
+        this.data.activeTab = tabId
+      },
+      exportSettlement: function() {
+        wx.downloadFile({
+          url: '/api/export/settlement',
+          success: () => {}
+        })
+      },
+      uploadInvoice: function() {
+        wx.chooseImage({
+          count: 1,
+          success: () => {}
+        })
+      }
+    }
+  }
+  
   return { data: {} }
 }
 

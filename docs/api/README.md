@@ -1766,9 +1766,9 @@
 
 ---
 
-*清如 V3 · API 接口文档 V1.1 更新完成* 🌊
+*清如 V3 · API 接口文档 V1.2 更新完成* 🌊
 
-**文档版本**: V1.1  
+**文档版本**: V1.2  
 **创建日期**: 2026-04-04  
 **最后更新**: 2026-04-07  
 **本次更新内容**: 
@@ -1777,5 +1777,425 @@
 - 添加机构管理接口（2 个）：获取机构详情、更新机构信息
 - 完善结算接口（2 个）：获取机构结算列表、批量结算
 - 新增接口总数：8 个
+
+---
+
+## 🏢 十四、机构端管理接口（Phase 1 Day 6）
+
+### 14.1 获取机构工作台数据
+
+**接口详情**:
+- **接口名称**: 获取机构工作台数据
+- **请求方式**: GET
+- **接口地址**: `/api/org/manage/dashboard`
+- **是否需要登录**: 是
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| orgId | long | 是 | 机构 ID |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "orgInfo": {
+      "id": 1001,
+      "orgName": "杭州护生协会",
+      "orgType": 1,
+      "status": 1,
+      "volunteerCount": 25,
+      "rating": 4.9
+    },
+    "statistics": {
+      "pendingOrders": 5,
+      "executingOrders": 3,
+      "pendingSettlement": 8,
+      "completedToday": 2,
+      "totalMerit": 1560
+    },
+    "todoList": [
+      {
+        "type": "order_review",
+        "title": "待审核执行结果",
+        "count": 3,
+        "priority": "high"
+      },
+      {
+        "type": "settlement_confirm",
+        "title": "待确认结算单",
+        "count": 5,
+        "priority": "medium"
+      }
+    ],
+    "quickActions": [
+      {"action": "accept_order", "label": "承接订单"},
+      {"action": "assign_task", "label": "分配任务"},
+      {"action": "audit_result", "label": "审核结果"},
+      {"action": "confirm_settlement", "label": "确认结算"}
+    ]
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 返回机构工作台核心数据概览
+- 包含待办事项提醒（带红色角标数量）
+- 提供快捷操作入口
+
+---
+
+### 14.2 生成志愿者邀请码
+
+**接口详情**:
+- **接口名称**: 生成志愿者邀请码
+- **请求方式**: POST
+- **接口地址**: `/api/org/manage/invite-code`
+- **是否需要登录**: 是
+
+**请求参数（Body）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| orgId | long | 是 | 机构 ID |
+| expireDays | int | 否 | 有效期天数，默认 7 天 |
+| maxUseCount | int | 否 | 最大使用次数，默认 10 次 |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "邀请码生成成功",
+  "data": {
+    "inviteCode": "HZHS2026040701",
+    "orgId": 1001,
+    "orgName": "杭州护生协会",
+    "expireTime": "2026-04-14 23:59:59",
+    "maxUseCount": 10,
+    "usedCount": 0,
+    "qrCodeUrl": "https://xxx/qrcode/invite-HZHS2026040701.png",
+    "shareUrl": "https://qingru.com/volunteer/invite?code=HZHS2026040701"
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 邀请码用于志愿者绑定机构
+- 支持设置有效期和使用次数限制
+- 生成二维码和分享链接
+
+---
+
+## 📊 十五、数据统计接口（Phase 1 Day 6）
+
+### 15.1 获取机构统计数据
+
+**接口详情**:
+- **接口名称**: 获取机构统计数据
+- **请求方式**: GET
+- **接口地址**: `/api/statistics/org`
+- **是否需要登录**: 是
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| orgId | long | 是 | 机构 ID |
+| startDate | string | 否 | 开始日期 yyyy-MM-dd |
+| endDate | string | 否 | 结束日期 yyyy-MM-dd |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "overview": {
+      "totalOrders": 156,
+      "completedOrders": 142,
+      "totalSettlement": 63900,
+      "totalMerit": 1560,
+      "volunteerCount": 25
+    },
+    "trend": {
+      "orderTrend": [
+        {"date": "2026-04-01", "count": 5},
+        {"date": "2026-04-02", "count": 8},
+        {"date": "2026-04-03", "count": 6}
+      ],
+      "settlementTrend": [
+        {"date": "2026-04-01", "amount": 2250},
+        {"date": "2026-04-02", "amount": 3600},
+        {"date": "2026-04-03", "amount": 2700}
+      ]
+    },
+    "speciesDistribution": [
+      {"speciesName": "鲢鱼", "count": 80, "percentage": 56.3},
+      {"speciesName": "鲫鱼", "count": 42, "percentage": 29.6},
+      {"speciesName": "泥鳅", "count": 20, "percentage": 14.1}
+    ]
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 返回机构维度的统计数据
+- 支持时间范围筛选
+- 包含趋势图和物种分布
+
+---
+
+### 15.2 获取平台统计数据
+
+**接口详情**:
+- **接口名称**: 获取平台统计数据
+- **请求方式**: GET
+- **接口地址**: `/api/statistics/platform`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| startDate | string | 否 | 开始日期 yyyy-MM-dd |
+| endDate | string | 否 | 结束日期 yyyy-MM-dd |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "overview": {
+      "totalUsers": 15680,
+      "totalOrders": 3256,
+      "totalOrgs": 45,
+      "totalVolunteers": 892,
+      "totalSettlement": 1456000,
+      "totalMerit": 32560
+    },
+    "trend": {
+      "userGrowthTrend": [
+        {"date": "2026-04-01", "newUsers": 120},
+        {"date": "2026-04-02", "newUsers": 135},
+        {"date": "2026-04-03", "newUsers": 128}
+      ],
+      "orderTrend": [
+        {"date": "2026-04-01", "count": 85},
+        {"date": "2026-04-02", "count": 92},
+        {"date": "2026-04-03", "count": 88}
+      ],
+      "revenueTrend": [
+        {"date": "2026-04-01", "amount": 38250},
+        {"date": "2026-04-02", "amount": 41400},
+        {"date": "2026-04-03", "amount": 39600}
+      ]
+    },
+    "topOrgs": [
+      {"orgId": 1001, "orgName": "杭州护生协会", "orderCount": 156, "rating": 4.9},
+      {"orgId": 1002, "orgName": "苏州护生会", "orderCount": 142, "rating": 4.8}
+    ],
+    "speciesRanking": [
+      {"speciesName": "鲢鱼", "count": 1850, "percentage": 56.8},
+      {"speciesName": "鲫鱼", "count": 980, "percentage": 30.1}
+    ]
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 返回平台整体运营数据
+- 仅管理员可查看
+- 包含用户增长、订单趋势、收入趋势
+
+---
+
+## 🛠️ 十六、后台管理接口（Phase 1 Day 6）
+
+### 16.1 获取后台管理仪表盘
+
+**接口详情**:
+- **接口名称**: 获取后台管理仪表盘
+- **请求方式**: GET
+- **接口地址**: `/api/admin/dashboard`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**: 无
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "today": {
+      "newUsers": 128,
+      "newOrders": 88,
+      "completedOrders": 76,
+      "settlementAmount": 34200,
+      "pendingReviews": 15
+    },
+    "alerts": [
+      {
+        "type": "warning",
+        "title": "待审核执行结果",
+        "count": 15,
+        "link": "/admin/reviews"
+      },
+      {
+        "type": "info",
+        "title": "待处理投诉",
+        "count": 3,
+        "link": "/admin/complaints"
+      }
+    ],
+    "quickStats": {
+      "activeOrgs": 42,
+      "activeVolunteers": 568,
+      "onlineUsers": 1256
+    }
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 管理员仪表盘核心数据
+- 包含今日关键指标
+- 显示待处理事项提醒
+
+---
+
+### 16.2 获取运营数据趋势
+
+**接口详情**:
+- **接口名称**: 获取运营数据趋势
+- **请求方式**: GET
+- **接口地址**: `/api/admin/trend`
+- **是否需要登录**: 是（需管理员权限）
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| metricType | string | 是 | 指标类型：users/orders/revenue/merit |
+| timeRange | string | 是 | 时间范围：7d/30d/90d |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "获取成功",
+  "data": {
+    "metricType": "orders",
+    "timeRange": "7d",
+    "trend": [
+      {"date": "2026-04-01", "value": 85, "growth": 5.2},
+      {"date": "2026-04-02", "value": 92, "growth": 8.2},
+      {"date": "2026-04-03", "value": 88, "growth": -4.3},
+      {"date": "2026-04-04", "value": 95, "growth": 8.0},
+      {"date": "2026-04-05", "value": 102, "growth": 7.4},
+      {"date": "2026-04-06", "value": 98, "growth": -3.9},
+      {"date": "2026-04-07", "value": 105, "growth": 7.1}
+    ],
+    "summary": {
+      "total": 665,
+      "avg": 95,
+      "max": 105,
+      "min": 85,
+      "overallGrowth": 23.5
+    }
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 支持多种指标类型查询
+- 返回趋势数据和增长率
+- 包含汇总统计信息
+
+---
+
+## 📤 十七、报表导出接口（Phase 1 Day 6）
+
+### 17.1 导出订单报表
+
+**接口详情**:
+- **接口名称**: 导出订单报表
+- **请求方式**: GET
+- **接口地址**: `/api/export/orders`
+- **是否需要登录**: 是
+
+**请求参数（Query）**:
+
+| 字段 | 类型 | 必选 | 说明 |
+|------|------|------|------|
+| startDate | string | 是 | 开始日期 yyyy-MM-dd |
+| endDate | string | 是 | 结束日期 yyyy-MM-dd |
+| orgId | long | 否 | 机构 ID 筛选 |
+| status | int | 否 | 订单状态筛选 |
+| exportType | string | 否 | 导出类型：xlsx/csv，默认 xlsx |
+
+**响应示例**:
+
+```json
+{
+  "code": 200,
+  "msg": "导出成功",
+  "data": {
+    "fileUrl": "https://xxx/export/orders-20260401-20260407.xlsx",
+    "fileName": "订单报表_20260401-20260407.xlsx",
+    "fileSize": "256KB",
+    "recordCount": 156,
+    "expireTime": "2026-04-14 23:59:59"
+  },
+  "timestamp": 1712345678901
+}
+```
+
+**业务说明**:
+- 使用 Apache POI 生成 Excel 文件
+- 支持按时间、机构、状态筛选
+- 导出文件保留 7 天
+
+**Excel 列头**:
+- 订单号
+- 用户姓名
+- 物种名称
+- 数量
+- 金额
+- 订单状态
+- 承接机构
+- 执行志愿者
+- 创建时间
+- 完成时间
+
+---
+
+*清如 V3 · API 接口文档 V1.3 更新完成* 🌊
+
+**文档版本**: V1.3  
+**创建日期**: 2026-04-04  
+**最后更新**: 2026-04-07  
+**Day 6 新增接口**: 
+- 机构端管理接口（2 个）：获取机构工作台数据、生成志愿者邀请码
+- 数据统计接口（2 个）：获取机构统计数据、获取平台统计数据
+- 后台管理接口（2 个）：获取后台管理仪表盘、获取运营数据趋势
+- 报表导出接口（1 个）：导出订单报表
+- Day 6 新增接口总数：7 个
 
 ---

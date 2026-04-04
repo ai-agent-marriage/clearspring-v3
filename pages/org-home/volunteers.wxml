@@ -1,0 +1,136 @@
+<!-- 清如 ClearSpring - 机构志愿者管理页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header glass">
+    <view class="header-title">志愿者团队</view>
+  </view>
+
+  <!-- 顶部操作区 -->
+  <view class="action-section">
+    <button class="btn btn-invite" bindtap="onGenerateInvite">
+      <text class="btn-icon">📩</text>
+      <text class="btn-text">生成邀请码</text>
+    </button>
+  </view>
+
+  <!-- 数据卡片 -->
+  <view class="stats-grid">
+    <view class="stat-card card">
+      <view class="stat-value">{{stats.totalVolunteers}}</view>
+      <view class="stat-label">绑定志愿者</view>
+    </view>
+    <view class="stat-card card">
+      <view class="stat-value text-green">{{stats.activeVolunteers}}</view>
+      <view class="stat-label">本月活跃</view>
+    </view>
+    <view class="stat-card card">
+      <view class="stat-value text-gold">{{stats.totalTasks}}</view>
+      <view class="stat-label">累计任务</view>
+    </view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-section card" wx:if="{{showFilter}}">
+    <view class="filter-item">
+      <text class="filter-label">执行区域</text>
+      <picker mode="selector" range="{{['广州', '深圳', '珠海', '佛山', '东莞']}}" value="{{filterRegion}}" bindchange="onFilterRegionChange">
+        <view class="filter-value">{{filterRegion || '选择区域'}}</view>
+      </picker>
+    </view>
+    <view class="filter-item">
+      <text class="filter-label">合规执行率</text>
+      <picker mode="selector" range="{{['全部', '90% 以上', '95% 以上', '100%']}}" value="{{filterCompliance}}" bindchange="onFilterComplianceChange">
+        <view class="filter-value">{{filterCompliance || '全部'}}</view>
+      </picker>
+    </view>
+    <view class="filter-actions">
+      <button class="btn btn-reset" bindtap="onResetFilter">重置</button>
+      <button class="btn btn-apply" bindtap="onApplyFilter">应用</button>
+    </view>
+  </view>
+
+  <!-- 筛选栏切换按钮 -->
+  <view class="filter-toggle" bindtap="onToggleFilter">
+    <text class="toggle-text">{{showFilter ? '收起筛选' : '展开筛选'}} {{showFilter ? '↑' : '↓'}}</text>
+  </view>
+
+  <!-- 志愿者列表区 -->
+  <view class="volunteers-section">
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{volunteers.length === 0}}">
+      <text class="empty-icon">👥</text>
+      <text class="empty-text">暂无绑定志愿者</text>
+      <text class="empty-desc">生成邀请码邀请志愿者加入吧</text>
+      <button class="btn btn-invite-empty" bindtap="onGenerateInvite">
+        生成邀请码
+      </button>
+    </view>
+
+    <!-- 志愿者卡片列表 -->
+    <view wx:for="{{volunteers}}" wx:key="id" class="volunteer-card card">
+      <view class="volunteer-header">
+        <view class="volunteer-info">
+          <view class="volunteer-name">
+            <text>{{item.name}}</text>
+            <text class="certified-badge" wx:if="{{item.certified}}">✅ 已实名</text>
+          </view>
+          <view class="volunteer-region">📍 {{item.region}}</view>
+        </view>
+      </view>
+      
+      <view class="volunteer-stats">
+        <view class="vol-stat">
+          <view class="vol-stat-value">{{item.totalTasks}}</view>
+          <view class="vol-stat-label">完成任务</view>
+        </view>
+        <view class="vol-stat">
+          <view class="vol-stat-value text-green">{{item.complianceRate}}%</view>
+          <view class="vol-stat-label">合规执行率</view>
+        </view>
+      </view>
+      
+      <view class="volunteer-actions">
+        <button 
+          wx:for="{{item.actions}}" 
+          wx:key="*this"
+          wx:for-item="action"
+          class="btn btn-vol-action {{action === '解绑' || action === '拉黑' ? 'btn-danger' : 'btn-outline'}}"
+          data-action="{{action}}"
+          data-volunteer="{{item}}"
+          bindtap="onVolunteerAction"
+        >
+          {{action}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 邀请码弹窗 -->
+  <view class="modal-mask" wx:if="{{showInviteModal}}" bindtap="onCloseInviteModal">
+    <view class="modal-content" catchtap="true">
+      <view class="modal-header">
+        <text class="modal-title">邀请志愿者</text>
+        <text class="modal-close" bindtap="onCloseInviteModal">✕</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="invite-code-box">
+          <text class="invite-code-label">邀请码</text>
+          <text class="invite-code">{{inviteCode}}</text>
+        </view>
+        
+        <view class="invite-tips">
+          <text class="tip-title">使用说明：</text>
+          <text class="tip-text">1. 将邀请码发送给志愿者</text>
+          <text class="tip-text">2. 志愿者注册时填写邀请码</text>
+          <text class="tip-text">3. 自动绑定到您的团队</text>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn btn-copy" bindtap="onCopyInviteCode">复制邀请码</button>
+        <button class="btn btn-share" bindtap="onShareInvite">分享邀请</button>
+      </view>
+    </view>
+  </view>
+</view>
