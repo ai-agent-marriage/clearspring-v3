@@ -65,7 +65,7 @@
 .filter-section {
   padding: var(--spacing-2);
   margin-bottom: var(--spacing-2);
-  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
   border-radius: var(--radius-lg);
 }
 
@@ -176,7 +176,7 @@
 .order-card {
   padding: var(--spacing-2);
   margin-bottom: var(--spacing-2);
-  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
 }
