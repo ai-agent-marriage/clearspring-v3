@@ -1313,6 +1313,348 @@ GET /content/species/detail/1
 
 ---
 
+## 消息推送接口
+
+### 微信订阅消息模板管理
+
+#### 1. 获取模板列表
+
+**接口**: `GET /message/template/list`
+
+**描述**: 获取所有微信订阅消息模板列表。
+
+**请求参数**: 无
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "操作成功",
+  "data": [
+    {
+      "id": 1,
+      "name": "订单创建通知",
+      "templateId": "order_create",
+      "trigger": "订单创建时",
+      "content": "您的订单已创建，订单号：{{orderId}}",
+      "enabled": 1,
+      "createTime": "2026-04-04 10:00:00"
+    }
+  ]
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | long | 模板 ID |
+| name | string | 模板名称 |
+| templateId | string | 微信模板 ID |
+| trigger | string | 触发条件 |
+| content | string | 消息内容 |
+| enabled | integer | 1 启用 0 禁用 |
+| createTime | datetime | 创建时间 |
+
+---
+
+#### 2. 新增模板
+
+**接口**: `POST /message/template/add`
+
+**描述**: 新增微信订阅消息模板。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| name | string | 是 | 模板名称 |
+| templateId | string | 是 | 微信模板 ID |
+| trigger | string | 否 | 触发条件 |
+| content | string | 否 | 消息内容 |
+| enabled | integer | 否 | 1 启用 0 禁用，默认 1 |
+
+**请求示例**:
+```json
+{
+  "name": "订单创建通知",
+  "templateId": "order_create",
+  "trigger": "订单创建时",
+  "content": "您的订单已创建，订单号：{{orderId}}",
+  "enabled": 1
+}
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "新增成功",
+  "data": 1
+}
+```
+
+---
+
+#### 3. 更新模板
+
+**接口**: `PUT /message/template/update/{id}`
+
+**描述**: 更新微信订阅消息模板。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 模板 ID |
+| name | string | 否 | 模板名称 |
+| templateId | string | 否 | 微信模板 ID |
+| trigger | string | 否 | 触发条件 |
+| content | string | 否 | 消息内容 |
+| enabled | integer | 否 | 1 启用 0 禁用 |
+
+---
+
+#### 4. 删除模板
+
+**接口**: `DELETE /message/template/delete/{id}`
+
+**描述**: 删除微信订阅消息模板。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 模板 ID |
+
+---
+
+#### 5. 发送测试消息
+
+**接口**: `POST /message/send/test`
+
+**描述**: 发送测试订阅消息。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| openid | string | 是 | 用户 openid |
+| templateId | string | 是 | 模板 ID |
+| data | object | 否 | 消息数据，key-value 格式 |
+| page | string | 否 | 跳转页面 |
+
+**请求示例**:
+```json
+{
+  "openid": "oXXXX123456",
+  "templateId": "order_create",
+  "data": {
+    "orderId": "ORDER_001"
+  },
+  "page": "pages/order/detail"
+}
+```
+
+---
+
+### 站内信管理
+
+#### 1. 获取站内信列表
+
+**接口**: `GET /message/internal/list`
+
+**描述**: 获取站内信列表，支持用户 ID、类型、状态筛选和分页。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| userId | long | 否 | 用户 ID |
+| type | integer | 否 | 类型：1 订单通知 2 系统通知 |
+| status | integer | 否 | 状态：1 未读 2 已读 |
+| pageNum | integer | 否 | 页码，默认 1 |
+| pageSize | integer | 否 | 每页数量，默认 10 |
+
+**请求示例**:
+```
+GET /message/internal/list?userId=1&type=1&status=1&pageNum=1&pageSize=10
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "操作成功",
+  "data": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "订单创建通知",
+      "content": "您的订单 ORDER_001 已创建成功",
+      "type": 1,
+      "status": 1,
+      "createTime": "2026-04-04 10:00:00"
+    }
+  ]
+}
+```
+
+**字段说明**:
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| id | long | 消息 ID |
+| userId | long | 接收用户 ID |
+| title | string | 消息标题 |
+| content | string | 消息内容 |
+| type | integer | 1 订单通知 2 系统通知 |
+| status | integer | 1 未读 2 已读 |
+| createTime | datetime | 创建时间 |
+
+---
+
+#### 2. 获取站内信详情
+
+**接口**: `GET /message/internal/detail/{id}`
+
+**描述**: 根据 ID 获取站内信详情。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 消息 ID |
+
+---
+
+#### 3. 新增站内信
+
+**接口**: `POST /message/internal/add`
+
+**描述**: 新增站内信。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| userId | long | 是 | 接收用户 ID |
+| title | string | 是 | 消息标题 |
+| content | string | 是 | 消息内容 |
+| type | integer | 否 | 1 订单通知 2 系统通知，默认 2 |
+| status | integer | 否 | 1 未读 2 已读，默认 1 |
+
+**请求示例**:
+```json
+{
+  "userId": 1,
+  "title": "系统通知",
+  "content": "这是一条测试消息",
+  "type": 2,
+  "status": 1
+}
+```
+
+---
+
+#### 4. 标记为已读
+
+**接口**: `PUT /message/internal/read/{id}`
+
+**描述**: 标记单条站内信为已读。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 消息 ID |
+
+---
+
+#### 5. 批量标记为已读
+
+**接口**: `PUT /message/internal/read/batch`
+
+**描述**: 批量标记站内信为已读。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| ids | List<long> | 是 | 消息 ID 列表 |
+
+**请求示例**:
+```json
+[1, 2, 3]
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "操作成功",
+  "data": 3
+}
+```
+
+---
+
+#### 6. 删除站内信
+
+**接口**: `DELETE /message/internal/delete/{id}`
+
+**描述**: 删除单条站内信。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| id | long | 是 | 消息 ID |
+
+---
+
+#### 7. 批量删除站内信
+
+**接口**: `DELETE /message/internal/delete/batch`
+
+**描述**: 批量删除站内信。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| ids | List<long> | 是 | 消息 ID 列表 |
+
+---
+
+#### 8. 获取未读消息数量
+
+**接口**: `GET /message/internal/unread/count`
+
+**描述**: 获取用户的未读消息数量。
+
+**请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| userId | long | 是 | 用户 ID |
+
+**请求示例**:
+```
+GET /message/internal/unread/count?userId=1
+```
+
+**响应示例**:
+```json
+{
+  "code": 200,
+  "msg": "操作成功",
+  "data": 5
+}
+```
+
+---
+
 ## 版本历史
 
 | 版本 | 日期 | 说明 |
@@ -1321,3 +1663,4 @@ GET /content/species/detail/1
 | v1.1 | 2026-04-07 | 新增护生记录、订单、证书接口，集成内容安全 API |
 | v1.2 | 2026-04-07 | 新增机构端接口、数据统计接口、后台管理接口、报表导出接口 |
 | v1.3 | 2026-04-04 | 新增内容管理接口：物种管理、公告管理、帮助文档、内容审核、敏感词管理 |
+| v1.4 | 2026-04-04 | 新增消息推送接口：微信订阅消息模板管理、站内信管理 |
