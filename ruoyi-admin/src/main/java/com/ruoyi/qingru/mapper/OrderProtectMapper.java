@@ -226,4 +226,11 @@ public interface OrderProtectMapper {
      * @return 排行榜数据
      */
     List<com.ruoyi.qingru.entity.RankData> selectOrgRank(@Param("limit") Integer limit);
+    
+    /**
+     * 统计今日订单数
+     * @return 订单数量
+     */
+    @Select("SELECT COUNT(*) FROM order_protect WHERE DATE(create_time) = CURDATE()")
+    int countTodayOrders();
 }

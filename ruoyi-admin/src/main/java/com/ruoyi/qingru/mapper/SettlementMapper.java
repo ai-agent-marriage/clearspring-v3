@@ -75,4 +75,11 @@ public interface SettlementMapper {
      * @return 总金额
      */
     java.math.BigDecimal sumTotalRevenue();
+    
+    /**
+     * 统计今日营收
+     * @return 总金额
+     */
+    @org.apache.ibatis.annotations.Select("SELECT IFNULL(SUM(platform_amount), 0) FROM settlement WHERE DATE(create_time) = CURDATE()")
+    java.math.BigDecimal sumTodayRevenue();
 }

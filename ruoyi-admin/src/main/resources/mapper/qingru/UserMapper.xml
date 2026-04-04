@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.qingru.mapper.UserMapper">
+    
+    <resultMap type="User" id="UserResult">
+        <result property="id"    column="id"    />
+        <result property="openid"    column="openid"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="phone"    column="phone"    />
+        <result property="roleCode"    column="role_code"    />
+        <result property="orgId"    column="org_id"    />
+        <result property="merit"    column="merit"    />
+        <result property="status"    column="status"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+    
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="openid != null">openid,</if>
+            <if test="nickname != null">nickname,</if>
+            <if test="avatar != null">avatar,</if>
+            <if test="phone != null">phone,</if>
+            <if test="roleCode != null">role_code,</if>
+            <if test="orgId != null">org_id,</if>
+            <if test="merit != null">merit,</if>
+            <if test="status != null">status,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="openid != null">#{openid},</if>
+            <if test="nickname != null">#{nickname},</if>
+            <if test="avatar != null">#{avatar},</if>
+            <if test="phone != null">#{phone},</if>
+            <if test="roleCode != null">#{roleCode},</if>
+            <if test="orgId != null">#{orgId},</if>
+            <if test="merit != null">#{merit},</if>
+            <if test="status != null">#{status},</if>
+            sysdate(),
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="User">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="roleCode != null">role_code = #{roleCode},</if>
+            <if test="orgId != null">org_id = #{orgId},</if>
+            <if test="merit != null">merit = #{merit},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    
+    <select id="selectByOpenid" parameterType="String" resultMap="UserResult">
+        select id, openid, nickname, avatar, phone, role_code, org_id, merit, status, create_time, update_time
+        from user
+        where openid = #{openid}
+    </select>
+    
+    <select id="selectById" parameterType="Long" resultMap="UserResult">
+        select id, openid, nickname, avatar, phone, role_code, org_id, merit, status, create_time, update_time
+        from user
+        where id = #{id}
+    </select>
+    
+    <select id="selectByCondition" resultMap="UserResult">
+        select id, openid, nickname, avatar, phone, role_code, org_id, merit, status, create_time, update_time
+        from user
+        <where>
+            <if test="role != null">
+                and role_code = #{role}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+    
+    <select id="countTotalUsers" resultType="Integer">
+        select count(1) from user
+    </select>
+    
+    <select id="countDailyActiveUsers" resultType="Integer">
+        select count(distinct id) from user where date(create_time) = curdate()
+    </select>
+    
+    <select id="countTotalOrders" resultType="Integer">
+        select count(1) from order_protect
+    </select>
+    
+    <select id="countTotal" resultType="Integer">
+        select count(1) from user
+    </select>
+    
+    <select id="countTodayNewUsers" resultType="Integer">
+        select count(1) from user where date(create_time) = curdate()
+    </select>
+    
+    <delete id="deleteById" parameterType="Long">
+        delete from user where id = #{id}
+    </delete>
+    
+</mapper>

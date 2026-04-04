@@ -56,6 +56,11 @@ public class User {
      * 更新时间
      */
     private Date updateTime;
+    
+    /**
+     * 用户状态：0-禁用 1-正常
+     */
+    private Integer status;
 
 
     public Long getId() {
@@ -126,5 +131,12 @@ public class User {
     }
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

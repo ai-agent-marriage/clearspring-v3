@@ -90,4 +90,11 @@ public interface VolunteerMapper {
      * @return 排行榜数据
      */
     List<com.ruoyi.qingru.entity.RankData> selectRank(@Param("limit") Integer limit);
+    
+    /**
+     * 统计活跃志愿者总数
+     * @return 数量
+     */
+    @Select("SELECT COUNT(*) FROM volunteer WHERE status = 1")
+    int countActiveVolunteers();
 }

@@ -59,4 +59,11 @@ public interface FeedbackMapper {
      * @return 影响行数
      */
     int deleteById(@Param("id") Long id);
+    
+    /**
+     * 统计待处理反馈数
+     * @return 反馈数量
+     */
+    @org.apache.ibatis.annotations.Select("SELECT COUNT(*) FROM feedback WHERE status = 0")
+    int countPendingFeedback();
 }
