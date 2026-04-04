@@ -1,21 +1,57 @@
-# 微信小程序忽略文件
+# 依赖
 node_modules/
-npm/
-*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 编译输出
+dist/
+build/
+*.min.js
+*.min.wxss
+
+# 缓存
+.cache/
+.parcel-cache/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
 .DS_Store
 Thumbs.db
 
-# 开发工具配置
-.idea/
-.vscode/
-*.swp
-*.swo
+# 日志
+logs/
+*.log
 
 # 临时文件
 tmp/
 temp/
 *.tmp
 
-# 编译输出
-dist/
-build/
+# 环境配置
+.env.local
+.env.*.local
+
+# 敏感信息
+*.key
+*.pem
+*.crt
+*.secret
+
+# 备份文件
+*.bak
+*.backup
+*.tar.gz
+
+# OpenClaw 状态
+.openclaw/workspace-state.json
+.clawhub/lock.json
+
+# 测试覆盖率
+coverage/

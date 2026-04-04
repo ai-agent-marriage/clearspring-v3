@@ -1,0 +1,24 @@
+{
+  "name": "clearspring-v3",
+  "version": "3.0.0",
+  "description": "清如 ClearSpring V3 - 放生服务微信小程序",
+  "private": true,
+  "scripts": {
+    "dev": "echo '开发环境启动'",
+    "build": "echo '生产环境构建'",
+    "test": "echo '运行测试'",
+    "deploy": "echo '部署到服务器'"
+  },
+  "keywords": [
+    "wechat",
+    "miniprogram",
+    "clearspring",
+    "v3"
+  ],
+  "author": "杨金霖",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ai-agent-marriage/clearspring-v3.git"
+  }
+}
