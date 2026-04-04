@@ -1,6 +1,12 @@
 /**
  * 订单板块单元测试
  * 测试付费委托护生下单页、订单确认页、订单列表页、订单详情页功能
+ * 
+ * Day 19 优化新增测试用例：
+ * - 订单管理页状态筛选功能
+ * - 订单卡片展示优化
+ * - 操作按钮动态显示
+ * - 订单详情进度条
  */
 
 // Mock wx 对象
@@ -499,5 +505,282 @@ describe('委托订单详情页测试', () => {
     page.onLoad()
     const activeStep = page.data.progress.find(p => p.active)
     expect(activeStep).toBeTruthy()
+  })
+})
+
+// ========== Day 19 优化新增测试用例 ==========
+
+// 模拟订单管理页（优化版）
+function createOrderManagePage() {
+  return {
+    route: 'pages/order/order',
+    data: {
+      tabs: ['全部', '待承接', '待执行', '执行中', '待确认', '已完成'],
+      activeTab: 0,
+      orders: [
+        {
+          orderNo: 'PRO202604070001',
+          speciesName: '鲢鱼',
+          quantity: 10,
+          amount: 299,
+          status: 5,
+          statusName: '已完成',
+          address: '珠江广州段',
+          executeDate: '2026-04-15',
+          createTime: '2026-04-07 10:00',
+          executeImages: ['img1.jpg', 'img2.jpg', 'img3.jpg']
+        },
+        {
+          orderNo: 'PRO202604070002',
+          speciesName: '草鱼',
+          quantity: 5,
+          amount: 149.5,
+          status: 2,
+          statusName: '待执行',
+          address: '珠江广州段',
+          executeDate: '2026-04-12',
+          createTime: '2026-04-06 14:30',
+          executeImages: []
+        },
+        {
+          orderNo: 'PRO202604070003',
+          speciesName: '青鱼',
+          quantity: 20,
+          amount: 598,
+          status: 3,
+          statusName: '执行中',
+          address: '珠江广州段',
+          executeDate: '2026-04-10',
+          createTime: '2026-04-05 09:15',
+          executeImages: ['img1.jpg']
+        }
+      ],
+      statusColors: {
+        1: '#FF9800',
+        2: '#2196F3',
+        3: '#9C27B0',
+        4: '#FF5722',
+        5: '#4CAF50',
+        6: '#9E9E9E'
+      },
+      showDetail: false,
+      currentOrder: null,
+      progressSteps: [
+        { id: 1, name: '已下单' },
+        { id: 2, name: '待承接' },
+        { id: 3, name: '待执行' },
+        { id: 4, name: '执行中' },
+        { id: 5, name: '已完成' }
+      ]
+    },
+    setData: function(newData) {
+      Object.assign(this.data, newData)
+    },
+    switchTab: function(index) {
+      this.data.activeTab = index
+      this.filterOrdersByTab(index)
+    },
+    filterOrdersByTab: function(tabIndex) {
+      if (tabIndex === 0) {
+        // 全部
+      } else {
+        this.data.orders = this.data.orders.filter(order => order.status === tabIndex)
+      }
+    },
+    getStatusClass: function(status) {
+      const statusMap = {
+        1: 'status-pending',
+        2: 'status-waiting',
+        3: 'status-processing',
+        4: 'status-confirm',
+        5: 'status-completed',
+        6: 'status-cancelled'
+      }
+      return statusMap[status] || ''
+    },
+    getStatusColor: function(status) {
+      return this.data.statusColors[status] || '#9E9E9E'
+    },
+    getOrderActions: function(status) {
+      const actionsMap = {
+        1: [],
+        2: ['查看进度'],
+        3: ['查看进度'],
+        4: ['确认完成', '申请复核'],
+        5: ['查看证书', '分享'],
+        6: []
+      }
+      return actionsMap[status] || []
+    },
+    viewDetail: function(index) {
+      const order = this.data.orders[index]
+      this.setData({
+        currentOrder: order,
+        showDetail: true
+      })
+    },
+    closeDetail: function() {
+      this.setData({
+        showDetail: false,
+        currentOrder: null
+      })
+    }
+  }
+}
+
+describe('订单管理页优化测试 - Day 19', () => {
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+  
+  test('状态筛选 Tabs 初始化正确', () => {
+    const page = createOrderManagePage()
+    expect(page.data.tabs).toEqual(['全部', '待承接', '待执行', '执行中', '待确认', '已完成'])
+    expect(page.data.activeTab).toBe(0)
+  })
+  
+  test('切换 Tab 筛选订单 - 全部', () => {
+    const page = createOrderManagePage()
+    const originalCount = page.data.orders.length
+    page.switchTab(0)
+    expect(page.data.orders.length).toBe(originalCount)
+  })
+  
+  test('切换 Tab 筛选订单 - 待执行', () => {
+    const page = createOrderManagePage()
+    page.switchTab(2)
+    page.data.orders.forEach(order => {
+      expect(order.status).toBe(2)
+    })
+  })
+  
+  test('切换 Tab 筛选订单 - 已完成', () => {
+    const page = createOrderManagePage()
+    page.switchTab(5)
+    page.data.orders.forEach(order => {
+      expect(order.status).toBe(5)
+    })
+  })
+  
+  test('订单状态标签样式类正确', () => {
+    const page = createOrderManagePage()
+    expect(page.getStatusClass(1)).toBe('status-pending')
+    expect(page.getStatusClass(2)).toBe('status-waiting')
+    expect(page.getStatusClass(3)).toBe('status-processing')
+    expect(page.getStatusClass(4)).toBe('status-confirm')
+    expect(page.getStatusClass(5)).toBe('status-completed')
+  })
+  
+  test('订单状态颜色映射正确', () => {
+    const page = createOrderManagePage()
+    expect(page.getStatusColor(1)).toBe('#FF9800')
+    expect(page.getStatusColor(2)).toBe('#2196F3')
+    expect(page.getStatusColor(3)).toBe('#9C27B0')
+    expect(page.getStatusColor(4)).toBe('#FF5722')
+    expect(page.getStatusColor(5)).toBe('#4CAF50')
+  })
+  
+  test('待承接状态无操作按钮', () => {
+    const page = createOrderManagePage()
+    const actions = page.getOrderActions(1)
+    expect(actions).toEqual([])
+  })
+  
+  test('待执行状态显示查看进度按钮', () => {
+    const page = createOrderManagePage()
+    const actions = page.getOrderActions(2)
+    expect(actions).toContain('查看进度')
+  })
+  
+  test('执行中状态显示查看进度按钮', () => {
+    const page = createOrderManagePage()
+    const actions = page.getOrderActions(3)
+    expect(actions).toContain('查看进度')
+  })
+  
+  test('待确认状态显示确认/复核按钮', () => {
+    const page = createOrderManagePage()
+    const actions = page.getOrderActions(4)
+    expect(actions).toContain('确认完成')
+    expect(actions).toContain('申请复核')
+  })
+  
+  test('已完成状态显示查看证书/分享按钮', () => {
+    const page = createOrderManagePage()
+    const actions = page.getOrderActions(5)
+    expect(actions).toContain('查看证书')
+    expect(actions).toContain('分享')
+  })
+  
+  test('查看订单详情功能正常', () => {
+    const page = createOrderManagePage()
+    page.viewDetail(0)
+    expect(page.data.showDetail).toBe(true)
+    expect(page.data.currentOrder).toBeTruthy()
+    expect(page.data.currentOrder.orderNo).toBe('PRO202604070001')
+  })
+  
+  test('关闭订单详情功能正常', () => {
+    const page = createOrderManagePage()
+    page.viewDetail(0)
+    page.closeDetail()
+    expect(page.data.showDetail).toBe(false)
+    expect(page.data.currentOrder).toBeNull()
+  })
+  
+  test('订单卡片展示完整信息', () => {
+    const page = createOrderManagePage()
+    const order = page.data.orders[0]
+    expect(order.orderNo).toBeTruthy()
+    expect(order.speciesName).toBeTruthy()
+    expect(order.quantity).toBeGreaterThan(0)
+    expect(order.amount).toBeGreaterThan(0)
+    expect(order.statusName).toBeTruthy()
+    expect(order.address).toBeTruthy()
+    expect(order.executeDate).toBeTruthy()
+  })
+  
+  test('执行材料图片数组正确', () => {
+    const page = createOrderManagePage()
+    const completedOrder = page.data.orders.find(o => o.status === 5)
+    expect(completedOrder).toBeTruthy()
+    expect(completedOrder.executeImages).toBeInstanceOf(Array)
+    expect(completedOrder.executeImages.length).toBeGreaterThan(0)
+  })
+  
+  test('进度条步骤初始化正确', () => {
+    const page = createOrderManagePage()
+    expect(page.data.progressSteps).toBeInstanceOf(Array)
+    expect(page.data.progressSteps.length).toBe(5)
+    expect(page.data.progressSteps[0].name).toBe('已下单')
+    expect(page.data.progressSteps[4].name).toBe('已完成')
+  })
+  
+  test('订单金额显示格式正确', () => {
+    const page = createOrderManagePage()
+    const order = page.data.orders[0]
+    expect(order.amount).toBe(299)
+    expect(typeof order.amount).toBe('number')
+  })
+  
+  test('订单日期格式正确', () => {
+    const page = createOrderManagePage()
+    const order = page.data.orders[0]
+    expect(order.executeDate).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+  })
+  
+  test('空状态处理正确', () => {
+    const page = createOrderManagePage()
+    page.data.orders = []
+    page.filterOrdersByTab(1)
+    expect(page.data.orders.length).toBe(0)
+  })
+  
+  test('Tab 切换后 activeTab 更新正确', () => {
+    const page = createOrderManagePage()
+    page.switchTab(3)
+    expect(page.data.activeTab).toBe(3)
+    page.switchTab(5)
+    expect(page.data.activeTab).toBe(5)
   })
 })

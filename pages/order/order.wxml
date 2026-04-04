@@ -1,20 +1,208 @@
+<!--pages/order/order.wxml - 订单管理页面优化-->
 <view class="container">
-  <view class="card">
-    <view class="section-title">我的订单</view>
+  <!-- 状态筛选 Tabs -->
+  <view class="tabs-container">
+    <scroll-view class="tabs-scroll" scroll-x enable-flex>
+      <view 
+        class="tab-item {{activeTab === index ? 'active' : ''}}" 
+        wx:for="{{tabs}}" 
+        wx:key="*this"
+        data-index="{{index}}"
+        bindtap="switchTab"
+      >
+        {{item}}
+        <view class="tab-indicator" wx:if="{{activeTab === index}}"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 订单列表 -->
+  <view class="order-list-container">
     <view class="order-list" wx:if="{{orders.length > 0}}">
-      <view class="order-card" wx:for="{{orders}}" wx:key="id">
-        <view class="order-header">
-          <text class="order-no">订单号：{{item.orderNo}}</text>
-          <text class="order-status {{item.statusClass}}">{{item.status}}</text>
+      <view 
+        class="order-card" 
+        wx:for="{{orders}}" 
+        wx:key="orderNo"
+        data-index="{{index}}"
+      >
+        <!-- 卡片头部：订单号和状态 -->
+        <view class="card-header">
+          <view class="order-info">
+            <text class="order-no">订单号：{{item.orderNo}}</text>
+            <text class="order-date">{{item.createTime}}</text>
+          </view>
+          <view 
+            class="status-tag {{getStatusClass(item.status)}}"
+            style="background-color: {{getStatusColor(item.status)}}20; color: {{getStatusColor(item.status)}}"
+          >
+            {{item.statusName}}
+          </view>
         </view>
-        <view class="order-body">
-          <text class="order-service">{{item.serviceName}}</text>
-          <text class="order-date">{{item.createTime}}</text>
+
+        <!-- 卡片主体：订单信息 -->
+        <view class="card-body">
+          <view class="info-row">
+            <text class="label">物种：</text>
+            <text class="value">{{item.speciesName}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">数量：</text>
+            <text class="value">{{item.quantity}} 份</text>
+          </view>
+          <view class="info-row">
+            <text class="label">金额：</text>
+            <text class="value amount">¥{{item.amount}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">地点：</text>
+            <text class="value">{{item.address}}</text>
+          </view>
+          <view class="info-row">
+            <text class="label">日期：</text>
+            <text class="value">{{item.executeDate}}</text>
+          </view>
+        </view>
+
+        <!-- 执行材料预览（执行中/已完成订单） -->
+        <view class="execute-preview" wx:if="{{item.executeImages && item.executeImages.length > 0}}">
+          <view class="preview-title">执行材料</view>
+          <view class="preview-images">
+            <image 
+              class="preview-img" 
+              src="{{item.executeImages[0]}}" 
+              mode="aspectFill"
+              data-index="0"
+              data-order-index="{{index}}"
+              bindtap="previewImage"
+            />
+            <view class="preview-count" wx:if="{{item.executeImages.length > 1}}">
+              +{{item.executeImages.length - 1}}
+            </view>
+          </view>
+        </view>
+
+        <!-- 卡片底部：操作按钮 -->
+        <view class="card-footer">
+          <view 
+            class="action-btn" 
+            wx:for="{{getOrderActions(item.status)}}" 
+            wx:key="*this"
+            data-action="{{item}}"
+            data-index="{{index}}"
+            bindtap="handleAction"
+          >
+            {{item}}
+          </view>
+        </view>
+
+        <!-- 查看详情按钮 -->
+        <view class="view-detail-btn" bindtap="viewDetail" data-index="{{index}}">
+          查看详情
         </view>
       </view>
     </view>
+
+    <!-- 空状态 -->
     <view class="empty-state" wx:else>
+      <image class="empty-icon" src="/images/empty-order.png" mode="aspectFit" />
       <text class="empty-text">暂无订单</text>
+      <text class="empty-hint">快去委托第一笔护生订单吧~</text>
+    </view>
+  </view>
+
+  <!-- 订单详情弹窗 -->
+  <view class="detail-modal {{showDetail ? 'show' : ''}}" wx:if="{{showDetail}}">
+    <view class="modal-mask" bindtap="closeDetail"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">订单详情</text>
+        <image class="close-btn" src="/images/close.png" mode="aspectFit" bindtap="closeDetail" />
+      </view>
+      
+      <scroll-view class="modal-body" scroll-y>
+        <view class="detail-section" wx:if="{{currentOrder}}">
+          <!-- 进度条 -->
+          <view class="progress-section">
+            <view class="progress-bar">
+              <view 
+                class="progress-step {{step.id <= currentOrder.status ? 'active' : ''}}"
+                wx:for="{{progressSteps}}"
+                wx:key="id"
+              >
+                <view class="step-dot"></view>
+                <text class="step-name">{{step.name}}</text>
+              </view>
+            </view>
+          </view>
+
+          <!-- 订单基本信息 -->
+          <view class="detail-info">
+            <view class="info-item">
+              <text class="info-label">订单号</text>
+              <text class="info-value">{{currentOrder.orderNo}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">物种</text>
+              <text class="info-value">{{currentOrder.speciesName}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">数量</text>
+              <text class="info-value">{{currentOrder.quantity}} 份</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">金额</text>
+              <text class="info-value amount">¥{{currentOrder.amount}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">执行地点</text>
+              <text class="info-value">{{currentOrder.address}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">执行日期</text>
+              <text class="info-value">{{currentOrder.executeDate}}</text>
+            </view>
+            <view class="info-item" wx:if="{{currentOrder.volunteerName}}">
+              <text class="info-label">执行人</text>
+              <text class="info-value">{{currentOrder.volunteerName}}</text>
+            </view>
+            <view class="info-item">
+              <text class="info-label">服务机构</text>
+              <text class="info-value">{{currentOrder.orgName}}</text>
+            </view>
+          </view>
+
+          <!-- 执行材料 -->
+          <view class="detail-section" wx:if="{{currentOrder.executeImages && currentOrder.executeImages.length > 0}}">
+            <view class="section-title">执行材料</view>
+            <view class="image-grid">
+              <image 
+                class="grid-img" 
+                wx:for="{{currentOrder.executeImages}}" 
+                wx:key="*this"
+                src="{{item}}" 
+                mode="aspectFill"
+                data-index="{{index}}"
+                data-order-index="0"
+                bindtap="previewImage"
+              />
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 底部操作按钮 -->
+      <view class="modal-footer">
+        <view 
+          class="footer-btn" 
+          wx:for="{{currentOrder ? getOrderActions(currentOrder.status) : []}}" 
+          wx:key="*this"
+          data-action="{{item}}"
+          data-index="0"
+          bindtap="handleAction"
+        >
+          {{item}}
+        </view>
+      </view>
     </view>
   </view>
 </view>

@@ -1,0 +1,244 @@
+<!--pages/profile/certs.wxml - 证书管理页面优化-->
+<view class="container">
+  <!-- 顶部操作栏 -->
+  <view class="header-bar">
+    <view class="header-title">我的证书</view>
+    <view class="header-actions">
+      <view class="action-btn" bindtap="toggleSelectMode">
+        {{selectMode ? '取消' : '批量'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="category-tabs">
+    <scroll-view class="tabs-scroll" scroll-x enable-flex>
+      <view 
+        class="tab-item {{activeCategory === index ? 'active' : ''}}" 
+        wx:for="{{categories}}" 
+        wx:key="*this"
+        data-index="{{index}}"
+        bindtap="switchCategory"
+      >
+        {{item}}
+        <view class="tab-indicator" wx:if="{{activeCategory === index}}"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 排序选项 -->
+  <view class="sort-bar">
+    <view class="sort-label">排序：</view>
+    <view 
+      class="sort-item {{activeSort === index ? 'active' : ''}}"
+      wx:for="{{sortOptions}}"
+      wx:key="*this"
+      data-index="{{index}}"
+      bindtap="switchSort"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 批量操作栏 -->
+  <view class="batch-bar" wx:if="{{selectMode}}">
+    <view class="batch-info">已选择 {{selectedIds.length}} 个证书</view>
+    <view class="batch-actions">
+      <view class="batch-btn" bindtap="batchExport">批量导出</view>
+      <view class="batch-btn primary" bindtap="batchShare">分享</view>
+    </view>
+  </view>
+
+  <!-- 证书列表（瀑布流） -->
+  <view class="waterfall-container">
+    <!-- 左列 -->
+    <view class="waterfall-column">
+      <view 
+        class="cert-card" 
+        wx:for="{{leftColumn}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="viewDetail"
+      >
+        <!-- 选择框（批量模式） -->
+        <view 
+          class="select-checkbox {{selectedIds.includes(item.id) ? 'checked' : ''}}"
+          wx:if="{{selectMode}}"
+          bindtap="toggleSelect"
+          catchtap="toggleSelect"
+          data-id="{{item.id}}"
+        >
+          <image wx:if="{{selectedIds.includes(item.id)}}" src="/images/checked.png" mode="aspectFit" />
+        </view>
+
+        <!-- 证书图片 -->
+        <image 
+          class="cert-image" 
+          src="{{item.thumbUrl}}" 
+          mode="aspectFill"
+          lazy-load
+        />
+
+        <!-- 证书类型标签 -->
+        <view class="cert-type-tag {{item.type === 1 ? 'protect' : 'practice'}}">
+          {{item.typeName}}
+        </view>
+
+        <!-- 证书信息 -->
+        <view class="cert-info">
+          <view class="cert-title">{{item.title}}</view>
+          <view class="cert-meta">
+            <text class="cert-date">{{item.issueDate}}</text>
+            <text class="cert-merit">功德 +{{item.merit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 右列 -->
+    <view class="waterfall-column">
+      <view 
+        class="cert-card" 
+        wx:for="{{rightColumn}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="viewDetail"
+      >
+        <!-- 选择框（批量模式） -->
+        <view 
+          class="select-checkbox {{selectedIds.includes(item.id) ? 'checked' : ''}}"
+          wx:if="{{selectMode}}"
+          bindtap="toggleSelect"
+          catchtap="toggleSelect"
+          data-id="{{item.id}}"
+        >
+          <image wx:if="{{selectedIds.includes(item.id)}}" src="/images/checked.png" mode="aspectFit" />
+        </view>
+
+        <!-- 证书图片 -->
+        <image 
+          class="cert-image" 
+          src="{{item.thumbUrl}}" 
+          mode="aspectFill"
+          lazy-load
+        />
+
+        <!-- 证书类型标签 -->
+        <view class="cert-type-tag {{item.type === 1 ? 'protect' : 'practice'}}">
+          {{item.typeName}}
+        </view>
+
+        <!-- 证书信息 -->
+        <view class="cert-info">
+          <view class="cert-title">{{item.title}}</view>
+          <view class="cert-meta">
+            <text class="cert-date">{{item.issueDate}}</text>
+            <text class="cert-merit">功德 +{{item.merit}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{leftColumn.length === 0 && rightColumn.length === 0}}">
+    <image class="empty-icon" src="/images/empty-cert.png" mode="aspectFit" />
+    <text class="empty-text">暂无证书</text>
+    <text class="empty-hint">完成护生或修行即可获得证书~</text>
+  </view>
+
+  <!-- 证书详情弹窗 -->
+  <view class="detail-modal {{showDetail ? 'show' : ''}}" wx:if="{{showDetail}}">
+    <view class="modal-mask" bindtap="closeDetail"></view>
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">证书详情</text>
+        <image class="close-btn" src="/images/close.png" mode="aspectFit" bindtap="closeDetail" />
+      </view>
+      
+      <scroll-view class="modal-body" scroll-y>
+        <view class="detail-section" wx:if="{{currentCert}}">
+          <!-- 证书高清图 -->
+          <view class="cert-image-container" bindtap="previewCertImage">
+            <image 
+              class="cert-full-image" 
+              src="{{currentCert.imageUrl}}" 
+              mode="widthFix"
+            />
+            <view class="image-hint">点击查看高清原图</view>
+          </view>
+
+          <!-- 证书信息 -->
+          <view class="cert-detail-info">
+            <view class="info-row">
+              <text class="info-label">证书类型</text>
+              <text class="info-value">{{currentCert.typeName}}</text>
+            </view>
+            
+            <view class="info-row" wx:if="{{currentCert.species}}">
+              <text class="info-label">护生物种</text>
+              <text class="info-value">{{currentCert.species}}</text>
+            </view>
+            
+            <view class="info-row" wx:if="{{currentCert.quantity}}">
+              <text class="info-label">护生数量</text>
+              <text class="info-value">{{currentCert.quantity}} 份</text>
+            </view>
+            
+            <view class="info-row" wx:if="{{currentCert.days}}">
+              <text class="info-label">修行天数</text>
+              <text class="info-value">{{currentCert.days}} 天</text>
+            </view>
+            
+            <view class="info-row" wx:if="{{currentCert.count}}">
+              <text class="info-label">闻法次数</text>
+              <text class="info-value">{{currentCert.count}} 次</text>
+            </view>
+            
+            <view class="info-row" wx:if="{{currentCert.location}}">
+              <text class="info-label">护生地点</text>
+              <text class="info-value">{{currentCert.location}}</text>
+            </view>
+            
+            <view class="info-row">
+              <text class="info-label">发放日期</text>
+              <text class="info-value">{{currentCert.issueDate}}</text>
+            </view>
+            
+            <view class="info-row">
+              <text class="info-label">获得功德</text>
+              <text class="info-value merit">+{{currentCert.merit}}</text>
+            </view>
+            
+            <view class="info-row">
+              <text class="info-label">订单编号</text>
+              <text class="info-value small">{{currentCert.orderNo}}</text>
+            </view>
+          </view>
+
+          <!-- 二维码 -->
+          <view class="qrcode-section" wx:if="{{currentCert.qrCode}}">
+            <view class="section-title">证书二维码</view>
+            <image 
+              class="qrcode-image" 
+              src="{{currentCert.qrCode}}" 
+              mode="aspectFit"
+              bindtap="viewQRCode"
+            />
+            <text class="qrcode-hint">点击查看/保存二维码</text>
+          </view>
+        </view>
+      </scroll-view>
+
+      <!-- 底部操作按钮 -->
+      <view class="modal-footer">
+        <view class="footer-btn secondary" bindtap="exportCert">
+          导出证书
+        </view>
+        <view class="footer-btn primary" bindtap="shareCert">
+          分享
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
