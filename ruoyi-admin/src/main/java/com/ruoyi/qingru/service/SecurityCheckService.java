@@ -20,12 +20,21 @@ public class SecurityCheckService {
     
     /**
      * 图片审核
-     * @param filePath 图片文件路径
+     * @param filePath 图片文件路径或 URL
      * @return 是否通过审核
      */
     public boolean checkImage(String filePath) {
         try {
-            File file = new File(filePath);
+            // 如果是 URL，先下载到本地
+            File file;
+            if (filePath.startsWith("http://") || filePath.startsWith("https://")) {
+                // TODO: 下载网络图片到本地临时文件
+                log.info("检测到网络图片 URL，需要下载到本地：{}", filePath);
+                file = new File(filePath);
+            } else {
+                file = new File(filePath);
+            }
+            
             if (!file.exists()) {
                 log.error("图片文件不存在：{}", filePath);
                 return false;
@@ -34,15 +43,20 @@ public class SecurityCheckService {
             WxMaSecurityCheckResult result = wxMaService.getSecurityService()
                     .imgSecCheck(file);
             
-            // 0=通过，1=违规，2=疑似
-            boolean passed = result.getResult() == 0;
-            log.info("图片审核结果：filePath={}, result={}, passed={}", 
-                    filePath, result.getResult(), passed);
-            
-            return passed;
+            int resultCode = result.getResult();
+            if (resultCode == 0) {
+                log.info("图片审核通过：{}", filePath);
+                return true;
+            } else if (resultCode == 1) {
+                log.warn("图片违规：{}", filePath);
+                return false;
+            } else {
+                log.warn("图片疑似违规，按违规处理：{}", filePath);
+                return false;
+            }
             
         } catch (Exception e) {
-            log.error("图片审核失败", e);
+            log.error("图片审核失败：{}", filePath, e);
             return false;
         }
     }
@@ -74,20 +88,29 @@ public class SecurityCheckService {
      * @return 是否通过审核
      */
     public boolean checkText(String content) {
+        if (content == null || content.trim().isEmpty()) {
+            return true; // 空文本直接通过
+        }
+        
         try {
             WxMaSecurityCheckResult result = wxMaService.getSecurityService()
                     .msgSecCheck(content);
             
-            // 0=通过，1=违规，2=疑似
-            boolean passed = result.getResult() == 0;
-            log.info("文本审核结果：contentLength={}, result={}, passed={}", 
-                    content != null ? content.length() : 0, 
-                    result.getResult(), passed);
-            
-            return passed;
+            int resultCode = result.getResult();
+            if (resultCode == 0) {
+                log.info("文本审核通过：contentLength={}", content.length());
+                return true;
+            } else if (resultCode == 1) {
+                log.warn("文本违规：contentLength={}", content.length());
+                return false;
+            } else {
+                log.warn("文本疑似违规，按违规处理：contentLength={}", content.length());
+                return false;
+            }
             
         } catch (Exception e) {
-            log.error("文本审核失败", e);
+            log.error("文本审核失败：contentLength={}", 
+                    content != null ? content.length() : 0, e);
             return false;
         }
     }
