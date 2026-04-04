@@ -275,6 +275,117 @@ class MessageControllerTest {
         messageService.deleteInternalMessage(id);
     }
 
+    // ==================== 新 API 路径测试 ====================
+
+    @Test
+    void testGetSubscribeTemplates() {
+        // 测试新的订阅消息模板 API
+        R<List<MessageTemplate>> result = messageController.getSubscribeTemplates();
+        assertNotNull(result);
+        assertEquals(200, result.getCode());
+        assertNotNull(result.getData());
+        assertTrue(result.getData().size() > 0);
+    }
+
+    @Test
+    void testSendSubscribeMessage_NewApi() {
+        // 测试新的发送订阅消息 API
+        TestMessageRequest request = new TestMessageRequest();
+        request.setOpenid("test_openid_new");
+        request.setTemplateId("test_template_new");
+        Map<String, String> data = new HashMap<>();
+        data.put("key", "value");
+        request.setData(data);
+
+        R<Void> result = messageController.sendSubscribeMessage(request);
+        assertNotNull(result);
+    }
+
+    @Test
+    void testUpdateSubscribeTemplate_NewApi() {
+        // 先创建模板
+        MessageTemplate newTemplate = new MessageTemplate();
+        newTemplate.setName("新 API 更新测试模板");
+        newTemplate.setTemplateId("new_api_update_test");
+        newTemplate.setEnabled(1);
+        Long id = messageService.addTemplate(newTemplate);
+
+        // 使用新 API 更新模板
+        MessageTemplate updateData = new MessageTemplate();
+        updateData.setName("新 API 已更新名称");
+        R<Void> result = messageController.updateSubscribeTemplate(id, updateData);
+        assertNotNull(result);
+        assertEquals(200, result.getCode());
+
+        // 清理
+        messageService.deleteTemplate(id);
+    }
+
+    @Test
+    void testGetInternalMessageDetail_NewApi() {
+        // 先创建测试消息
+        InternalMessage testMessage = new InternalMessage();
+        testMessage.setUserId(1L);
+        testMessage.setTitle("新 API 详情测试");
+        testMessage.setContent("测试内容");
+        Long id = messageService.addInternalMessage(testMessage);
+
+        R<InternalMessage> result = messageController.getInternalMessageDetail(id);
+        assertNotNull(result);
+        assertEquals(200, result.getCode());
+        assertNotNull(result.getData());
+        assertEquals(id, result.getData().getId());
+
+        // 清理
+        messageService.deleteInternalMessage(id);
+    }
+
+    @Test
+    void testMarkInternalAsRead_NewApi() {
+        // 先创建测试消息
+        InternalMessage testMessage = new InternalMessage();
+        testMessage.setUserId(1L);
+        testMessage.setTitle("新 API 已读测试");
+        testMessage.setContent("测试内容");
+        testMessage.setStatus(1);
+        Long id = messageService.addInternalMessage(testMessage);
+
+        R<Void> result = messageController.markInternalAsRead(id);
+        assertNotNull(result);
+        assertEquals(200, result.getCode());
+
+        // 清理
+        messageService.deleteInternalMessage(id);
+    }
+
+    @Test
+    void testDeleteInternalMessage_NewApi() {
+        // 先创建测试消息
+        InternalMessage testMessage = new InternalMessage();
+        testMessage.setUserId(1L);
+        testMessage.setTitle("新 API 删除测试");
+        testMessage.setContent("测试内容");
+        Long id = messageService.addInternalMessage(testMessage);
+
+        R<Void> result = messageController.deleteInternalMessage(id);
+        assertNotNull(result);
+        assertEquals(200, result.getCode());
+    }
+
+    @Test
+    void testBatchDeleteInternalMessages_NewApi() {
+        // 创建多条测试消息
+        Long id1 = messageService.addInternalMessage(createTestMessage(1L, "新 API 批量删除 1"));
+        Long id2 = messageService.addInternalMessage(createTestMessage(1L, "新 API 批量删除 2"));
+        Long id3 = messageService.addInternalMessage(createTestMessage(1L, "新 API 批量删除 3"));
+
+        List<Long> ids = List.of(id1, id2, id3);
+        R<Integer> result = messageController.batchDeleteInternalMessages(ids);
+        assertNotNull(result);
+        assertEquals(200, result.getCode());
+        assertEquals(3, result.getData());
+    }
+
     // 辅助方法：创建测试消息
     private InternalMessage createTestMessage(Long userId, String title) {
         InternalMessage message = new InternalMessage();

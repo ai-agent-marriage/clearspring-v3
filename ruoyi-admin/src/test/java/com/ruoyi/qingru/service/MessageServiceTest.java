@@ -255,6 +255,139 @@ class MessageServiceTest {
         messageService.deleteInternalMessage(id);
     }
 
+    // ==================== 边界条件和异常测试 ====================
+
+    @Test
+    void testUpdateTemplate_NonExistent() {
+        // 测试更新不存在的模板
+        MessageTemplate updateData = new MessageTemplate();
+        updateData.setName("不存在的模板");
+        boolean success = messageService.updateTemplate(99999L, updateData);
+        assertFalse(success);
+    }
+
+    @Test
+    void testDeleteTemplate_NonExistent() {
+        // 测试删除不存在的模板
+        boolean success = messageService.deleteTemplate(99999L);
+        assertFalse(success);
+    }
+
+    @Test
+    void testMarkAsRead_NonExistent() {
+        // 测试标记不存在的消息为已读
+        boolean success = messageService.markAsRead(99999L);
+        assertFalse(success);
+    }
+
+    @Test
+    void testDeleteInternalMessage_NonExistent() {
+        // 测试删除不存在的消息
+        boolean success = messageService.deleteInternalMessage(99999L);
+        assertFalse(success);
+    }
+
+    @Test
+    void testGetInternalMessageDetail_NonExistent() {
+        // 测试获取不存在的消息详情
+        InternalMessage message = messageService.getInternalMessageDetail(99999L);
+        assertNull(message);
+    }
+
+    @Test
+    void testSendSubscribeMessage_WithNullData() {
+        // 测试发送订阅消息时数据为 null
+        assertDoesNotThrow(() -> {
+            messageService.sendSubscribeMessage("test_openid", "test_template", null);
+        });
+    }
+
+    @Test
+    void testSendSubscribeMessage_WithEmptyData() {
+        // 测试发送订阅消息时数据为空
+        assertDoesNotThrow(() -> {
+            messageService.sendSubscribeMessage("test_openid", "test_template", new HashMap<>());
+        });
+    }
+
+    @Test
+    void testGetInternalMessageList_WithZeroPageNum() {
+        // 测试分页参数为 0 的情况
+        List<InternalMessage> list = messageService.getInternalMessageList(null, null, null, 0, 10);
+        assertNotNull(list);
+    }
+
+    @Test
+    void testGetInternalMessageList_WithZeroPageSize() {
+        // 测试分页大小为 0 的情况
+        List<InternalMessage> list = messageService.getInternalMessageList(null, null, null, 1, 0);
+        assertNotNull(list);
+    }
+
+    @Test
+    void testBatchMarkAsRead_WithEmptyList() {
+        // 测试批量标记空列表
+        int count = messageService.batchMarkAsRead(new java.util.ArrayList<>());
+        assertEquals(0, count);
+    }
+
+    @Test
+    void testBatchDeleteInternalMessage_WithEmptyList() {
+        // 测试批量删除空列表
+        int count = messageService.batchDeleteInternalMessage(new java.util.ArrayList<>());
+        assertEquals(0, count);
+    }
+
+    @Test
+    void testBatchMarkAsRead_WithNonExistentIds() {
+        // 测试批量标记不存在的 ID
+        List<Long> ids = List.of(99991L, 99992L, 99993L);
+        int count = messageService.batchMarkAsRead(ids);
+        assertEquals(0, count);
+    }
+
+    @Test
+    void testBatchDeleteInternalMessage_WithNonExistentIds() {
+        // 测试批量删除不存在的 ID
+        List<Long> ids = List.of(99991L, 99992L, 99993L);
+        int count = messageService.batchDeleteInternalMessage(ids);
+        assertEquals(0, count);
+    }
+
+    @Test
+    void testAddTemplate_WithNullEnabled() {
+        // 测试添加模板时 enabled 为 null（应该默认为 1）
+        MessageTemplate newTemplate = new MessageTemplate();
+        newTemplate.setName("默认启用测试");
+        newTemplate.setTemplateId("default_enabled_test");
+        Long id = messageService.addTemplate(newTemplate);
+        
+        List<MessageTemplate> list = messageService.getTemplateList();
+        MessageTemplate saved = list.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
+        assertNotNull(saved);
+        assertEquals(1, saved.getEnabled());
+        
+        // 清理
+        messageService.deleteTemplate(id);
+    }
+
+    @Test
+    void testAddInternalMessage_WithNullStatus() {
+        // 测试添加站内信时 status 为 null（应该默认为 1-未读）
+        InternalMessage newMessage = new InternalMessage();
+        newMessage.setUserId(1L);
+        newMessage.setTitle("默认状态测试");
+        newMessage.setContent("测试内容");
+        Long id = messageService.addInternalMessage(newMessage);
+        
+        InternalMessage saved = messageService.getInternalMessageDetail(id);
+        assertNotNull(saved);
+        assertEquals(1, saved.getStatus());
+        
+        // 清理
+        messageService.deleteInternalMessage(id);
+    }
+
     // 辅助方法：创建测试消息
     private InternalMessage createTestMessage(Long userId, String title) {
         InternalMessage message = new InternalMessage();

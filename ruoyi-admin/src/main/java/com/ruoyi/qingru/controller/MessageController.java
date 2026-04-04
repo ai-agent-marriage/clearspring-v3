@@ -13,54 +13,55 @@ import java.util.List;
 
 /**
  * 消息管理控制器
+ * 提供微信订阅消息和站内信管理接口
  */
 @Slf4j
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/api/message")
 public class MessageController {
 
     @Autowired
     private MessageService messageService;
 
-    // ==================== 微信订阅消息模板管理 ====================
+    // ==================== 微信订阅消息管理 ====================
 
     /**
      * 获取模板列表
      * @return 模板列表
      */
-    @GetMapping("/template/list")
-    public R<List<MessageTemplate>> getTemplateList() {
-        log.info("获取消息模板列表");
+    @GetMapping("/subscribe/templates")
+    public R<List<MessageTemplate>> getSubscribeTemplates() {
+        log.info("获取微信订阅消息模板列表");
         List<MessageTemplate> list = messageService.getTemplateList();
         return R.ok(list);
     }
 
     /**
-     * 新增模板
-     * @param template 模板信息
+     * 发送订阅消息
+     * @param request 发送请求
      * @return 操作结果
      */
-    @PostMapping("/template/add")
-    public R<Long> addTemplate(@RequestBody MessageTemplate template) {
-        log.info("新增消息模板，name: {}", template.getName());
+    @PostMapping("/subscribe/send")
+    public R<Void> sendSubscribeMessage(@RequestBody TestMessageRequest request) {
+        log.info("发送微信订阅消息，openid: {}, templateId: {}", request.getOpenid(), request.getTemplateId());
         try {
-            Long id = messageService.addTemplate(template);
-            return R.ok(id, "新增成功");
+            messageService.sendSubscribeMessage(request.getOpenid(), request.getTemplateId(), request.getData());
+            return R.ok("发送成功");
         } catch (Exception e) {
-            log.error("新增消息模板失败", e);
-            return R.fail("新增失败：" + e.getMessage());
+            log.error("发送微信订阅消息失败", e);
+            return R.fail("发送失败：" + e.getMessage());
         }
     }
 
     /**
-     * 更新模板
+     * 更新模板配置
      * @param id 模板 ID
      * @param template 模板信息
      * @return 操作结果
      */
-    @PutMapping("/template/update/{id}")
-    public R<Void> updateTemplate(@PathVariable Long id, @RequestBody MessageTemplate template) {
-        log.info("更新消息模板，id: {}", id);
+    @PutMapping("/subscribe/template/{id}")
+    public R<Void> updateSubscribeTemplate(@PathVariable Long id, @RequestBody MessageTemplate template) {
+        log.info("更新微信订阅消息模板配置，id: {}", id);
         try {
             boolean success = messageService.updateTemplate(id, template);
             if (success) {
@@ -69,48 +70,12 @@ public class MessageController {
                 return R.fail("模板不存在");
             }
         } catch (Exception e) {
-            log.error("更新消息模板失败", e);
+            log.error("更新微信订阅消息模板配置失败", e);
             return R.fail("更新失败：" + e.getMessage());
         }
     }
 
-    /**
-     * 删除模板
-     * @param id 模板 ID
-     * @return 操作结果
-     */
-    @DeleteMapping("/template/delete/{id}")
-    public R<Void> deleteTemplate(@PathVariable Long id) {
-        log.info("删除消息模板，id: {}", id);
-        try {
-            boolean success = messageService.deleteTemplate(id);
-            if (success) {
-                return R.ok();
-            } else {
-                return R.fail("模板不存在");
-            }
-        } catch (Exception e) {
-            log.error("删除消息模板失败", e);
-            return R.fail("删除失败：" + e.getMessage());
-        }
-    }
-
-    /**
-     * 发送测试消息
-     * @param request 测试消息请求
-     * @return 操作结果
-     */
-    @PostMapping("/send/test")
-    public R<Void> sendTestMessage(@RequestBody TestMessageRequest request) {
-        log.info("发送测试消息，openid: {}, templateId: {}", request.getOpenid(), request.getTemplateId());
-        try {
-            messageService.sendSubscribeMessage(request.getOpenid(), request.getTemplateId(), request.getData());
-            return R.ok("发送成功");
-        } catch (Exception e) {
-            log.error("发送测试消息失败", e);
-            return R.fail("发送失败：" + e.getMessage());
-        }
-    }
+    // ==================== 站内信管理 ====================
 
     // ==================== 站内信管理 ====================
 
@@ -152,30 +117,13 @@ public class MessageController {
     }
 
     /**
-     * 新增站内信
-     * @param message 消息信息
-     * @return 操作结果
-     */
-    @PostMapping("/internal/add")
-    public R<Long> addInternalMessage(@RequestBody InternalMessage message) {
-        log.info("新增站内信，userId: {}, title: {}", message.getUserId(), message.getTitle());
-        try {
-            Long id = messageService.addInternalMessage(message);
-            return R.ok(id, "新增成功");
-        } catch (Exception e) {
-            log.error("新增站内信失败", e);
-            return R.fail("新增失败：" + e.getMessage());
-        }
-    }
-
-    /**
-     * 标记为已读
+     * 标记站内信为已读
      * @param id 消息 ID
      * @return 操作结果
      */
     @PutMapping("/internal/read/{id}")
-    public R<Void> markAsRead(@PathVariable Long id) {
-        log.info("标记站内信已读，id: {}", id);
+    public R<Void> markInternalAsRead(@PathVariable Long id) {
+        log.info("标记站内信为已读，id: {}", id);
         try {
             boolean success = messageService.markAsRead(id);
             if (success) {
@@ -184,25 +132,8 @@ public class MessageController {
                 return R.fail("消息不存在");
             }
         } catch (Exception e) {
-            log.error("标记站内信已读失败", e);
+            log.error("标记站内信为已读失败", e);
             return R.fail("标记失败：" + e.getMessage());
-        }
-    }
-
-    /**
-     * 批量标记为已读
-     * @param ids 消息 ID 列表
-     * @return 操作结果
-     */
-    @PutMapping("/internal/read/batch")
-    public R<Integer> batchMarkAsRead(@RequestBody List<Long> ids) {
-        log.info("批量标记站内信已读，ids: {}", ids);
-        try {
-            int count = messageService.batchMarkAsRead(ids);
-            return R.ok(count, "操作成功");
-        } catch (Exception e) {
-            log.error("批量标记站内信已读失败", e);
-            return R.fail("操作失败：" + e.getMessage());
         }
     }
 
@@ -232,8 +163,8 @@ public class MessageController {
      * @param ids 消息 ID 列表
      * @return 操作结果
      */
-    @DeleteMapping("/internal/delete/batch")
-    public R<Integer> batchDeleteInternalMessage(@RequestBody List<Long> ids) {
+    @PostMapping("/internal/batch-delete")
+    public R<Integer> batchDeleteInternalMessages(@RequestBody List<Long> ids) {
         log.info("批量删除站内信，ids: {}", ids);
         try {
             int count = messageService.batchDeleteInternalMessage(ids);
@@ -241,6 +172,40 @@ public class MessageController {
         } catch (Exception e) {
             log.error("批量删除站内信失败", e);
             return R.fail("操作失败：" + e.getMessage());
+        }
+    }
+
+    /**
+     * 批量标记为已读
+     * @param ids 消息 ID 列表
+     * @return 操作结果
+     */
+    @PutMapping("/internal/read/batch")
+    public R<Integer> batchMarkAsRead(@RequestBody List<Long> ids) {
+        log.info("批量标记站内信为已读，ids: {}", ids);
+        try {
+            int count = messageService.batchMarkAsRead(ids);
+            return R.ok(count, "操作成功");
+        } catch (Exception e) {
+            log.error("批量标记站内信为已读失败", e);
+            return R.fail("操作失败：" + e.getMessage());
+        }
+    }
+
+    /**
+     * 新增站内信
+     * @param message 消息信息
+     * @return 操作结果
+     */
+    @PostMapping("/internal/add")
+    public R<Long> addInternalMessage(@RequestBody InternalMessage message) {
+        log.info("新增站内信，userId: {}, title: {}", message.getUserId(), message.getTitle());
+        try {
+            Long id = messageService.addInternalMessage(message);
+            return R.ok(id, "新增成功");
+        } catch (Exception e) {
+            log.error("新增站内信失败", e);
+            return R.fail("新增失败：" + e.getMessage());
         }
     }
 

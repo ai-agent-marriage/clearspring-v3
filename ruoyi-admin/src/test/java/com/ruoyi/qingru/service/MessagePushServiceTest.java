@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * 消息推送服务测试
+ * 测试异步推送、重试机制和推送记录功能
  */
 @SpringBootTest
 class MessagePushServiceTest {
@@ -125,5 +126,111 @@ class MessagePushServiceTest {
         List<InternalMessage> messages = messageService.getInternalMessageList(null, 2, null, null, null);
         assertNotNull(messages);
         assertTrue(messages.size() >= 5);
+    }
+
+    @Test
+    void testGetPushRecord() {
+        // 测试获取推送记录
+        Long orderId = 3001L;
+        messagePushService.pushOnOrderCreate(orderId);
+        
+        // 等待异步执行完成
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
+        // 获取推送记录（记录 ID 格式：ORDER_CREATE_orderId_timestamp）
+        List<MessagePushService.PushRecord> records = messagePushService.getAllPushRecords();
+        assertNotNull(records);
+        assertTrue(records.size() > 0);
+    }
+
+    @Test
+    void testGetAllPushRecords() {
+        // 测试获取所有推送记录
+        List<MessagePushService.PushRecord> records = messagePushService.getAllPushRecords();
+        assertNotNull(records);
+    }
+
+    @Test
+    void testPushRecordStructure() {
+        // 测试推送记录结构
+        Long orderId = 3002L;
+        messagePushService.pushOnOrderCreate(orderId);
+        
+        // 等待异步执行完成
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
+        List<MessagePushService.PushRecord> records = messagePushService.getAllPushRecords();
+        assertNotNull(records);
+        
+        // 验证记录字段
+        MessagePushService.PushRecord record = records.stream()
+                .filter(r -> r.getOrderId() != null && r.getOrderId().equals(orderId))
+                .findFirst()
+                .orElse(null);
+        
+        if (record != null) {
+            assertNotNull(record.getRecordId());
+            assertNotNull(record.getType());
+            assertNotNull(record.getCreateTime());
+            assertNotNull(record.getLogs());
+        }
+    }
+
+    @Test
+    void testConcurrentPush() {
+        // 测试并发推送
+        Thread[] threads = new Thread[5];
+        for (int i = 0; i < 5; i++) {
+            final int index = i;
+            threads[i] = new Thread(() -> {
+                messagePushService.pushSystemNotification(
+                    (long) (500 + index), 
+                    "并发测试" + index, 
+                    "内容" + index
+                );
+            });
+            threads[i].start();
+        }
+        
+        // 等待所有线程完成
+        for (Thread thread : threads) {
+            try {
+                thread.join(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        
+        // 验证站内信数量
+        List<InternalMessage> messages = messageService.getInternalMessageList(null, 2, null, null, null);
+        assertNotNull(messages);
+        assertTrue(messages.size() >= 5);
+    }
+
+    @Test
+    void testPushWithNullData() {
+        // 测试推送时数据为 null 的情况
+        Long orderId = 3003L;
+        
+        assertDoesNotThrow(() -> {
+            messagePushService.pushOnOrderCreate(orderId);
+        });
+        
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
+        List<InternalMessage> messages = messageService.getInternalMessageList(null, 1, null, null, null);
+        assertNotNull(messages);
     }
 }
