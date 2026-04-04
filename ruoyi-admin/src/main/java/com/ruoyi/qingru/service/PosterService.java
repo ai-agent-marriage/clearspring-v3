@@ -1,6 +1,7 @@
 package com.ruoyi.qingru.service;
 
 import cn.binarywang.wx.miniapp.api.WxMaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
@@ -9,15 +10,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 
 /**
  * 海报生成服务
  */
 @Service
+@Slf4j
 public class PosterService {
-    private static final Logger log = LoggerFactory.getLogger(PosterService.class);
 
     
     @Autowired

@@ -8,8 +8,6 @@ import com.ruoyi.qingru.service.AdminSettingsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -20,8 +18,6 @@ import java.util.List;
 @RequestMapping("/api/admin/settings")
 @Slf4j
 public class AdminSettingsController {
-    
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminSettingsController.class);
     
     @Autowired
     private AdminSettingsService adminSettingsService;
@@ -49,7 +45,7 @@ public class AdminSettingsController {
      * @return 操作结果
      */
     @PutMapping("/update/{key}")
-    public R<Void> updateSetting(@PathVariable String key, @RequestParam String value) {
+    public R<String> updateSetting(@PathVariable String key, @RequestParam String value) {
         log.info("更新系统设置，key={}, value={}", key, value);
         try {
             adminSettingsService.updateSetting(key, value);
@@ -119,7 +115,7 @@ public class AdminSettingsController {
      * @return 操作结果
      */
     @PostMapping("/clear")
-    public R<Void> clearCache() {
+    public R<String> clearCache() {
         log.info("清除缓存");
         try {
             adminSettingsService.clearCache();

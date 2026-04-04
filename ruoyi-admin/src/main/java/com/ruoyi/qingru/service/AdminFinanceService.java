@@ -30,7 +30,7 @@ public interface AdminFinanceService {
      * @param pageSize 每页数量
      * @return 结算列表
      */
-    List<Settlement> getSettlements(Integer status, Integer pageNum, Integer pageSize);
+    List<FinanceSettlement> getSettlements(Integer status, Integer pageNum, Integer pageSize);
     
     /**
      * 确认结算

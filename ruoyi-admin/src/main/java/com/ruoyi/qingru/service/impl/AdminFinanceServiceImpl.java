@@ -4,8 +4,6 @@ import com.ruoyi.qingru.entity.*;
 import com.ruoyi.qingru.service.AdminFinanceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -26,7 +24,6 @@ import java.util.stream.IntStream;
 @Service
 public class AdminFinanceServiceImpl implements AdminFinanceService {
     
-    private static final Logger logger = LoggerFactory.getLogger(AdminFinanceServiceImpl.class);
     private final Random random = new Random();
     
     @Override
@@ -108,14 +105,14 @@ public class AdminFinanceServiceImpl implements AdminFinanceService {
     }
     
     @Override
-    public List<Settlement> getSettlements(Integer status, Integer pageNum, Integer pageSize) {
+    public List<FinanceSettlement> getSettlements(Integer status, Integer pageNum, Integer pageSize) {
         log.info("获取结算列表，status={}, pageNum={}, pageSize={}", status, pageNum, pageSize);
         try {
-            List<Settlement> settlements = new ArrayList<>();
+            List<FinanceSettlement> settlements = new ArrayList<>();
             int start = (pageNum - 1) * pageSize;
             
             for (int i = start; i < start + pageSize; i++) {
-                Settlement settlement = new Settlement();
+                FinanceSettlement settlement = new FinanceSettlement();
                 settlement.setSettlementId(5000L + i);
                 settlement.setSettlementNo("SET" + System.currentTimeMillis() + i);
                 settlement.setSettlementType((i % 3) + 1);

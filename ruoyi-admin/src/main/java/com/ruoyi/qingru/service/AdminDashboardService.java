@@ -12,8 +12,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 管理后台仪表盘服务类
@@ -21,7 +19,6 @@ import org.slf4j.LoggerFactory;
 @Service
 @Slf4j
 public class AdminDashboardService {
-    private static final Logger logger = LoggerFactory.getLogger(AdminDashboardService.class);
 
     @Autowired
     private UserMapper userMapper;

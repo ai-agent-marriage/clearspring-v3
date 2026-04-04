@@ -1,6 +1,8 @@
 package com.ruoyi.qingru.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -8,7 +10,9 @@ import java.time.LocalDateTime;
  * 结算实体
  */
 @Data
-public class Settlement {
+@NoArgsConstructor
+@AllArgsConstructor
+public class FinanceSettlement {
     /**
      * 结算 ID
      */

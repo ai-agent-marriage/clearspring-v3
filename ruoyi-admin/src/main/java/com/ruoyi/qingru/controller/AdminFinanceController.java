@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -22,8 +20,6 @@ import java.util.List;
 @RequestMapping("/api/admin/finance")
 @Slf4j
 public class AdminFinanceController {
-    
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminFinanceController.class);
     
     @Autowired
     private AdminFinanceService adminFinanceService;
@@ -74,13 +70,13 @@ public class AdminFinanceController {
      * @return 结算列表
      */
     @GetMapping("/settlements")
-    public R<List<Settlement>> getSettlements(
+    public R<List<FinanceSettlement>> getSettlements(
             @RequestParam(required = false) Integer status,
             @RequestParam(defaultValue = "1") Integer pageNum,
             @RequestParam(defaultValue = "10") Integer pageSize) {
         log.info("获取结算列表，status={}, pageNum={}, pageSize={}", status, pageNum, pageSize);
         try {
-            List<Settlement> settlements = adminFinanceService.getSettlements(status, pageNum, pageSize);
+            List<FinanceSettlement> settlements = adminFinanceService.getSettlements(status, pageNum, pageSize);
             return R.ok(settlements, "获取结算列表成功");
         } catch (Exception e) {
             log.error("获取结算列表失败", e);
@@ -94,7 +90,7 @@ public class AdminFinanceController {
      * @return 操作结果
      */
     @PostMapping("/settle")
-    public R<Void> settle(@RequestParam Long settlementId) {
+    public R<String> settle(@RequestParam Long settlementId) {
         log.info("确认结算，settlementId={}", settlementId);
         try {
             adminFinanceService.settle(settlementId);
@@ -134,7 +130,7 @@ public class AdminFinanceController {
      * @return 操作结果
      */
     @PutMapping("/invoice/{id}")
-    public R<Void> updateInvoice(@PathVariable Long id, @RequestParam Integer status) {
+    public R<String> updateInvoice(@PathVariable Long id, @RequestParam Integer status) {
         log.info("更新发票状态，id={}, status={}", id, status);
         try {
             adminFinanceService.updateInvoice(id, status);

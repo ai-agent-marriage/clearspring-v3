@@ -13,15 +13,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 
 /**
  * 后台管理服务类
  */
 @Service
+@Slf4j
 public class AdminService {
-    private static final Logger log = LoggerFactory.getLogger(AdminService.class);
 
     
     @Autowired

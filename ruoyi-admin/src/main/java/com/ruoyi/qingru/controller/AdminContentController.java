@@ -20,8 +20,6 @@ public class AdminContentController {
 
     @Autowired
     private AdminContentService adminContentService;
-    
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AdminContentController.class);
 
     /**
      * 获取物种列表
