@@ -1,0 +1,114 @@
+<!-- 清如 ClearSpring - 物种管理页面 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-title">物种管理</view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-input" 
+        placeholder="搜索物种名称" 
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+    <button class="btn-filter" bindtap="onToggleFilter">
+      <text class="filter-icon">⚙️</text>
+    </button>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar" wx:if="{{showFilter}}">
+    <view class="filter-item">
+      <text class="filter-label">物种类型：</text>
+      <picker 
+        class="filter-picker" 
+        mode="selector" 
+        range="{{typeOptions}}" 
+        range-key="label"
+        value="{{typeOptions.findIndex(item => item.value === filterType)}}"
+        bindchange="onTypeChange"
+      >
+        <view class="filter-value">
+          {{typeOptions.find(item => item.value === filterType)?.label}}
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+    <view class="filter-item">
+      <text class="filter-label">投放状态：</text>
+      <picker 
+        class="filter-picker" 
+        mode="selector" 
+        range="{{statusOptions}}" 
+        range-key="label"
+        value="{{statusOptions.findIndex(item => item.value === filterStatus)}}"
+        bindchange="onStatusChange"
+      >
+        <view class="filter-value">
+          {{statusOptions.find(item => item.value === filterStatus)?.label}}
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 物种列表区 -->
+  <view class="species-list">
+    <view 
+      wx:for="{{speciesList}}" 
+      wx:key="id" 
+      class="species-card"
+      data-id="{{item.id}}"
+      bindtap="onSpeciesTap"
+    >
+      <view class="species-header">
+        <view class="species-name">{{item.name}}</view>
+        <view class="species-scientific">{{item.scientificName}}</view>
+      </view>
+      
+      <view class="species-tags">
+        <view class="tag tag-type">{{item.typeName}}</view>
+        <view class="tag {{item.isForbid === 0 ? 'tag-success' : 'tag-danger'}}">
+          {{item.statusName}}
+        </view>
+      </view>
+      
+      <view class="species-actions">
+        <button 
+          class="btn-action btn-edit" 
+          data-id="{{item.id}}"
+          catchtap="onEditSpecies"
+        >编辑</button>
+        <button 
+          class="btn-action btn-delete" 
+          data-id="{{item.id}}" 
+          data-name="{{item.name}}"
+          catchtap="onDeleteSpecies"
+        >删除</button>
+        <button 
+          class="btn-action btn-detail" 
+          data-id="{{item.id}}"
+          catchtap="onViewDetail"
+        >详情</button>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{speciesList.length === 0}}">
+      <text class="empty-icon">🐟</text>
+      <text class="empty-text">暂无物种数据</text>
+    </view>
+  </view>
+
+  <!-- 底部悬浮按钮 -->
+  <view class="bottom-bar">
+    <button class="btn btn-primary" bindtap="onAddSpecies">
+      新增物种
+    </button>
+  </view>
+</view>

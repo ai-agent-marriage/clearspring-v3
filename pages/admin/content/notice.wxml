@@ -1,0 +1,71 @@
+<!-- 清如 ClearSpring - 公告管理页面 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-title">公告管理</view>
+  </view>
+
+  <!-- 公告列表区 -->
+  <view class="notices-list">
+    <view 
+      wx:for="{{notices}}" 
+      wx:key="id" 
+      class="notice-card"
+      data-id="{{item.id}}"
+      bindtap="onNoticeTap"
+    >
+      <view class="notice-header">
+        <view class="notice-title">{{item.title}}</view>
+        <view class="notice-time">{{item.publishTime}}</view>
+      </view>
+      
+      <view class="notice-footer">
+        <view class="notice-status status-{{item.status}}">
+          <text class="status-dot"></text>
+          <text class="status-text">{{item.statusName}}</text>
+        </view>
+        
+        <view class="notice-actions">
+          <button 
+            class="btn-action btn-edit" 
+            data-id="{{item.id}}"
+            catchtap="onEditNotice"
+          >编辑</button>
+          
+          <button 
+            wx:if="{{item.status === 1}}"
+            class="btn-action btn-unpublish" 
+            data-id="{{item.id}}"
+            catchtap="onUnpublishNotice"
+          >下架</button>
+          
+          <button 
+            wx:if="{{item.status === 0 || item.status === 2}}"
+            class="btn-action btn-publish" 
+            data-id="{{item.id}}"
+            catchtap="onPublishNotice"
+          >上架</button>
+          
+          <button 
+            class="btn-action btn-delete" 
+            data-id="{{item.id}}"
+            catchtap="onDeleteNotice"
+          >删除</button>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{notices.length === 0}}">
+      <text class="empty-icon">📢</text>
+      <text class="empty-text">暂无公告数据</text>
+    </view>
+  </view>
+
+  <!-- 底部悬浮按钮 -->
+  <view class="bottom-bar">
+    <button class="btn btn-primary" bindtap="onAddNotice">
+      发布公告
+    </button>
+  </view>
+</view>

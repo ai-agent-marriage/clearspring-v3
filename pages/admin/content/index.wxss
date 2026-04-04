@@ -1,0 +1,148 @@
+/* 清如 ClearSpring - 内容管理系统首页样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: calc(var(--spacing-4) + 120rpx);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 顶部导航栏 ========== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  border-radius: var(--radius-lg);
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ========== 数据概览卡片 ========== */
+.stats-section {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.stat-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2);
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
+  border-radius: var(--radius-lg);
+}
+
+.stat-value {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--gold-dim);
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 功能入口区 ========== */
+.menus-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-1);
+  border-left: 6rpx solid var(--gold-main);
+}
+
+.menus-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.menu-card:active {
+  transform: scale(0.98);
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 56rpx;
+  margin-right: var(--spacing-2);
+}
+
+.menu-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8rpx;
+}
+
+.menu-count {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.menu-arrow {
+  font-size: 40rpx;
+  color: var(--text-light);
+}
+
+/* ========== 快捷操作区 ========== */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.btn-primary {
+  width: 100%;
+  min-height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+
+.btn-primary:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}

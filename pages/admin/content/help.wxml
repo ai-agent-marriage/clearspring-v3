@@ -1,0 +1,61 @@
+<!-- 清如 ClearSpring - 帮助文档管理页面 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-title">帮助文档</view>
+  </view>
+
+  <!-- 文档列表区 -->
+  <view class="docs-list">
+    <view 
+      wx:for="{{helpDocs}}" 
+      wx:key="id" 
+      class="doc-card"
+      data-id="{{item.id}}"
+      bindtap="onDocTap"
+    >
+      <view class="doc-header">
+        <view class="doc-title">{{item.title}}</view>
+        <view class="doc-category">{{item.category}}</view>
+      </view>
+      
+      <view class="doc-footer">
+        <view class="doc-time">
+          <text class="time-icon">🕒</text>
+          <text class="time-text">更新于 {{item.updateTime}}</text>
+        </view>
+        
+        <view class="doc-actions">
+          <button 
+            class="btn-action btn-edit" 
+            data-id="{{item.id}}"
+            catchtap="onEditDoc"
+          >编辑</button>
+          <button 
+            class="btn-action btn-detail" 
+            data-id="{{item.id}}"
+            catchtap="onViewDetail"
+          >详情</button>
+          <button 
+            class="btn-action btn-delete" 
+            data-id="{{item.id}}"
+            catchtap="onDeleteDoc"
+          >删除</button>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{helpDocs.length === 0}}">
+      <text class="empty-icon">📖</text>
+      <text class="empty-text">暂无帮助文档</text>
+    </view>
+  </view>
+
+  <!-- 底部悬浮按钮 -->
+  <view class="bottom-bar">
+    <button class="btn btn-primary" bindtap="onAddDoc">
+      新增文档
+    </button>
+  </view>
+</view>

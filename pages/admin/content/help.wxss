@@ -1,0 +1,179 @@
+/* 清如 ClearSpring - 帮助文档管理页面样式 */
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: calc(var(--spacing-4) + 120rpx);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 顶部导航栏 ========== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  border-radius: var(--radius-lg);
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ========== 文档列表区 ========== */
+.docs-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.doc-card {
+  padding: var(--spacing-2);
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.doc-card:active {
+  transform: scale(0.98);
+}
+
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-2);
+}
+
+.doc-title {
+  flex: 1;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.doc-category {
+  padding: 6rpx 20rpx;
+  background: rgba(212, 184, 123, 0.15);
+  border-radius: var(--radius-sm);
+  font-size: 24rpx;
+  font-weight: 500;
+  color: var(--gold-dim);
+  white-space: nowrap;
+  margin-left: var(--spacing-1);
+}
+
+.doc-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-2);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.08);
+}
+
+.doc-time {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.time-icon {
+  font-size: 28rpx;
+}
+
+.time-text {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.doc-actions {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.btn-action {
+  min-height: 56rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-edit {
+  background: rgba(212, 184, 123, 0.15);
+  color: var(--gold-dim);
+}
+
+.btn-detail {
+  background: rgba(74, 93, 78, 0.1);
+  color: var(--green-main);
+}
+
+.btn-delete {
+  background: rgba(114, 119, 114, 0.15);
+  color: var(--text-dim);
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-4);
+  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
+  border-radius: var(--radius-lg);
+}
+
+.empty-icon {
+  font-size: 96rpx;
+  margin-bottom: var(--spacing-2);
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 底部悬浮按钮 ========== */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+  z-index: 100;
+}
+
+.btn-primary {
+  width: 100%;
+  min-height: 88rpx;
+  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+}
+
+.btn-primary:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}

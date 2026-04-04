@@ -1,0 +1,56 @@
+<!-- 清如 ClearSpring - 内容管理系统首页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-title">内容管理</view>
+  </view>
+
+  <!-- 数据概览卡片 -->
+  <view class="stats-section">
+    <view class="stat-card">
+      <view class="stat-value">{{stats.speciesCount}}</view>
+      <view class="stat-label">物种总数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-value">{{stats.noticeCount}}</view>
+      <view class="stat-label">公告总数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-value">{{stats.helpDocCount}}</view>
+      <view class="stat-label">帮助文档总数</view>
+    </view>
+  </view>
+
+  <!-- 功能入口区 -->
+  <view class="menus-section">
+    <view class="section-title">功能管理</view>
+    <view class="menus-list">
+      <view 
+        wx:for="{{menus}}" 
+        wx:key="name" 
+        class="menu-card"
+        data-path="{{item.path}}"
+        bindtap="onMenuTap"
+      >
+        <view class="menu-left">
+          <view class="menu-icon">{{item.icon}}</view>
+          <view class="menu-info">
+            <view class="menu-name">{{item.name}}</view>
+            <view class="menu-count">共 {{item.count}} 条</view>
+          </view>
+        </view>
+        <view class="menu-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作区 -->
+  <view class="quick-actions">
+    <button class="btn btn-primary" bindtap="onAddSpecies">
+      新增物种
+    </button>
+    <button class="btn btn-primary" bindtap="onAddNotice">
+      发布公告
+    </button>
+  </view>
+</view>
