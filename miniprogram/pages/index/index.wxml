@@ -1,0 +1,79 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 日期卡片 -->
+  <view class="card date-card">
+    <view class="solar-date text-center text-bold text-primary">{{solarDate}}</view>
+    <view class="lunar-date text-center text-secondary mt-8">{{lunarDate}}</view>
+    <view class="ganzhi text-center text-secondary mt-8">{{ganzhi}}</view>
+  </view>
+
+  <!-- 禅理展示 -->
+  <view class="card zen-card">
+    <view class="zen-content text-center">
+      <text class="zen-text">{{zenQuote}}</text>
+    </view>
+    <view class="zen-actions flex-center mt-24">
+      <view class="action-btn" bindtap="onRefreshZen">
+        <text class="action-icon">🔄</text>
+        <text class="action-text">刷新</text>
+      </view>
+      <view class="action-btn" bindtap="onCollectZen">
+        <text class="action-icon">⭐</text>
+        <text class="action-text">收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 宜忌分栏 -->
+  <view class="suit-avoid-card">
+    <view class="suit-section card">
+      <view class="section-title text-primary text-bold mb-16">宜</view>
+      <view class="tags-container">
+        <van-tag plain type="success" wx:for="{{suit}}" wx:key="*index">{{item}}</van-tag>
+      </view>
+    </view>
+    <view class="avoid-section card">
+      <view class="section-title text-error text-bold mb-16">忌</view>
+      <view class="tags-container">
+        <van-tag plain type="danger" wx:for="{{avoid}}" wx:key="*index">{{item}}</van-tag>
+      </view>
+    </view>
+  </view>
+
+  <!-- 打卡按钮区 -->
+  <view class="checkin-card card">
+    <view class="section-title text-center text-bold mb-24">今日打卡</view>
+    <view class="checkin-buttons flex-between">
+      <van-button 
+        type="primary" 
+        size="large"
+        block
+        bind:click="onMorningCheckIn"
+        disabled="{{morningCheckIn}}"
+      >
+        {{morningCheckIn ? '已打卡' : '晨起礼佛'}}
+      </van-button>
+      <view class="divider"></view>
+      <van-button 
+        type="primary" 
+        size="large"
+        block
+        bind:click="onEveningCheckIn"
+        disabled="{{eveningCheckIn}}"
+      >
+        {{eveningCheckIn ? '已打卡' : '晚间打坐'}}
+      </van-button>
+    </view>
+  </view>
+
+  <!-- 占位空间，避免被功德林按钮遮挡 -->
+  <view class="spacer"></view>
+</view>
+
+<!-- 吸底功德林按钮 -->
+<view class="merit-button-container" bindtap="onMeritTap">
+  <view class="merit-button">
+    <view class="merit-icon">🙏</view>
+    <view class="merit-count">功德 {{meritCount}}</view>
+  </view>
+</view>

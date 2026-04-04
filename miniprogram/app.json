@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/audio/index",
+    "pages/zen/index",
+    "pages/protect/index",
+    "pages/order/index",
+    "pages/profile/index",
+    "pages/volunteer-home/index",
+    "pages/org-home/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4A5D4E",
+    "navigationBarTitleText": "日行一善",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#EFEEE9"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4A5D4E",
+    "backgroundColor": "#EFEEE9",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/audio/index",
+        "text": "梵音",
+        "iconPath": "assets/tabbar/audio.png",
+        "selectedIconPath": "assets/tabbar/audio-active.png"
+      },
+      {
+        "pagePath": "pages/zen/index",
+        "text": "禅理",
+        "iconPath": "assets/tabbar/zen.png",
+        "selectedIconPath": "assets/tabbar/zen-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "assets/tabbar/profile.png",
+        "selectedIconPath": "assets/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-tag": "@vant/weapp/tag/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

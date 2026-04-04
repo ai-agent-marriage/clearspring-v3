@@ -1,0 +1,4 @@
+/* pages/zen/index.wxss */
+.container {
+  padding: 24rpx;
+}

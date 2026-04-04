@@ -1,0 +1,6 @@
+<!--pages/profile/index.wxml-->
+<view class="container">
+  <view class="user-info card">
+    <text>我的页面</text>
+  </view>
+</view>

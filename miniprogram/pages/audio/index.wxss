@@ -1,0 +1,145 @@
+/* pages/audio/index.wxss */
+
+.container {
+  padding: 24rpx;
+  padding-bottom: 160rpx;
+}
+
+/* 禅理区域 */
+.zen-section {
+  margin-bottom: 32rpx;
+}
+
+.zen-content {
+  padding: 20rpx 0;
+}
+
+.zen-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 30rpx;
+  line-height: 1.8;
+  color: #333333;
+}
+
+.zen-actions {
+  gap: 48rpx;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.action-icon {
+  font-size: 36rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+/* 章节标题 */
+.section-title {
+  font-size: 32rpx;
+  color: #333333;
+  margin-left: 8rpx;
+}
+
+/* 音频网格 */
+.audio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.audio-item {
+  padding: 16rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  transition: transform 0.2s;
+}
+
+.audio-item:active {
+  transform: scale(0.95);
+}
+
+.audio-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4A5D4E 0%, #5D7260 100%);
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  font-size: 32rpx;
+  color: #4A5D4E;
+}
+
+.audio-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.audio-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #333333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.audio-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listen-count {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.duration {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* 占位空间 */
+.spacer {
+  height: 40rpx;
+}
+
+/* 底部按钮 */
+.bottom-button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx;
+  background-color: #EFEEE9;
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.05);
+}

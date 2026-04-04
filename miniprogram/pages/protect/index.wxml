@@ -1,0 +1,4 @@
+<!--pages/protect/index.wxml-->
+<view class="container">
+  <text>护生页面</text>
+</view>

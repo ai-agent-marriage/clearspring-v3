@@ -1,0 +1,58 @@
+<!--pages/audio/index.wxml-->
+<view class="container">
+  <!-- 禅理展示区 -->
+  <view class="zen-section card">
+    <view class="zen-content text-center">
+      <text class="zen-text">{{zenQuote}}</text>
+    </view>
+    <view class="zen-actions flex-center mt-24">
+      <view class="action-btn" bindtap="onRefreshZen">
+        <text class="action-icon">🔄</text>
+        <text class="action-text">刷新</text>
+      </view>
+      <view class="action-btn" bindtap="onCollectZen">
+        <text class="action-icon">⭐</text>
+        <text class="action-text">收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 音频列表 -->
+  <view class="section-title text-bold mb-16">梵音精选</view>
+  <view class="audio-grid">
+    <view 
+      class="audio-item card" 
+      wx:for="{{audioList}}" 
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onPlayAudio"
+    >
+      <view class="audio-cover">
+        <image class="cover-image" src="{{item.cover}}" mode="aspectFill" />
+        <view class="play-icon">▶</view>
+      </view>
+      <view class="audio-info">
+        <view class="audio-title">{{item.title}}</view>
+        <view class="audio-meta">
+          <text class="listen-count">👂 {{item.listenCount}}</text>
+          <text class="duration">{{item.duration}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 占位空间 -->
+  <view class="spacer"></view>
+</view>
+
+<!-- 底部按钮 -->
+<view class="bottom-button-container">
+  <van-button 
+    type="primary" 
+    size="large" 
+    block
+    bind:click="goToPlayHistory"
+  >
+    我的收听记录
+  </van-button>
+</view>

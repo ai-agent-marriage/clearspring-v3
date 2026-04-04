@@ -1,0 +1,4 @@
+/* pages/volunteer-home/index.wxss */
+.container {
+  padding: 24rpx;
+}

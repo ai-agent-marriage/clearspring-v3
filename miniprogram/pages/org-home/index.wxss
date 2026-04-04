@@ -1,0 +1,4 @@
+/* pages/org-home/index.wxss */
+.container {
+  padding: 24rpx;
+}

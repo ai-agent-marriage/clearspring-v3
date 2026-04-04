@@ -1,0 +1,4 @@
+/* pages/protect/index.wxss */
+.container {
+  padding: 24rpx;
+}
