@@ -1,0 +1,21 @@
+name: Simple SSH Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VOLCANO_SSH_KEY }}
+      
+      - name: Add known_hosts
+        run: ssh-keyscan -H 101.96.192.63 >> ~/.ssh/known_hosts
+      
+      - name: Test Connection
+        run: |
+          ssh -vvv clearspring-bot@101.96.192.63 "echo 'SUCCESS: SSH Connected!'; whoami; hostname; date"
