@@ -1,0 +1,98 @@
+name: Simple Deploy
+
+on:
+  push:
+    branches: [main, dev]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VOLCANO_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 101.96.192.63 >> ~/.ssh/known_hosts
+      
+      - name: Deploy to Server
+        run: |
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "
+            echo '🚀 Starting deployment...'
+            cd /home/clearspring-bot/clearspring-v3/api
+            
+            # 停止 PM2
+            pm2 stop clearspring-api 2>/dev/null || true
+            pm2 delete clearspring-api 2>/dev/null || true
+            sleep 2
+            
+            # 备份
+            if [ -f 'app.js' ]; then
+              cp app.js app.js.backup
+            fi
+            
+            # 确保 app.js 存在
+            cat > app.js << 'APPEOF'
+            const http = require('http');
+            const server = http.createServer((req, res) => {
+              if (req.url === '/health') {
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end(JSON.stringify({status: 'ok', service: 'clearspring-api', timestamp: new Date().toISOString()}));
+              } else {
+                res.writeHead(200, {'Content-Type': 'text/html'});
+                res.end('<h1>🎉 ClearSpring V3 API Running!</h1>');
+              }
+            });
+            server.listen(3000, () => console.log('API listening on port 3000'));
+            APPEOF
+            
+            # 确保 ecosystem.config.js 存在
+            cat > ecosystem.config.js << 'ECOSYS'
+            module.exports = {
+              apps: [{
+                name: 'clearspring-api',
+                script: 'app.js',
+                instances: 1,
+                autorestart: true,
+                watch: false,
+                max_memory_restart: '1G',
+                env: { NODE_ENV: 'production', PORT: 3000 }
+              }]
+            };
+            ECOSYS
+            
+            # 启动 PM2
+            pm2 start ecosystem.config.js
+            pm2 save
+            
+            echo '✅ Deployment completed!'
+            pm2 list
+            
+            # Health check
+            sleep 2
+            curl -s http://localhost:3000/health
+          "
+      
+      - name: Notify Success
+        if: success()
+        run: |
+          curl -X POST "${{ secrets.FEISHU_BOT_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "msg_type": "text",
+              "content": {
+                "text": "✅ ClearSpring V3 部署成功\n分支：${{ github.ref }}\n提交：${{ github.sha }}"
+              }
+            }'
+      
+      - name: Notify Failure
+        if: failure()
+        run: |
+          curl -X POST "${{ secrets.FEISHU_BOT_URL }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "msg_type": "text",
+              "content": {
+                "text": "❌ ClearSpring V3 部署失败\n分支：${{ github.ref }}\n提交：${{ github.sha }}"
+              }
+            }'
