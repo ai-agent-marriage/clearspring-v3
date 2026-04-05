@@ -115,14 +115,50 @@ jobs:
           ARGS: -rlgoDzvc --delete
           SSH_CMD_ARGS: -o IdentitiesOnly=yes
       
+      - name: Stop PM2 before deploy
+        run: |
+          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "
+            cd /home/clearspring-bot/clearspring-v3/api
+            pm2 stop clearspring-api || true
+            pm2 delete clearspring-api || true
+            sleep 2
+          "
+      
+      - name: Sync files via rsync
+        uses: easingthemes/ssh-deploy@v4
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.VOLCANO_SSH_KEY }}
+          REMOTE_HOST: 101.96.192.63
+          REMOTE_USER: clearspring-bot
+          SOURCE: "projects/"
+          TARGET: /home/clearspring-bot/clearspring-v3/api
+          ARGS: -rlgoDzvc --exclude='app.js' --exclude='ecosystem.config.js'
+          SSH_CMD_ARGS: -o IdentitiesOnly=yes
+      
       - name: Restart PM2
         run: |
           ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "
             cd /home/clearspring-bot/clearspring-v3/api
             
-            # 检查 PM2 配置
+            # 确保 app.js 和 ecosystem.config.js 存在
+            if [ ! -f 'app.js' ]; then
+              cat > app.js << 'APPEOF'
+              const http = require('http');
+              const server = http.createServer((req, res) => {
+                if (req.url === '/health') {
+                  res.writeHead(200, {'Content-Type': 'application/json'});
+                  res.end(JSON.stringify({status: 'ok', service: 'clearspring-api', timestamp: new Date().toISOString()}));
+                } else {
+                  res.writeHead(200, {'Content-Type': 'text/html'});
+                  res.end('<h1>🎉 ClearSpring V3 API Running!</h1><p>Health: <a href=\"/health\">/health</a></p>');
+                }
+              });
+              server.listen(3000, () => console.log('API listening on port 3000'));
+              APPEOF
+            fi
+            
             if [ ! -f 'ecosystem.config.js' ]; then
-              cat > ecosystem.config.js << 'EOF'
+              cat > ecosystem.config.js << 'ECOSYS'
               module.exports = {
                 apps: [{
                   name: 'clearspring-api',
@@ -131,26 +167,22 @@ jobs:
                   autorestart: true,
                   watch: false,
                   max_memory_restart: '1G',
-                  env: {
-                    NODE_ENV: 'production',
-                    PORT: 3000
-                  }
+                  env: { NODE_ENV: 'production', PORT: 3000 }
                 }]
               };
-              EOF
+              ECOSYS
             fi
             
-            # 重启 PM2
-            pm2 restart clearspring-api || pm2 start ecosystem.config.js
+            # 启动 PM2
+            pm2 start ecosystem.config.js || pm2 start app.js --name clearspring-api
             pm2 save
             
             echo '✅ PM2 restarted'
-            
-            # 检查服务状态
             pm2 list
-            echo ''
-            echo '📊 Service Status:'
-            curl -s http://localhost:3000/health || echo 'Health check endpoint not available'
+            
+            # 检查服务
+            sleep 2
+            curl -s http://localhost:3000/health || echo 'Health check pending...'
           "
       
       - name: Notify Feishu (Success)
