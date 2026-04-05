@@ -1,0 +1,12 @@
+{
+  "name": "createPay",
+  "version": "1.0.0",
+  "description": "创建支付订单（幂等性设计）",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "crypto": "^1.0.1"
+  },
+  "author": "ClearSpring",
+  "license": "MIT"
+}

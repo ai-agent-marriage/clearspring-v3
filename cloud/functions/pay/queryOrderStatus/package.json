@@ -1,0 +1,11 @@
+{
+  "name": "queryOrderStatus",
+  "version": "1.0.0",
+  "description": "查询订单支付状态",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  },
+  "author": "ClearSpring",
+  "license": "MIT"
+}
