@@ -1,0 +1,23 @@
+name: CI/CD Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Test SSH Connection
+        uses: easingthemes/ssh-deploy@v4
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.VOLCANO_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.VOLCANO_HOST }}
+          REMOTE_USER: ${{ secrets.VOLCANO_SSH_USER }}
+          SOURCE: "."
+          TARGET: /home/clearspring-bot/test-deploy
+          SCRIPT_AFTER: |
+            echo "Deployment successful!"
+            ls -la /home/clearspring-bot/test-deploy
