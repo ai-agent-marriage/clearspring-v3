@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary": "#533d20",
+                        "on-secondary-fixed": "#211b00",
+                        "primary-fixed": "#d3e8d5",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#291801",
+                        "on-tertiary-container": "#ebcaa3",
+                        "background": "#faf9f4",
+                        "on-error-container": "#93000a",
+                        "outline": "#737872",
+                        "tertiary-container": "#6d5435",
+                        "surface-container-high": "#e9e8e3",
+                        "secondary-container": "#fee264",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-tint": "#506354",
+                        "surface-container-highest": "#e3e2de",
+                        "secondary": "#6e5e00",
+                        "error": "#ba1a1a",
+                        "surface": "#faf9f4",
+                        "inverse-surface": "#30312e",
+                        "surface-container": "#efeee9",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "on-surface-variant": "#434843",
+                        "surface-bright": "#faf9f4",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#c0d5c2",
+                        "inverse-primary": "#b7ccb9",
+                        "on-secondary-container": "#756400",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#fee264",
+                        "primary": "#334537",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-primary-fixed": "#0e1f13",
+                        "primary-container": "#4a5d4e",
+                        "on-surface": "#1b1c19",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e3e2de",
+                        "outline-variant": "#c3c8c1",
+                        "on-background": "#1b1c19",
+                        "surface-dim": "#dbdad5",
+                        "surface-container-low": "#f5f4ef",
+                        "inverse-on-surface": "#f2f1ec"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(110, 94, 0, 0.03) 0%, transparent 50%);
+        }
+        .glass-panel {
+            background: rgba(250, 249, 244, 0.4);
+            backdrop-filter: blur(12px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen selection:bg-secondary-container ink-wash-bg">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#1A1C19]/40 backdrop-blur-xl h-16 flex justify-between items-center px-6 max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#4A5D4E]/10 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#EFEEE9]">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold text-xl text-[#334537] dark:text-[#EFEEE9]">我的梵音收听</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#EFEEE9]">more_vert</span>
+</div>
+</nav>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Header: Compact Data Summary -->
+<header class="mb-10">
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="z-10 text-center md:text-left">
+<p class="text-sm text-tertiary tracking-widest font-label mb-2 uppercase">Total Mindfulness</p>
+<h2 class="font-headline text-4xl text-primary font-bold">1,280 <span class="text-lg font-normal text-outline">分钟</span></h2>
+</div>
+<div class="flex gap-8 z-10">
+<div class="text-center">
+<p class="text-xs text-outline font-label mb-1">收藏记录</p>
+<p class="text-lg font-bold text-primary">48</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-outline font-label mb-1">连续禅定</p>
+<p class="text-lg font-bold text-secondary">12</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-outline font-label mb-1">本周时长</p>
+<p class="text-lg font-bold text-primary">156</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Tabs -->
+<section class="mb-8 overflow-x-auto no-scrollbar">
+<div class="flex gap-10 items-center border-b border-outline-variant/15 pb-4">
+<button class="relative text-primary font-bold group">
+                    我的收藏
+                    <span class="absolute -bottom-4 left-0 w-full h-0.5 bg-primary rounded-full"></span>
+</button>
+<button class="text-on-surface-variant/60 hover:text-primary transition-colors">历史记录</button>
+<button class="text-on-surface-variant/60 hover:text-primary transition-colors">下载内容</button>
+</div>
+</section>
+<!-- List (My Favorites) -->
+<div class="grid grid-cols-1 gap-6">
+<!-- Track Item 1 -->
+<div class="group flex items-center justify-between p-4 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-lowest transition-all duration-300">
+<div class="flex items-center gap-5">
+<div class="relative w-16 h-16 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="Close-up of a Tibetan singing bowl on a dark wooden surface with soft atmospheric incense smoke" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzp27_gN2_9mcVVJKtyO7LfqWcKD44aX6pudwzKwNRWIDQPj-T3ZAwSJYgIwfixTo0dLvfP-l86I8aDlQxttVFGpya9tgUwRcStUG12NWgL88CaKws7OoQIjAmLTQxUaL4vv2T_CiOazBJhvnDR27TI85QEKtCL0lw8EwlgqiI4o4DVwO5ms_mi-VpOufqesdm3RjeDaAl8JAKCtDfRh31TkkpzEN8PMUdoLp-XUaviceSoofuWWWN-Bp-m_Yq48Ltm5iXVGDUQj8c"/>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-lg text-primary leading-tight mb-1">大悲咒：静谧之空</h3>
+<p class="text-xs text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">timer</span> 08:45
+                            <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+                            传统梵音
+                        </p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container group-hover:bg-primary-container group-hover:text-white transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Track Item 2 -->
+<div class="group flex items-center justify-between p-4 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-lowest transition-all duration-300">
+<div class="flex items-center gap-5">
+<div class="relative w-16 h-16 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="Zen rock garden with perfectly raked sand and a single moss-covered stone in early morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkPXsPwXQOVa1AR1xeEv9Rk6Mkd9fwtWLjt9Bop7FyF0KvHaXTJ2vwXMTNRP1zy3wON-3sphNQOW9Pq4lp2c-xM2GCIzKC4nD9m61unP0KILFFExTKoNHhC9YzZbUw4ugr-aWYOH2CoV-5eaRyILCnrcgf_OCqipESmlzgnB-2XSUENfiUZtOFr1D0yzv4Cn1Au2HNwmWJMfGTS7LolQ-HsTXEl4GRNql3JdVXW58K9Hx1gnsbXDZvK5IRdPL_hAUN1QYhq9kksb2H"/>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-lg text-primary leading-tight mb-1">清晨禅修：林间细雨</h3>
+<p class="text-xs text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">timer</span> 15:20
+                            <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+                            自然疗愈
+                        </p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container group-hover:bg-primary-container group-hover:text-white transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Track Item 3 -->
+<div class="group flex items-center justify-between p-4 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-lowest transition-all duration-300">
+<div class="flex items-center gap-5">
+<div class="relative w-16 h-16 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="Ocean waves gently breaking on a sandy beach during blue hour with a soft ethereal glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxOfyLw83HM5dWAqtNzOvpIFKIDtN2iEyzf1h39PnK6ZHGoHfyzOMWCvsuD6XuzgUS23UEauqNWN8tud15KUGdIa8DXFOvFuuwwMca9FcH_C9A2QHweLdE-FBSxU7Q5v_w5F7F40yJEK5xKox6uM7IQizsz_9xwWEo3KKSaVq-u2O_nxHpBZwdSMme8-XdDmVhX7xLmuzjXj9EGHsaHdkA4rVxoZvjw1pslf6zHnw4O7u-kGD0cTplZ5PTT4M984BX5j7a2rHYFa6K"/>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-lg text-primary leading-tight mb-1">般若心经：潮汐共鸣</h3>
+<p class="text-xs text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">timer</span> 12:00
+                            <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+                            深度冥想
+                        </p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container group-hover:bg-primary-container group-hover:text-white transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Track Item 4 -->
+<div class="group flex items-center justify-between p-4 rounded-2xl bg-surface-container-low/50 hover:bg-surface-container-lowest transition-all duration-300">
+<div class="flex items-center gap-5">
+<div class="relative w-16 h-16 rounded-xl overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+<img class="w-full h-full object-cover" data-alt="Abstract ink wash landscape with soft mountains and a single boat on a misty lake" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABdpqlWDywM9Cuu2S4oVflKPIdWZepmtvzulWAxfJdCYZP3hhNq2kGW5fxEysyG89Z1NS05yH3xFYcYpOqEddd4yw7GS9yO8jaLTH3DS0SLjVwGQ3v60ql8uvJeH8LO0QtN0nBZ6oATpun_qROpeK6mc9zoX1-DjSF1UBaf27gGqk6JUI1YOqTF0gm4MxeSZ-1UVO8Q1o6PUJTsybukym0FmjSPFDFt2MpJa_Z7IFU6psa_Bfa8HSg_JmWDGQ4ODU58b_s0WT8NWcQ"/>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-lg text-primary leading-tight mb-1">空灵：古琴遗韵</h3>
+<p class="text-xs text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">timer</span> 24:00
+                            <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+                            乐器
+                        </p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary-container/10 text-primary-container group-hover:bg-primary-container group-hover:text-white transition-all">
+<span class="material-symbols-outlined">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Asymmetric Quote Section -->
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#FAF9F4] dark:bg-[#1A1C19] flex justify-around items-center pt-3 pb-8 px-4 rounded-t-3xl shadow-[0_-4px_20px_rgba(74,93,78,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#EFEEE9]/50 px-5 py-1.5 hover:opacity-80 transition-all duration-200" href="#"><span class="material-symbols-outlined text-2xl mb-1">auto_stories</span>
+<span class="text-[11px] uppercase tracking-wider font-label">梵音</span></a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#EFEEE9]/50 px-5 py-1.5 hover:opacity-80 transition-all duration-200" href="#"><span class="material-symbols-outlined text-2xl mb-1">self_improvement</span>
+<span class="text-[11px] uppercase tracking-wider font-label">禅理</span></a>
+<a class="flex flex-col items-center justify-center bg-[#4A5D4E] text-[#EFEEE9] rounded-xl px-5 py-1.5 scale-100 hover:opacity-80 transition-all duration-200" href="#"><span class="material-symbols-outlined text-2xl mb-1">person</span>
+<span class="text-[11px] uppercase tracking-wider font-label">我的</span></a>
+</nav>
+</body></html>

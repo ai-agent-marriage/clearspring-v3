@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e3e2de",
+                    "secondary-fixed": "#fee264",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "inverse-primary": "#b7ccb9",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#d3e8d5",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface": "#faf9f4",
+                    "on-surface-variant": "#434843",
+                    "surface-variant": "#e3e2de",
+                    "primary-container": "#4a5d4e",
+                    "on-secondary-container": "#756400",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f4ef",
+                    "tertiary": "#533d20",
+                    "on-surface": "#1b1c19",
+                    "on-secondary-fixed": "#211b00",
+                    "surface-tint": "#506354",
+                    "tertiary-container": "#6d5435",
+                    "secondary": "#6e5e00",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-secondary-fixed-variant": "#534600",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-tertiary-fixed": "#291801",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#efeee9",
+                    "primary": "#334537",
+                    "on-background": "#1b1c19",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-container": "#fee264",
+                    "background": "#faf9f4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e9e8e3",
+                    "surface-dim": "#dbdad5",
+                    "inverse-surface": "#30312e",
+                    "outline": "#737872",
+                    "on-primary-container": "#c0d5c2",
+                    "outline-variant": "#c3c8c1",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#faf9f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "Noto Sans SC", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at top right, rgba(74, 93, 78, 0.05), transparent),
+                        radial-gradient(circle at bottom left, rgba(166, 137, 102, 0.05), transparent);
+        }
+        .sidebar-active {
+            background-color: rgba(201, 176, 55, 0.1);
+            color: #334537;
+            font-weight: 600;
+            border-top-right-radius: 9999px;
+            border-bottom-right-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-stone-100 dark:bg-stone-950 flex flex-col pt-6 pb-10 border-r border-stone-200/20 z-50">
+<div class="px-8 mb-10">
+<h1 class="font-headline text-2xl text-emerald-950 dark:text-emerald-50 leading-tight">Breath of Silence</h1>
+<p class="text-xs tracking-widest text-stone-500 mt-1 uppercase">Administrative Portal</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 hover:translate-x-1 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">控制台</span>
+</a>
+<a class="sidebar-active flex items-center gap-3 px-4 py-3 text-emerald-900 dark:text-yellow-500 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-sm font-semibold">用户管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 hover:translate-x-1 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="text-sm font-medium">订单管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 hover:translate-x-1 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-sm font-medium">内容与合规管理</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 hover:translate-x-1 transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-sm font-medium">财务管理</span>
+</a><a class="flex items-center gap-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 hover:translate-x-1 transition-all duration-200 group" href="#"><span class="material-symbols-outlined" data-icon="settings">settings</span><span class="text-sm font-medium">系统设置</span></a>
+</nav>
+<div class="mt-auto px-4 pt-4 border-t border-stone-200/20">
+<button class="w-full flex items-center justify-center gap-2 bg-primary-container text-on-primary py-3 rounded-lg text-sm font-semibold mb-6 hover:opacity-90 transition-opacity"><span class="material-symbols-outlined text-sm" data-icon="add">add</span>新建条目</button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-stone-500 hover:text-primary transition-colors text-xs" href="#"><span class="material-symbols-outlined text-lg" data-icon="contact_support">contact_support</span>技术支持</a>
+<a class="flex items-center gap-3 px-4 py-2 text-stone-500 hover:text-error transition-colors text-xs" href="#"><span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>退出登录</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen ink-wash-bg">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 py-3 bg-stone-50/40 dark:bg-stone-900/40 backdrop-blur-md">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-emerald-800/70">
+<span class="material-symbols-outlined text-xl" data-icon="search">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 w-80 bg-surface-container border-none focus:ring-1 focus:ring-emerald-700/30 rounded-full text-sm placeholder:text-stone-400 transition-all" placeholder="在全球库中搜索..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-emerald-800/70 hover:text-emerald-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-emerald-800/70 hover:text-emerald-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="text-emerald-800/70 hover:text-emerald-900 transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-6 border-l border-stone-200">
+<div class="text-right">
+<p class="text-xs font-bold text-emerald-900">管理员</p>
+<p class="text-[10px] text-stone-500">系统管理员</p>
+</div>
+<img alt="Administrator profile" class="w-8 h-8 rounded-full object-cover border border-stone-200" data-alt="professional headshot of an administrator in a minimalist office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRCGY1TTT0t-DtnSSQ-IfCKEMzBUnjLXcSvck_zIvyzk4riXEJESYNVebiFSthjppCtuJVOkOlZ9HlrkB0ICfv8XKwRfto5aRTW49a_AgNHxHjZESS68gPAw_JC2VZnHgtGxbMAAXEri84XaLItyZiQKlhMA1HRJZAeLOfMcM5_wNkq2m9GyF5qdLuOPSIWIL305TOlHqR5gQiweeWv1MEjD7DVSRNB9Bkf1f5QkMLbDEcWMTU-jGAsF0d9eZjgiKFEu8pVw2d60hg"/>
+</div>
+</div>
+</header>
+<!-- Page Header Section -->
+<section class="px-10 py-12">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-headline text-4xl text-emerald-950 mb-4 tracking-tight">物种库管理</h2>
+<p class="text-tertiary text-lg leading-relaxed max-w-2xl opacity-80">
+                    通过精确的数据分类与合规性监测，维护数字生态系统的多样性与平衡。每一个条目都代表着自然界中不可或缺的沉默生命力。
+                </p>
+</div>
+</section>
+<!-- Toolbar & Filters -->
+<section class="px-10 mb-8">
+<div class="max-w-7xl mx-auto bg-surface-container-low rounded-2xl p-6 shadow-sm border border-stone-100">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<!-- Left: Primary Actions -->
+<div class="flex items-center gap-3">
+<button class="px-6 py-2.5 bg-primary-container text-on-primary rounded-lg text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+                            新增物种
+                        </button>
+<button class="px-4 py-2.5 border border-outline-variant/30 text-primary rounded-lg text-sm font-medium hover:bg-surface-container transition-all">
+                            批量操作
+                        </button>
+<button class="px-4 py-2.5 border border-outline-variant/30 text-primary rounded-lg text-sm font-medium hover:bg-surface-container transition-all">
+                            数据导入
+                        </button>
+</div>
+<!-- Right: Filters -->
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-stone-400 font-semibold px-1">物种分类</span>
+<select class="bg-surface-container-lowest border-none text-xs rounded-lg py-2 pl-3 pr-8 focus:ring-1 focus:ring-primary/20">
+<option>全部类别</option>
+<option>鸟类</option>
+<option>鱼类</option>
+<option>哺乳类</option>
+<option>两栖类</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-stone-400 font-semibold px-1">合规状态</span>
+<select class="bg-surface-container-lowest border-none text-xs rounded-lg py-2 pl-3 pr-8 focus:ring-1 focus:ring-primary/20">
+<option>全部状态</option>
+<option>可合规投放</option>
+<option>禁止投放</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-stone-400 font-semibold px-1">录入日期</span>
+<div class="flex items-center gap-2 px-3 py-2 bg-surface-container-lowest rounded-lg text-xs text-stone-600">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+                                2023-01-01 至 2023-12-31
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Data Table Container -->
+<section class="px-10 pb-12">
+<div class="max-w-7xl mx-auto bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.04)] border border-stone-50">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low/50">
+<tr>
+<th class="py-5 px-6 w-12 text-center">
+<input class="rounded text-primary focus:ring-primary border-stone-300" type="checkbox"/>
+</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">编号</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">名称</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">学名</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">分类</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">状态</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">级别</th>
+<th class="py-5 px-4 text-xs font-bold text-stone-500 uppercase tracking-wider">排序</th>
+<th class="py-5 px-6 text-xs font-bold text-stone-500 uppercase tracking-wider text-right">管理</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-stone-100">
+<!-- Row 1 -->
+<tr class="hover:bg-stone-50/50 transition-colors group">
+<td class="py-5 px-6 text-center">
+<input class="rounded text-primary focus:ring-primary border-stone-300" type="checkbox"/>
+</td>
+<td class="py-5 px-4 text-sm font-mono text-stone-400">#SP-9021</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<img alt="Species thumbnail" class="w-10 h-10 rounded-lg object-cover" data-alt="vibrant colorful parrot sitting on a branch in a tropical rainforest with dappled sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKKozQJqPLz8C-1jgWI2Isw7KZaQRn0pposmrx4niqRQcQ5mQ3-4b-qnGxhf1pvs7-qNQZgrAcrW4nE5KZ0RPEXOp4o_ULe3vSDs7UpRgBg2BUjIJ_KdfVX247O1GTb-Md0dLg2xy8CQKGI2kWqgc-bP5nHp6PTit5pcjzQmYzgCiWSI0qiFVF1Cv5GbuUZcCsL4KU306jxCjWiFuVAK7Z5Vws8mFLRbKG2ZVqGFZTBgomgmxf94F87r-SnOqi8zTVANnZwzUlnE0d"/>
+<span class="text-sm font-semibold text-emerald-950">金刚鹦鹉</span>
+</div>
+</td>
+<td class="py-5 px-4 text-sm italic text-stone-500">Ara macao</td>
+<td class="py-5 px-4">
+<span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-600 text-[10px] font-bold uppercase tracking-tight">鸟类</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
+<span class="w-1 h-1 rounded-full bg-emerald-500"></span>
+                                    可合规投放
+                                </span>
+</td>
+<td class="py-5 px-4 text-sm text-stone-600">二级保护</td>
+<td class="py-5 px-4 text-sm text-stone-400">001</td>
+<td class="py-5 px-6 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-stone-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-stone-50/50 transition-colors group">
+<td class="py-5 px-6 text-center">
+<input class="rounded text-primary focus:ring-primary border-stone-300" type="checkbox"/>
+</td>
+<td class="py-5 px-4 text-sm font-mono text-stone-400">#SP-4432</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<img alt="Species thumbnail" class="w-10 h-10 rounded-lg object-cover" data-alt="majestic white owl in flight against a dark mystical forest background with soft glowing eyes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxyOcBSaZBWWFj5GbGaU1ykEzm9yFeLv7w1qr3mehOMKsaBe1A07O7MyFWyK6b99BHvOHy7wsx_Ul7Kd2mvAtslG8RVXHHdxH1Qu_zYQJ2xYrfPjeL0kSnZVUgOQeem2VxMHf1CGaSjPmbZ9418o80-mwk2WV6clYgP1fIa8Tkkb__o8axmhmyv3LFmjdm6KiYVS0LoXLFnguJOGZaDP4WYao2VrCzqggSd3rRJ-HyXqcQGbhiFdF2gzNFJAjPwfz9CKt_OCyiPgq4"/>
+<span class="text-sm font-semibold text-emerald-950">雪鸮</span>
+</div>
+</td>
+<td class="py-5 px-4 text-sm italic text-stone-500">Bubo scandiacus</td>
+<td class="py-5 px-4">
+<span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-600 text-[10px] font-bold uppercase tracking-tight">鸟类</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/40 text-error text-[10px] font-bold">
+<span class="w-1 h-1 rounded-full bg-error"></span>
+                                    禁止投放
+                                </span>
+</td>
+<td class="py-5 px-4 text-sm text-stone-600">国家一级</td>
+<td class="py-5 px-4 text-sm text-stone-400">002</td>
+<td class="py-5 px-6 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-stone-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-stone-50/50 transition-colors group">
+<td class="py-5 px-6 text-center">
+<input class="rounded text-primary focus:ring-primary border-stone-300" type="checkbox"/>
+</td>
+<td class="py-5 px-4 text-sm font-mono text-stone-400">#SP-1108</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<img alt="Species thumbnail" class="w-10 h-10 rounded-lg object-cover" data-alt="colorful mandarin duck swimming in calm water with orange and blue reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9RgkKVPa0CSRYGDajiuyv43vGSKsy8zmzRZCvBTHpKo9BdFfnxFNIh2-fDsHNF4VCsbo5Yy_STbUGIMcdt44xcPExSPT5pQJmFIXoYTW47qRpYtPm83FaCwYcN4xTZMbQhOghIJJ61ipAwGxJTjm49ytIhau-9WJDTtjQuACDXQYPURF8Ay1-LVG6YRM3N45tL442AqiKJMKKnIDEUSoUqueYJUgqpPq2TWVS5sx-VMxQncrjApvkuP6jwNGUOx7T-_mh5ca4Nxga"/>
+<span class="text-sm font-semibold text-emerald-950">鸳鸯</span>
+</div>
+</td>
+<td class="py-5 px-4 text-sm italic text-stone-500">Aix galericulata</td>
+<td class="py-5 px-4">
+<span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-600 text-[10px] font-bold uppercase tracking-tight">鸟类</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
+<span class="w-1 h-1 rounded-full bg-emerald-500"></span>
+                                    可合规投放
+                                </span>
+</td>
+<td class="py-5 px-4 text-sm text-stone-600">二级保护</td>
+<td class="py-5 px-4 text-sm text-stone-400">003</td>
+<td class="py-5 px-6 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-stone-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-stone-50/50 transition-colors group">
+<td class="py-5 px-6 text-center">
+<input class="rounded text-primary focus:ring-primary border-stone-300" type="checkbox"/>
+</td>
+<td class="py-5 px-4 text-sm font-mono text-stone-400">#SP-5561</td>
+<td class="py-5 px-4">
+<div class="flex items-center gap-3">
+<img alt="Species thumbnail" class="w-10 h-10 rounded-lg object-cover" data-alt="close up of a vibrant blue betta fish swimming gracefully in dark water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBidZAtFE4Uql_gyO7nndAOkNTFHY0CrX2EXaEc7uL60M0SZaS6ZKyn2KhrPQexvUUKkDfmXoMF70hh7WalP1FEA1hahluZQP_pC6X9sWQPVPbNz907Mp253Pa1xwUULV10t3q3NbsGPEVQmTRoKymrGz7szgX3ZeuICsdmgByvSN8vabmphEPDtpJq3SIlBK8GbuK8ZolvqzbPlwVEXFofX1VrdpasOYGvSemGwo0_5lOdY8VQVneGfyxoIizmkBPtk5vWSRGYZNF8"/>
+<span class="text-sm font-semibold text-emerald-950">蓝斗鱼</span>
+</div>
+</td>
+<td class="py-5 px-4 text-sm italic text-stone-500">Betta splendens</td>
+<td class="py-5 px-4">
+<span class="px-2.5 py-1 rounded-full bg-stone-100 text-stone-600 text-[10px] font-bold uppercase tracking-tight">鱼类</span>
+</td>
+<td class="py-5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
+<span class="w-1 h-1 rounded-full bg-emerald-500"></span>
+                                    可合规投放
+                                </span>
+</td>
+<td class="py-5 px-4 text-sm text-stone-600">普通保护</td>
+<td class="py-5 px-4 text-sm text-stone-400">004</td>
+<td class="py-5 px-6 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-stone-400 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-stone-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<footer class="px-8 py-6 bg-surface-container-low/30 flex items-center justify-between border-t border-stone-100">
+<span class="text-xs text-stone-400 font-medium">共 142 条数据</span>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-stone-400 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="chevron_left">chevron_left</span>
+</button>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary-container text-on-primary text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-stone-600 hover:bg-surface-container text-xs font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-stone-600 hover:bg-surface-container text-xs font-medium">3</button>
+<span class="w-8 h-8 flex items-center justify-center text-stone-400 text-xs font-medium">共 142 条数据</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-stone-600 hover:bg-surface-container text-xs font-medium">12</button>
+</div>
+<button class="p-2 rounded-lg text-stone-400 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-xs text-stone-400">
+<span>每页显示</span>
+<select class="bg-transparent border-none py-0 pl-1 pr-6 text-xs font-bold text-stone-600 focus:ring-0">
+<option>10</option>
+<option>20</option>
+<option>50</option>
+</select>
+</div>
+</footer>
+</div>
+</section>
+</main>
+</body></html>

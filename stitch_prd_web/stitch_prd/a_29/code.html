@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qingru Zen Admin - 财务报表</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "primary": "#334537",
+                        "on-tertiary-fixed": "#291801",
+                        "inverse-surface": "#30312e",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-background": "#1b1c19",
+                        "surface-variant": "#e3e2de",
+                        "secondary-container": "#fee264",
+                        "tertiary-container": "#6d5435",
+                        "secondary": "#6e5e00",
+                        "on-surface": "#1b1c19",
+                        "on-secondary-container": "#756400",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#fee264",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-dim": "#dbdad5",
+                        "on-primary-container": "#c0d5c2",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#ebcaa3",
+                        "surface-container-high": "#e9e8e3",
+                        "outline-variant": "#c3c8c1",
+                        "surface-container-highest": "#e3e2de",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-container": "#efeee9",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "inverse-primary": "#b7ccb9",
+                        "on-secondary-fixed": "#211b00",
+                        "on-secondary-fixed-variant": "#534600",
+                        "background": "#faf9f4",
+                        "tertiary": "#533d20",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-surface-variant": "#434843",
+                        "primary-fixed": "#d3e8d5",
+                        "outline": "#737872",
+                        "surface-container-low": "#f5f4ef",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#506354",
+                        "primary-container": "#4a5d4e",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#faf9f4",
+                        "surface": "#faf9f4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.8rem",
+                        "xl": "1.2rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Serif SC', sans-serif;
+            background-color: #faf9f4;
+            color: #1b1c19;
+        }
+        .serif-text {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-header {
+            background: rgba(239, 238, 233, 0.4);
+            backdrop-filter: blur(12px);
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(74, 93, 78, 0.03) 0%, rgba(250, 249, 244, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface selection:bg-secondary-container/30">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container border-r border-primary/10 flex flex-col py-6 px-4 z-50">
+<div class="mb-10 px-4">
+<h1 class="serif-text text-xl font-bold text-primary">Qingru Zen</h1>
+<p class="text-xs text-primary/60 tracking-widest font-medium uppercase">管理后台</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center px-4 py-3 text-primary/80 hover:bg-primary/5 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-medium">仪表盘</span>
+</a>
+<a class="flex items-center px-4 py-3 text-primary/80 hover:bg-primary/5 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-medium">用户管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-primary/80 hover:bg-primary/5 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3">shopping_cart</span>
+<span class="font-medium">订单管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-primary/80 hover:bg-primary/5 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3">gavel</span>
+<span class="font-medium">内容与合规</span>
+</a>
+<a class="flex items-center px-4 py-3 text-primary font-bold bg-surface-container-lowest/50 rounded-lg group shadow-sm shadow-primary/5" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-medium">财务管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-primary/80 hover:bg-primary/5 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-medium">系统设置</span>
+</a>
+</nav>
+<div class="mt-auto px-4 py-4 bg-primary-container/5 rounded-xl flex items-center gap-3">
+<img alt="管理员头像" class="w-10 h-10 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDctw5zKGJLOf8zg2YMqwCI4qFmU6Du1lfAveHzyv7qwHc8fRQ_YqfnuJ-QhEAt2y6y4ZOoF_xf_sRBAu_Tp5PDaC4zH8W34rxcLlGUUdOuCv1wtS1J_f1JQ3oB_SP3obyKh6qg_58GqpsUCK6tYBEmiRt7SlFRiq3zP4vncpiZO2MOHsAWvSKxFm3R1oAMHiyv2pnbf6dyRK71aTtH4tgnsddU4O1VDqRystDMKL7UL6RThUgBk30hFSkb0gI0x39k1SMOR3yxzoVp"/>
+<div>
+<p class="text-sm font-bold text-primary">管理员</p>
+<p class="text-[10px] text-primary/60">超级管理员</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-16 px-8 flex items-center justify-between glass-header sticky top-0 z-40 outline-variant/15 border-b-0">
+<div class="flex items-center gap-8">
+<h2 class="serif-text text-lg font-bold text-primary">财务报表中心</h2>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-primary font-bold border-b-2 border-primary py-4 text-sm px-1" href="#">营收报表</a>
+<a class="text-primary/60 hover:text-primary transition-colors py-4 text-sm px-1" href="#">结算报表</a>
+<a class="text-primary/60 hover:text-primary transition-colors py-4 text-sm px-1" href="#">订单统计报表</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/40 group-focus-within:text-primary transition-colors">search</span>
+<input class="bg-surface-container-high/50 border-none rounded-full pl-10 pr-4 py-1.5 text-sm focus:ring-1 focus:ring-primary/20 w-48 transition-all focus:w-64" placeholder="搜索报表..." type="text"/>
+</div>
+<button class="p-2 hover:bg-primary/5 rounded-full transition-colors text-primary/70">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 hover:bg-primary/5 rounded-full transition-colors text-primary/70">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8 space-y-8 ink-wash-bg flex-1">
+<!-- Filters Section -->
+<section class="bg-surface-container-low p-6 rounded-xl space-y-6">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-6">
+<!-- Time Range Chips -->
+<div class="flex bg-surface-container-high p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-medium rounded-md hover:text-primary transition-all">今日</button>
+<button class="px-4 py-1.5 text-xs font-medium rounded-md hover:text-primary transition-all">本周</button>
+<button class="px-4 py-1.5 text-xs font-medium bg-secondary-container text-on-secondary-container shadow-sm">本月</button>
+<button class="px-4 py-1.5 text-xs font-medium rounded-md hover:text-primary transition-all">本季</button>
+<button class="px-4 py-1.5 text-xs font-medium rounded-md hover:text-primary transition-all">全年</button>
+</div>
+<!-- Institution Dropdown -->
+<div class="relative">
+<label class="text-[10px] text-primary/50 absolute -top-4 left-0 uppercase font-bold tracking-wider">机构筛选</label>
+<select class="appearance-none bg-transparent border-b border-primary/20 pr-8 py-1 text-sm font-medium focus:ring-0 focus:border-primary transition-colors cursor-pointer">
+<option>全部机构</option>
+<option>华东分部</option>
+<option>华南中心</option>
+<option>西北旗舰店</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 bottom-1 text-primary/40 pointer-events-none">expand_more</span>
+</div>
+<!-- Report Type -->
+<div class="relative">
+<label class="text-[10px] text-primary/50 absolute -top-4 left-0 uppercase font-bold tracking-wider">报表类型</label>
+<div class="flex items-center gap-2 border-b border-primary/20 py-1">
+<span class="text-sm font-medium">营收报表 (Revenue)</span>
+<span class="material-symbols-outlined text-primary/40 text-sm">info</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 bg-primary-container text-white px-6 py-2.5 rounded-lg hover:bg-primary transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg">search</span>
+<span class="text-sm font-medium">开始查询</span>
+</button>
+<button class="flex items-center gap-2 bg-surface-container-highest text-primary px-6 py-2.5 rounded-lg hover:bg-surface-variant transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg">download_for_offline</span>
+<span class="text-sm font-medium">导出 Excel</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Summary Cards: Bento Grid Style -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-primary-container p-6 rounded-xl relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all duration-700"></div>
+<p class="text-white/70 text-xs font-medium mb-1">总营收 (Gross Revenue)</p>
+<div class="flex items-end gap-2">
+<span class="text-white text-3xl font-bold serif-text">¥ 1,284,500</span>
+<span class="text-secondary-container text-xs mb-1 font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span> 12%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-primary/5">
+<p class="text-primary/60 text-xs font-medium mb-1">平台服务费收入</p>
+<div class="flex items-end gap-2">
+<span class="text-primary text-3xl font-bold serif-text">¥ 64,225</span>
+<span class="text-primary/40 text-[10px] mb-1">5% 抽佣率</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-primary/5">
+<p class="text-primary/60 text-xs font-medium mb-1">订单总量</p>
+<div class="flex items-end gap-2">
+<span class="text-primary text-3xl font-bold serif-text">12,408</span>
+<span class="text-error text-xs mb-1 font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">trending_down</span> 3%
+                    </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-primary/5">
+<p class="text-primary/60 text-xs font-medium mb-1">客单价 (AOV)</p>
+<div class="flex items-end gap-2 text-secondary">
+<span class="text-3xl font-bold serif-text" style="color: #C9B037;">¥ 103.5</span>
+<span class="text-primary/40 text-[10px] mb-1">均值</span>
+</div>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="bg-surface-container-lowest p-8 rounded-xl border border-primary/5 shadow-sm">
+<div class="flex items-center justify-between mb-8">
+<h3 class="serif-text text-xl font-bold text-primary">营收趋势分析 (Revenue Trends)</h3>
+<div class="flex items-center gap-4 text-xs font-medium">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span>实收净额</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full" style="background-color: #C9B037;"></div>
+<span>总营业额</span>
+</div>
+</div>
+</div>
+<div class="h-80 w-full relative flex items-end justify-between px-2">
+<!-- Simple visualization placeholder using divs to simulate bars/lines -->
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 60%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-01</span>
+</div>
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 45%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-02</span>
+</div>
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 85%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-03</span>
+</div>
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 70%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-04</span>
+</div>
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 55%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-05</span>
+</div>
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 95%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-06</span>
+</div>
+<div class="flex-1 flex flex-col items-center group h-full justify-end">
+<div class="w-16 bg-primary/10 rounded-t-lg transition-all group-hover:bg-primary/20 relative" style="height: 75%;">
+<div class="absolute inset-x-0 bottom-0 bg-primary h-4/5 rounded-t-lg"></div>
+</div>
+<span class="mt-4 text-[10px] text-primary/40 font-bold">10-07</span>
+</div>
+<!-- Ambient Chart Grid -->
+<div class="absolute inset-0 border-b border-primary/5 -z-10 flex flex-col justify-between">
+<div class="border-t border-primary/5 w-full"></div>
+<div class="border-t border-primary/5 w-full"></div>
+<div class="border-t border-primary/5 w-full"></div>
+<div class="border-t border-primary/5 w-full"></div>
+</div>
+</div>
+</section>
+<!-- Table Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-primary/5 shadow-sm overflow-hidden">
+<div class="px-8 py-6 border-b border-primary/5 flex items-center justify-between">
+<h3 class="serif-text text-lg font-bold text-primary">数据详情列表</h3>
+<button class="text-xs text-primary/60 hover:text-primary flex items-center gap-1">
+                    查看更多数据 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest">日期</th>
+<th class="px-8 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-right">订单总量</th>
+<th class="px-8 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-right">营收总额 (Gross)</th>
+<th class="px-8 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-right">平台服务费</th>
+<th class="px-8 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-right">机构结算净额</th>
+<th class="px-8 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-center">状态</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-8 py-5 text-sm font-medium text-primary">2023-10-07</td>
+<td class="px-8 py-5 text-sm text-right font-body">1,842</td>
+<td class="px-8 py-5 text-sm font-bold text-right text-primary">¥ 189,420.00</td>
+<td class="px-8 py-5 text-sm text-right text-primary/60">¥ 9,471.00</td>
+<td class="px-8 py-5 text-sm font-bold text-right" style="color: #6e5e00;">¥ 179,949.00</td>
+<td class="px-8 py-5 text-center">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">已对账</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-8 py-5 text-sm font-medium text-primary">2023-10-06</td>
+<td class="px-8 py-5 text-sm text-right font-body">2,105</td>
+<td class="px-8 py-5 text-sm font-bold text-right text-primary">¥ 216,815.00</td>
+<td class="px-8 py-5 text-sm text-right text-primary/60">¥ 10,840.75</td>
+<td class="px-8 py-5 text-sm font-bold text-right" style="color: #6e5e00;">¥ 205,974.25</td>
+<td class="px-8 py-5 text-center">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">已对账</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-8 py-5 text-sm font-medium text-primary">2023-10-05</td>
+<td class="px-8 py-5 text-sm text-right font-body">1,240</td>
+<td class="px-8 py-5 text-sm font-bold text-right text-primary">¥ 128,340.00</td>
+<td class="px-8 py-5 text-sm text-right text-primary/60">¥ 6,417.00</td>
+<td class="px-8 py-5 text-sm font-bold text-right" style="color: #6e5e00;">¥ 121,923.00</td>
+<td class="px-8 py-5 text-center">
+<span class="px-3 py-1 bg-secondary-container/30 text-secondary text-[10px] font-bold rounded-full">结算中</span>
+</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-8 py-5 text-sm font-medium text-primary">2023-10-04</td>
+<td class="px-8 py-5 text-sm text-right font-body">1,568</td>
+<td class="px-8 py-5 text-sm font-bold text-right text-primary">¥ 162,500.00</td>
+<td class="px-8 py-5 text-sm text-right text-primary/60">¥ 8,125.00</td>
+<td class="px-8 py-5 text-sm font-bold text-right" style="color: #6e5e00;">¥ 154,375.00</td>
+<td class="px-8 py-5 text-center">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">已对账</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-low/30 border-t border-primary/5 flex items-center justify-between">
+<p class="text-xs text-primary/40 italic">显示最近 7 天的记录</p>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:bg-primary/5 rounded disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<span class="text-xs font-bold text-primary px-3">1</span>
+<button class="p-1 hover:bg-primary/5 rounded">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="p-8 border-t border-primary/5 text-center">
+<p class="text-[10px] text-primary/30 uppercase tracking-[0.2em] font-medium">Qingru Zen 财务生态系统 © 2024</p>
+</footer>
+</main>
+</body></html>

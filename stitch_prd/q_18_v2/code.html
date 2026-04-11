@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>功德证书 - 禅意生活</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#fee264",
+                        "on-secondary-container": "#756400",
+                        "background": "#faf9f4",
+                        "outline-variant": "#c3c8c1",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb6",
+                        "secondary-container": "#fee264",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e9e8e3",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container": "#efeee9",
+                        "primary-fixed": "#d3e8d5",
+                        "surface-container-low": "#f5f4ef",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "outline": "#737872",
+                        "surface-container-highest": "#e3e2de",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-variant": "#e3e2de",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "surface-bright": "#faf9f4",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#506354",
+                        "on-background": "#1b1c19",
+                        "surface": "#faf9f4",
+                        "secondary": "#6e5e00",
+                        "primary": "#4A5D4E",
+                        "inverse-surface": "#30312e",
+                        "surface-dim": "#dbdad5",
+                        "tertiary-container": "#6d5435",
+                        "on-surface": "#1b1c19",
+                        "on-surface-variant": "#434843",
+                        "on-tertiary-fixed": "#291801",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "on-secondary-fixed-variant": "#534600",
+                        "inverse-primary": "#b7ccb9",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#533d20",
+                        "primary-container": "#4a5d4e",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-secondary-fixed": "#211b00",
+                        "on-tertiary-container": "#ebcaa3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Plus Jakarta Sans", sans-serif
+    }
+.serif-text {
+    font-family: "Noto Serif SC", serif
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24
+    }
+.ink-wash-bg {
+    background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.02) 0%, transparent 40%)
+    }
+.glass-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px)
+    }
+.no-scrollbar::-webkit-scrollbar {
+    display: none
+    }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }
+.merit-card {
+    background: linear-gradient(135deg, #fff 0%, #fcfbf8 100%);
+    box-shadow: 0 4px 20px -2px rgba(74, 93, 78, 0.05);
+    position: relative;
+    overflow: hidden
+    }
+.merit-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAh9n5-sRbr5YX9d4qX5WRPm_JUNjIgNXNpHUDxtjYXOz87wCND1voUf9fYWwCe5B2j687MjdTn-SGbrhBJKIwAK0DqAy550m8oGWdiasX4fsUvkJaUUb9tjfzmDJ6_K7Q1C9wFVoFZjvO7SLJYOmdHRIxAGHVN2RutdvyZjStbs8e7fBxfIKdPF4jyfthYAG5maSwjs5A4AUZaRHCNZlb2zKKeNFFb_T6wgS4bva8stMMczi-DU-JS2Jp0KRUudP_0qS5mnsITmVZm);
+    opacity: 0.3;
+    pointer-events: none
+    }
+.seal-bg {
+    font-family: "Noto Serif SC", serif;
+    writing-mode: vertical-rl;
+    text-orientation: upright
+    }</style>
+</head>
+<body class="bg-background text-on-surface min-h-screen ink-wash-bg">
+<!-- Compact TopAppBar -->
+<header class="fixed top-0 w-full z-50 glass-header bg-[#FAF9F4]/80 border-b border-[#4A5D4E]/5">
+<div class="flex justify-between items-center px-4 h-12 w-full max-w-screen-xl mx-auto">
+<button class="w-8 h-8 flex items-center justify-center rounded-full active:bg-[#4A5D4E]/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-xl">menu</span>
+</button>
+<h1 class="serif-text font-bold text-base text-primary">功德证书</h1>
+<button class="w-8 h-8 flex items-center justify-center rounded-full active:bg-[#4A5D4E]/10 transition-colors">
+<span class="material-symbols-outlined text-primary text-xl">share</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-24 px-5 max-w-screen-md mx-auto">
+<!-- Redesigned Ethereal Merit Hero Section -->
+<section class="mb-10">
+<div class="merit-card rounded-[2rem] border border-primary/5 p-8 flex flex-col items-center">
+<span class="serif-text text-primary/40 text-[10px] tracking-[0.5em] mb-4 font-medium uppercase">累 计 功 德</span>
+<div class="relative mb-6">
+<div class="flex items-baseline justify-center gap-1">
+<span class="serif-text text-6xl font-light text-primary tracking-tight">428</span>
+<span class="serif-text text-sm text-primary/60 font-light ml-1">点</span>
+</div>
+<!-- Artistic Seal Icon -->
+<div class="absolute -right-8 -top-2 w-8 h-8 flex items-center justify-center border border-primary/20 rounded shadow-[inset_0_0_8px_rgba(74,93,78,0.1)]">
+<span class="seal-bg text-[10px] text-primary/30 leading-none">功德</span>
+</div>
+</div>
+<div class="w-12 h-[1px] bg-primary/10 mb-6"></div>
+<div class="grid grid-cols-2 gap-12 w-full max-w-[240px]">
+<div class="flex flex-col items-center gap-1">
+<span class="text-[10px] text-primary/40 font-medium tracking-wider">修行时长</span>
+<span class="serif-text text-lg font-medium text-primary">124 <small class="text-[10px] font-normal opacity-60">天</small></span>
+</div>
+<div class="flex flex-col items-center gap-1 border-l border-primary/5">
+<span class="text-[10px] text-primary/40 font-medium tracking-wider">圆满心愿</span>
+<span class="serif-text text-lg font-medium text-primary">12 <small class="text-[10px] font-normal opacity-60">愿</small></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Compact Tabs -->
+<div class="flex justify-start gap-8 mb-6 border-b border-outline-variant/10 overflow-x-auto no-scrollbar">
+<button class="serif-text text-sm font-bold relative text-primary pb-2 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary transition-all">全部记录</button>
+<button class="serif-text text-sm text-on-surface-variant/60 hover:text-primary pb-2 transition-all">梵音回响</button>
+<button class="serif-text text-sm text-on-surface-variant/60 hover:text-primary pb-2 transition-all">科学护生</button>
+</div>
+<!-- Featured Card: Swapped to Diligence Practice at the top of records -->
+<div class="bg-primary/5 rounded-xl p-4 flex gap-4 border border-primary/10 mb-6">
+<div class="w-24 h-24 rounded-lg overflow-hidden shrink-0">
+<img alt="Sunset" class="w-full h-full object-cover grayscale-[0.3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZYTl1kCOZgwkjjEmnY-L_GSsF7zFdzoywnK17XpOkBIo-w_frpZulpzcQMpVYkBEgI_f1BTao44Qg-RcqhPGKc_IiwbgOp7ZZv8DSk-wwikibI5k7ACTnd4s5wGXoki8XUctJrp7nJxu1BB4gThpI8eMd6DfReH5_CMjbQNQW0S3NDS8X72Nwv4ZNQ_PTHlCndWm2wA1rkiREwqbgt96P7ej4FIg7wF2jsfWmnQuGdAsYLySf_Y-3JnEsXoQc4kdMugRkkx4yq8AV"/>
+</div>
+<div class="flex flex-col justify-center">
+<div class="flex items-center gap-1 mb-1 text-primary/70">
+<span class="material-symbols-outlined text-[12px]">calendar_today</span>
+<span class="text-[9px] font-bold uppercase tracking-wider">精进修行 · 30 日</span>
+</div>
+<h3 class="serif-text text-lg font-bold text-primary leading-tight mb-1">晨钟暮鼓 · 精进不息</h3>
+<p class="text-[11px] text-on-surface-variant mb-3 line-clamp-2">持之以恒，终见觉醒。你已找回内心的定力。</p>
+<div class="flex gap-2">
+<button class="bg-primary text-white px-4 py-1.5 rounded-md text-[10px] font-bold">分享成就</button>
+<button class="bg-white/50 border border-primary/10 text-primary px-4 py-1.5 rounded-md text-[10px] font-bold">详情</button>
+</div>
+</div>
+</div>
+<!-- Horizontal record for 梵音回响 (Echo of Sanskrit) -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 flex gap-3 mb-4">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container-low shrink-0 relative">
+<img alt="Singing bowl" class="w-full h-full object-cover grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLbknwoAmbbmOrtZlF1tZBqc_DjU39YuSIEEjVhA430WN6uzSGG0rsSDnhc8-Bm-ubM3gtaP2OgcCoVMIzedl-FoW1kZJokC20Rcnh1QrAw4CEXIXJfcfMZwccuIhFSvPxnaeVlo_l66mDc278fhO1Vv-07xeue_2HQY9yKsnXrZKXx9IJUrNYOvVavlVrIyBoSvHfxPIA1W_6TLZA21OMX6h0XkQaRmExQKtEQIAM0FRzM9zbTjydzwKdjFfttgCs5YRfb3sFi7m6"/>
+<span class="absolute top-1 right-1 material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div>
+<h3 class="serif-text text-sm font-bold text-primary mb-0.5">梵音回响</h3>
+<p class="text-[10px] text-on-surface-variant line-clamp-2 leading-tight">累计时长已达 100 小时，心境空明，如泉映月。</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[9px] text-tertiary/60">2023.11.24</span>
+<button class="text-primary text-[10px] font-bold flex items-center gap-0.5">查看 <span class="material-symbols-outlined text-[10px]">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- Scientific Life Release: Chronological Vertical List -->
+<div class="space-y-3">
+<div class="flex items-center gap-2 mb-2 px-1">
+<span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">科学护生记录</span>
+</div>
+<!-- Latest Record -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/10 flex gap-3">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container-low shrink-0">
+<img alt="Sapling" class="w-full h-full object-cover grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb7I1KTwyvhBU0kfq13fYKHOqoVcOghT8a_IWLn9Nw4kPa5leLFA1Aec83UvQMRakdDvxYdmRCuaCVGNIJNIWFCeAGJHywRuI1fChp821_3Hqj7jphlGdsBxVJUwU66c0pZ9bpdB6clzM2WfH004Quww93jwCVqhMdndPZZPz0a_xmFLMSh4e3p8DpWWLEAtZDNhXUak2iRMIbw0xM0tqKzKmDbZXMUdWr6xOHwx__vWoqA-rsYqycdwhftErUHTmKg7Fs_hkWpjs9"/>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div>
+<h3 class="serif-text text-sm font-bold text-primary mb-0.5">生态修复 · 第 042 号</h3>
+<p class="text-[10px] text-on-surface-variant leading-tight">参与林地植被恢复，让荒野重现生机。</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[9px] text-tertiary/60">2023.12.12</span>
+<button class="text-primary text-[10px] font-bold flex items-center gap-0.5">详情 <span class="material-symbols-outlined text-[10px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Previous Record -->
+<div class="bg-surface-container-lowest/50 rounded-xl p-3 shadow-sm border border-outline-variant/10 flex gap-3 opacity-80">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container-low shrink-0">
+<img alt="Bird" class="w-full h-full object-cover grayscale-[0.5]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZYTl1kCOZgwkjjEmnY-L_GSsF7zFdzoywnK17XpOkBIo-w_frpZulpzcQMpVYkBEgI_f1BTao44Qg-RcqhPGKc_IiwbgOp7ZZv8DSk-wwikibI5k7ACTnd4s5wGXoki8XUctJrp7nJxu1BB4gThpI8eMd6DfReH5_CMjbQNQW0S3NDS8X72Nwv4ZNQ_PTHlCndWm2wA1rkiREwqbgt96P7ej4FIg7wF2jsfWmnQuGdAsYLySf_Y-3JnEsXoQc4kdMugRkkx4yq8AV"/>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div>
+<h3 class="serif-text text-sm font-bold text-primary mb-0.5">水域养护 · 第 018 号</h3>
+<p class="text-[10px] text-on-surface-variant leading-tight">投放原生鱼苗，守护一方水土平衡。</p>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[9px] text-tertiary/60">2023.10.15</span>
+<button class="text-primary text-[10px] font-bold flex items-center gap-0.5">详情 <span class="material-symbols-outlined text-[10px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Optimized Bottom Navigation (Active for 'Me') -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#FAF9F4] border-t border-[#4A5D4E]/5">
+<div class="flex justify-around items-center px-4 pt-1.5 pb-4">
+<a class="flex flex-col items-center justify-center text-primary/40 p-2" href="#">
+<span class="material-symbols-outlined text-xl mb-0.5">music_note</span>
+<span class="text-[10px] font-medium">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary/40 p-2" href="#">
+<span class="material-symbols-outlined text-xl mb-0.5">self_improvement</span>
+<span class="text-[10px] font-medium">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-lg px-5 py-1.5" href="#">
+<span class="material-symbols-outlined text-xl mb-0.5" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">我的</span>
+</a>
+</div>
+</nav>
+</body></html>

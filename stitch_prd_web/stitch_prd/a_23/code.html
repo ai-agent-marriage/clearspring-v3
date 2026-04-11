@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>敏感词管理 - 清如管理后台</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f2f1ec",
+                        "tertiary-container": "#6d5435",
+                        "secondary-container": "#fee264",
+                        "surface": "#faf9f4",
+                        "surface-container-highest": "#e3e2de",
+                        "surface-bright": "#faf9f4",
+                        "outline": "#737872",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary-fixed": "#291801",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-container-low": "#f5f4ef",
+                        "on-secondary-container": "#756400",
+                        "background": "#faf9f4",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-variant": "#e3e2de",
+                        "secondary": "#6e5e00",
+                        "on-surface-variant": "#434843",
+                        "secondary-fixed": "#fee264",
+                        "primary-fixed": "#d3e8d5",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary": "#533d20",
+                        "error-container": "#ffdad6",
+                        "primary": "#334537",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-tint": "#506354",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#4a5d4e",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "inverse-surface": "#30312e",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c19",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad5",
+                        "inverse-primary": "#b7ccb9",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-background": "#1b1c19",
+                        "outline-variant": "#c3c8c1",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container": "#efeee9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-text { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(51, 69, 55, 0.03) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.03) 0%, transparent 40%);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c8c1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-hidden">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-[#EFEEE9] dark:bg-[#1A1C19] flex flex-col py-6 px-4 space-y-2 shadow-[4px_0_24px_rgba(74,93,78,0.04)] z-40">
+<div class="px-4 mb-8">
+<h1 class="font-serif text-[#334537] text-2xl font-bold">清如</h1>
+<p class="text-[#334537]/60 text-xs tracking-tight">数字禅意后台</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-4 py-3 text-[#334537]/70 hover:bg-[#334537]/5 transition-all duration-200 hover:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-sans text-sm tracking-tight">控制台</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/70 hover:bg-[#334537]/5 transition-all duration-200 hover:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-sans text-sm tracking-tight">用户管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/70 hover:bg-[#334537]/5 transition-all duration-200 hover:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">shopping_cart</span>
+<span class="font-sans text-sm tracking-tight">订单管理</span>
+</a>
+<a class="flex items-center px-4 py-3 bg-[#C9B037] text-white rounded-lg shadow-sm font-medium transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">auto_stories</span>
+<span class="font-sans text-sm tracking-tight">内容管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/70 hover:bg-[#334537]/5 transition-all duration-200 hover:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-sans text-sm tracking-tight">财务管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/70 hover:bg-[#334537]/5 transition-all duration-200 hover:translate-x-1 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-sans text-sm tracking-tight">系统设置</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-[#334537]/10 px-4">
+<div class="flex items-center gap-3">
+<img alt="管理员头像" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="close-up of a minimalist zen master avatar in soft lighting and neutral colors for a profile icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy9YK_mwO6LodbwKv5Q-dq1JRP85HrrQT29dtnWYxuiWX7li2el976f_BCCdAczpRBXwZZJgT3n4Qav8m2GYBIZz75BcWycand_gmJh_dizzDXMlntSP-Dg_kOz6Hz1yBZOU1B_M-W8D6Tal-j6Le7jfHKusFOWRKUK172h3Dbitcj7Q32Cxi4ZcJpVRWkGtHFq03unjBRjE75NuEDJEmCxQ3s61pNzA5MMPoyLCP1yVKH6kqGP1-4jL2BhM-vpF1NscrzMcfsZX1v"/>
+<div>
+<p class="text-xs font-bold text-primary">管理员</p>
+<p class="text-[10px] text-outline">超级权限</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen bg-surface ink-wash-bg flex flex-col relative overflow-hidden">
+<!-- Top Bar -->
+<header class="h-16 flex justify-between items-center px-8 fixed top-0 left-64 right-0 z-30 bg-[#FAF9F4]/40 backdrop-blur-xl bg-gradient-to-b from-[#334537]/5 to-transparent">
+<div class="flex items-center gap-4">
+<span class="text-xl font-serif font-bold text-[#334537] tracking-wide">敏感词管理</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="text-xs text-outline font-label uppercase tracking-widest">Sensitive Words Database</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-300 hover:bg-[#EFEEE9]/50 p-2 rounded-full">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 duration-300 hover:bg-[#EFEEE9]/50 p-2 rounded-full">settings</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="mt-16 p-8 flex-1 flex flex-col gap-8 max-h-[calc(100vh-64px)] overflow-hidden">
+<!-- Hero Import Zone (Glassmorphism & Bento Concept) -->
+<section class="grid grid-cols-12 gap-6 shrink-0">
+<div class="col-span-8 bg-surface-container-low rounded-xl p-8 flex items-center justify-between group cursor-pointer hover:bg-surface-container transition-colors duration-500 relative overflow-hidden border border-outline-variant/10">
+<div class="relative z-10">
+<h2 class="serif-text text-2xl text-primary mb-2">高效导入数据</h2>
+<p class="text-outline text-sm max-w-md">支持 Excel 批量上传，系统将自动识别冲突词条并标记等级。极致简化的拖拽体验，助力内容风控。</p>
+<div class="mt-6 flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg text-sm font-medium flex items-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">upload_file</span>
+                                点击上传 Excel
+                            </button>
+<button class="text-primary hover:bg-surface-variant/30 px-6 py-2.5 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+                                下载导入模板
+                            </button>
+</div>
+</div>
+<div class="absolute right-0 top-0 h-full w-1/3 opacity-10 group-hover:opacity-20 transition-opacity">
+<img class="object-cover h-full w-full" data-alt="abstract zen waves with flowing lines and minimalist ink textures in monochrome green tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCRPctUaHVUBXbeHN39OvjOBDU_HBw3-u6w62gPfFvWXULCgILFY2Y7XYK93oWiSmYNXQsv-oWyTts1oNlz3pCSxkIHnYhSXkpqfE95jE5ypg_Qs8EbwRYTF18RvIr1_nBv3Mt4aBFGQe1w_YGNwaRRcBVtnM0-2fr0t85hKFV9Sm68Q2zO4c85v_oJXPENX4bJEOBogggD-mJjdSkrPEQSjfThGyPNlphYCBquTYguzFAh679-tuDvPk23y3xwBSKKT3if2s5zEkS"/>
+</div>
+<div class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-outline-variant/40 rounded-xl bg-surface-container-lowest/50 backdrop-blur-sm ml-8 min-w-[240px]">
+<span class="material-symbols-outlined text-4xl text-primary/30 mb-2">move_to_inbox</span>
+<p class="text-xs text-outline text-center">拖拽文件至此区域</p>
+</div>
+</div>
+<div class="col-span-4 bg-secondary-container/20 rounded-xl p-6 flex flex-col justify-between border border-secondary-container/30 relative overflow-hidden">
+<div>
+<span class="text-[10px] uppercase tracking-widest text-secondary font-bold mb-2 block">Quick Stats</span>
+<h3 class="serif-text text-xl text-primary">库容量分析</h3>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="text-4xl font-bold text-primary">12,840</span>
+<span class="text-sm text-outline">条目</span>
+</div>
+</div>
+<div class="mt-4 h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4 rounded-full"></div>
+</div>
+<p class="text-[10px] text-outline-variant mt-2 italic">系统建议：定期清理 30 天未触发表目</p>
+</div>
+</section>
+<!-- Table Section (Xuan Paper Style) -->
+<section class="flex-1 bg-surface-container-low rounded-xl flex flex-col overflow-hidden border border-outline-variant/10 shadow-sm relative">
+<!-- Table Header Tools -->
+<div class="px-6 py-4 flex items-center justify-between bg-surface-container-lowest/50 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container border-none rounded-lg text-sm focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="快速查找敏感词..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container text-on-surface-variant px-3 py-2 rounded-lg text-xs flex items-center gap-1 hover:bg-surface-variant transition-colors">
+                                级别：全部 <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="bg-surface-container text-on-surface-variant px-3 py-2 rounded-lg text-xs flex items-center gap-1 hover:bg-surface-variant transition-colors">
+                                状态：已启用 <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">refresh</span>
+</button>
+</div>
+</div>
+<!-- Dense Table -->
+<div class="flex-1 overflow-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-high z-10">
+<tr class="text-outline text-[11px] uppercase tracking-wider">
+<th class="py-3 px-6 w-12 text-center border-b border-outline-variant/10">
+<input class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/>
+</th>
+<th class="py-3 px-6 font-medium border-b border-outline-variant/10">敏感词内容 (点击编辑)</th>
+<th class="py-3 px-6 font-medium border-b border-outline-variant/10">风险级别</th>
+<th class="py-3 px-6 font-medium border-b border-outline-variant/10">匹配模式</th>
+<th class="py-3 px-6 font-medium border-b border-outline-variant/10">触发次数</th>
+<th class="py-3 px-6 font-medium border-b border-outline-variant/10">更新时间</th>
+<th class="py-3 px-6 font-medium border-b border-outline-variant/10 text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<!-- Table Row 1 -->
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-6 text-center"><input checked="" class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/></td>
+<td class="py-3 px-6">
+<div class="flex items-center gap-2">
+<span class="text-sm text-primary font-medium cursor-text px-2 py-1 hover:bg-surface-container rounded transition-colors">虚拟货币交易</span>
+<span class="material-symbols-outlined text-xs text-outline opacity-0 group-hover:opacity-100">edit</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container rounded text-[10px] font-bold">高危禁止</span>
+</td>
+<td class="py-3 px-6 text-xs text-outline">精确匹配</td>
+<td class="py-3 px-6 text-xs text-primary font-medium">1,429</td>
+<td class="py-3 px-6 text-[11px] text-outline-variant">2023-11-20 14:30</td>
+<td class="py-3 px-6 text-right">
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-6 text-center"><input checked="" class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/></td>
+<td class="py-3 px-6">
+<div class="flex items-center gap-2">
+<span class="text-sm text-primary font-medium cursor-text px-2 py-1 hover:bg-surface-container rounded transition-colors">刷单兼职</span>
+<span class="material-symbols-outlined text-xs text-outline opacity-0 group-hover:opacity-100">edit</span>
+</div>
+</td>
+<td class="py-3 px-6">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold">中等风险</span>
+</td>
+<td class="py-3 px-6 text-xs text-outline">模糊匹配</td>
+<td class="py-3 px-6 text-xs text-primary font-medium">852</td>
+<td class="py-3 px-6 text-[11px] text-outline-variant">2023-11-19 09:12</td>
+<td class="py-3 px-6 text-right">
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</td>
+</tr>
+<!-- Repeat Rows -->
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-6 text-center"><input checked="" class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/></td>
+<td class="py-3 px-6"><span class="text-sm text-primary font-medium px-2 py-1">低俗导流信息</span></td>
+<td class="py-3 px-6"><span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded text-[10px] font-bold">一般关注</span></td>
+<td class="py-3 px-6 text-xs text-outline">正则表达式</td>
+<td class="py-3 px-6 text-xs text-primary font-medium">3,104</td>
+<td class="py-3 px-6 text-[11px] text-outline-variant">2023-11-18 16:45</td>
+<td class="py-3 px-6 text-right"><button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button></td>
+</tr>
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-6 text-center"><input class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/></td>
+<td class="py-3 px-6"><span class="text-sm text-primary font-medium px-2 py-1">虚假广告语</span></td>
+<td class="py-3 px-6"><span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded text-[10px] font-bold">一般关注</span></td>
+<td class="py-3 px-6 text-xs text-outline">模糊匹配</td>
+<td class="py-3 px-6 text-xs text-primary font-medium">54</td>
+<td class="py-3 px-6 text-[11px] text-outline-variant">2023-11-18 10:20</td>
+<td class="py-3 px-6 text-right"><button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button></td>
+</tr>
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-6 text-center"><input class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/></td>
+<td class="py-3 px-6"><span class="text-sm text-primary font-medium px-2 py-1">非法集资话术</span></td>
+<td class="py-3 px-6"><span class="px-2 py-0.5 bg-error-container text-on-error-container rounded text-[10px] font-bold">高危禁止</span></td>
+<td class="py-3 px-6 text-xs text-outline">精确匹配</td>
+<td class="py-3 px-6 text-xs text-primary font-medium">0</td>
+<td class="py-3 px-6 text-[11px] text-outline-variant">2023-11-17 11:05</td>
+<td class="py-3 px-6 text-right"><button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button></td>
+</tr>
+<tr class="group hover:bg-surface-container-lowest transition-colors">
+<td class="py-3 px-6 text-center"><input class="rounded text-primary focus:ring-primary/20 bg-surface border-outline-variant" type="checkbox"/></td>
+<td class="py-3 px-6"><span class="text-sm text-primary font-medium px-2 py-1">竞品引流词</span></td>
+<td class="py-3 px-6"><span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold">中等风险</span></td>
+<td class="py-3 px-6 text-xs text-outline">模糊匹配</td>
+<td class="py-3 px-6 text-xs text-primary font-medium">2,281</td>
+<td class="py-3 px-6 text-[11px] text-outline-variant">2023-11-16 15:30</td>
+<td class="py-3 px-6 text-right"><button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_horiz</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Floating Toolbar (Active State) -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container px-6 py-3 rounded-full shadow-2xl flex items-center gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+<div class="flex items-center gap-2 pr-6 border-r border-on-primary-container/20">
+<span class="text-xs font-bold bg-secondary text-primary px-2 rounded-full">3</span>
+<span class="text-xs">项已选中</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-xs hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-sm">edit_attributes</span>
+                            修改级别
+                        </button>
+<button class="flex items-center gap-2 text-xs hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-sm">export_notes</span>
+                            批量导出
+                        </button>
+<button class="flex items-center gap-2 text-xs hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm">delete_sweep</span>
+                            批量删除
+                        </button>
+</div>
+<button class="ml-4 w-6 h-6 flex items-center justify-center rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<!-- Footer Pagination -->
+<div class="px-6 py-4 flex items-center justify-between bg-surface-container-low border-t border-outline-variant/10">
+<span class="text-xs text-outline">显示 1-15 / 共 12,840 条结果</span>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-outline transition-colors"><span class="material-symbols-outlined text-lg">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-outline text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-outline text-xs">3</button>
+<span class="mx-1 text-outline">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-outline text-xs">856</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-variant text-outline transition-colors"><span class="material-symbols-outlined text-lg">chevron_right</span></button>
+</div>
+</div>
+</section>
+</div>
+<!-- Decorative Ink Element -->
+<div class="absolute -bottom-20 -right-20 w-96 h-96 opacity-5 pointer-events-none">
+<img class="w-full h-full object-contain" data-alt="minimalist ink painting of a pine branch in zen style traditional chinese art with soft brushstrokes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgH9jsj4Y3GebFKoeQXtWc05fIMa42o6ukpM49kjvTCk4rZpZpoU0r6BUmMgxBE5q5hnF7WWpKhu-HNtyHjxHbRRlCrC7RzsWk70OJVn_HYdxjgMmCh0HCxdMVhV1a2Ge40T0Dvevo-AoEqXKiYeDfCgnsi1AyPwc4xZbziZLKvkgPoOaNq--XudqNGpBqw9X1-tu_gFw6poMJPNI8NV3t-r3pNfnaMRM6LFSwrWlXDzVSCsGRzmbr1LxKc8bdUa1U6pW3MGsGb-88"/>
+</div>
+</main>
+</body></html>

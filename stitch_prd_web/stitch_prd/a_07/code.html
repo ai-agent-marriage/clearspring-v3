@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad5",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c19",
+                        "error": "#ba1a1a",
+                        "primary": "#334537",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-tint": "#506354",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#4a5d4e",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "inverse-surface": "#30312e",
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary": "#533d20",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container": "#efeee9",
+                        "outline-variant": "#c3c8c1",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-background": "#1b1c19",
+                        "inverse-primary": "#b7ccb9",
+                        "on-secondary": "#ffffff",
+                        "outline": "#737872",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary-fixed": "#291801",
+                        "surface": "#faf9f4",
+                        "surface-container-highest": "#e3e2de",
+                        "surface-bright": "#faf9f4",
+                        "secondary-container": "#fee264",
+                        "inverse-on-surface": "#f2f1ec",
+                        "tertiary-container": "#6d5435",
+                        "secondary-fixed": "#fee264",
+                        "primary-fixed": "#d3e8d5",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-variant": "#e3e2de",
+                        "secondary": "#6e5e00",
+                        "on-surface-variant": "#434843",
+                        "background": "#faf9f4",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-container-low": "#f5f4ef",
+                        "on-secondary-container": "#756400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf9f4;
+            color: #1b1c19;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(239, 238, 233, 0.8) 0%, rgba(250, 249, 244, 0.4) 100%);
+        }
+        .zen-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .zen-scrollbar::-webkit-scrollbar-track {
+            background: #efeee9;
+        }
+        .zen-scrollbar::-webkit-scrollbar-thumb {
+            background: #4a5d4e;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar Shell -->
+<nav class="flex flex-col h-screen fixed left-0 top-0 p-6 space-y-8 bg-[#EFEEE9] dark:bg-stone-950 h-screen w-72 rounded-r-lg shadow-[12px_0_40px_rgba(74,93,78,0.04)] z-50">
+<div class="flex flex-col space-y-1">
+<h1 class="font-serif text-xl text-[#334537]">Qingru Zen</h1>
+<p class="text-stone-500 font-label text-xs tracking-widest uppercase">圣域门户</p>
+</div>
+<div class="flex-1 space-y-2">
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label text-sm tracking-wide">控制面板</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined" data-icon="folded_hands">folded_hands</span>
+<span class="font-label text-sm tracking-wide">祈福者管理</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span class="font-label text-sm tracking-wide">志愿者管理</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 bg-[#334537] text-[#FAF9F4] rounded-lg shadow-sm font-semibold transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-label text-sm tracking-wide">机构管理</span>
+</a>
+</div>
+<div class="pt-6 border-t border-outline-variant/20 flex items-center space-x-4">
+<img alt="Administrative Profile" class="w-10 h-10 rounded-full border border-primary/10" data-alt="professional portrait of a senior administrator in a minimalist workspace with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdsYleUCTi0j_k_oAOUG1QlhuNMNfWihKqxFGyevneWhN1V_TPoQnyglVJq3_kkDONNTfDvIM0UUBMc4g_PV3CKLds81o8Aw2PI4Q9vCvOvDKkqJRGP8temQUqxC9tlTyKB0a_LA7xsfGiDO8uuiE0FkS6TVwMHq22mQzwG8KpXu99OWgnz8XJedceWWKfgWWruoOJcg0Of7rtsm0d3h4NXfhGuiGTgNfbWhX0_-IFpBKzqI1I3f5tw7JSQIhGFlcAIlIM2kqGMZ_e"/>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">管理后台</span>
+<span class="text-xs text-stone-500">圣域管理员</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-72 flex-1 flex flex-col min-h-screen bg-surface">
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center w-full px-12 py-4 h-20 bg-[#FAF9F4] dark:bg-stone-900 sticky top-0 z-40">
+<div class="flex items-center space-x-2">
+<span class="text-stone-400 text-sm font-label">用户管理</span>
+<span class="text-stone-400 text-xs">/</span>
+<span class="text-primary font-bold border-b-2 border-[#6e5e00] text-sm">合规机构列表</span>
+</div>
+<div class="flex items-center space-x-8">
+<div class="flex items-center space-x-6">
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#334537] text-sm font-label" href="#">设置</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#334537] text-sm font-label" href="#">支持</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#334537] text-sm font-label" href="#">个人资料</a>
+</div>
+<div class="flex items-center space-x-4 border-l border-outline-variant/30 pl-8">
+<button class="material-symbols-outlined text-stone-500 hover:bg-[#EFEEE9] p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-stone-500 hover:bg-[#EFEEE9] p-2 rounded-full transition-colors" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<!-- Content Body -->
+<section class="p-12 space-y-8 flex-1">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div class="space-y-2">
+<h2 class="text-4xl font-headline text-primary tracking-tight">合规机构管理</h2>
+<p class="text-stone-500 font-body">严格验证机构合作伙伴及圣域相关利益方。</p>
+</div>
+<div class="flex space-x-3">
+<button class="px-6 py-2.5 rounded-lg border border-error/20 text-error hover:bg-error-container/20 transition-all font-label text-sm flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="block">block</span>
+<span>批量禁用</span>
+</button>
+<button class="px-6 py-2.5 rounded-lg border border-primary/20 text-primary hover:bg-primary/5 transition-all font-label text-sm flex items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+<span>导出数据</span>
+</button>
+</div>
+</div>
+<!-- Filter Bar: Bento Style -->
+<div class="grid grid-cols-5 gap-4 bg-surface-container-low p-6 rounded-xl">
+<div class="col-span-1 space-y-1.5">
+<label class="text-[10px] uppercase tracking-widest text-stone-400 font-bold px-1">机构名称</label>
+<input class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded-lg px-4 py-2.5 text-sm" placeholder="输入机构名..." type="text"/>
+</div>
+<div class="col-span-1 space-y-1.5">
+<label class="text-[10px] uppercase tracking-widest text-stone-400 font-bold px-1">统一社会信用代码</label>
+<input class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded-lg px-4 py-2.5 text-sm" placeholder="输入信用代码..." type="text"/>
+</div>
+<div class="col-span-1 space-y-1.5">
+<label class="text-[10px] uppercase tracking-widest text-stone-400 font-bold px-1">审核状态</label>
+<select class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded-lg px-4 py-2.5 text-sm appearance-none">
+<option>全部状态</option>
+<option>待审核</option>
+<option>已通过</option>
+<option>已驳回</option>
+</select>
+</div>
+<div class="col-span-1 space-y-1.5">
+<label class="text-[10px] uppercase tracking-widest text-stone-400 font-bold px-1">注册日期范围</label>
+<div class="flex items-center bg-surface-container-lowest rounded-lg overflow-hidden">
+<input class="w-full border-none bg-transparent focus:ring-0 text-xs px-2 py-2.5" type="date"/>
+<span class="text-stone-300">-</span>
+<input class="w-full border-none bg-transparent focus:ring-0 text-xs px-2 py-2.5" type="date"/>
+</div>
+</div>
+<div class="col-span-1 flex items-end">
+<button class="w-full py-2.5 bg-primary-container text-white rounded-lg font-label text-sm hover:opacity-90 transition-opacity flex justify-center items-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+<span>搜索查询</span>
+</button>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.04)]">
+<div class="overflow-x-auto zen-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/10">
+<th class="p-5 w-12"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">机构ID</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">机构名称</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">信用代码</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">审核状态</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">联系人/电话</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">累计订单</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">注册日期</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold">账号状态</th>
+<th class="p-5 text-[10px] uppercase tracking-widest text-stone-400 font-bold text-center">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1: Pending -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-5"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-5 text-xs font-mono text-stone-500">INST-9082</td>
+<td class="p-5 font-semibold text-primary">静儒林中心 (Qingru Forest Center)</td>
+<td class="p-5 text-xs text-stone-500">91310115MA1K3N</td>
+<td class="p-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-secondary-container/30 text-on-secondary-container">待审核</span>
+</td>
+<td class="p-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium">张思源</span>
+<span class="text-xs text-stone-400">138****0921</span>
+</div>
+</td>
+<td class="p-5 text-sm font-medium">1,240</td>
+<td class="p-5 text-sm text-stone-500">2023-11-04</td>
+<td class="p-5">
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-xs text-stone-600">正常</span>
+</div>
+</td>
+<td class="p-5">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 hover:bg-primary-container hover:text-white rounded-lg transition-all text-primary" title="审核"><span class="material-symbols-outlined text-lg">fact_check</span></button>
+<button class="p-2 hover:bg-stone-200 rounded-lg transition-all text-stone-600" title="查看详情">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg transition-all text-stone-400" title="禁用">
+<span class="material-symbols-outlined text-lg" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Approved -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-5"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-5 text-xs font-mono text-stone-500">INST-4421</td>
+<td class="p-5 font-semibold text-primary">云山书院 (Yunshan Academy)</td>
+<td class="p-5 text-xs text-stone-500">91320508MA2P9L</td>
+<td class="p-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-primary-container/20 text-primary-container">已通过</span>
+</td>
+<td class="p-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium">李若水</span>
+<span class="text-xs text-stone-400">159****8842</span>
+</div>
+</td>
+<td class="p-5 text-sm font-medium">892</td>
+<td class="p-5 text-sm text-stone-500">2023-10-21</td>
+<td class="p-5">
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-xs text-stone-600">正常</span>
+</div>
+</td>
+<td class="p-5">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 text-stone-300 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg" data-icon="fact_check">fact_check</span>
+</button>
+<button class="p-2 hover:bg-stone-200 rounded-lg transition-all text-stone-600" title="查看详情">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg transition-all text-stone-400" title="禁用">
+<span class="material-symbols-outlined text-lg" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Rejected -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group bg-error/5">
+<td class="p-5"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-5 text-xs font-mono text-stone-500">INST-1029</td>
+<td class="p-5 font-semibold text-primary">朝夕禅社 (Dusk Zen Society)</td>
+<td class="p-5 text-xs text-stone-500">91440300MA5U4Y</td>
+<td class="p-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-error-container/30 text-error">已驳回</span>
+</td>
+<td class="p-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium">王明道</span>
+<span class="text-xs text-stone-400">177****4431</span>
+</div>
+</td>
+<td class="p-5 text-sm font-medium">0</td>
+<td class="p-5 text-sm text-stone-500">2023-12-01</td>
+<td class="p-5">
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="text-xs text-stone-600">禁用</span>
+</div>
+</td>
+<td class="p-5">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 hover:bg-primary-container hover:text-white rounded-lg transition-all text-primary" title="重新审核">
+<span class="material-symbols-outlined text-lg" data-icon="fact_check">fact_check</span>
+</button>
+<button class="p-2 hover:bg-stone-200 rounded-lg transition-all text-stone-600" title="查看原因">
+<span class="material-symbols-outlined text-lg" data-icon="report">report</span>
+</button>
+<button class="p-2 bg-primary/10 text-primary rounded-lg transition-all" title="解禁">
+<span class="material-symbols-outlined text-lg" data-icon="lock_open">lock_open</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- More rows following same pattern... -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-5"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="p-5 text-xs font-mono text-stone-500">INST-2291</td>
+<td class="p-5 font-semibold text-primary">菩提基金会 (Bodhi Foundation)</td>
+<td class="p-5 text-xs text-stone-500">91110105MA0C2T</td>
+<td class="p-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold bg-primary-container/20 text-primary-container">已通过</span>
+</td>
+<td class="p-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium">陈慧宁</span>
+<span class="text-xs text-stone-400">139****5510</span>
+</div>
+</td>
+<td class="p-5 text-sm font-medium">4,510</td>
+<td class="p-5 text-sm text-stone-500">2023-08-15</td>
+<td class="p-5">
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="text-xs text-stone-600">正常</span>
+</div>
+</td>
+<td class="p-5">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 text-stone-300 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg" data-icon="fact_check">fact_check</span>
+</button>
+<button class="p-2 hover:bg-stone-200 rounded-lg transition-all text-stone-600" title="查看详情">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg transition-all text-stone-400" title="禁用">
+<span class="material-symbols-outlined text-lg" data-icon="block">block</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer / Pagination -->
+<div class="px-8 py-5 flex items-center justify-between bg-surface-container-low border-t border-outline-variant/10">
+<div class="flex items-center space-x-4">
+<span class="text-xs text-stone-500">显示 1 到 10 条，共 124 条记录</span>
+<select class="bg-transparent border-none text-xs text-primary font-bold focus:ring-0">
+<option>10 条/页</option>
+<option>20 条/页</option>
+<option>50 条/页</option>
+</select>
+</div>
+<div class="flex items-center space-x-1">
+<button class="p-2 text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-stone-200 text-stone-600 text-xs transition-all">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-stone-200 text-stone-600 text-xs transition-all">3</button>
+<span class="px-2 text-stone-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-stone-200 text-stone-600 text-xs transition-all">13</button>
+<button class="p-2 text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Motivational Insight Card (The "Zen" Touch) -->
+<div class="ink-wash-bg p-8 rounded-2xl flex items-center space-y-4 md:space-y-0 md:space-x-8 border border-outline-variant/10 overflow-hidden relative group">
+<div class="absolute -right-12 -top-12 opacity-5 pointer-events-none transform group-hover:rotate-12 transition-transform duration-1000">
+<span class="material-symbols-outlined text-[160px]" data-icon="account_balance" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div class="bg-primary-container p-4 rounded-xl text-on-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h4 class="font-headline text-lg text-primary">合规审核：宁静社区的基石</h4>
+<p class="text-sm text-stone-600 leading-relaxed max-w-2xl">每一份审核申请都是一次信任的托付。确保每一家合作伙伴都符合静儒禅院的标准，不仅是法律合规的要求，更是对平台每一位修行者的守护。请严谨对待每一项信用指标。</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Hidden as per hierarchy on lists) -->
+</body></html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>清如管理后台 - 登录</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-variant": "#e3e2de",
+                        "on-secondary-container": "#756400",
+                        "on-primary-container": "#c0d5c2",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ebcaa3",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-primary-fixed": "#0e1f13",
+                        "secondary-container": "#fee264",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c3c8c1",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e9e8e3",
+                        "on-secondary-fixed": "#211b00",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "primary-container": "#4a5d4e",
+                        "on-error-container": "#93000a",
+                        "surface": "#faf9f4",
+                        "tertiary-container": "#6d5435",
+                        "on-background": "#1b1c19",
+                        "background": "#faf9f4",
+                        "surface-container-highest": "#e3e2de",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "outline": "#737872",
+                        "surface-dim": "#dbdad5",
+                        "error": "#ba1a1a",
+                        "primary": "#334537",
+                        "tertiary": "#533d20",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "inverse-primary": "#b7ccb9",
+                        "primary-fixed": "#d3e8d5",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "surface-bright": "#faf9f4",
+                        "secondary-fixed": "#fee264",
+                        "secondary": "#6e5e00",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#efeee9",
+                        "on-surface-variant": "#434843",
+                        "inverse-surface": "#30312e",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#291801",
+                        "surface-tint": "#506354",
+                        "surface-container-low": "#f5f4ef",
+                        "on-secondary-fixed-variant": "#534600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f4; }
+        .serif-text { font-family: 'Noto Serif SC', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .whisper-shadow { box-shadow: 0 12px 40px rgba(74, 93, 78, 0.06); }
+        .ink-wash-gradient {
+            background: linear-gradient(135deg, rgba(51, 69, 55, 0.95) 0%, rgba(74, 93, 78, 0.8) 100%);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<main class="flex-grow flex flex-col md:flex-row overflow-hidden">
+<!-- Left Side: Brand Visual Shell -->
+<section class="hidden md:flex md:w-1/2 relative overflow-hidden bg-primary items-center justify-center p-24">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 mix-blend-overlay" data-alt="A serene Zen garden with perfectly raked grey sand surrounding three smooth dark stones, soft morning mist, and a singular pine branch in focus, high contrast editorial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDACAcBzyqUnmgEt-jspQA9uHPkipSju24SL9SMjw-SgVpMaaRbIM0xqfSkLUXwghgEkQqbxwUa0N5kV3Y5OkvvK7CzvUZCdiCsIs_I02oDzr6EM1b9kIf9-BmZL1FyKG9veMCYusdM4qEeoMLiWDyhQRIgM2i6g0H1955ySuW6yQIikp2Jk-s0z1ciwe_I8DhFjGUDAvLlSyQCxnPEp16Uzf7W14UmBywZM6E55p8daBUOMReHQpDfux7MWu6v0kU_7b0YuN1hmqKD"/>
+<div class="absolute inset-0 ink-wash-gradient"></div>
+</div>
+<div class="relative z-10 max-w-lg text-left">
+<div class="flex items-center gap-4 mb-12">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+<h1 class="text-4xl font-bold tracking-tighter text-surface serif-text">清如</h1>
+</div>
+<div class="space-y-6">
+<h2 class="text-5xl serif-text leading-tight text-white opacity-90">梵音·禅理·我的</h2>
+<p class="text-on-primary-container text-xl font-light tracking-wide max-w-md">
+                        在数字世界的喧嚣中，我们为您打造一处静谧之所。通过正念与科学的交织，回归本质的清澈。
+                    </p>
+</div>
+<div class="mt-24 flex gap-12 text-on-primary-container/60 text-sm tracking-[0.2em] font-medium">
+<span class="border-b border-on-primary-container/20 pb-2">专注</span>
+<span class="border-b border-on-primary-container/20 pb-2">内省</span>
+<span class="border-b border-on-primary-container/20 pb-2">智慧</span>
+</div>
+</div>
+</section>
+<!-- Right Side: Login Interaction Canvas -->
+<section class="flex-grow flex items-center justify-center bg-surface px-8 py-24 relative">
+<div class="w-full max-auto max-w-[440px] relative">
+<!-- QR Code Toggle Anchor -->
+<div class="absolute -top-4 -right-4 z-20">
+<button class="p-3 bg-surface-container hover:bg-surface-container-high transition-colors rounded-xl flex items-center justify-center group">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform" data-icon="qr_code_2">qr_code_2</span>
+</button>
+</div>
+<div class="space-y-12">
+<header class="space-y-2">
+<h3 class="text-3xl font-bold serif-text text-primary tracking-tight">后台登录</h3>
+<p class="text-on-surface-variant/70 text-sm font-medium tracking-wide">请输入您的凭据以进入管理空间</p>
+</header>
+<form class="space-y-8">
+<div class="space-y-6">
+<!-- Input: Account -->
+<div class="relative group">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1 ml-1 opacity-60 group-focus-within:opacity-100 transition-opacity">管理员账号</label>
+<div class="flex items-center gap-3 bg-surface-container-low px-5 py-4 rounded-xl focus-within:bg-white focus-within:whisper-shadow transition-all duration-300">
+<span class="material-symbols-outlined text-primary/40 text-xl" data-icon="account_circle">account_circle</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-primary placeholder:text-outline-variant font-medium" placeholder="手机号或邮箱" type="text"/>
+</div>
+</div>
+<!-- Input: Password -->
+<div class="relative group">
+<div class="flex justify-between items-end mb-1 px-1">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold opacity-60 group-focus-within:opacity-100 transition-opacity">安全密码</label>
+<a class="text-[10px] font-bold text-secondary-fixed-dim hover:text-secondary transition-colors uppercase tracking-wider" href="#">忘记密码?</a>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low px-5 py-4 rounded-xl focus-within:bg-white focus-within:whisper-shadow transition-all duration-300">
+<span class="material-symbols-outlined text-primary/40 text-xl" data-icon="lock">lock</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-primary placeholder:text-outline-variant tracking-widest" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined text-primary/40 text-xl cursor-pointer hover:text-primary transition-colors" data-icon="visibility_off">visibility_off</span>
+</div>
+</div>
+</div>
+<!-- MFA Checkbox -->
+<div class="flex items-center gap-3 px-1 group cursor-pointer">
+<div class="relative flex items-center justify-center h-5 w-5 border-2 border-outline-variant rounded-md group-hover:border-primary transition-colors">
+<input class="opacity-0 absolute inset-0 cursor-pointer peer" type="checkbox"/>
+<div class="h-2 w-2 bg-primary rounded-sm opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</div>
+<span class="text-xs text-on-surface-variant font-medium">这是一台受信任的设备 (30天内保持登录)</span>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full bg-primary-container text-on-primary py-5 rounded-xl font-bold tracking-widest hover:bg-primary transition-all active:scale-[0.98] duration-300 whisper-shadow flex items-center justify-center gap-3">
+<span>立即登录</span>
+<span class="material-symbols-outlined text-xl" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<footer class="text-center pt-8">
+<p class="text-xs text-on-surface-variant/50 font-medium">系统由 <span class="text-primary/70">Qingru Zen Cloud</span> 提供技术支持</p>
+</footer>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="fixed bottom-0 w-full bg-transparent flex justify-center items-center gap-8 py-8 w-full">
+<div class="flex gap-8 items-center">
+<span class="text-sm font-medium text-[#334537]">清如管理后台</span>
+<div class="flex gap-6">
+<a class="font-sans text-xs tracking-wide uppercase text-[#533d20]/50 dark:text-[#A68966]/50 hover:text-[#334537] dark:hover:text-[#FAF9F4] transition-all" href="#">隐私政策</a>
+<a class="font-sans text-xs tracking-wide uppercase text-[#533d20]/50 dark:text-[#A68966]/50 hover:text-[#334537] dark:hover:text-[#FAF9F4] transition-all" href="#">服务条款</a>
+<span class="font-sans text-xs tracking-wide uppercase text-[#533d20]/50 dark:text-[#A68966]/50">备案号: 蜀ICP备12345678号</span>
+</div>
+<p class="font-sans text-xs tracking-wide uppercase text-[#533d20] dark:text-[#A68966]">
+                © 2024 Qingru Zen. 科学护生·正念静心
+            </p>
+</div>
+</footer>
+</body></html>

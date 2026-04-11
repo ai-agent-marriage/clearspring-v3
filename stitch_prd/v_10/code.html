@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#6e5e00",
+                        "on-tertiary-container": "#ebcaa3",
+                        "surface": "#faf9f4",
+                        "primary-container": "#4a5d4e",
+                        "secondary-container": "#fee264",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c3c8c1",
+                        "on-surface-variant": "#434843",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary-fixed": "#291801",
+                        "tertiary": "#533d20",
+                        "inverse-primary": "#b7ccb9",
+                        "on-surface": "#1b1c19",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e9e8e3",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-bright": "#faf9f4",
+                        "on-background": "#1b1c19",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-secondary-container": "#756400",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f2f1ec",
+                        "outline": "#737872",
+                        "surface-tint": "#506354",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#6d5435",
+                        "primary": "#334537",
+                        "surface-variant": "#e3e2de",
+                        "surface-container": "#efeee9",
+                        "on-primary-container": "#c0d5c2",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-dim": "#dbdad5",
+                        "surface-container-highest": "#e3e2de",
+                        "inverse-surface": "#30312e",
+                        "background": "#faf9f4",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#534600",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#211b00",
+                        "secondary-fixed": "#fee264",
+                        "primary-fixed": "#d3e8d5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-ink-wash {
+            background-image: radial-gradient(circle at 80% 20%, rgba(74, 93, 78, 0.05) 0%, transparent 40%),
+                              radial-gradient(circle at 20% 80%, rgba(166, 137, 102, 0.05) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container font-body text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-xl flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#FAF9F4] cursor-pointer" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-['Noto_Serif'] text-xl tracking-tight font-bold text-[#334537] dark:text-[#FAF9F4]">账号设置</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#FAF9F4] cursor-pointer" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow pt-24 pb-32 px-6 bg-ink-wash">
+<div class="max-w-md mx-auto space-y-6">
+<!-- Section 1: Basic Information -->
+<div class="bg-surface-container-lowest rounded-xl p-2 shadow-[0_-12px_40px_rgba(74,93,78,0.03)]">
+<div class="divide-y divide-surface-variant/20">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-lg group">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-on-surface-variant mb-0.5">个人信息</span>
+<span class="text-on-surface">林清泉 (138****0000)</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-lg group">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-on-surface-variant mb-0.5">实名认证</span>
+<div class="flex items-center gap-2">
+<span class="text-on-surface">已认证</span>
+<span class="bg-primary-container/10 text-primary-container text-[10px] px-2 py-0.5 rounded-full font-bold">VERIFIED</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-lg group">
+<div class="flex flex-col">
+<span class="text-xs font-medium text-on-surface-variant mb-0.5">所属机构</span>
+<span class="text-on-surface">慈心公益志愿协会</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Section 2: Security & Preferences -->
+<div class="bg-surface-container-lowest rounded-xl p-2 shadow-[0_-12px_40px_rgba(74,93,78,0.03)]">
+<div class="divide-y divide-surface-variant/20">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-lg group">
+<span class="text-on-surface font-medium">登录密码</span>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant text-sm">修改</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-4">
+<span class="text-on-surface font-medium">消息通知设置</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Section 3: Safety & Account Disposal -->
+<div class="bg-surface-container-lowest rounded-xl p-2 shadow-[0_-12px_40px_rgba(74,93,78,0.03)]">
+<div class="divide-y divide-surface-variant/20">
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-lg group">
+<span class="text-on-surface font-medium">登录日志查询</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors rounded-lg group">
+<span class="text-error font-medium">账号注销</span>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Logout Button -->
+<button class="w-full mt-8 py-4 bg-error text-white font-bold rounded-xl shadow-lg shadow-error/10 hover:opacity-90 active:scale-[0.98] transition-all">
+                退出登录
+            </button>
+<!-- Decorative Visual -->
+<div class="pt-8 flex justify-center opacity-40">
+<div class="h-16 w-16 opacity-30 grayscale overflow-hidden rounded-full">
+<img alt="zen stone decoration" class="w-full h-full object-cover" data-alt="close-up of stacked smooth zen stones in a garden setting with soft morning mist and dappled sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6ZLzLL-dZIYS4E1l7WcXWNGPT2i2FmRho9EE_6aYqcQbxTEh4eumfq8E5Er01nYwXVkSARKbkWDB0m62f3EPuR3x2qS-89VgK-IErfQHhWJb2K32jcEECLGqx38RijBYauJm_s7Fg4Sw1CzaZwxxsdha80AH3pp7mwUYJ4munMZIk84S1prAByouPufgHJibx6loqMKpRodaTT9YlSVzPp3W7qqnBCrMrw9oI3FUKQZGXu-r_iUiv1lWJXHfSsbabZdlxeD1iJJEM"/>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-3 bg-[#EFEEE9] dark:bg-[#1A1C19] z-50 pb-safe shadow-[0_-12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex flex-col items-center justify-center text-[#4A5D4E]/70 dark:text-[#EFEEE9]/70 px-5 py-1.5 hover:text-[#334537] dark:hover:text-[#FAF9F4] transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-[24px]" data-icon="auto_stories">auto_stories</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] font-medium tracking-wide">Sanskrit</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#4A5D4E]/70 dark:text-[#EFEEE9]/70 px-5 py-1.5 hover:text-[#334537] dark:hover:text-[#FAF9F4] transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-[24px]" data-icon="self_improvement">self_improvement</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] font-medium tracking-wide">Zen</span>
+</div>
+<!-- Active Tab: Me -->
+<div class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-lg px-5 py-1.5 transition-all transform active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined text-[24px]" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] font-medium tracking-wide">Me</span>
+</div>
+</nav>
+</body></html>

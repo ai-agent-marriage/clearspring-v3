@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qingru Zen - 机构详情页</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad5",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c19",
+                        "error": "#ba1a1a",
+                        "primary": "#334537",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-tint": "#506354",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#4a5d4e",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "inverse-surface": "#30312e",
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary": "#533d20",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container": "#efeee9",
+                        "outline-variant": "#c3c8c1",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-background": "#1b1c19",
+                        "inverse-primary": "#b7ccb9",
+                        "on-secondary": "#ffffff",
+                        "outline": "#737872",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary-fixed": "#291801",
+                        "surface": "#faf9f4",
+                        "surface-container-highest": "#e3e2de",
+                        "surface-bright": "#faf9f4",
+                        "secondary-container": "#fee264",
+                        "inverse-on-surface": "#f2f1ec",
+                        "tertiary-container": "#6d5435",
+                        "secondary-fixed": "#fee264",
+                        "primary-fixed": "#d3e8d5",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-variant": "#e3e2de",
+                        "secondary": "#6e5e00",
+                        "on-surface-variant": "#434843",
+                        "background": "#faf9f4",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-container-low": "#f5f4ef",
+                        "on-secondary-container": "#756400"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(250, 249, 244, 0.8) 0%, rgba(239, 238, 233, 0.4) 100%);
+            position: relative;
+        }
+        .ink-wash-bg::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(74, 93, 78, 0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(110, 94, 0, 0.03) 0%, transparent 50%);
+            z-index: -1;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FAF9F4; }
+        ::-webkit-scrollbar-thumb { background: #4A5D4E; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 p-6 space-y-8 bg-[#EFEEE9] dark:bg-stone-950 h-screen w-72 rounded-r-lg shadow-[12px_0_40px_rgba(74,93,78,0.04)] z-50">
+<div class="flex flex-col space-y-1">
+<h1 class="font-serif text-xl text-[#334537]">Qingru Zen</h1>
+<p class="font-sans text-xs tracking-widest text-stone-500 uppercase">Sanctuary Portal</p>
+</div>
+<nav class="flex-1 space-y-2 overflow-y-auto">
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="folded_hands">folded_hands</span>
+<span>Blesser Management</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span>Volunteer Management</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 bg-[#334537] text-[#FAF9F4] rounded-lg shadow-sm font-semibold font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span>Institutional Management</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-outline-variant/20">
+<button class="w-full flex items-center justify-center space-x-2 bg-primary-container text-on-primary px-4 py-3 rounded-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span class="text-sm font-medium">New Entry</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center w-full px-12 py-4 h-20 bg-[#FAF9F4] dark:bg-stone-900 sticky top-0 z-40">
+<div class="flex items-center space-x-8">
+<h2 class="text-2xl font-serif tracking-tight text-[#334537] dark:text-emerald-500">运营洞察</h2>
+<nav class="hidden md:flex space-x-6">
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#334537] transition-colors duration-300 font-sans text-sm" href="#">Settings</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#334537] transition-colors duration-300 font-sans text-sm" href="#">Support</a>
+<a class="text-stone-500 dark:text-stone-400 hover:text-[#334537] transition-colors duration-300 font-sans text-sm" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-stone-400 text-lg">search</span>
+<input class="bg-[#EFEEE9] border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="搜索资源..." type="text"/>
+</div>
+<button class="p-2 hover:bg-[#EFEEE9] rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-[#EFEEE9] rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-12 space-y-10 ink-wash-bg">
+<!-- Page Header / Breadcrumb -->
+<section class="space-y-2">
+<div class="flex items-center space-x-2 text-xs text-stone-500 uppercase tracking-widest font-medium">
+<span>机构管理</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-bold">静儒禅院 (华南分部)</span>
+</div>
+<h3 class="font-headline text-4xl text-primary leading-tight">机构运营深度洞察</h3>
+</section>
+<!-- Tabs Navigation -->
+<div class="flex space-x-12 border-b border-outline-variant/15">
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors">基本概况</button>
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors">人员架构</button>
+<button class="pb-4 text-sm font-bold text-primary border-b-2 border-secondary transition-colors">订单管理</button>
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors">财务报表</button>
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors">系统审计</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Chart 1: Order Completion -->
+<div class="col-span-12 lg:col-span-5 bg-surface-container-low rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-headline text-xl text-primary mb-1">订单完成率</h4>
+<p class="text-xs text-stone-500">实时交付统计</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-3xl">task_alt</span>
+</div>
+<div class="relative h-64 flex items-center justify-center">
+<!-- Simulated Circular Chart -->
+<svg class="w-48 h-48 transform -rotate-90">
+<circle class="text-surface-container-highest" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-secondary" cx="96" cy="96" fill="transparent" r="80" stroke="currentColor" stroke-dasharray="502.4" stroke-dashoffset="60" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-serif font-bold text-primary">88%</span>
+<span class="text-xs text-stone-500 uppercase tracking-tighter">本月交付</span>
+</div>
+</div>
+<div class="mt-6 flex justify-between text-xs text-stone-600 border-t border-outline-variant/10 pt-4">
+<div class="flex items-center"><span class="w-2 h-2 rounded-full bg-secondary mr-2"></span> 已完成: 1,240</div>
+<div class="flex items-center"><span class="w-2 h-2 rounded-full bg-surface-container-highest mr-2"></span> 进行中: 168</div>
+</div>
+</div>
+<!-- Chart 2: Revenue Trends -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-low rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h4 class="font-headline text-xl text-primary mb-1">月度营收趋势</h4>
+<p class="text-xs text-stone-500">核心业务收入波动</p>
+</div>
+<div class="flex space-x-2">
+<button class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-medium">近6个月</button>
+<button class="bg-surface-variant/50 text-stone-600 px-3 py-1 rounded-full text-xs font-medium">年度</button>
+</div>
+</div>
+<div class="h-64 flex items-end space-x-4">
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm hover:bg-primary/40 transition-colors" style="height: 40%"></div>
+<span class="mt-2 text-[10px] text-stone-500">1月</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm hover:bg-primary/40 transition-colors" style="height: 55%"></div>
+<span class="mt-2 text-[10px] text-stone-500">2月</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm hover:bg-primary/40 transition-colors" style="height: 48%"></div>
+<span class="mt-2 text-[10px] text-stone-500">3月</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm hover:bg-primary/40 transition-colors" style="height: 72%"></div>
+<span class="mt-2 text-[10px] text-stone-500">4月</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-primary/20 rounded-t-sm hover:bg-primary/40 transition-colors" style="height: 60%"></div>
+<span class="mt-2 text-[10px] text-stone-500">5月</span>
+</div>
+<div class="flex-1 flex flex-col items-center">
+<div class="w-full bg-secondary rounded-t-sm" style="height: 85%"></div>
+<span class="mt-2 text-[10px] font-bold text-primary">6月</span>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container rounded-lg">
+<p class="text-[10px] text-stone-500 uppercase tracking-wider mb-1">本月累计营收</p>
+<p class="text-xl font-serif font-bold text-primary">¥ 428,500.00</p>
+</div>
+<div class="p-4 bg-surface-container rounded-lg">
+<p class="text-[10px] text-stone-500 uppercase tracking-wider mb-1">较上月增长</p>
+<p class="text-xl font-serif font-bold text-secondary">+12.4%</p>
+</div>
+</div>
+</div>
+<!-- Volunteer Compliance List -->
+<div class="col-span-12 bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h4 class="font-headline text-2xl text-primary mb-1">志愿者合规性监控</h4>
+<p class="text-sm text-stone-500">基于个体交付质量与考勤记录的评分系统</p>
+</div>
+<div class="flex items-center space-x-4">
+<span class="text-xs text-stone-400">最后更新: 10分钟前</span>
+<button class="flex items-center space-x-2 text-primary hover:text-secondary transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-sm">download</span>
+<span>导出报表</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead>
+<tr class="text-left text-xs text-stone-400 uppercase tracking-widest border-b border-outline-variant/15">
+<th class="pb-4 font-medium pl-2">志愿者姓名</th>
+<th class="pb-4 font-medium">所属部门</th>
+<th class="pb-4 font-medium">活跃订单</th>
+<th class="pb-4 font-medium">响应时长 (均值)</th>
+<th class="pb-4 font-medium">合规率评分</th>
+<th class="pb-4 font-medium text-right pr-2">状态</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-5 pl-2">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of a male professional volunteer in clear studio lighting with a calm expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU-bPfw6bzrzlRFq-QURAW-Hg6ZOCS7iA1j4ZrIEI6sxIxu4RJtKNSgdPPP9w6FP0G5ibASMacoO3X2pBJiaIorQRlaK8YyIER0JWwdMTgg1yuiOv5HuMocwbKGBomYSpwniume4B2P10wZmRZhlHpEibWpViBE7uRKsGbIJJlF1e0uOD0BoGXlfWeqFkF9I07yPtpdolZ_8Jk1JYwfK0ub9kcxIZIFOueqVQXPxQRqB_JlRn2g_8pP4YgsIfIveGgrdveY8oKCpLK"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">李思远</p>
+<p class="text-[10px] text-stone-400">ID: V-90821</p>
+</div>
+</div>
+</td>
+<td class="py-5 text-sm text-stone-600">临终关怀部</td>
+<td class="py-5 text-sm font-serif text-primary">12</td>
+<td class="py-5 text-sm text-stone-600">0.8h</td>
+<td class="py-5">
+<div class="flex items-center space-x-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 98%"></div>
+</div>
+<span class="text-xs font-bold text-primary">98%</span>
+</div>
+</td>
+<td class="py-5 text-right pr-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Excellent</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-5 pl-2">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female administrative volunteer in natural daylight with a soft smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWCP4vydByPAI_-P22C1asAI796rS_vdRJGGJQzUcPVJTE_sAvdpKl7p-FrDMAprU_F3cd_jlIBDOA9fH-B5TfVW9PImT07jM-18fL6vC3yL5MxlvBzQwBADkuh-kk-akUIHhjLLYtH0qkosMJMCZEIvFi9tuhpxx7-2kSkHdchC0gPDZd9Ip-v8KvZaGu40fnlHBF2oT293cayPOCShgPqNMoNp48MAC7ioTkOws2o6KusWY1C2sp5mR2v0LDyWjmKROrsqUEiFJy"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">陈妙琳</p>
+<p class="text-[10px] text-stone-400">ID: V-90845</p>
+</div>
+</div>
+</td>
+<td class="py-5 text-sm text-stone-600">社区调解组</td>
+<td class="py-5 text-sm font-serif text-primary">08</td>
+<td class="py-5 text-sm text-stone-600">1.2h</td>
+<td class="py-5">
+<div class="flex items-center space-x-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%"></div>
+</div>
+<span class="text-xs font-bold text-primary">82%</span>
+</div>
+</td>
+<td class="py-5 text-right pr-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-yellow-100 text-yellow-700 uppercase">Warning</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-5 pl-2">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover" data-alt="Close up of a focused young man wearing professional work attire with soft blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHeBMvL4Jlvbit895Ie6UoVX8j6BRoztw5G5G0a-vxq2zm_nm1oDXSyRnXAdLe1kD2icyuIHp7r9MPijQ3LOCzJHbCXJ4lvF9Gs0n5Px3ZVH402yLenD2ksC2JCOMd8InRiOIa9RF_1X7snA_yowuuMW5eWDbPKkSzIKo9RG2sYIC3Hf7LFQFismYyNo3JRhkOsx-MBmEPgEzA5ZMp467BBdQ4E4JJE3lNgoYH45bCeSC502vopZOEtR8H2bRwqWCzTdmC0HUnZSJX"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">张志强</p>
+<p class="text-[10px] text-stone-400">ID: V-90902</p>
+</div>
+</div>
+</td>
+<td class="py-5 text-sm text-stone-600">禅修引导组</td>
+<td class="py-5 text-sm font-serif text-primary">05</td>
+<td class="py-5 text-sm text-stone-600">0.5h</td>
+<td class="py-5">
+<div class="flex items-center space-x-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 95%"></div>
+</div>
+<span class="text-xs font-bold text-primary">95%</span>
+</div>
+</td>
+<td class="py-5 text-right pr-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 uppercase">Excellent</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="py-5 pl-2">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-stone-200">
+<img class="w-full h-full object-cover" data-alt="Minimalist professional portrait of a woman with subtle natural lighting and clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIJY4Gj2KshWweE1f1eE7PnbmtjXY5BYwuINkDVD7cWlGg8lZ3PAQSDWV3RBZaGeIf3mLM4c_xhItdXVipl1BEBVqi7I1VLRyv5sBjgHZwQ_ReIEAFSBRpD8MSZb-mposyPNGx-j2of7sSdXMwrdY-91IxvXb6OtEQG2XMF1dXntzDl6Q-ezQhWsD0K4hBShPI7UiS-TW6TrjyFYOsxdN9Cp456uMoM6m1kDv7qvzJk9g03fKkjtF23UjMxvZI2Ve7Mc1ivkdIouJ0"/>
+</div>
+<div>
+<p class="text-sm font-bold text-primary">林嘉欣</p>
+<p class="text-[10px] text-stone-400">ID: V-91023</p>
+</div>
+</div>
+</td>
+<td class="py-5 text-sm text-stone-600">档案文书组</td>
+<td class="py-5 text-sm font-serif text-primary">18</td>
+<td class="py-5 text-sm text-stone-600">2.1h</td>
+<td class="py-5">
+<div class="flex items-center space-x-2">
+<div class="w-24 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 45%"></div>
+</div>
+<span class="text-xs font-bold text-error">45%</span>
+</div>
+</td>
+<td class="py-5 text-right pr-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-error-container text-on-error-container uppercase">Critical</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 flex justify-between items-center text-xs text-stone-400 font-medium">
+<p>显示 1-4 名志愿者，共计 156 名</p>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-container transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-container transition-colors">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant/30 hover:bg-surface-container transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Technical Support -->
+<footer class="mt-auto p-12 border-t border-outline-variant/10 text-stone-400 flex justify-between items-center bg-surface-container-low">
+<div class="flex items-center space-x-6 text-[10px] uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">隐私协议</a>
+<a class="hover:text-primary transition-colors" href="#">服务条款</a>
+<a class="hover:text-primary transition-colors" href="#">数据合规性</a>
+</div>
+<p class="text-[10px] tracking-wider">© 2024 QINGRU ZEN ARCHIVE. ALL RIGHTS RESERVED.</p>
+</footer>
+</main>
+</body></html>

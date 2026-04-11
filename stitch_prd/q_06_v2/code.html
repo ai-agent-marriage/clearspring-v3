@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>禅意智慧</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dbdad5",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-variant": "#e3e2de",
+                        "on-secondary-container": "#756400",
+                        "on-secondary-fixed": "#211b00",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#434843",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary": "#6e5e00",
+                        "surface-container": "#efeee9",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "surface": "#faf9f4",
+                        "on-background": "#1b1c19",
+                        "background": "#faf9f4",
+                        "surface-container-high": "#e9e8e3",
+                        "primary-fixed": "#d3e8d5",
+                        "outline": "#737872",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c3c8c1",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#6d5435",
+                        "secondary-container": "#fee264",
+                        "primary": "#334537",
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary-fixed": "#ffddb6",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#506354",
+                        "on-tertiary-container": "#ebcaa3",
+                        "tertiary": "#533d20",
+                        "surface-container-highest": "#e3e2de",
+                        "surface-container-low": "#f5f4ef",
+                        "inverse-primary": "#b7ccb9",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c19",
+                        "on-primary-container": "#c0d5c2",
+                        "secondary-fixed": "#fee264",
+                        "on-tertiary-fixed": "#291801",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#0e1f13",
+                        "inverse-surface": "#30312e",
+                        "primary-container": "#4a5d4e",
+                        "surface-bright": "#faf9f4",
+                        "on-tertiary-fixed-variant": "#594325"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-serif { font-family: 'Noto Serif SC', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24; }
+        .glass-header { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .whisper-shadow { box-shadow: 0 12px 40px rgba(74, 93, 78, 0.06); }
+        body { overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-stone-50/40 dark:bg-stone-900/40 backdrop-blur-md flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-emerald-900 dark:text-emerald-200">menu</span>
+<h1 class="text-xl font-serif text-emerald-900 dark:text-emerald-100 tracking-wider">禅意智慧</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-emerald-900 dark:text-emerald-200">settings</span>
+</div>
+</header>
+<!-- Main Content - Optimized for Full Screen Layout -->
+<main class="flex-1 mt-16 px-5 pb-24 flex flex-col justify-between overflow-hidden">
+<!-- Section 1: Daily Wisdom (Significantly Increased Height) -->
+<section class="flex-[1.4] mt-4 flex flex-col">
+<div class="bg-surface-container-low rounded-xl p-6 whisper-shadow border border-outline-variant/10 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-6">
+<span class="text-[10px] tracking-[0.2em] font-bold text-primary/60 font-body uppercase">Daily Wisdom • 每日一禅</span>
+<span class="material-symbols-outlined text-lg text-primary/40">format_quote</span>
+</div>
+<p class="text-xl leading-relaxed font-serif text-primary">
+                    「万物并育而不相害，道并行而不相悖。科学放生，是智者的慈悲。」
+                </p>
+</div>
+<div class="flex justify-between items-end border-t border-outline-variant/15 pt-4">
+<div class="text-[11px] text-outline font-body">甲辰年 腊月廿三</div>
+<div class="flex items-center gap-1 text-[11px] font-semibold text-secondary hover:text-primary transition-colors cursor-pointer">
+                    分享智慧
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Species Inquiry (Increased Height) -->
+<section class="flex-1 mt-4 relative group overflow-hidden rounded-2xl bg-primary">
+<img alt="monochrome ink-wash landscape" class="absolute inset-0 w-full h-full object-cover opacity-50 transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmGA5l6k30zDN48bOxrW1DSl7xoVGkFskphNuU1OL4WP_sZKuNglVGYAi26KPcUMgVWGJ4Ad3H16D0eawiMd2yAst1qQJ1KXH2AGv6FvCH1JTW53IlVIzIVJQaz2la5Sing62pncj6C2IZWmIm4W2a1vQO8tFF-3iE-xSfE2t6W3VIMvZtQLBfNM5r3IkrJKOs1o4goc6KbwjFpzSnxtNRE_QH4bjv4StoFX1tGhcKYm0Ah2ueSfJe_DXAXFkpRtBAk-mvj567q_Im"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-end p-5">
+<div class="mb-auto self-end">
+<button class="w-9 h-9 rounded-full bg-secondary-container/90 flex items-center justify-center text-on-secondary-container whisper-shadow">
+<span class="material-symbols-outlined text-xl">magnification_small</span>
+</button>
+</div>
+<div>
+<h2 class="text-xl font-serif text-white mb-1">物种查询</h2>
+<p class="text-xs text-surface-variant/90 font-body leading-tight max-w-[200px]">
+                    科学辨识适放物种，守护生态平衡之美。
+                </p>
+</div>
+</div>
+</section>
+<!-- Section 3: Grid Cards -->
+<div class="flex-[0.8] mt-4 grid grid-cols-2 gap-4">
+<!-- Honorary Award -->
+<div class="bg-surface-container-high rounded-xl p-4 flex flex-col justify-between">
+<div class="w-9 h-9 rounded-full bg-tertiary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary-container text-xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div>
+<span class="text-[9px] tracking-widest font-bold text-outline uppercase block mb-1">Honorary Award</span>
+<h3 class="text-base font-serif text-on-surface">功德证书</h3>
+</div>
+</div>
+<!-- Buddhist Calendar -->
+<div class="bg-surface-container-high rounded-xl p-4 flex flex-col justify-between">
+<div class="w-9 h-9 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-xl" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<div>
+<span class="text-[9px] tracking-widest font-bold text-secondary uppercase block mb-1">今日宜：戒杀、放生</span>
+<h3 class="text-base font-serif text-on-surface">佛历吉日</h3>
+</div>
+</div>
+</div>
+<!-- Section 4: Science Entry (Pushed to bottom) -->
+<section class="mt-4 mb-2">
+<div class="w-full py-4 px-5 rounded-xl bg-secondary-container/10 border border-secondary/10 flex items-center justify-between group cursor-pointer active:bg-secondary-container/20 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-secondary/5 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl">menu_book</span>
+</div>
+<span class="text-sm font-medium text-primary/80 font-body">护生科普：开启科学护生之旅</span>
+</div>
+<span class="material-symbols-outlined text-secondary/40 text-sm group-hover:translate-x-1 transition-transform">arrow_forward_ios</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-stone-50 dark:bg-stone-950 z-50 border-t border-stone-200/15 dark:border-stone-800/15 whisper-shadow">
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-[12px] font-medium font-body mt-1">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 rounded-xl px-6 py-1 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+<span class="text-[12px] font-medium font-body mt-1">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[12px] font-medium font-body mt-1">我的</span>
+</a>
+</nav>
+</body></html>

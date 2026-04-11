@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>机构工作台 - 梵音禅理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF9F4;
+            color: #1B1C19;
+        }
+        .headline-serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(180deg, rgba(239, 238, 233, 1) 0%, rgba(250, 249, 244, 0) 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+        }
+        .whisper-shadow {
+            box-shadow: 0 12px 40px rgba(74, 93, 78, 0.06);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#334537",
+                        "primary-container": "#4a5d4e",
+                        "on-primary": "#ffffff",
+                        "secondary": "#6e5e00",
+                        "secondary-container": "#fee264",
+                        "on-secondary-container": "#756400",
+                        "tertiary": "#533d20",
+                        "surface": "#faf9f4",
+                        "surface-container": "#efeee9",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c3c8c1"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-6 h-14 bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-xl z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-all duration-300 ease-in-out active:scale-95" data-icon="menu">menu</span>
+<h1 class="text-lg font-bold text-[#334537] dark:text-[#FAF9F4] headline-serif">机构工作台</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-all duration-300 ease-in-out active:scale-95" data-icon="notifications">notifications</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-outline-variant/20 to-transparent"></div>
+</header>
+<main class="pt-16 px-5 space-y-5 max-w-2xl mx-auto">
+<!-- Hero Section -->
+<section class="relative py-2">
+<div class="absolute -top-10 -left-10 w-48 h-48 opacity-10 pointer-events-none">
+<div class="w-full h-full rounded-full bg-primary-container blur-[60px]"></div>
+</div>
+<h2 class="headline-serif text-2xl text-primary tracking-tight">晨安，管理者</h2>
+<p class="text-[12px] text-primary/60 mt-0.5 font-body">心如止水，今日机构运行平稳。</p>
+</section>
+<!-- Core Metrics Bento Grid -->
+<section class="grid grid-cols-2 gap-3">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl whisper-shadow flex flex-col justify-between h-24 border-b-2 border-primary/5">
+<span class="text-[10px] font-medium text-primary/50 uppercase tracking-tight">待处理事项</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold text-primary tracking-tighter">12</span>
+<span class="text-[10px] text-error flex items-center" title="较昨日上升">
+<span class="material-symbols-outlined text-[10px]" data-icon="arrow_upward">arrow_upward</span> 2
+                </span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl whisper-shadow flex flex-col justify-between h-24 border-b-2 border-secondary/5">
+<span class="text-[10px] font-medium text-primary/50 uppercase tracking-tight">今日预约</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold text-primary tracking-tighter">48</span>
+<span class="text-[10px] text-primary/40 flex items-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="horizontal_rule">horizontal_rule</span>
+</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl whisper-shadow flex flex-col justify-between h-24 border-b-2 border-primary/5">
+<span class="text-[10px] font-medium text-primary/50 uppercase tracking-tight">待确认款项</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold text-primary tracking-tighter">6</span>
+<span class="text-[10px] text-primary/40 flex items-center">
+<span class="material-symbols-outlined text-[10px]" data-icon="trending_flat">trending_flat</span>
+</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl whisper-shadow flex flex-col justify-between h-24 border-b-2 border-secondary/20">
+<span class="text-[10px] font-medium text-primary/50 uppercase tracking-tight">累计结缘</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold text-secondary tracking-tighter">1,284</span>
+<span class="text-[10px] text-secondary flex items-center" title="稳健增长">
+<span class="material-symbols-outlined text-[10px]" data-icon="arrow_upward">arrow_upward</span> 12%
+                </span>
+</div>
+</div>
+</section>
+<!-- Management Matrix -->
+<section>
+<div class="flex justify-between items-end mb-3 px-1">
+<h3 class="headline-serif text-base text-primary">管理矩阵</h3>
+<span class="text-[9px] text-primary/40 uppercase tracking-widest">Management Matrix</span>
+</div>
+<div class="grid grid-cols-2 gap-px bg-outline-variant/20 rounded-xl overflow-hidden">
+<div class="bg-surface-container-lowest p-4 flex flex-col items-center justify-center gap-2 active:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="receipt_long">receipt_long</span>
+</div>
+<span class="text-xs font-medium text-primary">订单管理</span>
+</div>
+<div class="bg-surface-container-lowest p-4 flex flex-col items-center justify-center gap-2 active:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<span class="text-xs font-medium text-primary">义工调配</span>
+</div>
+<div class="bg-surface-container-lowest p-4 flex flex-col items-center justify-center gap-2 active:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<span class="text-xs font-medium text-primary">财务对账</span>
+</div>
+<div class="bg-surface-container-lowest p-4 flex flex-col items-center justify-center gap-2 active:bg-surface-container transition-colors">
+<div class="w-9 h-9 rounded-full bg-primary-container/5 flex items-center justify-center text-primary/60">
+<span class="material-symbols-outlined text-[20px]" data-icon="gavel">gavel</span>
+</div>
+<span class="text-xs font-medium text-primary">法务合规</span>
+</div>
+</div>
+</section>
+<!-- To-Do Section -->
+<section class="bg-surface-container-low rounded-xl p-5">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2">
+<div class="w-0.5 h-3.5 bg-primary rounded-full"></div>
+<h3 class="headline-serif text-base text-primary">待办任务</h3>
+</div>
+<span class="text-[11px] text-primary/60 flex items-center gap-0.5 cursor-pointer hover:text-primary transition-colors">
+                全部 <span class="material-symbols-outlined text-[12px]" data-icon="chevron_right">chevron_right</span>
+</span>
+</div>
+<div class="space-y-3">
+<!-- Task 1 -->
+<div class="flex items-center justify-between group py-1">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-error"></div>
+<div>
+<p class="text-[13px] font-semibold text-primary leading-tight">法会场地确认</p>
+<p class="text-[9px] text-primary/40">截止 14:00</p>
+</div>
+</div>
+<button class="text-[11px] font-bold text-secondary py-1 px-2.5 bg-secondary-container/20 rounded-full hover:bg-secondary-container transition-colors active:scale-95">处理</button>
+</div>
+<div class="h-px bg-outline-variant/10 w-full"></div>
+<!-- Task 2 -->
+<div class="flex items-center justify-between group py-1">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-secondary"></div>
+<div>
+<p class="text-[13px] font-semibold text-primary leading-tight">义工审核 (8名)</p>
+<p class="text-[9px] text-primary/40">待系统初筛完毕</p>
+</div>
+</div>
+<button class="text-[11px] font-bold text-secondary py-1 px-2.5 bg-secondary-container/20 rounded-full hover:bg-secondary-container transition-colors active:scale-95">处理</button>
+</div>
+<div class="h-px bg-outline-variant/10 w-full"></div>
+<!-- Task 3 -->
+<div class="flex items-center justify-between group py-1">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary/20"></div>
+<div>
+<p class="text-[13px] font-semibold text-primary leading-tight">财务周报复核</p>
+<p class="text-[9px] text-primary/40">第42周数据汇总</p>
+</div>
+</div>
+<button class="text-[11px] font-bold text-secondary py-1 px-2.5 bg-secondary-container/20 rounded-full hover:bg-secondary-container transition-colors active:scale-95">处理</button>
+</div>
+</div>
+</section>
+<!-- Compressed Quote/Image Section -->
+<div class="relative w-full h-24 overflow-hidden rounded-2xl mt-4 mb-4 group">
+<img alt="Zen Atmosphere" class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-80 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2CPTCwYTa79IGXqxLCvLbvYy0XhsKadIcOyP-pnAG-NDZmEHQcqeaZpXZQ10mLwetHKsT3dSwdcPg0pqdwos9WOtwScfblMUXuvVdzHqx2upbyhqtwQIahmY0pZfh-H7vEuQ1Ubx8pqDnwh_jfpphbqTYEutGRSYTV_zDwY3D_A69hvdDLKzPq8li0ivcKavXijrqiRMrFYuNcdLFW55YzmlLL8SJGGX8ie6fOupPma8dpPgr1cAHg4QFViMfSoywoSftMruKnP9i"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-3 left-4 text-on-primary">
+<p class="text-[9px] opacity-80 font-body">每日格言</p>
+<p class="headline-serif text-sm">“莫向外求。”</p>
+</div>
+</div>
+<!-- Fixed Secondary Action (Adjusted Margin) -->
+<div class="pt-2 pb-6">
+<button class="w-full bg-primary text-on-primary py-3 rounded-full whisper-shadow flex items-center justify-center gap-2 text-[13px] font-semibold tracking-wide transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined text-[16px]" data-icon="visibility">visibility</span>
+            以信众视角查看
+        </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 pb-safe px-4 bg-[#FAF9F4] dark:bg-[#334537] border-t-[0.5px] border-[#334537]/10 shadow-[0_-4px_20px_rgba(74,93,78,0.04)] z-50">
+<a class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#FAF9F4]/50 hover:opacity-80 transition-all duration-300 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-0.5 text-[22px]" data-icon="library_music">library_music</span>
+<span class="Plus Jakarta Sans font-medium text-[10px]">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#FAF9F4]/50 hover:opacity-80 transition-all duration-300 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-0.5 text-[22px]" data-icon="auto_stories">auto_stories</span>
+<span class="Plus Jakarta Sans font-medium text-[10px]">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537] dark:text-[#C9B037] scale-105 transition-transform" href="#">
+<span class="material-symbols-outlined mb-0.5 text-[22px]" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="Plus Jakarta Sans font-medium text-[10px]">我的</span>
+</a>
+</nav>
+</body></html>

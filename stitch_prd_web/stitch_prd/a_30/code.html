@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-container-high": "#e9e8e3",
+                        "on-surface": "#1b1c19",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-variant": "#e3e2de",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f2f1ec",
+                        "tertiary-fixed": "#ffddb6",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-tertiary-fixed": "#291801",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b7ccb9",
+                        "secondary-fixed": "#fee264",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "surface-container-highest": "#e3e2de",
+                        "outline-variant": "#c3c8c1",
+                        "inverse-surface": "#30312e",
+                        "surface-dim": "#dbdad5",
+                        "surface-container": "#efeee9",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f4",
+                        "on-surface-variant": "#434843",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-fixed": "#0e1f13",
+                        "secondary-container": "#fee264",
+                        "on-secondary-container": "#756400",
+                        "primary-fixed": "#d3e8d5",
+                        "secondary": "#6e5e00",
+                        "surface": "#faf9f4",
+                        "tertiary-container": "#6d5435",
+                        "primary-container": "#4a5d4e",
+                        "on-background": "#1b1c19",
+                        "on-secondary-fixed-variant": "#534600",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-bright": "#faf9f4",
+                        "outline": "#737872",
+                        "surface-tint": "#506354",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "primary": "#334537",
+                        "tertiary": "#533d20",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', 'Noto Serif SC', sans-serif; background-color: #FAF9F4; color: #1B1C19; }
+        .ink-wash { background: linear-gradient(135deg, #FAF9F4 0%, #EFEEE9 100%); }
+        .glass-header { backdrop-filter: blur(12px); background: rgba(250, 249, 244, 0.8); }
+        .mobile-frame { box-shadow: 0 24px 48px rgba(74, 93, 78, 0.12); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d3e8d5; border-radius: 10px; }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-[#334537]/10 bg-[#EFEEE9] dark:bg-stone-950 flex flex-col py-6 shadow-[4px_0_24px_rgba(74,93,78,0.04)] z-50">
+<div class="px-6 mb-12">
+<h1 class="font-['Noto_Serif_SC'] text-2xl text-[#334537] font-bold">建筑师平台</h1>
+<p class="text-[10px] tracking-widest uppercase text-[#334537]/50 font-bold mt-1">v2.4 宁静之所</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-[#334537]/70 hover:bg-[#334537]/5 mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-medium text-sm">仪表盘</span>
+</a>
+<a class="text-[#334537]/70 hover:bg-[#334537]/5 mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl">person</span>
+<span class="font-medium text-sm">用户管理</span>
+</a>
+<a class="text-[#334537]/70 hover:bg-[#334537]/5 mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="font-medium text-sm">订单管理</span>
+</a>
+<a class="text-[#334537]/70 hover:bg-[#334537]/5 mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl">policy</span>
+<span class="font-medium text-sm">内容与合规</span>
+</a>
+<a class="text-[#334537]/70 hover:bg-[#334537]/5 mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-xl">payments</span>
+<span class="font-medium text-sm">财务管理</span>
+</a>
+<a class="bg-[#4A5D4E] text-[#FAF9F4] rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="font-medium text-sm">系统设置</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-4">
+<button class="w-full py-3 bg-[#334537] text-[#FAF9F4] rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                发布更改
+            </button>
+<div class="border-t border-[#334537]/10 pt-4">
+<a class="text-[#334537]/70 flex items-center gap-3 px-4 py-2 text-sm hover:text-[#334537]" href="#">
+<span class="material-symbols-outlined text-lg">contact_support</span> 帮助支持
+                </a>
+<a class="text-[#334537]/70 flex items-center gap-3 px-4 py-2 text-sm hover:text-[#334537]" href="#">
+<span class="material-symbols-outlined text-lg">logout</span> 退出登录
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 h-screen flex flex-col bg-[#FAF9F4]">
+<!-- Top Navigation -->
+<header class="w-full h-16 border-b border-[#334537]/15 flex justify-between items-center px-8 bg-[#FAF9F4] dark:bg-stone-900 z-40">
+<div class="flex items-center gap-4">
+<div class="flex items-center text-xs text-[#334537]/50 font-medium">
+<span>财务管理</span>
+<span class="material-symbols-outlined text-sm mx-2">chevron_right</span>
+<span>系统配置</span>
+<span class="material-symbols-outlined text-sm mx-2">chevron_right</span>
+<span class="text-[#334537]">小程序基础配置</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EFEEE9] text-[#334537]/70 text-sm">
+<span class="material-symbols-outlined text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-48 text-xs" placeholder="搜索配置项..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-[#334537]">
+<span class="material-symbols-outlined hover:bg-[#EFEEE9] p-2 rounded-full cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined hover:bg-[#EFEEE9] p-2 rounded-full cursor-pointer transition-colors">help</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-[#334537]/20">
+<img alt="管理员头像" class="w-full h-full object-cover" data-alt="Portrait of a professional man in a minimalist office setting with warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgzRbxJ2Ou939Ej_0_PKxl8aMJGtsAemsFowXzbRE5ZoVpH97l30MbI-nVcmnPi56RBx-pBaU-wBCeMeXvkMf039vSpupWzwaQ-eRyutzNxF7z5Wer9qqYi3zOYv_FXKfo-T1hX1DAtZLthnhjfQ1FsqRyAG66bOYBlJIAWFT3oE-ZVNrIAx3BrZzSHI746lDAFvXwvuHOkH34Lnhfc9b3EQ1nwva2vgo4ZWuH553hUGv3LLcuiMTFj01waZZxiGO6uEcRO3oss8eZ"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<!-- Left: Config Form -->
+<section class="w-7/12 p-10 overflow-y-auto custom-scrollbar">
+<div class="max-w-2xl mx-auto">
+<header class="mb-10">
+<h2 class="font-['Noto_Serif_SC'] text-4xl text-primary mb-2">小程序基础配置</h2>
+<p class="text-on-surface-variant/70 text-sm italic">构建您的数字宁静体验。</p>
+</header>
+<!-- Tab Navigation -->
+<div class="flex gap-8 border-b border-outline-variant/30 mb-10">
+<button class="pb-4 text-primary font-semibold border-b-2 border-primary transition-all">基础信息配置</button>
+<button class="pb-4 text-on-surface-variant/60 hover:text-primary transition-all">导航栏配置</button>
+<button class="pb-4 text-on-surface-variant/60 hover:text-primary transition-all">分享配置</button>
+<button class="pb-4 text-on-surface-variant/60 hover:text-primary transition-all">Tab栏配置</button>
+</div>
+<!-- Form Content -->
+<div class="space-y-12">
+<!-- Field Group: Branding -->
+<div class="grid grid-cols-1 gap-8">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">小程序名称</label>
+<input class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 focus:border-primary px-0 py-3 text-lg font-headline transition-colors ring-0 border-t-0 border-l-0 border-r-0 focus:ring-0" type="text" value="清如"/>
+</div>
+<div class="space-y-4">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">Logo上传</label>
+<div class="flex items-center gap-6">
+<div class="w-24 h-24 rounded-2xl bg-surface-container-high flex items-center justify-center border-2 border-dashed border-outline-variant/50 group hover:border-primary/50 transition-colors cursor-pointer overflow-hidden relative">
+<img alt="小程序 Logo" class="w-full h-full object-cover" data-alt="Minimalist abstract gold and green icon on a white background with organic shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFDl2ltVzt2neVSAhOAOoZR9IGgCwnvLcAHOBy2PiU9ZkEbBYrSuJEDm79cXSGaS0N0F2QztvIT_A6SlgnaIQG0mytgni0GTluNTg3N8288doeyuZXuU8litmEt18jVgMLCa6jxjRghjvBAh6G_0PkJQn-mF-XwljvTpKC_y6Wdh0iG2TeMZA8socS9eXFFbrNLFe7t7uA6GjzQN9qsvUCWvskrNfn8kkaEubB2finBBxEySHftk2V6Im2xJHXa6JBmy5A-_Axh4J_"/>
+<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white">upload</span>
+</div>
+</div>
+<div class="text-xs text-on-surface-variant/60">
+<p>建议尺寸: 200x200px</p>
+<p>支持格式: PNG, SVG (建议透明背景)</p>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">Slogan (品牌标语)</label>
+<input class="w-full bg-surface-container-low border-b-2 border-outline-variant/30 focus:border-primary px-0 py-3 text-on-surface-variant italic transition-colors ring-0 border-t-0 border-l-0 border-r-0 focus:ring-0" type="text" value="积善成德，虚极静笃"/>
+</div>
+</div>
+<!-- Field Group: Visual Identity -->
+<div class="grid grid-cols-2 gap-10">
+<div class="space-y-4">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">主题色选择器</label>
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full border-4 border-white shadow-sm ring-1 ring-black/5" style="background-color: #4A5D4E;"></div>
+<div class="flex-1 bg-surface-container px-4 py-2 rounded-lg text-sm font-mono border border-outline-variant/20">
+                                        #4A5D4E
+                                    </div>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">辅助配色</label>
+<div class="flex gap-2">
+<div class="w-8 h-8 rounded-full" style="background-color: #C9B037;"></div>
+<div class="w-8 h-8 rounded-full" style="background-color: #A68966;"></div>
+<div class="w-8 h-8 rounded-full" style="background-color: #FAF9F4; border: 1px solid #ddd;"></div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-sm">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Rich Content Sections -->
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">启动页配置 (Startup Page)</label>
+<div class="w-full rounded-xl border border-outline-variant/30 bg-surface-container-low p-6 min-h-[160px] flex flex-col justify-center items-center gap-4 text-on-surface-variant/50 hover:bg-surface-container-high/40 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform">auto_awesome_motion</span>
+<p class="text-sm">点击配置多媒体开屏或视频简介</p>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-primary/60 block">合规声明 (Compliance Policy)</label>
+<div class="w-full rounded-xl border border-outline-variant/30 bg-surface-container-low overflow-hidden">
+<div class="flex items-center gap-4 px-4 py-2 border-b border-outline-variant/20 bg-surface-container">
+<span class="material-symbols-outlined text-sm">format_bold</span>
+<span class="material-symbols-outlined text-sm">format_italic</span>
+<span class="material-symbols-outlined text-sm">link</span>
+<div class="w-px h-4 bg-outline-variant/40 mx-2"></div>
+<span class="material-symbols-outlined text-sm">list</span>
+</div>
+<textarea class="w-full p-4 text-sm text-on-surface-variant leading-relaxed bg-transparent border-none focus:ring-0 min-h-[120px]" placeholder="在此处输入隐私政策和使用条款...">本程序严格遵守国家法律法规，致力于为您提供一个宁静、私密的数字空间。我们将保护您的个人数据隐私...</textarea>
+</div>
+</div>
+</div>
+<!-- Final Actions -->
+<div class="pt-8 flex gap-4">
+<button class="px-8 py-3 bg-primary text-on-primary rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">save</span> 保存当前配置
+                            </button>
+<button class="px-8 py-3 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/5 transition-colors">
+                                重置
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right: Real-time Mockup -->
+<section class="w-5/12 bg-surface-container flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-40 pointer-events-none" style="background: radial-gradient(circle at 70% 20%, #C9B037 0%, transparent 40%), radial-gradient(circle at 10% 80%, #4A5D4E 0%, transparent 50%);"></div>
+<!-- Phone Mockup -->
+<div class="relative z-10 w-[320px] h-[650px] bg-white rounded-[3rem] border-[8px] border-[#30312E] mobile-frame overflow-hidden flex flex-col">
+<!-- Phone Notch -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-[#30312E] rounded-b-2xl z-50"></div>
+<!-- App Interface Internal -->
+<div class="flex-1 bg-[#FAF9F4] flex flex-col">
+<!-- App Bar -->
+<div class="h-20 pt-8 px-6 flex items-center justify-between bg-white/80 backdrop-blur-md">
+<span class="material-symbols-outlined text-[#334537]">menu</span>
+<span class="font-headline text-[#334537] text-lg">清如</span>
+<span class="material-symbols-outlined text-[#334537]">search</span>
+</div>
+<!-- App Body -->
+<div class="flex-1 px-6 pt-10 space-y-12">
+<div class="text-center space-y-4">
+<div class="w-20 h-20 mx-auto rounded-3xl bg-white shadow-xl flex items-center justify-center p-3">
+<img alt="App Logo Preview" class="w-full h-full object-cover" data-alt="Artistic logo of a golden leaf overlapping with a forest green circular motif" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzms2XLhadMw7awtvWrewuqzQhv4dLCTMQLTnCUR1y5fM3Xxg6__cpsWljilUQO4FZzZ5fjAuHlX8Ue7gsKN7Vzv_k_4Soug6siVHkgGYFroCAChC-Ynn_JeOVC6UD2-8EX1efIg2PfRvuckmY7pntr7MuOy_46Y19nlV-z7D7P6Je1yq9WKOeu3xk6ZV4pOezqajH0dFLe20m17heCoNoNA6tztP9aAU-IppCQZpGTCHAW-UCqHNCXf6YD5mCGbqQces8JtHu0KGW"/>
+</div>
+<h3 class="font-headline text-2xl text-[#334537]">清如小程序</h3>
+<p class="text-xs text-[#334537]/50 italic tracking-widest px-8 leading-loose">“ 积善成德，虚极静笃 ”</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-32 rounded-2xl bg-primary-container/10 p-4 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary-container">spa</span>
+<span class="text-[10px] font-bold tracking-tighter uppercase text-primary-container">每日禅修</span>
+</div>
+<div class="h-32 rounded-2xl bg-tertiary-container/10 p-4 flex flex-col justify-between">
+<span class="material-symbols-outlined text-tertiary-container">history_edu</span>
+<span class="text-[10px] font-bold tracking-tighter uppercase text-tertiary-container">静心日记</span>
+</div>
+<div class="h-32 rounded-2xl col-span-2 overflow-hidden relative group">
+<img alt="Background Preview" class="absolute inset-0 w-full h-full object-cover opacity-80" data-alt="Serene mountain landscape with misty morning fog and distant evergreen trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlDHFU6Bt2ag1QJAWuD2JAX-EzSC_cOo0KrgclhyAlJjUj66d13WXYgdxZj9Jx4cXJiQX45U9PRflEf-L73UYBEJ46rwUc40Ah8jVTtH51TTjWt19OL2bCIInHkuXwH4OFAgMIWQ-8K0MRz4DfPl1PTRfCo8uhuczQOp5nxMXOB3IM50qlVZTOkTuY3IhjTgywlH9MBofZJgUife3QcAO-ybNKHiC6FhpjowLxPM01Z3ZHRj5yGrRehQOaAXhM09qrHMlX2bVvkoh-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-4">
+<span class="text-white text-[10px] font-medium">探索避风港</span>
+</div>
+</div>
+</div>
+</div>
+<!-- App Bottom Nav -->
+<div class="h-16 bg-white border-t border-[#334537]/5 flex justify-around items-center px-4">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[8px] font-bold text-primary">首页</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined text-[#334537]">explore</span>
+<span class="text-[8px] font-bold">发现</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined text-[#334537]">person</span>
+<span class="text-[8px] font-bold">我的</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Tag -->
+<div class="absolute top-10 right-10 flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg border border-primary/10">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<span class="text-xs font-bold text-primary uppercase tracking-tighter">实时预览</span>
+</div>
+</section>
+</div>
+</main>
+</body></html>

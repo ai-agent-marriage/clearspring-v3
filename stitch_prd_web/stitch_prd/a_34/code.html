@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>数据备份与恢复系统 - 管理后台</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#291801",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-secondary-fixed-variant": "#534600",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#6d5435",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-dim": "#dbdad5",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-bright": "#faf9f4",
+                        "on-secondary-fixed": "#211b00",
+                        "secondary-fixed": "#fee264",
+                        "primary-fixed": "#d3e8d5",
+                        "on-primary-container": "#c0d5c2",
+                        "on-secondary-container": "#756400",
+                        "surface-container-highest": "#e3e2de",
+                        "outline-variant": "#c3c8c1",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b7ccb9",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "surface": "#faf9f4",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary": "#6e5e00",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeee9",
+                        "inverse-surface": "#30312e",
+                        "tertiary": "#533d20",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#4a5d4e",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "on-surface-variant": "#434843",
+                        "on-surface": "#1b1c19",
+                        "surface-variant": "#e3e2de",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-background": "#1b1c19",
+                        "surface-tint": "#506354",
+                        "on-tertiary-container": "#ebcaa3",
+                        "secondary-container": "#fee264",
+                        "background": "#faf9f4",
+                        "on-error-container": "#93000a",
+                        "primary": "#334537",
+                        "outline": "#737872"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #EFEEE9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .zen-glass {
+            background: rgba(250, 249, 244, 0.4);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-12 h-16 bg-[#FAF9F4]/40 dark:bg-emerald-950/40 backdrop-blur-md z-50">
+<div class="flex items-center space-x-8">
+<span class="text-xl font-bold font-serif text-[#334537] dark:text-emerald-50">数据备份与恢复系统</span>
+<nav class="hidden md:flex space-x-6 text-sm">
+<a class="text-[#334537]/70 hover:text-[#334537] transition-colors" href="#">控制面板</a>
+<a class="text-[#334537]/70 hover:text-[#334537] transition-colors" href="#">备份策略</a>
+<a class="text-[#334537]/70 hover:text-[#334537] transition-colors" href="#">恢复日志</a>
+<a class="text-[#334537] border-b-2 border-[#6e5e00] pb-1 font-bold" href="#">系统设置</a>
+</nav>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-[#EFEEE9]/50 p-2 rounded-full transition-all">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-[#EFEEE9]/50 p-2 rounded-full transition-all">help_outline</span>
+</div>
+<div class="flex items-center space-x-3 pl-4 border-l border-outline-variant/30">
+<img alt="管理员头像" class="w-8 h-8 rounded-full bg-surface-container-high" data-alt="close-up professional portrait of a tech administrator in minimalist environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEDRodZpQ2ts3LsnjyvdNK2xzXVZlLhbcjMC0EFzJp7s6M4cOCgZeyk-Vu2nN76BZjG6FaitZtUgJEaX6eCrCgsvsk1o2fG-saSVyoqZa-7s-P7YWTtEh3-i54dtYzpaEOaQ_0g2x46EtfLtCx9YozIhA-alQ3cCJFSFHy9ny-JUyjWlHm8np_pRs2d_ID9DTWbg4_vLHO0vQ9-D_cDbnbjaFhub8RorLKviy5xITjKB7n20yy8oq_7BtfYpVjW65bFHFCBWmN41QL"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 flex flex-col p-6 space-y-4 bg-[#EFEEE9] dark:bg-zinc-900 border-r border-[#334537]/15">
+<div class="mb-8">
+<h2 class="font-serif text-lg text-[#334537]">备份管理</h2>
+<p class="text-xs text-[#4A5D4E]/60 uppercase tracking-widest">V2.4.0 稳定版</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center space-x-3 p-3 bg-[#4A5D4E] text-[#FAF9F4] rounded-lg shadow-sm font-medium transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">auto_mode</span>
+<span class="text-sm">自动化备份</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-[#334537]/60 hover:bg-[#4A5D4E]/10 rounded-lg hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">backup</span>
+<span class="text-sm">手动触发</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-[#334537]/60 hover:bg-[#4A5D4E]/10 rounded-lg hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">folder_zip</span>
+<span class="text-sm">历史文件</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-[#334537]/60 hover:bg-[#4A5D4E]/10 rounded-lg hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-sm">恢复记录</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-[#334537]/60 hover:bg-[#4A5D4E]/10 rounded-lg hover:translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">storage</span>
+<span class="text-sm">存储配置</span>
+</a>
+</nav>
+<button class="mt-auto py-3 px-4 text-xs font-bold border border-primary/20 text-primary rounded-lg hover:bg-primary/5 transition-colors">
+            立即检查更新
+        </button>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 mt-16 p-12 min-h-screen">
+<!-- Breadcrumb -->
+<nav class="mb-8 flex items-center text-xs tracking-widest text-primary/50 font-label">
+<span>系统设置</span>
+<span class="material-symbols-outlined text-[14px] mx-2">chevron_right</span>
+<span class="text-primary font-semibold">数据备份与恢复</span>
+</nav>
+<!-- Page Title Section -->
+<div class="mb-12">
+<h1 class="text-4xl font-headline text-primary mb-2">数据备份与恢复</h1>
+<p class="text-sm text-tertiary/70 font-body">保障数据主权，维护数字资产的安全与宁静。</p>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Settings -->
+<div class="col-span-12 lg:col-span-5 space-y-8">
+<!-- Automated Backup Section -->
+<section class="bg-surface-container-low rounded-xl p-8 transition-all hover:shadow-[0_12px_40px_rgba(74,93,78,0.06)] border border-outline-variant/15">
+<div class="flex justify-between items-center mb-8">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_mode</span>
+<h3 class="text-xl font-headline text-primary">自动化备份</h3>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-label text-primary/60 mb-2">执行频率</label>
+<div class="relative">
+<select class="w-full bg-surface-container border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary appearance-none">
+<option>每日</option>
+<option>每周</option>
+<option>每两周</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-primary/40 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label text-primary/60 mb-2">备份时间</label>
+<input class="w-full bg-surface-container border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary" type="time" value="02:00"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label text-primary/60 mb-2">内容选择</label>
+<div class="relative">
+<select class="w-full bg-surface-container border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary appearance-none">
+<option>全量备份</option>
+<option>增量备份</option>
+<option>仅数据库</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-primary/40 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<label class="block text-xs font-label text-primary/60 mb-2">存储路径</label>
+<div class="flex items-center bg-surface-container rounded-lg py-3 px-4 text-sm text-primary/80">
+<span class="material-symbols-outlined text-[18px] mr-2 text-primary/40">folder</span>
+<span>/mnt/secure_backup/cloud_vault_01</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Manual Backup Section -->
+<section class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/15 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">upload_file</span>
+</div>
+<h3 class="text-xl font-headline text-primary mb-2">手动触发备份</h3>
+<p class="text-sm text-tertiary/60 mb-8 max-w-xs">在进行重大系统变更前，建议您手动执行一次完整的数据备份。</p>
+<button class="bg-[#4A5D4E] text-[#FAF9F4] px-10 py-4 rounded-lg font-medium shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center space-x-2">
+<span class="material-symbols-outlined">play_arrow</span>
+<span>立即备份</span>
+</button>
+</section>
+</div>
+<!-- Right Column: Tables and History -->
+<div class="col-span-12 lg:col-span-7 space-y-8">
+<!-- Backup Files Table -->
+<section class="bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant/15">
+<div class="p-6 flex justify-between items-center border-b border-outline-variant/10">
+<h3 class="text-lg font-headline text-primary">备份文件库</h3>
+<span class="text-xs text-primary/40 font-label">共 124 个文件</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead>
+<tr class="bg-surface-container-high/50 text-primary/60 text-xs font-label uppercase tracking-widest">
+<th class="py-4 px-6 font-medium">文件名</th>
+<th class="py-4 px-6 font-medium">备份时间</th>
+<th class="py-4 px-6 font-medium">文件大小</th>
+<th class="py-4 px-6 font-medium">类型</th>
+<th class="py-4 px-6 font-medium text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-4 px-6 font-medium text-primary">db_full_20231024.gz</td>
+<td class="py-4 px-6 text-primary/70">2023-10-24 02:00</td>
+<td class="py-4 px-6 text-primary/70">4.2 GB</td>
+<td class="py-4 px-6">
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded text-[10px]">自动</span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">settings_backup_restore</span></button>
+<button class="text-error hover:opacity-70 transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-4 px-6 font-medium text-primary">manual_snap_v2.zip</td>
+<td class="py-4 px-6 text-primary/70">2023-10-23 15:42</td>
+<td class="py-4 px-6 text-primary/70">1.8 GB</td>
+<td class="py-4 px-6">
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed-variant rounded text-[10px]">手动</span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">settings_backup_restore</span></button>
+<button class="text-error hover:opacity-70 transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/30 transition-colors">
+<td class="py-4 px-6 font-medium text-primary">db_full_20231023.gz</td>
+<td class="py-4 px-6 text-primary/70">2023-10-23 02:00</td>
+<td class="py-4 px-6 text-primary/70">4.1 GB</td>
+<td class="py-4 px-6">
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded text-[10px]">自动</span>
+</td>
+<td class="py-4 px-6 text-right space-x-2">
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">download</span></button>
+<button class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[20px]">settings_backup_restore</span></button>
+<button class="text-error hover:opacity-70 transition-colors"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Recovery History Section -->
+<section class="bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/15">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-headline text-primary">恢复历史</h3>
+<span class="material-symbols-outlined text-primary/30">history</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-emerald-100 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-emerald-700 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-medium text-primary">db_full_20231022.gz</p>
+<p class="text-xs text-primary/50">操作员: Admin | 2023-10-22 14:15</p>
+</div>
+</div>
+<span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">成功</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-emerald-100 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-emerald-700 text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-medium text-primary">config_backup_v1.tar</p>
+<p class="text-xs text-primary/50">操作员: System | 2023-10-18 09:30</p>
+</div>
+</div>
+<span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">成功</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 px-12 flex justify-between items-center text-center mt-auto border-t border-outline-variant/10">
+<p class="font-sans text-xs uppercase tracking-widest text-[#334537]/50">© 2024 数据卫士 - 数字化禅意备份系统</p>
+<div class="flex space-x-8">
+<a class="font-sans text-xs uppercase tracking-widest text-[#334537]/40 hover:text-[#334537] underline underline-offset-4 transition-opacity" href="#">隐私政策</a>
+<a class="font-sans text-xs uppercase tracking-widest text-[#334537]/40 hover:text-[#334537] underline underline-offset-4 transition-opacity" href="#">服务条款</a>
+<a class="font-sans text-xs uppercase tracking-widest text-[#334537]/40 hover:text-[#334537] underline underline-offset-4 transition-opacity" href="#">联系支持</a>
+</div>
+</footer>
+</main>
+</body></html>

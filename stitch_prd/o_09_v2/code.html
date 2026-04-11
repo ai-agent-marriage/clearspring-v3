@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>结算管理 - 呼吸的寂静</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1b1c19",
+                    "surface-bright": "#faf9f4",
+                    "surface-dim": "#dbdad5",
+                    "surface-container-highest": "#e3e2de",
+                    "on-tertiary-fixed": "#291801",
+                    "on-surface": "#1b1c19",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#6d5435",
+                    "on-secondary-fixed": "#211b00",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-secondary-container": "#756400",
+                    "secondary-container": "#fee264",
+                    "surface-tint": "#506354",
+                    "surface-container-high": "#e9e8e3",
+                    "on-surface-variant": "#434843",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container-low": "#f5f4ef",
+                    "inverse-surface": "#30312e",
+                    "surface": "#faf9f4",
+                    "secondary-fixed": "#fee264",
+                    "primary": "#334537",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "error": "#ba1a1a",
+                    "secondary": "#6e5e00",
+                    "surface-variant": "#e3e2de",
+                    "tertiary": "#533d20",
+                    "primary-fixed": "#d3e8d5",
+                    "on-tertiary-container": "#ebcaa3",
+                    "inverse-primary": "#b7ccb9",
+                    "primary-container": "#4a5d4e",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-error": "#ffffff",
+                    "outline": "#737872",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#efeee9",
+                    "outline-variant": "#c3c8c1",
+                    "on-primary-fixed": "#0e1f13",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-tertiary": "#ffffff",
+                    "background": "#faf9f4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.8rem",
+                    "xl": "1.2rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+      }
+      .ink-wash-bg {
+        background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.03) 0%, transparent 40%),
+                    radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.03) 0%, transparent 40%);
+      }
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#1A1C19]/40 backdrop-blur-xl transition-all border-b border-[#EFEEE9]">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#334537] dark:text-[#DDE5DB] hover:bg-[#4A5D4E]/10 p-2 rounded-full transition-colors active:scale-95 duration-300">menu</button>
+<h1 class="font-headline text-xl tracking-wide font-bold text-[#334537] dark:text-[#EFEEE9]">结算管理</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-[#334537] dark:text-[#DDE5DB] hover:bg-[#4A5D4E]/10 p-2 rounded-full transition-colors">settings</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-screen-xl mx-auto ink-wash-bg min-h-screen">
+<!-- Dashboard Overview: Variation 2 Compact Style -->
+<div class="flex flex-col gap-4 mb-10">
+<!-- Cumulative Card (Full Width) -->
+<div class="bg-surface-container-low p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-xs tracking-widest font-light mb-1">累计结算金额</p>
+<div class="flex items-baseline gap-2">
+<h2 class="text-3xl font-headline font-bold text-primary">¥ 128,490.00</h2>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span class="text-[10px]">较上月增长 12.4%</span>
+</div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 text-primary-container">
+<span class="material-symbols-outlined text-7xl" style="font-variation-settings: 'wght' 100;">payments</span>
+</div>
+</div>
+<!-- Secondary Stats (Side-by-side Row) -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Pending Settlement Card -->
+<div class="bg-secondary-container/20 p-5 rounded-xl border border-secondary/10 relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-secondary text-[10px] tracking-widest font-medium mb-1">待结算订单</p>
+<h3 class="text-xl font-headline font-bold text-[#6e5e00]">¥ 12,300.00</h3>
+<p class="mt-1 text-[10px] text-[#6e5e00]/70 font-label">24 笔待处理</p>
+</div>
+<div class="absolute -right-4 -top-4 w-20 h-20 bg-secondary/5 rounded-full blur-2xl"></div>
+</div>
+<!-- Completed Card -->
+<div class="bg-surface-container-low p-5 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-[10px] tracking-widest font-light mb-1">已完成订单</p>
+<h3 class="text-xl font-headline font-bold text-primary">1,402</h3>
+<p class="mt-1 text-[10px] text-on-surface-variant/70 font-label">评分 4.9/5.0</p>
+</div>
+<div class="absolute -right-3 -bottom-3 opacity-10 text-primary-container">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'wght' 100;">task_alt</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab System -->
+<div class="flex items-end justify-between mb-8 border-b border-outline-variant/10">
+<div class="flex gap-8">
+<button class="pb-3 border-b-2 border-secondary text-secondary font-medium text-sm transition-all px-1">待结算订单</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant/60 hover:text-on-surface text-sm transition-all px-1">结算记录</button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant/60 hover:text-on-surface text-sm transition-all px-1">发票管理</button>
+</div>
+<div class="pb-3 hidden md:flex items-center gap-4 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+<span>筛选条件</span>
+</div>
+</div>
+<!-- Orders List -->
+<div class="space-y-4">
+<!-- Order Item 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl hover:shadow-[0_12px_40px_rgba(74,93,78,0.06)] transition-all duration-500 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<span class="text-xs font-label bg-surface-container-high px-2 py-1 rounded text-on-surface-variant">禅意茶修系列</span>
+<span class="text-on-surface-variant/40 text-[10px] font-label uppercase">ORD-20231024-001</span>
+</div>
+<h3 class="text-lg font-headline font-bold text-primary mt-1">深山寂静·冥想工作坊 (A-12)</h3>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1 text-on-surface-variant/60 text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>2023-10-24 14:30</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant/60 text-xs">
+<span class="material-symbols-outlined text-sm">hourglass_empty</span>
+<span>预计结算: T+3</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-6">
+<div class="text-right">
+<p class="text-2xl font-headline font-bold text-primary">¥ 1,280.00</p>
+<p class="text-[9px] text-secondary font-label uppercase tracking-widest mt-0.5">Ready for Settlement</p>
+</div>
+<button class="px-5 py-2 rounded-full border border-primary/10 text-primary text-sm hover:bg-primary hover:text-on-primary transition-all duration-300 font-medium">
+                        查看详情
+                    </button>
+</div>
+</div>
+<!-- Order Item 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl hover:shadow-[0_12px_40px_rgba(74,93,78,0.06)] transition-all duration-500 group flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<span class="text-xs font-label bg-surface-container-high px-2 py-1 rounded text-on-surface-variant">自然疗愈项目</span>
+<span class="text-on-surface-variant/40 text-[10px] font-label uppercase">ORD-20231024-042</span>
+</div>
+<h3 class="text-lg font-headline font-bold text-primary mt-1">晨间梵音·林间呼吸课程</h3>
+<div class="flex items-center gap-4 mt-2">
+<div class="flex items-center gap-1 text-on-surface-variant/60 text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>2023-10-24 09:15</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant/60 text-xs">
+<span class="material-symbols-outlined text-sm">hourglass_empty</span>
+<span>预计结算: T+3</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-6">
+<div class="text-right">
+<p class="text-2xl font-headline font-bold text-primary">¥ 860.00</p>
+<p class="text-[9px] text-secondary font-label uppercase tracking-widest mt-0.5">Ready for Settlement</p>
+</div>
+<button class="px-5 py-2 rounded-full border border-primary/10 text-primary text-sm hover:bg-primary hover:text-on-primary transition-all duration-300 font-medium">
+                        查看详情
+                    </button>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="mt-12 flex justify-center">
+<button class="text-on-surface-variant/60 text-xs font-label flex flex-col items-center gap-2 hover:text-primary transition-colors group">
+<span class="material-symbols-outlined text-lg group-hover:translate-y-1 transition-transform">keyboard_double_arrow_down</span>
+<span>加载更多数据</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-4 pt-2 bg-[#FAF9F4] dark:bg-[#1A1C19] rounded-t-lg z-50 shadow-[0_-4px_20px_rgba(74,93,78,0.04)] border-t border-[#EFEEE9]">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#EFEEE9]/50 px-4 py-1.5 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-0.5">library_music</span>
+<span class="font-body text-[10px] uppercase tracking-widest">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#EFEEE9]/50 px-4 py-1.5 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-0.5">self_improvement</span>
+<span class="font-body text-[10px] uppercase tracking-widest">禅理</span>
+</a>
+<!-- Active Tab: 我的 -->
+<a class="flex flex-col items-center justify-center bg-[#C9B037]/20 dark:bg-[#C9B037]/10 text-[#6e5e00] dark:text-[#C9B037] rounded-xl px-5 py-1.5 transition-all transform translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined mb-0.5" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-body text-[10px] uppercase tracking-widest font-bold">我的</span>
+</a>
+</nav>
+</body></html>

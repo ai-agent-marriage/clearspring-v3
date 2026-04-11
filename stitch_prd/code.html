@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e9e8e3",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#0e1f13",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#faf9f4",
+                    "on-surface": "#1b1c19",
+                    "background": "#faf9f4",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface": "#faf9f4",
+                    "inverse-surface": "#30312e",
+                    "on-tertiary-fixed": "#291801",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "outline": "#737872",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "tertiary": "#533d20",
+                    "tertiary-container": "#6d5435",
+                    "primary": "#334537",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#4a5d4e",
+                    "surface-dim": "#dbdad5",
+                    "outline-variant": "#c3c8c1",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#c0d5c2",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f4ef",
+                    "on-background": "#1b1c19",
+                    "secondary-fixed": "#fee264",
+                    "surface-container-highest": "#e3e2de",
+                    "surface-tint": "#506354",
+                    "surface-container": "#efeee9",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "inverse-primary": "#b7ccb9",
+                    "primary-fixed": "#d3e8d5",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-surface-variant": "#434843",
+                    "on-secondary-fixed": "#211b00",
+                    "secondary": "#6e5e00",
+                    "surface-variant": "#e3e2de",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#756400",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fee264",
+                    "on-tertiary-fixed-variant": "#594325"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        .ink-wash-gradient {
+            background: linear-gradient(to bottom, transparent 0%, rgba(245, 244, 239, 0.4) 50%, rgba(245, 244, 239, 0.8) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-md flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#FAF9F4] cursor-pointer hover:opacity-80 transition-opacity">menu</span>
+</div>
+<h1 class="text-xl font-serif text-[#334537] dark:text-[#FAF9F4] font-bold">清如</h1>
+<div class="w-6"></div> <!-- Spacer for center alignment -->
+</header>
+<!-- Main Content Canvas -->
+<main class="relative min-h-screen pt-16 pb-40 overflow-hidden">
+<!-- Background Artistic Element -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Monochrome misty mountain range at dawn with ethereal fog and silhouettes of ancient pine trees in ink wash style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUaQuIMAU1q8ye7zjYf32avVsNGLf_A4NEI9zeA8zbR5DOu0wq-6gdUr1CJCYcU-fdDrAoCeUT7pwGJZvQekhuQEUhEFy-BmZrWm3jnJS6K1gXOGkOAng-6Q5DOuygmqBsK-9uKqgtKcvOv-dQKV46LJ1epwnmCL2jTCXXd3prNO8QsdO6f6WKKyuHRDjbAFuVcKTa6NQID_E2R9DMP03F_CNsDh1UeyD-3FAVlYLcQl_G-G7aCIDVTHSQ3t7YkwjyzOaPpn3EE8GG"/>
+<div class="absolute inset-0 ink-wash-gradient"></div>
+</div>
+<!-- The "Silence" Quote Section (Asymmetric Vertical Layout) -->
+<div class="relative z-10 flex flex-col items-end px-12 md:px-24 pt-20">
+<div class="vertical-text font-headline text-3xl md:text-5xl lg:text-6xl tracking-[0.5em] leading-relaxed text-primary">
+<span class="block">万籁俱寂</span>
+<span class="block mt-12 md:mt-24">唯闻梵音</span>
+</div>
+<div class="mt-16 max-w-xs text-right opacity-70">
+<p class="text-sm md:text-base font-light leading-loose tracking-widest uppercase">
+                    The sound of the universe is found in the stillness of the heart.
+                </p>
+<div class="w-1 h-12 bg-primary-container/30 inline-block mt-8"></div>
+</div>
+</div>
+<!-- Sound Categories (Pill-shaped buttons) -->
+<div class="fixed bottom-24 left-0 w-full z-40 px-6 overflow-x-auto no-scrollbar">
+<div class="flex items-center justify-center space-x-4 min-w-max mx-auto py-4">
+<!-- Active Category -->
+<button class="px-8 py-3 rounded-full bg-primary-container text-on-primary-container shadow-sm flex items-center gap-2 group transition-all">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="text-sm font-medium tracking-wide">自然之音</span>
+</button>
+<button class="px-8 py-3 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-outline-variant/15 text-primary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">temple_buddhist</span>
+<span class="text-sm font-medium tracking-wide">寺院钟鸣</span>
+</button>
+<button class="px-8 py-3 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-outline-variant/15 text-primary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">water_drop</span>
+<span class="text-sm font-medium tracking-wide">流泉石上</span>
+</button>
+<button class="px-8 py-3 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-outline-variant/15 text-primary hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">wind_power</span>
+<span class="text-sm font-medium tracking-wide">空谷幽兰</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 pb-safe px-4 bg-[#FAF9F4] dark:bg-[#334537] z-50 rounded-t-lg shadow-[0_-4px_20px_rgba(74,93,78,0.06)]">
+<!-- Tab 1: 梵音 (Active) -->
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] dark:text-[#C9B037] font-semibold scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">music_note</span>
+<span class="text-[10px] mt-1 font-body">梵音</span>
+</a>
+<!-- Tab 2: 禅理 -->
+<a class="flex flex-col items-center justify-center text-[#334537]/40 dark:text-[#FAF9F4]/40 hover:text-[#4A5D4E] dark:hover:text-[#C9B037] transition-colors" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-[10px] mt-1 font-body">禅理</span>
+</a>
+<!-- Tab 3: 我的 -->
+<a class="flex flex-col items-center justify-center text-[#334537]/40 dark:text-[#FAF9F4]/40 hover:text-[#4A5D4E] dark:hover:text-[#C9B037] transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] mt-1 font-body">我的</span>
+</a>
+</nav>
+</body></html>

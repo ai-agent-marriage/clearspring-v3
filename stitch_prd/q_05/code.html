@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>禅理 - 呼吸的寂静</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF9F4;
+            overflow: hidden;
+        }
+        .font-serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .ink-wash-overlay {
+            background: linear-gradient(to bottom, transparent 0%, rgba(239, 238, 233, 0.4) 50%, rgba(239, 238, 233, 0.8) 100%);
+            pointer-events: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffddb6",
+                        "secondary": "#6e5e00",
+                        "on-surface-variant": "#434843",
+                        "surface-container": "#efeee9",
+                        "surface-container-low": "#f5f4ef",
+                        "outline-variant": "#c3c8c1",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-container": "#c0d5c2",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-secondary-fixed-variant": "#534600",
+                        "background": "#faf9f4",
+                        "inverse-primary": "#b7ccb9",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-bright": "#faf9f4",
+                        "outline": "#737872",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "secondary-container": "#fee264",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed": "#fee264",
+                        "surface-container-high": "#e9e8e3",
+                        "on-background": "#1b1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#dbdad5",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e3e2de",
+                        "tertiary-container": "#6d5435",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d3e8d5",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface": "#faf9f4",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "primary": "#334537",
+                        "surface-container-highest": "#e3e2de",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary-container": "#756400",
+                        "on-tertiary-fixed": "#291801",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#506354",
+                        "on-surface": "#1b1c19",
+                        "tertiary": "#533d20",
+                        "inverse-on-surface": "#f2f1ec"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<main class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+<!-- Ink Wash Background Texture -->
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-10 mix-blend-multiply" data-alt="Soft ethereal ink-wash landscape showing distant misty mountains in monochrome green and grey tones with high negative space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr8_3OwufFHIMhyYRVKJpSTn-TiMWNgEfw1w84zpvWXBpQqczlBztAiJ9HQMMqybLUlI_827PQ0OhyEg9IbqqGM7ypW9uNxHmKZOojPD8cc_VxaYE5j03RVxPTahRAHGbsj6lLqEOidYr6tQvJy_iv3xdh2vnxYkPhYK9_Qb0NVqPUKvdD6c9S3gAMxhptDYItyCVRvvxvIj1_oxSr1bMdOJoRgE_VWiKL640k5fBgYPmXFFC1r_2RLyPFR_FYNj-NDJ76sRlvdqkU"/>
+<div class="absolute inset-0 ink-wash-overlay"></div>
+</div>
+<!-- Top Right Action Cluster -->
+<div class="absolute top-8 right-8 z-20 flex gap-6">
+<button class="p-2 text-primary hover:bg-surface-container-high/30 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+</button>
+<button class="p-2 text-primary hover:bg-surface-container-high/30 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<!-- Central Quote Area -->
+<div class="relative z-10 px-8 text-center max-w-2xl">
+<div class="mb-8 opacity-20">
+<span class="material-symbols-outlined text-6xl" data-icon="flare">flare</span>
+</div>
+<h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-primary-container leading-relaxed tracking-widest transition-opacity duration-1000">
+                菩提本无树，<br/>明镜亦非台。
+            </h1>
+<p class="mt-12 font-body text-lg text-outline font-light tracking-[0.2em] opacity-80">
+                —— 六祖慧能
+            </p>
+</div>
+<!-- Bottom Guide -->
+<div class="absolute bottom-32 z-10 flex flex-col items-center gap-2 opacity-40">
+<p class="text-xs font-medium tracking-[0.4em] text-primary uppercase">上滑进入</p>
+<span class="material-symbols-outlined text-xl" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<!-- The "Destination" Rule: Visible here as it's the primary Zen Wisdom screen -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#EFEEE9]/80 dark:bg-stone-900/80 backdrop-blur-xl">
+<!-- Navigation Item: 梵音 -->
+<a class="flex flex-col items-center justify-center text-[#4A5D4E]/70 dark:text-[#FAF9F4]/60 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="library_music">library_music</span>
+<span class="text-xs font-medium font-body">梵音</span>
+</a>
+<!-- Navigation Item: 禅理 (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#C9B037]/20 text-[#6e5e00] dark:text-[#C9B037] rounded-lg px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="self_improvement">self_improvement</span>
+<span class="text-xs font-medium font-body">禅理</span>
+</a>
+<!-- Navigation Item: 我的 -->
+<a class="flex flex-col items-center justify-center text-[#4A5D4E]/70 dark:text-[#FAF9F4]/60 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="text-xs font-medium font-body">我的</span>
+</a>
+</nav>
+<!-- Visual Polish: Soft Vignette -->
+<div class="fixed inset-0 pointer-events-none z-40 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(239,238,233,0.1)_100%)]"></div>
+</body></html>

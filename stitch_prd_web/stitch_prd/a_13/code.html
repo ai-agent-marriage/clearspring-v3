@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>自主护生记录列表 - The Sanctuary</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, #FAF9F4 0%, #EFEEE9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ink-wash-bg::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 40%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(74, 93, 78, 0.03) 0%, rgba(239, 238, 233, 0) 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #EFEEE9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #C3C8C1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf9f4",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-secondary-container": "#756400",
+                        "on-primary-fixed": "#0e1f13",
+                        "inverse-surface": "#30312e",
+                        "surface-dim": "#dbdad5",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e9e8e3",
+                        "secondary-fixed": "#fee264",
+                        "on-background": "#1b1c19",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#fee264",
+                        "secondary": "#6e5e00",
+                        "primary-fixed": "#d3e8d5",
+                        "surface-bright": "#faf9f4",
+                        "primary-container": "#4a5d4e",
+                        "surface-container-highest": "#e3e2de",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-tertiary-fixed": "#291801",
+                        "inverse-primary": "#b7ccb9",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-secondary-fixed": "#211b00",
+                        "on-surface": "#1b1c19",
+                        "on-surface-variant": "#434843",
+                        "on-secondary-fixed-variant": "#534600",
+                        "outline": "#737872",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary": "#334537",
+                        "outline-variant": "#c3c8c1",
+                        "tertiary": "#533d20",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container-low": "#f5f4ef",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#6d5435",
+                        "on-error": "#ffffff",
+                        "background": "#faf9f4",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "surface-tint": "#506354",
+                        "surface-container": "#efeee9",
+                        "surface-variant": "#e3e2de",
+                        "on-primary-fixed-variant": "#394b3d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 bottom-0 w-64 bg-[#EFEEE9] dark:bg-stone-950 flex flex-col h-full py-8 pl-4 z-50">
+<div class="font-['Noto_Serif'] text-2xl text-[#334537] mb-8">The Sanctuary</div>
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="minimalist professional portrait of an administrator in a soft lit studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpwrtFt0SHs7lcP3gcU6L_TKU_nlStqzAdSVhZEhaMwEJtRvCF9mhPivl8TjKOQ-vVAf1s9yLnOJQQJXdRrhMIREWgBQCMBJnn_kv4lapoSNPUE2Inh6368IUJRtnjrcqswnfKR_uOW95uUEPmfpCu6HuQbsObUYHOOxOY4aywG1HxBr-_11S3RTy6ya2SOck4iT4NwubOxqhizL3ea9nFIE48HKXZtfViztgtRAI--oiBJ0OdxpK_YMIt7MhnBRM1qpP9zc0sG7eS"/>
+</div>
+<div>
+<p class="text-sm font-bold text-[#334537]">Super Admin</p>
+<p class="text-[10px] text-[#334537]/50 tracking-wider uppercase">Super Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1 pr-4 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">控制台</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">用户管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537] font-bold bg-[#FAF9F4] rounded-r-full py-3 px-6 -ml-4 shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+<span class="text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">订单管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-xl">gavel</span>
+<span class="text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">合规审计</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-xl">payments</span>
+<span class="text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">财务结算</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm font-['Plus_Jakarta_Sans'] leading-relaxed">系统配置</span>
+</a>
+</nav>
+<div class="mt-auto pr-4">
+<button class="w-full py-3 px-4 rounded-xl bg-primary-container text-surface flex items-center justify-center gap-2 text-sm font-medium hover:opacity-90 transition-opacity"><span class="material-symbols-outlined text-lg">psychology_alt</span> 悟道模式</button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-[#FAF9F4]/40 dark:bg-stone-900/40 backdrop-blur-xl z-40 flex justify-between items-center px-8 w-full shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-xs w-64 focus:ring-1 focus:ring-primary-container transition-all" placeholder="搜索记录..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-[#334537] relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="text-[#334537]">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 pb-12 px-10 ink-wash-bg min-h-screen relative">
+<div class="max-w-7xl mx-auto space-y-8 relative z-10">
+<!-- Page Header -->
+<div class="flex items-end justify-between">
+<div class="space-y-1">
+<h1 class="font-headline text-4xl text-primary font-bold tracking-tight">自主护生记录</h1>
+<p class="text-on-surface-variant font-light text-sm">全量护生数据监控与多维度审核管理控制台</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2 rounded-lg bg-surface-container-lowest text-primary text-xs font-medium border border-outline-variant/30 hover:bg-surface-container transition-colors flex items-center gap-2"><span class="material-symbols-outlined text-sm">file_download</span> 导出数据</button>
+<button class="px-6 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-xs font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm">add</span> 新增记录
+                    </button>
+</div>
+</div>
+<!-- Multi-Dimensional Filters -->
+<section class="bg-surface-container-low rounded-2xl p-6 shadow-sm flex flex-wrap items-center gap-6">
+<div class="space-y-1.5 flex-1 min-w-[200px]">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">订单编号</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg py-2.5 px-4 text-sm focus:ring-1 focus:ring-primary-container" placeholder="输入订单号" type="text"/>
+</div>
+<div class="space-y-1.5 flex-1 min-w-[200px]">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">会员编号</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg py-2.5 px-4 text-sm focus:ring-1 focus:ring-primary-container" placeholder="输入会员号" type="text"/>
+</div>
+<div class="space-y-1.5 flex-1 min-w-[150px]">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">审核状态</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg py-2.5 px-4 text-sm focus:ring-1 focus:ring-primary-container appearance-none">
+<option>全部状态</option>
+<option>待审核</option>
+<option>已通过</option>
+<option>已驳回</option>
+</select>
+</div>
+<div class="space-y-1.5 flex-1 min-w-[150px]">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">护生物种</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg py-2.5 px-4 text-sm focus:ring-1 focus:ring-primary-container appearance-none">
+<option>全部物种</option>
+<option>鱼类</option>
+<option>鸟类</option>
+<option>两栖类</option>
+<option>爬行类</option>
+</select>
+</div>
+<div class="space-y-1.5 flex-1 min-w-[200px]">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">提交周期</label>
+<div class="flex items-center bg-surface-container-lowest rounded-lg px-4 gap-2">
+<span class="material-symbols-outlined text-sm text-outline">calendar_today</span>
+<input class="w-full border-none bg-transparent py-2.5 text-sm focus:ring-0" placeholder="请选择日期区间" type="text"/>
+</div>
+</div>
+<div class="pt-5">
+<button class="bg-primary text-surface p-2.5 rounded-lg hover:scale-95 transition-transform">
+<span class="material-symbols-outlined">filter_alt</span>
+</button>
+</div>
+</section>
+<!-- Table Container -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.06)] border border-outline-variant/10">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 border-b border-outline-variant/20">
+<th class="py-5 px-6 w-12">
+<input class="rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox"/>
+</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">记录编号</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">用户信息</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">护生品种</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">投放规模</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">投放地域</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">提交时间</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant">状态</th>
+<th class="py-5 px-4 text-[11px] font-bold uppercase tracking-wider text-on-surface-variant text-right">管理</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-4 px-6">
+<input class="rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-mono text-xs text-primary">REC-88291</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a serene young man with a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAheFdUXxOgORIs-nlKpLn8s8SS0NvjbqOGpV8YeNgo39H3EC8i1yZjPpHS9yAXbYLtdNe5ab5rPUgHRzxinFtr1I06HCtC-WhBmY6g2Wydn0AW_Z4tjq_XmtD8B6ogFKBgy3ulg1ttz9kqLH689kEKsm_n0VD8X891gfE8abqrH34Da-P2TcLbPLg93SwRXynFEVyg7t-c9HWRnX19IXFHOJY0VBe6evN-T4_A-ke3qSxNxHURwJXXYeun9nZ86X6papgQD_zBnWCw"/>
+</div>
+<div class="leading-tight">
+<p class="text-sm font-semibold text-primary">墨染清秋</p>
+<p class="text-[10px] text-on-surface-variant">USR-33012</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2 py-1 bg-primary-container/10 text-primary-container text-[11px] rounded font-medium">野生鲫鱼</span>
+</td>
+<td class="py-4 px-4 text-sm font-medium">50 尾</td>
+<td class="py-4 px-4 text-sm text-on-surface-variant italic">杭州 · 西湖苏堤段</td>
+<td class="py-4 px-4 text-xs text-on-surface-variant">2023-11-20 14:22</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1.5 text-[#C9B037] bg-secondary-container/20 px-2 py-1 rounded-full w-max">
+<span class="w-1.5 h-1.5 rounded-full bg-[#C9B037]"></span>
+<span class="text-[10px] font-bold">待审核</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-lg hover:bg-surface-variant text-primary" title="查看详情">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-primary/10 text-primary" title="通过">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-error/10 text-error" title="驳回">
+<span class="material-symbols-outlined text-lg">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-4 px-6">
+<input class="rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-mono text-xs text-primary">REC-88290</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="elegant portrait of a woman with natural lighting and blurred greenery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9z8J3FzH38kmxMXGknHGHD82gWjUkUlGAn5wRhuYuZ3f7fTeIFGmyKT8MabcpbHtT0zGKfYdJmbcyowWs7DY3YUxZFoJBojUQOBFzVZh2L4gP2FkpqM8mb2nzsL6NS74yJTePFExHXCd7C2VZWaA-vo1uA300T9IZEwERRViB1YxW0kp6qk03DJ1a2b7ZAleAnUkIDVFqZdhW1XfEVBCqjEKeuhXGx1vyfv1LYF2RsFrshVFvwfT9pNZJogJqGoYAkC5izxsOOjsL"/>
+</div>
+<div class="leading-tight">
+<p class="text-sm font-semibold text-primary">上善若水</p>
+<p class="text-[10px] text-on-surface-variant">USR-33155</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2 py-1 bg-tertiary-container/10 text-tertiary-container text-[11px] rounded font-medium">草龟</span>
+</td>
+<td class="py-4 px-4 text-sm font-medium">12 只</td>
+<td class="py-4 px-4 text-sm text-on-surface-variant italic">嘉兴 · 南湖放生台</td>
+<td class="py-4 px-4 text-xs text-on-surface-variant">2023-11-19 10:45</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1.5 text-primary bg-primary-fixed/30 px-2 py-1 rounded-full w-max">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="text-[10px] font-bold">已通过</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-lg hover:bg-surface-variant text-primary">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg opacity-30 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</button>
+<button class="p-1.5 rounded-lg opacity-30 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-4 px-6">
+<input class="rounded text-primary border-outline-variant focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="py-4 px-4 font-mono text-xs text-primary">REC-88285</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="side profile of a person smiling in warm sunset light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSjvqfQauAHlrj6FH2chNchYxcyW8bhYxZrSnJ-848ZGsxgP19LB9j-geYX7cqmcAd8QLygTTzFgKwPbriS8wPVHtZ4iozjANpKdGlIzIRNNGKIAbCH4EV1J78Z6SuvzIwZGVclcjMriAO_MsrPxnOEbVt1iSpUnqSSvNqDMjIcNdoa5AIm8ztpdgXoPzi2XOnS8yqgdSzbHm30jGDXW5mzHF52x7q6UVGU3FPSLIEfVDXwv9B2JIuxYUlqwJDNEuuqyzhE7l4MayB"/>
+</div>
+<div class="leading-tight">
+<p class="text-sm font-semibold text-primary">随缘</p>
+<p class="text-[10px] text-on-surface-variant">USR-33004</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2 py-1 bg-primary-container/10 text-primary-container text-[11px] rounded font-medium">锦鲤</span>
+</td>
+<td class="py-4 px-4 text-sm font-medium">100 尾</td>
+<td class="py-4 px-4 text-sm text-on-surface-variant italic">苏州 · 金鸡湖景区</td>
+<td class="py-4 px-4 text-xs text-on-surface-variant">2023-11-18 16:30</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-1.5 text-error bg-error-container/40 px-2 py-1 rounded-full w-max">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="text-[10px] font-bold">已驳回</span>
+</div>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-1.5 rounded-lg hover:bg-surface-variant text-primary">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg opacity-30 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</button>
+<button class="p-1.5 rounded-lg opacity-30 cursor-not-allowed">
+<span class="material-symbols-outlined text-lg">cancel</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-6 bg-surface-container-high/30 flex items-center justify-between border-t border-outline-variant/10">
+<p class="text-xs text-on-surface-variant font-medium">显示第 1 至 10 条，共 1,248 条记录</p>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg hover:bg-surface-variant/50 text-outline-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-surface text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-variant text-primary text-xs">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-variant text-primary text-xs">3</button>
+<span class="px-2 text-outline-variant">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-variant text-primary text-xs">125</button>
+<button class="p-2 rounded-lg hover:bg-surface-variant/50 text-primary">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Mini-Insights (Bento Layout) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-6 rounded-2xl space-y-4 border border-outline-variant/5">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary-container p-2 bg-primary-container/10 rounded-xl">pending_actions</span>
+<span class="text-primary-container text-[10px] font-bold bg-primary-container/5 px-2 py-0.5 rounded">较上周 +12%</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-primary font-headline">42</p>
+<p class="text-xs text-on-surface-variant">本月护生总量</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl space-y-4 border border-outline-variant/5">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary/10 rounded-xl">较上周 +12%</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-primary font-headline">12,840</p>
+<p class="text-xs text-on-surface-variant">本月护生总量</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl space-y-4 border border-outline-variant/5">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary p-2 bg-tertiary/10 rounded-xl">较上周 +12%</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-primary font-headline">84%</p>
+<p class="text-xs text-on-surface-variant">生态多样性指数</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl space-y-4 border border-outline-variant/5">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-error p-2 bg-error-container/20 rounded-xl">较上周 +12%</span>
+</div>
+<div>
+<p class="text-3xl font-bold text-primary font-headline">3</p>
+<p class="text-xs text-on-surface-variant">异常投放警示</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action for Quick Access -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary-container text-surface rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-50">
+<span class="material-symbols-outlined">support_agent</span>
+</button>
+</body></html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>A-14 Merit-making Record Audit - Sanctuary Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-tertiary-fixed": "#291801",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b7ccb9",
+                    "on-tertiary-container": "#ebcaa3",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-primary-container": "#c0d5c2",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-container-high": "#e9e8e3",
+                    "on-surface": "#1b1c19",
+                    "surface-variant": "#e3e2de",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ec",
+                    "tertiary-fixed": "#ffddb6",
+                    "background": "#faf9f4",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-fixed": "#0e1f13",
+                    "secondary-container": "#fee264",
+                    "on-secondary-container": "#756400",
+                    "on-surface-variant": "#434843",
+                    "secondary-fixed": "#fee264",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "surface-dim": "#dbdad5",
+                    "surface-container": "#efeee9",
+                    "surface-container-highest": "#e3e2de",
+                    "outline-variant": "#c3c8c1",
+                    "inverse-surface": "#30312e",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-bright": "#faf9f4",
+                    "outline": "#737872",
+                    "primary-fixed": "#d3e8d5",
+                    "secondary": "#6e5e00",
+                    "tertiary-container": "#6d5435",
+                    "primary-container": "#4a5d4e",
+                    "on-background": "#1b1c19",
+                    "surface": "#faf9f4",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-tint": "#506354",
+                    "primary": "#334537",
+                    "tertiary": "#533d20",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, #faf9f4 0%, #efeee9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ink-wash-bg::after {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(74,93,78,0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex min-h-screen">
+<!-- Shared SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-6 z-40 border-r border-[#4A5D4E]/15 bg-[#EFEEE9] dark:bg-[#334537] h-screen w-64 rounded-r-lg shadow-[0_12px_40px_rgba(74,93,78,0.06)] font-['Plus_Jakarta_Sans'] text-sm tracking-wide">
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="sanctuary">shrine</span>
+</div>
+<div>
+<h2 class="font-['Noto_Serif'] text-lg text-[#334537] dark:text-[#C9B037] font-bold">Management</h2>
+<p class="text-xs opacity-60">Zen Portal</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9] opacity-70 hover:bg-[#4A5D4E]/10 dark:hover:bg-[#FAF9F4]/10 transition-all rounded-lg cursor-pointer">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Users</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 bg-[#4A5D4E] text-[#FAF9F4] rounded-lg shadow-sm font-semibold transition-all cursor-default">
+<span class="material-symbols-outlined" data-icon="audit">hearing</span>
+<span>Orders</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9] opacity-70 hover:bg-[#4A5D4E]/10 dark:hover:bg-[#FAF9F4]/10 transition-all rounded-lg cursor-pointer">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span>Moderation</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9] opacity-70 hover:bg-[#4A5D4E]/10 dark:hover:bg-[#FAF9F4]/10 transition-all rounded-lg cursor-pointer">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span>Finance</span>
+</div>
+</nav>
+<button class="mt-auto w-full py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            New Record
+        </button>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 flex-1 min-h-screen ink-wash-bg">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-8 py-4 sticky top-0 z-50 bg-[#EFEEE9]/80 dark:bg-[#334537]/80 backdrop-blur-xl font-['Plus_Jakarta_Sans'] font-medium text-[#334537] dark:text-[#FAF9F4]">
+<div class="flex items-center gap-6">
+<h1 class="font-['Noto_Serif'] text-xl font-bold text-[#334537] dark:text-[#FAF9F4]">Sanctuary Admin</h1>
+<div class="hidden md:flex items-center bg-surface-container px-4 py-2 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-outline mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64" placeholder="Search records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#4A5D4E]/5 dark:hover:bg-[#FAF9F4]/5 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-[#4A5D4E]/5 dark:hover:bg-[#FAF9F4]/5 transition-colors rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img alt="Administrator Profile" data-alt="close up professional headshot of an administrative official in a neutral setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Xr1Tc5u1OWjFvqMmLUfamlLgWNIL0_A9trZrgX3KFRzn8eK6L1j3r0Xec1KKDiAPmZ4tdeTeRDsu4qXNMvhDACxTfGksPJhcPo_0DBesxdmiaf_-T4hK1AdiHL0vB6WH3TZKDxg8eqF2F8HnkiEzb_ONsgL4UH39_0sjzW66AO5Uhjzojhu3ZVMWrLOHc8kD3pH0r52l-x-Lnp2aoarE53V8nLU_cMT2JvhNuQI9SQPVWysDmwJTVpHXRGUloaM9SfAe6-U6Oo4G"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="max-w-7xl mx-auto p-8 space-y-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center text-sm text-outline gap-2">
+<span class="hover:text-primary cursor-pointer">User Management</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="hover:text-primary cursor-pointer">Merit Records</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-semibold">Audit</span>
+</nav>
+<!-- Top Info Card (Header) -->
+<section class="bg-surface-container-low rounded-xl p-8 border-l-4 border-primary shadow-sm flex flex-wrap items-center justify-between gap-6">
+<div class="space-y-1">
+<span class="text-xs font-bold tracking-widest text-primary-container/60 uppercase">Record Identity</span>
+<h2 class="text-2xl font-bold text-primary">REC-20240501-889</h2>
+</div>
+<div class="flex gap-12">
+<div class="flex flex-col">
+<span class="text-xs text-outline mb-1">User</span>
+<span class="font-medium text-on-surface">Zhang Wei (张伟)</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-outline mb-1">Time</span>
+<span class="font-medium text-on-surface">2024-05-01 14:20</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-outline mb-1">Status</span>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-container mr-2"></span>
+                            Pending Audit
+                        </span>
+</div>
+</div>
+</section>
+<!-- Main Split Layout -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Left Column: Record Details -->
+<div class="col-span-12 lg:col-span-5 space-y-8">
+<section class="bg-surface-container-low rounded-xl p-8 space-y-6">
+<h3 class="text-xl text-primary border-b border-outline-variant/20 pb-4">Merit Details (功德详情)</h3>
+<div class="space-y-6">
+<div class="flex justify-between items-center group">
+<span class="text-outline text-sm">Release Date (放生日期)</span>
+<span class="font-medium text-on-surface">2024-05-01</span>
+</div>
+<div class="flex justify-between items-center group">
+<span class="text-outline text-sm">Waterbody (水域地点)</span>
+<div class="text-right">
+<p class="font-medium text-on-surface">Qinglong Lake</p>
+<p class="text-xs text-primary-container/60">01-AQ-04 (Safe Zone)</p>
+</div>
+</div>
+<div class="flex justify-between items-center group">
+<span class="text-outline text-sm">Species (物种名称)</span>
+<span class="font-medium text-on-surface">Koi Carp (锦鲤)</span>
+</div>
+<div class="flex justify-between items-center group">
+<span class="text-outline text-sm">Quantity (数量)</span>
+<span class="text-lg font-bold text-primary">10</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/20">
+<span class="text-outline text-sm block mb-3">Blessing / Wish (祈愿)</span>
+<div class="bg-surface-container p-4 rounded-lg italic text-on-surface-variant relative">
+<span class="material-symbols-outlined absolute -top-3 -left-1 text-primary-container/20 text-4xl" data-icon="format_quote">format_quote</span>
+                                    “May all beings be free from suffering.”
+                                </div>
+</div>
+</div>
+</section>
+<!-- History Section -->
+<section class="bg-surface-container-low rounded-xl p-8 space-y-6">
+<h3 class="text-xl text-primary border-b border-outline-variant/20 pb-4">Audit History (审核记录)</h3>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-8 h-8 rounded-full bg-outline-variant/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="history">history</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-semibold">No previous attempts</p>
+<span class="text-xs text-outline">First submission</span>
+</div>
+<p class="text-xs text-outline mt-1 italic">This is the initial audit for this record.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Evidence & Audit Action -->
+<div class="col-span-12 lg:col-span-7 space-y-8">
+<!-- Photos Grid -->
+<section class="bg-surface-container-low rounded-xl p-8 space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="text-xl text-primary">现场核实 (Evidence Photos)</h3>
+<span class="text-xs text-outline">4 张高画质抓拍</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="serene close up of vibrant orange koi carp being gently released into clear still lake water by a person's hands" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIkDjISfZ7iFZdKpq6AtLzQXQc8IFNs1PXbt00VdhpbBkQBAPjNe7oMqzJto9NgwL2cZJhr3WXlklP-3GAOKNA08xvjYAoDnY_0ngDA6Yo4DVIxEcJ0y2q2kWIND6mAxlR4E4cGP10yNyQTggZad5Q3siNpqXAbzxKhJOyKl6VqYzRol-CAuevoDFzWy_v2m92Mz_wcVv-XVzdsTipPBOK9AZRWiXoT74G683aNR1Cpv_QLt8l5CDJUuscYT_EbcmyNoJtsWDMTF7n"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="zoom_in">zoom_in</span>
+</div>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="wide shot of a peaceful misty lake surrounded by lush green mountains at dawn with soft ethereal lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUMieeUfiRO0_nf2EdPapan9hYeQaee1Geu1gCgFEfVKuWNi7rZEL4T-N7qzRcMKNllAsNzXVLb7yRCLq0kI9Nnl8WGQE9DbG5ONN0Mr0C2c6UeWckGmSsl5LWe-mopRdsynYaEtVncdrlEXR-n25UOMaERn4ytDun33oTSeMpUgZ03D0ihnLuoJ1tCt3WehJ33D8BkWUzjqhUV-O6YuTAmYRFwfW8ZBXcvF9_QityGXuc2HjyQe41xddXoNRTd8doEbmBRapeTfrf"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="zoom_in">zoom_in</span>
+</div>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close up of environmental certification tag on a wooden post near water with blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_ZxnumiQGdCw86qDJDgcySGL5Re-l08Dw_YrPlP6PynPWoWNrg6QTK3HPW6VyoU1JbXtJpJuiLsuOtFYb3KqszRlt4deG2-Xsj0AJdeLDsWsMUUvu6FgkK7Er7iQLzhrpx0GPm1CK1glVKuA19H52SDMLTS3qbX80kRp0Mg7xi0_W6I0nYG7nFWeXJHonOKcrLLIqNxCmxQiGC_n-8G4THcwx7aukiJ_wKjfMo3oPeFWHzuls8nf9PC2ppvxmZAwLIXVMJmIMuFvu"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="zoom_in">zoom_in</span>
+</div>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="sunlight filtering through old trees in a forest sanctuary with a sense of peace and natural beauty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwn6EX15Kc5LSyqesid9nT52RK708MlND2oruun6RdMKlNiikTLEljavQ1J-69SOxKdV10l_8Ek91wm5MZF4lB6uqR66uaclC4I3lgrDmCMSf5iAmLTThKY1G3XmtTEiL46mt_LJ4lcoFJ2YLR69sKHdOXfEPU_Rf-y8QVtP3e2lCRDkYvQqrMPWubXwLL5TyjSMnFCemLedL_Lhk_P5euMzZY6Iy-LAsM4sxATNFWRtIuGf418hhO_UVshlXL__2S45kkq2wICo4L"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="zoom_in">zoom_in</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Audit Form Section -->
+<section class="bg-surface-container rounded-xl p-8 space-y-8 shadow-[0_12px_40px_rgba(74,93,78,0.06)] border border-primary-container/5">
+<h3 class="text-xl text-primary flex items-center gap-2"><span class="material-symbols-outlined" data-icon="rate_review">rate_review</span> 审核结论 (Audit Verdict)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<label class="text-sm font-bold text-on-surface block uppercase tracking-wider">最终结论 (Final Decision)</label>
+<div class="flex gap-4">
+<label class="flex-1 flex items-center justify-center gap-3 p-4 border-2 border-primary-container/20 rounded-lg cursor-pointer hover:bg-primary-container/5 transition-all group">
+<input checked="" class="w-5 h-5 text-primary border-outline-variant focus:ring-primary" name="audit_status" type="radio" value="approve"/>
+<span class="font-bold text-primary">通过 (Approve)</span>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</label>
+<label class="flex-1 flex items-center justify-center gap-3 p-4 border-2 border-outline-variant/20 rounded-lg cursor-pointer hover:bg-error-container/10 transition-all group">
+<input class="w-5 h-5 text-error border-outline-variant focus:ring-error" name="audit_status" type="radio" value="reject"/>
+<span class="font-bold text-outline group-hover:text-error transition-colors">驳回 (Reject)</span>
+<span class="material-symbols-outlined text-outline group-hover:text-error transition-colors" data-icon="cancel">cancel</span>
+</label>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-sm font-bold text-on-surface block uppercase tracking-wider">驳回原因 (Rejection Reason)</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg p-4 text-on-surface opacity-40 cursor-not-allowed" disabled="">
+<option value="">请选择原因...</option>
+<option value="photo_unclear">照片不清晰</option>
+<option value="location_mismatch">地点不匹配</option>
+<option value="invasive_species">物种入侵风险</option>
+<option value="other">其他管理原因</option>
+</select>
+<p class="text-[10px] text-outline px-1">仅在“驳回”时需要填写原因</p>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-sm font-bold text-on-surface block uppercase tracking-wider">审核意见 (Audit Opinion)</label>
+<textarea class="w-full bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary rounded-lg p-4 text-on-surface shadow-inner placeholder:text-outline/50" placeholder="请输入详细审核意见..." rows="4">Details confirmed via metadata and photo evidence. The release process adheres to standard Sanctuary guidelines for Qinglong Lake aquatic management.</textarea>
+</div>
+<div class="flex items-center justify-between pt-4">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+<span class="text-xs italic">审核结果将立即通过 Zen App 通知用户。</span>
+</div>
+<button class="px-10 py-4 bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 transition-all flex items-center gap-3 shadow-lg hover:-translate-y-0.5 active:translate-y-0"><span class="material-symbols-outlined" data-icon="gavel">gavel</span> 提交审核结果</button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</body></html>

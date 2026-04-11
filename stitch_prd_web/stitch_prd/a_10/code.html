@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Plus+Jakarta_Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#534600",
+                        "surface-bright": "#faf9f4",
+                        "outline": "#737872",
+                        "surface-container-low": "#f5f4ef",
+                        "secondary": "#6e5e00",
+                        "primary-fixed": "#d3e8d5",
+                        "primary-container": "#4a5d4e",
+                        "on-background": "#1b1c19",
+                        "tertiary-container": "#6d5435",
+                        "surface": "#faf9f4",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-tint": "#506354",
+                        "tertiary": "#533d20",
+                        "on-error-container": "#93000a",
+                        "primary": "#334537",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-tertiary-fixed": "#291801",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b7ccb9",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-primary-container": "#c0d5c2",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-container-high": "#e9e8e3",
+                        "on-surface": "#1b1c19",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-variant": "#e3e2de",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f2f1ec",
+                        "background": "#faf9f4",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fee264",
+                        "on-secondary-container": "#756400",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-surface-variant": "#434843",
+                        "secondary-fixed": "#fee264",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "surface-dim": "#dbdad5",
+                        "surface-container": "#efeee9",
+                        "surface-container-highest": "#e3e2de",
+                        "outline-variant": "#c3c8c1",
+                        "inverse-surface": "#30312e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #FAF9F4;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.02) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="hidden md:flex h-screen w-72 sticky left-0 border-r border-stone-200/15 bg-[#EFEEE9] dark:bg-stone-950 flex-col py-10 px-6 gap-8 z-40">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<div>
+<h1 class="font-headline text-lg font-bold text-[#334537]">神圣准入 (Sanctuary)</h1>
+<p class="text-[10px] uppercase tracking-widest text-stone-500">权限引擎</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-grow">
+<!-- Active State: Roles -->
+<a class="flex items-center gap-3 py-3 text-[#334537] font-semibold border-l-4 border-[#4A5D4E] pl-4 bg-[#FAF9F4]/50" href="#">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-label">角色管理</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-400 pl-5 hover:text-[#4A5D4E] hover:bg-[#FAF9F4] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="vignette">vignette</span>
+<span class="font-label">权限配置</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-400 pl-5 hover:text-[#4A5D4E] hover:bg-[#FAF9F4] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group_add">group_add</span>
+<span class="font-label">子账号管理</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-400 pl-5 hover:text-[#4A5D4E] hover:bg-[#FAF9F4] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label">审计日志</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-400 pl-5 hover:text-[#4A5D4E] hover:bg-[#FAF9F4] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="policy">policy</span>
+<span class="font-label">访问策略</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-4 border-t border-stone-200/20 pt-6">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>添加角色</span>
+</button>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 text-stone-400 text-sm hover:text-[#334537]" href="#">
+<span class="material-symbols-outlined text-base" data-icon="contact_support">contact_support</span>
+<span>帮助与支持</span>
+</a>
+<a class="flex items-center gap-3 text-stone-400 text-sm hover:text-[#334537]" href="#">
+<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
+<span>退出登录</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-grow flex flex-col min-w-0 ink-wash-bg">
+<!-- TopNavBar Shell -->
+<header class="w-full sticky top-0 z-30 bg-[#FAF9F4]/40 backdrop-blur-xl flex justify-between items-center px-12 py-6">
+<div class="flex items-center gap-8">
+<span class="font-headline text-2xl font-semibold text-[#334537]">禅意后台 (ZenAdmin)</span>
+<nav class="hidden md:flex gap-8">
+<a class="text-stone-500 hover:text-[#334537] transition-colors font-label text-sm tracking-wide" href="#">控制面板</a>
+<a class="text-stone-500 hover:text-[#334537] transition-colors font-label text-sm tracking-wide" href="#">数据分析</a>
+<a class="text-[#334537] font-bold border-b-2 border-[#4A5D4E] pb-1 font-label text-sm tracking-wide" href="#">系统设置</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-high/50 border-none rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary-container w-64 font-body" placeholder="搜索功能或账号..." type="text"/>
+</div>
+<div class="flex gap-4 items-center">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-[#EFEEE9]/50 p-2 rounded-full transition-all" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-[#EFEEE9]/50 p-2 rounded-full transition-all" data-icon="help_outline">help_outline</span>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-outline-variant/15">
+<img alt="管理员头像" class="w-full h-full object-cover" data-alt="minimalist professional corporate portrait of an administrator in soft warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARS10AckborG2lv05RrDaY3sWSWGz9ZgE8UbPrJ4yBgrdDX6wewjd5_ileNH-Ct7bmHaN_gZJPBPFfU1R54lbULK48GkMSLZFSrRotbZ_Olcf0QKKbZ0qviDLMHAkQl-enjkxzMjFPeuup7IKq9LN0imhHzo_llKyZU_7hGwK1nZVsEtLBrH6pqO-IWqKY1Rb4S5uP5E56r-ZA_m_ebdXSeEEimAV_S2KLF8BMQooCbdclJkANH5cIpT57Zeu_QOubi6OgqixUAabA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<section class="p-8 md:p-12 flex flex-col gap-8 pb-32">
+<header class="max-w-4xl">
+<h2 class="font-headline text-4xl text-primary mb-4">角色与权限管理</h2>
+<p class="font-body text-on-surface-variant max-w-2xl leading-relaxed">配置系统核心权限矩阵。通过灵活定义角色，确保组织内部数据流转的安全与高效。当前环境：生产集群 1-A。</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<!-- Role List Column -->
+<div class="xl:col-span-3 flex flex-col gap-4">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline text-xl text-primary">系统角色</h3>
+<span class="text-[10px] font-bold bg-secondary-container text-on-secondary-container px-2 py-1 rounded">6 个活跃</span>
+</div>
+<!-- Role Card: Super Admin (Active) -->
+<div class="bg-primary-container p-6 rounded-xl shadow-lg border-none text-on-primary-container flex flex-col gap-4 relative overflow-hidden transition-all transform hover:scale-[1.02]">
+<div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-10 -mt-10"></div>
+<div class="flex justify-between items-start z-10">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-xs opacity-70">ID: R-001</span>
+</div>
+<div class="z-10">
+<h4 class="font-headline text-lg font-bold">超级管理员</h4>
+<p class="text-xs opacity-80 mt-1">系统最高级权限，可管理所有模块与节点。</p>
+</div>
+</div>
+<!-- Role Card: Auditor -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/15 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="visibility">visibility</span>
+<span class="text-xs text-stone-400">ID: R-004</span>
+</div>
+<h4 class="font-headline text-lg text-primary">合规审计员</h4>
+<p class="text-xs text-on-surface-variant mt-1">仅拥有日志查看与合规报表导出权限。</p>
+</div>
+<!-- Role Card: Finance -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/15 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="payments">payments</span>
+<span class="text-xs text-stone-400">ID: R-007</span>
+</div>
+<h4 class="font-headline text-lg text-primary">财务主管</h4>
+<p class="text-xs text-on-surface-variant mt-1">管理订单流水、发票抬头及退款流程审核。</p>
+</div>
+<!-- Role Card: Operator -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/15 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="settings_accessibility">settings_accessibility</span>
+<span class="text-xs text-stone-400">ID: R-012</span>
+</div>
+<h4 class="font-headline text-lg text-primary">日常运维</h4>
+<p class="text-xs text-on-surface-variant mt-1">处理用户工单及日常基础数据配置。</p>
+</div>
+</div>
+<!-- Permission Configuration Column -->
+<div class="xl:col-span-9 flex flex-col gap-8">
+<!-- Permissions Tree Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-10 shadow-sm">
+<div class="flex justify-between items-end mb-10">
+<div>
+<span class="text-[10px] tracking-[0.2em] uppercase font-bold text-secondary mb-2 block">配置矩阵</span>
+<h3 class="font-headline text-2xl text-primary">权限节点配置</h3>
+</div>
+<div class="flex gap-4">
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="expand_all">expand_all</span>
+                                    全部展开
+                                </button>
+<button class="text-xs font-bold text-stone-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="collapse_all">collapse_all</span>
+                                    全部收起
+                                </button>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Tree Node 1 -->
+<div class="border-b border-outline-variant/10 pb-6">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-stone-400 cursor-pointer" data-icon="expand_more">expand_more</span>
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="material-symbols-outlined text-primary" data-icon="dashboard">dashboard</span>
+<span class="font-semibold text-primary">控制面板 (Dashboard)</span>
+</div>
+<div class="ml-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">查看概览图表</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">导出数据报表</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">实时预警配置</span>
+</label>
+</div>
+</div>
+<!-- Tree Node 2 -->
+<div class="border-b border-outline-variant/10 pb-6">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-stone-400 cursor-pointer" data-icon="expand_more">expand_more</span>
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="material-symbols-outlined text-primary" data-icon="person_search">person_search</span>
+<span class="font-semibold text-primary">用户管理 (User Management)</span>
+</div>
+<div class="ml-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">新增/编辑用户</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">敏感信息查看</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">冻结/注销账户</span>
+</label>
+</div>
+</div>
+<!-- Tree Node 3 -->
+<div>
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-stone-400 cursor-pointer" data-icon="expand_more">expand_more</span>
+<input checked="" class="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5" type="checkbox"/>
+<span class="material-symbols-outlined text-primary" data-icon="receipt_long">receipt_long</span>
+<span class="font-semibold text-primary">订单管理 (Order Management)</span>
+</div>
+<div class="ml-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">处理退款申请</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">修改订单价格</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-primary transition-colors">操作日志跟踪</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Bound Sub-Accounts Table -->
+<div class="bg-surface-container-low rounded-2xl p-10 border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline text-2xl text-primary">已绑定的子账号</h3>
+<button class="text-sm font-bold text-secondary-fixed-dim bg-primary px-4 py-2 rounded-lg hover:opacity-90">
+                                批量解绑
+                            </button>
+</div>
+<div class="overflow-hidden">
+<table class="w-full text-left">
+<thead class="border-b border-outline-variant/20">
+<tr>
+<th class="py-4 font-label text-xs uppercase tracking-wider text-stone-400">账号名称</th>
+<th class="py-4 font-label text-xs uppercase tracking-wider text-stone-400">所属部门</th>
+<th class="py-4 font-label text-xs uppercase tracking-wider text-stone-400">最后登录</th>
+<th class="py-4 font-label text-xs uppercase tracking-wider text-stone-400 text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="group hover:bg-surface-container-high transition-colors">
+<td class="py-5">
+<div class="flex items-center gap-3">
+<img alt="用户" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHCOSKcrD1R0OO6mSicK06jeNOgAcOTwqIQodatiEc-GUpfIwPDeo2H0FGi38Ff3WQiNxRfseWsR4nsRnCWB_n_ZIoA0x_gZbsEFgnMcBSn_UhoXq11ZeOR2s8c_-uCzWp1v7jjLpxYVMMuG6E7XCNY7wP8RBKfvbPou9q5k2SzMUseJvSLkk5tVhEHAWTYuidj3am9XtXgBEjCpxeYD_Tj_BRF8qY9WeC9fjDg5sHpRbjng8KZzoD5IQIZuKBhUzWlfa0nQyslKAd"/>
+<div>
+<div class="font-bold text-sm text-primary">Li_Lei_Admin</div>
+<div class="text-[10px] text-stone-400">lilei@zenadmin.com</div>
+</div>
+</div>
+</td>
+<td class="py-5 text-sm text-on-surface-variant">技术部 / 运维组</td>
+<td class="py-5 text-sm text-on-surface-variant">10 分钟前</td>
+<td class="py-5 text-right">
+<button class="text-primary-container hover:underline text-xs font-bold">解绑</button>
+</td>
+</tr>
+<tr class="group hover:bg-surface-container-high transition-colors">
+<td class="py-5">
+<div class="flex items-center gap-3">
+<img alt="用户" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjXmhCQ_xld2TZS6TCqpr82sqsJAYQMizoLUGQ9JO6K68kThLCfcRvM2Oswz4jbyzRrPDkPl8nGSSV8rWE5C99sINGVGQA_unk3_C-bo15r_7_tFfHhnD-J77S_7vLC6wGr-ozGutFNPYv41tZrwaHvSYNnxZt_qY9Ihm4DERuxKcmJn1n7MC770yyFAHf8nLlXr4HTQDLhR38qupo3Rn8OehJTgu954YPp-TjpG7Ow2nNnuXXCDDXBPFAp6HpaA209mIcrbDl89Rp"/>
+<div>
+<div class="font-bold text-sm text-primary">Wang_Han</div>
+<div class="text-[10px] text-stone-400">whan_global@zenadmin.com</div>
+</div>
+</div>
+</td>
+<td class="py-5 text-sm text-on-surface-variant">产品部 / 战略组</td>
+<td class="py-5 text-sm text-on-surface-variant">昨日 18:42</td>
+<td class="py-5 text-right">
+<button class="text-primary-container hover:underline text-xs font-bold">解绑</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Action Bar -->
+<div class="fixed bottom-10 left-1/2 transform -translate-x-1/2 w-[calc(100%-400px)] max-w-5xl z-50">
+<div class="bg-primary/95 backdrop-blur-md px-10 py-5 rounded-full shadow-2xl flex justify-between items-center text-on-primary">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="text-sm font-medium tracking-wide">您正在编辑 <strong class="text-secondary-fixed">超级管理员</strong> 的权限配置。修改将即时生效。</span>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-2 rounded-full border border-white/20 text-white hover:bg-white/10 transition-all font-bold text-sm">取消</button>
+<button class="px-8 py-2 rounded-full bg-secondary-container text-on-secondary-container hover:opacity-90 transition-all font-bold text-sm">保存配置</button>
+</div>
+</div>
+</div>
+<!-- Footer Shell -->
+<footer class="w-full py-8 mt-auto border-t border-stone-200/10 bg-[#FAF9F4] dark:bg-stone-900 flex flex-col md:flex-row justify-between items-center px-12">
+<p class="font-label text-[12px] uppercase tracking-[0.1em] text-stone-400">© 2024 数字圣殿 (Digital Sanctuary). 版权所有。</p>
+<div class="flex gap-8 mt-4 md:mt-0">
+<a class="font-label text-[12px] uppercase tracking-[0.1em] text-stone-400 hover:text-[#334537] transition-colors" href="#">隐私政策</a>
+<a class="font-label text-[12px] uppercase tracking-[0.1em] text-stone-400 hover:text-[#334537] transition-colors" href="#">服务条款</a>
+<a class="font-label text-[12px] uppercase tracking-[0.1em] text-stone-400 hover:text-[#334537] transition-colors" href="#">安全白皮书</a>
+</div>
+</footer>
+</main>
+</body></html>

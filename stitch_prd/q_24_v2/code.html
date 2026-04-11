@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fee264",
+                    "secondary": "#6e5e00",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#fee264",
+                    "on-background": "#1b1c19",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e9e8e3",
+                    "surface-dim": "#dbdad5",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-secondary-container": "#756400",
+                    "on-primary-fixed": "#0e1f13",
+                    "inverse-surface": "#30312e",
+                    "surface": "#faf9f4",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-surface-variant": "#434843",
+                    "on-secondary-fixed-variant": "#534600",
+                    "outline": "#737872",
+                    "on-surface": "#1b1c19",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-secondary-fixed": "#211b00",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-tertiary-fixed": "#291801",
+                    "inverse-primary": "#b7ccb9",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e3e2de",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#faf9f4",
+                    "primary-container": "#4a5d4e",
+                    "primary-fixed": "#d3e8d5",
+                    "on-error": "#ffffff",
+                    "background": "#faf9f4",
+                    "tertiary-container": "#6d5435",
+                    "surface-container-low": "#f5f4ef",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-primary-container": "#c0d5c2",
+                    "tertiary": "#533d20",
+                    "primary": "#334537",
+                    "outline-variant": "#c3c8c1",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-variant": "#e3e2de",
+                    "surface-tint": "#506354",
+                    "surface-container": "#efeee9",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-tertiary-fixed-variant": "#594325"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif { font-family: 'Noto Serif SC', serif; }
+        .ink-wash {
+            background: radial-gradient(circle at top right, rgba(74, 93, 78, 0.03), transparent 70%),
+                        radial-gradient(circle at bottom left, rgba(166, 137, 102, 0.03), transparent 70%);
+        }
+        body {
+          min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F4] dark:bg-[#1A1C19] flex justify-between items-center px-4 h-14 backdrop-blur-md bg-opacity-80 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#E2E3DD]" data-icon="menu">menu</span>
+<h1 class="text-xl tracking-wide text-[#334537] dark:text-[#E2E3DD] font-serif font-bold">禅理收藏</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#E2E3DD]" data-icon="search">search</span>
+</div>
+</header>
+<main class="pt-14 px-4 max-w-2xl mx-auto space-y-3 ink-wash">
+<!-- Compact Search Section -->
+<section class="py-3">
+<div class="bg-surface-container-lowest rounded-lg p-1.5 flex items-center shadow-sm border border-outline-variant/20">
+<span class="material-symbols-outlined ml-2 text-outline text-xl" data-icon="search">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 px-3 py-1 text-on-surface-variant font-body text-sm" placeholder="搜索禅理..." type="text"/>
+</div>
+</section>
+<!-- Collection List - High Density Cards -->
+<div class="space-y-3">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 shadow-sm border border-outline-variant/10 relative group">
+<div class="flex justify-between items-center mb-3">
+<div class="flex flex-col">
+<span class="text-[10px] tracking-widest text-secondary font-bold uppercase">《六祖坛经》</span>
+<p class="text-[10px] text-outline-variant">2023.10.12</p>
+</div>
+<div class="flex gap-3 text-outline group-hover:text-primary transition-colors">
+<button class="hover:text-secondary-container">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+</button>
+<button class="hover:text-error">
+<span class="material-symbols-outlined text-lg" data-icon="bookmark_remove" style="font-variation-settings: 'FILL' 1;">bookmark_remove</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg serif leading-relaxed text-on-surface">
+                心如止水，鉴常明而不疲。
+            </h3>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 pointer-events-none">
+<img class="w-full h-full object-cover opacity-10" data-alt="abstract soft focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQxxpIjURrm3cXQJlvYrtldPMTT1ym4NF--nVGFAMcE8dKScwXUecH8w4GMTEy8EfHvrmEfzsyZxsYFifKZn2sfSrJ8HWjdE9SUsIVSgsUg-gq0GP2PNW2ddivvBCuR8C2vEOSJShq7auI6G7uHfil7OYpeKLkCpfYvgmhopRp-yBZvk4L9zIG6R69C2IqzQKGskDSVYTry_XTMX2cobg5qdQjoGzY52QCWCtOm-hZH1OnqBDDjmXonwP_cmKk8AxfocfAVDEYv9Q9"/>
+</div>
+<div class="flex justify-between items-center mb-3">
+<div class="flex flex-col">
+<span class="text-[10px] tracking-widest text-secondary font-bold uppercase">《心经》</span>
+<p class="text-[10px] text-outline-variant">2023.09.28</p>
+</div>
+<div class="flex gap-3 text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+<span class="material-symbols-outlined text-lg" data-icon="bookmark_remove" style="font-variation-settings: 'FILL' 1;">bookmark_remove</span>
+</div>
+</div>
+<h3 class="text-lg serif leading-relaxed text-on-surface">
+                色即是空，空即是色。受想行识，亦复如是。
+            </h3>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-5 shadow-sm border border-outline-variant/10 relative">
+<div class="flex justify-between items-center mb-3">
+<div class="flex flex-col">
+<span class="text-[10px] tracking-widest text-secondary font-bold uppercase">随笔笔记</span>
+<p class="text-[10px] text-outline-variant">2023.08.15</p>
+</div>
+<div class="flex gap-3 text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+<span class="material-symbols-outlined text-lg" data-icon="bookmark_remove" style="font-variation-settings: 'FILL' 1;">bookmark_remove</span>
+</div>
+</div>
+<h3 class="text-lg serif leading-relaxed text-on-surface">
+                万物皆有裂痕，那是光照进来的地方。
+            </h3>
+</div>
+<!-- Card 4 (Image Focus) -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm border border-outline-variant/10">
+<div class="h-32 w-full relative">
+<img class="w-full h-full object-cover" data-alt="serene beach" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIYivBcaXELAQ7gr545MljOootgcpzE2oFYrZ8jkN-OoN-HMgnUs-uDJA7OkEMh6Fbww2z0-vNnIeRhXMWdpb-7cjLlqBzj9FLfWmbsOaB7u6BKnTey-6G1x4IJncpCoNPJKgVM8e4_VHQ1gGVg5g24LEajovRxMLwrsrSg2iCWbSkUUVA2bTcKR06PFNYLwH_wTQp59147VvOQcfCaihtlkJ1Epi5viPT9we4tW9pSSIyqY-RkbIatmabW22nDLQDlf39DW8zJRMp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/20 to-transparent"></div>
+</div>
+<div class="p-5 -mt-8 relative">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] tracking-widest text-secondary font-bold uppercase">《金刚经》</span>
+<div class="flex gap-3 text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+<span class="material-symbols-outlined text-sm" data-icon="bookmark_remove" style="font-variation-settings: 'FILL' 1;">bookmark_remove</span>
+</div>
+</div>
+<h3 class="text-lg serif leading-relaxed text-on-surface">
+                    凡所有相，皆是虚妄。若见诸相非相，即见如来。
+                </h3>
+</div>
+</div>
+</div>
+<!-- Minimal Spacer -->
+<div class="h-10"></div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe px-6 bg-[#FAF9F4]/95 dark:bg-[#1A1C19]/95 border-t border-[#334537]/10 backdrop-blur-lg">
+<div class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#E2E3DD]/40 hover:text-[#334537] dark:hover:text-[#C9B037]">
+<span class="material-symbols-outlined text-xl" data-icon="library_music">library_music</span>
+<span class="font-body text-[11px] font-medium tracking-tight mt-0.5">梵音</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#334537] dark:text-[#C9B037]">
+<span class="material-symbols-outlined text-xl" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-body text-[11px] font-medium tracking-tight mt-0.5">禅理</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#E2E3DD]/40 hover:text-[#334537] dark:hover:text-[#C9B037]">
+<span class="material-symbols-outlined text-xl" data-icon="person">person</span>
+<span class="font-body text-[11px] font-medium tracking-tight mt-0.5">我的</span>
+</div>
+</nav>
+</body></html>

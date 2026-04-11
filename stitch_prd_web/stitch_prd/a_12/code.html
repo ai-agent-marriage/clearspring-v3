@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>订单详情&amp;管控 | The Breath of Silence</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#efeee9",
+                        "primary": "#334537",
+                        "on-background": "#1b1c19",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary-container": "#fee264",
+                        "background": "#faf9f4",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-dim": "#dbdad5",
+                        "inverse-surface": "#30312e",
+                        "outline": "#737872",
+                        "on-primary-container": "#c0d5c2",
+                        "outline-variant": "#c3c8c1",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#faf9f4",
+                        "surface-container-highest": "#e3e2de",
+                        "secondary-fixed": "#fee264",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "inverse-primary": "#b7ccb9",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#d3e8d5",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface": "#faf9f4",
+                        "on-surface-variant": "#434843",
+                        "surface-variant": "#e3e2de",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary-container": "#756400",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f5f4ef",
+                        "tertiary": "#533d20",
+                        "on-surface": "#1b1c19",
+                        "on-secondary-fixed": "#211b00",
+                        "surface-tint": "#506354",
+                        "tertiary-container": "#6d5435",
+                        "secondary": "#6e5e00",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-tertiary-fixed": "#291801",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f4; color: #1b1c19; }
+        .font-serif { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .whisper-shadow { box-shadow: 0 12px 40px rgba(74, 93, 78, 0.06); }
+        .glass-header { background: rgba(250, 249, 244, 0.4); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<aside class="fixed left-0 top-0 h-full flex flex-col p-6 z-40 bg-[#EFEEE9] dark:bg-[#334537] w-64 border-r border-[#334537]/10">
+<div class="mb-10">
+<h1 class="font-serif text-2xl text-[#334537] dark:text-[#EFEEE9] italic">Digital Sanctuary</h1>
+<p class="text-xs tracking-widest text-primary/60 uppercase mt-1">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9]/80 hover:bg-[#4A5D4E]/5 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-sans tracking-wide">监管总览</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-[#4A5D4E] text-[#FAF9F4] rounded-lg shadow-sm font-medium" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-sans tracking-wide">用户名录</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9]/80 hover:bg-[#4A5D4E]/5 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="text-sm font-sans tracking-wide">合规审核</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9]/80 hover:bg-[#4A5D4E]/5 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="text-sm font-sans tracking-wide">避难所日志</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#4A5D4E] dark:text-[#EFEEE9]/80 hover:bg-[#4A5D4E]/5 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="text-sm font-sans tracking-wide">基础设置</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-primary/5 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-primary/70 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">contact_support</span>
+<span>技术支持</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm text-error/70 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span>退出登录</span>
+</a>
+</div>
+</aside>
+<main class="ml-64 min-h-screen pb-32">
+<header class="sticky top-0 z-30 glass-header border-none px-8 py-6 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-xs font-bold tracking-tighter">ORDER #BS-99281-2024</span>
+<h2 class="font-serif text-2xl text-primary italic">订单详情</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-4 py-2 bg-secondary-container/20 text-secondary rounded-full">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="text-xs font-bold tracking-wide">进行中 (已受理)</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined text-primary">notifications</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors"><span class="material-symbols-outlined text-primary">settings</span></button>
+</div>
+</div>
+</header>
+<section class="px-8 mt-4">
+<div class="bg-surface-container-low rounded-xl p-10 whisper-shadow">
+<div class="relative flex justify-between items-center">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-primary/10 -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 w-1/2 h-[2px] bg-primary -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-xs font-bold text-primary">已支付</span>
+<span class="text-[10px] text-primary/40">2024-05-20 10:30</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-xs font-bold text-primary">已受理</span>
+<span class="text-[10px] text-primary/40">2024-05-20 14:15</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest border-4 border-primary text-primary flex items-center justify-center shadow-md">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<span class="text-xs font-bold text-primary">执行中</span>
+<span class="text-[10px] text-primary/40">预计今日完成</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">hourglass_empty</span>
+</div>
+<span class="text-xs font-medium text-primary/40">待确认</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">done_all</span>
+</div>
+<span class="text-xs font-medium text-primary/40">已完成</span>
+</div>
+</div>
+</div>
+</section>
+<section class="px-8 mt-8">
+<div class="flex gap-8 border-b border-primary/5 mb-8 overflow-x-auto">
+<button class="pb-4 px-2 text-[#334537] font-bold border-b-2 border-[#6e5e00] transition-all whitespace-nowrap">基本信息</button>
+<button class="pb-4 px-2 text-[#4A5D4E]/70 hover:text-primary transition-all whitespace-nowrap">用户信息</button>
+<button class="pb-4 px-2 text-[#4A5D4E]/70 hover:text-primary transition-all whitespace-nowrap">执行材料</button>
+<button class="pb-4 px-2 text-[#4A5D4E]/70 hover:text-primary transition-all whitespace-nowrap">财务日志</button>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<div class="col-span-8 space-y-8">
+<div class="bg-surface-container-low rounded-xl p-8 whisper-shadow">
+<h3 class="font-serif text-xl text-primary mb-6 italic">核心详情</h3>
+<div class="grid grid-cols-2 gap-y-6 gap-x-12">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary/40 mb-1">服务项目</p>
+<p class="text-sm font-medium text-primary">深层呼吸冥想引导 (Forest Edge Edition)</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary/40 mb-1">执行地点</p>
+<p class="text-sm font-medium text-primary">北温带数字保护区 - 12号地块</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary/40 mb-1">预约时段</p>
+<p class="text-sm font-medium text-primary">2024-05-21 09:00 AM - 11:30 AM</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-primary/40 mb-1">专属顾问</p>
+<div class="flex items-center gap-2">
+<img alt="Advisor" class="w-5 h-5 rounded-full" data-alt="close-up portrait of a professional male advisor in a neutral grey studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU97EWlDlM0khjbCq7HmwtTfWXt79giBdZDGSq04FlapNnifVumTRautCvZnbhxn4rtBCE1EHtM9afhm5iKbCWbVq8isHU6kfh-_5DunaQTUx915YiO2XKBC6g5owgEUeWVLez2FsAe9ALtBS4Eju7RHC1srC1qLjjiiBbTsZpXCkP4ctGQ7ZurPHFaCoVEgtCGr4lxbQnONkvOCJOn75j7iE-Mm21nlbKqNSjw6Px-yqbSZqSv2gc5ywmtPyDa1LUbAlhR-uU6VxI"/>
+<span class="text-sm font-medium text-primary">Dr. Elias Vance</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-8 whisper-shadow">
+<h3 class="font-serif text-xl text-primary mb-6 italic">执行材料 (实时快照)</h3>
+<div class="grid grid-cols-3 gap-4">
+<div class="aspect-square bg-surface-container-high rounded-lg overflow-hidden group relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="foggy pine forest in early morning light with soft green and grey tones reflecting peace and silence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9pw3AJG2Y9Qs0UPppvON85QFBwQlANrKsuyJiRl8QHwITyXlp0imfiIoZdVMgAafMX1aLkY6j9f7jdwCHs0eCLp8tivWhluPfWEE4xaZpRW0IOx0BnsB5umEJuShvk7b7ps1gmFlHiJyvNmv7SEGXbCj7GnJ5WimnZHPoEpoUO-FRO9SsmIMSSMO4QqbtRWIsLh2aPLXB2Yhu-gx588zMjMJlPIyp1BACJj0rzrf8mSpU1q42eYJerGr7_PfSNC0AAamlcxmP5Lx0"/>
+<div class="absolute bottom-2 left-2 px-2 py-1 bg-black/40 backdrop-blur-md rounded text-[10px] text-white">现场环境 09:12</div>
+</div>
+<div class="aspect-square bg-surface-container-high rounded-lg overflow-hidden group relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="minimalist wooden yoga studio interior with soft natural light streaming through a large window overlooking a garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlSawC_NuxvzgFLYL78eYS0e9CSSlcXoO96HSnIuqaGqvVuvce5SoSwSoF2FjDG3dNuWU2hZDIarZ5qO0Q-TAMAP9dCVx5GUagdTzBi3Hy6ihZikv8TYKKzJEXzKeCozdY1NYUrsIXh9TPQ4Kn5d9r7F9rrTGUsbSbGwSNuFyKscTnSK2yeeZnBF1UYYFvjKh8AInbxJDRBfm2Hr2NLWk_4ZapNX7UjoOTsjdIDkJIxePPxBlSIkebl30wSvSM0s-mfSAYdcZObaFL"/>
+<div class="absolute bottom-2 left-2 px-2 py-1 bg-black/40 backdrop-blur-md rounded text-[10px] text-white">执行舱内 10:05</div>
+</div>
+<div class="aspect-square bg-surface-container-high rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-primary/10 hover:border-primary/30 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-primary/30 group-hover:text-primary transition-colors">add_a_photo</span>
+<span class="text-[10px] mt-2 text-primary/40 group-hover:text-primary">上传更多</span>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-4 space-y-8">
+<div class="bg-primary-container text-on-primary-container rounded-xl p-8 whisper-shadow">
+<h3 class="font-serif text-lg mb-6 italic text-[#FAF9F4]">资金摘要</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-white/10 pb-4">
+<span class="text-xs opacity-70">订单总额</span>
+<span class="text-xl font-serif text-secondary-container">¥ 12,800.00</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="opacity-70">预付款</span>
+<span>¥ 3,000.00</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="opacity-70">尾款 (待结算)</span>
+<span>¥ 9,800.00</span>
+</div>
+<button class="w-full mt-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold text-xs tracking-widest uppercase hover:opacity-90 transition-opacity">
+                                结算详情
+                            </button>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-8 whisper-shadow border border-primary/5">
+<h3 class="font-serif text-lg text-primary mb-6 italic">操作记录</h3>
+<div class="space-y-6 relative">
+<div class="absolute left-[11px] top-2 h-full w-[1px] bg-primary/10"></div>
+<div class="relative flex gap-4 pl-8">
+<div class="absolute left-0 top-1 w-[22px] h-[22px] rounded-full bg-surface-container-low border-2 border-primary flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">管理员受理订单</p>
+<p class="text-[10px] text-primary/50 mt-1">系统管理员 (Admin_01) • 14:15</p>
+</div>
+</div>
+<div class="relative flex gap-4 pl-8">
+<div class="absolute left-0 top-1 w-[22px] h-[22px] rounded-full bg-surface-container-low border-2 border-primary/20 flex items-center justify-center">
+<div class="w-1.5 h-1.5 rounded-full bg-primary/20"></div>
+</div>
+<div>
+<p class="text-xs font-medium text-primary/60">用户成功支付</p>
+<p class="text-[10px] text-primary/50 mt-1">WeChat Pay • 10:30</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="fixed bottom-0 left-64 right-0 glass-header p-6 whisper-shadow z-40 border-t border-primary/5">
+<div class="max-w-7xl mx-auto flex items-end gap-6">
+<div class="flex-1">
+<label class="block text-[10px] uppercase tracking-widest text-primary/50 mb-2 ml-1">管控操作 (状态变更)</label>
+<div class="grid grid-cols-12 gap-4">
+<div class="col-span-4 relative">
+<select class="w-full bg-surface-container-high border-none rounded-lg py-3 px-4 text-sm text-primary focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
+<option>标记为：已确认 (Confirmed)</option>
+<option>标记为：异常需处理 (Exception)</option>
+<option>标记为：已完成结算 (Finalized)</option>
+<option>取消该订单 (Canceled)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-primary/40">expand_more</span>
+</div>
+<div class="col-span-8">
+<input class="w-full bg-surface-container-high border-none rounded-lg py-3 px-4 text-sm text-primary placeholder:text-primary/30 focus:ring-2 focus:ring-primary" placeholder="请输入操作理由或备注信息（选填）..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-8 py-3 bg-primary text-white rounded-lg font-bold text-sm tracking-wide hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">publish</span>
+                        提交变更
+                    </button>
+<button class="p-3 text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">print</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

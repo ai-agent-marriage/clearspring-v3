@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>自主护生登记 - 护生功德林</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f5f4ef",
+                        "on-secondary-fixed-variant": "#534600",
+                        "on-primary-container": "#c0d5c2",
+                        "on-surface-variant": "#434843",
+                        "surface-container-high": "#e9e8e3",
+                        "secondary-container": "#fee264",
+                        "surface-tint": "#506354",
+                        "on-secondary-container": "#756400",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#6d5435",
+                        "on-secondary-fixed": "#211b00",
+                        "surface-container-highest": "#e3e2de",
+                        "on-tertiary-fixed": "#291801",
+                        "on-surface": "#1b1c19",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-dim": "#dbdad5",
+                        "on-background": "#1b1c19",
+                        "surface-bright": "#faf9f4",
+                        "tertiary-fixed": "#ffddb6",
+                        "on-tertiary": "#ffffff",
+                        "background": "#faf9f4",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#c3c8c1",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-container": "#efeee9",
+                        "outline": "#737872",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ebcaa3",
+                        "inverse-primary": "#b7ccb9",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-variant": "#e3e2de",
+                        "tertiary": "#533d20",
+                        "primary-fixed": "#d3e8d5",
+                        "secondary": "#6e5e00",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "primary": "#334537",
+                        "inverse-surface": "#30312e",
+                        "surface": "#faf9f4",
+                        "secondary-fixed": "#fee264"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF9F4; }
+        .serif-text { font-family: 'Noto Serif SC', serif; }
+        .ink-wash-header {
+            background: linear-gradient(to bottom, #334537, #4A5D4E);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface pb-32">
+<!-- Top Navigation Bar -->
+<header class="ink-wash-header fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 shadow-none">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white cursor-pointer">arrow_back</span>
+<h1 class="serif-text text-xl font-bold text-white tracking-wide">自主护生登记</h1>
+</div>
+<div>
+<span class="material-symbols-outlined text-stone-300">more_horiz</span>
+</div>
+</header>
+<main class="mt-20 px-4 space-y-6 max-w-2xl mx-auto">
+<!-- Compliance Commitment Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_rgba(74,93,78,0.04)]">
+<h2 class="serif-text text-lg text-primary mb-3">《科学护生合规承诺书》</h2>
+<div class="h-32 overflow-y-auto text-sm text-on-surface-variant leading-relaxed bg-surface-container-low p-4 rounded-lg mb-4">
+<p>为维护生态平衡，本人在此郑重承诺：</p>
+<p>1. 严格遵守国家相关法律法规，不投放任何外来入侵物种（如巴西龟、鳄龟、福寿螺等）。</p>
+<p>2. 仅在政府允许的指定水域进行自主护生活动。</p>
+<p>3. 关注物种健康状况，确保投放过程符合动物福利要求。</p>
+<p>4. 护生现场保持环境整洁，不遗留任何塑料包装或废弃物。</p>
+<p>5. 坚持科学精神，以保护当地生态多样性为首要原则。</p>
+</div>
+<label class="flex items-start gap-3 cursor-pointer">
+<input class="mt-1 w-5 h-5 rounded border-outline text-primary focus:ring-primary-container" type="checkbox"/>
+<span class="text-sm text-on-surface font-medium">我已阅读并承诺严格遵守合规要求</span>
+</label>
+</section>
+<!-- Form Section -->
+<form class="space-y-8 pb-10">
+<div class="space-y-6">
+<!-- Date Picker -->
+<div class="relative">
+<label class="block text-xs font-semibold text-primary mb-2 uppercase tracking-wider">* 护生日期</label>
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center justify-between border-b-2 border-transparent focus-within:border-primary transition-all">
+<input class="bg-transparent border-none p-0 w-full focus:ring-0 text-on-surface text-lg" type="date" value="2024-05-20"/>
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+</div>
+</div>
+<!-- Water Body -->
+<div class="relative">
+<label class="block text-xs font-semibold text-primary mb-2 uppercase tracking-wider">* 投放水域</label>
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center border-b-2 border-transparent focus-within:border-primary transition-all">
+<input class="bg-transparent border-none p-0 w-full focus:ring-0 text-on-surface" placeholder="选择或输入投放水域名称" type="text"/>
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+</div>
+<!-- Species Selection -->
+<div class="relative">
+<label class="block text-xs font-semibold text-primary mb-2 uppercase tracking-wider">* 护生物种</label>
+<select class="w-full bg-surface-container-low rounded-lg p-4 border-none text-on-surface focus:ring-2 focus:ring-primary appearance-none">
+<option disabled="" selected="" value="">仅可选合规物种</option>
+<option value="grass_carp">草鱼</option>
+<option value="silver_carp">白鲢</option>
+<option value="crucian_carp">鲫鱼</option>
+<option value="native_turtle">本土草龟</option>
+</select>
+<div class="absolute right-4 bottom-4 pointer-events-none">
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+</div>
+<!-- Quantity -->
+<div class="relative">
+<label class="block text-xs font-semibold text-primary mb-2 uppercase tracking-wider">* 投放数量</label>
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center border-b-2 border-transparent focus-within:border-primary transition-all">
+<input class="bg-transparent border-none p-0 w-full focus:ring-0 text-on-surface" placeholder="输入投放数量" type="number"/>
+<span class="text-primary-container font-semibold ml-2">条/只</span>
+</div>
+</div>
+<!-- Photo Upload -->
+<div>
+<label class="block text-xs font-semibold text-primary mb-3 uppercase tracking-wider">* 现场照片上传 (0/6)</label>
+<div class="grid grid-cols-3 gap-3">
+<div class="aspect-square bg-surface-container-high rounded-xl flex items-center justify-center border-2 border-dashed border-outline-variant hover:bg-surface-container-highest cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">add_a_photo</span>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-xl border border-outline-variant/30 overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="close-up of clean natural lake water surface with small ripples and soft morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo_H9aB00SfkzRFBKAH0EBltougs5XHN-Ezon7gaI9EILvFK2cZZW3H8JYHxh5B1w9qB5zWu7b9j-nP7nih6VsVknph6qZnIFbwjmz3W88HJamGpW2YcFtypUdJLwhEZ_jYTW95GQiiweJ_q9ppxvNIQTIz2wBuOnbQY7lJZ0e1-6lWg-maL1Dr8xJkCeIIYXw4Pu_ulGQWfFWRjUdbeeAeZlsf8mP8DgtYnqTOoosjuDiN18ND-DfxVieRyKH1vrTFzbBRHj1y0q1"/>
+<button class="absolute top-1 right-1 bg-black/40 text-white rounded-full p-1"><span class="material-symbols-outlined text-xs">close</span></button>
+</div>
+<div class="aspect-square bg-surface-container-high rounded-xl"></div>
+<div class="aspect-square bg-surface-container-high rounded-xl"></div>
+<div class="aspect-square bg-surface-container-high rounded-xl"></div>
+<div class="aspect-square bg-surface-container-high rounded-xl"></div>
+</div>
+</div>
+<!-- Wishes -->
+<div class="relative">
+<label class="block text-xs font-semibold text-primary mb-2 uppercase tracking-wider">护生心愿</label>
+<div class="bg-surface-container-low rounded-lg p-4 border-b-2 border-transparent focus-within:border-primary transition-all">
+<textarea class="bg-transparent border-none p-0 w-full focus:ring-0 text-on-surface resize-none" placeholder="愿以此功德，普及于一切..." rows="4"></textarea>
+<div class="text-right text-[10px] text-outline mt-2">0/200</div>
+</div>
+</div>
+</div>
+</form>
+</main>
+<!-- Bottom Action Button -->
+<div class="fixed bottom-16 inset-x-0 p-4 bg-surface/80 backdrop-blur-sm z-40">
+<button class="w-full bg-[#4A5D4E] text-white py-4 rounded-xl font-semibold shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">send</span>
+            提交护生记录
+        </button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#FAF9F4]/90 backdrop-blur-md flex justify-around items-center px-4 py-2 shadow-[0_-4px_20px_rgba(74,93,78,0.06)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-stone-500 px-4 py-1 hover:bg-stone-200 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="library_music">library_music</span>
+<span class="text-[10px] mt-1 font-medium">梵音</span>
+</a>
+<!-- Active Tab: 禅理 -->
+<a class="flex flex-col items-center justify-center bg-[#C9B037] text-[#334537] rounded-xl px-4 py-1 scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+<span class="text-[10px] mt-1 font-medium">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-500 px-4 py-1 hover:bg-stone-200 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] mt-1 font-medium">我的</span>
+</a>
+</nav>
+</body></html>

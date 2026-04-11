@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>投诉与售后管理 - Breath of Silence Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#533d20",
+                    "surface-variant": "#e3e2de",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#6d5435",
+                    "background": "#faf9f4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#c0d5c2",
+                    "inverse-primary": "#b7ccb9",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-primary-fixed": "#0e1f13",
+                    "surface-bright": "#faf9f4",
+                    "surface-container": "#efeee9",
+                    "secondary-container": "#fee264",
+                    "surface": "#faf9f4",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "outline-variant": "#c3c8c1",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d3e8d5",
+                    "outline": "#737872",
+                    "on-secondary-container": "#756400",
+                    "surface-dim": "#dbdad5",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#fee264",
+                    "on-tertiary-fixed": "#291801",
+                    "primary-container": "#4a5d4e",
+                    "secondary": "#6e5e00",
+                    "surface-tint": "#506354",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1b1c19",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "on-surface": "#1b1c19",
+                    "on-surface-variant": "#434843",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-container-high": "#e9e8e3",
+                    "inverse-surface": "#30312e",
+                    "surface-container-highest": "#e3e2de",
+                    "on-secondary-fixed-variant": "#534600",
+                    "primary": "#334537",
+                    "tertiary-fixed": "#ffddb6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, #FAF9F4 0%, #EFEEE9 50%, #E3E2DE 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ink-wash-bg::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(74, 93, 78, 0.03) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, #FAF9F4 0%, rgba(250, 249, 244, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed">
+<!-- SideNavBar Shell -->
+<nav class="fixed left-0 top-0 bottom-0 w-64 bg-[#EFEEE9] dark:bg-stone-950 flex flex-col h-full py-8 pl-4 z-50">
+<div class="font-['Noto_Serif'] text-2xl text-[#334537] mb-8">The Sanctuary</div>
+<div class="flex items-center space-x-3 mb-10 pl-2">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="profile avatar of a professional administrator in a minimalist style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2O4fml-X7CmP9kwiBJWoxgsqH8DfKY7s2Zv2Drl0N8zBkJFMsoZBCeiUQYi3oiS6ImxZH71L-qm5MRh3Wh9PF6b-Uneo1F9PdWKAni8yW-SNNAzWOqtd0LFeFWaY3xfSi8g03HTtohCxKU2Gsyk_9QGuvH4whzZ6hlj9fmKeRKSQ0LqeuCEJrDuRd_RLW-AV6VyxejM0YPkrgFwRP9C25mENtL6pOOTVbV-gtruPI9mmEy6pkWWEkDoEDHHWuwiwUv38b8yGVpgEv"/>
+</div>
+<div>
+<p class="font-bold text-sm text-[#334537]">Super Admin Console</p>
+<p class="text-xs text-[#334537]/50 italic">Enlightenment Mode</p>
+</div>
+</div>
+<div class="flex flex-col space-y-1 pr-4">
+<a class="flex items-center space-x-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>仪表盘</span>
+</a>
+<a class="flex items-center space-x-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>用户管理</span>
+</a>
+<a class="flex items-center space-x-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>订单全流程管理</span>
+</a>
+<a class="text-[#334537] font-bold bg-[#FAF9F4] rounded-r-full py-3 px-6 -ml-4 shadow-sm flex items-center space-x-3 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed" href="#">
+<span class="material-symbols-outlined" data-icon="gavel" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<span>内容与合规管理</span>
+</a>
+<a class="flex items-center space-x-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>财务管理</span>
+</a>
+<a class="flex items-center space-x-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>系统设置</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-[#FAF9F4]/40 backdrop-blur-xl flex justify-between items-center px-8 w-full z-40 shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537] mr-4 cursor-pointer" data-icon="search">search</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm tracking-tight text-[#334537]/60">搜索投诉编号、订单或用户信息...</span>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative">
+<span class="material-symbols-outlined text-[#334537] cursor-pointer" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-[#334537] cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen ink-wash-bg">
+<!-- Header Section -->
+<header class="mb-10 flex justify-between items-end">
+<div>
+<h1 class="font-headline text-4xl font-bold text-primary mb-2">投诉与售后管理</h1>
+<p class="text-on-surface-variant font-body">维护平台秩序，聆听用户声音。所有申诉应在24小时内给予初步响应。</p>
+</div>
+<div class="flex space-x-4">
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-medium flex items-center space-x-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="export_notes">export_notes</span>
+<span>导出报表</span>
+</button>
+</div>
+</header>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-error shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">待处理投诉</p>
+<div class="flex items-end space-x-2">
+<span class="text-3xl font-headline font-bold text-primary">12</span>
+<span class="text-error text-xs mb-1 font-bold">+3 较昨日</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-secondary shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">处理中申诉</p>
+<div class="flex items-end space-x-2">
+<span class="text-3xl font-headline font-bold text-primary">28</span>
+<span class="text-on-surface-variant text-xs mb-1">保持平稳</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-primary shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">今日已解决</p>
+<div class="flex items-end space-x-2">
+<span class="text-3xl font-headline font-bold text-primary">45</span>
+<span class="text-primary text-xs mb-1 font-bold">92% 满意度</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl border-l-4 border-tertiary shadow-sm">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">平均响应时长</p>
+<div class="flex items-end space-x-2">
+<span class="text-3xl font-headline font-bold text-primary">1.2h</span>
+<span class="text-primary text-xs mb-1 font-bold">-15% 优化</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-low rounded-2xl p-6 mb-8 flex flex-wrap items-center gap-6 shadow-sm">
+<div class="flex items-center space-x-3">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">状态筛选</label>
+<div class="flex bg-surface-variant/30 rounded-full p-1">
+<button class="px-5 py-1.5 rounded-full text-xs font-bold bg-secondary-container text-on-secondary-container shadow-sm">全部</button>
+<button class="px-5 py-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:text-primary transition-colors">待处理</button>
+<button class="px-5 py-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:text-primary transition-colors">处理中</button>
+<button class="px-5 py-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:text-primary transition-colors">已解决</button>
+</div>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center space-x-3">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">反馈类型</label>
+<select class="bg-transparent border-b border-outline-variant focus:border-primary outline-none py-1 text-sm font-medium">
+<option>所有类型</option>
+<option>服务质量</option>
+<option>支付纠纷</option>
+<option>系统故障</option>
+<option>其他</option>
+</select>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center space-x-3">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">时间范围</label>
+<div class="flex items-center bg-surface-container-high rounded-lg px-3 py-1.5 cursor-pointer hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-sm mr-2" data-icon="calendar_today">calendar_today</span>
+<span class="text-xs font-medium">2023.11.01 - 2023.11.07</span>
+</div>
+</div>
+<button class="ml-auto flex items-center space-x-2 text-primary hover:underline font-bold text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+<span>重置所有过滤器</span>
+</button>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/10">
+<th class="px-8 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest">投诉编号</th>
+<th class="px-6 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest">用户信息</th>
+<th class="px-6 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest">订单编号</th>
+<th class="px-6 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest">反馈类型</th>
+<th class="px-6 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest w-1/4">投诉内容</th>
+<th class="px-6 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest">提交时间</th>
+<th class="px-6 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest">当前状态</th>
+<th class="px-8 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-widest text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<span class="font-mono text-sm font-bold text-primary">#CP-98231</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] text-white font-bold">ZS</div>
+<div>
+<p class="text-sm font-bold">张舒 (Level 3)</p>
+<p class="text-[10px] text-on-surface-variant">138****9922</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<a class="text-sm font-medium text-primary underline decoration-outline-variant underline-offset-4 hover:decoration-primary" href="#">ORD-77420</a>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[11px] font-bold text-on-surface-variant">服务质量</span>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm text-on-surface-variant line-clamp-1">导师在静修课程中响应迟缓，且环境噪音较大...</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium">10-24 14:30</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+<span class="text-xs font-bold text-error">待处理</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end space-x-3">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-lg text-xs font-bold hover:shadow-lg transition-shadow">处理</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<span class="font-mono text-sm font-bold text-primary">#CP-98230</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-[10px] text-primary font-bold">LW</div>
+<div>
+<p class="text-sm font-bold">李伟 (Level 1)</p>
+<p class="text-[10px] text-on-surface-variant">159****0031</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<a class="text-sm font-medium text-primary underline decoration-outline-variant underline-offset-4 hover:decoration-primary" href="#">ORD-77399</a>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[11px] font-bold text-on-surface-variant">支付纠纷</span>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm text-on-surface-variant line-clamp-1">重复扣费，已联系银行确认，请尽快退回金额。</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium">10-24 12:15</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="text-xs font-bold text-secondary">处理中</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end space-x-3">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+<button class="px-4 py-1.5 border border-outline text-primary rounded-lg text-xs font-bold hover:bg-primary/5 transition-colors">跟进</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group opacity-60">
+<td class="px-8 py-5">
+<span class="font-mono text-sm font-bold text-primary">#CP-98229</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<img class="w-8 h-8 rounded-full border border-outline-variant" data-alt="minimalist avatar icon for user Wang" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClPBWMeKn9nMXELvvFtr-QNMe7mI-WOrVROeRHeGWNtM-CIX9K7pd62OGtOcHLkT5udGgX9DEZ2N34_qQAsMtcApSz56hdj6QOAiMZmV_wJmYNNfwSjDxnVrlaKwNhuTsE9azos0ZFwn4wH-TgYHUm0rw6KKSIG4MckWyfZQua_4wGqhWGPrbpAJIwOLj5muJPo_iZ5lHSJLSrckii6bfAD2wmuX7z2lmVNyV0XXH43YPH5skgb4h_OztoRMzhKUJFvHArg7cvt7b4"/>
+<div>
+<p class="text-sm font-bold">王曼 (Level 5)</p>
+<p class="text-[10px] text-on-surface-variant">177****5566</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<a class="text-sm font-medium text-primary underline decoration-outline-variant underline-offset-4 hover:decoration-primary" href="#">ORD-77112</a>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[11px] font-bold text-on-surface-variant">系统故障</span>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm text-on-surface-variant line-clamp-1">App在进入冥想模式时频繁闪退，已录屏演示。</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium">10-23 18:44</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="text-xs font-bold text-primary-container">已解决</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end space-x-3">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="history">history</span>
+</button>
+<button class="px-4 py-1.5 border border-outline-variant text-on-surface-variant rounded-lg text-xs font-bold cursor-not-allowed">已归档</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-5">
+<span class="font-mono text-sm font-bold text-primary">#CP-98228</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] text-on-secondary-container font-bold">ZM</div>
+<div>
+<p class="text-sm font-bold">赵敏 (Level 2)</p>
+<p class="text-[10px] text-on-surface-variant">133****4488</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<a class="text-sm font-medium text-primary underline decoration-outline-variant underline-offset-4 hover:decoration-primary" href="#">ORD-77004</a>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-surface-container rounded-full text-[11px] font-bold text-on-surface-variant">服务质量</span>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm text-on-surface-variant line-clamp-1">课程预约被取消后未及时收到系统通知...</p>
+</td>
+<td class="px-6 py-5">
+<p class="text-sm font-medium">10-23 09:12</p>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+<span class="text-xs font-bold text-error">待处理</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end space-x-3">
+<button class="p-2 hover:bg-surface-variant rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-xl" data-icon="visibility">visibility</span>
+</button>
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-lg text-xs font-bold hover:shadow-lg transition-shadow">处理</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-8 py-6 bg-surface-container-low/30 border-t border-outline-variant/10 flex items-center justify-between">
+<p class="text-xs font-medium text-on-surface-variant">显示 1 到 4，共 128 条记录</p>
+<div class="flex items-center space-x-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-on-primary text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors text-xs font-medium">2</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors text-xs font-medium">3</button>
+<span class="text-xs text-on-surface-variant px-2">...</span>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors text-xs font-medium">12</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Policy Note -->
+<footer class="mt-12 text-center">
+<div class="inline-flex items-center space-x-3 text-on-surface-variant/40 bg-surface-container/50 px-6 py-3 rounded-full border border-outline-variant/20">
+<span class="material-symbols-outlined text-sm" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="text-[11px] font-medium tracking-widest uppercase">所有数据处理遵循《Breath of Silence 安全合规协议 2023》</span>
+</div>
+</footer>
+</main>
+</body></html>

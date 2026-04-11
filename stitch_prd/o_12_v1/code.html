@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#ebcaa3",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#291801",
+                    "surface": "#faf9f4",
+                    "secondary-container": "#fee264",
+                    "inverse-surface": "#30312e",
+                    "primary-fixed": "#d3e8d5",
+                    "surface-variant": "#e3e2de",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "primary-container": "#4a5d4e",
+                    "on-secondary-container": "#756400",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "tertiary": "#533d20",
+                    "inverse-primary": "#b7ccb9",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c3c8c1",
+                    "on-surface": "#1b1c19",
+                    "surface-container-highest": "#e3e2de",
+                    "tertiary-container": "#6d5435",
+                    "outline": "#737872",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#c0d5c2",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#faf9f4",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "background": "#faf9f4",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-dim": "#dbdad5",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#434843",
+                    "on-primary-fixed": "#0e1f13",
+                    "surface-tint": "#506354",
+                    "primary": "#334537",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-secondary-fixed": "#211b00",
+                    "on-background": "#1b1c19",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container-high": "#e9e8e3",
+                    "secondary-fixed": "#fee264",
+                    "surface-container": "#efeee9",
+                    "secondary": "#6e5e00",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-low": "#f5f4ef"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.02) 0%, transparent 50%);
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen selection:bg-secondary-container/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#334537] hover:bg-[#334537]/5 p-2 rounded-full transition-colors duration-200 ease-in-out scale-95" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-serif text-xl tracking-tight text-[#334537]">机构账户设置</h1>
+</div>
+<button class="material-symbols-outlined text-[#334537] hover:bg-[#334537]/5 p-2 rounded-full transition-colors duration-200 ease-in-out scale-95" data-icon="more_vert">more_vert</button>
+</header>
+<main class="pt-20 pb-28 px-4 max-w-2xl mx-auto space-y-6 ink-wash-gradient">
+<!-- Quick Action Section -->
+<section class="mt-4">
+<button class="w-full flex items-center justify-between p-5 bg-surface-container-low rounded-xl group hover:bg-surface-container-high transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+</div>
+<div class="text-left">
+<p class="font-headline text-lg text-primary tracking-tight">Create Account</p>
+<p class="text-sm text-on-surface-variant font-body">添加新的机构子账户或成员</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</section>
+<!-- High-Density User List -->
+<section class="space-y-3">
+<div class="flex justify-between items-end px-2 mb-2">
+<h2 class="text-primary font-headline text-xl">账户列表</h2>
+<span class="text-xs font-label uppercase tracking-widest text-outline">共 12 位成员</span>
+</div>
+<div class="space-y-0.5 rounded-2xl overflow-hidden shadow-sm">
+<!-- User Entry 1 -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-200">
+<div class="relative">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="professional portrait of a senior administrator in a minimalist office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUazlTkBHqP9rbYMaPnd4r67-z6VTUTPVX3uFqt1ILVcOTfH3GKEvrXydIEFhuS474p3dPnRrUaBcbG_LvmF0QJzDdoXsOxgMTDg7N7tVKta0pWa1zdQzJBIOzy1sn-r9h7Cvv4eXCzUpFustdZnqkypEIFnaKmalG4pcRsy0fcasOfXkM4bmhN8qF0eLMCeMcoCQ2ODXr5lyvpE29mNUPx5AaKxaq_lVokXb1D4G7uowbUiPA5p_8pJq0z0SipX_m17h5m-O6bmmL"/>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-secondary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface truncate">李明德 (管理者)</span>
+<span class="px-1.5 py-0.5 bg-primary/5 text-primary text-[10px] rounded border border-primary/10 font-label">ADMIN</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body truncate">limingde@temple-institute.org</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+<!-- User Entry 2 -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-200">
+<div class="relative">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="calm woman looking forward with natural lighting and serene green background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaRywxPwtVdEcxR3BYHdd34wHIVvBnXK19F7zsvWnOcQFqWfBxpMSH-j8e7BkMbaWVV-Ss622MPzC7zMaO627hSmXngylMJPyrE747Q4GFc6Y21zilKc2NGVfLC41gTiLcUZr37DlInQR2sT49nHJ4vPsnNOmLP0ixFB5MZ1MeMD0OmGRVH5qUxWcds-csnsD4EN-r0ncD-HqyUnK8sDRN7m3RDMQu9vVhHga6047bunH1hKnstf6zQScGRc_VxAjRqO0a9GsW7T7z"/>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-outline-variant border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface truncate">陈静 (禅理研究)</span>
+<span class="px-1.5 py-0.5 bg-secondary-container/20 text-on-secondary-container text-[10px] rounded border border-secondary-container/30 font-label uppercase">Editor</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body truncate">chen.jing@zen-flow.com</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+<!-- User Entry 3 -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-200">
+<div class="relative">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="man with thoughtful expression in soft overcast light with minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYtxBUYGccwvkIxJQzk65gW9bPUiyg1y_3_SV0UFe9GyBYVst7burOdjkD7JLytqkNt1Lge8QElgeceIgsOjLADkICZQfv3yfr_HG-ZECycT6EJ3w9cejw5E77qpjtF5fGgui48ZqxU2bVRH_Cq-qyaRTG5rO-EoNb2CdvBFbxdZG7E3bVSb7hCi9ALkuQdPgPThx3QgGFkKlFd7NAuSS4MFdkhGE5GCXYADET9Bo0yD7GEZ88_EfXzWFcKwo2jmrisTDFBHfgtDWM"/>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-secondary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface truncate">王志远</span>
+<span class="px-1.5 py-0.5 bg-surface-variant text-on-surface-variant text-[10px] rounded border border-outline-variant font-label uppercase">Viewer</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body truncate">wang.zy@meditation-labs.cn</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+<!-- User Entry 4 -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-200">
+<div class="relative">
+<img class="w-10 h-10 rounded-lg object-cover" data-alt="professional woman profile with soft studio lighting and warm neutral tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8w4znlUxEI42EiIxYSetI-FkUSfeBfDL4A8GJDUWdeARiWM-Z_Y96bWxf-rMD_ekFgPYPAAG9gcqNuxGf1-9arkzm7BQ9kKyt49al_xrh08BifHDK6V0dQRdtg9-M5MmXCe7eQHJQbX3gLX-6T6TQ-m-Rmq7uMT72di_PczOoADyni6dIFihu1IN6UmKR9QDBQM8_5ZpPweLMAqZrb-lNFwmggvUMQCT50C-lovVKRQkQSljr-AP7CGhnACUHm1x9ifyLd8gUyUih"/>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 bg-secondary border-2 border-surface-container-lowest rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface truncate">赵一凡</span>
+<span class="px-1.5 py-0.5 bg-primary/5 text-primary text-[10px] rounded border border-primary/10 font-label">ADMIN</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body truncate">yifan.zhao@digital-zen.net</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+<!-- User Entry 5 -->
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-medium text-on-surface truncate">孙晓晓</span>
+<span class="px-1.5 py-0.5 bg-surface-variant text-on-surface-variant text-[10px] rounded border border-outline-variant font-label uppercase">Member</span>
+</div>
+<p class="text-xs text-on-surface-variant font-body truncate">xiaoxiao.sun@outlook.com</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+</div>
+<!-- More indicator -->
+<button class="w-full py-4 text-primary font-label text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-2 hover:bg-primary/5 rounded-xl transition-all">
+                加载更多成员 <span class="material-symbols-outlined text-sm" data-icon="keyboard_double_arrow_down">keyboard_double_arrow_down</span>
+</button>
+</section>
+<!-- Subscription & Limit Card -->
+<section class="bg-surface-container-low p-6 rounded-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-5 translate-x-10 -translate-y-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="verified_user">verified_user</span>
+</div>
+<h3 class="font-headline text-lg text-primary mb-4">机构配额</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-label text-on-surface-variant mb-1.5 uppercase tracking-widest">
+<span>账户席位</span>
+<span>12 / 20</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-label text-on-surface-variant mb-1.5 uppercase tracking-widest">
+<span>数据存储</span>
+<span>78%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full py-3 bg-secondary-container text-on-secondary-container font-label text-sm rounded-lg hover:shadow-lg transition-all duration-300">
+                升级席位
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-[#FAF9F4]/80 backdrop-blur-md z-50 rounded-t-2xl shadow-[0_-4px_20px_rgba(74,93,78,0.04)]">
+<div class="flex flex-col items-center justify-center text-[#334537]/50 px-4 py-1 hover:text-[#334537] transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="music_note">music_note</span>
+<span class="font-sans text-[11px] tracking-widest uppercase">梵音</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#334537]/50 px-4 py-1 hover:text-[#334537] transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="self_improvement">self_improvement</span>
+<span class="font-sans text-[11px] tracking-widest uppercase">禅理</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#6e5e00] bg-[#C9B037]/10 rounded-xl px-4 py-1 transition-all duration-300 cursor-pointer">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-sans text-[11px] tracking-widest uppercase">我的</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Breath of Silence Admin - 禅理内容池</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#533d20",
+                        "surface-variant": "#e3e2de",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#6d5435",
+                        "background": "#faf9f4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#c0d5c2",
+                        "inverse-primary": "#b7ccb9",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-bright": "#faf9f4",
+                        "surface-container": "#efeee9",
+                        "secondary-container": "#fee264",
+                        "surface": "#faf9f4",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "outline-variant": "#c3c8c1",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d3e8d5",
+                        "outline": "#737872",
+                        "on-secondary-container": "#756400",
+                        "surface-dim": "#dbdad5",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#fee264",
+                        "on-tertiary-fixed": "#291801",
+                        "primary-container": "#4a5d4e",
+                        "secondary": "#6e5e00",
+                        "surface-tint": "#506354",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c19",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "on-surface": "#1b1c19",
+                        "on-surface-variant": "#434843",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container-high": "#e9e8e3",
+                        "inverse-surface": "#30312e",
+                        "surface-container-highest": "#e3e2de",
+                        "on-secondary-fixed-variant": "#534600",
+                        "primary": "#334537",
+                        "tertiary-fixed": "#ffddb6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, #faf9f4 0%, #efeee9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ink-wash-bg::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 40%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(74, 93, 78, 0.03) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, #FAF9F4, transparent);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container/30">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 bottom-0 w-64 bg-[#EFEEE9] flex flex-col h-full py-8 pl-4 z-50">
+<div class="font-headline text-2xl text-[#334537] mb-8 px-4">The Sanctuary</div>
+<div class="flex items-center gap-3 px-4 mb-10">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden shadow-sm">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="minimalist stylized avatar of a serene monk in soft green tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeau2_cX4VFFOnJIYuMQsYklFxWdyK5pbaZE1WJPLwYYfOz5Qv4D-qn_hMhb5oCLJDNT7ESWfXGPizyw68RlZl4HaW5HGADHFI1tlVLTo60nQC_V8qDEjU1W8iMX0dqMtj3tv3NUKkwoNfR2YSipGUhCpku71plbpyHYbqdFw0nMGYTDo7LQjgPiysiT0bUr1m8Mr20l_CKyDIutgTyKplhEojt7BsygHd_9tXbshOZZD6vuL3xmnE-Roiv60dB6qfrOwq5OevMJys"/>
+</div>
+<div class="flex flex-col">
+<span class="font-semibold text-sm text-primary">Super Admin</span>
+<span class="text-xs text-primary/50 font-label">Console v1.0</span>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-label text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-label text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>用户管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-label text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>订单全流程管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537] font-bold bg-[#FAF9F4] rounded-r-full py-3 px-6 -ml-4 shadow-sm transition-all text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span>内容与合规管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-label text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>财务管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/50 py-3 px-6 hover:text-[#334537] hover:translate-x-1 transition-transform duration-300 font-label text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>系统设置</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pr-8">
+<button class="w-full py-3 bg-secondary-container text-on-secondary-container rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-sm hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="lightbulb">lightbulb</span>
+<span>Enlightenment Mode</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen ink-wash-bg">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-[#FAF9F4]/40 backdrop-blur-xl z-40 flex justify-between items-center px-8 w-full shadow-[0_12px_40px_rgba(74,93,78,0.06)] tonal-transition">
+<div class="flex items-center gap-6">
+<h1 class="font-headline font-bold text-xl text-[#334537]">禅理内容池</h1>
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-primary/40">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</span>
+<input class="bg-surface-container-low border-none rounded-full py-1.5 pl-10 pr-4 text-sm w-64 focus:ring-1 focus:ring-primary/20 font-label" placeholder="搜索禅语、作者或标签..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-[#334537]">
+<button class="p-2 hover:bg-primary/5 rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-secondary rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-primary/5 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas Content -->
+<section class="pt-24 px-8 pb-12 relative z-10">
+<!-- Page Header / Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="col-span-1 md:col-span-2">
+<h2 class="font-headline text-3xl font-bold text-primary mb-2">静谧语录管理</h2>
+<p class="text-primary/60 font-label max-w-lg">在这里审阅、编辑并发布触动灵魂的文字。每一句语录都是通往内心平静的一扇窗。</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 flex items-center gap-4 border border-outline-variant/10">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<div class="text-xs text-primary/50 font-label">活跃禅语</div>
+<div class="text-xl font-bold text-primary">1,284</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-2xl p-4 flex items-center gap-4 border border-outline-variant/10">
+<div class="w-12 h-12 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<div>
+<div class="text-xs text-primary/50 font-label">本周曝光</div>
+<div class="text-xl font-bold text-primary">42.5k</div>
+</div>
+</div>
+</div>
+<!-- Content Filter Bar -->
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<button class="px-5 py-2 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold shadow-sm">全部语录</button>
+<button class="px-5 py-2 bg-surface-container-highest text-primary/60 rounded-full text-xs font-semibold hover:bg-surface-container-high transition-colors">已发布</button>
+<button class="px-5 py-2 bg-surface-container-highest text-primary/60 rounded-full text-xs font-semibold hover:bg-surface-container-high transition-colors">草稿箱</button>
+<button class="px-5 py-2 bg-surface-container-highest text-primary/60 rounded-full text-xs font-semibold hover:bg-surface-container-high transition-colors">精选 (#C9B037)</button>
+</div>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-primary text-on-primary rounded-full text-sm font-bold shadow-lg hover:translate-y-[-1px] transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span>新增禅语</span>
+</button>
+</div>
+<!-- Content Pool Table (Asymmetric Card Style) -->
+<div class="bg-surface-container-lowest rounded-[2rem] shadow-sm overflow-hidden">
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left text-primary/40 font-label text-xs tracking-wider border-b border-outline-variant/10">
+<th class="py-6 pl-8 font-medium">预览与预览内容</th>
+<th class="py-6 font-medium">作者/出处</th>
+<th class="py-6 font-medium">分类标签</th>
+<th class="py-6 font-medium text-center">状态</th>
+<th class="py-6 font-medium text-center">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1: Featured Quote -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-6 pl-8">
+<div class="flex items-start gap-4">
+<div class="w-16 h-24 rounded-lg bg-primary-container relative overflow-hidden flex-shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="macro close-up of water droplet on a green leaf with bokeh background and soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG77rHsdTeDrp0rG0KEzDGrDdlB0QxXVhngBFrn8I1gLnwO6oy6yVSSC8rl1AXztaD1plm4j-pUmmTYUB9kyINpBYuDXnzPvYXrwd1zIco1OGU4e9HwoHqgYnb2O1n2kFqMO3f-2T3hKswBHfkGIkdfKqnKuG4ba9RUCQrY8VOZaDeKdpbx0h4AOrwQdWB-PRCfxrr1xnlDMI_D9lozeg9JTYExkyreV_GpMnm-Ns84WlWo32GbPhwx8-RPn7yxW9UnTsAxctYmIfi"/>
+<div class="absolute inset-0 flex items-center justify-center p-2">
+<div class="text-[6px] text-white font-headline text-center leading-tight">心如止水<br/>无碍于物</div>
+</div>
+<div class="absolute top-1 left-1">
+<span class="material-symbols-outlined text-[10px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="max-w-md">
+<div class="text-secondary font-bold text-[10px] uppercase tracking-widest mb-1">FEATURED 精选</div>
+<p class="text-primary font-headline text-lg leading-relaxed mb-1">心如止水，则万物不扰。静坐听雨，方知天地之悠远。</p>
+<span class="text-xs text-primary/40 font-label">创建于 2023.10.24</span>
+</div>
+</div>
+</td>
+<td class="py-6">
+<div class="flex items-center gap-2">
+<span class="text-sm font-medium text-primary">弘一法师</span>
+<span class="material-symbols-outlined text-primary/20 text-sm" data-icon="verified">verified</span>
+</div>
+<div class="text-[10px] text-primary/40 font-label">《格言别录》</div>
+</td>
+<td class="py-6">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-[10px] rounded-md font-semibold">内心平静</span>
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-[10px] rounded-md font-semibold">智慧</span>
+</div>
+</td>
+<td class="py-6 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="py-6 pr-8 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-primary/40 hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-primary/40 hover:text-error hover:bg-error/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-6 pl-8">
+<div class="flex items-start gap-4">
+<div class="w-16 h-24 rounded-lg bg-tertiary-container relative overflow-hidden flex-shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="serene mountain landscape at sunrise with heavy morning mist and distant peaks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYkHz4a10ig54jEcVd0qxgI8UPoXuvl-bZHfpzd_7X8ZXxiQnbuZ_tyMz-lsBvewPLFA-OCkI7pYpC5EVhB6kI28biP4tpkOrN3RvJZoo7WMN07j3M0SSzAjPzn6PY3H9IcROxe7CciAuiVYC9ypzoA_an-LqV51FTukLRoHg63YssZsNLfIya-DegQgyMxSPC5H01XYdMQ1NinGRPqyrUTSR9RWBeL_5oKMOIDbwfrE7fflojdIJMEHE5PCqKRerswW_Z8dcEgdlc"/>
+<div class="absolute inset-0 flex items-center justify-center p-2">
+<div class="text-[6px] text-white font-headline text-center leading-tight">大道至简<br/>衍化至繁</div>
+</div>
+</div>
+<div class="max-w-md">
+<p class="text-primary font-headline text-lg leading-relaxed mb-1">看破世间繁华，回归本真。简单的生活，才最接近真理。</p>
+<span class="text-xs text-primary/40 font-label">创建于 2023.11.02</span>
+</div>
+</div>
+</td>
+<td class="py-6">
+<span class="text-sm font-medium text-primary">老子</span>
+<div class="text-[10px] text-primary/40 font-label">《道德经》</div>
+</td>
+<td class="py-6">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-[10px] rounded-md font-semibold">大道</span>
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-[10px] rounded-md font-semibold">简约</span>
+</div>
+</td>
+<td class="py-6 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="py-6 pr-8 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-primary/40 hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-primary/40 hover:text-error hover:bg-error/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Featured -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-6 pl-8">
+<div class="flex items-start gap-4">
+<div class="w-16 h-24 rounded-lg bg-primary-container relative overflow-hidden flex-shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="minimalist incense stick burning with a single elegant trail of smoke against a dark moody background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYCjpv3ALjIP4KBhtT81cKhGzEHJig0ncoSn888Al3xP_Hwl5eODrTv5SlxC4OCLt5mk6ouhPR6Qwtq-ezv17SUtHDA-5mQ-X1AO_j3tl1AtjQJ8Y_ImQMk8m9E0I0n4JhRzi_iaQQuFbD5sA46LqiFMY6ceYtiYeCaHvij_elFfpKm0OxAeTLKSdaqzqXtfS6cpJen0es4-HkWAXN5fGwLfMrTc6_v94PXrraEcegzJFqJ40sGdC2gkXWAKLAXxmOBAtLdRDNDZIR"/>
+<div class="absolute inset-0 flex items-center justify-center p-2">
+<div class="text-[6px] text-white font-headline text-center leading-tight">一花一世界<br/>一叶一菩提</div>
+</div>
+<div class="absolute top-1 left-1">
+<span class="material-symbols-outlined text-[10px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="max-w-md">
+<div class="text-secondary font-bold text-[10px] uppercase tracking-widest mb-1">FEATURED 精选</div>
+<p class="text-primary font-headline text-lg leading-relaxed mb-1">一花一世界，一叶一菩提。即便在最微小的事物中，亦能窥见永恒。</p>
+<span class="text-xs text-primary/40 font-label">创建于 2023.11.15</span>
+</div>
+</div>
+</td>
+<td class="py-6">
+<span class="text-sm font-medium text-primary">梵文佛经</span>
+<div class="text-[10px] text-primary/40 font-label">《华严经》</div>
+</td>
+<td class="py-6">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-[10px] rounded-md font-semibold">因缘</span>
+<span class="px-2 py-0.5 bg-tertiary-container/10 text-tertiary text-[10px] rounded-md font-semibold">觉悟</span>
+</div>
+</td>
+<td class="py-6 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</td>
+<td class="py-6 pr-8 text-center">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-primary/40 hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-primary/40 hover:text-error hover:bg-error/5 rounded-lg transition-all">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="mt-8 flex items-center justify-between font-label text-sm">
+<div class="text-primary/40">显示 1-10 条，共 1,284 条语录</div>
+<div class="flex items-center gap-2">
+<button class="p-2 bg-surface-container-low rounded-lg text-primary/40 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary rounded-lg font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-low rounded-lg transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-low rounded-lg transition-colors">3</button>
+<span class="text-primary/20 mx-1">...</span>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-surface-container-low rounded-lg transition-colors">129</button>
+<button class="p-2 bg-surface-container-low rounded-lg text-primary/40 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Help / Feedback -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="w-14 h-14 bg-secondary-container text-on-secondary-container rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</button>
+</div>
+</body></html>

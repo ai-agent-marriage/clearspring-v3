@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dbdad5",
+                    "on-error": "#ffffff",
+                    "on-surface": "#1b1c19",
+                    "error": "#ba1a1a",
+                    "primary": "#334537",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "surface-tint": "#506354",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#4a5d4e",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "inverse-surface": "#30312e",
+                    "on-secondary-fixed-variant": "#534600",
+                    "tertiary": "#533d20",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container": "#efeee9",
+                    "outline-variant": "#c3c8c1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-background": "#1b1c19",
+                    "inverse-primary": "#b7ccb9",
+                    "on-secondary": "#ffffff",
+                    "outline": "#737872",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-tertiary-fixed": "#291801",
+                    "surface": "#faf9f4",
+                    "surface-container-highest": "#e3e2de",
+                    "surface-bright": "#faf9f4",
+                    "secondary-container": "#fee264",
+                    "inverse-on-surface": "#f2f1ec",
+                    "tertiary-container": "#6d5435",
+                    "secondary-fixed": "#fee264",
+                    "primary-fixed": "#d3e8d5",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#0e1f13",
+                    "surface-variant": "#e3e2de",
+                    "secondary": "#6e5e00",
+                    "on-surface-variant": "#434843",
+                    "background": "#faf9f4",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-high": "#e9e8e3",
+                    "surface-container-low": "#f5f4ef",
+                    "on-secondary-container": "#756400"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf9f4;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .serif-text {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Sidebar Navigation Shell -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 p-6 space-y-8 bg-[#EFEEE9] h-screen w-72 rounded-r-lg shadow-[12px_0_40px_rgba(74,93,78,0.04)] z-50">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h1 class="font-serif text-xl text-[#334537] leading-tight">静儒禅院</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-stone-500">圣域门户</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>仪表盘</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="folded_hands">folded_hands</span>
+<span>功德主管理</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-stone-600 hover:bg-stone-200/50 hover:translate-x-1 transition-all duration-300 font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+<span>志愿者管理</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 bg-[#334537] text-[#FAF9F4] rounded-lg shadow-sm font-semibold font-sans text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span>机构管理</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-primary-container rounded-xl flex items-center space-x-3 cursor-pointer hover:opacity-90 transition-opacity">
+<img alt="管理员" class="w-10 h-10 rounded-full" data-alt="Close up portrait of an administrative professional in a minimalist grey linen shirt against a soft white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwLhz_RfO71RE_DRXYlRTXj_hBaFfHzFc-vilWiQNT122mYcgKaHeAYVDEhuPDBM4qBDYZfGEI6EqaX_Z_kGhboqctjbs-DKjg-ByVGRq3X0nNkphiVZYvBO09Q6RQWS-eN3EkrkoCgAiXuLqs3XwmJnTopjCB-iDpGunldZwtrRpK6eaxWrfomH6mmO_MuBAgfWn9exXSZhyr70pz7c95F-l9yBHaFtIHUdx1F7H1XAbZLb7A0lmyTuijznPwv0OTzlit3yWLyFe6"/>
+<div class="flex-1 overflow-hidden">
+<p class="text-on-primary text-xs font-semibold truncate">管理账户资料</p>
+<p class="text-on-primary-container text-[10px] truncate opacity-80">管理员 ID: 8829-X</p>
+</div>
+<span class="material-symbols-outlined text-on-primary text-sm" data-icon="logout">logout</span>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-72 min-h-screen">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center w-full px-12 py-4 h-20 bg-[#FAF9F4] sticky top-0 z-40">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="arrow_back">arrow_back</span>
+<div class="flex flex-col">
+<h2 class="font-serif text-2xl tracking-tight text-[#334537]">静儒禅院 - 苏州分院</h2>
+<p class="text-xs text-stone-500 font-body">机构详情 / 财务账务核算</p>
+</div>
+</div>
+<div class="flex items-center space-x-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-stone-400 text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-xs w-64 focus:ring-1 focus:ring-primary transition-all" placeholder="搜索账单号或凭证..." type="text"/>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-stone-500 hover:text-primary transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center space-x-2 cursor-pointer group">
+<span class="text-sm font-medium text-stone-600 group-hover:text-primary transition-colors">设置</span>
+<span class="material-symbols-outlined text-stone-500 group-hover:text-primary" data-icon="settings">settings</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="px-12 py-8 space-y-8">
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Financial Summary Card (Primary Focus) -->
+<div class="col-span-8 bg-surface-container-low rounded-xl p-8 relative overflow-hidden group border-none">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<span class="material-symbols-outlined text-[120px]" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div class="relative z-10 flex justify-between items-end">
+<div class="space-y-6">
+<h3 class="text-stone-500 text-xs font-semibold tracking-widest uppercase">结算总览 Summary</h3>
+<div class="flex items-center space-x-12">
+<div>
+<p class="text-stone-400 text-xs mb-1">待结算金额 Pending</p>
+<p class="serif-text text-4xl font-bold text-secondary">¥ 128,450.00</p>
+</div>
+<div class="w-[1px] h-12 bg-outline-variant/30"></div>
+<div>
+<p class="text-stone-400 text-xs mb-1">已结算总额 Total Paid</p>
+<p class="serif-text text-4xl font-bold text-primary">¥ 2,492,000.00</p>
+</div>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-lg flex items-center space-x-2 text-sm font-medium hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+<span>发起结算确认</span>
+</button>
+</div>
+</div>
+<!-- Secondary Metric Card -->
+<div class="col-span-4 bg-primary text-on-primary rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h3 class="text-on-primary/60 text-xs font-semibold tracking-widest uppercase">合规率 Compliance</h3>
+<p class="serif-text text-3xl mt-2">99.8%</p>
+<p class="text-[10px] mt-1 text-on-primary/40 leading-relaxed">基于近12个月票据完整度与转账凭证匹配度计算。</p>
+</div>
+<div class="flex items-center space-x-2 text-secondary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span class="text-xs font-medium">财务透明认证</span>
+</div>
+</div>
+</div>
+<!-- Tab Navigation (Detailed & Scientific) -->
+<div class="border-b border-outline-variant/20 flex space-x-10 px-2">
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors relative">机构基本信息</button>
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors relative">关联项目</button>
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors relative">捐赠流水</button>
+<button class="pb-4 text-sm font-medium text-stone-400 hover:text-primary transition-colors relative">费用审核</button>
+<button class="pb-4 text-sm font-bold text-primary relative">
+                    结算记录
+                    <div class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary"></div>
+</button>
+</div>
+<!-- Settlement Ledger Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container-low/50">
+<div class="flex items-center space-x-6">
+<h4 class="serif-text text-lg text-primary">财务对账流水</h4>
+<div class="flex space-x-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full">2024 第三季度</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded-full">所有发票状态</span>
+</div>
+</div>
+<div class="flex items-center space-x-3">
+<button class="px-4 py-2 text-xs font-semibold text-stone-600 hover:bg-stone-100 rounded transition-colors flex items-center space-x-2">
+<span class="material-symbols-outlined text-base" data-icon="filter_list">filter_list</span>
+<span>筛选</span>
+</button>
+<button class="px-4 py-2 text-xs font-semibold text-stone-600 border border-outline-variant/30 hover:bg-stone-50 rounded transition-colors flex items-center space-x-2">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+<span>导出报表</span>
+</button>
+</div>
+</div>
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant/70 text-[11px] uppercase tracking-wider font-bold">
+<th class="px-8 py-4">结算 ID</th>
+<th class="px-4 py-4">结算金额 (人民币)</th>
+<th class="px-4 py-4">结算周期</th>
+<th class="px-4 py-4">发票状态</th>
+<th class="px-4 py-4">转账凭证</th>
+<th class="px-4 py-4">结算日期</th>
+<th class="px-8 py-4 text-right">操作</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5 font-mono text-xs text-stone-600">SET-20240901-08</td>
+<td class="px-4 py-5 font-semibold text-primary">¥ 45,200.00</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-08-01 至 2024-08-31</td>
+<td class="px-4 py-5">
+<span class="flex items-center space-x-1.5 text-emerald-600">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="text-xs font-medium">已核销</span>
+</span>
+</td>
+<td class="px-4 py-5">
+<a class="text-secondary hover:underline flex items-center space-x-1 text-xs" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="attachment">attachment</span>
+<span>银行回单.PDF</span>
+</a>
+</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-09-02</td>
+<td class="px-8 py-5 text-right">
+<button class="text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="more_horiz">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5 font-mono text-xs text-stone-600">SET-20240802-12</td>
+<td class="px-4 py-5 font-semibold text-primary">¥ 38,000.00</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-07-01 至 2024-07-31</td>
+<td class="px-4 py-5">
+<span class="flex items-center space-x-1.5 text-emerald-600">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="text-xs font-medium">已核销</span>
+</span>
+</td>
+<td class="px-4 py-5">
+<a class="text-secondary hover:underline flex items-center space-x-1 text-xs" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="attachment">attachment</span>
+<span>银行回单.PDF</span>
+</a>
+</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-08-04</td>
+<td class="px-8 py-5 text-right">
+<button class="text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="more_horiz">more_horiz</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5 font-mono text-xs text-stone-600">SET-20240705-04</td>
+<td class="px-4 py-5 font-semibold text-primary">¥ 52,100.00</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-06-01 至 2024-06-30</td>
+<td class="px-4 py-5">
+<span class="flex items-center space-x-1.5 text-amber-600">
+<span class="material-symbols-outlined text-sm" data-icon="pending">pending</span>
+<span class="text-xs font-medium">发票待审</span>
+</span>
+</td>
+<td class="px-4 py-5">
+<span class="text-stone-300 text-xs italic">等待上传...</span>
+</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-07-06</td>
+<td class="px-8 py-5 text-right">
+<button class="text-secondary text-xs font-semibold hover:opacity-80 transition-opacity">催报票据</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5 font-mono text-xs text-stone-600">SET-20240602-21</td>
+<td class="px-4 py-5 font-semibold text-primary">¥ 41,500.00</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-05-01 至 2024-05-31</td>
+<td class="px-4 py-5">
+<span class="flex items-center space-x-1.5 text-emerald-600">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="text-xs font-medium">已核销</span>
+</span>
+</td>
+<td class="px-4 py-5">
+<a class="text-secondary hover:underline flex items-center space-x-1 text-xs" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="attachment">attachment</span>
+<span>银行回单.PDF</span>
+</a>
+</td>
+<td class="px-4 py-5 text-stone-500 text-xs">2024-06-03</td>
+<td class="px-8 py-5 text-right">
+<button class="text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="more_horiz">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-8 py-6 flex justify-between items-center text-xs text-stone-400 font-body">
+<p>显示 1-4 条结算记录，共计 24 条</p>
+<div class="flex space-x-4">
+<button class="hover:text-primary flex items-center"><span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span> 上一页</button>
+<div class="flex space-x-2">
+<span class="w-6 h-6 flex items-center justify-center bg-primary text-on-primary rounded">1</span>
+<span class="w-6 h-6 flex items-center justify-center hover:bg-surface-container-high rounded cursor-pointer">2</span>
+<span class="w-6 h-6 flex items-center justify-center hover:bg-surface-container-high rounded cursor-pointer">3</span>
+</div>
+<button class="hover:text-primary flex items-center">下一页 <span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Footer Compliance Notice -->
+<div class="bg-surface-container rounded-xl p-8 flex items-start space-x-6 border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="policy">policy</span>
+<div class="space-y-2">
+<h5 class="text-sm font-bold text-primary">财务合规声明 Financial Rigor Notice</h5>
+<p class="text-xs text-stone-500 leading-relaxed max-w-4xl">
+                        此结算流水账单根据《静儒禅院财务管理办法》生成。所有数据经过系统自动化对账与第三方银行接口校验。如发现金额差异或发票缺失，请于结算日期起3个工作日内联系财务部审计科。系统采用不可篡改账本技术记录所有操作日志，确保每一分功德款项均透明可追溯。
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for Quick Actions - Only relevant for entry but suppressing as per Contextual Rules on Detail screen -->
+</body></html>

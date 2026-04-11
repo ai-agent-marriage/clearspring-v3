@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c3c8c1",
+                    "on-secondary-container": "#756400",
+                    "primary": "#334537",
+                    "secondary-fixed": "#fee264",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#506354",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-variant": "#e3e2de",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-dim": "#dbdad5",
+                    "surface-container-highest": "#e3e2de",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-surface": "#1b1c19",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#6d5435",
+                    "on-background": "#1b1c19",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "on-primary-fixed": "#0e1f13",
+                    "inverse-surface": "#30312e",
+                    "surface-container-high": "#e9e8e3",
+                    "tertiary": "#533d20",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b7ccb9",
+                    "surface-bright": "#faf9f4",
+                    "primary-container": "#4a5d4e",
+                    "error-container": "#ffdad6",
+                    "surface": "#faf9f4",
+                    "on-secondary-fixed-variant": "#534600",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-tertiary-container": "#ebcaa3",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "primary-fixed": "#d3e8d5",
+                    "outline": "#737872",
+                    "on-tertiary-fixed": "#291801",
+                    "on-tertiary": "#ffffff",
+                    "background": "#faf9f4",
+                    "secondary": "#6e5e00",
+                    "on-surface-variant": "#434843",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-container": "#efeee9",
+                    "secondary-container": "#fee264"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-[#EFEEE9] text-[#334537] flex justify-between items-center w-full px-12 h-20 max-w-[1920px] mx-auto sticky top-0 z-50">
+<div class="text-2xl font-serif text-[#334537]">清如禅管理门户</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-[#4A5D4E]/70 hover:text-[#334537] transition-colors duration-300" href="#">仪表盘</a>
+<a class="text-[#4A5D4E]/70 hover:text-[#334537] transition-colors duration-300" href="#">用户管理</a>
+<a class="text-[#4A5D4E]/70 hover:text-[#334537] transition-colors duration-300" href="#">订单管理</a>
+<a class="text-[#4A5D4E]/70 hover:text-[#334537] transition-colors duration-300" href="#">内容与合规</a>
+<a class="text-[#4A5D4E]/70 hover:text-[#334537] transition-colors duration-300" href="#">财务管理</a>
+<a class="text-[#334537] font-bold border-b-2 border-[#334537] pb-1" href="#">系统设置</a>
+</nav>
+<div class="flex items-center space-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-high border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="搜索配置..." type="text"/>
+</div>
+<button class="text-[#334537] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-[#334537] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="用户头像" data-alt="close-up of a professional male architect in a bright minimalist office setting with soft natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDigLkrZYPiWnkIMUsdRzWuja8LJib97I_DKd2DRYNT4XE4uMh8t9FjGuWWB_NSkIQnrDvRx1qXgNJSX5OaCq0YxaLvJ6HzxNyWIXRKR74HK1rMPI-f39ritx8bfCrpZB-Kk4-6F1surYpxevpJ29Ou8g4fsBe4R0TGK5k2F-L3ezudnZh5jhLyp1qRDW6_HAvTCCXQ9k4ftD3OiDe_95nY4NlFTyaad8CKlWbHpMTQol-uVQLLb8TdO56mMcgNcdBdScbHGDfEXinl"/>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-20 h-[calc(100vh-80px)] w-72 bg-[#EFEEE9] flex flex-col py-8 px-4 transition-all border-r border-outline-variant/10">
+<div class="px-4 mb-10">
+<div class="text-lg font-serif text-[#334537]">通知引擎</div>
+<div class="text-[10px] uppercase tracking-widest text-[#4A5D4E]/60 mt-1">严谨配置 · 实时触达</div>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#4A5D4E]/60 hover:bg-[#4A5D4E]/10 rounded-r-full transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">sticky_note_2</span>
+<span class="text-sm font-label tracking-wide">消息模板</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#334537] font-semibold bg-[#4A5D4E]/5 rounded-r-full active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">rule</span>
+<span class="text-sm font-label tracking-wide">触发规则</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#4A5D4E]/60 hover:bg-[#4A5D4E]/10 rounded-r-full transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-sm font-label tracking-wide">渠道配置</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#4A5D4E]/60 hover:bg-[#4A5D4E]/10 rounded-r-full transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="text-sm font-label tracking-wide">操作日志</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#4A5D4E]/60 hover:bg-[#4A5D4E]/10 rounded-r-full transition-all active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-label tracking-wide">数据分析</span>
+</a>
+</nav>
+<div class="mt-auto px-4">
+<div class="p-4 bg-surface-container-high rounded-xl">
+<p class="text-xs text-on-surface-variant leading-relaxed">系统状态：<span class="text-primary font-bold">运行稳定</span></p>
+<div class="w-full bg-outline-variant/30 h-1 mt-2 rounded-full overflow-hidden">
+<div class="bg-primary w-3/4 h-full"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-72 flex-1 p-12 max-w-[1440px]">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex text-[10px] uppercase tracking-widest text-outline mb-8">
+<ol class="flex items-center space-x-2">
+<li><a class="hover:text-primary transition-colors" href="#">仪表盘</a></li>
+<li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+<li><a class="hover:text-primary transition-colors" href="#">系统设置</a></li>
+<li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+<li class="text-primary font-bold">消息通知配置</li>
+</ol>
+</nav>
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<h1 class="text-5xl font-bold text-primary mb-4 tracking-tight">消息通知配置</h1>
+<p class="text-on-surface-variant max-w-md leading-relaxed">
+                    精细化管理系统通知模板，确保每一条信息的触达都符合品牌美学与响应逻辑。
+                </p>
+</div>
+<div class="flex space-x-4">
+<button class="px-6 py-3 text-sm font-medium text-primary bg-surface-container-low hover:bg-surface-container-highest transition-colors rounded-lg flex items-center">
+<span class="material-symbols-outlined mr-2">download</span>
+                    导出日志
+                </button>
+<button class="px-8 py-3 text-sm font-medium text-on-primary bg-primary-container hover:opacity-90 transition-opacity rounded-lg flex items-center">
+<span class="material-symbols-outlined mr-2">add</span>
+                    新增模板
+                </button>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="flex space-x-12 mb-8 border-b border-outline-variant/20">
+<button class="pb-4 text-primary font-bold border-b-2 border-primary transition-all">微信订阅消息</button>
+<button class="pb-4 text-outline hover:text-primary transition-all">短信通知</button>
+<button class="pb-4 text-outline hover:text-primary transition-all">站内信</button>
+</div>
+<!-- Bento Data Grid -->
+<div class="bg-surface-container-low rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50">
+<th class="px-8 py-5 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">模板 ID</th>
+<th class="px-8 py-5 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">模板名称</th>
+<th class="px-8 py-5 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium">推送场景</th>
+<th class="px-8 py-5 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium text-center">状态</th>
+<th class="px-8 py-5 text-[10px] uppercase tracking-widest text-on-surface-variant font-medium text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-8 py-6 font-body text-sm text-primary">WX-2024001</td>
+<td class="px-8 py-6">
+<div class="font-semibold text-primary">订单支付成功</div>
+<div class="text-xs text-outline mt-1 italic">自动触发 · 核心通知</div>
+</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-[11px] rounded-full">支付成功</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex justify-center">
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right space-x-4">
+<a class="text-xs font-bold text-secondary hover:underline underline-offset-4" href="#">测试推送</a>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-8 py-6 font-body text-sm text-primary">WX-2024002</td>
+<td class="px-8 py-6">
+<div class="font-semibold text-primary">预约提醒</div>
+<div class="text-xs text-outline mt-1 italic">周期性 · 维护通知</div>
+</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-[11px] rounded-full">预约提醒</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex justify-center">
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right space-x-4">
+<a class="text-xs font-bold text-secondary hover:underline underline-offset-4" href="#">测试推送</a>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-8 py-6 font-body text-sm text-primary">WX-2024005</td>
+<td class="px-8 py-6">
+<div class="font-semibold text-primary">退款进度通知</div>
+<div class="text-xs text-outline mt-1 italic">状态变更 · 服务通知</div>
+</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-[11px] rounded-full">退款状态</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex justify-center">
+<div class="w-10 h-5 bg-outline-variant/40 rounded-full relative cursor-pointer">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right space-x-4">
+<a class="text-xs font-bold text-secondary/50 cursor-not-allowed" href="#">测试推送</a>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-8 py-6 font-body text-sm text-primary">WX-2024012</td>
+<td class="px-8 py-6">
+<div class="font-semibold text-primary">会员到期提醒</div>
+<div class="text-xs text-outline mt-1 italic">营销策略 · 激活通知</div>
+</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 bg-surface-variant text-on-surface-variant text-[11px] rounded-full">会员到期</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex justify-center">
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right space-x-4">
+<a class="text-xs font-bold text-secondary hover:underline underline-offset-4" href="#">测试推送</a>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="px-8 py-6 bg-surface-container-high/30 flex justify-between items-center">
+<div class="text-xs text-on-surface-variant font-medium tracking-wide">显示第 1-10 条，共 48 条模板</div>
+<div class="flex space-x-2">
+<button class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center hover:bg-surface-container-high transition-all text-xs">2</button>
+<button class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center hover:bg-surface-container-high transition-all text-xs">3</button>
+<button class="w-8 h-8 rounded border border-outline-variant/30 flex items-center justify-center hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer component -->
+<footer class="mt-20 w-full flex justify-between py-6 border-t border-[#4A5D4E]/10">
+<div class="text-xs font-serif text-[#4A5D4E]">© 2024 清如禅设计系统 · 万法归一</div>
+<div class="flex space-x-8">
+<a class="text-[10px] uppercase tracking-widest text-[#4A5D4E]/50 hover:text-[#334537] transition-opacity" href="#">文档中心</a>
+<a class="text-[10px] uppercase tracking-widest text-[#4A5D4E]/50 hover:text-[#334537] transition-opacity" href="#">接口文档</a>
+<a class="text-[10px] uppercase tracking-widest text-[#4A5D4E]/50 hover:text-[#334537] transition-opacity" href="#">技术支持</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Decorative Ink Wash element (Bottom Right) -->
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] pointer-events-none opacity-[0.03] z-[-1]" style="background: radial-gradient(circle at center, #334537 0%, transparent 70%); filter: blur(60px);"></div>
+</body></html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>清如 - Minimalist Zen Splash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400&amp;family=Plus+Jakarta+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "tertiary": "#533d20",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-tertiary-fixed": "#291801",
+                        "secondary": "#6e5e00",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container": "#efeee9",
+                        "on-tertiary-container": "#ebcaa3",
+                        "primary-fixed": "#d3e8d5",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container-high": "#e9e8e3",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "inverse-primary": "#b7ccb9",
+                        "on-secondary-fixed": "#211b00",
+                        "tertiary-fixed": "#ffddb6",
+                        "secondary-container": "#fee264",
+                        "surface-dim": "#dbdad5",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary": "#334537",
+                        "background": "#faf9f4",
+                        "outline-variant": "#c3c8c1",
+                        "on-secondary-fixed-variant": "#534600",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c19",
+                        "surface": "#faf9f4",
+                        "on-secondary-container": "#756400",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#506354",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-bright": "#faf9f4",
+                        "outline": "#737872",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1c19",
+                        "on-surface-variant": "#434843",
+                        "tertiary-container": "#6d5435",
+                        "primary-container": "#4a5d4e",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e3e2de",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e3e2de",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed": "#fee264"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.6; transform: scale(1); }
+        }
+        .animate-pulse-dot {
+            animation: pulse-dot 3s ease-in-out infinite;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container text-primary font-body overflow-hidden">
+<!-- Splash Screen Container -->
+<main class="relative h-screen w-full flex flex-col items-center justify-between p-12 select-none">
+<!-- Top Space (Balanced Negative Space) -->
+<div class="flex-1"></div>
+<!-- Central Branding Cluster -->
+<div class="flex flex-col items-center space-y-12">
+<!-- Branding Header (Following JSON Identity & Style) -->
+<div class="relative flex flex-col items-center group">
+<!-- Subtle Icon -->
+<div class="mb-8 opacity-20 transition-opacity duration-1000 group-hover:opacity-40">
+<span class="material-symbols-outlined text-4xl" data-icon="potted_plant">potted_plant</span>
+</div>
+<!-- Main Logo String from JSON -->
+<h1 class="font-headline text-5xl font-light tracking-[0.4em] text-primary ml-[0.4em]">清如</h1>
+<!-- Tagline -->
+<div class="mt-10 flex flex-col items-center space-y-4 opacity-60">
+<p class="font-headline text-lg tracking-[0.5em] font-light ml-[0.5em]">积善成德</p>
+<p class="font-headline text-lg tracking-[0.5em] font-light ml-[0.5em]">虚极静笃</p>
+</div>
+</div>
+<!-- Loading Indicator -->
+<div class="pt-20">
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot"></div>
+</div>
+</div>
+<!-- Bottom Footer Cluster -->
+<div class="flex-1 flex flex-col justify-end items-center w-full max-w-xs space-y-6">
+<!-- Compliance & Footer Info -->
+<div class="text-center space-y-2">
+<p class="text-[10px] tracking-widest text-primary/30 font-label uppercase">A Sanctuary for the Soul</p>
+<div class="h-px w-8 bg-outline-variant/20 mx-auto"></div>
+<p class="text-[9px] tracking-tighter text-primary/20 font-label leading-relaxed px-4">
+                    在使用本程序前，请您务必审慎阅读并同意《隐私政策》与《用户服务协议》
+                </p>
+</div>
+</div>
+</main>
+<!-- Decorative Background Ink Wash (Subtle Texture) -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-40">
+<div class="absolute top-[-10%] right-[-5%] w-[80%] h-[60%] blur-[120px] bg-gradient-to-br from-[#D3E8D5]/30 to-transparent rounded-full"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[80%] h-[60%] blur-[120px] bg-gradient-to-tr from-[#E2C19B]/20 to-transparent rounded-full"></div>
+</div>
+<!-- 
+    The navigation shells (TopAppBar, BottomNavBar) are suppressed per the 
+    "Shell Visibility & Relevance" rule as this is a "Linear/Transactional" 
+    onboarding/splash screen journey.
+    -->
+</body></html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>机构入驻审核 - Sanctuary Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1b1c19",
+                    "surface": "#faf9f4",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#506354",
+                    "surface-bright": "#faf9f4",
+                    "outline": "#737872",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "on-secondary-container": "#756400",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#4a5d4e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e3e2de",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#434843",
+                    "on-background": "#1b1c19",
+                    "tertiary-container": "#6d5435",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "secondary-fixed": "#fee264",
+                    "inverse-surface": "#30312e",
+                    "surface-variant": "#e3e2de",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "primary-fixed": "#d3e8d5",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-container": "#efeee9",
+                    "on-tertiary-container": "#ebcaa3",
+                    "tertiary": "#533d20",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-error-container": "#93000a",
+                    "secondary": "#6e5e00",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#291801",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container-high": "#e9e8e3",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "inverse-primary": "#b7ccb9",
+                    "inverse-on-surface": "#f2f1ec",
+                    "surface-dim": "#dbdad5",
+                    "primary": "#334537",
+                    "background": "#faf9f4",
+                    "tertiary-fixed": "#ffddb6",
+                    "secondary-container": "#fee264",
+                    "outline-variant": "#c3c8c1",
+                    "on-secondary-fixed-variant": "#534600"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(51, 69, 55, 0.03) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.02) 0%, transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-6 bg-[#EFEEE9] dark:bg-[#334537] h-screen w-64 border-r border-[#334537]/10 shadow-sm dark:shadow-none z-50">
+<div class="px-6 mb-10">
+<h1 class="font-serif text-[#334537] dark:text-[#FAF9F4] text-2xl font-bold italic">The Sanctuary</h1>
+<p class="text-xs text-[#334537]/60 tracking-widest uppercase mt-1">Admin Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 text-[#334537] dark:text-[#FAF9F4] font-bold bg-[#FAF9F4] dark:bg-[#4A5D4E] rounded-r-full group" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span>用户管理</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 hover:bg-[#334537]/5 dark:hover:bg-[#FAF9F4]/5 transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">shopping_cart</span>
+<span>订单管理</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 hover:bg-[#334537]/5 dark:hover:bg-[#FAF9F4]/5 transition-all group" href="#">
+<span class="material-symbols-outlined mr-3 text-[#C9B037]">verified_user</span>
+<span>内容合规</span>
+</a>
+<a class="flex items-center px-6 py-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 hover:bg-[#334537]/5 dark:hover:bg-[#FAF9F4]/5 transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">settings_applications</span>
+<span>系统设置</span>
+</a>
+</nav>
+<div class="px-6 pt-6 border-t border-[#334537]/5">
+<a class="flex items-center px-4 py-2 text-sm text-[#334537]/70 hover:text-[#334537] transition-colors" href="#">
+<span class="material-symbols-outlined mr-2 text-lg">help_outline</span>
+<span>技术支持</span>
+</a>
+<a class="flex items-center px-4 py-2 text-sm text-[#334537]/70 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined mr-2 text-lg">logout</span>
+<span>退出登录</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen ink-wash-bg">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center px-8 h-16 w-full bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-xl border-b border-[#334537]/10 sticky top-0 z-40">
+<div class="flex items-center space-x-6">
+<nav class="flex space-x-8">
+<a class="text-[#334537]/60 dark:text-[#FAF9F4]/60 hover:text-[#6e5e00] transition-colors duration-300" href="#">仪表盘</a>
+<a class="text-[#334537] dark:text-[#C9B037] font-semibold border-b-2 border-[#C9B037] pb-1" href="#">数据分析</a>
+<a class="text-[#334537]/60 dark:text-[#FAF9F4]/60 hover:text-[#6e5e00] transition-colors duration-300" href="#">操作日志</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-[#334537]/60 hover:text-[#334537] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-[#334537]/10">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="professional portrait of an administrator in a clean office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Y9GRV31NIXuTCXhBCpPvfd1U90lCoqGM5PtyWpC6mZlJEh-f_DdvF05yV7oEWBznVbPVQjcbqRdb4Lfmfl0sNnsLG3AgJdOaKT6_Ek5mr0-LLfF76MjWVnDY-lNbaPjG82WYcj1CTOI7d6zIYMxMQGaJdZDdofteVbx513_FfisXPT56ffZ6j3qK6WI2sMTOfYyU6jamdNKKGvsWlMznOmh_H38G-1qZnfsO3jNFcfmgeDWJ1j-cHheHzn5kVYUeCmGJD6v02wGY"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="max-w-7xl mx-auto p-10">
+<!-- Breadcrumbs -->
+<nav class="flex items-center text-sm text-outline mb-8 space-x-2">
+<span>首页</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span>机构管理</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary font-medium">机构审核</span>
+</nav>
+<!-- Header / Status Section -->
+<div class="bg-surface-container-low rounded-xl p-8 mb-10 flex flex-col md:flex-row md:items-end justify-between border-l-4 border-primary shadow-sm">
+<div>
+<h2 class="text-4xl font-bold text-primary mb-4">清风自然保护中心</h2>
+<div class="flex flex-wrap gap-6 text-sm text-on-surface-variant">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-lg mr-2">calendar_today</span>
+<span>申请时间：2023-11-24 14:30:05</span>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-lg mr-2">fingerprint</span>
+<span>申请编号：APP-20231124-0089</span>
+</div>
+</div>
+</div>
+<div class="mt-6 md:mt-0 flex flex-col items-end">
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-sm font-semibold tracking-wide mb-2">
+<span class="w-2 h-2 rounded-full bg-on-secondary-container mr-2"></span>
+                        待实审
+                    </span>
+<p class="text-xs text-outline italic">当前审核阶段：人工最终复核</p>
+</div>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-12 gap-10">
+<!-- Left Section: Forms -->
+<div class="col-span-12 lg:col-span-7 space-y-10">
+<!-- Institution Details -->
+<section>
+<div class="flex items-center mb-6">
+<span class="w-1 h-6 bg-primary mr-3"></span>
+<h3 class="text-xl font-bold">机构基本信息</h3>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm space-y-6">
+<div class="grid grid-cols-2 gap-x-8 gap-y-6">
+<div>
+<label class="block text-xs font-semibold text-outline uppercase tracking-wider mb-2">机构全称</label>
+<p class="text-on-surface border-b border-outline-variant/30 pb-1">清风自然保护与资源管理中心</p>
+</div>
+<div>
+<label class="block text-xs font-semibold text-outline uppercase tracking-wider mb-2">统一社会信用代码</label>
+<p class="text-on-surface border-b border-outline-variant/30 pb-1">91310000MA1G6T7B8X</p>
+</div>
+<div class="col-span-2">
+<label class="block text-xs font-semibold text-outline uppercase tracking-wider mb-2">注册地址</label>
+<p class="text-on-surface border-b border-outline-variant/30 pb-1">上海市崇明区绿华镇绿华路888号三楼</p>
+</div>
+<div>
+<label class="block text-xs font-semibold text-outline uppercase tracking-wider mb-2">成立日期</label>
+<p class="text-on-surface border-b border-outline-variant/30 pb-1">2018-05-12</p>
+</div>
+<div>
+<label class="block text-xs font-semibold text-outline uppercase tracking-wider mb-2">机构性质</label>
+<p class="text-on-surface border-b border-outline-variant/30 pb-1">民办非企业单位</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contacts & Legal Rep -->
+<section>
+<div class="flex items-center mb-6">
+<span class="w-1 h-6 bg-primary mr-3"></span>
+<h3 class="text-xl font-bold">联系人与法人信息</h3>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm grid grid-cols-2 gap-10">
+<div class="space-y-6">
+<h4 class="text-sm font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-lg mr-2">person</span>
+                                    法定代表人
+                                </h4>
+<div>
+<label class="block text-xs font-semibold text-outline mb-1">姓名</label>
+<p class="text-on-surface">林沐风</p>
+</div>
+<div>
+<label class="block text-xs font-semibold text-outline mb-1">证件号码</label>
+<p class="text-on-surface">310***********1234</p>
+</div>
+</div>
+<div class="space-y-6 border-l border-outline-variant/20 pl-10">
+<h4 class="text-sm font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-lg mr-2">contact_phone</span>
+                                    经办联系人
+                                </h4>
+<div>
+<label class="block text-xs font-semibold text-outline mb-1">姓名</label>
+<p class="text-on-surface">陈小凡</p>
+</div>
+<div>
+<label class="block text-xs font-semibold text-outline mb-1">联系电话</label>
+<p class="text-on-surface">138-xxxx-8888</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Section: Documents -->
+<div class="col-span-12 lg:col-span-5 space-y-10">
+<section>
+<div class="flex items-center mb-6">
+<span class="w-1 h-6 bg-primary mr-3"></span>
+<h3 class="text-xl font-bold">资质证明材料</h3>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Document Card 1 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-hidden cursor-zoom-in transition-transform active:scale-95">
+<img alt="Business License" class="w-full h-48 object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="formal business license certificate with red official stamp on textured paper background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaD_ALvMiSFrF8kuDzEJihV72ZDJPj7j09magrW318w44uT1yI9LM8MW6_i_HZjL3xpqmpOH2Vvrpp2qhrghbyzAEa-nmIpggmHDauve5tnZr-R9g6Nn8H6JGkUPl7iEswJz3rutN_aQBpyIwA0NIYXFn_EcZF2_op_upyoXWQibF3cXgMr9f30UEo0ZP7ftDvBNFd5J4d0Lsd8_UXWhr7rKFJGE6QmIDjD7sUwUPNFGSNcTVZ2yio-avJOCRB66K8LS9B_1pExG_Y"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<p class="text-white text-sm font-medium">营业执照 / 组织机构代码证</p>
+</div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">fullscreen</span>
+</div>
+</div>
+<!-- Document Card 2 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-hidden cursor-zoom-in transition-transform active:scale-95">
+<img alt="Release Qualifications" class="w-full h-48 object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="official regulatory document for nature release activities with high-quality printing and signatures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnOEFs_6Rg2Q-nosjFb1YFvYh4AThzNl8cZuXrK82-whTInmFlR8E3k6yGWOmBcy-XvSpfvJhGSX1Dv_YFkokQEzLhpFfP2Tdyu0mA5Wi_n7dB_amNZvvHWtY1R-a8Z-70lz6NfhplAA5CsivXiMhY2vt7_8xRL3QXOLhjNh80xg-5-IrNio1rrdszz1HG8dSJFfint2RXOvZsbzpoBBj6Smh5VO2DPTLSyI4j_bJrUabChIL8JtPpkQZNweuhw1YIPP3gOWp46YBw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<p class="text-white text-sm font-medium">放生资质许可证明</p>
+</div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">fullscreen</span>
+</div>
+</div>
+<!-- Document Card 3 -->
+<div class="group relative bg-surface-container-high rounded-xl overflow-hidden cursor-zoom-in transition-transform active:scale-95">
+<img alt="Water Area Agreements" class="w-full h-48 object-cover opacity-90 group-hover:opacity-100 transition-opacity" data-alt="legal agreement documents resting on a table showing maps and water area boundaries" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGLYfvR6bNPff03LTDCWhri0HjLoo6mdmXED-EuG27sDCLKMhT7gs7cAM6taj6iqp9wgmOqTV5b1l4h9PVDqUAKYh6eppa7EYCnxIgcGywBrr51RofTU0iIFOA4ZAgqxFE-woDtK0hyvY_sMRZuQRKpHlfr8net5pNuN1xr_iBG7AtZifvdxY-TnZoyo8dXE9o07q5VHtA8OFSQBMg3CK6ksLiDZEYbpZnt_2CBiZ5KKSSSBSVXu9ZmJBKcGNjCK5gzORjHYCiVSKz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+<p class="text-white text-sm font-medium">水域使用协议及范围图</p>
+</div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">fullscreen</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Bottom Panel: Audit Actions -->
+<div class="mt-16 bg-surface-container-highest rounded-2xl p-10 shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
+<div class="relative z-10">
+<div class="flex items-center mb-8">
+<span class="material-symbols-outlined text-primary mr-3 text-3xl">fact_check</span>
+<h3 class="text-2xl font-bold">审核决策中心</h3>
+</div>
+<div class="grid grid-cols-12 gap-10">
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<div>
+<label class="block text-sm font-bold text-primary mb-3">审核备注 / 反馈意见</label>
+<textarea class="w-full bg-surface border-none rounded-xl p-4 focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant/60 text-on-surface" placeholder="请输入针对该机构入驻申请的详细审核意见..." rows="4"></textarea>
+</div>
+<div class="flex items-center space-x-12">
+<label class="flex items-center cursor-pointer group">
+<div class="relative flex items-center">
+<input checked="" class="peer hidden" name="audit_result" type="radio" value="pass"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary peer-checked:border-primary peer-checked:bg-primary transition-all flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="ml-3 font-semibold text-on-surface group-hover:text-primary transition-colors">通过审核</span>
+</div>
+</label>
+<label class="flex items-center cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer hidden" name="audit_result" type="radio" value="reject"/>
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-error peer-checked:border-error peer-checked:bg-error transition-all flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white scale-0 peer-checked:scale-100 transition-transform"></div>
+</div>
+<span class="ml-3 font-semibold text-on-surface group-hover:text-error transition-colors">驳回申请</span>
+</div>
+</label>
+</div>
+<div class="animate-pulse-slow">
+<label class="block text-sm font-bold text-error mb-3">驳回理由 (仅在选择驳回时必填)</label>
+<select class="w-full bg-surface border-none rounded-xl p-4 focus:ring-2 focus:ring-error/20 text-on-surface">
+<option value="">请选择驳回理由类别...</option>
+<option value="1">资质材料不清晰或造假</option>
+<option value="2">经营范围与平台不匹配</option>
+<option value="3">历史违规记录</option>
+<option value="4">其他原因（见备注）</option>
+</select>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 flex flex-col justify-end space-y-4">
+<button class="w-full bg-primary-container text-white font-bold py-5 rounded-xl hover:bg-primary transition-all shadow-md hover:shadow-xl active:scale-[0.98] flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined">send</span>
+<span>提交审核结果</span>
+</button>
+<button class="w-full bg-transparent border-2 border-primary/20 text-primary font-bold py-4 rounded-xl hover:bg-primary/5 transition-all">
+                                暂存草稿
+                            </button>
+<p class="text-[10px] text-center text-outline-variant italic">提交后结果将立即通知申请人，且不可撤销。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-20 px-8 py-10 border-t border-[#334537]/5 text-center">
+<p class="text-sm text-[#334537]/40">© 2024 Sanctuary Management Admin Portal. 保持静谧，守护自然。</p>
+</footer>
+</main>
+</body></html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html><html class="light" lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>帮助与反馈 - FAQ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e3e2de",
+                    "on-primary-container": "#c0d5c2",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "tertiary-container": "#6d5435",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-surface-variant": "#434843",
+                    "surface-container": "#efeee9",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-variant": "#e3e2de",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "inverse-primary": "#b7ccb9",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#291801",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-background": "#1b1c19",
+                    "outline": "#737872",
+                    "surface-tint": "#506354",
+                    "secondary-fixed": "#fee264",
+                    "inverse-on-surface": "#f2f1ec",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface": "#faf9f4",
+                    "primary-container": "#4a5d4e",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-container-high": "#e9e8e3",
+                    "background": "#faf9f4",
+                    "error": "#ba1a1a",
+                    "tertiary": "#533d20",
+                    "outline-variant": "#c3c8c1",
+                    "on-secondary-container": "#756400",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "secondary": "#6e5e00",
+                    "inverse-surface": "#30312e",
+                    "primary": "#334537",
+                    "primary-fixed": "#d3e8d5",
+                    "surface-dim": "#dbdad5",
+                    "secondary-container": "#fee264",
+                    "on-surface": "#1b1c19",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#faf9f4",
+                    "on-error": "#ffffff"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF9F4;
+            line-height: 1.4;
+        }
+        .serif-text {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background-color: rgba(51, 69, 55, 0.95);
+        }
+        /* Fix for short orphans in paragraphs */
+        p, .accordion-content {
+            text-wrap: balance;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-16">
+<!-- TopAppBar - Compact -->
+<nav class="sticky top-0 z-50 glass-header flex justify-between items-center w-full px-3 h-12 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white text-xl active:scale-95 duration-200 cursor-pointer" data-icon="arrow_back" style="">arrow_back</span>
+<h1 class="serif-text text-lg font-bold text-white tracking-tight" style="">帮助与反馈</h1>
+</div>
+<button class="text-white font-label text-xs hover:bg-white/10 px-2 py-1 rounded transition-colors duration-200" style="">
+        我的反馈
+    </button>
+</nav>
+<main class="max-w-screen-md mx-auto px-4 py-3">
+<!-- Search Section - Slimmed -->
+<div class="mb-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/40 text-lg group-focus-within:text-primary transition-colors" style="">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-high border-none rounded-lg text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:ring-1 focus:ring-primary/30 transition-all outline-none" placeholder="搜索问题" type="text">
+</div>
+</div>
+<!-- Tab Section - Ultra Slim -->
+<div class="flex gap-6 border-b border-outline-variant/10 mb-4 overflow-x-auto no-scrollbar">
+<button class="pb-1.5 text-primary font-bold border-b-2 border-primary whitespace-nowrap text-xs tracking-wide" style="">
+            常见问题
+        </button>
+<button class="pb-1.5 text-on-surface-variant/60 hover:text-primary transition-colors whitespace-nowrap text-xs tracking-wide" style="">
+            意见反馈</button>
+<button class="pb-1.5 text-on-surface-variant/60 hover:text-primary transition-colors whitespace-nowrap text-xs tracking-wide" style=""><br></button>
+</div>
+<!-- FAQ Content - High Density -->
+<section class="space-y-6">
+<!-- Category: 护生合规 -->
+<div>
+<div class="flex items-center gap-2 mb-3">
+<div class="w-1 h-4 bg-secondary-container rounded-full"></div>
+<h2 class="serif-text text-lg font-bold text-primary" style="">护生合规</h2>
+</div>
+<div class="space-y-2">
+<!-- Accordion Item 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/5">
+<details class="group" style="">
+<summary class="list-none flex justify-between items-center cursor-pointer" style="">
+<span class="text-sm font-medium text-on-surface pr-2" style="">什么是护生准则的“不退转”要求？</span>
+<span class="material-symbols-outlined text-primary/40 text-lg group-open:rotate-180 transition-transform" style="">expand_more</span>
+</summary>
+<div class="pt-3 text-on-surface-variant text-[13px] border-t border-outline-variant/5 mt-2 accordion-content" style="">
+                            护生之行，贵在恒久。即指在发心守护众生后，需心如磐石，不因外境之迁流而动摇初衷，此谓禅心定见。
+                        </div>
+</details>
+</div>
+<!-- Accordion Item 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/5">
+<details class="group" style="">
+<summary class="list-none flex justify-between items-center cursor-pointer" style="">
+<span class="text-sm font-medium text-on-surface pr-2" style="">放生流程中的生态评估标准是什么？</span>
+<span class="material-symbols-outlined text-primary/40 text-lg group-open:rotate-180 transition-transform" style="">expand_more</span>
+</summary>
+<div class="pt-3 text-on-surface-variant text-[13px] border-t border-outline-variant/5 mt-2 accordion-content" style="">
+                            我们遵循“顺应自然”之理。需评估水域深浅、气温四时、物种习性。不扰原生态，不致生灵涂炭，方为真慈悲之举。
+                        </div>
+</details>
+</div>
+</div>
+</div>
+<!-- Category: 账号相关 -->
+<div>
+<div class="flex items-center gap-2 mb-3">
+<div class="w-1 h-4 bg-tertiary-container rounded-full"></div>
+<h2 class="serif-text text-lg font-bold text-primary" style="">账号相关</h2>
+</div>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/5">
+<details class="group" style="">
+<summary class="list-none flex justify-between items-center cursor-pointer" style="">
+<span class="text-sm font-medium text-on-surface pr-2" style="">如何修改我的法名或修持目标？</span>
+<span class="material-symbols-outlined text-primary/40 text-lg group-open:rotate-180 transition-transform" style="">expand_more</span>
+</summary>
+<div class="pt-3 text-on-surface-variant text-[13px] border-t border-outline-variant/5 mt-2 accordion-content" style="">
+                            名相皆虚，然为方便修持，您可在“我的 - 个人资料”中随缘修订。改名如换服，心境需依然稳固。
+                        </div>
+</details>
+</div>
+</div>
+</div>
+<!-- Category: 支付结算 -->
+<div>
+<div class="flex items-center gap-2 mb-3">
+<div class="w-1 h-4 bg-primary-container rounded-full"></div>
+<h2 class="serif-text text-lg font-bold text-primary" style="">支付结算</h2>
+</div>
+<div class="space-y-2">
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm border border-outline-variant/5">
+<details class="group" style="">
+<summary class="list-none flex justify-between items-center cursor-pointer" style="">
+<span class="text-sm font-medium text-on-surface pr-2" style="">供养金的流向如何查询？</span>
+<span class="material-symbols-outlined text-primary/40 text-lg group-open:rotate-180 transition-transform" style="">expand_more</span>
+</summary>
+<div class="pt-3 text-on-surface-variant text-[13px] border-t border-outline-variant/5 mt-2 accordion-content" style="">
+                            一分一毫，皆有归处。透明如水，公示于“修持账目”板块，让每一份净资都流向最需要救助之处。
+                        </div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<!-- Decorative Zen Element - Tightened -->
+<div class="mt-8 mb-4 flex flex-col items-center opacity-40 text-center px-10">
+<span class="material-symbols-outlined text-primary text-3xl mb-2" data-icon="self_improvement" style="">self_improvement</span>
+<p class="serif-text italic text-primary text-[11px] leading-tight" style="">
+            若问此中意，山空月自明。<br>如有其它未尽之意，请向“在线禅友”垂询。
+        </p>
+</div>
+</main>
+<!-- BottomNavBar - Slim & Compact -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-2 bg-[#FAF9F4] shadow-[0_-2px_10px_rgba(74,93,78,0.05)] z-50 rounded-t-2xl">
+<a class="flex flex-col items-center justify-center text-[#334537]/60 active:scale-90 transition-transform px-3 py-0.5" href="#" style="">
+<span class="material-symbols-outlined text-xl" data-icon="library_music" style="">library_music</span>
+<span class="font-label text-[9px] font-medium mt-0.5" style="">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/60 active:scale-90 transition-transform px-3 py-0.5" href="#" style="">
+<span class="material-symbols-outlined text-xl" data-icon="self_improvement" style="">self_improvement</span>
+<span class="font-label text-[9px] font-medium mt-0.5" style="">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#4A5D4E] text-[#FAF9F4] rounded-lg px-4 py-1 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined text-xl" data-icon="person" style="font-variation-settings: &quot;FILL&quot; 1;">person</span>
+<span class="font-label text-[9px] font-medium mt-0.5" style="">我的</span>
+</a>
+</nav>
+<div class="hidden">
+<img data-alt="Zen rock garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYxaGYWkEDsAUhsvSBGOguE17eslOKOLfGotco7WOPPawrRvg3oSyj-a_Y0gEpRNU_cEeKVEnlMtSgqUdUBuis1NBYO2ogI1byCZ1scbmsiaMNHEP1SiG_yy8BL1MwGWCcQIqTJzgkRfYSXALC6vnMwClv_Fs7O3df1PekQZ27F24vzYlaT8ERVoMUww0N6fJWcK1EXlRzmjrDuKttlMiwyK8B-DFS3bLtiashdwmDnOAbYR8FPA3AuTWJzXtY0lsygEHYU5kotSbv" class="" style="">
+</div>
+</body></html>

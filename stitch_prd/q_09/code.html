@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c3c8c1",
+                    "surface-bright": "#faf9f4",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-dim": "#dbdad5",
+                    "secondary-container": "#fee264",
+                    "surface-tint": "#506354",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "secondary-fixed": "#fee264",
+                    "tertiary": "#533d20",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#291801",
+                    "background": "#faf9f4",
+                    "primary": "#334537",
+                    "secondary": "#6e5e00",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#756400",
+                    "surface-container": "#efeee9",
+                    "surface-container-high": "#e9e8e3",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#ebcaa3",
+                    "surface": "#faf9f4",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e3e2de",
+                    "primary-container": "#4a5d4e",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-surface": "#1b1c19",
+                    "on-secondary-fixed": "#211b00",
+                    "inverse-primary": "#b7ccb9",
+                    "surface-container-highest": "#e3e2de",
+                    "outline": "#737872",
+                    "tertiary-container": "#6d5435",
+                    "on-surface-variant": "#434843",
+                    "on-background": "#1b1c19",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-primary-container": "#c0d5c2",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "inverse-surface": "#30312e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-gradient {
+            background: linear-gradient(180deg, rgba(250, 249, 244, 0) 0%, rgba(250, 249, 244, 1) 100%);
+        }
+        .text-shadow-zen {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-4 h-16 w-full shadow-sm dark:shadow-none bg-[#4A5D4E]/80 backdrop-blur-md dark:bg-[#1A241C]/80">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-white hover:bg-white/10 transition-colors p-2 rounded-full active:opacity-80">arrow_back</button>
+<h1 class="font-['Noto_Serif'] text-lg tracking-wide text-white">物种详情</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-white hover:bg-white/10 transition-colors p-2 rounded-full active:opacity-80">share</button>
+</div>
+</header>
+<main class="pb-32">
+<!-- Hero Visual Section -->
+<section class="relative h-[574px] w-full overflow-hidden">
+<img alt="Little Egret in flight" class="w-full h-full object-cover" data-alt="Elegant little egret with pure white feathers standing gracefully in a shallow sunlit wetland, soft misty morning light, ethereal atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzO_ZBnJHZbBLdHGLwzcvRfcrN4cthO4C97K9f4cVBU6gHEeN9pj41hwJu2PyT8GZa102Bu7ViopD8qb_rBF4PXV0x1gSH-D4mgFzW4NvQumGjapwtQ1pobvKtTCDz2b5f_X05098UlAOHFisWXGViaIKSKztuK6lORBMabAoTY0LoldzuxtpZkoNk9rUKgIk1xg23_9zplnD2iIELp0OoZtO5Mm8BNJsberbRQwS1g3VSeZCIriqx-LHNulZqxfJnqSl7exKuHQRb"/>
+<div class="absolute inset-0 ink-wash-gradient"></div>
+<!-- Floating Tag -->
+<div class="absolute top-24 left-6">
+<span class="bg-secondary-container/90 backdrop-blur-sm text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                    可合规投放
+                </span>
+</div>
+<!-- Title Overlay -->
+<div class="absolute bottom-12 left-6 right-6">
+<div class="flex flex-col gap-1">
+<h2 class="text-4xl font-headline font-bold text-primary tracking-tight">白鹭</h2>
+<p class="text-lg font-body text-primary/70 italic">Egretta garzetta</p>
+</div>
+</div>
+</section>
+<!-- Content Canvas -->
+<div class="px-6 -mt-8 relative z-10 flex flex-col gap-8">
+<!-- Editorial Card: Culture -->
+<section class="bg-surface-container-lowest p-8 rounded-2xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+<h3 class="font-headline text-xl text-primary font-bold">文化寓意</h3>
+</div>
+<div class="flex flex-col gap-4 leading-relaxed text-on-surface-variant font-light text-[1.05rem]">
+<p>“两个黄鹂鸣翠柳，一行白鹭上青天。”</p>
+<p>白鹭在东方文化中被视为“长寿”与“高洁”的象征。其通体洁白，步履从容，犹如行走在水云间的隐士。在禅意美学中，白鹭代表着内心的宁静与对自然律动的顺应。</p>
+</div>
+</section>
+<!-- Bento Grid: Ecological Attributes -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col gap-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">eco</span>
+<div>
+<h4 class="text-xs font-bold text-primary/50 uppercase tracking-widest mb-1">生态习性</h4>
+<p class="text-on-surface font-medium">湿地守护者</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col gap-4">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">landscape</span>
+<div>
+<h4 class="text-xs font-bold text-primary/50 uppercase tracking-widest mb-1">适宜生境</h4>
+<p class="text-on-surface font-medium">稻田与滩涂</p>
+</div>
+</div>
+<div class="col-span-2 bg-primary-container text-on-primary-container p-6 rounded-2xl flex justify-between items-center">
+<div class="flex flex-col gap-1">
+<h4 class="text-xs font-bold opacity-60 uppercase tracking-widest">护生建议</h4>
+<p class="font-medium">保持水源洁净，切勿惊扰营巢。</p>
+</div>
+<span class="material-symbols-outlined text-3xl opacity-30">nest_cam_wired_stand</span>
+</div>
+</div>
+<!-- Detailed Description Section -->
+<section class="flex flex-col gap-6 py-4">
+<div class="flex items-center gap-3">
+<span class="w-1 h-6 bg-secondary-container rounded-full"></span>
+<h3 class="font-headline text-xl text-primary font-bold">形态特征</h3>
+</div>
+<div class="relative rounded-2xl overflow-hidden aspect-video group">
+<img alt="Egret details" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Macro photo of egret feathers and eyes, crystalline clarity, soft morning dew droplets visible, high contrast photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANIA-IUUFaqpGxBvYa1AHdCjN5pmRvXRNkrRyVaTnHNNODZ_0DAv20jEKuhaoJo3flqifP-8Ba0sceX3ww-nMQEVXVkEwN65yif1zG0LLW2jRynaRGPC1qtt61L7QGuScHamkiHJpXolleX_DNiz_NOJ17DHps-lFqhYWwodsS3jq6fhK2hnJsgzRTVidzZLkv2zNuzyLlcgmZobu7TTKc3FW-gw_zEh5Ah1ZBiEokQCZWFYRXzkpEKIl83uXRyjDl5R1bZ1C2CJX0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent flex flex-end items-end p-6">
+<p class="text-white text-sm leading-relaxed">中型涉禽，身披洁白丝状羽，颈部修长呈“S”型。繁殖期枕部着生两条狭长矛状羽，随风飘动，仪态万千。</p>
+</div>
+</div>
+</section>
+<!-- Scientific Stats -->
+<section class="bg-surface-container-high rounded-2xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-center border-b border-outline-variant/15 pb-4">
+<span class="text-on-surface-variant text-sm">物种目名</span>
+<span class="text-primary font-semibold">鹈形目 (Pelecaniformes)</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/15 pb-4">
+<span class="text-on-surface-variant text-sm">物种科名</span>
+<span class="text-primary font-semibold">鹭科 (Ardeidae)</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">保护级别</span>
+<span class="bg-tertiary-container/20 text-tertiary px-3 py-1 rounded text-xs font-bold">三有保护动物</span>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex px-6 py-4 bg-[#FAF9F4]/80 backdrop-blur-md dark:bg-black/40 z-50 rounded-t-2xl shadow-[0_-4px_20px_rgba(74,93,78,0.08)]">
+<button class="flex items-center justify-center w-full mx-4 my-2 py-3 bg-[#4A5D4E] dark:bg-[#C9B037] text-white dark:text-[#334537] rounded-lg shadow-md font-['Plus_Jakarta_Sans'] text-sm font-semibold hover:brightness-110 transition-all active:scale-[0.98] duration-200">
+<span class="material-symbols-outlined mr-2">potted_plant</span>
+            去护生
+        </button>
+</nav>
+<!-- Global App Navigation Shell (Persistent Context) -->
+<!-- This would normally be visible, but for "Species Detail", we prioritize focus as per Shell Logic -->
+<!-- Custom Secondary Navigation Layer (Conceptual for the context of "禅理" being active) -->
+<div class="hidden">
+<!-- Labels for Active State Logic: 梵音, 禅理, 我的 -->
+</div>
+</body></html>

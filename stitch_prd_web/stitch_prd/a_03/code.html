@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>祈福者用户列表 - 清如管理后台</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e3e2de",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-tertiary-fixed": "#291801",
+                    "inverse-primary": "#b7ccb9",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d3e8d5",
+                    "surface-bright": "#faf9f4",
+                    "primary-container": "#4a5d4e",
+                    "on-surface-variant": "#434843",
+                    "on-secondary-fixed-variant": "#534600",
+                    "outline": "#737872",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-secondary-fixed": "#211b00",
+                    "on-surface": "#1b1c19",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#faf9f4",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-secondary-container": "#756400",
+                    "on-primary-fixed": "#0e1f13",
+                    "inverse-surface": "#30312e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fee264",
+                    "secondary": "#6e5e00",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#e9e8e3",
+                    "secondary-fixed": "#fee264",
+                    "on-background": "#1b1c19",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-tint": "#506354",
+                    "surface-container": "#efeee9",
+                    "surface-variant": "#e3e2de",
+                    "tertiary": "#533d20",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-primary-container": "#c0d5c2",
+                    "primary": "#334537",
+                    "outline-variant": "#c3c8c1",
+                    "on-error": "#ffffff",
+                    "background": "#faf9f4",
+                    "surface-container-low": "#f5f4ef",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#6d5435"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at top right, rgba(74, 93, 78, 0.03), transparent),
+                        radial-gradient(circle at bottom left, rgba(201, 176, 55, 0.02), transparent);
+        }
+        .thin-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .thin-scrollbar::-webkit-scrollbar-thumb {
+            background: #c3c8c1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="flex h-screen overflow-hidden">
+<!-- Side Navigation (Predicted Component) -->
+<aside class="hidden md:flex flex-col h-full py-6 w-64 border-r border-[#334537]/15 bg-[#EFEEE9] dark:bg-[#334537]">
+<div class="px-6 mb-10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="Qingru Zen Logo" class="w-6 h-6 invert opacity-90" data-alt="minimalist spiritual logo with a clean circle and a single stylized leaf icon in forest green" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQoA2Lr-ic7STlb-jTRc66WvVktJPGKFncAyQ4w_mbp2-9zaevXmNICoNtMerIbX2GhmEyDiGQPuun5Sm_lJVE4vTqnPNvpW6A5MPIokc0Lisp4u8MDfh1CxhDqHnkKzPmv8zaCiXeRgFSfVm_Q6uWql8Mu8DoVNc8zUsi0eYrJsaqUnnhRcjfFN7scvtLh_0o-dEh0fLpvI-rFIO0l_eQTrKNhDa38wIhXC0y6eDap0IvBcENNsnKKppRAO6FRB02BsVlDLD_Loka"/>
+</div>
+<div>
+<h1 class="font-['Noto_Serif'] text-lg text-[#334537] dark:text-[#FAF9F4] font-bold leading-tight">清如禅意</h1>
+<p class="text-[10px] tracking-[0.2em] opacity-60 font-medium">管理系统</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>控制台</span>
+</a>
+<a class="flex items-center gap-3 bg-[#FAF9F4] dark:bg-[#4A5D4E] text-[#334537] dark:text-[#C9B037] rounded-r-full shadow-sm px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>用户管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>订单管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">article</span>
+<span>内容管理</span>
+</a>
+<a class="flex items-center gap-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8 active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>财务管理</span>
+</a>
+</nav>
+<div class="mt-auto px-4 space-y-1">
+<a class="flex items-center gap-3 text-[#334537]/70 dark:text-[#FAF9F4]/70 px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>系统设置</span>
+</a>
+<a class="flex items-center gap-3 text-error px-6 py-3 font-medium text-sm transition-all duration-300 hover:pl-8" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>退出登录</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface ink-wash-bg overflow-hidden relative">
+<!-- Top App Bar (Predicted Component) -->
+<header class="w-full h-16 sticky top-0 z-50 flex items-center justify-between px-8 bg-[#FAF9F4]/40 backdrop-blur-xl bg-gradient-to-b from-[#FAF9F4] to-transparent shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex items-center gap-6">
+<div class="md:hidden">
+<span class="material-symbols-outlined text-primary">menu</span>
+</div>
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-primary/40 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-xs w-64 focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-primary/30" placeholder="搜索用户 UID / 姓名 / 手机号" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-primary/60 hover:bg-[#EFEEE9]/50 transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant/30"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold text-primary">管理员：妙心</p>
+<p class="text-[10px] text-primary/50">高级权限</p>
+</div>
+<div class="w-9 h-9 rounded-full border-2 border-primary-container/20 overflow-hidden shadow-sm">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="professional portrait of a person with a calm expression, neutral lighting, soft background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoBsmSyC-uJt92GElHS9RIOufHYmiKvbq-7bIrju__8c_0vJhHUD-HaEQ8j_g5U6_lheyG-acTQYt9vqwE5kumRrgv2lacDHlV7oMatAVKjob7uLSj-QX1knd-Q6YmODJKnBZfxvhsFR6iKqi-eqdBpAEH9_h7tGl-N03k7mh9AUo75FIps7xEpfBuoZ35sUdjHI46TfDUYYYbnJshwAFtMqdcDJV9-iQjMzBja2GhXUbb-KLpIyMD2v0r-mppAMKaDT84sFHyWjOR"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 overflow-y-auto p-8 thin-scrollbar">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<nav class="flex items-center gap-2 text-[10px] text-primary/50 mb-2 tracking-widest font-label">
+<span>主控台</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span>用户管理</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary/80">祈福者用户列表</span>
+</nav>
+<h2 class="text-3xl font-headline text-primary">祈福者用户列表 <span class="text-sm font-body text-primary/40 font-normal ml-3">共 12,842 位用户</span></h2>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-primary/10 text-primary text-sm font-medium bg-surface hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">download</span>
+                            导出 Excel
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary text-sm font-medium shadow-sm hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+                            手动新增用户
+                        </button>
+</div>
+</div>
+<!-- Stats Overview (Compact) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-container-low p-5 rounded-xl border-l-4 border-primary-container">
+<p class="text-[11px] text-primary/60 font-medium uppercase tracking-tighter">今日新增</p>
+<h4 class="text-2xl font-bold text-primary mt-1">128</h4>
+<p class="text-[10px] text-primary/40 mt-1 flex items-center gap-1"><span class="text-emerald-600">↑ 12%</span> 较昨日</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl border-l-4 border-secondary-container">
+<p class="text-[11px] text-primary/60 font-medium uppercase tracking-tighter">活跃祈福者</p>
+<h4 class="text-2xl font-bold text-primary mt-1">4,521</h4>
+<p class="text-[10px] text-primary/40 mt-1 flex items-center gap-1">最近 7 天活跃</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl border-l-4 border-tertiary-container">
+<p class="text-[11px] text-primary/60 font-medium uppercase tracking-tighter">累计功德值</p>
+<h4 class="text-2xl font-bold text-primary mt-1">1.2M</h4>
+<p class="text-[10px] text-primary/40 mt-1 flex items-center gap-1"><span class="text-secondary font-bold">VIP</span> 覆盖率 18%</p>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl border-l-4 border-outline-variant">
+<p class="text-[11px] text-primary/60 font-medium uppercase tracking-tighter">待审核实名</p>
+<h4 class="text-2xl font-bold text-primary mt-1">42</h4>
+<p class="text-[10px] text-primary/40 mt-1 flex items-center gap-1 font-bold text-error">需要紧急处理</p>
+</div>
+</div>
+<!-- Main Table Container -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] overflow-hidden border border-primary/5">
+<!-- Table Toolbar -->
+<div class="px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-container-low/30 border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-primary/60">快速筛选:</span>
+<div class="flex bg-surface rounded-lg p-0.5 border border-outline-variant/30">
+<button class="px-3 py-1 text-[11px] font-medium bg-primary-container text-on-primary rounded-md shadow-sm">全部</button>
+<button class="px-3 py-1 text-[11px] font-medium text-primary/60 hover:text-primary transition-colors">功德高</button>
+<button class="px-3 py-1 text-[11px] font-medium text-primary/60 hover:text-primary transition-colors">新用户</button>
+<button class="px-3 py-1 text-[11px] font-medium text-primary/60 hover:text-primary transition-colors">已锁定</button>
+</div>
+</div>
+<button class="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-primary/10 text-primary text-xs font-medium hover:bg-surface-container transition-all group active:scale-95">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                            高级筛选
+                            <span class="ml-1 px-1.5 py-0.5 bg-primary/10 rounded-md text-[9px]">F</span>
+</button>
+</div>
+<!-- Compact Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/20 border-b border-outline-variant/20">
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</th>
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest">用户信息</th>
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest">UID / 手机号</th>
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest">注册日期</th>
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-center">功德值 / 等级</th>
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-center">状态</th>
+<th class="px-6 py-4 text-[11px] font-bold text-primary/50 uppercase tracking-widest text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-fixed border border-primary/10">
+<img alt="User 1" class="w-full h-full object-cover" data-alt="close up avatar of a young man with glasses and a kind smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-_ij5TIevnPc07aPFrr8-IshDCzyrkFVSNiDp53NjCgHkWOI4rkj4_7LrlGX7IQJnUTfwAXBWOBvd6Vl98C3axtc-9JaPRG_qaV91yg7wZFbv-7L7zQa7cglX2BzSRFfJGrjLW4q0HZf7y8LLJPH9zdYE4QFZij19TWRS3lBYoPK0P4r8v6ZSqsuTXGG1YZfzJZaKTVUF5_dh45tFUaGJIPXBMOCEt_OOlyRSXU6jTr6fH5SUlyGZ6J2Bgfc7300kBI1i5PA6frSw"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">清风徐来</p>
+<p class="text-[10px] text-primary/40">浙江, 杭州</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs font-mono text-primary/70">80124930</p>
+<p class="text-[10px] text-primary/40">138****9021</p>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs text-primary/70">2023-11-24</p>
+<p class="text-[10px] text-primary/40">14:20:05</p>
+</td>
+<td class="px-6 py-3 text-center">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-secondary">42,800</span>
+<span class="px-2 py-0.5 bg-secondary-container/30 text-secondary text-[9px] rounded-full font-bold">LV.4 居士</span>
+</div>
+</td>
+<td class="px-6 py-3 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-8 h-4 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">edit_square</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-fixed border border-primary/10">
+<img alt="User 2" class="w-full h-full object-cover" data-alt="avatar of a middle-aged woman with a peaceful expression, warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7_MJUzQ8UY3y8Xp5TT2I8RTodrcJ26OUuC7vSlSWJa9frs-uZqGoI6W0megAIUtcS-qEeMQ2GwYRkYVIQ4JCzwVfMzUzbgH6ay0dtRH-fKZ0z1z9AvTBittZc-UFe21WoNjMoK7mIg1lkQVQ01nSBNnhHVQ4F_9JzmEVjfvOeA4910HFUIWKs_nziAdb6PKkp38RcKb2Jf9mL8OxLnIakKWQOUyqqOp4e1OJZ_6FHekt-bs1xZnHEzMEmw3D_wczE1rKcZRLtzOOd"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">慧根常净</p>
+<p class="text-[10px] text-primary/40">四川, 成都</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs font-mono text-primary/70">80124931</p>
+<p class="text-[10px] text-primary/40">150****8822</p>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs text-primary/70">2023-11-25</p>
+<p class="text-[10px] text-primary/40">09:12:33</p>
+</td>
+<td class="px-6 py-3 text-center">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-secondary">15,200</span>
+<span class="px-2 py-0.5 bg-primary-fixed text-primary/60 text-[9px] rounded-full font-bold">LV.2 缘主</span>
+</div>
+</td>
+<td class="px-6 py-3 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-8 h-4 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">edit_square</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors bg-error-container/10">
+<td class="px-6 py-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-fixed border border-primary/10 grayscale">
+<img alt="User 3" class="w-full h-full object-cover" data-alt="moody portrait of a man with serious expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiUJ686dOyb0n6DYqPhxep8b8tBvZJou8kUgfrRNvrxMM5LKlQR1LGV8Jga_BdM46UPQF7M2_X-uoW4vcgiBrdOJHT8PG0qQlyVbF02MMrqv9SiRJHTPP4Z2RW3D5pziDlD7VeQkvKRIS9jd_R2-y9Efd7ab2ceJDb8vSzG9jV4Lb1hR2TOVD6c3Qy571l3re-9fbd8Rw7zszO3Md39JPce8yeZDIUlrVhWRgCza3PLmcYc_0uq4g9mbvpBoI1IIDh_xxPsjU9355A"/>
+</div>
+<div>
+<p class="text-xs font-bold text-error">违规用户_A</p>
+<p class="text-[10px] text-error/60">异常登录状态</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs font-mono text-primary/70">80124935</p>
+<p class="text-[10px] text-primary/40">131****4421</p>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs text-primary/70">2023-11-20</p>
+<p class="text-[10px] text-primary/40">18:05:22</p>
+</td>
+<td class="px-6 py-3 text-center">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-primary/40">0</span>
+<span class="px-2 py-0.5 bg-outline-variant text-on-surface-variant text-[9px] rounded-full font-bold">待定</span>
+</div>
+</td>
+<td class="px-6 py-3 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-8 h-4 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">edit_square</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-fixed border border-primary/10">
+<img alt="User 4" class="w-full h-full object-cover" data-alt="cheerful older man with short gray hair and smiling eyes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXrlcRxmsE9LPRmGa76sjOaZ1iBWwDpiJ3_afWkTcAiuhGejrdF_luk6Ymhm48gUMbZn68jh5kcks83lE6e0yXaHGfFkv25WEq990aNa4wdLwJkgUxS3EM8P1M_y8j3vLD-R12VwNZFCXxV2DnHVuakeMX6Q2hMvN3MtcU9GRScNkEsfU7KN2zFAV7Q3SKe6AWnzjOj1_NO3JBhOxI6dLnSUT5ePt8hi8whIr23HMDXGZPrQXRa2XmAAQSvZ_mfvk3LTOGawd6r-PF"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">松间月下</p>
+<p class="text-[10px] text-primary/40">广东, 广州</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs font-mono text-primary/70">80124942</p>
+<p class="text-[10px] text-primary/40">189****0034</p>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs text-primary/70">2023-11-26</p>
+<p class="text-[10px] text-primary/40">22:45:10</p>
+</td>
+<td class="px-6 py-3 text-center">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-secondary">2,100</span>
+<span class="px-2 py-0.5 bg-primary-fixed text-primary/60 text-[9px] rounded-full font-bold">LV.1 凡客</span>
+</div>
+</td>
+<td class="px-6 py-3 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-8 h-4 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">edit_square</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-6 py-3">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="px-6 py-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-fixed border border-primary/10">
+<img alt="User 5" class="w-full h-full object-cover" data-alt="serene portrait of a person with natural skin texture and soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5IRHLfwFUSeorNp3Dizr-tuaAeHcrkPgnJAXQU6YRwYngzlrf-eQbeNah_Y2zwRCTiPH8V_HTOAkpw1FK8akzLhUuViVB80r-q1yBOj7u4i1PbkBsFPu8_UPyyBpVsVNlQl9D-N5b1xb-9w8g9mmgyReaeEzHE6IY7j4t2nAKtdzT_UyKVoVDJhURGb2C-XtiELgSHj0Fty20S5pGryY7d22NvtyFxN4bIEKx_zpQtfr7ETwsVYH9Kklxrfb8tCdvdKJCkSJPu0ud"/>
+</div>
+<div>
+<p class="text-xs font-bold text-primary">心止如水</p>
+<p class="text-[10px] text-primary/40">江苏, 南京</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs font-mono text-primary/70">80124950</p>
+<p class="text-[10px] text-primary/40">135****7712</p>
+</td>
+<td class="px-6 py-3">
+<p class="text-xs text-primary/70">2023-11-27</p>
+<p class="text-[10px] text-primary/40">11:30:15</p>
+</td>
+<td class="px-6 py-3 text-center">
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold text-secondary">88,000</span>
+<span class="px-2 py-0.5 bg-secondary-container/30 text-secondary text-[9px] rounded-full font-bold">LV.5 执事</span>
+</div>
+</td>
+<td class="px-6 py-3 text-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-8 h-4 bg-outline-variant/30 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</td>
+<td class="px-6 py-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">edit_square</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 hover:bg-surface-container-high hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low/30 flex items-center justify-between border-t border-outline-variant/10">
+<p class="text-[11px] text-primary/50 font-medium">显示 1-15 条，共 12,842 条记录</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-primary/40 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary-container text-on-primary text-xs font-bold shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 text-xs font-bold hover:bg-surface-container transition-all">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 text-xs font-bold hover:bg-surface-container transition-all">3</button>
+<span class="text-primary/30 mx-1 text-xs">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-primary/60 text-xs font-bold hover:bg-surface-container transition-all">856</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-primary/40 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Drawer (Right Side) -->
+<div class="fixed top-0 right-0 h-full w-80 bg-surface-container-lowest shadow-[-12px_0_40px_rgba(0,0,0,0.05)] translate-x-full transition-transform duration-500 ease-in-out border-l border-outline-variant/20 z-[60]" id="filterDrawer">
+<div class="p-6 h-full flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-xl font-headline text-primary">高级筛选</h3>
+<button class="p-2 hover:bg-surface-container rounded-full transition-all text-primary/40 hover:text-primary">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 space-y-6">
+<div class="space-y-2">
+<label class="text-[11px] font-bold text-primary/60 uppercase tracking-widest">功德值范围</label>
+<div class="flex items-center gap-2">
+<input class="w-full bg-surface-container-low border-none rounded-lg py-2 px-3 text-xs focus:ring-1 focus:ring-primary/30" placeholder="最小" type="number"/>
+<span class="text-primary/30">至</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg py-2 px-3 text-xs focus:ring-1 focus:ring-primary/30" placeholder="最大" type="number"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[11px] font-bold text-primary/60 uppercase tracking-widest">用户等级</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg border border-outline-variant/20 text-xs cursor-pointer hover:bg-surface-container transition-all">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+                                    凡客 (LV.1)
+                                </label>
+<label class="flex items-center gap-2 p-2 rounded-lg border border-outline-variant/20 text-xs cursor-pointer hover:bg-surface-container transition-all">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+                                    缘主 (LV.2)
+                                </label>
+<label class="flex items-center gap-2 p-2 rounded-lg border border-outline-variant/20 text-xs cursor-pointer hover:bg-surface-container transition-all">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+                                    善信 (LV.3)
+                                </label>
+<label class="flex items-center gap-2 p-2 rounded-lg border border-outline-variant/20 text-xs cursor-pointer hover:bg-surface-container transition-all">
+<input class="rounded text-primary focus:ring-primary" type="checkbox"/>
+                                    居士 (LV.4)
+                                </label>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[11px] font-bold text-primary/60 uppercase tracking-widest">地理区域</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg py-2 px-3 text-xs focus:ring-1 focus:ring-primary/30">
+<option>全国范围</option>
+<option>华东地区</option>
+<option>华南地区</option>
+<option>华北地区</option>
+<option>西部地区</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-[11px] font-bold text-primary/60 uppercase tracking-widest">账号状态</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full border border-primary text-[10px] bg-primary-fixed text-primary font-bold">正常使用</button>
+<button class="px-3 py-1.5 rounded-full border border-outline-variant/30 text-[10px] hover:border-primary transition-all">限制权限</button>
+<button class="px-3 py-1.5 rounded-full border border-outline-variant/30 text-[10px] hover:border-primary transition-all">锁定拉黑</button>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/20 grid grid-cols-2 gap-4">
+<button class="py-2.5 rounded-lg border border-primary/10 text-primary text-xs font-bold hover:bg-surface-container-high transition-all">重置条件</button>
+<button class="py-2.5 rounded-lg bg-primary text-on-primary text-xs font-bold shadow-md hover:opacity-90 transition-all">应用筛选</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

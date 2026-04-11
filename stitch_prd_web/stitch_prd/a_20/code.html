@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>合规水域管理 - Breath of Silence Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#291801",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#4a5d4e",
+                    "surface-bright": "#faf9f4",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "inverse-surface": "#30312e",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#533d20",
+                    "surface-container-highest": "#e3e2de",
+                    "surface-tint": "#506354",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f5f4ef",
+                    "inverse-primary": "#b7ccb9",
+                    "on-primary-container": "#c0d5c2",
+                    "secondary-fixed": "#fee264",
+                    "on-surface": "#1b1c19",
+                    "surface-container-high": "#e9e8e3",
+                    "primary-fixed": "#d3e8d5",
+                    "outline": "#737872",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c3c8c1",
+                    "on-error": "#ffffff",
+                    "surface": "#faf9f4",
+                    "on-background": "#1b1c19",
+                    "background": "#faf9f4",
+                    "tertiary-container": "#6d5435",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "tertiary-fixed": "#ffddb6",
+                    "secondary-container": "#fee264",
+                    "primary": "#334537",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "surface-variant": "#e3e2de",
+                    "surface-dim": "#dbdad5",
+                    "on-secondary-fixed": "#211b00",
+                    "on-secondary-container": "#756400",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#434843",
+                    "inverse-on-surface": "#f2f1ec",
+                    "surface-container": "#efeee9",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "secondary": "#6e5e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', 'Noto Sans SC', sans-serif; }
+        .serif-headline { font-family: 'Noto Serif', 'Noto Serif SC', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-mask {
+            background-image: radial-gradient(circle at 20% 30%, rgba(74, 93, 78, 0.03) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 70%, rgba(110, 94, 0, 0.03) 0%, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col pt-16 bg-[#EFEEE9] dark:bg-[#1A1C19] w-64 z-40 shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="px-6 mb-8 mt-4">
+<h2 class="text-lg font-semibold text-[#334537] serif-headline">庇护所控制中心</h2>
+<p class="text-xs text-[#334537]/60 font-medium">注册与合规管理</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-4 py-3 text-[#334537]/80 hover:bg-[#FAF9F4]/50 mx-2 my-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="text-sm font-medium">仪表盘</span>
+</a>
+<a class="flex items-center px-4 py-3 bg-[#4A5D4E] text-[#FAF9F4] rounded-lg mx-2 my-1 scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="text-sm font-medium">用户管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/80 hover:bg-[#FAF9F4]/50 mx-2 my-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">shopping_cart</span>
+<span class="text-sm font-medium">订单管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/80 hover:bg-[#FAF9F4]/50 mx-2 my-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">gavel</span>
+<span class="text-sm font-medium">内容与合规管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/80 hover:bg-[#FAF9F4]/50 mx-2 my-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="text-sm font-medium">财务统计</span>
+</a>
+<a class="flex items-center px-4 py-3 text-[#334537]/80 hover:bg-[#FAF9F4]/50 mx-2 my-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="text-sm font-medium">系统设置</span>
+</a>
+</nav>
+<div class="p-6">
+<div class="bg-primary-container/10 p-4 rounded-xl border border-primary-container/5">
+<p class="text-xs font-bold text-primary mb-1">合规状态</p>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[92%]"></div>
+</div>
+<p class="text-[10px] mt-2 opacity-70">区域覆盖率：92% 已激活</p>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="flex-1 ml-64 flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 z-50 bg-[#FAF9F4] dark:bg-[#1A1C19] border-none shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-3 h-16">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold tracking-tight text-[#334537] serif-headline">静谧之息 管理后台</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined text-[#334537]/70 cursor-pointer p-2 rounded-full hover:bg-[#EFEEE9] transition-colors">search</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#334537]/70 cursor-pointer p-2 rounded-full hover:bg-[#EFEEE9] transition-colors">notifications</span>
+<span class="material-symbols-outlined text-[#334537]/70 cursor-pointer p-2 rounded-full hover:bg-[#EFEEE9] transition-colors">settings</span>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+<img alt="管理员头像" data-alt="professional male portrait for administrator profile, clean background, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTswWL6TDEMgCkgFir-KP87d1cgu8dcwPW-Gmhvo-dnV6SZQ3g9lrjDJUeh7yhKCpVIUfRGsczbHbfn5ugdNAG2Fk6-k6GE22H0m3OkvYkdw_d3dpqfILL77dYDePXykdjFXwo19m7ak5rey6ImB3jXKtkm_UNN2cIFFAyJpkA67A9k5KVQtU1m2HjHMpeO8GTv41MR1tzw0Lw9uqoY1hyxMYYOV4tyNgtUiNDFuj_CTcNC7IeYFSzV77CRK3Kxh7HkwXcs1SjpaHd"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="mt-16 p-8 flex-1 ink-wash-mask">
+<!-- Header Section -->
+<div class="mb-10 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl serif-headline text-primary font-bold tracking-tight mb-2">合规水域管理</h1>
+<p class="text-on-surface-variant max-w-xl">管理并配置全平台合规投放点位及合作机构绑定，确保生态保护与人文体验的平衡。</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg flex items-center gap-2 font-medium hover:opacity-90 transition-opacity active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg">add_location_alt</span>
+                        新增水域
+                    </button>
+</div>
+</div>
+<!-- Filters & Actions -->
+<div class="max-w-7xl mx-auto mb-6">
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-primary/60 ml-1">水域名称</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="w-full pl-9 pr-4 py-2 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant" placeholder="搜索水域名称..." type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-primary/60 ml-1">区域选择</label>
+<select class="w-full px-4 py-2 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 appearance-none transition-all">
+<option>全部区域</option>
+<option>华东地区</option>
+<option>西南林区</option>
+<option>江南水乡</option>
+<option>西北荒漠</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-primary/60 ml-1">合作机构</label>
+<select class="w-full px-4 py-2 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 appearance-none transition-all">
+<option>所有机构</option>
+<option>自然保护协会</option>
+<option>山水自然中心</option>
+<option>林务署合作办</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-bold text-primary/60 ml-1">运营状态</label>
+<select class="w-full px-4 py-2 bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 appearance-none transition-all">
+<option>全部状态</option>
+<option>开放中</option>
+<option>已关闭</option>
+<option>维护中</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="max-w-7xl mx-auto">
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.06)] border border-outline-variant/15">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/20">
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">水域 ID</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">名称</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">区域</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">详细地址</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">合作机构</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">资质编号</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">状态</th>
+<th class="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5 text-sm font-medium text-primary">WB-2024-001</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface">翡翠湖保护区</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">西南林区</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant truncate max-w-[150px]">云南省香格里拉市...</td>
+<td class="px-6 py-5 text-sm text-primary font-medium">自然保护协会</td>
+<td class="px-6 py-5 text-xs font-mono text-on-surface-variant">QID-9921-X</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-container/10 text-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                                        开放中
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-primary/5 text-primary transition-colors" title="编辑"><span class="material-symbols-outlined text-lg">edit_note</span></button>
+<button class="p-1.5 rounded-lg hover:bg-error/5 text-error transition-colors" title="删除"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5 text-sm font-medium text-primary">WB-2024-002</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface">烟雨湖心亭</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">江南水乡</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant truncate max-w-[150px]">浙江省杭州市西湖区...</td>
+<td class="px-6 py-5 text-sm text-primary font-medium">山水自然中心</td>
+<td class="px-6 py-5 text-xs font-mono text-on-surface-variant">QID-8812-Y</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-container/10 text-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                                        开放中
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-primary/5 text-primary transition-colors" title="编辑"><span class="material-symbols-outlined text-lg">edit_note</span></button>
+<button class="p-1.5 rounded-lg hover:bg-error/5 text-error transition-colors" title="删除"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5 text-sm font-medium text-primary">WB-2024-003</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface">鸣沙月牙泉</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">西北荒漠</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant truncate max-w-[150px]">甘肃省敦煌市鸣沙山...</td>
+<td class="px-6 py-5 text-sm text-primary font-medium">林务署合作办</td>
+<td class="px-6 py-5 text-xs font-mono text-on-surface-variant">QID-7734-Z</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container/20 text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1.5"></span>
+                                        已关闭
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-primary/5 text-primary transition-colors" title="编辑"><span class="material-symbols-outlined text-lg">edit_note</span></button>
+<button class="p-1.5 rounded-lg hover:bg-error/5 text-error transition-colors" title="删除"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5 text-sm font-medium text-primary">WB-2024-004</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface">千岛湖1号岛</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">华东地区</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant truncate max-w-[150px]">浙江省淳安县千岛湖...</td>
+<td class="px-6 py-5 text-sm text-primary font-medium">自然保护协会</td>
+<td class="px-6 py-5 text-xs font-mono text-on-surface-variant">QID-1102-W</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-container/10 text-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                                        开放中
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-primary/5 text-primary transition-colors" title="编辑"><span class="material-symbols-outlined text-lg">edit_note</span></button>
+<button class="p-1.5 rounded-lg hover:bg-error/5 text-error transition-colors" title="删除"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-5 text-sm font-medium text-primary">WB-2024-005</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface">长白山天池</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">东北山脉</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant truncate max-w-[150px]">吉林省延边朝鲜族自...</td>
+<td class="px-6 py-5 text-sm text-primary font-medium">山水自然中心</td>
+<td class="px-6 py-5 text-xs font-mono text-on-surface-variant">QID-3341-B</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container/20 text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1.5"></span>
+                                        已关闭
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-primary/5 text-primary transition-colors" title="编辑"><span class="material-symbols-outlined text-lg">edit_note</span></button>
+<button class="p-1.5 rounded-lg hover:bg-error/5 text-error transition-colors" title="删除"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="mt-8 flex items-center justify-between">
+<p class="text-xs font-medium text-on-surface-variant">显示 1 到 5 条，共 42 条记录</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary-container text-on-primary-container text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-xs font-medium">2</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-xs font-medium">3</button>
+<span class="px-1 text-xs text-outline">...</span>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-xs font-medium">9</button>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Insights -->
+<div class="max-w-7xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 pb-20">
+<div class="md:col-span-1 bg-surface-container p-8 rounded-2xl border-none relative overflow-hidden flex flex-col justify-between h-48">
+<div class="relative z-10">
+<p class="text-xs font-bold text-primary/40 uppercase tracking-widest mb-1">活跃水域比例</p>
+<h3 class="text-3xl font-bold text-primary serif-headline">78.5%</h3>
+</div>
+<div class="flex items-end gap-1 relative z-10">
+<div class="w-2 h-8 bg-primary/20 rounded-full"></div>
+<div class="w-2 h-12 bg-primary/20 rounded-full"></div>
+<div class="w-2 h-16 bg-primary/40 rounded-full"></div>
+<div class="w-2 h-10 bg-primary/20 rounded-full"></div>
+<div class="w-2 h-20 bg-primary rounded-full"></div>
+<div class="w-2 h-14 bg-primary/60 rounded-full"></div>
+</div>
+<div class="absolute -right-4 -bottom-4 w-32 h-32 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+<div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary/60">新增认证机构</p>
+<p class="text-lg font-bold text-on-surface">12 <span class="text-xs font-normal text-on-surface-variant ml-1">本月</span></p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm flex items-center gap-4 border border-outline-variant/10">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary/60">累计投放点位</p>
+<p class="text-lg font-bold text-on-surface">1,402 <span class="text-xs font-normal text-on-surface-variant ml-1">点</span></p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

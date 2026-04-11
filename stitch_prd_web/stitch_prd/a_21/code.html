@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>静谧之息 - 证书模板管理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c3c8c1",
+                    "surface-bright": "#faf9f4",
+                    "secondary": "#6e5e00",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container-high": "#e9e8e3",
+                    "inverse-on-surface": "#f2f1ec",
+                    "tertiary": "#533d20",
+                    "primary": "#334537",
+                    "outline": "#737872",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "primary-container": "#4a5d4e",
+                    "on-surface-variant": "#434843",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e3e2de",
+                    "on-background": "#1b1c19",
+                    "inverse-primary": "#b7ccb9",
+                    "error": "#ba1a1a",
+                    "background": "#faf9f4",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#291801",
+                    "surface-dim": "#dbdad5",
+                    "surface-container": "#efeee9",
+                    "inverse-surface": "#30312e",
+                    "surface": "#faf9f4",
+                    "surface-tint": "#506354",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#fee264",
+                    "tertiary-container": "#6d5435",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-primary-fixed": "#0e1f13",
+                    "surface-variant": "#e3e2de",
+                    "secondary-container": "#fee264",
+                    "on-surface": "#1b1c19",
+                    "primary-fixed": "#d3e8d5",
+                    "on-secondary-container": "#756400",
+                    "surface-container-low": "#f5f4ef",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "secondary-fixed-dim": "#e0c64b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(239, 238, 233, 0.8) 0%, rgba(219, 218, 213, 0.4) 100%);
+            position: relative;
+        }
+        .ink-wash-bg::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(74, 93, 78, 0.03) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 70%, rgba(110, 94, 0, 0.03) 0%, transparent 40%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 border-r border-emerald-900/5 bg-stone-100 dark:bg-stone-950 flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-lg font-serif text-emerald-900 dark:text-emerald-500">圣域管理后台</h1>
+<p class="text-xs text-stone-500 font-medium tracking-wide uppercase mt-1">禅意证书管理系统</p>
+</div>
+<nav class="flex-1 space-y-1 px-3">
+<a class="flex items-center px-4 py-3 text-stone-600 dark:text-stone-400 font-medium tracking-wide hover:bg-emerald-900/10 dark:hover:bg-emerald-400/10 hover:text-emerald-900 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span>仪表盘</span>
+</a>
+<a class="flex items-center px-4 py-3 text-emerald-900 dark:text-emerald-400 bg-emerald-900/5 dark:bg-emerald-400/5 font-semibold translate-x-1 transition-transform duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">card_membership</span>
+<span>模板管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-stone-600 dark:text-stone-400 font-medium tracking-wide hover:bg-emerald-900/10 dark:hover:bg-emerald-400/10 hover:text-emerald-900 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">auto_awesome</span>
+<span>发放管理</span>
+</a>
+<a class="flex items-center px-4 py-3 text-stone-600 dark:text-stone-400 font-medium tracking-wide hover:bg-emerald-900/10 dark:hover:bg-emerald-400/10 hover:text-emerald-900 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">insights</span>
+<span>数据分析</span>
+</a>
+<a class="flex items-center px-4 py-3 text-stone-600 dark:text-stone-400 font-medium tracking-wide hover:bg-emerald-900/10 dark:hover:bg-emerald-400/10 hover:text-emerald-900 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span>系统设置</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary font-medium rounded-lg flex items-center justify-center space-x-2 shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>新建模板</span>
+</button>
+<div class="mt-6 border-t border-emerald-900/5 pt-6 space-y-1">
+<a class="flex items-center px-4 py-2 text-stone-500 text-sm hover:text-emerald-900 transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">contact_support</span>
+<span>帮助中心</span>
+</a>
+<a class="flex items-center px-4 py-2 text-stone-500 text-sm hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">logout</span>
+<span>退出登录</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- Top Navigation -->
+<header class="w-full h-16 sticky top-0 z-40 bg-stone-50/80 dark:bg-stone-900/80 backdrop-blur-md flex justify-between items-center px-8 border-b border-emerald-900/10 dark:border-emerald-100/10">
+<div class="flex items-center">
+<span class="text-2xl font-serif italic text-emerald-900 dark:text-emerald-500">The Breath of Silence</span>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative group">
+<span class="material-symbols-outlined text-stone-500 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 p-2 rounded-full cursor-pointer transition-colors">search</span>
+</div>
+<div class="flex space-x-2">
+<span class="material-symbols-outlined text-stone-500 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 p-2 rounded-full cursor-pointer transition-colors">notifications</span>
+<span class="material-symbols-outlined text-stone-500 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 p-2 rounded-full cursor-pointer transition-colors">help</span>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="管理员头像" class="w-full h-full object-cover" data-alt="professional portrait of a creative director in a minimalist studio setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9n6Y-qzdklW0vc0IVcerKrF3wP3JhwBQq4PMyEpvQMPQi-TuiC8FjMmWP7Zg2iem6pUKbFAAzpn0Rrst2_2Px2f4BYOstQub2yuXYNPaGoAXAZjN1UajMPNY_hE5URIvF3WRWGdTvzp_3RNCM5Mc1F28iiLokD8S7_kIDHl63xXwNJoE1git2xNbgcVXdg8lpyilevVaUxJUxTMY8FREnsjZpF0kgedUypizrTNFPHntN2LVBCrvkSzDzL7pjlAOuucOTz3fb8dtd"/>
+</div>
+</div>
+</header>
+<!-- Editorial Content Canvas -->
+<div class="p-12 max-w-7xl mx-auto">
+<!-- Header Section -->
+<section class="mb-12 flex justify-between items-end">
+<div class="max-w-2xl">
+<h2 class="font-headline text-5xl text-primary tracking-tight mb-4">模板管理中心</h2>
+<p class="text-tertiary leading-relaxed max-w-lg">
+                        在这里定义每一份“静谧”的视觉表达。管理您的证书模板，将科技的精确与艺术的留白完美融合。
+                    </p>
+</div>
+<div class="flex items-center space-x-4 pb-2">
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-2 text-sm font-medium text-primary bg-surface-container-lowest rounded shadow-sm">全部模板</button>
+<button class="px-4 py-2 text-sm font-medium text-stone-500 hover:text-primary transition-colors">已发布</button>
+<button class="px-4 py-2 text-sm font-medium text-stone-500 hover:text-primary transition-colors">草稿箱</button>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container-low border-none text-sm font-medium text-primary pr-10 pl-4 py-3 rounded-lg focus:ring-2 focus:ring-primary/20">
+<option>最新更新</option>
+<option>创建时间</option>
+<option>使用率最高</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+</section>
+<!-- 2-Column Responsive Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-10">
+<!-- Template Card 1 -->
+<div class="group flex flex-col bg-surface-container-low overflow-hidden rounded-xl transition-all duration-300 hover:translate-y-[-4px]">
+<div class="relative aspect-[16/10] overflow-hidden bg-stone-200">
+<img alt="“林间呼吸” 冥想认证" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="minimalist certificate layout with elegant serif typography and plenty of white space on high quality textured paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVpDKvj9tvlj3DnGWd8EyvpIEGYprGpcBWWFHbvZTad5D0pyFuD5e3UnIlPAT1U_zWP8skr68LJPLOHE-FMjwEiqjaS2cWP6-tTz2dQXS-8vs0h_4vcDSj2dMvVDPcqw6qBGcHeK7XPfNxXYs215rCshpC0u8c8BcxY1p1JE8dg36Xb6Xze9DXB7vDAP7MekbeM3LifVrPlQU5mZQcEXiHSDDJBLJ8fHkBpC5s48zjvSN95X_J-gnQwSBGWNXrIlAmwuTytC-QEILU"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-surface-container-lowest/90 backdrop-blur-md px-6 py-2.5 rounded-full text-primary font-semibold flex items-center space-x-2">
+<span class="material-symbols-outlined">visibility</span>
+<span>全屏预览</span>
+</button>
+</div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">已发布</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl text-primary mb-1">“林间呼吸” 冥想认证</h3>
+<p class="text-stone-500 text-sm">更新于 2024年3月15日</p>
+</div>
+<button class="text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="flex items-center px-3 py-1 bg-surface-variant/40 rounded text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1">smartphone</span>
+                                小程序首页
+                            </span>
+<span class="flex items-center px-3 py-1 bg-surface-variant/40 rounded text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1">person</span>
+                                个人中心
+                            </span>
+</div>
+<div class="mt-auto flex items-center justify-between pt-6 border-t border-outline-variant/15">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-stone-300 overflow-hidden" title="活跃用户">
+<img alt="用户" class="w-full h-full object-cover" data-alt="portrait of a man with a gentle expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ3evbv_p5KldVN2vCE5dFKcMcT_F-xpZvlclJofzYc76NBzrQEdgDQ1gV7HgLgnaxP8z3X_Fnsnmx3Eenrw6kbe8gXTvC-yQmk1BbpQTpJItxbKtFkhCoBwlBflwrZlU2nRvPrRIEFvdZnlxNEzg-HXOWGtAhRJttGYo4L9eKgxiI_0sjFI2SmCTnIacaQFPF_xDYkO-KVSpFc069n8wqjbgyjqXbIBQxjFCuKF7-w1Iweo8jHvUjya7JsV7O5bd9yIaBVYKQe9Vu"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-stone-300 overflow-hidden" title="活跃用户">
+<img alt="用户" class="w-full h-full object-cover" data-alt="portrait of a woman with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdQPJvk1YNkFEO61X1HVqbDxbvoZbU61udlINnpvHsqlhJrm_-z97zj2mG8IwUEb-2gnWJbU9UYSGfKdjd_a621njqICFKRTwMI82E7wVoPCTRaPmvIGpjp9HGWNnMIcpXgN1ReBVyAjP7bDSAKCB_MysnTwLMWyMaqkIO75tRR384bmlUZW0QXfLBEI2wmidTdau4wsMXb__vvL-_W3ZQRfJIVLr05ErL-598QZ8rVJ7BUkwxBxu6v5WbwS3UuNmLnoYDpZAl3DPp"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container flex items-center justify-center text-[10px] font-bold text-stone-500">
+                                    +12
+                                </div>
+</div>
+<div class="flex space-x-3">
+<button class="px-5 py-2 text-sm font-medium text-primary hover:bg-stone-200 transition-colors rounded-lg">编辑内容</button>
+<button class="px-5 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:opacity-90 transition-opacity">发布更新</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Template Card 2 -->
+<div class="group flex flex-col bg-surface-container-low overflow-hidden rounded-xl transition-all duration-300 hover:translate-y-[-4px]">
+<div class="relative aspect-[16/10] overflow-hidden bg-stone-200">
+<img alt="“空山” 禅修进阶证" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract artistic certificate background with gold foil details and soft ink brush strokes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDawJttII541IgVEv5Uqxwl8-al3cTeMn45cBNs0fPeEl9vh7MewH_sKx2JAK_0VbELzoK9xXFyQsrEFOfq0F7raiZYYvPXc1fy7rxKT9V6YiXsifc-7cRqSv2JPBJXFdKDVKXWIrWzkvFhHXD_iwUQ-aPyfEe1IJAqPjdeUfgYTWvGSZwLovmOf2SRVpcal1HhlwumCKsR8fQV1muVq8TkkOnLw-EfhWb8qXGzUSiq0Oo-ab7ceSVurNZNppmsVOlqVVOQep3unSN"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-surface-container-lowest/90 backdrop-blur-md px-6 py-2.5 rounded-full text-primary font-semibold flex items-center space-x-2">
+<span class="material-symbols-outlined">visibility</span>
+<span>全屏预览</span>
+</button>
+</div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-stone-200 text-stone-600 text-xs font-bold rounded-full">草稿箱</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl text-primary mb-1">“空山” 禅修进阶证</h3>
+<p class="text-stone-500 text-sm">更新于 2024年3月10日</p>
+</div>
+<button class="text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="flex items-center px-3 py-1 bg-surface-variant/40 rounded text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1">person</span>
+                                个人中心
+                            </span>
+</div>
+<div class="mt-auto flex items-center justify-between pt-6 border-t border-outline-variant/15">
+<div class="flex items-center text-tertiary text-sm italic">
+<span class="material-symbols-outlined text-[18px] mr-2">edit_note</span>
+                                上次由 管理员 修改
+                            </div>
+<div class="flex space-x-3">
+<button class="px-5 py-2 text-sm font-medium text-primary hover:bg-stone-200 transition-colors rounded-lg">继续编辑</button>
+<button class="px-5 py-2 text-sm font-medium bg-secondary-container text-on-secondary-container rounded-lg hover:opacity-90 transition-opacity">立即发布</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Template Card 3 -->
+<div class="group flex flex-col bg-surface-container-low overflow-hidden rounded-xl transition-all duration-300 hover:translate-y-[-4px]">
+<div class="relative aspect-[16/10] overflow-hidden bg-stone-200">
+<img alt="“听泉” 疗愈工作坊" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="clean modern certificate with botanical illustrations and dark forest green accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7F90ZWW1ngLU62_drHCKNDl11Us6JJ0f9eVg4G04c2DCZwqlr6LEQyqBFS-TAt03ews9OpBNP39zlK12hFc_dTI59Mu794O705MISBmPVVd1x-g2s_4hvAgkotYlDtZCFOBAldlE-BCgLHUgP_OIhmdfUb-qfhhhrpbo_P05-h7TNzUivfl6qCQwG2O9sxzVmGNQD2-n0sp99DOfkqTpzc0gKVObiGDYG7F-b_CaE0nARPFIEFohEDbAJi1h-10pp6FTzslN64-WD"/>
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-surface-container-lowest/90 backdrop-blur-md px-6 py-2.5 rounded-full text-primary font-semibold flex items-center space-x-2">
+<span class="material-symbols-outlined">visibility</span>
+<span>全屏预览</span>
+</button>
+</div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">已发布</span>
+</div>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline text-2xl text-primary mb-1">“听泉” 疗愈工作坊</h3>
+<p class="text-stone-500 text-sm">更新于 2024年2月28日</p>
+</div>
+<button class="text-stone-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="flex items-center px-3 py-1 bg-surface-variant/40 rounded text-xs text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[14px] mr-1">smartphone</span>
+                                小程序首页
+                            </span>
+</div>
+<div class="mt-auto flex items-center justify-between pt-6 border-t border-outline-variant/15">
+<div class="text-stone-400 text-sm">
+                                累计发放: <span class="text-primary font-semibold">1,240</span>
+</div>
+<div class="flex space-x-3">
+<button class="px-5 py-2 text-sm font-medium text-primary hover:bg-stone-200 transition-colors rounded-lg">编辑</button>
+<button class="px-5 py-2 text-sm font-medium bg-primary text-white rounded-lg hover:opacity-90 transition-opacity">管理发放</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Template Slot -->
+<div class="border-2 border-dashed border-outline-variant flex items-center justify-center rounded-xl p-12 min-h-[500px] hover:border-primary/40 hover:bg-surface-container-low transition-all group cursor-pointer">
+<div class="text-center">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-stone-400">add</span>
+</div>
+<h4 class="font-headline text-xl text-primary mb-2">创建新模板</h4>
+<p class="text-stone-500 text-sm">开启您的下一个静谧创作</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Quick Actions (FAB) -->
+<button class="fixed bottom-10 right-10 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined">auto_awesome</span>
+</button>
+</body></html>

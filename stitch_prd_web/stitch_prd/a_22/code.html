@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,700;1,300&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#faf9f4",
+                    "secondary-container": "#fee264",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-secondary-container": "#756400",
+                    "surface-tint": "#506354",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-tertiary-fixed": "#291801",
+                    "tertiary": "#533d20",
+                    "outline": "#737872",
+                    "tertiary-container": "#6d5435",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#4a5d4e",
+                    "on-surface": "#1b1c19",
+                    "surface-container-high": "#e9e8e3",
+                    "outline-variant": "#c3c8c1",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "secondary-fixed": "#fee264",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f4ef",
+                    "primary-fixed": "#d3e8d5",
+                    "inverse-primary": "#b7ccb9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e3e2de",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "primary": "#334537",
+                    "on-primary-fixed": "#0e1f13",
+                    "secondary": "#6e5e00",
+                    "on-background": "#1b1c19",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container": "#efeee9",
+                    "surface-bright": "#faf9f4",
+                    "on-secondary": "#ffffff",
+                    "surface": "#faf9f4",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#ebcaa3",
+                    "inverse-surface": "#30312e",
+                    "on-surface-variant": "#434843",
+                    "surface-dim": "#dbdad5",
+                    "surface-container-highest": "#e3e2de",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": [
+                            "Noto Serif"
+                    ],
+                    "body": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label": [
+                            "Plus Jakarta Sans"
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f4; }
+        .font-serif { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(239, 238, 233, 0.8) 0%, rgba(250, 249, 244, 0) 100%);
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #c3c8c1; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-on-surface overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-10 px-6 bg-[#EFEEE9] dark:bg-[#334537] docked left-0 h-screen w-72 shadow-[12px_0_40px_rgba(74,93,78,0.04)] z-40">
+<div class="mb-12 px-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">spa</span>
+</div>
+<div>
+<h1 class="font-['Noto_Serif'] text-lg font-bold text-[#334537] dark:text-[#EFEEE9]">静谧圣所</h1>
+<p class="text-[10px] tracking-widest uppercase opacity-60 font-medium">管理后台系统</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#4A5D4E]/60 dark:text-[#EFEEE9]/60 hover:bg-[#FAF9F4] dark:hover:bg-[#4A5D4E] hover:text-[#334537] transition-all duration-500 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-['Plus_Jakarta_Sans'] tracking-wide text-sm">仪表盘</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#334537] dark:text-[#C9B037] font-bold border-r-4 border-[#6e5e00] bg-[#FAF9F4]/50 dark:bg-[#4A5D4E]/30 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">edit_note</span>
+<span class="font-['Plus_Jakarta_Sans'] tracking-wide text-sm">内容管理</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#4A5D4E]/60 dark:text-[#EFEEE9]/60 hover:bg-[#FAF9F4] dark:hover:bg-[#4A5D4E] hover:text-[#334537] transition-all duration-500 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">group</span>
+<span class="font-['Plus_Jakarta_Sans'] tracking-wide text-sm">用户管理</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#4A5D4E]/60 dark:text-[#EFEEE9]/60 hover:bg-[#FAF9F4] dark:hover:bg-[#4A5D4E] hover:text-[#334537] transition-all duration-500 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">shopping_cart</span>
+<span class="font-['Plus_Jakarta_Sans'] tracking-wide text-sm">订单管理</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#4A5D4E]/60 dark:text-[#EFEEE9]/60 hover:bg-[#FAF9F4] dark:hover:bg-[#4A5D4E] hover:text-[#334537] transition-all duration-500 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">settings_suggest</span>
+<span class="font-['Plus_Jakarta_Sans'] tracking-wide text-sm">系统设置</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant/10 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#4A5D4E]/60 dark:text-[#EFEEE9]/60 hover:text-[#334537] transition-colors" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="text-sm">帮助与支持</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#4A5D4E]/60 dark:text-[#EFEEE9]/60 hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm">退出登录</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-8 py-4 ml-72 w-[calc(100%-18rem)] bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-xl z-30 tonal-transition bg-gradient-to-b from-[#EFEEE9] to-transparent">
+<div class="flex items-center gap-6">
+<div class="flex items-center bg-surface-container-low rounded-full px-4 py-2 w-96 border border-outline-variant/20">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-body" placeholder="搜索审核记录或内容..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="relative text-[#334537] hover:text-[#6e5e00] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full border-2 border-background"></span>
+</button>
+<button class="text-[#334537] hover:text-[#6e5e00] transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30">
+<div class="text-right">
+<p class="text-xs font-bold text-primary">管理员_清茹</p>
+<p class="text-[10px] opacity-60">资深审核员</p>
+</div>
+<img alt="管理员头像" class="w-10 h-10 rounded-full border border-primary/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyO33x_faFVrWWSvrwb0gX7tGh4VjlOt2uxoe8oleKNYgQ6u67F1DF_Tgd1nDN5zR-MUXUqMlrEVXVOzA5diiAD7pwnaz3sBf441E_FDLrDdHd6IX0cjNtEeprzXPDE7uBUA2g39wzDQVrUl1PmXKZv5g6YcSvMEwbj1Yo8OytvX8ccUlqyp7molRP_GQ8S7sJjZVpUepry37uMcUM71sq_qHa1VXGo1MAQDy8w3q-9M9XZTcmq9XDEqot4LyuNe36Ot3MPlN-SQpv"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-72 pt-24 h-screen flex">
+<!-- Left Pane: Pending List (40%) -->
+<section class="w-[40%] flex flex-col border-r border-outline-variant/10 h-full overflow-hidden">
+<div class="px-8 pb-4">
+<h2 class="font-headline text-2xl text-primary font-light mb-2">内容审核池</h2>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary text-on-primary text-[10px] rounded-full uppercase tracking-wider">待审核 (124)</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] rounded-full uppercase tracking-wider">紧急 (3)</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-6 space-y-3 pb-24">
+<!-- Card Active -->
+<div class="p-5 rounded-lg bg-surface-container-lowest shadow-[0_8px_24px_rgba(74,93,78,0.04)] border-l-4 border-primary cursor-pointer transition-all hover:-translate-y-0.5">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<img alt="用户" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_yUgsA_Z4AG1xpX3kRqwhoxbVS4lM3kBiRIG_DrmNBnlYaKz7cYK3bnpgwq1BfSYBrbc_R8cH90-q6W2u8ELBcwqWpnPe-Sq2Omu38JyI9X3_IcD82AW5qj8LomYGT1vVAgAq1qzYBfDVonv2jfEwfiDQbGVy_Kkns2jwFQMq8JszVKDpHuBAhvWZtFOmcSfyQExju-xz2l681qKt8KyHk20Tsj5Dndv9TAK7l2YvH-3-KxD-XrOluKEbd0dgULBJTnR2mRHD48rT"/>
+<div>
+<p class="text-sm font-bold text-on-surface">林海之声</p>
+<p class="text-[10px] text-outline">UID: 9283410</p>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">上午 10:42</span>
+</div>
+<h3 class="text-sm font-semibold text-primary mb-1 line-clamp-1">论禅宗美学在现代UI设计中的留白艺术...</h3>
+<div class="flex items-center gap-4 mt-3">
+<span class="flex items-center gap-1 text-[10px] text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]">article</span> 文章内容
+                    </span>
+<span class="flex items-center gap-1 text-[10px] text-secondary font-bold">
+<span class="material-symbols-outlined text-[14px]">priority_high</span> 高频发帖
+                    </span>
+</div>
+</div>
+<!-- Card Default -->
+<div class="p-5 rounded-lg bg-surface-container-low border border-outline-variant/5 hover:bg-surface-container-lowest cursor-pointer transition-all hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<img alt="用户" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4fv8mk3NFOez4ixW6SxvgVX4XBqImJr8rgYMIkvIffMhjqwC_ChSFjTmd1R1yhGmgUEDoftS1mG2t8YqF1OVXdFN-BsrRefxWkjaQZfPjY60q6Pck6HkP5WzvqUz6OMAfKFazvbxByvihAib0kYXQNiIA_LWQ1xSJOnKfXpg2p3b6bPEXGV47KB0r2aQrxTt68r4-sXPpZPS3p1MpvsFzTNpSNXGXds5gnPYnymwgVdMzt0hDznrAwc2L_G2bMtVzUXvPQrI7cDSe"/>
+<div>
+<p class="text-sm font-bold text-on-surface">墨色渲染</p>
+<p class="text-[10px] text-outline">UID: 8172653</p>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">上午 09:15</span>
+</div>
+<h3 class="text-sm font-semibold text-primary mb-1 line-clamp-1">分享一组自制的水墨纹理素材包</h3>
+<div class="flex items-center gap-4 mt-3">
+<span class="flex items-center gap-1 text-[10px] text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]">image</span> 素材分享
+                    </span>
+</div>
+</div>
+<!-- Repeat Items -->
+<div class="p-5 rounded-lg bg-surface-container-low border border-outline-variant/5 hover:bg-surface-container-lowest cursor-pointer transition-all">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<img alt="用户" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkwHKoe-a2JQrHigJ_jaAPMjtV0vHoi2-1dZE95SuMwB-D43KFkNYq5Ap2DxrvislPSg7JfhRCNd0XdA9Zj5-WHga11xC0GQHB69onfAhlI8BScR12Jmk8kP0fnOW41FCE9M5CTNnVvx6Ma6C2VL_PBK4JzXJZlK81lx0D2gf4GTP7b_XS6f8YJYl7QUo9xA0KcNbrEDe37w1gJD4q0W1V92QPY6qtkRpGKNERyCY-n-A458c1ByY3LbM-33anMkWPnj7H5Zg3E8xg"/>
+<div>
+<p class="text-sm font-bold text-on-surface">云端行者</p>
+<p class="text-[10px] text-outline">UID: 1029384</p>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">上午 08:30</span>
+</div>
+<h3 class="text-sm font-semibold text-primary mb-1 line-clamp-1">晨间冥想：关于呼吸的律动研究</h3>
+<div class="flex items-center gap-4 mt-3">
+<span class="flex items-center gap-1 text-[10px] text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]">mic</span> 音频/文本
+                    </span>
+</div>
+</div>
+<div class="p-5 rounded-lg bg-surface-container-low border border-outline-variant/5 hover:bg-surface-container-lowest cursor-pointer transition-all">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-3">
+<img alt="用户" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjy8Esh1TLGp8Rn3O9bCkvnNezziYRwq4jn_xy6DWHIzlGsMoJpJ5XsTYam4TmU0CAVo8N_MoHn6pRd5QKwy7Xcv0o7vTqDpkaAiQb1QT9jLPkVZVywDw7pJ3JFuW62dV4Y_s0KqeOJpdWq3KWKQ-MKhrFI6egQ4gBvph8ohVyc9YJF99SVxJOEd5-FO8R-_bm8saC_eG3ap5gP6wCHlyKBnoAZGNQU5di8Bi1pk7b3osB3oHw_MYHcWe257yKkQF3bNiOYha4dtpX"/>
+<div>
+<p class="text-sm font-bold text-on-surface">竹影摇曳</p>
+<p class="text-[10px] text-outline">UID: 5543128</p>
+</div>
+</div>
+<span class="text-[10px] text-outline font-medium">上午 08:05</span>
+</div>
+<h3 class="text-sm font-semibold text-primary mb-1 line-clamp-1">夏日午后的清茶与古琴曲目推荐</h3>
+<div class="flex items-center gap-4 mt-3">
+<span class="flex items-center gap-1 text-[10px] text-on-surface-variant/70">
+<span class="material-symbols-outlined text-[14px]">list_alt</span> 列表内容
+                    </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Pane: Audit Detail (60%) -->
+<section class="w-[60%] h-full overflow-y-auto bg-surface-container-low/30 pb-20">
+<div class="max-w-4xl mx-auto py-8 px-10">
+<!-- Content Preview Area -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] mb-8">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-xl text-primary italic">内容详情预览</h2>
+<span class="text-[10px] font-bold text-outline-variant tracking-widest uppercase">ID: TXT-98234-AX</span>
+</div>
+<div class="relative overflow-hidden rounded-lg mb-6 group">
+<img class="w-full aspect-video object-cover" data-alt="serene japanese garden with stone path and lush moss under morning soft sunlight misty atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4csXifi-tYBdWqGaDy4vGUag8AHreIEQ5uIeGxOGhFM1LZABh-e0Ez-Qr6x0RSsAgcYg5SsGeX0J-9qqNwYFg5y55OvzRh9jTIUBVC3GZ5joLEEdjEJubTbuYsBRSjlzu5DF9PxuZq1LyVeS1HjJ8Z6tt9V0P9DVvTHFcofRSP0B4erS3uYoz9PumlyTJmTTjk5kn6Lmo9QQvwlW1YS1V_vZIJ4zWXofT-JMbxpJhTRAyEnZsPl4oyLi8gbWeKyk3nbVl8CjDl8M3"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-surface-container-lowest/90 px-6 py-2 rounded-full text-xs font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">fullscreen</span> 查看原图
+                        </button>
+</div>
+</div>
+<div class="prose prose-sm max-w-none text-on-surface-variant leading-relaxed">
+<h1 class="text-2xl font-headline text-primary mb-4">论禅宗美学在现代UI设计中的留白艺术</h1>
+<p class="mb-4">在当今快节奏的数字化生活中，用户界面（UI）往往充斥着过量的信息和繁杂的视觉元素。这种设计风格虽然在短期内能博取眼球，但长此以往会增加用户的认知负荷，产生审美疲劳。</p>
+<p class="mb-4">禅宗美学所推崇的“留白”（Yūgen），并非简单的虚无，而是一种有意识的经营。通过在界面中引入大面积的负空间，设计师可以引导用户的视线，强调核心内容，同时为思维创造一个“呼吸的空间”。</p>
+<p class="border-l-4 border-secondary-container pl-4 italic text-tertiary">“最好的设计是消失的设计。让用户在不知不觉中完成任务，而非被华丽的界面所束缚。”</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-8">
+<!-- User Audit History -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+<h3 class="text-sm font-bold text-primary flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-sm">history</span> 用户违规史 (近30天)
+                    </h3>
+<div class="space-y-4">
+<div class="flex gap-4 relative">
+<div class="absolute left-[11px] top-6 bottom-0 w-[1px] bg-outline-variant/20"></div>
+<div class="w-6 h-6 rounded-full bg-error/10 flex items-center justify-center z-10">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">内容被驳回：垃圾广告信息</p>
+<p class="text-[10px] text-outline">2023.11.02 · 审核人: 系统预警</p>
+</div>
+</div>
+<div class="flex gap-4 relative">
+<div class="absolute left-[11px] top-6 bottom-0 w-[1px] bg-outline-variant/20"></div>
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center z-10">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">内容通过：技术分享</p>
+<p class="text-[10px] text-outline">2023.10.28 · 审核人: 管理员_刘</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center z-10">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">内容通过：摄影作品</p>
+<p class="text-[10px] text-outline">2023.10.15 · 审核人: 管理员_张</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Audit Log -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm">
+<h3 class="text-sm font-bold text-primary flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-sm">assignment_ind</span> 相似内容处理记录
+                    </h3>
+<div class="space-y-4">
+<div class="p-3 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-primary">同类目：视觉美学</span>
+<span class="text-[10px] px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full">高价值</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">管理员 <b>清茹</b> 在昨日通过了类似主题的内容，并标记为“优质社区贡献”。</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg">
+<div class="flex justify-between items-center mb-1">
+<span class="text-[10px] font-bold text-primary">同UID：历史审核</span>
+<span class="text-[10px] px-2 py-0.5 bg-error-container text-on-error-container rounded-full">风险</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">该用户在 <b>UID 9283410</b> 曾有1次因“软色情”被驳回的记录。</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decision Area -->
+<div class="bg-primary/5 p-8 rounded-xl border border-primary/10">
+<h3 class="text-sm font-bold text-primary mb-6">审核决策留痕</h3>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider">审核结论</label>
+<div class="flex gap-4">
+<label class="flex-1 flex items-center justify-center gap-3 p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-lg cursor-pointer hover:border-primary transition-all group">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="decision" type="radio"/>
+<span class="text-sm font-bold text-primary">通过</span>
+</label>
+<label class="flex-1 flex items-center justify-center gap-3 p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-lg cursor-pointer hover:border-error transition-all group">
+<input class="w-4 h-4 text-error focus:ring-error" name="decision" type="radio"/>
+<span class="text-sm font-bold text-error">驳回</span>
+</label>
+</div>
+</div>
+<div class="space-y-4">
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider">驳回原因 (必填)</label>
+<textarea class="w-full h-24 bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-4 text-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none" placeholder="请详细说明驳回理由，该说明将同步给用户..."></textarea>
+</div>
+</div>
+<div class="mt-8 flex justify-end gap-4">
+<button class="px-8 py-3 bg-surface-container-high text-primary font-bold text-sm rounded-lg hover:bg-surface-variant transition-colors">
+                        挂起处理
+                    </button>
+<button class="px-10 py-3 bg-primary text-on-primary font-bold text-sm rounded-lg hover:bg-primary-container shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                        提交审核决策
+                    </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Suppressed per rules on Details screens -->
+</body></html>

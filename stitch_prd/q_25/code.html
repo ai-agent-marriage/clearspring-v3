@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e3e2de",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-variant": "#e3e2de",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container": "#efeee9",
+                    "primary-fixed": "#d3e8d5",
+                    "surface-container-low": "#f5f4ef",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "outline": "#737872",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e9e8e3",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#fee264",
+                    "on-secondary-container": "#756400",
+                    "background": "#faf9f4",
+                    "outline-variant": "#c3c8c1",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "secondary-container": "#fee264",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f1ec",
+                    "tertiary": "#533d20",
+                    "primary-container": "#4a5d4e",
+                    "on-secondary-fixed": "#211b00",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-surface-variant": "#434843",
+                    "on-tertiary-fixed": "#291801",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "on-secondary-fixed-variant": "#534600",
+                    "inverse-primary": "#b7ccb9",
+                    "surface": "#faf9f4",
+                    "secondary": "#6e5e00",
+                    "on-background": "#1b1c19",
+                    "primary": "#334537",
+                    "inverse-surface": "#30312e",
+                    "tertiary-container": "#6d5435",
+                    "on-surface": "#1b1c19",
+                    "surface-dim": "#dbdad5",
+                    "surface-bright": "#faf9f4",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-primary-fixed": "#0e1f13",
+                    "surface-tint": "#506354",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .ink-wash {
+        background: radial-gradient(circle at 10% 20%, rgba(51, 69, 55, 0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.03) 0%, transparent 50%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24 ink-wash">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-primary-container text-white backdrop-blur-xl">
+<div class="flex items-center justify-between px-6 py-4 w-full h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-70 transition-opacity" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-headline text-xl font-bold tracking-tight">我的护生台账</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer" data-icon="search">search</span>
+<span class="material-symbols-outlined cursor-pointer" data-icon="more_vert">more_vert</span>
+</div>
+</div>
+</header>
+<main class="pt-20 px-4 space-y-6 max-w-2xl mx-auto">
+<!-- Summary Card -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-[0_12px_40px_rgba(74,93,78,0.06)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-full -mr-16 -mt-16"></div>
+<h2 class="font-headline text-lg mb-6 text-primary/80">成就概览</h2>
+<div class="grid grid-cols-3 gap-4">
+<div class="text-center">
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-widest mb-1">累计护生</p>
+<p class="text-3xl font-headline text-primary font-bold">1,280</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-widest mb-1">护生物种</p>
+<p class="text-3xl font-headline text-primary font-bold">24</p>
+</div>
+<div class="text-center">
+<p class="text-xs text-on-surface-variant font-label uppercase tracking-widest mb-1">投放水域</p>
+<p class="text-3xl font-headline text-primary font-bold">12</p>
+</div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+<div class="flex-shrink-0 bg-secondary-container text-on-secondary-container px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+<span>类型: 全部</span>
+<span class="material-symbols-outlined text-sm" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+<div class="flex-shrink-0 bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+<span>时间: 近一年</span>
+<span class="material-symbols-outlined text-sm" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+<div class="flex-shrink-0 bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2">
+<span>物种: 锦鲤</span>
+<span class="material-symbols-outlined text-sm" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</section>
+<!-- Ledger List -->
+<section class="space-y-4">
+<h3 class="font-headline text-primary/60 px-2 text-sm">护生明细</h3>
+<!-- Ledger Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex justify-between items-center group active:scale-[0.98] transition-transform">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] rounded font-semibold tracking-wider">自主登记</span>
+<span class="text-xs text-on-surface-variant">2023.11.24</span>
+</div>
+<div>
+<h4 class="font-headline text-lg text-primary">红锦鲤 <span class="text-sm font-body font-normal text-on-surface-variant ml-1">x10</span></h4>
+<div class="flex items-center gap-1 text-xs text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>灵隐寺 · 往生池</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3">
+<span class="text-xs text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        已完成
+                    </span>
+<button class="bg-surface-container-low text-primary text-xs px-4 py-1.5 rounded-full font-medium hover:bg-primary hover:text-white transition-colors">查看详情</button>
+</div>
+</div>
+<!-- Ledger Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex justify-between items-center group active:scale-[0.98] transition-transform">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-secondary-container/30 text-secondary text-[10px] rounded font-semibold tracking-wider">委托服务</span>
+<span class="text-xs text-on-surface-variant">2023.11.12</span>
+</div>
+<div>
+<h4 class="font-headline text-lg text-primary">草鱼苗 <span class="text-sm font-body font-normal text-on-surface-variant ml-1">x500</span></h4>
+<div class="flex items-center gap-1 text-xs text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>西湖 · 苏堤北侧</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3">
+<span class="text-xs text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        已完成
+                    </span>
+<button class="bg-surface-container-low text-primary text-xs px-4 py-1.5 rounded-full font-medium hover:bg-primary hover:text-white transition-colors">查看详情</button>
+</div>
+</div>
+<!-- Ledger Card 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl flex justify-between items-center group active:scale-[0.98] transition-transform">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] rounded font-semibold tracking-wider">自主登记</span>
+<span class="text-xs text-on-surface-variant">2023.10.30</span>
+</div>
+<div>
+<h4 class="font-headline text-lg text-primary">中华草龟 <span class="text-sm font-body font-normal text-on-surface-variant ml-1">x2</span></h4>
+<div class="flex items-center gap-1 text-xs text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span>钱塘江 · 闻涛路段</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3">
+<span class="text-xs text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        已完成
+                    </span>
+<button class="bg-surface-container-low text-primary text-xs px-4 py-1.5 rounded-full font-medium hover:bg-primary hover:text-white transition-colors">查看详情</button>
+</div>
+</div>
+</section>
+<!-- Bottom Stats Chart -->
+<section class="bg-surface-container-low rounded-2xl p-6 mt-4">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline text-primary">年度趋势</h3>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest">2023 统计</span>
+</div>
+<div class="flex items-end justify-between h-32 px-2 gap-2">
+<div class="w-full flex flex-col items-center gap-2">
+<div class="w-full bg-primary/10 rounded-t-lg h-1/4"></div>
+<span class="text-[10px] text-on-surface-variant">Q1</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2">
+<div class="w-full bg-primary/30 rounded-t-lg h-2/4"></div>
+<span class="text-[10px] text-on-surface-variant">Q2</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2">
+<div class="w-full bg-primary-container rounded-t-lg h-full"></div>
+<span class="text-[10px] text-on-surface-variant">Q3</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2">
+<div class="w-full bg-secondary-container rounded-t-lg h-3/4"></div>
+<span class="text-[10px] text-on-surface-variant">Q4</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#FAF9F4]/80 backdrop-blur-lg shadow-[0_-4px_20px_rgba(74,93,78,0.06)] rounded-t-2xl px-4 py-3 pb-safe flex justify-around items-center">
+<!-- Tab 1 -->
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-4 py-1.5 hover:text-[#6e5e00] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="library_music">library_music</span>
+<span class="text-xs uppercase tracking-widest font-label">梵音</span>
+</a>
+<!-- Tab 2 -->
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-4 py-1.5 hover:text-[#6e5e00] transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="self_improvement">self_improvement</span>
+<span class="text-xs uppercase tracking-widest font-label">禅理</span>
+</a>
+<!-- Tab 3: Active -->
+<a class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-xl px-4 py-1.5 transition-all scale-98 active:scale-95" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-xs uppercase tracking-widest font-label font-semibold">我的</span>
+</a>
+</nav>
+</body></html>
