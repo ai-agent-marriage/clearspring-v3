@@ -1,0 +1,138 @@
+<!-- 清如 ClearSpring - 执行者资质管理页 O-10 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">资质管理</text>
+    <text class="page-subtitle">管理您的认证资质和技能证书</text>
+  </view>
+
+  <!-- 当前资质状态卡片 -->
+  <view class="qualification-status-card glass">
+    <view class="status-header">
+      <view class="status-icon {{currentStatus}}">
+        <text wx:if="{{currentStatus === 'verified'}}">✅</text>
+        <text wx:if="{{currentStatus === 'pending'}}">⏳</text>
+        <text wx:if="{{currentStatus === 'rejected'}}">❌</text>
+        <text wx:if="{{currentStatus === 'expired'}}">⚠️</text>
+      </view>
+      <view class="status-info">
+        <text class="status-title">{{statusTitle}}</text>
+        <text class="status-desc">{{statusDesc}}</text>
+        <text class="status-date" wx:if="{{expireDate}}">有效期至：{{expireDate}}</text>
+      </view>
+    </view>
+    
+    <view class="status-actions" wx:if="{{showActionButton}}">
+      <button class="btn btn-primary btn-full" bindtap="onUpdateQualification">
+        {{actionButtonText}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 审核进度（审核中显示） -->
+  <view class="progress-section glass" wx:if="{{currentStatus === 'pending'}}">
+    <view class="section-title">审核进度</view>
+    <view class="progress-timeline">
+      <view class="timeline-item {{currentStep >= 1 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">提交申请</text>
+          <text class="timeline-date">{{submitDate}}</text>
+        </view>
+      </view>
+      <view class="timeline-line {{currentStep >= 2 ? 'active' : ''}}"></view>
+      <view class="timeline-item {{currentStep >= 2 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">平台审核</text>
+          <text class="timeline-date">{{reviewDate || '审核中...'}}</text>
+        </view>
+      </view>
+      <view class="timeline-line {{currentStep >= 3 ? 'active' : ''}}"></view>
+      <view class="timeline-item {{currentStep >= 3 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">审核完成</text>
+          <text class="timeline-date">{{completeDate || '待完成'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 驳回原因（被驳回时显示） -->
+  <view class="rejection-section glass" wx:if="{{currentStatus === 'rejected'}}">
+    <view class="section-title text-error">驳回原因</view>
+    <view class="rejection-content">
+      <text class="rejection-text">{{rejectionReason}}</text>
+    </view>
+    <view class="rejection-suggestions">
+      <text class="suggestions-title">改进建议：</text>
+      <text class="suggestions-text">{{rejectionSuggestions}}</text>
+    </view>
+  </view>
+
+  <!-- 技能证书列表 -->
+  <view class="certificates-section">
+    <view class="section-header">
+      <text class="section-title">我的证书</text>
+      <text class="section-action" bindtap="onAddCertificate">+ 添加证书</text>
+    </view>
+    
+    <view class="certificates-list">
+      <view class="certificate-card glass" wx:for="{{certificates}}" wx:key="id">
+        <view class="cert-header">
+          <view class="cert-icon">
+            <text>{{item.type === 'skill' ? '🎓' : '📜'}}</text>
+          </view>
+          <view class="cert-info">
+            <text class="cert-name">{{item.name}}</text>
+            <text class="cert-type">{{item.typeText}}</text>
+          </view>
+          <view class="cert-status {{item.status}}">
+            <text>{{item.statusText}}</text>
+          </view>
+        </view>
+        <view class="cert-footer">
+          <text class="cert-date">发证日期：{{item.issueDate}}</text>
+          <text class="cert-valid" wx:if="{{item.validDate}}">有效期至：{{item.validDate}}</text>
+        </view>
+        <view class="cert-actions">
+          <button class="btn btn-outline btn-small" bindtap="onViewCertificate" data-id="{{item.id}}">查看</button>
+          <button class="btn btn-outline btn-small" bindtap="onDeleteCertificate" data-id="{{item.id}}" wx:if="{{item.status === 'draft'}}">删除</button>
+        </view>
+      </view>
+      
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{certificates.length === 0}}">
+        <text class="empty-icon">📜</text>
+        <text class="empty-text">暂无证书</text>
+        <text class="empty-desc">添加技能证书可提升接单成功率</text>
+        <button class="btn btn-primary" bindtap="onAddCertificate">添加证书</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 擅长领域 -->
+  <view class="skills-section glass">
+    <view class="section-header">
+      <text class="section-title">擅长领域</text>
+      <text class="section-action" bindtap="onEditSkills">编辑</text>
+    </view>
+    
+    <view class="skills-tags">
+      <view class="skill-tag {{item.active ? 'active' : ''}}" 
+            wx:for="{{skillTags}}" 
+            wx:key="id"
+            bindtap="onToggleSkill"
+            data-id="{{item.id}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-tip">
+    <text class="tip-icon">ℹ️</text>
+    <text class="tip-text">资质审核通常需要 1-3 个工作日，请耐心等待</text>
+  </view>
+</view>

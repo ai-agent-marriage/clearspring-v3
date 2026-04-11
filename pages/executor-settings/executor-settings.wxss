@@ -1,0 +1,139 @@
+@import "../../theme.wxss";
+
+/* 清如 ClearSpring - 执行者系统设置样式 O-12 */
+
+.container {
+  padding: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-xxxl);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--stitch-spacing-md) 0;
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--stitch-green-primary);
+}
+
+/* ========== 设置分组 ========== */
+.setting-section {
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--stitch-text-secondary);
+  padding: var(--stitch-spacing-sm) var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+/* ========== 设置列表 ========== */
+.setting-list {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  overflow: hidden;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--stitch-spacing-lg);
+  border-bottom: 1rpx solid var(--border-divider);
+  transition: all var(--stitch-transition-base);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item:active {
+  background: rgba(74, 93, 78, 0.05);
+}
+
+.setting-item.danger:active {
+  background: rgba(186, 26, 26, 0.05);
+}
+
+.setting-left {
+  display: flex;
+  align-items: center;
+  gap: var(--stitch-spacing-md);
+  flex: 1;
+  min-width: 0;
+}
+
+.setting-icon {
+  font-size: 40rpx;
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.setting-label {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: var(--stitch-text-primary);
+}
+
+.setting-desc {
+  font-size: 24rpx;
+  color: var(--text-light);
+  margin-top: 4rpx;
+}
+
+.setting-right {
+  display: flex;
+  align-items: center;
+  gap: var(--stitch-spacing-sm);
+}
+
+.setting-value {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.setting-value.bound {
+  color: var(--stitch-success);
+}
+
+.setting-arrow {
+  font-size: 40rpx;
+  color: var(--text-light);
+}
+
+.setting-switch {
+  transform: scale(0.9);
+}
+
+/* ========== 底部信息 ========== */
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--stitch-spacing-xxxl);
+  margin-top: var(--stitch-spacing-md);
+}
+
+.footer-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--stitch-text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.footer-subtext {
+  font-size: 24rpx;
+  color: var(--text-light);
+}

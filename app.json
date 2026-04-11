@@ -24,7 +24,10 @@
         "executor-camera/executor-camera",
         "executor-evidence/executor-evidence",
         "executor-income/executor-income",
-        "executor-profile/executor-profile"
+        "executor-profile/executor-profile",
+        "executor-qualification-manage/executor-qualification-manage",
+        "executor-message-center/executor-message-center",
+        "executor-settings/executor-settings"
       ]
     },
     {

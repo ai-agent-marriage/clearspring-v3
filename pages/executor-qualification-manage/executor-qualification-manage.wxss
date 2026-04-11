@@ -1,0 +1,412 @@
+@import "../../theme.wxss";
+
+/* 清如 ClearSpring - 执行者资质管理页样式 O-10 */
+
+.container {
+  padding: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-xxxl);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--stitch-spacing-md) 0;
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.page-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--stitch-green-primary);
+  margin-bottom: 12rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: var(--stitch-text-secondary);
+}
+
+/* ========== 资质状态卡片 ========== */
+.qualification-status-card {
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+}
+
+.status-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.status-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: var(--stitch-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64rpx;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.status-icon.verified {
+  background: rgba(0, 138, 23, 0.1);
+}
+
+.status-icon.pending {
+  background: rgba(255, 154, 68, 0.1);
+}
+
+.status-icon.rejected {
+  background: rgba(186, 26, 26, 0.1);
+}
+
+.status-icon.expired {
+  background: rgba(100, 100, 100, 0.1);
+}
+
+.status-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.status-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--stitch-green-primary);
+}
+
+.status-desc {
+  font-size: 26rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.status-date {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.status-actions {
+  margin-top: var(--stitch-spacing-md);
+}
+
+/* ========== 审核进度 ========== */
+.progress-section {
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-green-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  display: block;
+}
+
+.progress-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--stitch-spacing-sm);
+}
+
+.timeline-dot {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: var(--text-light);
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.timeline-item.active .timeline-dot {
+  background: var(--stitch-green-primary);
+}
+
+.timeline-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  padding-bottom: var(--stitch-spacing-md);
+}
+
+.timeline-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--stitch-text-primary);
+}
+
+.timeline-date {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.timeline-line {
+  width: 4rpx;
+  height: 48rpx;
+  background: var(--text-light);
+  margin-left: 10rpx;
+}
+
+.timeline-line.active {
+  background: var(--stitch-green-primary);
+}
+
+/* ========== 驳回原因 ========== */
+.rejection-section {
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+}
+
+.rejection-content {
+  padding: var(--stitch-spacing-md);
+  background: rgba(186, 26, 26, 0.05);
+  border-radius: var(--stitch-radius-sm);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.rejection-text {
+  font-size: 28rpx;
+  color: var(--stitch-error);
+  line-height: 1.6;
+}
+
+.rejection-suggestions {
+  padding: var(--stitch-spacing-md);
+  background: rgba(255, 154, 68, 0.05);
+  border-radius: var(--stitch-radius-sm);
+}
+
+.suggestions-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--stitch-warning);
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.suggestions-text {
+  font-size: 26rpx;
+  color: var(--stitch-text-primary);
+  line-height: 1.6;
+}
+
+/* ========== 证书列表 ========== */
+.certificates-section {
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.section-action {
+  font-size: 28rpx;
+  color: var(--stitch-green-primary);
+  font-weight: 500;
+}
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-md);
+}
+
+.certificate-card {
+  padding: var(--stitch-spacing-lg);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.cert-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: var(--stitch-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  background: rgba(74, 93, 78, 0.1);
+}
+
+.cert-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.cert-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--stitch-green-primary);
+}
+
+.cert-type {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.cert-status {
+  padding: 4rpx 16rpx;
+  border-radius: var(--stitch-radius-sm);
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.cert-status.verified {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--stitch-success);
+}
+
+.cert-status.pending {
+  background: rgba(255, 154, 68, 0.1);
+  color: var(--stitch-warning);
+}
+
+.cert-status.rejected {
+  background: rgba(186, 26, 26, 0.1);
+  color: var(--stitch-error);
+}
+
+.cert-status.draft {
+  background: rgba(100, 100, 100, 0.1);
+  color: var(--stitch-text-secondary);
+}
+
+.cert-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-md);
+  border-bottom: 1rpx solid var(--border-divider);
+}
+
+.cert-date,
+.cert-valid {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.cert-actions {
+  display: flex;
+  gap: var(--stitch-spacing-md);
+}
+
+/* ========== 擅长领域 ========== */
+.skills-section {
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--stitch-spacing-sm);
+}
+
+.skill-tag {
+  padding: 12rpx 24rpx;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--stitch-radius-sm);
+  font-size: 26rpx;
+  color: var(--stitch-text-primary);
+  transition: all var(--stitch-transition-base);
+}
+
+.skill-tag.active {
+  background: var(--stitch-green-primary);
+  color: var(--stitch-bg-white);
+}
+
+.skill-tag:active {
+  transform: scale(0.95);
+}
+
+/* ========== 空状态 ========== */
+.empty-state {
+  padding: var(--stitch-spacing-xxxl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--stitch-spacing-md);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--stitch-radius-lg);
+}
+
+.empty-icon {
+  font-size: 96rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: var(--stitch-text-secondary);
+  text-align: center;
+}
+
+/* ========== 底部提示 ========== */
+.bottom-tip {
+  display: flex;
+  align-items: center;
+  gap: var(--stitch-spacing-sm);
+  padding: var(--stitch-spacing-md);
+  margin-top: var(--stitch-spacing-md);
+}
+
+.tip-icon {
+  font-size: 32rpx;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}

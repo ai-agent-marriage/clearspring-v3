@@ -1,0 +1,79 @@
+<!-- 清如 ClearSpring - 执行者消息中心 O-11 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">消息中心</text>
+    <view class="header-actions">
+      <text class="action-btn" bindtap="onMarkAllRead">全部已读</text>
+      <text class="action-btn" bindtap="onClearMessages">清空</text>
+    </view>
+  </view>
+
+  <!-- 消息分类 Tab -->
+  <view class="message-tabs glass">
+    <view class="tab-item {{currentTab === 'all' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="all">
+      <text class="tab-text">全部</text>
+      <view class="tab-badge" wx:if="{{totalUnread > 0}}">{{totalUnread}}</view>
+    </view>
+    <view class="tab-item {{currentTab === 'system' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="system">
+      <text class="tab-text">系统通知</text>
+      <view class="tab-badge" wx:if="{{systemUnread > 0}}">{{systemUnread}}</view>
+    </view>
+    <view class="tab-item {{currentTab === 'order' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="order">
+      <text class="tab-text">订单消息</text>
+      <view class="tab-badge" wx:if="{{orderUnread > 0}}">{{orderUnread}}</view>
+    </view>
+    <view class="tab-item {{currentTab === 'activity' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="activity">
+      <text class="tab-text">活动通知</text>
+      <view class="tab-badge" wx:if="{{activityUnread > 0}}">{{activityUnread}}</view>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <view class="message-list">
+    <view class="message-item glass {{item.isRead ? '' : 'unread'}}"
+          wx:for="{{filteredMessages}}"
+          wx:key="id"
+          bindtap="onMessageTap"
+          data-id="{{item.id}}">
+      
+      <view class="message-icon {{item.type}}">
+        <text wx:if="{{item.type === 'system'}}">📢</text>
+        <text wx:if="{{item.type === 'order'}}">📋</text>
+        <text wx:if="{{item.type === 'activity'}}">🎉</text>
+        <text wx:if="{{item.type === 'income'}}">💰</text>
+        <text wx:if="{{item.type === 'warning'}}">⚠️</text>
+      </view>
+      
+      <view class="message-content">
+        <view class="message-header">
+          <text class="message-title">{{item.title}}</text>
+          <text class="message-time">{{item.time}}</text>
+        </view>
+        <text class="message-summary">{{item.summary}}</text>
+        <view class="message-footer" wx:if="{{item.tags && item.tags.length > 0}}">
+          <text class="message-tag" wx:for="{{item.tags}}" wx:key="*index">{{item}}</text>
+        </view>
+      </view>
+      
+      <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{filteredMessages.length === 0}}">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无消息</text>
+      <text class="empty-desc">当有新的系统通知、订单消息或活动通知时，会在这里显示</text>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore}}">
+    <text class="load-more-text">上拉加载更多</text>
+  </view>
+  
+  <!-- 没有更多 -->
+  <view class="no-more" wx:if="{{!hasMore && filteredMessages.length > 0}}">
+    <text class="no-more-text">没有更多消息了</text>
+  </view>
+</view>
