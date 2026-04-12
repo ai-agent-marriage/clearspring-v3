@@ -1,4 +1,13 @@
 // 清如 ClearSpring - 机构订单管理页
+/**
+ * @file 机构订单管理页面
+ * @description 管理订单列表、订单状态筛选、订单操作
+ * @version 4.0.1
+ * @update 2026-04-12: 添加缓存优化支持
+ */
+
+const ErrorHandler = require('../../utils/error-handler');
+const cache = require('../../utils/cache-optimized');
 
 Page({
   data: {
@@ -50,26 +59,57 @@ Page({
     isEmpty: false
   },
 
-  onLoad(options) {
+  /**
+   * 页面加载
+   */
+  onLoad() {
     console.log('订单管理页加载');
     this.loadOrders();
   },
 
+  /**
+   * 页面显示
+   */
   onShow() {
     this.refreshOrders();
   },
 
+  /**
+   * 下拉刷新
+   */
   onPullDownRefresh() {
     this.refreshOrders().then(() => {
       wx.stopPullDownRefresh();
     });
   },
 
-  // ========== 数据加载 ==========
+  /**
+   * 加载订单列表（带缓存优化）
+   * @async
+   * @returns {Promise<void>}
+   */
   async loadOrders() {
     try {
-      wx.showLoading({ title: '加载中...' });
+      ErrorHandler.showLoading('加载中...');
       
+      // 使用缓存优化：先检查缓存（3 分钟有效期）
+      const cacheKey = `order-list-${this.data.orgId || 'org_001'}-${this.data.activeTab}`;
+      const cached = cache.get(cacheKey, 180000); // 3 分钟缓存
+      
+      if (cached) {
+        console.log('[缓存命中] 订单列表');
+        this.setData({ 
+          orders: cached.orders,
+          isEmpty: cached.isEmpty,
+          loading: false,
+          fromCache: true
+        });
+        ErrorHandler.hideLoading();
+        return;
+      }
+      
+      // 缓存未命中，从云函数加载
+      console.log('[缓存未命中] 从云函数加载订单列表');
       const res = await wx.cloud.callFunction({
         name: 'order-list',
         data: { 
@@ -81,18 +121,25 @@ Page({
       
       if (res.result && res.result.code === 0 && res.result.data) {
         const orders = res.result.data.orders || [];
+        const isEmpty = orders.length === 0;
+        
         this.setData({ 
           orders: orders,
-          isEmpty: orders.length === 0,
-          loading: false
+          isEmpty: isEmpty,
+          loading: false,
+          fromCache: false
         });
-        wx.hideLoading();
+        
+        // 保存到缓存（3 分钟）
+        cache.set(cacheKey, { orders, isEmpty }, 180000);
+        
+        ErrorHandler.hideLoading();
       } else {
         throw new Error(res.result?.msg || '订单加载失败');
       }
     } catch (error) {
       console.error('加载订单失败:', error);
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       wx.showToast({
         title: error.message || '加载失败，请重试',
         icon: 'none',
@@ -117,14 +164,19 @@ Page({
     }
   },
 
+  /**
+   * 刷新订单
+   * @async
+   * @returns {Promise<void>}
+   */
   async refreshOrders() {
     try {
-      wx.showLoading({ title: '刷新中...' });
+      ErrorHandler.showLoading('刷新中...');
       await this.loadOrders();
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       console.log('订单刷新完成');
     } catch (error) {
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       console.error('刷新订单失败:', error);
       wx.showToast({
         title: '刷新失败',
@@ -133,16 +185,24 @@ Page({
     }
   },
 
-  // ========== Tab 切换 ==========
+  /**
+   * Tab 切换
+   * @param {Event} e - 点击事件
+   */
   onTabChange(e) {
     const { index } = e.currentTarget.dataset;
     this.setData({ activeTab: index });
     this.loadOrdersByStatus(index);
   },
 
+  /**
+   * 按状态加载订单
+   * @async
+   * @param {number} statusIndex - 状态索引
+   */
   async loadOrdersByStatus(statusIndex) {
     try {
-      wx.showLoading({ title: '加载中...' });
+      ErrorHandler.showLoading('加载中...');
       
       const res = await wx.cloud.callFunction({
         name: 'order-list',
@@ -159,12 +219,12 @@ Page({
           orders: orders,
           isEmpty: orders.length === 0
         });
-        wx.hideLoading();
+        ErrorHandler.hideLoading();
       } else {
         throw new Error(res.result?.msg || '订单加载失败');
       }
     } catch (error) {
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       console.error('加载状态订单失败:', error);
       wx.showToast({
         title: error.message || '加载失败',
@@ -173,31 +233,48 @@ Page({
     }
   },
 
-  // ========== 筛选栏 ==========
+  /**
+   * 切换筛选栏
+   */
   onToggleFilter() {
     this.setData({
       showFilter: !this.data.showFilter
     });
   },
 
+  /**
+   * 筛选日期变化
+   * @param {Event} e - 事件对象
+   */
   onFilterDateChange(e) {
     this.setData({
       filterDateRange: e.detail.value
     });
   },
 
+  /**
+   * 筛选水域变化
+   * @param {Event} e - 事件对象
+   */
   onFilterWaterAreaChange(e) {
     this.setData({
       filterWaterArea: e.detail.value
     });
   },
 
+  /**
+   * 筛选志愿者变化
+   * @param {Event} e - 事件对象
+   */
   onFilterVolunteerChange(e) {
     this.setData({
       filterVolunteer: e.detail.value
     });
   },
 
+  /**
+   * 应用筛选
+   */
   onApplyFilter() {
     console.log('应用筛选:', {
       dateRange: this.data.filterDateRange,
@@ -211,6 +288,9 @@ Page({
     });
   },
 
+  /**
+   * 重置筛选
+   */
   onResetFilter() {
     this.setData({
       filterDateRange: null,
@@ -223,7 +303,10 @@ Page({
     });
   },
 
-  // ========== 订单操作 ==========
+  /**
+   * 订单操作
+   * @param {Event} e - 点击事件
+   */
   onOrderAction(e) {
     const { action, order } = e.currentTarget.dataset;
     console.log('订单操作:', action, order);
@@ -244,7 +327,10 @@ Page({
     }
   },
 
-  // 承接订单
+  /**
+   * 承接订单
+   * @param {Object} order - 订单信息
+   */
   acceptOrder(order) {
     wx.showModal({
       title: '承接订单',
@@ -260,28 +346,41 @@ Page({
     });
   },
 
-  // 分配任务
+  /**
+   * 分配任务
+   * @param {Object} order - 订单信息
+   */
   assignTask(order) {
     wx.navigateTo({
       url: `/pages/org-home/assign?orderNo=${order.orderNo}`
     });
   },
 
-  // 审核执行材料
+  /**
+   * 审核执行材料
+   * @param {Object} order - 订单信息
+   */
   auditMaterial(order) {
     wx.navigateTo({
       url: `/pages/org-home/audit?orderNo=${order.orderNo}`
     });
   },
 
-  // 查看详情
+  /**
+   * 查看详情
+   * @param {Object} order - 订单信息
+   */
   viewDetail(order) {
     wx.navigateTo({
       url: `/pages/order/detail?orderNo=${order.orderNo}`
     });
   },
 
-  // ========== 状态标签样式 ==========
+  /**
+   * 获取状态标签样式
+   * @param {number} status - 状态值
+   * @returns {string} 样式类名
+   */
   getStatusClass(status) {
     const statusMap = {
       1: 'pending-accept',

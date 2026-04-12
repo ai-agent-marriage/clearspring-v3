@@ -1,5 +1,12 @@
 // 清如 ClearSpring - 执行者消息中心 O-11
+/**
+ * @file 执行者消息中心页面
+ * @description 管理系统消息、订单通知、活动通知等
+ * @version 4.0.0
+ */
+
 const ErrorHandler = require('../../utils/error-handler');
+const { debounce } = require('../../utils/debounce');
 
 Page({
   data: {
@@ -15,28 +22,45 @@ Page({
     pageSize: 20
   },
 
+  /**
+   * 页面加载
+   */
   onLoad() {
     this.loadMessages();
   },
 
+  /**
+   * 页面显示
+   */
   onShow() {
     // 页面显示时刷新未读数
     this.updateUnreadCount();
   },
 
+  /**
+   * 下拉刷新
+   */
   onPullDownRefresh() {
     this.loadMessages(true).then(() => {
       wx.stopPullDownRefresh();
     });
   },
 
+  /**
+   * 触底加载更多
+   */
   onReachBottom() {
     if (this.data.hasMore) {
       this.loadMoreMessages();
     }
   },
 
-  // 加载消息列表
+  /**
+   * 加载消息列表
+   * @async
+   * @param {boolean} refresh - 是否刷新
+   * @returns {Promise<void>}
+   */
   async loadMessages(refresh = false) {
     try {
       if (!refresh) {
@@ -152,13 +176,18 @@ Page({
     }
   },
 
-  // 加载更多消息
+  /**
+   * 加载更多消息
+   * @async
+   */
   async loadMoreMessages() {
     this.setData({ page: this.data.page + 1 });
     await this.loadMessages();
   },
 
-  // 更新未读数
+  /**
+   * 更新未读数
+   */
   updateUnreadCount() {
     const messages = this.data.allMessages;
     const totalUnread = messages.filter(msg => !msg.isRead).length;
@@ -174,14 +203,20 @@ Page({
     });
   },
 
-  // 切换 Tab
+  /**
+   * 切换 Tab（防抖处理）
+   * @param {Event} e - 点击事件
+   */
   onSwitchTab(e) {
     const tab = e.currentTarget.dataset.tab;
     this.setData({ currentTab: tab, page: 1 });
     this.loadMessages(true);
   },
 
-  // 消息点击
+  /**
+   * 消息点击
+   * @param {Event} e - 点击事件
+   */
   onMessageTap(e) {
     const messageId = e.currentTarget.dataset.id;
     const message = this.data.allMessages.find(msg => msg.id === messageId);
@@ -197,7 +232,10 @@ Page({
     }
   },
 
-  // 标记消息为已读
+  /**
+   * 标记消息为已读
+   * @param {string} messageId - 消息 ID
+   */
   markMessageAsRead(messageId) {
     const messages = this.data.allMessages.map(msg => {
       if (msg.id === messageId) {
@@ -212,7 +250,9 @@ Page({
     // TODO: 调用云函数标记已读
   },
 
-  // 全部已读
+  /**
+   * 全部已读
+   */
   onMarkAllRead() {
     wx.showModal({
       title: '确认操作',
@@ -233,13 +273,15 @@ Page({
     });
   },
 
-  // 清空消息
+  /**
+   * 清空消息
+   */
   onClearMessages() {
     wx.showModal({
       title: '确认清空',
       content: '确定要清空所有消息吗？此操作不可恢复。',
       confirmText: '清空',
-      confirmColor: '#BA1A1A',
+      confirmColor: ErrorHandler.COLORS?.error || '#BA1A1A',
       success: (res) => {
         if (res.confirm) {
           // TODO: 调用云函数清空消息
@@ -261,7 +303,10 @@ Page({
     });
   },
 
-  // 切换到 Tab
+  /**
+   * 切换到 Tab
+   * @param {string} tab - Tab 类型
+   */
   switchTab(tab) {
     this.setData({ currentTab: tab });
     this.loadMessages(true);

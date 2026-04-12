@@ -1,4 +1,11 @@
 // 清如 ClearSpring - 机构志愿者管理页
+/**
+ * @file 机构志愿者管理页面
+ * @description 管理志愿者列表、邀请码、志愿者操作
+ * @version 4.0.0
+ */
+
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -53,25 +60,38 @@ Page({
     isEmpty: false
   },
 
-  onLoad(options) {
+  /**
+   * 页面加载
+   */
+  onLoad() {
     console.log('志愿者管理页加载');
     this.loadVolunteers();
   },
 
+  /**
+   * 页面显示
+   */
   onShow() {
     this.refreshVolunteers();
   },
 
+  /**
+   * 下拉刷新
+   */
   onPullDownRefresh() {
     this.refreshVolunteers().then(() => {
       wx.stopPullDownRefresh();
     });
   },
 
-  // ========== 数据加载 ==========
+  /**
+   * 加载志愿者列表
+   * @async
+   * @returns {Promise<void>}
+   */
   async loadVolunteers() {
     try {
-      wx.showLoading({ title: '加载中...' });
+      ErrorHandler.showLoading('加载中...');
       
       const res = await wx.cloud.callFunction({
         name: 'volunteer-list',
@@ -96,13 +116,13 @@ Page({
           isEmpty: volunteers.length === 0,
           loading: false
         });
-        wx.hideLoading();
+        ErrorHandler.hideLoading();
       } else {
         throw new Error(res.result?.msg || '志愿者加载失败');
       }
     } catch (error) {
       console.error('加载志愿者失败:', error);
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       wx.showToast({
         title: error.message || '加载失败，请重试',
         icon: 'none',
@@ -127,14 +147,19 @@ Page({
     }
   },
 
+  /**
+   * 刷新志愿者
+   * @async
+   * @returns {Promise<void>}
+   */
   async refreshVolunteers() {
     try {
-      wx.showLoading({ title: '刷新中...' });
+      ErrorHandler.showLoading('刷新中...');
       await this.loadVolunteers();
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       console.log('志愿者刷新完成');
     } catch (error) {
-      wx.hideLoading();
+      ErrorHandler.hideLoading();
       console.error('刷新志愿者失败:', error);
       wx.showToast({
         title: '刷新失败',
@@ -143,15 +168,23 @@ Page({
     }
   },
 
-  // ========== 邀请码 ==========
+  /**
+   * 生成邀请码
+   */
   onGenerateInvite() {
     this.setData({ showInviteModal: true });
   },
 
+  /**
+   * 关闭邀请码弹窗
+   */
   onCloseInviteModal() {
     this.setData({ showInviteModal: false });
   },
 
+  /**
+   * 复制邀请码
+   */
   onCopyInviteCode() {
     wx.setClipboardData({
       data: this.data.inviteCode,
@@ -165,6 +198,9 @@ Page({
     });
   },
 
+  /**
+   * 分享邀请
+   */
   onShareInvite() {
     wx.showShareMenu({
       withShareTicket: true,
@@ -172,25 +208,38 @@ Page({
     });
   },
 
-  // ========== 筛选栏 ==========
+  /**
+   * 切换筛选栏
+   */
   onToggleFilter() {
     this.setData({
       showFilter: !this.data.showFilter
     });
   },
 
+  /**
+   * 筛选区域变化
+   * @param {Event} e - 事件对象
+   */
   onFilterRegionChange(e) {
     this.setData({
       filterRegion: e.detail.value
     });
   },
 
+  /**
+   * 筛选合规率变化
+   * @param {Event} e - 事件对象
+   */
   onFilterComplianceChange(e) {
     this.setData({
       filterCompliance: e.detail.value
     });
   },
 
+  /**
+   * 应用筛选
+   */
   onApplyFilter() {
     console.log('应用筛选:', {
       region: this.data.filterRegion,
@@ -203,6 +252,9 @@ Page({
     });
   },
 
+  /**
+   * 重置筛选
+   */
   onResetFilter() {
     this.setData({
       filterRegion: '',
@@ -214,7 +266,10 @@ Page({
     });
   },
 
-  // ========== 志愿者操作 ==========
+  /**
+   * 志愿者操作
+   * @param {Event} e - 点击事件
+   */
   onVolunteerAction(e) {
     const { action, volunteer } = e.currentTarget.dataset;
     console.log('志愿者操作:', action, volunteer);
@@ -235,27 +290,36 @@ Page({
     }
   },
 
-  // 查看详情
+  /**
+   * 查看志愿者详情
+   * @param {Object} volunteer - 志愿者信息
+   */
   viewVolunteerDetail(volunteer) {
     wx.navigateTo({
       url: `/pages/org-home/volunteer-detail?id=${volunteer.id}`
     });
   },
 
-  // 分配任务
+  /**
+   * 分配任务给志愿者
+   * @param {Object} volunteer - 志愿者信息
+   */
   assignTaskToVolunteer(volunteer) {
     wx.navigateTo({
       url: `/pages/org-home/assign-task?volunteerId=${volunteer.id}`
     });
   },
 
-  // 解绑志愿者
+  /**
+   * 解绑志愿者
+   * @param {Object} volunteer - 志愿者信息
+   */
   unbindVolunteer(volunteer) {
     wx.showModal({
       title: '解绑志愿者',
       content: `确定要解绑志愿者 ${volunteer.name} 吗？`,
       confirmText: '解绑',
-      confirmColor: '#BA1A1A',
+      confirmColor: ErrorHandler.COLORS?.error || '#BA1A1A',
       success: (res) => {
         if (res.confirm) {
           wx.showToast({
@@ -267,13 +331,16 @@ Page({
     });
   },
 
-  // 拉黑志愿者
+  /**
+   * 拉黑志愿者
+   * @param {Object} volunteer - 志愿者信息
+   */
   blacklistVolunteer(volunteer) {
     wx.showModal({
       title: '拉黑志愿者',
       content: `确定要将 ${volunteer.name} 加入黑名单吗？拉黑后将无法再接收平台任务。`,
       confirmText: '拉黑',
-      confirmColor: '#BA1A1A',
+      confirmColor: ErrorHandler.COLORS?.error || '#BA1A1A',
       success: (res) => {
         if (res.confirm) {
           wx.showToast({
@@ -285,7 +352,10 @@ Page({
     });
   },
 
-  // 分享
+  /**
+   * 分享
+   * @returns {Object} 分享配置
+   */
   onShareAppMessage() {
     return {
       title: '加入清如志愿者团队',

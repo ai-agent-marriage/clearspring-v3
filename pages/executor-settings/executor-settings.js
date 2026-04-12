@@ -1,4 +1,10 @@
 // 清如 ClearSpring - 执行者系统设置 O-12
+/**
+ * @file 执行者系统设置页面
+ * @description 管理账号设置、通知设置、缓存清理等
+ * @version 4.0.0
+ */
+
 const ErrorHandler = require('../../utils/error-handler');
 
 Page({
@@ -18,11 +24,17 @@ Page({
     version: '4.0.0'
   },
 
+  /**
+   * 页面加载
+   */
   onLoad() {
     this.loadSettings();
   },
 
-  // 加载设置
+  /**
+   * 加载设置
+   * @async
+   */
   async loadSettings() {
     try {
       // TODO: 从本地存储或云端加载设置
@@ -46,7 +58,10 @@ Page({
     }
   },
 
-  // 获取缓存大小
+  /**
+   * 获取缓存大小
+   * @async
+   */
   async getCacheSize() {
     try {
       // TODO: 计算实际缓存大小
@@ -63,7 +78,10 @@ Page({
     }
   },
 
-  // 设置项点击
+  /**
+   * 设置项点击
+   * @param {Event} e - 点击事件
+   */
   onSettingTap(e) {
     const action = e.currentTarget.dataset.action;
     
@@ -98,21 +116,27 @@ Page({
     }
   },
 
-  // 修改手机号
+  /**
+   * 修改手机号
+   */
   onPhoneChange() {
     wx.navigateTo({
       url: '/pages/executor-phone-change/executor-phone-change'
     });
   },
 
-  // 修改密码
+  /**
+   * 修改密码
+   */
   onPasswordChange() {
     wx.navigateTo({
       url: '/pages/executor-password-change/executor-password-change'
     });
   },
 
-  // 绑定微信
+  /**
+   * 绑定微信
+   */
   onWechatBind() {
     if (this.data.wechatBound) {
       wx.showModal({
@@ -154,7 +178,10 @@ Page({
     }
   },
 
-  // 通知开关变化
+  /**
+   * 通知开关变化
+   * @param {Event} e - 开关事件
+   */
   onNotificationChange(e) {
     const type = e.currentTarget.dataset.type;
     const checked = e.detail.value;
@@ -176,7 +203,9 @@ Page({
     console.log('通知设置更新:', notifications);
   },
 
-  // 切换语言
+  /**
+   * 切换语言
+   */
   onLanguageChange() {
     wx.showActionSheet({
       itemList: ['简体中文', '繁體中文', 'English'],
@@ -198,28 +227,48 @@ Page({
     });
   },
 
-  // 清除缓存
+  /**
+   * 清除缓存（优化版：只清除缓存，保留登录状态）
+   */
   onClearCache() {
     wx.showModal({
       title: '清除缓存',
       content: `确定要清除 ${this.data.cacheSize} 的缓存吗？`,
       confirmText: '清除',
-      confirmColor: '#BA1A1A',
-      success: (res) => {
+      confirmColor: ErrorHandler.COLORS?.error || '#BA1A1A',
+      success: async (res) => {
         if (res.confirm) {
-          // TODO: 清除缓存
-          wx.clearStorageSync();
-          this.setData({ cacheSize: '0 MB' });
-          wx.showToast({
-            title: '已清除',
-            icon: 'success'
-          });
+          try {
+            // 只清除缓存数据，保留登录状态等关键数据
+            const keepKeys = ['executor_settings', 'user_info', 'token', 'openid'];
+            const storageInfo = wx.getStorageInfoSync();
+            
+            for (const key of storageInfo.keys) {
+              if (!keepKeys.includes(key)) {
+                wx.removeStorageSync(key);
+              }
+            }
+            
+            this.setData({ cacheSize: '0 MB' });
+            wx.showToast({
+              title: '已清除',
+              icon: 'success'
+            });
+          } catch (error) {
+            console.error('清除缓存失败:', error);
+            wx.showToast({
+              title: '清除失败',
+              icon: 'none'
+            });
+          }
         }
       }
     });
   },
 
-  // 关于我们
+  /**
+   * 关于我们
+   */
   onAbout() {
     wx.showModal({
       title: '关于清如',
@@ -229,21 +278,27 @@ Page({
     });
   },
 
-  // 帮助中心
+  /**
+   * 帮助中心
+   */
   onHelp() {
     wx.navigateTo({
       url: '/pages/help/index'
     });
   },
 
-  // 意见反馈
+  /**
+   * 意见反馈
+   */
   onFeedback() {
     wx.navigateTo({
       url: '/pages/executor-feedback/executor-feedback'
     });
   },
 
-  // 联系我们
+  /**
+   * 联系我们
+   */
   onContact() {
     wx.showModal({
       title: '联系我们',
@@ -253,7 +308,9 @@ Page({
     });
   },
 
-  // 切换到祈福者端
+  /**
+   * 切换到祈福者端
+   */
   onSwitchToPrayer() {
     wx.showModal({
       title: '切换身份',
@@ -269,13 +326,15 @@ Page({
     });
   },
 
-  // 退出登录
+  /**
+   * 退出登录
+   */
   onLogout() {
     wx.showModal({
       title: '退出登录',
       content: '确定要退出登录吗？',
       confirmText: '退出',
-      confirmColor: '#BA1A1A',
+      confirmColor: ErrorHandler.COLORS?.error || '#BA1A1A',
       success: (res) => {
         if (res.confirm) {
           // TODO: 清除登录状态

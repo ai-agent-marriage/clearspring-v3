@@ -1,9 +1,16 @@
 // 清如 ClearSpring - 执行者资质管理页 O-10
+/**
+ * @file 执行者资质管理页面
+ * @description 管理执行者的资质认证状态、证书上传、擅长领域等
+ * @version 4.0.0
+ */
+
 const ErrorHandler = require('../../utils/error-handler');
+const ImageCompress = require('../../utils/image-compress');
 
 Page({
   data: {
-    // 当前资质状态: verified, pending, rejected, expired
+    // 当前资质状态：verified, pending, rejected, expired
     currentStatus: 'verified',
     statusTitle: '已认证',
     statusDesc: '您的资质已通过平台审核',
@@ -68,6 +75,10 @@ Page({
     ]
   },
 
+  /**
+   * 页面加载
+   * @param {Object} options - 页面参数
+   */
   onLoad(options) {
     // 从上一页获取状态参数
     if (options.status) {
@@ -76,18 +87,28 @@ Page({
     this.loadQualificationData();
   },
 
+  /**
+   * 页面显示
+   */
   onShow() {
     // 页面显示时刷新数据
     this.loadQualificationData();
   },
 
+  /**
+   * 下拉刷新
+   */
   onPullDownRefresh() {
     this.loadQualificationData().then(() => {
       wx.stopPullDownRefresh();
     });
   },
 
-  // 加载资质数据
+  /**
+   * 加载资质数据
+   * @async
+   * @returns {Promise<void>}
+   */
   async loadQualificationData() {
     try {
       ErrorHandler.showLoading('加载中...');
@@ -116,7 +137,10 @@ Page({
     }
   },
 
-  // 更新状态显示
+  /**
+   * 更新状态显示
+   * @param {string} status - 资质状态 (verified/pending/rejected/expired)
+   */
   updateStatus(status) {
     const statusMap = {
       verified: {
@@ -153,14 +177,18 @@ Page({
     });
   },
 
-  // 更新资质
+  /**
+   * 更新资质
+   */
   onUpdateQualification() {
     wx.navigateTo({
       url: '/pages/executor-qualification/executor-qualification'
     });
   },
 
-  // 添加证书
+  /**
+   * 添加证书
+   */
   onAddCertificate() {
     wx.showActionSheet({
       itemList: ['上传技能证书', '上传资质证书'],
@@ -174,105 +202,106 @@ Page({
     });
   },
 
-  // 上传技能证书
+  /**
+   * 上传技能证书（使用图片压缩）
+   * @async
+   */
   async onUploadSkillCertificate() {
     try {
       ErrorHandler.showLoading('选择图片...');
       
-      wx.chooseMedia({
+      // 使用图片压缩工具选择并压缩图片
+      const result = await ImageCompress.chooseAndCompressImages({
         count: 9,
-        mediaType: ['image'],
-        sourceType: ['camera', 'album'],
-        sizeType: ['compressed'],
-        success: async (res) => {
-          console.log('选择的证书图片:', res.tempFiles);
-          try {
-            // TODO: 上传证书图片到云存储
-            // await wx.cloud.uploadFile({ ... });
-            
-            wx.showToast({
-              title: '证书上传成功',
-              icon: 'success'
-            });
-          } catch (error) {
-            console.error('上传证书图片失败:', error);
-            ErrorHandler.handleRequestError(error, {
-              page: this.route,
-              action: 'uploadSkillCertificate',
-              showToast: true
-            });
-          } finally {
-            ErrorHandler.hideLoading();
-          }
-        },
-        fail: (err) => {
-          ErrorHandler.hideLoading();
-          if (err.errMsg !== 'chooseMedia:fail cancel') {
-            console.error('选择图片失败:', err);
-            ErrorHandler.showToast(err);
-          }
-        }
+        quality: 80,
+        sourceType: ['camera', 'album']
       });
+      
+      console.log('选择的证书图片:', result.tempFiles);
+      console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
+      
+      try {
+        // TODO: 上传证书图片到云存储
+        // await wx.cloud.uploadFile({ ... });
+        
+        wx.showToast({
+          title: '证书上传成功',
+          icon: 'success'
+        });
+      } catch (error) {
+        console.error('上传证书图片失败:', error);
+        ErrorHandler.handleRequestError(error, {
+          page: this.route,
+          action: 'uploadSkillCertificate',
+          showToast: true
+        });
+      } finally {
+        ErrorHandler.hideLoading();
+      }
     } catch (error) {
       ErrorHandler.hideLoading();
-      console.error('上传技能证书失败:', error);
-      ErrorHandler.handleRequestError(error, {
-        page: this.route,
-        action: 'onUploadSkillCertificate'
-      });
+      if (error.message !== '用户取消选择') {
+        console.error('上传技能证书失败:', error);
+        ErrorHandler.handleRequestError(error, {
+          page: this.route,
+          action: 'onUploadSkillCertificate'
+        });
+      }
     }
   },
 
-  // 上传资质证书
+  /**
+   * 上传资质证书（使用图片压缩）
+   * @async
+   */
   async onUploadQualificationCertificate() {
     try {
       ErrorHandler.showLoading('选择图片...');
       
-      wx.chooseMedia({
+      // 使用图片压缩工具选择并压缩图片
+      const result = await ImageCompress.chooseAndCompressImages({
         count: 9,
-        mediaType: ['image'],
-        sourceType: ['camera', 'album'],
-        sizeType: ['compressed'],
-        success: async (res) => {
-          console.log('选择的资质证书图片:', res.tempFiles);
-          try {
-            // TODO: 上传资质证书图片到云存储
-            // await wx.cloud.uploadFile({ ... });
-            
-            wx.showToast({
-              title: '证书上传成功',
-              icon: 'success'
-            });
-          } catch (error) {
-            console.error('上传证书图片失败:', error);
-            ErrorHandler.handleRequestError(error, {
-              page: this.route,
-              action: 'uploadQualificationCertificate',
-              showToast: true
-            });
-          } finally {
-            ErrorHandler.hideLoading();
-          }
-        },
-        fail: (err) => {
-          ErrorHandler.hideLoading();
-          if (err.errMsg !== 'chooseMedia:fail cancel') {
-            console.error('选择图片失败:', err);
-            ErrorHandler.showToast(err);
-          }
-        }
+        quality: 80,
+        sourceType: ['camera', 'album']
       });
+      
+      console.log('选择的资质证书图片:', result.tempFiles);
+      console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
+      
+      try {
+        // TODO: 上传资质证书图片到云存储
+        // await wx.cloud.uploadFile({ ... });
+        
+        wx.showToast({
+          title: '证书上传成功',
+          icon: 'success'
+        });
+      } catch (error) {
+        console.error('上传证书图片失败:', error);
+        ErrorHandler.handleRequestError(error, {
+          page: this.route,
+          action: 'uploadQualificationCertificate',
+          showToast: true
+        });
+      } finally {
+        ErrorHandler.hideLoading();
+      }
     } catch (error) {
       ErrorHandler.hideLoading();
-      console.error('上传资质证书失败:', error);
-      ErrorHandler.handleRequestError(error, {
-        page: this.route,
-        action: 'onUploadQualificationCertificate'
-      });
+      if (error.message !== '用户取消选择') {
+        console.error('上传资质证书失败:', error);
+        ErrorHandler.handleRequestError(error, {
+          page: this.route,
+          action: 'onUploadQualificationCertificate'
+        });
+      }
     }
   },
 
-  // 查看证书详情
+  /**
+   * 查看证书详情
+   * @param {Event} e - 点击事件
+   */
   onViewCertificate(e) {
     const certId = e.currentTarget.dataset.id;
     const certificate = this.data.certificates.find(cert => cert.id === certId);
@@ -284,7 +313,10 @@ Page({
     }
   },
 
-  // 删除证书
+  /**
+   * 删除证书
+   * @param {Event} e - 点击事件
+   */
   onDeleteCertificate(e) {
     const certId = e.currentTarget.dataset.id;
     
@@ -292,7 +324,7 @@ Page({
       title: '确认删除',
       content: '确定要删除这个证书吗？',
       confirmText: '删除',
-      confirmColor: '#BA1A1A',
+      confirmColor: ErrorHandler.COLORS?.error || '#BA1A1A',
       success: (res) => {
         if (res.confirm) {
           // TODO: 调用云函数删除证书
@@ -307,7 +339,9 @@ Page({
     });
   },
 
-  // 编辑擅长领域
+  /**
+   * 编辑擅长领域
+   */
   onEditSkills() {
     wx.showToast({
       title: '点击标签即可编辑',
@@ -315,7 +349,10 @@ Page({
     });
   },
 
-  // 切换擅长领域
+  /**
+   * 切换擅长领域
+   * @param {Event} e - 点击事件
+   */
   onToggleSkill(e) {
     const skillId = e.currentTarget.dataset.id;
     const skillTags = this.data.skillTags.map(tag => {
@@ -331,7 +368,10 @@ Page({
     console.log('更新擅长领域:', skillTags.filter(tag => tag.active));
   },
 
-  // 菜单点击
+  /**
+   * 菜单点击
+   * @param {Event} e - 点击事件
+   */
   onMenuTap(e) {
     const action = e.currentTarget.dataset.action;
     
