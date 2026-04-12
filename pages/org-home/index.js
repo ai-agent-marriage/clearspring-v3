@@ -80,6 +80,7 @@ Page({
       
       if (cached) {
         console.log('[缓存命中] 机构数据');
+        // P2-001 性能优化：批量 setData
         this.setData({ 
           org: cached.org,
           stats: cached.stats,

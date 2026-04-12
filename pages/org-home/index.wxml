@@ -1,71 +1,74 @@
 <!-- 清如 ClearSpring - 机构端首页 -->
-<view class="container">
+<!-- P2-004: 辅助功能优化 - 添加 aria 标签 -->
+<view class="container" role="main" aria-label="机构工作台页面">
   <!-- 顶部导航栏 -->
-  <view class="header glass">
+  <view class="header glass" role="banner">
     <view class="header-title">机构工作台</view>
-    <view class="header-notification" bindtap="onNotification">
-      <text class="notification-icon">🔔</text>
+    <view class="header-notification" bindtap="onNotification" role="button" aria-label="通知图标">
+      <text class="notification-icon" aria-hidden="true">🔔</text>
     </view>
   </view>
 
   <!-- 顶部机构信息区 -->
-  <view class="org-info-card card">
+  <view class="org-info-card card" role="region" aria-label="机构信息">
     <view class="org-header">
       <view class="org-name">{{org.name}}</view>
       <view class="identity-tag">{{org.identity}}</view>
     </view>
     <view class="org-status-row">
-      <view class="status-badge audited" wx:if="{{org.audited}}">
-        <text class="status-icon">✅</text>
+      <view class="status-badge audited" wx:if="{{org.audited}}" role="status" aria-label="已审核状态">
+        <text class="status-icon" aria-hidden="true">✅</text>
         <text class="status-text">已审核</text>
       </view>
       <view class="org-total-orders">
         <text class="total-label">累计执行订单</text>
-        <text class="total-value">{{org.totalOrders}}</text>
+        <text class="total-value" aria-label="累计执行订单数：{{org.totalOrders}}">{{org.totalOrders}}</text>
       </view>
     </view>
   </view>
 
   <!-- 核心数据看板 -->
-  <scroll-view class="stats-scroll" scroll-x="{{true}}" show-scrollbar="{{false}}">
+  <scroll-view class="stats-scroll" scroll-x="{{true}}" show-scrollbar="{{false}}" role="region" aria-label="核心数据看板">
     <view class="stats-container">
-      <view class="stat-card">
-        <view class="stat-value text-warning">{{stats.pendingOrders}}</view>
+      <view class="stat-card" role="listitem" aria-label="待承接订单：{{stats.pendingOrders}}">
+        <view class="stat-value text-warning" aria-hidden="true">{{stats.pendingOrders}}</view>
         <view class="stat-label">待承接订单</view>
       </view>
-      <view class="stat-card">
-        <view class="stat-value text-green">{{stats.todayTasks}}</view>
+      <view class="stat-card" role="listitem" aria-label="今日待执行：{{stats.todayTasks}}">
+        <view class="stat-value text-green" aria-hidden="true">{{stats.todayTasks}}</view>
         <view class="stat-label">今日待执行</view>
       </view>
-      <view class="stat-card">
-        <view class="stat-value text-info">{{stats.pendingConfirm}}</view>
+      <view class="stat-card" role="listitem" aria-label="待用户确认：{{stats.pendingConfirm}}">
+        <view class="stat-value text-info" aria-hidden="true">{{stats.pendingConfirm}}</view>
         <view class="stat-label">待用户确认</view>
       </view>
-      <view class="stat-card">
-        <view class="stat-value text-gold">{{stats.completedOrders}}</view>
+      <view class="stat-card" role="listitem" aria-label="累计完成：{{stats.completedOrders}}">
+        <view class="stat-value text-gold" aria-hidden="true">{{stats.completedOrders}}</view>
         <view class="stat-label">累计完成</view>
       </view>
     </view>
   </scroll-view>
 
   <!-- 待办事项区 -->
-  <view class="todos-section card">
+  <view class="todos-section card" role="region" aria-label="待办事项">
     <view class="section-header">
       <text class="section-title">待办事项</text>
     </view>
-    <view class="todos-list">
+    <view class="todos-list" role="list">
       <view 
         wx:for="{{todos}}" 
         wx:key="type" 
         class="todo-item"
+        role="listitem"
         data-type="{{item.type}}"
         data-action="{{item.action}}"
         bindtap="onTodoTap"
+        aria-label="{{item.title}}，{{item.count}}项待处理"
       >
         <view class="todo-left">
           <text class="todo-title">{{item.title}}</text>
-          <view class="todo-badge" wx:if="{{item.count > 0}}">
-            <text class="badge-count">{{item.count}}</text>
+          <view class="todo-badge" wx:if="{{item.count > 0}}" aria-label="待处理数量：{{item.count}}">
+            <text class="badge-count" aria-hidden="true">{{item.count}}</text>
           </view>
         </view>
         <view class="todo-action">{{item.action}}</view>
@@ -74,24 +77,26 @@
   </view>
 
   <!-- 核心功能入口区 -->
-  <view class="functions-section">
-    <view class="functions-grid">
+  <view class="functions-section" role="region" aria-label="功能入口">
+    <view class="functions-grid" role="list">
       <view 
         wx:for="{{functions}}" 
         wx:key="name" 
         class="function-card card"
+        role="listitem"
         data-path="{{item.path}}"
         bindtap="onFunctionTap"
+        aria-label="功能：{{item.name}}"
       >
-        <view class="function-icon">{{item.icon}}</view>
+        <view class="function-icon" aria-hidden="true">{{item.icon}}</view>
         <view class="function-name">{{item.name}}</view>
       </view>
     </view>
   </view>
 
   <!-- 底部固定按钮 -->
-  <view class="bottom-bar">
-    <button class="btn btn-switch" bindtap="onSwitchToProtect">
+  <view class="bottom-bar" role="contentinfo">
+    <button class="btn btn-switch" bindtap="onSwitchToProtect" aria-label="切换为祈福者视角">
       切换为祈福者视角
     </button>
   </view>
