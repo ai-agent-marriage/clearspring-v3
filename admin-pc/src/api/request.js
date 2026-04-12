@@ -1,12 +1,128 @@
 import axios from 'axios'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import router from '@/router'
+import DOMPurify from 'dompurify'
 
 // 创建 axios 实例
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api',
   timeout: 15000 // 请求超时时间
 })
+
+// Token 刷新标志位，防止并发刷新
+let isRefreshing = false
+// 刷新 Token 时的请求队列
+let refreshSubscribers = []
+
+/**
+ * 获取 CSRF Token（从 Cookie 或 localStorage）
+ * @returns {string|null} CSRF Token
+ */
+function getCsrfToken() {
+  // 优先从 Cookie 获取
+  const csrfCookie = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('XSRF-TOKEN='))
+    ?.split('=')[1]
+  
+  if (csrfCookie) {
+    return decodeURIComponent(csrfCookie)
+  }
+  
+  // 其次从 localStorage 获取
+  return localStorage.getItem('csrf_token')
+}
+
+/**
+ * XSS 防护：转义用户输入
+ * @param {string} input - 用户输入
+ * @returns {string} 转义后的字符串
+ */
+export function sanitizeInput(input) {
+  if (typeof input !== 'string') {
+    return input
+  }
+  return DOMPurify.sanitize(input, {
+    ALLOWED_TAGS: [], // 不允许任何 HTML 标签
+    ALLOWED_ATTR: []  // 不允许任何属性
+  })
+}
+
+/**
+ * XSS 防护：转义对象中的所有字符串字段
+ * @param {Object|Array} data - 数据对象或数组
+ * @returns {Object|Array} 转义后的数据
+ */
+export function sanitizeObject(data) {
+  if (Array.isArray(data)) {
+    return data.map(item => sanitizeObject(item))
+  }
+  if (typeof data === 'object' && data !== null) {
+    const sanitized = {}
+    for (const key in data) {
+      if (typeof data[key] === 'string') {
+        sanitized[key] = sanitizeInput(data[key])
+      } else if (typeof data[key] === 'object' && data[key] !== null) {
+        sanitized[key] = sanitizeObject(data[key])
+      } else {
+        sanitized[key] = data[key]
+      }
+    }
+    return sanitized
+  }
+  return data
+}
+
+/**
+ * 添加请求到刷新队列
+ * @param {Function} callback - 请求成功后的回调
+ */
+function subscribeTokenRefresh(callback) {
+  refreshSubscribers.push(callback)
+}
+
+/**
+ * 执行刷新队列中的所有请求
+ * @param {string} newToken - 新的 Token
+ */
+function onTokenRefreshed(newToken) {
+  refreshSubscribers.forEach(callback => callback(newToken))
+  refreshSubscribers = []
+}
+
+/**
+ * 清除刷新队列（刷新失败时调用）
+ */
+function clearRefreshQueue() {
+  refreshSubscribers = []
+}
+
+/**
+ * 刷新 Token
+ * @returns {Promise<string>} 新的 Token
+ */
+async function refreshToken() {
+  const refreshTokenData = localStorage.getItem('admin_refresh_token')
+  if (!refreshTokenData) {
+    throw new Error('无刷新 Token')
+  }
+  
+  const response = await axios.post(
+    `${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api'}/auth/refresh`,
+    { refreshToken: refreshTokenData }
+  )
+  
+  if (response.data.code === 200 && response.data.data.token) {
+    const newToken = response.data.data.token
+    localStorage.setItem('admin_token', newToken)
+    if (response.data.data.refreshToken) {
+      localStorage.setItem('admin_refresh_token', response.data.data.refreshToken)
+    }
+    return newToken
+  } else {
+    throw new Error('Token 刷新失败')
+  }
+}
 
 // 请求拦截器
 request.interceptors.request.use(
@@ -15,6 +131,17 @@ request.interceptors.request.use(
     const token = localStorage.getItem('admin_token')
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`
+    }
+    
+    // 添加 CSRF Token（如果存在）
+    const csrfToken = getCsrfToken()
+    if (csrfToken) {
+      config.headers['X-CSRF-TOKEN'] = csrfToken
+    }
+    
+    // XSS 防护：对 POST/PUT/PATCH 请求的数据进行转义
+    if (config.data && ['POST', 'PUT', 'PATCH'].includes(config.method?.toUpperCase())) {
+      config.data = sanitizeObject(config.data)
     }
     
     // 添加请求时间戳（可选，防止缓存）
@@ -31,7 +158,7 @@ request.interceptors.request.use(
   }
 )
 
-// 响应拦截器
+// 响应拦截器 - 处理 Token 过期和自动刷新
 request.interceptors.response.use(
   response => {
     const res = response.data
@@ -46,6 +173,7 @@ request.interceptors.response.use(
           type: 'warning'
         }).then(() => {
           localStorage.removeItem('admin_token')
+          localStorage.removeItem('admin_refresh_token')
           router.push('/login')
         })
       } else {
@@ -56,17 +184,57 @@ request.interceptors.response.use(
     
     return res
   },
-  error => {
+  async error => {
     console.error('响应错误:', error)
     
-    // 处理不同的 HTTP 错误状态
+    // 处理 HTTP 401 错误 - Token 过期，尝试自动刷新
+    if (error.response?.status === 401) {
+      // 如果不是刷新 Token 的请求本身失败
+      if (!error.config?.url?.includes('/auth/refresh')) {
+        // 如果当前没有在刷新 Token，则开始刷新
+        if (!isRefreshing) {
+          isRefreshing = true
+          
+          try {
+            const newToken = await refreshToken()
+            onTokenRefreshed(newToken)
+            // 重试原请求
+            error.config.headers['Authorization'] = `Bearer ${newToken}`
+            return request(error.config)
+          } catch (refreshError) {
+            // 刷新失败，清除队列并跳转登录
+            console.error('Token 刷新失败:', refreshError)
+            clearRefreshQueue()
+            ElMessageBox.confirm('登录已过期，请重新登录', '提示', {
+              confirmButtonText: '重新登录',
+              cancelButtonText: '取消',
+              type: 'warning',
+              showCancelButton: true,
+              closeOnClickModal: false
+            }).then(() => {
+              localStorage.removeItem('admin_token')
+              localStorage.removeItem('admin_refresh_token')
+              router.push('/login')
+            })
+            return Promise.reject(refreshError)
+          } finally {
+            isRefreshing = false
+          }
+        } else {
+          // 如果正在刷新 Token，将请求加入队列
+          return new Promise((resolve) => {
+            subscribeTokenRefresh((newToken) => {
+              error.config.headers['Authorization'] = `Bearer ${newToken}`
+              resolve(request(error.config))
+            })
+          })
+        }
+      }
+    }
+    
+    // 处理其他 HTTP 错误状态
     if (error.response) {
       switch (error.response.status) {
-        case 401:
-          ElMessage.error('未授权，请重新登录')
-          localStorage.removeItem('admin_token')
-          router.push('/login')
-          break
         case 403:
           ElMessage.error('拒绝访问')
           break

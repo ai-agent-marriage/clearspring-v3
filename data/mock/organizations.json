@@ -1,0 +1,98 @@
+[
+  {
+    "orgId": "org_001",
+    "orgName": "广州放生协会",
+    "orgType": "志愿者协会",
+    "address": "广东广州白云区1街311号",
+    "contactPerson": "那丹",
+    "contactPhone": "016****5080",
+    "establishmentDate": "2020-04-07",
+    "volunteerCount": 11,
+    "totalOrders": 85,
+    "rating": 4.9
+  },
+  {
+    "orgId": "org_002",
+    "orgName": "杭州慈善会",
+    "orgType": "志愿者协会",
+    "address": "湖北武汉青山区429街716号",
+    "contactPerson": "巴翔",
+    "contactPhone": "072****5400",
+    "establishmentDate": "2024-06-02",
+    "volunteerCount": 61,
+    "totalOrders": 402,
+    "rating": 4.8
+  },
+  {
+    "orgId": "org_003",
+    "orgName": "西安放生协会",
+    "orgType": "放生组织",
+    "address": "湖北武汉蔡甸区777街882号",
+    "contactPerson": "桂晶",
+    "contactPhone": "089****2208",
+    "establishmentDate": "2024-03-09",
+    "volunteerCount": 17,
+    "totalOrders": 118,
+    "rating": 4.6
+  },
+  {
+    "orgId": "org_004",
+    "orgName": "重庆护生会",
+    "orgType": "动物保护组织",
+    "address": "广东广州白云区166道143号",
+    "contactPerson": "冯凯",
+    "contactPhone": "077****8317",
+    "establishmentDate": "2023-04-04",
+    "volunteerCount": 97,
+    "totalOrders": 220,
+    "rating": 4.1
+  },
+  {
+    "orgId": "org_005",
+    "orgName": "杭州慈善会",
+    "orgType": "动物保护组织",
+    "address": "北京北京通州区290街383号",
+    "contactPerson": "东辰",
+    "contactPhone": "071****9904",
+    "establishmentDate": "2025-07-13",
+    "volunteerCount": 38,
+    "totalOrders": 402,
+    "rating": 4.1
+  },
+  {
+    "orgId": "org_006",
+    "orgName": "武汉慈善会",
+    "orgType": "志愿者协会",
+    "address": "四川成都锦江区721胡同38号",
+    "contactPerson": "晏洋",
+    "contactPhone": "064****9285",
+    "establishmentDate": "2021-08-05",
+    "volunteerCount": 25,
+    "totalOrders": 424,
+    "rating": 4.5
+  },
+  {
+    "orgId": "org_007",
+    "orgName": "广州护生会",
+    "orgType": "放生组织",
+    "address": "重庆重庆渝北区424巷965号",
+    "contactPerson": "仇国",
+    "contactPhone": "081****5122",
+    "establishmentDate": "2021-01-07",
+    "volunteerCount": 34,
+    "totalOrders": 115,
+    "rating": 4.1
+  },
+  {
+    "orgId": "org_008",
+    "orgName": "重庆放生协会",
+    "orgType": "志愿者协会",
+    "address": "重庆重庆涪陵区702胡同685号",
+    "contactPerson": "巢磊",
+    "contactPhone": "036****8428",
+    "establishmentDate": "2020-02-08",
+    "volunteerCount": 36,
+    "totalOrders": 376,
+    "rating": 4.3
+  }
+]

@@ -1,5 +1,6 @@
 import { ElMessage } from 'element-plus'
 import router from '@/router'
+import { validateToken } from '@/utils/security'
 
 /**
  * 路由权限守卫
@@ -45,16 +46,21 @@ router.beforeEach(async (to, from, next) => {
     return
   }
   
-  // Token 验证（可选：可以在这里添加 Token 有效性验证）
+  // Token 有效性验证
   try {
-    // TODO: 可以在这里添加 Token 验证逻辑
-    // const valid = await validateToken(token)
-    // if (!valid) {
-    //   localStorage.removeItem('admin_token')
-    //   ElMessage.error('登录已过期，请重新登录')
-    //   next({ path: '/login' })
-    //   return
-    // }
+    const valid = validateToken(token)
+    if (!valid) {
+      console.warn('Token 无效或已过期，尝试自动刷新')
+      // Token 无效，尝试刷新（request.js 中会处理 401 自动刷新）
+      // 这里直接清除本地 Token，让后续请求触发刷新机制
+      localStorage.removeItem('admin_token')
+      ElMessage.warning('登录已过期，正在重新验证...')
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+      return
+    }
     next()
   } catch (error) {
     console.error('路由守卫错误:', error)
