@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 执行者系统设置 O-12
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -37,6 +38,11 @@ Page({
       this.getCacheSize();
     } catch (error) {
       console.error('加载设置失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadSettings',
+        showToast: false
+      });
     }
   },
 
@@ -49,6 +55,11 @@ Page({
       this.setData({ cacheSize });
     } catch (error) {
       console.error('获取缓存大小失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'getCacheSize',
+        showToast: false
+      });
     }
   },
 

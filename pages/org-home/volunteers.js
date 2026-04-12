@@ -71,23 +71,75 @@ Page({
   // ========== 数据加载 ==========
   async loadVolunteers() {
     try {
-      // TODO: 实际从云函数获取志愿者列表
-      console.log('加载志愿者列表');
+      wx.showLoading({ title: '加载中...' });
+      
+      const res = await wx.cloud.callFunction({
+        name: 'volunteer-list',
+        data: { 
+          orgId: this.data.orgId || 'org_001',
+          filterRegion: this.data.filterRegion,
+          filterCompliance: this.data.filterCompliance,
+          timestamp: Date.now()
+        }
+      });
+      
+      if (res.result && res.result.code === 0 && res.result.data) {
+        const volunteers = res.result.data.volunteers || [];
+        const stats = res.result.data.stats || {};
+        this.setData({ 
+          volunteers: volunteers,
+          stats: {
+            totalVolunteers: stats.total || volunteers.length,
+            activeVolunteers: stats.active || 0,
+            totalTasks: stats.totalTasks || 0
+          },
+          isEmpty: volunteers.length === 0,
+          loading: false
+        });
+        wx.hideLoading();
+      } else {
+        throw new Error(res.result?.msg || '志愿者加载失败');
+      }
     } catch (error) {
       console.error('加载志愿者失败:', error);
+      wx.hideLoading();
       wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+        title: error.message || '加载失败，请重试',
+        icon: 'none',
+        duration: 2000
+      });
+      
+      // 记录错误日志
+      wx.cloud.callFunction({
+        name: 'log-error',
+        data: { 
+          error: error.message, 
+          page: 'org-home-volunteers',
+          timestamp: Date.now()
+        }
+      });
+      
+      this.setData({ 
+        volunteers: [],
+        isEmpty: true,
+        loading: false 
       });
     }
   },
 
   async refreshVolunteers() {
     try {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      wx.showLoading({ title: '刷新中...' });
+      await this.loadVolunteers();
+      wx.hideLoading();
       console.log('志愿者刷新完成');
     } catch (error) {
+      wx.hideLoading();
       console.error('刷新志愿者失败:', error);
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'none'
+      });
     }
   },
 

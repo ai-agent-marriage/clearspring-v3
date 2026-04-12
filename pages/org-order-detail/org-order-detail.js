@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 机构订单详情页 V-03
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -64,23 +65,28 @@ Page({
   // 加载订单详情
   async loadOrderDetail(orderId) {
     try {
+      ErrorHandler.showLoading('加载中...');
+      
       // TODO: 调用云函数获取订单详情
       // const res = await wx.cloud.callFunction({
       //   name: 'getOrderDetail',
       //   data: { orderId }
       // });
       
-      return new Promise((resolve) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
         }, 300);
       });
     } catch (error) {
       console.error('加载订单详情失败:', error);
-      wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadOrderDetail',
+        showToast: true
       });
+    } finally {
+      ErrorHandler.hideLoading();
     }
   },
 

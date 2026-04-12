@@ -50,24 +50,74 @@ Page({
   // ========== 数据加载 ==========
   async loadOrgData() {
     try {
-      // TODO: 实际从云函数获取机构数据
-      console.log('加载机构数据');
+      wx.showLoading({ title: '加载中...' });
+      
+      const res = await wx.cloud.callFunction({
+        name: 'org-data',
+        data: { 
+          orgId: this.data.orgId || 'org_001',
+          timestamp: Date.now()
+        }
+      });
+      
+      if (res.result && res.result.code === 0 && res.result.data) {
+        const orgData = res.result.data;
+        this.setData({ 
+          org: {
+            name: orgData.orgName || orgData.name,
+            identity: orgData.identity || '合规执行机构',
+            audited: orgData.status === '已认证',
+            totalOrders: orgData.orderCount || 0
+          },
+          stats: {
+            pendingOrders: orgData.pendingOrders || 0,
+            todayTasks: orgData.todayTasks || 0,
+            pendingConfirm: orgData.pendingConfirm || 0,
+            completedOrders: orgData.completedOrders || 0
+          },
+          todos: orgData.todos || [],
+          loading: false
+        });
+        wx.hideLoading();
+      } else {
+        throw new Error(res.result?.msg || '数据加载失败');
+      }
     } catch (error) {
       console.error('加载机构数据失败:', error);
+      wx.hideLoading();
       wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+        title: error.message || '加载失败，请重试',
+        icon: 'none',
+        duration: 2000
       });
+      
+      // 记录错误日志
+      wx.cloud.callFunction({
+        name: 'log-error',
+        data: { 
+          error: error.message, 
+          page: 'org-home-index',
+          timestamp: Date.now()
+        }
+      });
+      
+      this.setData({ loading: false });
     }
   },
 
   async refreshData() {
     try {
-      // TODO: 实际从云函数刷新数据
-      await new Promise(resolve => setTimeout(resolve, 500));
+      wx.showLoading({ title: '刷新中...' });
+      await this.loadOrgData();
+      wx.hideLoading();
       console.log('数据刷新完成');
     } catch (error) {
+      wx.hideLoading();
       console.error('刷新数据失败:', error);
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'none'
+      });
     }
   },
 

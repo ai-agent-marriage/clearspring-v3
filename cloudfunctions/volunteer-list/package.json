@@ -1,0 +1,9 @@
+{
+  "name": "volunteer-list",
+  "version": "1.0.0",
+  "description": "志愿者列表获取云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

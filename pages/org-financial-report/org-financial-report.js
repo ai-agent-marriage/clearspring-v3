@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 机构财务报表页 V-08
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -53,6 +54,8 @@ Page({
   // 加载财务数据
   async loadFinancialData() {
     try {
+      ErrorHandler.showLoading('加载中...');
+      
       // TODO: 调用云函数获取财务数据
       // const res = await wx.cloud.callFunction({
       //   name: 'getFinancialReport',
@@ -61,17 +64,20 @@ Page({
       //   }
       // });
       
-      return new Promise((resolve) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
         }, 300);
       });
     } catch (error) {
       console.error('加载财务数据失败:', error);
-      wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadFinancialData',
+        showToast: true
       });
+    } finally {
+      ErrorHandler.hideLoading();
     }
   },
 

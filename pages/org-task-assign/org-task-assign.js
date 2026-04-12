@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 机构任务分配页 V-06
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -135,6 +136,11 @@ Page({
       this.setData({ orderInfo: mockOrder });
     } catch (error) {
       console.error('加载订单信息失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadOrderInfo',
+        showToast: false
+      });
     }
   },
 
@@ -144,7 +150,7 @@ Page({
     
     try {
       // TODO: 调用云函数获取志愿者列表
-      return new Promise((resolve) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           this.setData({ loading: false });
           resolve();
@@ -152,11 +158,13 @@ Page({
       });
     } catch (error) {
       console.error('加载志愿者列表失败:', error);
-      this.setData({ loading: false });
-      wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadVolunteers',
+        showToast: true
       });
+    } finally {
+      this.setData({ loading: false });
     }
   },
 
@@ -205,7 +213,7 @@ Page({
     
     try {
       // TODO: 调用云函数加载更多志愿者
-      return new Promise((resolve) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           this.setData({ 
             loading: false,
@@ -216,6 +224,12 @@ Page({
       });
     } catch (error) {
       console.error('加载更多失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadMoreVolunteers',
+        showToast: true
+      });
+    } finally {
       this.setData({ loading: false });
     }
   },
@@ -251,6 +265,8 @@ Page({
   // 执行分配
   async doAssignVolunteer(volunteerId) {
     try {
+      ErrorHandler.showLoading('分配中...');
+      
       // TODO: 调用云函数分配任务
       // const res = await wx.cloud.callFunction({
       //   name: 'assignTask',
@@ -284,10 +300,13 @@ Page({
       }, 1500);
     } catch (error) {
       console.error('分配任务失败:', error);
-      wx.showToast({
-        title: '分配失败',
-        icon: 'none'
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'doAssignVolunteer',
+        showToast: true
       });
+    } finally {
+      ErrorHandler.hideLoading();
     }
   },
 

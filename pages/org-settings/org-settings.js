@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 机构设置页 V-10
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -48,6 +49,11 @@ Page({
       this.getCacheSize();
     } catch (error) {
       console.error('加载设置失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadSettings',
+        showToast: false
+      });
     }
   },
 
@@ -59,6 +65,11 @@ Page({
       this.setData({ cacheSize });
     } catch (error) {
       console.error('获取缓存大小失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'getCacheSize',
+        showToast: false
+      });
     }
   },
 

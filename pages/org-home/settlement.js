@@ -1,4 +1,6 @@
 // 清如 ClearSpring - 机构结算管理页
+const Validator = require('../../utils/validator');
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -103,23 +105,67 @@ Page({
   // ========== 数据加载 ==========
   async loadSettlementData() {
     try {
-      // TODO: 实际从云函数获取结算数据
-      console.log('加载结算数据');
+      wx.showLoading({ title: '加载中...' });
+      
+      const res = await wx.cloud.callFunction({
+        name: 'settlement-list',
+        data: { 
+          orgId: this.data.orgId || 'org_001',
+          tabType: this.data.activeTab,
+          timestamp: Date.now()
+        }
+      });
+      
+      if (res.result && res.result.code === 0 && res.result.data) {
+        const data = res.result.data;
+        this.setData({ 
+          stats: data.stats || this.data.stats,
+          pendingSettlements: data.pendingSettlements || [],
+          settlementRecords: data.settlementRecords || [],
+          invoiceInfo: data.invoiceInfo || this.data.invoiceInfo,
+          invoiceHistory: data.invoiceHistory || [],
+          loading: false
+        });
+        wx.hideLoading();
+      } else {
+        throw new Error(res.result?.msg || '结算数据加载失败');
+      }
     } catch (error) {
       console.error('加载结算数据失败:', error);
+      wx.hideLoading();
       wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+        title: error.message || '加载失败，请重试',
+        icon: 'none',
+        duration: 2000
       });
+      
+      // 记录错误日志
+      wx.cloud.callFunction({
+        name: 'log-error',
+        data: { 
+          error: error.message, 
+          page: 'org-home-settlement',
+          timestamp: Date.now()
+        }
+      });
+      
+      this.setData({ loading: false });
     }
   },
 
   async refreshSettlementData() {
     try {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      wx.showLoading({ title: '刷新中...' });
+      await this.loadSettlementData();
+      wx.hideLoading();
       console.log('结算数据刷新完成');
     } catch (error) {
+      wx.hideLoading();
       console.error('刷新结算数据失败:', error);
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'none'
+      });
     }
   },
 
@@ -189,8 +235,50 @@ Page({
   },
 
   onSaveInvoice() {
-    console.log('保存发票信息:', this.data.invoiceInfo);
+    const { invoiceInfo } = this.data;
     
+    // 1. 必填项验证
+    const companyResult = Validator.validateCompany(invoiceInfo.company);
+    if (!companyResult.valid) {
+      wx.showToast({ title: companyResult.message, icon: 'none' });
+      return;
+    }
+    
+    const taxNoResult = Validator.validateTaxNo(invoiceInfo.taxNo);
+    if (!taxNoResult.valid) {
+      wx.showToast({ title: taxNoResult.message, icon: 'none' });
+      return;
+    }
+    
+    const amountResult = Validator.validateAmount(invoiceInfo.amount);
+    if (!amountResult.valid) {
+      wx.showToast({ title: amountResult.message, icon: 'none' });
+      return;
+    }
+    
+    // 2. 可选字段格式验证
+    const phoneResult = Validator.validatePhone(invoiceInfo.phone);
+    if (!phoneResult.valid) {
+      wx.showToast({ title: phoneResult.message, icon: 'none' });
+      return;
+    }
+    
+    const addressResult = Validator.validateAddress(invoiceInfo.address);
+    if (!addressResult.valid) {
+      wx.showToast({ title: addressResult.message, icon: 'none' });
+      return;
+    }
+    
+    const bankAccountResult = Validator.validateBankAccount(invoiceInfo.bankAccount);
+    if (!bankAccountResult.valid) {
+      wx.showToast({ title: bankAccountResult.message, icon: 'none' });
+      return;
+    }
+    
+    // 3. 验证通过，保存数据
+    console.log('发票信息验证通过:', invoiceInfo);
+    
+    // TODO: 调用实际保存接口
     wx.showToast({
       title: '保存成功',
       icon: 'success'

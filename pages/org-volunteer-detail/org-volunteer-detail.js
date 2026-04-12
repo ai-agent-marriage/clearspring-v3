@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 机构志愿者详情页 V-05
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -132,23 +133,28 @@ Page({
   // 加载志愿者详情
   async loadVolunteerDetail(volunteerId) {
     try {
+      ErrorHandler.showLoading('加载中...');
+      
       // TODO: 调用云函数获取志愿者详情
       // const res = await wx.cloud.callFunction({
       //   name: 'getVolunteerDetail',
       //   data: { volunteerId }
       // });
       
-      return new Promise((resolve) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
         }, 300);
       });
     } catch (error) {
       console.error('加载志愿者详情失败:', error);
-      wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadVolunteerDetail',
+        showToast: true
       });
+    } finally {
+      ErrorHandler.hideLoading();
     }
   },
 

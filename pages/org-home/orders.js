@@ -68,23 +68,68 @@ Page({
   // ========== 数据加载 ==========
   async loadOrders() {
     try {
-      // TODO: 实际从云函数获取订单列表
-      console.log('加载订单列表');
+      wx.showLoading({ title: '加载中...' });
+      
+      const res = await wx.cloud.callFunction({
+        name: 'order-list',
+        data: { 
+          orgId: this.data.orgId || 'org_001',
+          status: this.data.activeTab,
+          timestamp: Date.now()
+        }
+      });
+      
+      if (res.result && res.result.code === 0 && res.result.data) {
+        const orders = res.result.data.orders || [];
+        this.setData({ 
+          orders: orders,
+          isEmpty: orders.length === 0,
+          loading: false
+        });
+        wx.hideLoading();
+      } else {
+        throw new Error(res.result?.msg || '订单加载失败');
+      }
     } catch (error) {
       console.error('加载订单失败:', error);
+      wx.hideLoading();
       wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+        title: error.message || '加载失败，请重试',
+        icon: 'none',
+        duration: 2000
+      });
+      
+      // 记录错误日志
+      wx.cloud.callFunction({
+        name: 'log-error',
+        data: { 
+          error: error.message, 
+          page: 'org-home-orders',
+          timestamp: Date.now()
+        }
+      });
+      
+      this.setData({ 
+        orders: [],
+        isEmpty: true,
+        loading: false 
       });
     }
   },
 
   async refreshOrders() {
     try {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      wx.showLoading({ title: '刷新中...' });
+      await this.loadOrders();
+      wx.hideLoading();
       console.log('订单刷新完成');
     } catch (error) {
+      wx.hideLoading();
       console.error('刷新订单失败:', error);
+      wx.showToast({
+        title: '刷新失败',
+        icon: 'none'
+      });
     }
   },
 
@@ -96,8 +141,36 @@ Page({
   },
 
   async loadOrdersByStatus(statusIndex) {
-    // TODO: 根据状态加载订单
-    console.log('加载状态:', statusIndex, this.data.tabs[statusIndex]);
+    try {
+      wx.showLoading({ title: '加载中...' });
+      
+      const res = await wx.cloud.callFunction({
+        name: 'order-list',
+        data: { 
+          orgId: this.data.orgId || 'org_001',
+          status: statusIndex,
+          timestamp: Date.now()
+        }
+      });
+      
+      if (res.result && res.result.code === 0 && res.result.data) {
+        const orders = res.result.data.orders || [];
+        this.setData({ 
+          orders: orders,
+          isEmpty: orders.length === 0
+        });
+        wx.hideLoading();
+      } else {
+        throw new Error(res.result?.msg || '订单加载失败');
+      }
+    } catch (error) {
+      wx.hideLoading();
+      console.error('加载状态订单失败:', error);
+      wx.showToast({
+        title: error.message || '加载失败',
+        icon: 'none'
+      });
+    }
   },
 
   // ========== 筛选栏 ==========

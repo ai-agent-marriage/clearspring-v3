@@ -1,4 +1,5 @@
 // 清如 ClearSpring - 机构资质管理页 V-09
+const ErrorHandler = require('../../utils/error-handler');
 
 Page({
   data: {
@@ -126,23 +127,28 @@ Page({
   // 加载资质数据
   async loadQualificationData() {
     try {
+      ErrorHandler.showLoading('加载中...');
+      
       // TODO: 调用云函数获取资质数据
       // const res = await wx.cloud.callFunction({
       //   name: 'getOrgQualificationStatus',
       //   data: {}
       // });
       
-      return new Promise((resolve) => {
+      await new Promise((resolve) => {
         setTimeout(() => {
           resolve();
         }, 300);
       });
     } catch (error) {
       console.error('加载资质数据失败:', error);
-      wx.showToast({
-        title: '加载失败',
-        icon: 'none'
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'loadQualificationData',
+        showToast: true
       });
+    } finally {
+      ErrorHandler.hideLoading();
     }
   },
 
@@ -203,28 +209,51 @@ Page({
 
   // 上传证书
   async onUploadCertificate(type) {
-    wx.chooseMedia({
-      count: 9,
-      mediaType: ['image'],
-      sourceType: ['camera', 'album'],
-      sizeType: ['compressed'],
-      success: (res) => {
-        console.log('选择的证书图片:', res.tempFiles);
-        // TODO: 上传证书图片
-        wx.showToast({
-          title: '证书上传成功',
-          icon: 'success'
-        });
-      },
-      fail: (err) => {
-        if (err.errMsg !== 'chooseMedia:fail cancel') {
-          wx.showToast({
-            title: '上传失败',
-            icon: 'none'
-          });
+    try {
+      ErrorHandler.showLoading('选择图片...');
+      
+      wx.chooseMedia({
+        count: 9,
+        mediaType: ['image'],
+        sourceType: ['camera', 'album'],
+        sizeType: ['compressed'],
+        success: async (res) => {
+          console.log('选择的证书图片:', res.tempFiles);
+          try {
+            // TODO: 上传证书图片到云存储
+            // await wx.cloud.uploadFile({ ... });
+            
+            wx.showToast({
+              title: '证书上传成功',
+              icon: 'success'
+            });
+          } catch (error) {
+            console.error('上传证书图片失败:', error);
+            ErrorHandler.handleRequestError(error, {
+              page: this.route,
+              action: 'uploadCertificate',
+              showToast: true
+            });
+          } finally {
+            ErrorHandler.hideLoading();
+          }
+        },
+        fail: (err) => {
+          ErrorHandler.hideLoading();
+          if (err.errMsg !== 'chooseMedia:fail cancel') {
+            console.error('选择图片失败:', err);
+            ErrorHandler.showToast(err);
+          }
         }
-      }
-    });
+      });
+    } catch (error) {
+      ErrorHandler.hideLoading();
+      console.error('上传证书失败:', error);
+      ErrorHandler.handleRequestError(error, {
+        page: this.route,
+        action: 'onUploadCertificate'
+      });
+    }
   },
 
   // 查看证书详情
