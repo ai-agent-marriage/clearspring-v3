@@ -1,15 +1,17 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 执行者资质审核页样式 */
 
 .container {
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   padding-bottom: 200rpx;
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
 /* ========== 页面标题 ========== */
 .page-header {
-  padding: var(--spacing-3) 0;
+  padding: var(--stitch-spacing-lg) 0;
   text-align: center;
 }
 
@@ -17,14 +19,14 @@
   display: block;
   font-size: 44rpx;
   font-weight: 600;
-  color: var(--green-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-green-primary);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .page-subtitle {
   display: block;
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* ========== 表单区域 ========== */
@@ -32,14 +34,14 @@
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-3);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .form-group {
-  margin-bottom: var(--spacing-3);
-  padding-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-lg);
+  padding-bottom: var(--stitch-spacing-md);
   border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
 }
 
@@ -52,15 +54,15 @@
 .form-group-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--green-main);
-  margin-bottom: var(--spacing-2);
-  padding-left: var(--spacing-1);
-  border-left: 6rpx solid var(--green-main);
+  color: var(--stitch-green-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  padding-left: var(--stitch-spacing-sm);
+  border-left: 6rpx solid var(--stitch-green-primary);
 }
 
 /* ========== 表单项 ========== */
 .form-item {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .form-item:last-of-type {
@@ -70,44 +72,44 @@
 .form-label {
   display: block;
   font-size: 28rpx;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-sm);
   font-weight: 500;
 }
 
 .required {
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .form-input {
   width: 100%;
   height: 88rpx;
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
-  padding: 0 var(--spacing-2);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
+  padding: 0 var(--stitch-spacing-md);
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   box-sizing: border-box;
   border: 2rpx solid transparent;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .form-input:focus {
-  border-color: var(--green-main);
-  background: #fff;
+  border-color: var(--stitch-green-primary);
+  background: var(--stitch-bg-white);
 }
 
 /* ========== 上传区域 ========== */
 .upload-area {
   width: 100%;
   height: 240rpx;
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .upload-area:active {
@@ -127,13 +129,13 @@
 
 .upload-icon {
   font-size: 64rpx;
-  color: var(--green-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-green-primary);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .upload-text {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .upload-image {
@@ -144,82 +146,82 @@
 .upload-list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-1);
-  padding: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
+  padding: var(--stitch-spacing-sm);
 }
 
 .upload-image-small {
   width: 160rpx;
   height: 160rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 /* ========== 选择器 ========== */
 .picker {
   width: 100%;
   height: 88rpx;
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
   display: flex;
   align-items: center;
-  padding: 0 var(--spacing-2);
+  padding: 0 var(--stitch-spacing-md);
   box-sizing: border-box;
 }
 
 .picker-value {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .picker-value::after {
   content: '';
   position: absolute;
-  right: var(--spacing-2);
+  right: var(--stitch-spacing-md);
   width: 0;
   height: 0;
   border-left: 8rpx solid transparent;
   border-right: 8rpx solid transparent;
-  border-top: 10rpx solid var(--text-dim);
+  border-top: 10rpx solid var(--stitch-text-secondary);
 }
 
 /* ========== 服务协议 ========== */
 .agreement-item {
   display: flex;
   align-items: center;
-  padding: var(--spacing-1) 0;
+  padding: var(--stitch-spacing-sm) 0;
 }
 
 .checkbox {
   width: 44rpx;
   height: 44rpx;
-  border: 2rpx solid var(--green-main);
+  border: 2rpx solid var(--stitch-green-primary);
   border-radius: 8rpx;
-  margin-right: var(--spacing-1);
+  margin-right: var(--stitch-spacing-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .checkbox.checked {
-  background: var(--green-main);
+  background: var(--stitch-green-primary);
 }
 
 .checkmark {
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 28rpx;
   font-weight: bold;
 }
 
 .agreement-text {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .agreement-link {
   font-size: 26rpx;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   text-decoration: underline;
 }
 
@@ -229,7 +231,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
@@ -238,7 +240,7 @@
 
 .btn-submit {
   width: 100%;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .btn-submit.disabled {
@@ -249,5 +251,5 @@
   display: block;
   text-align: center;
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }

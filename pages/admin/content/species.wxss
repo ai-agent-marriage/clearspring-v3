@@ -1,9 +1,11 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 物种管理页面样式 */
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-4) + 120rpx);
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-xxxl) + 120rpx);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
@@ -12,43 +14,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .header-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 /* ========== 搜索栏 ========== */
 .search-bar {
   display: flex;
-  gap: var(--spacing-1);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-sm);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .search-input-wrap {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: var(--spacing-1) var(--spacing-2);
-  background: var(--card-bg);
-  border-radius: var(--radius-md);
+  padding: var(--stitch-spacing-sm) var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
 }
 
 .search-icon {
   font-size: 32rpx;
-  margin-right: var(--spacing-1);
+  margin-right: var(--stitch-spacing-sm);
 }
 
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .btn-filter {
@@ -57,8 +59,8 @@
   justify-content: center;
   width: 88rpx;
   min-height: 88rpx;
-  background: var(--card-bg);
-  border-radius: var(--radius-md);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
   border: none;
   padding: 0;
 }
@@ -70,11 +72,11 @@
 /* ========== 筛选栏 ========== */
 .filter-bar {
   display: flex;
-  gap: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
-  padding: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .filter-item {
@@ -85,7 +87,7 @@
 
 .filter-label {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   white-space: nowrap;
 }
 
@@ -98,7 +100,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   font-weight: 500;
 }
 
@@ -111,14 +113,14 @@
 .species-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .species-card {
-  padding: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  padding: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
+  transition: all var(--stitch-transition-base);
 }
 
 .species-card:active {
@@ -126,54 +128,54 @@
 }
 
 .species-header {
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .species-name {
   font-size: 32rpx;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 8rpx;
 }
 
 .species-scientific {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   font-style: italic;
 }
 
 .species-tags {
   display: flex;
-  gap: var(--spacing-1);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-sm);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .tag {
   padding: 6rpx 20rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   font-size: 24rpx;
   font-weight: 500;
 }
 
 .tag-type {
   background: rgba(212, 184, 123, 0.15);
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
 }
 
 .tag-success {
   background: rgba(0, 138, 23, 0.15);
-  color: var(--success);
+  color: var(--stitch-success);
 }
 
 .tag-danger {
   background: rgba(186, 26, 26, 0.15);
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .species-actions {
   display: flex;
-  gap: var(--spacing-1);
-  padding-top: var(--spacing-2);
+  gap: var(--stitch-spacing-sm);
+  padding-top: var(--stitch-spacing-md);
   border-top: 1rpx solid rgba(74, 93, 78, 0.08);
 }
 
@@ -182,7 +184,7 @@
   min-height: 64rpx;
   font-size: 26rpx;
   font-weight: 500;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
   display: flex;
   align-items: center;
@@ -191,17 +193,17 @@
 
 .btn-edit {
   background: rgba(212, 184, 123, 0.15);
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
 }
 
 .btn-delete {
   background: rgba(186, 26, 26, 0.15);
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .btn-detail {
   background: rgba(74, 93, 78, 0.1);
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 /* 空状态 */
@@ -210,19 +212,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-4);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-xxxl);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .empty-icon {
   font-size: 96rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .empty-text {
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* ========== 底部悬浮按钮 ========== */
@@ -231,7 +233,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
@@ -242,16 +244,16 @@
 .btn-primary {
   width: 100%;
   min-height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 30rpx;
   font-weight: 600;
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .btn-primary:active {

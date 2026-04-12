@@ -1,9 +1,11 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 机构志愿者管理页样式 */
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: var(--spacing-4);
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-xxxl);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
@@ -12,38 +14,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(212, 184, 123, 0.95);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .header-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 /* ========== 顶部操作区 ========== */
 .action-section {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .btn-invite {
   width: 100%;
   min-height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 30rpx;
   font-weight: 600;
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
 }
 
 .btn-icon {
@@ -59,14 +61,14 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-1);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-sm);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .stat-card {
-  padding: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,36 +78,36 @@
 .stat-value {
   font-size: 40rpx;
   font-weight: 700;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   margin-bottom: 8rpx;
 }
 
 .stat-label {
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .text-green {
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .text-gold {
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
 }
 
 /* ========== 筛选栏 ========== */
 .filter-section {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .filter-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-1) 0;
+  padding: var(--stitch-spacing-sm) 0;
   border-bottom: 1rpx solid rgba(74, 93, 78, 0.08);
 }
 
@@ -116,38 +118,38 @@
 .filter-label {
   font-size: 28rpx;
   font-weight: 500;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .filter-value {
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .filter-actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--spacing-2);
-  padding-top: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  padding-top: var(--stitch-spacing-md);
 }
 
 .btn-reset {
   min-width: 120rpx;
   min-height: 72rpx;
   background: rgba(74, 93, 78, 0.1);
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   font-size: 26rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
 }
 
 .btn-apply {
   min-width: 120rpx;
   min-height: 72rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 26rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
 }
 
@@ -155,18 +157,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--spacing-1);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-sm);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .toggle-text {
   font-size: 24rpx;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 /* ========== 志愿者列表区 ========== */
 .volunteers-section {
-  padding-bottom: var(--spacing-2);
+  padding-bottom: var(--stitch-spacing-md);
 }
 
 .empty-state {
@@ -174,47 +176,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-4);
+  padding: var(--stitch-spacing-xxxl);
   background: rgba(255, 255, 255, 0.5);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
   min-height: 400rpx;
 }
 
 .empty-icon {
   font-size: 100rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .empty-text {
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .empty-desc {
   font-size: 26rpx;
-  color: var(--text-dim);
-  margin-bottom: var(--spacing-3);
+  color: var(--stitch-text-secondary);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .btn-invite-empty {
   min-width: 240rpx;
   min-height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 28rpx;
   font-weight: 600;
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   border: none;
 }
 
 .volunteer-card {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
+  transition: all var(--stitch-transition-base);
 }
 
 .volunteer-card:active {
@@ -222,7 +224,7 @@
 }
 
 .volunteer-header {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .volunteer-info {
@@ -233,11 +235,11 @@
 .volunteer-name {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 8rpx;
   display: flex;
   align-items: center;
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
 }
 
 .certified-badge {
@@ -247,16 +249,16 @@
 
 .volunteer-region {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .volunteer-stats {
   display: flex;
-  gap: var(--spacing-3);
-  margin-bottom: var(--spacing-2);
-  padding: var(--spacing-2);
+  gap: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-md);
   background: rgba(74, 93, 78, 0.05);
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 .vol-stat {
@@ -269,18 +271,18 @@
 .vol-stat-value {
   font-size: 32rpx;
   font-weight: 700;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   margin-bottom: 4rpx;
 }
 
 .vol-stat-label {
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .volunteer-actions {
   display: flex;
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
   flex-wrap: wrap;
 }
 
@@ -289,20 +291,20 @@
   min-width: 120rpx;
   min-height: 64rpx;
   font-size: 24rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
 }
 
 .btn-vol-action.btn-outline {
   background: transparent;
-  color: var(--gold-main);
-  border: 2rpx solid var(--gold-main);
+  color: var(--stitch-gold-primary);
+  border: 2rpx solid var(--stitch-gold-primary);
 }
 
 .btn-vol-action.btn-danger {
   background: rgba(186, 26, 26, 0.1);
-  color: var(--error-soft);
-  border: 2rpx solid var(--error-soft);
+  color: var(--stitch-error);
+  border: 2rpx solid var(--stitch-error);
 }
 
 .btn-vol-action:active {
@@ -327,8 +329,8 @@
 .modal-content {
   width: 90%;
   max-width: 600rpx;
-  background: var(--card-bg);
-  border-radius: var(--radius-lg);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
   overflow: hidden;
 }
 
@@ -336,46 +338,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
 }
 
 .modal-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .modal-close {
   font-size: 40rpx;
-  color: var(--text-dim);
-  padding: var(--spacing-1);
+  color: var(--stitch-text-secondary);
+  padding: var(--stitch-spacing-sm);
 }
 
 .modal-body {
-  padding: var(--spacing-3);
+  padding: var(--stitch-spacing-lg);
 }
 
 .invite-code-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-3);
+  padding: var(--stitch-spacing-lg);
   background: rgba(212, 184, 123, 0.1);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-3);
+  border-radius: var(--stitch-radius-md);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .invite-code-label {
   font-size: 26rpx;
-  color: var(--text-dim);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-text-secondary);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .invite-code {
   font-size: 48rpx;
   font-weight: 700;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   letter-spacing: 4rpx;
 }
 
@@ -388,19 +390,19 @@
 .tip-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 8rpx;
 }
 
 .tip-text {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .modal-footer {
   display: flex;
-  gap: var(--spacing-2);
-  padding: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-md);
   border-top: 1rpx solid rgba(74, 93, 78, 0.1);
 }
 
@@ -408,21 +410,21 @@
   flex: 1;
   min-height: 88rpx;
   background: rgba(74, 93, 78, 0.1);
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   font-size: 28rpx;
   font-weight: 600;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
 }
 
 .btn-share {
   flex: 1;
   min-height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 28rpx;
   font-weight: 600;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
 }
 

@@ -1,0 +1,138 @@
+<!-- 清如 ClearSpring - 机构任务分配页 V-06 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">任务分配</text>
+    <text class="page-subtitle" wx:if="{{orderInfo}}">订单：{{orderInfo.orderNo}}</text>
+  </view>
+
+  <!-- 订单信息卡片 -->
+  <view class="order-info-card glass" wx:if="{{orderInfo}}">
+    <view class="order-header">
+      <text class="order-title">待分配订单</text>
+      <view class="order-status {{orderInfo.status}}">
+        <text>{{orderInfo.statusText}}</text>
+      </view>
+    </view>
+    <view class="order-content">
+      <view class="order-row">
+        <text class="order-label">护生物种</text>
+        <text class="order-value">{{orderInfo.speciesName}} {{orderInfo.speciesQuantity}}{{orderInfo.speciesUnit}}</text>
+      </view>
+      <view class="order-row">
+        <text class="order-label">执行水域</text>
+        <text class="order-value">{{orderInfo.waterArea}}</text>
+      </view>
+      <view class="order-row">
+        <text class="order-label">执行日期</text>
+        <text class="order-value">{{orderInfo.executeDate}}</text>
+      </view>
+      <view class="order-row">
+        <text class="order-label">订单金额</text>
+        <text class="order-value text-green">¥{{orderInfo.amount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar glass">
+    <view class="filter-item {{filterType === 'all' ? 'active' : ''}}" bindtap="onFilterChange" data-type="all">
+      <text>全部</text>
+    </view>
+    <view class="filter-item {{filterType === 'available' ? 'active' : ''}}" bindtap="onFilterChange" data-type="available">
+      <text>可接单</text>
+    </view>
+    <view class="filter-item {{filterType === 'busy' ? 'active' : ''}}" bindtap="onFilterChange" data-type="busy">
+      <text>忙碌中</text>
+    </view>
+    <view class="filter-item {{filterType === 'offline' ? 'active' : ''}}" bindtap="onFilterChange" data-type="offline">
+      <text>离线</text>
+    </view>
+  </view>
+
+  <!-- 志愿者列表 -->
+  <view class="volunteer-list-section">
+    <view class="section-header">
+      <text class="section-title">可分配志愿者 ({{volunteers.length}})</text>
+      <text class="section-action" bindtap="onRefresh">刷新 ↻</text>
+    </view>
+    
+    <scroll-view class="volunteer-scroll" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" bindscrolltolower="onLoadMore">
+      <view class="volunteer-list">
+        <view class="volunteer-card glass" wx:for="{{volunteers}}" wx:key="id">
+          <view class="volunteer-header">
+            <image class="volunteer-avatar" src="{{item.avatar}}" mode="aspectFill"/>
+            <view class="volunteer-info">
+              <view class="volunteer-name-row">
+                <text class="volunteer-name">{{item.name}}</text>
+                <view class="verified-badge" wx:if="{{item.verified}}">✓</view>
+              </view>
+              <view class="volunteer-meta">
+                <text class="meta-item">Lv.{{item.level}}</text>
+                <text class="meta-divider">|</text>
+                <text class="meta-item">完成{{item.completedOrders}}单</text>
+                <text class="meta-divider">|</text>
+                <text class="meta-item">好评{{item.rating}}%</text>
+              </view>
+            </view>
+            <view class="volunteer-status {{item.status}}">
+              <text>{{item.statusText}}</text>
+            </view>
+          </view>
+          
+          <view class="volunteer-skills" wx:if="{{item.skills && item.skills.length > 0}}">
+            <text class="skill-tag" wx:for="{{item.skills}}" wx:key="*index" wx:for-item="skill">
+              {{skill}}
+            </text>
+          </view>
+          
+          <view class="volunteer-actions">
+            <button class="btn btn-outline btn-small" bindtap="onViewDetail" data-id="{{item.id}}">
+              详情
+            </button>
+            <button class="btn btn-primary btn-small" bindtap="onAssignVolunteer" data-id="{{item.id}}" disabled="{{item.status !== 'available'}}">
+              分配任务
+            </button>
+          </view>
+        </view>
+        
+        <!-- 空状态 -->
+        <view class="empty-state" wx:if="{{volunteers.length === 0}}">
+          <text class="empty-icon">👥</text>
+          <text class="empty-text">暂无志愿者</text>
+          <text class="empty-desc">暂无符合条件的志愿者</text>
+        </view>
+      </view>
+      
+      <!-- 加载提示 -->
+      <view class="loading-tip" wx:if="{{loading}}">
+        <text>加载中...</text>
+      </view>
+      <view class="no-more-tip" wx:if="{{!hasMore && volunteers.length > 0}}">
+        <text>没有更多了</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 分配记录 -->
+  <view class="assignment-history-section glass" wx:if="{{assignmentHistory.length > 0}}">
+    <view class="section-title">分配记录</view>
+    <view class="history-list">
+      <view class="history-item" wx:for="{{assignmentHistory}}" wx:key="id">
+        <view class="history-left">
+          <text class="history-volunteer">{{item.volunteerName}}</text>
+          <text class="history-time">{{item.assignTime}}</text>
+        </view>
+        <view class="history-status {{item.status}}">
+          <text>{{item.statusText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-tip">
+    <text class="tip-icon">ℹ️</text>
+    <text class="tip-text">点击「分配任务」后，志愿者将收到任务通知</text>
+  </view>
+</view>

@@ -1,0 +1,203 @@
+/* 清如 ClearSpring - 机构设置页样式 V-10 */
+
+@import "../../theme.wxss";
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: var(--spacing-xxxl);
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--spacing-2) 0;
+  margin-bottom: var(--spacing-2);
+}
+
+.page-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+/* ========== 机构信息区块 ========== */
+.org-info-section {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.org-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.org-logo {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.org-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.org-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.org-id {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.org-status {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  border-radius: var(--radius-sm);
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.org-status.verified {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.org-status.pending {
+  background: rgba(255, 154, 68, 0.1);
+  color: var(--warning);
+}
+
+.org-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* ========== 设置区块 ========== */
+.setting-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: var(--spacing-2);
+  padding-left: var(--spacing-2);
+}
+
+.setting-list {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-3);
+  border-bottom: 1rpx solid var(--border-divider);
+  transition: all var(--transition-base);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-item:active {
+  background: rgba(74, 93, 78, 0.05);
+}
+
+.setting-item.danger {
+  background: rgba(186, 26, 26, 0.05);
+}
+
+.setting-item.danger:active {
+  background: rgba(186, 26, 26, 0.1);
+}
+
+.setting-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex: 1;
+}
+
+.setting-icon {
+  font-size: 36rpx;
+}
+
+.setting-label {
+  font-size: 28rpx;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.setting-desc {
+  font-size: 24rpx;
+  color: var(--text-dim);
+  margin-top: 4rpx;
+}
+
+.setting-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.setting-value {
+  font-size: 28rpx;
+  color: var(--text-dim);
+}
+
+.setting-value.bound {
+  color: var(--success);
+}
+
+.setting-arrow {
+  font-size: 40rpx;
+  color: var(--text-light);
+}
+
+.setting-switch {
+  width: 96rpx;
+  height: 48rpx;
+}
+
+/* ========== 底部信息 ========== */
+.footer-info {
+  padding: var(--spacing-xxxl) var(--spacing-2) var(--spacing-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.footer-subtext {
+  font-size: 22rpx;
+  color: var(--text-light);
+}

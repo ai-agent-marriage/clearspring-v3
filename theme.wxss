@@ -1,0 +1,547 @@
+/* ========================================
+   Stitch Design System - 主题配置文件
+   统一 UI 规范 v1.0
+   ======================================== */
+
+Page {
+  /* ========== 色彩系统 ========== */
+  
+  /* 主色调 - 禅意金系（祈福者端） */
+  --stitch-gold-primary: #D4B87B;     /* 禅意金主色 */
+  --stitch-gold-secondary: #C4A86B;   /* 禅意金次色 */
+  --stitch-gold-dim: #6E5E00;         /* 暖沙金暗色 */
+  --stitch-gold-light: #E8D5A3;       /* 禅意金浅色 */
+  
+  /* 辅助色 - 岱绿系（执行者端） */
+  --stitch-green-primary: #4A5D4E;    /* 岱绿主色 */
+  --stitch-green-secondary: #3E4F42;  /* 岱绿次色 */
+  --stitch-green-dim: #334537;        /* 岱绿暗色 */
+  --stitch-green-light: #6B7D6E;      /* 岱绿浅色 */
+  
+  /* 背景色系 */
+  --stitch-bg-primary: #EFEEE9;       /* 宣纸底 - 全局基底 */
+  --stitch-bg-secondary: #F4F4EF;     /* 宣纸浅 - 区域区分 */
+  --stitch-bg-tertiary: #FAFAFA;      /* 极浅灰 - 卡片背景 */
+  --stitch-bg-white: #FFFFFF;         /* 纯白 - 高亮区域 */
+  
+  /* 文字色系 */
+  --stitch-text-primary: #434843;     /* 墨灰主色 - 正文 */
+  --stitch-text-secondary: #727772;   /* 浅墨次色 - 辅助文字 */
+  --stitch-text-tertiary: #A0A5A0;    /* 极浅墨 - 占位符 */
+  --stitch-text-disabled: #C8C8C8;    /* 禁用文字 */
+  
+  /* 边框色系 */
+  --stitch-border-primary: #E0E0E0;   /* 主边框 */
+  --stitch-border-secondary: #F0F0F0; /* 次边框 */
+  --stitch-border-light: #F5F5F5;     /* 极浅边框 */
+  --stitch-border-divider: rgba(74, 93, 78, 0.08); /* 分割线 */
+  
+  /* 状态色系（低饱和） */
+  --stitch-success: #008A17;          /* 成功 - 岱绿系 */
+  --stitch-success-light: rgba(0, 138, 23, 0.1);
+  --stitch-warning: #FF9A44;          /* 警示 - 低饱和橙 */
+  --stitch-warning-light: rgba(255, 154, 68, 0.1);
+  --stitch-error: #BA1A1A;            /* 错误 - 柔化红 */
+  --stitch-error-light: rgba(186, 26, 26, 0.1);
+  --stitch-info: #4A6FA5;             /* 信息 - 低饱和蓝 */
+  --stitch-info-light: rgba(74, 111, 165, 0.1);
+  
+  /* ========== 字体系统 ========== */
+  
+  /* 字体家族 */
+  --stitch-font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', serif;
+  --stitch-font-sans: 'Jakarta Sans', 'HarmonyOS Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* 字号规范（rpx） */
+  --stitch-font-xxxxl: 36rpx;         /* 超大标题 */
+  --stitch-font-xxxl: 32rpx;          /* 大标题 */
+  --stitch-font-xxl: 28rpx;           /* 标准正文 */
+  --stitch-font-xl: 26rpx;            /* 小正文 */
+  --stitch-font-l: 24rpx;             /* 辅助文字 */
+  --stitch-font-m: 22rpx;             /* 次要文字 */
+  --stitch-font-s: 20rpx;             /* 极小文字 */
+  
+  /* 字重 */
+  --stitch-font-weight-light: 300;
+  --stitch-font-weight-regular: 400;
+  --stitch-font-weight-medium: 500;
+  --stitch-font-weight-semibold: 600;
+  --stitch-font-weight-bold: 700;
+  
+  /* 行高 */
+  --stitch-line-height-tight: 1.2;
+  --stitch-line-height-base: 1.5;
+  --stitch-line-height-relaxed: 1.75;
+  
+  /* ========== 间距系统 ========== */
+  
+  /* 基础间距（rpx） */
+  --stitch-spacing-xs: 8rpx;          /* 极小间距 */
+  --stitch-spacing-sm: 16rpx;         /* 小间距 */
+  --stitch-spacing-md: 24rpx;         /* 中间距 */
+  --stitch-spacing-lg: 32rpx;         /* 大间距 */
+  --stitch-spacing-xl: 48rpx;         /* 超大间距 */
+  --stitch-spacing-xxl: 64rpx;        /* 极大间距 */
+  --stitch-spacing-xxxl: 96rpx;       /* 超大全局间距 */
+  
+  /* ========== 圆角系统 ========== */
+  
+  /* 统一圆角为 8rpx 基础 */
+  --stitch-radius-none: 0;            /* 无圆角 */
+  --stitch-radius-sm: 8rpx;           /* 小圆角 - 按钮/标签 */
+  --stitch-radius-md: 16rpx;          /* 中间角 - 卡片 */
+  --stitch-radius-lg: 24rpx;          /* 大圆角 - 大卡片 */
+  --stitch-radius-xl: 32rpx;          /* 超大圆角 */
+  --stitch-radius-full: 50%;          /* 圆形 */
+  
+  /* ========== 投影系统 ========== */
+  
+  /* 淡投影 - 卡片使用 */
+  --stitch-shadow-sm: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  --stitch-shadow-md: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  --stitch-shadow-lg: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  --stitch-shadow-xl: 0 12rpx 48rpx rgba(0, 0, 0, 0.1);
+  
+  /* ========== 动效系统 ========== */
+  
+  /* 过渡时间 */
+  --stitch-transition-instant: 100ms ease-out;
+  --stitch-transition-fast: 150ms ease-out;
+  --stitch-transition-base: 300ms ease-out;
+  --stitch-transition-slow: 500ms ease-out;
+  
+  /* ========== 按钮热区 ========== */
+  
+  --stitch-touch-target: 88rpx;       /* 最小点击热区 */
+}
+
+/* ========================================
+   全局基础样式
+   ======================================== */
+
+page {
+  background-color: var(--stitch-bg-primary);
+  font-family: var(--stitch-font-sans);
+  font-size: var(--stitch-font-xxl);
+  line-height: var(--stitch-line-height-base);
+  color: var(--stitch-text-primary);
+  box-sizing: border-box;
+}
+
+/* ========================================
+   容器与布局
+   ======================================== */
+
+.container {
+  padding: var(--stitch-spacing-md);
+  box-sizing: border-box;
+}
+
+.page-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-xxxl) + 120rpx);
+  box-sizing: border-box;
+}
+
+/* ========================================
+   卡片组件 - 无边框 + 淡投影
+   ======================================== */
+
+.card {
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+  transition: box-shadow var(--stitch-transition-base);
+}
+
+.card:active {
+  box-shadow: var(--stitch-shadow-md);
+}
+
+.card-elevated {
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-md);
+}
+
+.card-compact {
+  background: var(--stitch-bg-tertiary);
+  border-radius: var(--stitch-radius-sm);
+  padding: var(--stitch-spacing-sm);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+/* 渐变卡片 */
+.card-gradient {
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+/* ========================================
+   按钮组件 - 3 种标准样式
+   ======================================== */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--stitch-touch-target);
+  border-radius: var(--stitch-radius-sm);
+  font-size: var(--stitch-font-xl);
+  font-weight: var(--stitch-font-weight-medium);
+  transition: all var(--stitch-transition-base);
+  box-sizing: border-box;
+}
+
+/* 主按钮 - 禅意金渐变 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-secondary) 100%);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.btn-primary.loading {
+  background: var(--stitch-bg-secondary);
+  color: var(--stitch-text-tertiary);
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* 次按钮 - 岱绿渐变 */
+.btn-secondary {
+  background: linear-gradient(135deg, var(--stitch-green-primary) 0%, var(--stitch-green-secondary) 100%);
+  color: #fff;
+  border: none;
+}
+
+.btn-secondary:active {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+/* 幽灵按钮 - 描边样式 */
+.btn-ghost {
+  background: transparent;
+  color: var(--stitch-gold-primary);
+  border: 2rpx solid var(--stitch-gold-primary);
+}
+
+.btn-ghost:active {
+  background: rgba(212, 184, 123, 0.1);
+}
+
+/* 按钮尺寸变体 */
+.btn-large {
+  min-height: 96rpx;
+  font-size: var(--stitch-font-xxl);
+  border-radius: var(--stitch-radius-md);
+}
+
+.btn-small {
+  min-height: 64rpx;
+  font-size: var(--stitch-font-l);
+  border-radius: var(--stitch-radius-sm);
+}
+
+/* ========================================
+   文字样式
+   ======================================== */
+
+/* 标题层级 */
+.heading-xxxxl {
+  font-size: var(--stitch-font-xxxxl);
+  font-weight: var(--stitch-font-weight-bold);
+  line-height: var(--stitch-line-height-tight);
+}
+
+.heading-xxxl {
+  font-size: var(--stitch-font-xxxl);
+  font-weight: var(--stitch-font-weight-bold);
+  line-height: var(--stitch-line-height-tight);
+}
+
+.heading-xxl {
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  line-height: var(--stitch-line-height-base);
+}
+
+.heading-xl {
+  font-size: var(--stitch-font-xl);
+  font-weight: var(--stitch-font-weight-semibold);
+  line-height: var(--stitch-line-height-base);
+}
+
+/* 正文层级 */
+.body-primary {
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-regular);
+  color: var(--stitch-text-primary);
+}
+
+.body-secondary {
+  font-size: var(--stitch-font-xl);
+  font-weight: var(--stitch-font-weight-regular);
+  color: var(--stitch-text-secondary);
+}
+
+.body-tertiary {
+  font-size: var(--stitch-font-l);
+  font-weight: var(--stitch-font-weight-regular);
+  color: var(--stitch-text-tertiary);
+}
+
+/* 辅助文字 */
+.caption {
+  font-size: var(--stitch-font-m);
+  font-weight: var(--stitch-font-weight-regular);
+  color: var(--stitch-text-secondary);
+}
+
+/* 文字颜色工具类 */
+.text-primary { color: var(--stitch-text-primary); }
+.text-secondary { color: var(--stitch-text-secondary); }
+.text-tertiary { color: var(--stitch-text-tertiary); }
+.text-disabled { color: var(--stitch-text-disabled); }
+
+.text-gold { color: var(--stitch-gold-primary); }
+.text-green { color: var(--stitch-green-primary); }
+.text-success { color: var(--stitch-success); }
+.text-warning { color: var(--stitch-warning); }
+.text-error { color: var(--stitch-error); }
+.text-info { color: var(--stitch-info); }
+
+/* 文字对齐 */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* ========================================
+   标签组件
+   ======================================== */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rpx 16rpx;
+  border-radius: var(--stitch-radius-sm);
+  font-size: var(--stitch-font-l);
+  font-weight: var(--stitch-font-weight-medium);
+}
+
+.tag-primary {
+  background: rgba(212, 184, 123, 0.15);
+  color: var(--stitch-gold-dim);
+}
+
+.tag-success {
+  background: var(--stitch-success-light);
+  color: var(--stitch-success);
+}
+
+.tag-warning {
+  background: var(--stitch-warning-light);
+  color: var(--stitch-warning);
+}
+
+.tag-error {
+  background: var(--stitch-error-light);
+  color: var(--stitch-error);
+}
+
+.tag-info {
+  background: var(--stitch-info-light);
+  color: var(--stitch-info);
+}
+
+/* ========================================
+   输入框组件
+   ======================================== */
+
+.input {
+  width: 100%;
+  min-height: var(--stitch-touch-target);
+  padding: 0 var(--stitch-spacing-md);
+  border-radius: var(--stitch-radius-sm);
+  border: 2rpx solid var(--stitch-border-primary);
+  background: var(--stitch-bg-white);
+  font-size: var(--stitch-font-xxl);
+  color: var(--stitch-text-primary);
+  box-sizing: border-box;
+  transition: border-color var(--stitch-transition-fast);
+}
+
+.input:focus {
+  border-color: var(--stitch-gold-primary);
+}
+
+.input::placeholder {
+  color: var(--stitch-text-tertiary);
+}
+
+.input-disabled {
+  background: var(--stitch-bg-secondary);
+  color: var(--stitch-text-disabled);
+  pointer-events: none;
+}
+
+/* ========================================
+   Flex 布局工具
+   ======================================== */
+
+.flex { display: flex; }
+.flex-inline { display: inline-flex; }
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+
+.flex-center { align-items: center; justify-content: center; }
+.flex-start { align-items: flex-start; justify-content: flex-start; }
+.flex-end { align-items: flex-end; justify-content: flex-end; }
+.flex-between { align-items: center; justify-content: space-between; }
+.flex-around { align-items: center; justify-content: space-around; }
+
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+
+/* ========================================
+   间距工具类
+   ======================================== */
+
+/* 外边距 */
+.m-xs { margin: var(--stitch-spacing-xs); }
+.m-sm { margin: var(--stitch-spacing-sm); }
+.m-md { margin: var(--stitch-spacing-md); }
+.m-lg { margin: var(--stitch-spacing-lg); }
+.m-xl { margin: var(--stitch-spacing-xl); }
+
+.mt-xs { margin-top: var(--stitch-spacing-xs); }
+.mt-sm { margin-top: var(--stitch-spacing-sm); }
+.mt-md { margin-top: var(--stitch-spacing-md); }
+.mt-lg { margin-top: var(--stitch-spacing-lg); }
+.mt-xl { margin-top: var(--stitch-spacing-xl); }
+
+.mr-xs { margin-right: var(--stitch-spacing-xs); }
+.mr-sm { margin-right: var(--stitch-spacing-sm); }
+.mr-md { margin-right: var(--stitch-spacing-md); }
+.mr-lg { margin-right: var(--stitch-spacing-lg); }
+.mr-xl { margin-right: var(--stitch-spacing-xl); }
+
+.mb-xs { margin-bottom: var(--stitch-spacing-xs); }
+.mb-sm { margin-bottom: var(--stitch-spacing-sm); }
+.mb-md { margin-bottom: var(--stitch-spacing-md); }
+.mb-lg { margin-bottom: var(--stitch-spacing-lg); }
+.mb-xl { margin-bottom: var(--stitch-spacing-xl); }
+
+.ml-xs { margin-left: var(--stitch-spacing-xs); }
+.ml-sm { margin-left: var(--stitch-spacing-sm); }
+.ml-md { margin-left: var(--stitch-spacing-md); }
+.ml-lg { margin-left: var(--stitch-spacing-lg); }
+.ml-xl { margin-left: var(--stitch-spacing-xl); }
+
+/* 内边距 */
+.p-xs { padding: var(--stitch-spacing-xs); }
+.p-sm { padding: var(--stitch-spacing-sm); }
+.p-md { padding: var(--stitch-spacing-md); }
+.p-lg { padding: var(--stitch-spacing-lg); }
+.p-xl { padding: var(--stitch-spacing-xl); }
+
+/* ========================================
+   分割线
+   ======================================== */
+
+.divider {
+  height: 1rpx;
+  background: var(--stitch-border-divider);
+  margin: var(--stitch-spacing-md) 0;
+}
+
+.divider-vertical {
+  width: 1rpx;
+  height: 100%;
+  background: var(--stitch-border-divider);
+  margin: 0 var(--stitch-spacing-sm);
+}
+
+/* ========================================
+   液态玻璃效果 - 浮层元素
+   ======================================== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-md);
+}
+
+.glass-dark {
+  background: rgba(67, 72, 67, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-md);
+  color: #fff;
+}
+
+/* ========================================
+   底部固定栏
+   ======================================== */
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid var(--stitch-border-light);
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   网格布局
+   ======================================== */
+
+.grid {
+  display: grid;
+  gap: var(--stitch-spacing-md);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ========================================
+   禅意留白区域
+   ======================================== */
+
+.zen-space {
+  padding: var(--stitch-spacing-xl);
+}
+
+.zen-space-lg {
+  padding: var(--stitch-spacing-xxl);
+}

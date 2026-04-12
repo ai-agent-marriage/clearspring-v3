@@ -1,14 +1,16 @@
+@import "../../theme.wxss";
+
 /* pages/order/confirm.wxss - 委托订单确认&支付页样式 */
 
 .container {
   min-height: 100vh;
-  background-color: var(--bg-xuan);
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 140rpx;
 }
 
 /* 顶部导航栏 */
 .nav-header {
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
   padding: 32rpx 24rpx;
   text-align: center;
 }
@@ -16,17 +18,17 @@
 .nav-title {
   font-size: 36rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 /* 区块标题 */
 .section-title {
   display: flex;
   align-items: center;
-  margin: var(--spacing-2) var(--spacing-2) var(--spacing-1);
+  margin: var(--stitch-spacing-md) var(--stitch-spacing-md) var(--stitch-spacing-sm);
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .title-icon {
@@ -41,10 +43,10 @@
 .info-card,
 .amount-card,
 .agreement-card {
-  margin: 0 var(--spacing-2) var(--spacing-2);
-  background: #fff;
-  border-radius: var(--radius-md);
-  padding: var(--spacing-2);
+  margin: 0 var(--stitch-spacing-md) var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
 }
 
 /* 信息行 */
@@ -62,26 +64,26 @@
 .info-label {
   width: 160rpx;
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   flex-shrink: 0;
 }
 
 .info-value {
   flex: 1;
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   text-align: right;
 }
 
 .info-value.highlight {
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
   font-weight: 600;
   font-family: monospace;
 }
 
 .info-value.wish {
   text-align: left;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.6;
 }
 
@@ -94,10 +96,10 @@
 
 .extra-tag {
   background: rgba(212, 184, 123, 0.1);
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
   font-size: 24rpx;
   padding: 8rpx 16rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 /* 金额明细 */
@@ -110,12 +112,12 @@
 
 .amount-label {
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .amount-value {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   font-weight: 500;
 }
 
@@ -132,18 +134,18 @@
 .amount-label-total {
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .amount-value-total {
   font-size: 40rpx;
   font-weight: 700;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 /* 协议确认区 */
 .agreement-section {
-  padding: 0 var(--spacing-2);
+  padding: 0 var(--stitch-spacing-md);
 }
 
 .agreement-content {
@@ -162,12 +164,12 @@
 
 .checkbox-text {
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .checkbox-link {
   font-size: 28rpx;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
   text-decoration: underline;
 }
 
@@ -177,8 +179,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #fff;
-  padding: 24rpx var(--spacing-2);
+  background: var(--stitch-bg-white);
+  padding: 24rpx var(--stitch-spacing-md);
   border-top: 1rpx solid #e8e8e8;
   display: flex;
   align-items: center;
@@ -193,28 +195,28 @@
 
 .display-label {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .display-value {
   font-size: 40rpx;
   font-weight: 700;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 .pay-btn {
   width: 360rpx;
   height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 32rpx;
   font-weight: 600;
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .pay-btn:active {

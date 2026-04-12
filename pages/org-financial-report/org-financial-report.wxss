@@ -1,0 +1,302 @@
+/* 清如 ClearSpring - 机构财务报表页样式 V-08 */
+
+@import "../../theme.wxss";
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: 160rpx;
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--spacing-2) 0;
+  margin-bottom: var(--spacing-2);
+}
+
+.page-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: 12rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 日期筛选栏 ========== */
+.date-filter-bar {
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-md);
+}
+
+.filter-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 0;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-sm);
+  font-size: 26rpx;
+  color: var(--text-dim);
+  transition: all var(--transition-base);
+}
+
+.filter-item.active {
+  background: var(--green-main);
+  color: var(--bg-white);
+}
+
+.filter-item.custom {
+  background: rgba(212, 184, 123, 0.1);
+  color: var(--gold-main);
+}
+
+.filter-item:active {
+  transform: scale(0.95);
+}
+
+/* ========== 核心数据卡片 ========== */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.summary-card {
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.card-icon {
+  font-size: 28rpx;
+}
+
+.card-label {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.card-value {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.card-trend {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+  font-size: 20rpx;
+}
+
+.trend-up {
+  color: var(--success);
+}
+
+.trend-down {
+  color: var(--error-soft);
+}
+
+.trend-icon {
+  font-weight: 600;
+}
+
+.text-green {
+  color: var(--green-main);
+}
+
+.text-red {
+  color: var(--error-soft);
+}
+
+.text-warning {
+  color: var(--warning);
+}
+
+/* ========== 统计区块 ========== */
+.stat-section,
+.order-stat-section,
+.export-section {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.section-header {
+  margin-bottom: var(--spacing-2);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  display: block;
+}
+
+.stat-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1rpx solid var(--border-divider);
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-item.stat-total {
+  padding-top: var(--spacing-2);
+  border-top: 2rpx solid var(--border-divider);
+  border-bottom: none;
+}
+
+.stat-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.stat-icon {
+  font-size: 32rpx;
+}
+
+.stat-label {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.stat-value {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ========== 订单统计网格 ========== */
+.order-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-2);
+}
+
+.order-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: var(--spacing-2);
+  background: rgba(74, 93, 78, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.order-stat-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.order-stat-label {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 导出选项 ========== */
+.export-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.export-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: rgba(74, 93, 78, 0.05);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.export-item:active {
+  background: rgba(74, 93, 78, 0.1);
+}
+
+.export-icon {
+  font-size: 40rpx;
+}
+
+.export-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.export-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.export-desc {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+.export-arrow {
+  font-size: 40rpx;
+  color: var(--text-light);
+}
+
+/* ========== 底部操作栏 ========== */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid var(--border-divider);
+}
+
+.bottom-bar .btn {
+  flex: 1;
+}

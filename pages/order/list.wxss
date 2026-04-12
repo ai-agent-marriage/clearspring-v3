@@ -1,14 +1,16 @@
+@import "../../theme.wxss";
+
 /* pages/order/list.wxss - 我的委托订单列表页样式 */
 
 .container {
   min-height: 100vh;
-  background-color: var(--bg-xuan);
-  padding-bottom: var(--spacing-2);
+  background-color: var(--stitch-bg-primary);
+  padding-bottom: var(--stitch-spacing-md);
 }
 
 /* 顶部导航栏 */
 .nav-header {
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
   padding: 32rpx 24rpx;
   text-align: center;
 }
@@ -16,31 +18,31 @@
 .nav-title {
   font-size: 36rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 /* Tab 栏 */
 .tab-scroll {
-  background: #fff;
+  background: var(--stitch-bg-white);
   border-bottom: 1rpx solid #e8e8e8;
   white-space: nowrap;
 }
 
 .tab-bar {
   display: inline-flex;
-  padding: 0 var(--spacing-2);
+  padding: 0 var(--stitch-spacing-md);
 }
 
 .tab-item {
   padding: 28rpx 32rpx;
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   position: relative;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .tab-item.active {
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
   font-weight: 600;
 }
 
@@ -52,26 +54,26 @@
   transform: translateX(-50%);
   width: 48rpx;
   height: 4rpx;
-  background: linear-gradient(90deg, var(--gold-main), var(--gold-dim));
+  background: linear-gradient(90deg, var(--stitch-gold-primary), var(--stitch-gold-dim));
   border-radius: 2rpx;
 }
 
 /* 订单列表 */
 .order-list-section {
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
 }
 
 .order-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .order-card {
-  background: #fff;
-  border-radius: var(--radius-md);
-  padding: var(--spacing-2);
-  transition: all var(--transition-fast);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
+  transition: all var(--stitch-transition-fast);
 }
 
 .order-card:active {
@@ -83,8 +85,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: var(--spacing-2);
-  padding-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-md);
   border-bottom: 1rpx solid #f0f0f0;
 }
 
@@ -96,56 +98,56 @@
 
 .order-no {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   font-family: monospace;
 }
 
 .order-org {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .order-status {
   font-size: 24rpx;
   padding: 6rpx 16rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   font-weight: 500;
 }
 
 /* 状态颜色 */
 .status-1 {
   background: rgba(255, 154, 68, 0.1);
-  color: var(--warning);
+  color: var(--stitch-warning);
 }
 
 .status-2 {
   background: rgba(74, 111, 165, 0.1);
-  color: var(--info);
+  color: var(--stitch-info);
 }
 
 .status-3 {
   background: rgba(74, 93, 78, 0.1);
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .status-4 {
   background: rgba(212, 184, 123, 0.1);
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 .status-5 {
   background: rgba(0, 138, 17, 0.1);
-  color: var(--success);
+  color: var(--stitch-success);
 }
 
 .status-6 {
   background: rgba(114, 119, 114, 0.1);
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* 订单信息 */
 .order-info {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .info-row {
@@ -157,12 +159,12 @@
 
 .info-label {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .info-value {
   font-size: 26rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   font-weight: 500;
 }
 
@@ -171,21 +173,21 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: var(--spacing-2) 0;
+  padding: var(--stitch-spacing-md) 0;
   border-top: 1rpx solid #f0f0f0;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .amount-label {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   margin-right: 16rpx;
 }
 
 .amount-value {
   font-size: 36rpx;
   font-weight: 700;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 /* 操作按钮 */
@@ -193,7 +195,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 16rpx;
-  padding-top: var(--spacing-2);
+  padding-top: var(--stitch-spacing-md);
   border-top: 1rpx solid #f0f0f0;
 }
 
@@ -201,33 +203,33 @@
   min-height: 64rpx;
   padding: 0 32rpx;
   font-size: 26rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   border: none;
 }
 
 .btn-cancel {
   background: rgba(186, 26, 26, 0.1);
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .btn-contact {
   background: rgba(74, 93, 78, 0.1);
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .btn-review {
   background: rgba(74, 111, 165, 0.1);
-  color: var(--info);
+  color: var(--stitch-info);
 }
 
 .btn-confirm {
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
 }
 
 .btn-detail {
   background: rgba(212, 184, 123, 0.1);
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 /* 空状态 */
@@ -241,18 +243,18 @@
 
 .empty-icon {
   font-size: 120rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .empty-text {
   font-size: 28rpx;
-  color: var(--text-dim);
-  margin-bottom: var(--spacing-2);
+  color: var(--stitch-text-secondary);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .btn-create {
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 28rpx;
   padding: 20rpx 64rpx;
   border-radius: var(--radius-full);

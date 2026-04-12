@@ -1,23 +1,25 @@
+@import "../../theme.wxss";
+
 /* pages/merit-forest/merit-forest.wxss */
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
 }
 
 /* ========== 顶部功德统计 ========== */
 
 .merit-header {
-  margin-bottom: var(--spacing-3);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .merit-stats {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: linear-gradient(135deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-3);
+  background: linear-gradient(135deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
 }
 
 .stat-item {
@@ -31,7 +33,7 @@
   font-size: 48rpx;
   font-weight: 600;
   line-height: 1.2;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -39,21 +41,21 @@
 
 .stat-label {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   margin-top: 8rpx;
 }
 
 .stat-divider {
   width: 2rpx;
   height: 80rpx;
-  background: linear-gradient(180deg, transparent 0%, var(--gold-main) 50%, transparent 100%);
-  margin: 0 var(--spacing-1);
+  background: linear-gradient(180deg, transparent 0%, var(--stitch-gold-primary) 50%, transparent 100%);
+  margin: 0 var(--stitch-spacing-sm);
 }
 
 /* ========== 章节标题 ========== */
 
 .section-header {
-  margin: var(--spacing-3) 0 var(--spacing-2);
+  margin: var(--stitch-spacing-lg) 0 var(--stitch-spacing-md);
   text-align: center;
 }
 
@@ -61,29 +63,29 @@
   display: block;
   font-size: 36rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 8rpx;
 }
 
 .section-subtitle {
   display: block;
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* ========== 证书墙瀑布流 ========== */
 
 .certificate-wall {
   display: flex;
-  gap: var(--spacing-2);
-  margin-bottom: var(--spacing-3);
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .waterfall-column {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .certificate-card {
@@ -91,10 +93,10 @@
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
   border-radius: 24rpx;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   box-shadow: 0 8rpx 32rpx rgba(212, 184, 123, 0.15);
   border: 1rpx solid rgba(255, 255, 255, 0.5);
-  transition: transform var(--transition-base);
+  transition: transform var(--stitch-transition-base);
 }
 
 .certificate-card:active {
@@ -105,37 +107,37 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-1);
-  padding-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
+  padding-bottom: var(--stitch-spacing-sm);
   border-bottom: 1rpx solid rgba(212, 184, 123, 0.2);
 }
 
 .cert-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
 }
 
 .cert-number {
   font-size: 20rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .cert-content {
   display: flex;
   flex-direction: column;
   gap: 12rpx;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .cert-text {
   font-size: 24rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.6;
 }
 
 .cert-text.highlight {
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   font-weight: 500;
 }
 
@@ -143,22 +145,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--spacing-1);
+  padding-top: var(--stitch-spacing-sm);
   border-top: 1rpx solid rgba(212, 184, 123, 0.2);
 }
 
 .cert-seal {
   font-size: 28rpx;
   font-weight: 600;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   background: rgba(212, 184, 123, 0.1);
   padding: 8rpx 16rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 .cert-date {
   font-size: 20rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* ========== 历史放生记录 ========== */
@@ -166,16 +168,16 @@
 .history-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .history-item {
   display: flex;
   align-items: center;
-  padding: var(--spacing-2);
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-base);
+  padding: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
+  border-radius: var(--stitch-radius-md);
+  transition: all var(--stitch-transition-base);
 }
 
 .history-item:active {
@@ -189,16 +191,16 @@
   justify-content: center;
   width: 80rpx;
   height: 80rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  border-radius: var(--radius-md);
-  margin-right: var(--spacing-2);
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  border-radius: var(--stitch-radius-md);
+  margin-right: var(--stitch-spacing-md);
   flex-shrink: 0;
 }
 
 .date-day {
   font-size: 32rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--stitch-bg-white);
   line-height: 1;
 }
 
@@ -218,27 +220,27 @@
 .history-title {
   font-size: 28rpx;
   font-weight: 500;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .history-location {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .history-count {
   font-size: 24rpx;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   font-weight: 500;
 }
 
 .history-action {
-  margin-left: var(--spacing-1);
+  margin-left: var(--stitch-spacing-sm);
 }
 
 .action-icon {
   font-size: 40rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   line-height: 1;
 }
 
@@ -255,7 +257,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
 }
 
 .modal-content {
@@ -264,7 +266,7 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
   overflow: hidden;
   box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.3);
 }
@@ -273,53 +275,53 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   border-bottom: 1rpx solid rgba(212, 184, 123, 0.2);
 }
 
 .modal-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .modal-close {
   font-size: 40rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   line-height: 1;
   padding: 8rpx;
 }
 
 .modal-body {
-  padding: var(--spacing-3);
+  padding: var(--stitch-spacing-lg);
 }
 
 .preview-certificate {
-  background: linear-gradient(135deg, #fff 0%, var(--bg-xuan-light) 100%);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-3);
-  border: 2rpx solid var(--gold-main);
+  background: linear-gradient(135deg, var(--stitch-bg-white) 0%, var(--stitch-bg-secondary) 100%);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-lg);
+  border: 2rpx solid var(--stitch-gold-primary);
 }
 
 .preview-header {
   text-align: center;
-  margin-bottom: var(--spacing-3);
-  padding-bottom: var(--spacing-2);
-  border-bottom: 2rpx solid var(--gold-main);
+  margin-bottom: var(--stitch-spacing-lg);
+  padding-bottom: var(--stitch-spacing-md);
+  border-bottom: 2rpx solid var(--stitch-gold-primary);
 }
 
 .preview-title {
   display: block;
   font-size: 40rpx;
   font-weight: 600;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   margin-bottom: 8rpx;
 }
 
 .preview-number {
   display: block;
   font-size: 20rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .preview-content {
@@ -328,31 +330,31 @@
   align-items: center;
   gap: 16rpx;
   text-align: center;
-  margin-bottom: var(--spacing-3);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .preview-text {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .preview-name {
   font-size: 36rpx;
   font-weight: 600;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   margin: 8rpx 0;
 }
 
 .preview-count {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 .preview-blessing {
   font-size: 28rpx;
-  color: var(--text-dim);
-  margin-top: var(--spacing-1);
+  color: var(--stitch-text-secondary);
+  margin-top: var(--stitch-spacing-sm);
   font-style: italic;
 }
 
@@ -360,27 +362,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--spacing-2);
-  border-top: 2rpx solid var(--gold-main);
+  padding-top: var(--stitch-spacing-md);
+  border-top: 2rpx solid var(--stitch-gold-primary);
 }
 
 .preview-seal {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   background: rgba(212, 184, 123, 0.2);
   padding: 12rpx 24rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 .preview-date {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .modal-actions {
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
 }
 
 .modal-actions .btn {

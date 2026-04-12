@@ -1,0 +1,205 @@
+<!-- 清如 ClearSpring - 机构财务报表页 V-08 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">财务报表</text>
+    <text class="page-subtitle">统计周期：{{statPeriod}}</text>
+  </view>
+
+  <!-- 日期筛选 -->
+  <view class="date-filter-bar glass">
+    <view class="filter-item {{dateFilter === 'today' ? 'active' : ''}}" bindtap="onDateFilterChange" data-type="today">
+      <text>今日</text>
+    </view>
+    <view class="filter-item {{dateFilter === 'week' ? 'active' : ''}}" bindtap="onDateFilterChange" data-type="week">
+      <text>本周</text>
+    </view>
+    <view class="filter-item {{dateFilter === 'month' ? 'active' : ''}}" bindtap="onDateFilterChange" data-type="month">
+      <text>本月</text>
+    </view>
+    <view class="filter-item {{dateFilter === 'year' ? 'active' : ''}}" bindtap="onDateFilterChange" data-type="year">
+      <text>本年</text>
+    </view>
+    <view class="filter-item custom" bindtap="onCustomDateSelect">
+      <text>自定义</text>
+    </view>
+  </view>
+
+  <!-- 核心数据卡片 -->
+  <view class="summary-cards">
+    <view class="summary-card glass card-income">
+      <view class="card-header">
+        <text class="card-icon">💰</text>
+        <text class="card-label">总收入</text>
+      </view>
+      <view class="card-value text-green">¥{{summary.totalIncome}}</view>
+      <view class="card-trend trend-up" wx:if="{{summary.incomeTrend > 0}}">
+        <text class="trend-icon">↑</text>
+        <text class="trend-value">{{summary.incomeTrend}}%</text>
+        <text class="trend-label">较上期</text>
+      </view>
+      <view class="card-trend trend-down" wx:if="{{summary.incomeTrend < 0}}">
+        <text class="trend-icon">↓</text>
+        <text class="trend-value">{{-summary.incomeTrend}}%</text>
+        <text class="trend-label">较上期</text>
+      </view>
+    </view>
+    
+    <view class="summary-card glass card-expense">
+      <view class="card-header">
+        <text class="card-icon">📤</text>
+        <text class="card-label">总支出</text>
+      </view>
+      <view class="card-value text-red">¥{{summary.totalExpense}}</view>
+      <view class="card-trend" wx:if="{{summary.expenseTrend > 0}}">
+        <text class="trend-icon">↑</text>
+        <text class="trend-value">{{summary.expenseTrend}}%</text>
+        <text class="trend-label">较上期</text>
+      </view>
+    </view>
+    
+    <view class="summary-card glass card-profit">
+      <view class="card-header">
+        <text class="card-icon">📊</text>
+        <text class="card-label">净利润</text>
+      </view>
+      <view class="card-value {{summary.netProfit >= 0 ? 'text-green' : 'text-red'}}">¥{{summary.netProfit}}</view>
+      <view class="card-trend trend-up" wx:if="{{summary.profitTrend > 0}}">
+        <text class="trend-icon">↑</text>
+        <text class="trend-value">{{summary.profitTrend}}%</text>
+        <text class="trend-label">较上期</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 收入统计 -->
+  <view class="stat-section glass">
+    <view class="section-header">
+      <text class="section-title">收入统计</text>
+    </view>
+    <view class="stat-list">
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">🎯</text>
+          <text class="stat-label">委托护生收入</text>
+        </view>
+        <text class="stat-value">¥{{incomeDetail.entrustedIncome}}</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">🌿</text>
+          <text class="stat-label">自主护生收入</text>
+        </view>
+        <text class="stat-value">¥{{incomeDetail.selfIncome}}</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">➕</text>
+          <text class="stat-label">增值服务收入</text>
+        </view>
+        <text class="stat-value">¥{{incomeDetail.valueAddedIncome}}</text>
+      </view>
+      <view class="stat-item stat-total">
+        <view class="stat-left">
+          <text class="stat-label">收入合计</text>
+        </view>
+        <text class="stat-value text-green">¥{{summary.totalIncome}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 支出统计 -->
+  <view class="stat-section glass">
+    <view class="section-header">
+      <text class="section-title">支出统计</text>
+    </view>
+    <view class="stat-list">
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">👥</text>
+          <text class="stat-label">志愿者酬劳</text>
+        </view>
+        <text class="stat-value">¥{{expenseDetail.volunteerPayment}}</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">🐟</text>
+          <text class="stat-label">物种采购</text>
+        </view>
+        <text class="stat-value">¥{{expenseDetail.speciesPurchase}}</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">🚗</text>
+          <text class="stat-label">交通费用</text>
+        </view>
+        <text class="stat-value">¥{{expenseDetail.transportation}}</text>
+      </view>
+      <view class="stat-item">
+        <view class="stat-left">
+          <text class="stat-icon">📦</text>
+          <text class="stat-label">物料成本</text>
+        </view>
+        <text class="stat-value">¥{{expenseDetail.materials}}</text>
+      </view>
+      <view class="stat-item stat-total">
+        <view class="stat-left">
+          <text class="stat-label">支出合计</text>
+        </view>
+        <text class="stat-value text-red">¥{{summary.totalExpense}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 订单统计 -->
+  <view class="order-stat-section glass">
+    <view class="section-title">订单统计</view>
+    <view class="order-stat-grid">
+      <view class="order-stat-item">
+        <text class="order-stat-value">{{orderStats.total}}</text>
+        <text class="order-stat-label">总订单数</text>
+      </view>
+      <view class="order-stat-item">
+        <text class="order-stat-value text-green">{{orderStats.completed}}</text>
+        <text class="order-stat-label">已完成</text>
+      </view>
+      <view class="order-stat-item">
+        <text class="order-stat-value text-warning">{{orderStats.pending}}</text>
+        <text class="order-stat-label">待执行</text>
+      </view>
+      <view class="order-stat-item">
+        <text class="order-stat-value">{{orderStats.executing}}</text>
+        <text class="order-stat-label">执行中</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 报表导出 -->
+  <view class="export-section glass">
+    <view class="section-title">导出报表</view>
+    <view class="export-options">
+      <view class="export-item" bindtap="onExportReport" data-type="excel">
+        <text class="export-icon">📄</text>
+        <view class="export-info">
+          <text class="export-name">Excel 报表</text>
+          <text class="export-desc">包含详细收支明细</text>
+        </view>
+        <text class="export-arrow">›</text>
+      </view>
+      <view class="export-item" bindtap="onExportReport" data-type="pdf">
+        <text class="export-icon">📑</text>
+        <view class="export-info">
+          <text class="export-name">PDF 报表</text>
+          <text class="export-desc">适合打印和分享</text>
+        </view>
+        <text class="export-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <button class="btn btn-outline" bindtap="onViewDetails">查看明细</button>
+    <button class="btn btn-primary" bindtap="onExportReport" data-type="excel">导出 Excel</button>
+  </view>
+</view>

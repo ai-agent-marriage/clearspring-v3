@@ -1,9 +1,11 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 机构端首页样式 */
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-4) + 120rpx);
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-xxxl) + 120rpx);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
@@ -12,22 +14,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(212, 184, 123, 0.95);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .header-title {
   font-size: 36rpx;
   font-weight: 700;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 .header-notification {
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
 }
 
 .notification-icon {
@@ -36,32 +38,32 @@
 
 /* ========== 机构信息卡片 ========== */
 .org-info-card {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .org-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .org-name {
   font-size: 34rpx;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .identity-tag {
   padding: 6rpx 20rpx;
   background: rgba(212, 184, 123, 0.15);
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   font-size: 24rpx;
   font-weight: 600;
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
 }
 
 .org-status-row {
@@ -75,7 +77,7 @@
   align-items: center;
   padding: 8rpx 20rpx;
   background: rgba(74, 93, 78, 0.1);
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 .status-badge.audited {
@@ -90,7 +92,7 @@
 .status-text {
   font-size: 24rpx;
   font-weight: 500;
-  color: var(--success);
+  color: var(--stitch-success);
 }
 
 .org-total-orders {
@@ -101,26 +103,26 @@
 
 .total-label {
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   margin-bottom: 4rpx;
 }
 
 .total-value {
   font-size: 40rpx;
   font-weight: 700;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 /* ========== 核心数据看板 ========== */
 .stats-scroll {
   white-space: nowrap;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .stats-container {
   display: inline-flex;
-  gap: var(--spacing-2);
-  padding-right: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  padding-right: var(--stitch-spacing-md);
 }
 
 .stat-card {
@@ -129,9 +131,9 @@
   align-items: center;
   justify-content: center;
   min-width: 180rpx;
-  padding: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .stat-value {
@@ -142,44 +144,44 @@
 
 .stat-label {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* 数据颜色 */
 .text-warning {
-  color: var(--warning);
+  color: var(--stitch-warning);
 }
 
 .text-green {
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .text-info {
-  color: var(--info);
+  color: var(--stitch-info);
 }
 
 .text-gold {
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
 }
 
 /* ========== 待办事项区 ========== */
 .todos-section {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .section-header {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .section-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
-  padding-left: var(--spacing-1);
-  border-left: 6rpx solid var(--gold-main);
+  color: var(--stitch-text-primary);
+  padding-left: var(--stitch-spacing-sm);
+  border-left: 6rpx solid var(--stitch-gold-primary);
 }
 
 .todos-list {
@@ -191,7 +193,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2) 0;
+  padding: var(--stitch-spacing-md) 0;
   border-bottom: 1rpx solid rgba(74, 93, 78, 0.08);
 }
 
@@ -206,8 +208,8 @@
 
 .todo-title {
   font-size: 28rpx;
-  color: var(--text-main);
-  margin-right: var(--spacing-1);
+  color: var(--stitch-text-primary);
+  margin-right: var(--stitch-spacing-sm);
 }
 
 .todo-badge {
@@ -217,42 +219,42 @@
   min-width: 40rpx;
   height: 40rpx;
   padding: 0 8rpx;
-  background: var(--error-soft);
+  background: var(--stitch-error);
   border-radius: 20rpx;
 }
 
 .badge-count {
   font-size: 22rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 .todo-action {
   font-size: 26rpx;
   font-weight: 500;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
 }
 
 /* ========== 核心功能入口区 ========== */
 .functions-section {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .functions-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .function-card {
-  padding: var(--spacing-3);
-  background: linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-alt) 100%);
-  border-radius: var(--radius-lg);
+  padding: var(--stitch-spacing-lg);
+  background: linear-gradient(180deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
+  border-radius: var(--stitch-radius-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .function-card:active {
@@ -261,13 +263,13 @@
 
 .function-icon {
   font-size: 64rpx;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .function-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 /* ========== 底部固定按钮 ========== */
@@ -276,7 +278,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
@@ -287,11 +289,11 @@
 .btn-switch {
   width: 100%;
   min-height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 30rpx;
   font-weight: 600;
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   border: none;
 }
 

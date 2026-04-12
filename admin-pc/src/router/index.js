@@ -1,16 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
-// 页面组件
-import Login from '../views/Login.vue'
-import Dashboard from '../views/Dashboard.vue'
-import OrderList from '../views/OrderList.vue'
-import QualificationAudit from '../views/QualificationAudit.vue'
-import AppealArbitration from '../views/AppealArbitration.vue'
-import ProfitSharing from '../views/ProfitSharing.vue'
-import ExecutorManage from '../views/ExecutorManage.vue'
-import DataExport from '../views/DataExport.vue'
-import SystemSettings from '../views/SystemSettings.vue'
+// 系统模块
+import Login from '../views/system/Login.vue'
+import Dashboard from '../views/system/Dashboard.vue'
+import SystemSettings from '../views/system/SystemSettings.vue'
+
+// 用户管理模块
+import UserList from '../views/user/UserList.vue'
+import UserDetail from '../views/user/UserDetail.vue'
+import CreateUser from '../views/user/CreateUser.vue'
+import EditUser from '../views/user/EditUser.vue'
+import RoleManage from '../views/user/RoleManage.vue'
+
+// 订单管理模块
+import OrderList from '../views/order/OrderList.vue'
+
+// 内容管理模块
+import ContentAudit from '../views/content/ContentAudit.vue'
+
+// 合规与风控模块
+import QualificationAudit from '../views/compliance/QualificationAudit.vue'
+import AppealArbitration from '../views/compliance/AppealArbitration.vue'
+
+// 财务管理模块
+import ProfitSharing from '../views/finance/ProfitSharing.vue'
+import DataExport from '../views/finance/DataExport.vue'
 
 // 路由配置
 const routes = [
@@ -30,12 +45,62 @@ const routes = [
     component: Dashboard,
     meta: { title: '控制台', requiresAuth: true, icon: 'DataAnalysis' }
   },
+  
+  // 用户管理模块
+  {
+    path: '/users',
+    name: 'UserList',
+    component: UserList,
+    meta: { title: '用户列表', requiresAuth: true, icon: 'User' }
+  },
+  {
+    path: '/users/:id',
+    name: 'UserDetail',
+    component: UserDetail,
+    meta: { title: '用户详情', requiresAuth: true, hidden: true }
+  },
+  {
+    path: '/users/create',
+    name: 'CreateUser',
+    component: CreateUser,
+    meta: { title: '创建用户', requiresAuth: true, hidden: true }
+  },
+  {
+    path: '/users/:id/edit',
+    name: 'EditUser',
+    component: EditUser,
+    meta: { title: '编辑用户', requiresAuth: true, hidden: true }
+  },
+  {
+    path: '/users/:id/permission',
+    name: 'UserPermission',
+    component: RoleManage,
+    meta: { title: '权限配置', requiresAuth: true, hidden: true }
+  },
+  {
+    path: '/roles',
+    name: 'RoleManage',
+    component: RoleManage,
+    meta: { title: '角色管理', requiresAuth: true, icon: 'Lock' }
+  },
+  
+  // 订单管理模块
   {
     path: '/orders',
     name: 'OrderList',
     component: OrderList,
     meta: { title: '订单管理', requiresAuth: true, icon: 'List' }
   },
+  
+  // 内容管理模块
+  {
+    path: '/content',
+    name: 'ContentAudit',
+    component: ContentAudit,
+    meta: { title: '内容审核', requiresAuth: true, icon: 'DocumentChecked' }
+  },
+  
+  // 合规与风控模块
   {
     path: '/qualifications',
     name: 'QualificationAudit',
@@ -48,6 +113,8 @@ const routes = [
     component: AppealArbitration,
     meta: { title: '申诉仲裁', requiresAuth: true, icon: 'ScaleToOriginal' }
   },
+  
+  // 财务管理模块
   {
     path: '/profit-sharing',
     name: 'ProfitSharing',
@@ -55,17 +122,13 @@ const routes = [
     meta: { title: '分账配置', requiresAuth: true, icon: 'Coin' }
   },
   {
-    path: '/executors',
-    name: 'ExecutorManage',
-    component: ExecutorManage,
-    meta: { title: '执行者管理', requiresAuth: true, icon: 'User' }
-  },
-  {
     path: '/export',
     name: 'DataExport',
     component: DataExport,
     meta: { title: '数据导出', requiresAuth: true, icon: 'Download' }
   },
+  
+  // 系统设置
   {
     path: '/settings',
     name: 'SystemSettings',

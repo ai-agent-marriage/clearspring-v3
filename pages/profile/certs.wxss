@@ -1,7 +1,9 @@
+@import "../../theme.wxss";
+
 /* pages/profile/certs.wxss - 证书管理页面样式优化 */
 
 page {
-  background-color: #f5f5f5;
+  background-color: var(--stitch-bg-secondary);
   padding-bottom: 40rpx;
 }
 
@@ -14,7 +16,7 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   padding: 24rpx 32rpx;
   margin-bottom: 20rpx;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
@@ -23,12 +25,12 @@ page {
 .header-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--stitch-text-primary);
 }
 
 .header-actions .action-btn {
   font-size: 26rpx;
-  color: #07c160;
+  color: var(--stitch-green-primary);
   padding: 12rpx 24rpx;
   background-color: #e8f5e9;
   border-radius: 30rpx;
@@ -37,7 +39,7 @@ page {
 
 /* ========== 分类筛选 ========== */
 .category-tabs {
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   padding: 20rpx 0;
   margin-bottom: 20rpx;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
@@ -51,13 +53,13 @@ page {
   display: inline-block;
   padding: 16rpx 32rpx;
   font-size: 28rpx;
-  color: #666;
+  color: var(--stitch-text-secondary);
   position: relative;
   transition: all 0.3s ease;
 }
 
 .tab-item.active {
-  color: #07c160;
+  color: var(--stitch-green-primary);
   font-weight: 600;
 }
 
@@ -68,7 +70,7 @@ page {
   transform: translateX(-50%);
   width: 40rpx;
   height: 4rpx;
-  background-color: #07c160;
+  background-color: var(--stitch-green-primary);
   border-radius: 2rpx;
 }
 
@@ -76,7 +78,7 @@ page {
 .sort-bar {
   display: flex;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   padding: 20rpx 32rpx;
   margin-bottom: 20rpx;
   gap: 24rpx;
@@ -84,19 +86,19 @@ page {
 
 .sort-label {
   font-size: 26rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
 }
 
 .sort-item {
   font-size: 26rpx;
-  color: #666;
+  color: var(--stitch-text-secondary);
   padding: 8rpx 16rpx;
   border-radius: 20rpx;
   transition: all 0.2s ease;
 }
 
 .sort-item.active {
-  color: #07c160;
+  color: var(--stitch-green-primary);
   background-color: #e8f5e9;
   font-weight: 500;
 }
@@ -106,7 +108,7 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #07c160;
+  background-color: var(--stitch-green-primary);
   padding: 20rpx 32rpx;
   margin: 0 24rpx 20rpx;
   border-radius: 12rpx;
@@ -115,7 +117,7 @@ page {
 
 .batch-info {
   font-size: 28rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-weight: 500;
 }
 
@@ -128,14 +130,14 @@ page {
   padding: 12rpx 28rpx;
   border-radius: 30rpx;
   font-size: 26rpx;
-  color: #07c160;
-  background-color: #fff;
+  color: var(--stitch-green-primary);
+  background-color: var(--stitch-bg-white);
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .batch-btn.primary {
-  color: #fff;
+  color: var(--stitch-bg-white);
   background-color: rgba(255, 255, 255, 0.2);
   border: 1rpx solid rgba(255, 255, 255, 0.5);
 }
@@ -155,7 +157,7 @@ page {
 }
 
 .cert-card {
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   border-radius: 16rpx;
   overflow: hidden;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.06);
@@ -184,8 +186,8 @@ page {
 }
 
 .select-checkbox.checked {
-  background-color: #07c160;
-  border-color: #07c160;
+  background-color: var(--stitch-green-primary);
+  border-color: var(--stitch-green-primary);
 }
 
 .select-checkbox image {
@@ -209,12 +211,12 @@ page {
   border-radius: 20rpx;
   font-size: 22rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--stitch-bg-white);
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
 }
 
 .cert-type-tag.protect {
-  background: linear-gradient(135deg, #07c160, #05a850);
+  background: linear-gradient(135deg, var(--stitch-green-primary), #05a850);
 }
 
 .cert-type-tag.practice {
@@ -229,7 +231,7 @@ page {
 .cert-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--stitch-text-primary);
   margin-bottom: 12rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -244,7 +246,7 @@ page {
 
 .cert-date {
   font-size: 24rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
 }
 
 .cert-merit {
@@ -271,7 +273,7 @@ page {
 
 .empty-text {
   font-size: 32rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
   margin-bottom: 16rpx;
   font-weight: 500;
 }
@@ -313,7 +315,7 @@ page {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   border-radius: 24rpx 24rpx 0 0;
   max-height: 85vh;
   display: flex;
@@ -337,7 +339,7 @@ page {
 .modal-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--stitch-text-primary);
 }
 
 .close-btn {
@@ -376,7 +378,7 @@ page {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 24rpx;
   text-align: center;
   padding: 12rpx 0;
@@ -400,12 +402,12 @@ page {
 
 .info-label {
   font-size: 26rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
 }
 
 .info-value {
   font-size: 28rpx;
-  color: #333;
+  color: var(--stitch-text-primary);
   font-weight: 500;
 }
 
@@ -416,7 +418,7 @@ page {
 
 .info-value.small {
   font-size: 24rpx;
-  color: #666;
+  color: var(--stitch-text-secondary);
 }
 
 /* 二维码区域 */
@@ -433,20 +435,20 @@ page {
 .section-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--stitch-text-primary);
 }
 
 .qrcode-image {
   width: 400rpx;
   height: 400rpx;
-  border: 4rpx solid #fff;
+  border: 4rpx solid var(--stitch-bg-white);
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
   border-radius: 8rpx;
 }
 
 .qrcode-hint {
   font-size: 24rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
 }
 
 /* 弹窗底部按钮 */
@@ -468,14 +470,14 @@ page {
 }
 
 .footer-btn.secondary {
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: var(--stitch-bg-secondary);
+  color: var(--stitch-text-primary);
   border: 1rpx solid #e0e0e0;
 }
 
 .footer-btn.primary {
-  background-color: #07c160;
-  color: #fff;
+  background-color: var(--stitch-green-primary);
+  color: var(--stitch-bg-white);
 }
 
 .footer-btn:active {

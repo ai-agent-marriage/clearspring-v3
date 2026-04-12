@@ -1,0 +1,23 @@
+<!--pages/q-01-launch/q-01-launch.wxml-->
+<view class="launch-container">
+  <!-- 背景渐变 -->
+  <view class="background-gradient"></view>
+  
+  <!-- Logo 区域 -->
+  <view class="logo-section">
+    <image class="logo-image" src="/assets/images/logo.png" mode="aspectFit" />
+    <view class="logo-text">清如 ClearSpring</view>
+    <view class="logo-slogan">敬畏生命 · 敬畏自然</view>
+  </view>
+  
+  <!-- 加载动画 -->
+  <view class="loading-section">
+    <view class="loading-spinner"></view>
+    <view class="loading-text">正在进入清如世界...</view>
+  </view>
+  
+  <!-- 版本信息 -->
+  <view class="version-info">
+    <text class="version-text">Version {{version}}</text>
+  </view>
+</view>

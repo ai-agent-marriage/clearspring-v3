@@ -1,7 +1,9 @@
+@import "../../theme.wxss";
+
 /* pages/wiki/detail.wxss */
 
 page {
-  background-color: #f5f5f5;
+  background-color: var(--stitch-bg-secondary);
   --spacing-1: 16rpx;
   --spacing-2: 24rpx;
   --spacing-3: 32rpx;
@@ -9,11 +11,11 @@ page {
   --radius-sm: 8rpx;
   --radius-md: 16rpx;
   --radius-lg: 24rpx;
-  --text-main: #333;
-  --text-dim: #999;
+  --text-main: var(--stitch-text-primary);
+  --text-dim: var(--stitch-text-tertiary);
   --gold-main: #D4B87B;
   --gold-dim: #6E5E00;
-  --success: #07c160;
+  --success: var(--stitch-green-primary);
   --error-soft: #FF6B6B;
 }
 
@@ -29,7 +31,7 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20rpx);
   z-index: 100;
@@ -44,19 +46,19 @@ page {
 
 .back-icon {
   font-size: 48rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1;
 }
 
 .back-text {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .icon-btn {
@@ -72,7 +74,7 @@ page {
   background: none;
   border: none;
   font-size: 40rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1;
 }
 
@@ -83,7 +85,7 @@ page {
 /* ========== 详情内容 ========== */
 
 .detail-content {
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
 }
 
 /* ========== 物种图片 ========== */
@@ -92,24 +94,24 @@ page {
   position: relative;
   width: 100%;
   height: 400rpx;
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
   overflow: hidden;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .species-image {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+  background: linear-gradient(135deg, var(--stitch-bg-secondary) 0%, #e0e0e0 100%);
 }
 
 .species-category {
   position: absolute;
-  top: var(--spacing-2);
-  right: var(--spacing-2);
+  top: var(--stitch-spacing-md);
+  right: var(--stitch-spacing-md);
   padding: 8rpx 24rpx;
   background: rgba(7, 193, 96, 0.9);
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 24rpx;
   border-radius: 32rpx;
 }
@@ -117,14 +119,14 @@ page {
 /* ========== 基本信息 ========== */
 
 .info-section {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .info-header {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .species-name {
@@ -132,7 +134,7 @@ page {
   font-size: 40rpx;
   font-weight: 700;
   font-family: 'Songti SC', 'STSong', 'SimSun', serif;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 8rpx;
 }
 
@@ -140,14 +142,14 @@ page {
   display: block;
   font-size: 24rpx;
   font-style: italic;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   font-family: 'Times New Roman', serif;
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .info-item {
@@ -162,12 +164,12 @@ page {
 
 .info-label {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .info-value {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   font-weight: 500;
 }
 
@@ -181,29 +183,29 @@ page {
 .guide-header,
 .guide-content,
 .references-section {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .section-title {
   font-size: 32rpx;
   font-weight: 600;
   font-family: 'Songti SC', 'STSong', 'SimSun', serif;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-2);
-  padding-bottom: var(--spacing-2);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-md);
   border-bottom: 1rpx solid #f0f0f0;
 }
 
 .section-title.warning {
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .desc-text {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.8;
   display: block;
 }
@@ -212,13 +214,13 @@ page {
   display: flex;
   flex-wrap: wrap;
   gap: 12rpx;
-  margin-top: var(--spacing-2);
+  margin-top: var(--stitch-spacing-md);
 }
 
 .feature-tag {
   padding: 8rpx 20rpx;
   background: rgba(212, 184, 123, 0.15);
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   font-size: 24rpx;
   border-radius: 32rpx;
 }
@@ -228,19 +230,19 @@ page {
 .tip-item {
   display: flex;
   align-items: flex-start;
-  gap: var(--spacing-2);
-  padding: var(--spacing-1) 0;
+  gap: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-sm) 0;
 }
 
 .tip-icon {
   font-size: 28rpx;
-  color: var(--success);
+  color: var(--stitch-success);
   flex-shrink: 0;
 }
 
 .tip-text {
   font-size: 26rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.6;
   flex: 1;
 }
@@ -250,8 +252,8 @@ page {
 .warning-item {
   display: flex;
   align-items: flex-start;
-  gap: var(--spacing-2);
-  padding: var(--spacing-1) 0;
+  gap: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-sm) 0;
 }
 
 .warning-icon {
@@ -260,7 +262,7 @@ page {
   line-height: 36rpx;
   text-align: center;
   background: linear-gradient(135deg, #FF9A44 0%, #FF6B35 100%);
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 24rpx;
   border-radius: 50%;
   flex-shrink: 0;
@@ -268,7 +270,7 @@ page {
 
 .warning-text {
   font-size: 26rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.6;
   flex: 1;
 }
@@ -280,21 +282,21 @@ page {
   font-size: 36rpx;
   font-weight: 700;
   font-family: 'Songti SC', 'STSong', 'SimSun', serif;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-2);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
   line-height: 1.4;
 }
 
 .article-meta {
   display: flex;
-  gap: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   flex-wrap: wrap;
 }
 
 .meta-item {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .article-tags {
@@ -306,14 +308,14 @@ page {
 .article-tags .tag {
   padding: 8rpx 20rpx;
   background: rgba(212, 184, 123, 0.15);
-  color: var(--gold-dim);
+  color: var(--stitch-gold-dim);
   font-size: 24rpx;
   border-radius: 32rpx;
 }
 
 .markdown-content {
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 2;
   white-space: pre-wrap;
 }
@@ -327,11 +329,11 @@ page {
 .guide-category {
   display: inline-block;
   padding: 8rpx 24rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 24rpx;
   border-radius: 32rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .guide-title {
@@ -339,29 +341,29 @@ page {
   font-size: 36rpx;
   font-weight: 700;
   font-family: 'Songti SC', 'STSong', 'SimSun', serif;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-sm);
   line-height: 1.4;
 }
 
 .guide-update {
   display: block;
   font-size: 24rpx;
-  color: var(--text-dim);
-  margin-top: var(--spacing-1);
+  color: var(--stitch-text-secondary);
+  margin-top: var(--stitch-spacing-sm);
 }
 
 /* ========== 参考依据 ========== */
 
 .reference-item {
-  padding: var(--spacing-1) 0;
-  border-left: 4rpx solid var(--gold-main);
-  padding-left: var(--spacing-2);
+  padding: var(--stitch-spacing-sm) 0;
+  border-left: 4rpx solid var(--stitch-gold-primary);
+  padding-left: var(--stitch-spacing-md);
 }
 
 .reference-text {
   font-size: 26rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.6;
 }
 
@@ -374,8 +376,8 @@ page {
   right: 0;
   display: flex;
   align-items: center;
-  padding: calc(var(--spacing-2) + env(safe-area-inset-bottom)) var(--spacing-2) var(--spacing-2);
-  background: #fff;
+  padding: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom)) var(--stitch-spacing-md) var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
   border-top: 1rpx solid #f0f0f0;
   box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
   z-index: 100;
@@ -387,7 +389,7 @@ page {
   flex-direction: column;
   align-items: center;
   gap: 4rpx;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
   background: none;
   border: none;
 }
@@ -402,7 +404,7 @@ page {
 
 .bar-text {
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .share-bar-item {

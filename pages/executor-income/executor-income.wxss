@@ -1,36 +1,38 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 收入管理页样式 */
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: var(--spacing-4);
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-xxxl);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
 /* ========== 总收入卡片 ========== */
 .income-card {
-  padding: var(--spacing-3);
-  margin-bottom: var(--spacing-2);
-  background: linear-gradient(135deg, var(--green-main) 0%, var(--green-dim) 100%);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(135deg, var(--stitch-green-primary) 0%, var(--stitch-green-dim) 100%);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
   text-align: center;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 .income-label {
   display: block;
   font-size: 28rpx;
   opacity: 0.9;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .income-amount {
   display: block;
   font-size: 80rpx;
   font-weight: 700;
-  margin-bottom: var(--spacing-3);
+  margin-bottom: var(--stitch-spacing-lg);
   text-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
 }
 
@@ -38,10 +40,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-2);
+  border-radius: var(--stitch-radius-md);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .stat-item {
@@ -71,7 +73,7 @@
   width: 100%;
   background: rgba(255, 255, 255, 0.3);
   border: 2rpx solid rgba(255, 255, 255, 0.5);
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 .btn-withdraw:active {
@@ -84,24 +86,24 @@
 
 /* ========== 数据概览 ========== */
 .overview-section {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .section-tabs {
   display: flex;
-  gap: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .tab-item {
   flex: 1;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
   text-align: center;
   background: rgba(255, 255, 255, 0.5);
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   font-size: 28rpx;
-  color: var(--text-dim);
-  transition: all var(--transition-base);
+  color: var(--stitch-text-secondary);
+  transition: all var(--stitch-transition-base);
 }
 
 .tab-item:active {
@@ -109,69 +111,69 @@
 }
 
 .tab-item.active {
-  background: var(--green-main);
-  color: #fff;
+  background: var(--stitch-green-primary);
+  color: var(--stitch-bg-white);
   font-weight: 600;
 }
 
 .overview-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-1);
-  padding: var(--spacing-2);
+  gap: var(--stitch-spacing-sm);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .overview-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
 }
 
 .overview-value {
   font-size: 32rpx;
   font-weight: 700;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   margin-bottom: 8rpx;
 }
 
 .overview-label {
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   text-align: center;
 }
 
 /* ========== 财务明细 ========== */
 .detail-section {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-2);
-  padding: 0 var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-md);
+  padding: 0 var(--stitch-spacing-sm);
 }
 
 .section-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .filter-actions {
   display: flex;
-  gap: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
 }
 
 .filter-text {
   font-size: 26rpx;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .detail-list {
@@ -183,32 +185,32 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-4);
+  padding: var(--stitch-spacing-xxxl);
   background: rgba(255, 255, 255, 0.5);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .empty-icon {
   font-size: 80rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .empty-text {
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .transaction-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  border-radius: var(--stitch-radius-lg);
+  transition: all var(--stitch-transition-base);
 }
 
 .transaction-item:active {
@@ -229,7 +231,7 @@
   align-items: center;
   justify-content: center;
   font-size: 40rpx;
-  margin-right: var(--spacing-2);
+  margin-right: var(--stitch-spacing-md);
   flex-shrink: 0;
 }
 
@@ -253,13 +255,13 @@
 .transaction-title {
   font-size: 28rpx;
   font-weight: 500;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 4rpx;
 }
 
 .transaction-time {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .transaction-right {
@@ -275,43 +277,43 @@
 }
 
 .transaction-amount.positive {
-  color: var(--success);
+  color: var(--stitch-success);
 }
 
 .transaction-amount.negative {
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .transaction-status {
   padding: 4rpx 12rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   font-size: 22rpx;
 }
 
 .transaction-status.pending {
   background: rgba(255, 154, 68, 0.1);
-  color: var(--warning);
+  color: var(--stitch-warning);
 }
 
 .transaction-status.completed {
   background: rgba(0, 138, 23, 0.1);
-  color: var(--success);
+  color: var(--stitch-success);
 }
 
 .transaction-status.failed {
   background: rgba(186, 26, 26, 0.1);
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 /* ========== 加载状态 ========== */
 .loading-state,
 .no-more-state {
-  padding: var(--spacing-3);
+  padding: var(--stitch-spacing-lg);
   text-align: center;
 }
 
 .loading-text,
 .no-more-text {
   font-size: 26rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }

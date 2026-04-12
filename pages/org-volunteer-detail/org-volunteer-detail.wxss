@@ -1,0 +1,487 @@
+/* 清如 ClearSpring - 机构志愿者详情页样式 V-05 */
+
+@import "../../theme.wxss";
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: 160rpx;
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--spacing-2) 0;
+  margin-bottom: var(--spacing-2);
+}
+
+.page-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+/* ========== 志愿者资料卡片 ========== */
+.volunteer-profile-card {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.volunteer-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.volunteer-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.volunteer-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.verified-badge {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+  padding: 4rpx 12rpx;
+  background: rgba(0, 138, 23, 0.1);
+  border-radius: var(--radius-sm);
+}
+
+.badge-icon {
+  font-size: 20rpx;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.badge-text {
+  font-size: 20rpx;
+  color: var(--success);
+}
+
+.volunteer-tags {
+  display: flex;
+  gap: var(--spacing-1);
+}
+
+.tag {
+  padding: 4rpx 12rpx;
+  border-radius: var(--radius-sm);
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.tag-level {
+  background: rgba(212, 184, 123, 0.1);
+  color: var(--gold-main);
+}
+
+.tag-status {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.tag-status.busy {
+  background: rgba(255, 154, 68, 0.1);
+  color: var(--warning);
+}
+
+.tag-status.offline {
+  background: rgba(100, 100, 100, 0.1);
+  color: var(--text-light);
+}
+
+.volunteer-id {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.profile-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: var(--spacing-2) 0;
+  margin-bottom: var(--spacing-2);
+  border-top: 1rpx solid var(--border-divider);
+  border-bottom: 1rpx solid var(--border-divider);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.stat-value {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 64rpx;
+  background: var(--border-divider);
+}
+
+.profile-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* ========== 信息区块 ========== */
+.info-section,
+.certificates-section,
+.service-history-section,
+.reviews-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.info-section,
+.glass {
+  padding: var(--spacing-3);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: var(--spacing-2);
+  display: block;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-bottom: var(--spacing-1);
+}
+
+.section-action {
+  font-size: 26rpx;
+  color: var(--green-main);
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1rpx solid var(--border-divider);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: var(--text-main);
+  max-width: 60%;
+  text-align: right;
+}
+
+/* ========== 证书列表 ========== */
+.certificates-scroll {
+  white-space: nowrap;
+}
+
+.certificates-list {
+  display: inline-flex;
+  gap: var(--spacing-2);
+}
+
+.certificate-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  min-width: 400rpx;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-md);
+}
+
+.cert-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  background: rgba(74, 93, 78, 0.1);
+  flex-shrink: 0;
+}
+
+.cert-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.cert-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+.cert-date {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.cert-status {
+  padding: 4rpx 12rpx;
+  border-radius: var(--radius-sm);
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.cert-status.verified {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.cert-status.pending {
+  background: rgba(255, 154, 68, 0.1);
+  color: var(--warning);
+}
+
+/* ========== 服务记录 ========== */
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.history-item {
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-md);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-2);
+}
+
+.history-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.history-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.history-date {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.history-status {
+  padding: 4rpx 12rpx;
+  border-radius: var(--radius-sm);
+  font-size: 20rpx;
+  font-weight: 500;
+}
+
+.history-status.completed {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.history-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.history-species {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.history-amount {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+.history-rating {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  padding-top: var(--spacing-2);
+  border-top: 1rpx solid var(--border-divider);
+}
+
+.rating-stars {
+  font-size: 24rpx;
+  color: var(--gold-main);
+}
+
+.rating-text {
+  font-size: 22rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 评价列表 ========== */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.review-item {
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-md);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.reviewer-avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.reviewer-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.reviewer-name {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.review-date {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.review-rating {
+  font-size: 28rpx;
+  color: var(--gold-main);
+}
+
+.review-content {
+  margin-bottom: var(--spacing-2);
+}
+
+.review-text {
+  font-size: 26rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+.review-reply {
+  padding: var(--spacing-2);
+  background: rgba(74, 93, 78, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.reply-label {
+  font-size: 22rpx;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.reply-text {
+  font-size: 24rpx;
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* ========== 底部操作栏 ========== */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-top: 1rpx solid var(--border-divider);
+}
+
+.bottom-bar .btn {
+  flex: 1;
+}

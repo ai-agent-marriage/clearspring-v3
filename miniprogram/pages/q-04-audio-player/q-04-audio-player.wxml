@@ -1,0 +1,140 @@
+<!--pages/q-04-audio-player/q-04-audio-player.wxml-->
+<view class="player-container">
+  <!-- 背景 -->
+  <view class="background-blur"></view>
+  
+  <!-- 顶部导航 -->
+  <view class="header">
+    <view class="back-btn" bindtap="goBack">
+      <text class="icon">‹</text>
+    </view>
+    <view class="header-title">梵音播放</view>
+    <view class="more-btn" bindtap="showMore">
+      <text class="icon">⋮</text>
+    </view>
+  </view>
+  
+  <!-- 专辑封面 -->
+  <view class="album-section">
+    <view class="album-cover-wrapper">
+      <image class="album-cover" src="{{currentAudio.cover}}" mode="aspectFill" />
+      <view class="album-shadow"></view>
+    </view>
+    <view class="album-info">
+      <view class="album-title">{{currentAudio.title}}</view>
+      <view class="album-artist">{{currentAudio.artist}}</view>
+    </view>
+  </view>
+  
+  <!-- 播放进度 -->
+  <view class="progress-section">
+    <view class="progress-bar" bindtap="onProgressBarTap">
+      <view class="progress-track">
+        <view class="progress-filled" style="width: {{progress}}%"></view>
+      </view>
+      <view class="progress-thumb" style="left: {{progress}}%"></view>
+    </view>
+    <view class="progress-time">
+      <text class="current-time">{{formatTime(currentTime)}}</text>
+      <text class="total-time">{{formatTime(duration)}}</text>
+    </view>
+  </view>
+  
+  <!-- 播放控制 -->
+  <view class="control-section">
+    <!-- 播放模式 -->
+    <view class="control-btn" bindtap="togglePlayMode">
+      <text class="icon">{{playModeIcon}}</text>
+      <text class="label">{{playModeText}}</text>
+    </view>
+    
+    <!-- 上一曲 -->
+    <view class="control-btn large" bindtap="playPrevious">
+      <text class="icon">⏮</text>
+    </view>
+    
+    <!-- 播放/暂停 -->
+    <view class="control-btn play" bindtap="togglePlay">
+      <text class="icon play-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+    </view>
+    
+    <!-- 下一曲 -->
+    <view class="control-btn large" bindtap="playNext">
+      <text class="icon">⏭</text>
+    </view>
+    
+    <!-- 收藏 -->
+    <view class="control-btn" bindtap="toggleFavorite">
+      <text class="icon {{isFavorite ? 'active' : ''}}">♡</text>
+      <text class="label">收藏</text>
+    </view>
+  </view>
+  
+  <!-- 播放列表 -->
+  <view class="playlist-section" wx:if="{{showPlaylist}}">
+    <view class="playlist-header">
+      <view class="playlist-title">播放列表</view>
+      <view class="playlist-count">共 {{playlist.length}} 首</view>
+    </view>
+    <scroll-view class="playlist-scroll" scroll-y>
+      <view class="playlist-item {{item.id === currentAudio.id ? 'active' : ''}}" 
+            wx:for="{{playlist}}" 
+            wx:key="id"
+            bindtap="onPlaylistItemTap"
+            data-item="{{item}}">
+        <view class="item-index">{{index + 1}}</view>
+        <view class="item-info">
+          <view class="item-title">{{item.title}}</view>
+          <view class="item-artist">{{item.artist}}</view>
+        </view>
+        <view class="item-playing" wx:if="{{item.id === currentAudio.id}}">
+          <view class="playing-wave"></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bar-item" bindtap="showTimer">
+      <text class="icon">⏱</text>
+      <text class="label">定时</text>
+    </view>
+    <view class="bar-item" bindtap="shareAudio">
+      <text class="icon">📤</text>
+      <text class="label">分享</text>
+    </view>
+    <view class="bar-item" bindtap="downloadAudio">
+      <text class="icon">⬇</text>
+      <text class="label">下载</text>
+    </view>
+    <view class="bar-item" bindtap="togglePlaylist">
+      <text class="icon">☰</text>
+      <text class="label">列表</text>
+    </view>
+  </view>
+</view>
+
+<!-- 定时关闭弹窗 -->
+<view class="timer-modal" wx:if="{{showTimerModal}}" bindtap="closeTimer">
+  <view class="timer-content" catchtap="true">
+    <view class="timer-title">定时关闭</view>
+    <view class="timer-options">
+      <view class="timer-option {{timerDuration === 0 ? 'active' : ''}}" bindtap="setTimer" data-duration="0">
+        <text>关闭</text>
+      </view>
+      <view class="timer-option {{timerDuration === 900000 ? 'active' : ''}}" bindtap="setTimer" data-duration="900000">
+        <text>15 分钟</text>
+      </view>
+      <view class="timer-option {{timerDuration === 1800000 ? 'active' : ''}}" bindtap="setTimer" data-duration="1800000">
+        <text>30 分钟</text>
+      </view>
+      <view class="timer-option {{timerDuration === 2700000 ? 'active' : ''}}" bindtap="setTimer" data-duration="2700000">
+        <text>45 分钟</text>
+      </view>
+      <view class="timer-option {{timerDuration === 3600000 ? 'active' : ''}}" bindtap="setTimer" data-duration="3600000">
+        <text>60 分钟</text>
+      </view>
+    </view>
+  </view>
+</view>

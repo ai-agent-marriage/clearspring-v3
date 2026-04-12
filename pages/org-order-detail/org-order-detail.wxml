@@ -1,0 +1,176 @@
+<!-- 清如 ClearSpring - 机构订单详情页 V-03 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">订单详情</text>
+    <text class="page-subtitle">订单号：{{orderInfo.orderNo}}</text>
+  </view>
+
+  <!-- 订单状态卡片 -->
+  <view class="order-status-card glass">
+    <view class="status-header">
+      <view class="status-icon {{orderInfo.status}}">
+        <text wx:if="{{orderInfo.status === 'pending'}}">⏳</text>
+        <text wx:if="{{orderInfo.status === 'assigned'}}">📋</text>
+        <text wx:if="{{orderInfo.status === 'executing'}}">🔄</text>
+        <text wx:if="{{orderInfo.status === 'completed'}}">✅</text>
+        <text wx:if="{{orderInfo.status === 'cancelled'}}">❌</text>
+      </view>
+      <view class="status-info">
+        <text class="status-title">{{orderInfo.statusName}}</text>
+        <text class="status-desc">{{orderInfo.statusDesc}}</text>
+        <text class="status-time">更新时间：{{orderInfo.updateTime}}</text>
+      </view>
+    </view>
+    
+    <!-- 操作按钮 -->
+    <view class="status-actions" wx:if="{{showActions}}">
+      <button class="btn btn-outline btn-small" bindtap="onAssignVolunteer" wx:if="{{orderInfo.status === 'pending'}}">
+        分配志愿者
+      </button>
+      <button class="btn btn-outline btn-small" bindtap="onCancelOrder" wx:if="{{orderInfo.status === 'pending' || orderInfo.status === 'assigned'}}">
+        取消订单
+      </button>
+      <button class="btn btn-outline btn-small" bindtap="onConfirmComplete" wx:if="{{orderInfo.status === 'completed'}}">
+        确认完成
+      </button>
+    </view>
+  </view>
+
+  <!-- 订单基本信息 -->
+  <view class="order-info-section glass">
+    <view class="section-title">订单信息</view>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="info-label">订单编号</text>
+        <text class="info-value">{{orderInfo.orderNo}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">创建时间</text>
+        <text class="info-value">{{orderInfo.createTime}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">执行日期</text>
+        <text class="info-value">{{orderInfo.executeDate}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">订单类型</text>
+        <text class="info-value">{{orderInfo.typeName}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">订单金额</text>
+        <text class="info-value text-green">¥{{orderInfo.amount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 护生信息 -->
+  <view class="species-info-section glass">
+    <view class="section-title">护生信息</view>
+    <view class="species-card">
+      <image class="species-image" src="{{orderInfo.speciesImage}}" mode="aspectFill" wx:if="{{orderInfo.speciesImage}}"/>
+      <view class="species-info" wx:if="{{!orderInfo.speciesImage}}">
+        <text class="species-name">{{orderInfo.speciesName}}</text>
+        <text class="species-desc">{{orderInfo.speciesDesc}}</text>
+        <text class="species-quantity">数量：{{orderInfo.speciesQuantity}} {{orderInfo.speciesUnit}}</text>
+      </view>
+    </view>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="info-label">执行水域</text>
+        <text class="info-value">{{orderInfo.waterArea}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">水域地址</text>
+        <text class="info-value">{{orderInfo.waterAddress}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">备注说明</text>
+        <text class="info-value">{{orderInfo.remark || '无'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 志愿者信息 -->
+  <view class="volunteer-info-section glass" wx:if="{{orderInfo.volunteer}}">
+    <view class="section-title">执行志愿者</view>
+    <view class="volunteer-card" bindtap="onViewVolunteer">
+      <image class="volunteer-avatar" src="{{orderInfo.volunteer.avatar}}" mode="aspectFill"/>
+      <view class="volunteer-info">
+        <view class="volunteer-header">
+          <text class="volunteer-name">{{orderInfo.volunteer.name}}</text>
+          <view class="volunteer-tags">
+            <text class="tag tag-verified" wx:if="{{orderInfo.volunteer.verified}}">✓ 已认证</text>
+            <text class="tag tag-level">Lv.{{orderInfo.volunteer.level}}</text>
+          </view>
+        </view>
+        <view class="volunteer-stats">
+          <text class="stat">服务{{orderInfo.volunteer.serviceDays}}天</text>
+          <text class="stat">完成{{orderInfo.volunteer.completedOrders}}单</text>
+          <text class="stat">好评{{orderInfo.volunteer.rating}}%</text>
+        </view>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 订单进度 -->
+  <view class="order-progress-section glass">
+    <view class="section-title">订单进度</view>
+    <view class="progress-timeline">
+      <view class="timeline-item {{currentStep >= 1 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">订单创建</text>
+          <text class="timeline-date">{{orderInfo.createTime}}</text>
+        </view>
+      </view>
+      <view class="timeline-line {{currentStep >= 2 ? 'active' : ''}}"></view>
+      <view class="timeline-item {{currentStep >= 2 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">志愿者分配</text>
+          <text class="timeline-date">{{orderInfo.assignTime || '待分配'}}</text>
+        </view>
+      </view>
+      <view class="timeline-line {{currentStep >= 3 ? 'active' : ''}}"></view>
+      <view class="timeline-item {{currentStep >= 3 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">开始执行</text>
+          <text class="timeline-date">{{orderInfo.executeTime || '待执行'}}</text>
+        </view>
+      </view>
+      <view class="timeline-line {{currentStep >= 4 ? 'active' : ''}}"></view>
+      <view class="timeline-item {{currentStep >= 4 ? 'active' : ''}}">
+        <view class="timeline-dot"></view>
+        <view class="timeline-content">
+          <text class="timeline-title">执行完成</text>
+          <text class="timeline-date">{{orderInfo.completeTime || '待完成'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 证据材料 -->
+  <view class="evidence-section glass" wx:if="{{orderInfo.evidence && orderInfo.evidence.length > 0}}">
+    <view class="section-title">执行证据</view>
+    <view class="evidence-grid">
+      <image 
+        class="evidence-image" 
+        wx:for="{{orderInfo.evidence}}" 
+        wx:key="*index"
+        src="{{item}}" 
+        mode="aspectFill"
+        bindtap="onPreviewEvidence"
+        data-index="{{index}}"
+      />
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar" wx:if="{{showBottomBar}}">
+    <button class="btn btn-outline" bindtap="onContactVolunteer">联系志愿者</button>
+    <button class="btn btn-primary" bindtap="onPrimaryAction">{{primaryActionText}}</button>
+  </view>
+</view>

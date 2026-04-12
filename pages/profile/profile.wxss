@@ -1,68 +1,60 @@
 /* pages/profile/profile.wxss */
+/* Stitch Design System - UI 优化版本 */
+
+@import "../../theme.wxss";
 
 page {
-  background-color: #f5f5f5;
-  --spacing-1: 16rpx;
-  --spacing-2: 24rpx;
-  --spacing-3: 32rpx;
-  --spacing-4: 48rpx;
-  --radius-sm: 8rpx;
-  --radius-md: 16rpx;
-  --radius-lg: 24rpx;
-  --text-main: #333;
-  --text-dim: #999;
-  --gold-main: #D4B87B;
-  --gold-dim: #6E5E00;
+  background-color: var(--stitch-bg-secondary);
 }
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
 }
 
 /* ========== 通用卡片样式 ========== */
 
 .card {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-2);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  margin-bottom: var(--stitch-spacing-md);
   overflow: hidden;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+  box-shadow: var(--stitch-shadow-sm);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
-  border-bottom: 1rpx solid #f0f0f0;
+  padding: var(--stitch-spacing-md);
+  border-bottom: 1rpx solid var(--stitch-border-secondary);
 }
 
 .card-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: var(--text-main);
+  font-size: var(--stitch-font-xxxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-text-primary);
 }
 
 .card-action {
-  font-size: 24rpx;
-  color: var(--gold-main);
-  padding: 8rpx 16rpx;
+  font-size: var(--stitch-font-l);
+  color: var(--stitch-gold-primary);
+  padding: var(--stitch-spacing-xs) var(--stitch-spacing-sm);
   background: rgba(212, 184, 123, 0.1);
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
 }
 
 /* ========== 用户信息卡片 ========== */
 
 .profile-card {
-  background: linear-gradient(135deg, #07c160 0%, #06ad56 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-green-primary) 0%, var(--stitch-green-secondary) 100%);
+  color: var(--stitch-bg-white);
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
 }
 
 .avatar {
@@ -70,8 +62,8 @@ page {
   height: 128rpx;
   border-radius: 50%;
   border: 4rpx solid rgba(255, 255, 255, 0.3);
-  margin-right: var(--spacing-2);
-  background-color: #fff;
+  margin-right: var(--stitch-spacing-md);
+  background-color: var(--stitch-bg-white);
 }
 
 .user-details {
@@ -79,69 +71,69 @@ page {
 }
 
 .nickname {
-  font-size: 36rpx;
-  font-weight: 600;
+  font-size: var(--stitch-font-xxxxl);
+  font-weight: var(--stitch-font-weight-semibold);
   display: block;
-  margin-bottom: 8rpx;
+  margin-bottom: var(--stitch-spacing-xs);
 }
 
 .user-id {
-  font-size: 24rpx;
+  font-size: var(--stitch-font-l);
   opacity: 0.8;
 }
 
 .login-btn {
   background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  color: var(--stitch-bg-white);
   border: none;
-  border-radius: 32rpx;
-  font-size: 28rpx;
-  margin: 0 var(--spacing-2) var(--spacing-2);
-  padding: 16rpx 32rpx;
+  border-radius: var(--stitch-radius-full);
+  font-size: var(--stitch-font-xxl);
+  margin: 0 var(--stitch-spacing-md) var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-sm) var(--stitch-spacing-lg);
 }
 
 /* ========== 数据统计卡片 ========== */
 
 .stats-card {
-  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+  background: linear-gradient(135deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-1);
-  padding: var(--spacing-2);
+  gap: var(--stitch-spacing-sm);
+  padding: var(--stitch-spacing-md);
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
   background: rgba(212, 184, 123, 0.05);
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
 }
 
 .stat-value {
-  font-size: 40rpx;
-  font-weight: 700;
-  color: var(--gold-main);
+  font-size: var(--stitch-font-xxxxl);
+  font-weight: var(--stitch-font-weight-bold);
+  color: var(--stitch-gold-primary);
   line-height: 1;
-  margin-bottom: 8rpx;
+  margin-bottom: var(--stitch-spacing-xs);
 }
 
 .stat-label {
-  font-size: 22rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-s);
+  color: var(--stitch-text-tertiary);
   text-align: center;
 }
 
 /* ========== 图表容器 ========== */
 
 .chart-container {
-  padding: var(--spacing-2);
-  border-top: 1rpx solid #f0f0f0;
-  background: #fafafa;
+  padding: var(--stitch-spacing-md);
+  border-top: 1rpx solid var(--stitch-border-secondary);
+  background: var(--stitch-bg-tertiary);
 }
 
 .chart-bar-container {
@@ -149,28 +141,28 @@ page {
   justify-content: space-around;
   align-items: flex-end;
   height: 200rpx;
-  padding: var(--spacing-1);
-  background: #fff;
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .chart-bar {
   width: 48rpx;
-  background: linear-gradient(180deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: linear-gradient(180deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  border-radius: var(--stitch-radius-sm) var(--stitch-radius-sm) 0 0;
   transition: all 0.3s ease;
 }
 
 .chart-labels {
   display: flex;
   justify-content: space-around;
-  padding: 0 var(--spacing-1);
+  padding: 0 var(--stitch-spacing-sm);
 }
 
 .chart-label {
-  font-size: 20rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-s);
+  color: var(--stitch-text-tertiary);
   width: 48rpx;
   text-align: center;
 }
@@ -178,21 +170,21 @@ page {
 /* ========== 快捷操作卡片 ========== */
 
 .quick-actions-card {
-  background: linear-gradient(135deg, #fff 0%, #fafafa 100%);
+  background: linear-gradient(135deg, var(--stitch-bg-white) 0%, var(--stitch-bg-tertiary) 100%);
 }
 
 .quick-actions-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-2);
-  padding: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-md);
 }
 
 .quick-action-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
   transition: all 0.2s ease;
 }
 
@@ -207,7 +199,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12rpx;
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .quick-action-emoji {
@@ -215,8 +207,8 @@ page {
 }
 
 .quick-action-name {
-  font-size: 24rpx;
-  color: var(--text-main);
+  font-size: var(--stitch-font-l);
+  color: var(--stitch-text-primary);
   text-align: center;
 }
 
@@ -231,8 +223,8 @@ page {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
-  border-bottom: 1rpx solid #f0f0f0;
+  padding: var(--stitch-spacing-md);
+  border-bottom: 1rpx solid var(--stitch-border-secondary);
   transition: all 0.2s ease;
 }
 
@@ -241,7 +233,7 @@ page {
 }
 
 .menu-item:active {
-  background-color: #fafafa;
+  background-color: var(--stitch-bg-tertiary);
 }
 
 .menu-left {
@@ -251,21 +243,21 @@ page {
 }
 
 .menu-icon {
-  font-size: 36rpx;
-  margin-right: var(--spacing-2);
+  font-size: var(--stitch-font-xxxl);
+  margin-right: var(--stitch-spacing-md);
   width: 48rpx;
   text-align: center;
 }
 
 .menu-name {
-  font-size: 28rpx;
-  color: var(--text-main);
+  font-size: var(--stitch-font-xxl);
+  color: var(--stitch-text-primary);
 }
 
 .menu-right {
   display: flex;
   align-items: center;
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
 }
 
 .menu-badge {
@@ -273,21 +265,21 @@ page {
   height: 32rpx;
   line-height: 32rpx;
   text-align: center;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
-  color: #fff;
-  font-size: 20rpx;
-  border-radius: 16rpx;
-  padding: 0 12rpx;
+  background: linear-gradient(135deg, var(--stitch-error) 0%, #ee5a5a 100%);
+  color: var(--stitch-bg-white);
+  font-size: var(--stitch-font-s);
+  border-radius: var(--stitch-radius-full);
+  padding: 0 var(--stitch-spacing-sm);
 }
 
 .menu-arrow {
-  color: #ccc;
-  font-size: 32rpx;
+  color: var(--stitch-border-primary);
+  font-size: var(--stitch-font-xxl);
   line-height: 1;
 }
 
 /* ========== 底部留白 ========== */
 
 .footer-space {
-  height: var(--spacing-4);
+  height: var(--stitch-spacing-xl);
 }

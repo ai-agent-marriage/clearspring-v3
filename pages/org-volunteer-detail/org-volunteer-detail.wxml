@@ -1,0 +1,176 @@
+<!-- 清如 ClearSpring - 机构志愿者详情页 V-05 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">志愿者详情</text>
+  </view>
+
+  <!-- 志愿者信息卡片 -->
+  <view class="volunteer-profile-card glass">
+    <view class="profile-header">
+      <image class="volunteer-avatar" src="{{volunteerInfo.avatar}}" mode="aspectFill"/>
+      <view class="profile-info">
+        <view class="volunteer-name-row">
+          <text class="volunteer-name">{{volunteerInfo.name}}</text>
+          <view class="verified-badge" wx:if="{{volunteerInfo.verified}}">
+            <text class="badge-icon">✓</text>
+            <text class="badge-text">已认证</text>
+          </view>
+        </view>
+        <view class="volunteer-tags">
+          <text class="tag tag-level">Lv.{{volunteerInfo.level}}</text>
+          <text class="tag tag-status {{volunteerInfo.status}}">{{volunteerInfo.statusText}}</text>
+        </view>
+        <text class="volunteer-id">ID: {{volunteerInfo.volunteerNo}}</text>
+      </view>
+    </view>
+    
+    <view class="profile-stats">
+      <view class="stat-item">
+        <text class="stat-value">{{volunteerInfo.serviceDays}}</text>
+        <text class="stat-label">服务天数</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{volunteerInfo.completedOrders}}</text>
+        <text class="stat-label">完成订单</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{volunteerInfo.rating}}%</text>
+        <text class="stat-label">好评率</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-item">
+        <text class="stat-value">{{volunteerInfo.totalHours}}</text>
+        <text class="stat-label">服务时长(h)</text>
+      </view>
+    </view>
+    
+    <view class="profile-actions">
+      <button class="btn btn-outline" bindtap="onContactVolunteer">
+        <text class="btn-icon">📞</text>
+        联系
+      </button>
+      <button class="btn btn-primary" bindtap="onAssignTask">
+        <text class="btn-icon">📋</text>
+        分配任务
+      </button>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="info-section glass">
+    <view class="section-title">基本信息</view>
+    <view class="info-list">
+      <view class="info-item">
+        <text class="info-label">性别</text>
+        <text class="info-value">{{volunteerInfo.gender}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">年龄</text>
+        <text class="info-value">{{volunteerInfo.age}}岁</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">所在地区</text>
+        <text class="info-value">{{volunteerInfo.location}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">注册时间</text>
+        <text class="info-value">{{volunteerInfo.registerDate}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">擅长领域</text>
+        <text class="info-value">{{volunteerInfo.skills.join('、')}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 资质证书 -->
+  <view class="certificates-section" wx:if="{{certificates.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">资质证书</text>
+    </view>
+    <scroll-view class="certificates-scroll" scroll-x="{{true}}" show-scrollbar="{{false}}">
+      <view class="certificates-list">
+        <view class="certificate-card glass" wx:for="{{certificates}}" wx:key="id">
+          <view class="cert-icon">
+            <text>{{item.type === 'skill' ? '🎓' : '📜'}}</text>
+          </view>
+          <view class="cert-info">
+            <text class="cert-name">{{item.name}}</text>
+            <text class="cert-date">{{item.issueDate}}</text>
+          </view>
+          <view class="cert-status {{item.status}}">
+            <text>{{item.statusText}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 服务记录 -->
+  <view class="service-history-section">
+    <view class="section-header">
+      <text class="section-title">服务记录</text>
+      <text class="section-action" bindtap="onViewAllHistory">查看全部 ›</text>
+    </view>
+    
+    <view class="history-list">
+      <view class="history-item glass" wx:for="{{serviceHistory}}" wx:key="id">
+        <view class="history-header">
+          <view class="history-left">
+            <text class="history-title">{{item.orderName}}</text>
+            <text class="history-date">{{item.date}}</text>
+          </view>
+          <view class="history-status {{item.status}}">
+            <text>{{item.statusText}}</text>
+          </view>
+        </view>
+        <view class="history-content">
+          <text class="history-species">{{item.species}}</text>
+          <text class="history-amount">¥{{item.amount}}</text>
+        </view>
+        <view class="history-rating" wx:if="{{item.rating}}">
+          <text class="rating-stars">{{item.ratingStars}}</text>
+          <text class="rating-text">{{item.ratingComment}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评价列表 -->
+  <view class="reviews-section">
+    <view class="section-header">
+      <text class="section-title">评价 ({{reviews.length}})</text>
+    </view>
+    
+    <view class="reviews-list">
+      <view class="review-item glass" wx:for="{{reviews}}" wx:key="id">
+        <view class="review-header">
+          <image class="reviewer-avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <view class="reviewer-info">
+            <text class="reviewer-name">{{item.reviewerName}}</text>
+            <text class="review-date">{{item.date}}</text>
+          </view>
+          <view class="review-rating">
+            <text class="stars">{{item.stars}}</text>
+          </view>
+        </view>
+        <view class="review-content">
+          <text class="review-text">{{item.content}}</text>
+        </view>
+        <view class="review-reply" wx:if="{{item.reply}}">
+          <text class="reply-label">志愿者回复：</text>
+          <text class="reply-text">{{item.reply}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <button class="btn btn-outline" bindtap="onViewResume">查看简历</button>
+    <button class="btn btn-primary" bindtap="onAssignTask">分配任务</button>
+  </view>
+</view>

@@ -1,23 +1,25 @@
+@import "../../theme.wxss";
+
 /* pages/help/index.wxss */
 
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--stitch-bg-secondary);
 }
 
 /* 搜索区域 */
 .search-section {
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   padding: 20rpx 30rpx;
-  border-bottom: 1rpx solid #eee;
+  border-bottom: 1rpx solid var(--stitch-border-secondary);
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: var(--stitch-bg-secondary);
   border-radius: 40rpx;
   padding: 16rpx 24rpx;
 }
@@ -28,7 +30,7 @@
 }
 
 .search-placeholder {
-  color: #999;
+  color: var(--stitch-text-tertiary);
   font-size: 28rpx;
   flex: 1;
 }
@@ -40,7 +42,7 @@
 }
 
 .search-cancel {
-  color: #666;
+  color: var(--stitch-text-secondary);
   font-size: 28rpx;
   margin-left: 16rpx;
   padding: 8rpx 16rpx;
@@ -48,7 +50,7 @@
 
 /* 分类区域 */
 .category-section {
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   padding: 20rpx 0;
   margin-bottom: 20rpx;
 }
@@ -66,16 +68,16 @@
   display: inline-block;
   padding: 12rpx 32rpx;
   margin-right: 20rpx;
-  background-color: #f5f5f5;
+  background-color: var(--stitch-bg-secondary);
   border-radius: 30rpx;
   font-size: 26rpx;
-  color: #666;
+  color: var(--stitch-text-secondary);
   transition: all 0.3s;
 }
 
 .category-item.active {
-  background-color: #d4a76a;
-  color: #fff;
+  background-color: var(--stitch-gold-primary);
+  color: var(--stitch-bg-white);
 }
 
 /* FAQ 列表区域 */
@@ -86,13 +88,13 @@
 
 .faq-count {
   font-size: 24rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
   margin-bottom: 20rpx;
   text-align: right;
 }
 
 .faq-item {
-  background-color: #fff;
+  background-color: var(--stitch-bg-white);
   border-radius: 16rpx;
   margin-bottom: 20rpx;
   overflow: hidden;
@@ -115,21 +117,21 @@
 .question-text {
   flex: 1;
   font-size: 30rpx;
-  color: #333;
+  color: var(--stitch-text-primary);
   line-height: 1.5;
   margin-right: 20rpx;
 }
 
 .expand-icon {
   font-size: 24rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
   flex-shrink: 0;
 }
 
 .faq-answer {
   padding: 0 32rpx 32rpx;
   font-size: 28rpx;
-  color: #666;
+  color: var(--stitch-text-secondary);
   line-height: 1.8;
   border-top: 1rpx solid #f0f0f0;
   margin-top: 16rpx;
@@ -140,10 +142,10 @@
   display: inline-block;
   margin-top: 16rpx;
   padding: 8rpx 20rpx;
-  background-color: #f5f5f5;
+  background-color: var(--stitch-bg-secondary);
   border-radius: 20rpx;
   font-size: 24rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
 }
 
 /* 空状态 */
@@ -162,7 +164,7 @@
 
 .empty-text {
   font-size: 32rpx;
-  color: #999;
+  color: var(--stitch-text-tertiary);
   margin-bottom: 12rpx;
 }
 
@@ -174,16 +176,16 @@
 /* 联系客服按钮 */
 .contact-section {
   padding: 40rpx 30rpx;
-  background-color: #fff;
-  border-top: 1rpx solid #eee;
+  background-color: var(--stitch-bg-white);
+  border-top: 1rpx solid var(--stitch-border-secondary);
 }
 
 .contact-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #d4a76a;
-  color: #fff;
+  background-color: var(--stitch-gold-primary);
+  color: var(--stitch-bg-white);
   border-radius: 40rpx;
   padding: 24rpx 0;
   font-size: 32rpx;

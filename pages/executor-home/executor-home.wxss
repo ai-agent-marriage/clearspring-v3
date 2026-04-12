@@ -1,9 +1,12 @@
 /* 清如 ClearSpring - 执行者首页样式 */
+/* Stitch Design System - UI 优化版本 */
+
+@import "../../theme.wxss";
 
 .container {
-  padding: var(--spacing-2);
-  padding-bottom: var(--spacing-4);
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-xxl);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
@@ -12,12 +15,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-xl);
 }
 
 .header-left {
@@ -26,42 +29,42 @@
 }
 
 .greeting {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: 8rpx;
+  font-size: var(--stitch-font-xxxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-xs);
 }
 
 .status-tag {
   display: inline-block;
-  padding: 4rpx 16rpx;
-  border-radius: var(--radius-sm);
-  font-size: 22rpx;
-  font-weight: 500;
+  padding: var(--stitch-spacing-xs) var(--stitch-spacing-sm);
+  border-radius: var(--stitch-radius-sm);
+  font-size: var(--stitch-font-s);
+  font-weight: var(--stitch-font-weight-medium);
 }
 
 .status-tag.verified {
-  background: rgba(0, 138, 23, 0.1);
-  color: var(--success);
+  background: var(--stitch-success-light);
+  color: var(--stitch-success);
 }
 
 .status-tag.pending {
-  background: rgba(255, 154, 68, 0.1);
-  color: var(--warning);
+  background: var(--stitch-warning-light);
+  color: var(--stitch-warning);
 }
 
 .status-tag.unverified {
-  background: rgba(186, 26, 26, 0.1);
-  color: var(--error-soft);
+  background: var(--stitch-error-light);
+  color: var(--stitch-error);
 }
 
 .header-right {
   position: relative;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
 }
 
 .notification-icon {
-  font-size: 40rpx;
+  font-size: var(--stitch-font-xxxxl);
 }
 
 .notification-dot {
@@ -70,30 +73,30 @@
   right: 8rpx;
   width: 16rpx;
   height: 16rpx;
-  background: var(--error-soft);
+  background: var(--stitch-error);
   border-radius: 50%;
-  border: 2rpx solid #fff;
+  border: 2rpx solid var(--stitch-bg-white);
 }
 
 /* ========== 快捷入口 ========== */
 .quick-actions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .action-card {
-  padding: var(--spacing-3);
+  padding: var(--stitch-spacing-lg);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-xl);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .action-card:active {
@@ -102,88 +105,88 @@
 
 .action-icon {
   font-size: 64rpx;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .action-text {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--green-main);
-  margin-bottom: 8rpx;
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-green-primary);
+  margin-bottom: var(--stitch-spacing-xs);
 }
 
 .action-desc {
-  font-size: 24rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-l);
+  color: var(--stitch-text-tertiary);
 }
 
 /* ========== 数据区域 ========== */
 .stats-section {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-xl);
 }
 
 .stats-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-2);
-  padding-left: var(--spacing-1);
-  border-left: 6rpx solid var(--green-main);
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  padding-left: var(--stitch-spacing-sm);
+  border-left: 6rpx solid var(--stitch-green-primary);
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
 }
 
 .stat-value {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: var(--green-main);
-  margin-bottom: 8rpx;
+  font-size: var(--stitch-font-xxxxl);
+  font-weight: var(--stitch-font-weight-bold);
+  color: var(--stitch-green-primary);
+  margin-bottom: var(--stitch-spacing-xs);
 }
 
 .stat-label {
-  font-size: 22rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-s);
+  color: var(--stitch-text-tertiary);
   text-align: center;
 }
 
 /* ========== 进行中任务 ========== */
 .ongoing-section {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-2);
-  padding: 0 var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-md);
+  padding: 0 var(--stitch-spacing-sm);
 }
 
 .section-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--text-main);
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-text-primary);
 }
 
 .section-more {
-  font-size: 26rpx;
-  color: var(--green-main);
+  font-size: var(--stitch-font-xl);
+  color: var(--stitch-green-primary);
 }
 
 .ongoing-list {
@@ -195,20 +198,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-4);
+  padding: var(--stitch-spacing-xxxl);
   background: rgba(255, 255, 255, 0.5);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-xl);
 }
 
 .empty-icon {
   font-size: 100rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .empty-text {
-  font-size: 28rpx;
-  color: var(--text-dim);
-  margin-bottom: var(--spacing-3);
+  font-size: var(--stitch-font-xxl);
+  color: var(--stitch-text-tertiary);
+  margin-bottom: var(--stitch-spacing-lg);
 }
 
 .btn-go-order {
@@ -216,13 +219,13 @@
 }
 
 .task-card {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  border-radius: var(--stitch-radius-xl);
+  transition: all var(--stitch-transition-base);
 }
 
 .task-card:active {
@@ -233,96 +236,96 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .task-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: var(--text-main);
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-text-primary);
   flex: 1;
 }
 
 .task-status {
-  padding: 4rpx 16rpx;
-  border-radius: var(--radius-sm);
-  font-size: 22rpx;
-  font-weight: 500;
-  margin-left: var(--spacing-1);
+  padding: var(--stitch-spacing-xs) var(--stitch-spacing-sm);
+  border-radius: var(--stitch-radius-sm);
+  font-size: var(--stitch-font-s);
+  font-weight: var(--stitch-font-weight-medium);
+  margin-left: var(--stitch-spacing-sm);
 }
 
 .task-status.processing {
   background: rgba(74, 93, 78, 0.1);
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .task-status.pending {
-  background: rgba(255, 154, 68, 0.1);
-  color: var(--warning);
+  background: var(--stitch-warning-light);
+  color: var(--stitch-warning);
 }
 
 .task-info {
   display: flex;
   flex-direction: column;
   gap: 8rpx;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .task-location,
 .task-time {
-  font-size: 26rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-xl);
+  color: var(--stitch-text-tertiary);
 }
 
 .task-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: var(--spacing-1);
-  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+  padding-top: var(--stitch-spacing-sm);
+  border-top: 1rpx solid var(--stitch-border-divider);
 }
 
 .task-price {
-  font-size: 32rpx;
-  font-weight: 700;
-  color: var(--green-main);
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-bold);
+  color: var(--stitch-green-primary);
 }
 
 .task-deadline {
-  font-size: 24rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-l);
+  color: var(--stitch-text-tertiary);
 }
 
 /* ========== 公告区域 ========== */
 .notice-section {
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
-  border-left: 6rpx solid var(--warning);
+  border-radius: var(--stitch-radius-xl);
+  border-left: 6rpx solid var(--stitch-warning);
 }
 
 .notice-header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .notice-icon {
-  font-size: 32rpx;
-  margin-right: var(--spacing-1);
+  font-size: var(--stitch-font-xxl);
+  margin-right: var(--stitch-spacing-sm);
 }
 
 .notice-title {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: var(--text-main);
+  font-size: var(--stitch-font-xl);
+  font-weight: var(--stitch-font-weight-semibold);
+  color: var(--stitch-text-primary);
 }
 
 .notice-content {
   display: block;
-  font-size: 26rpx;
-  color: var(--text-dim);
+  font-size: var(--stitch-font-xl);
+  color: var(--stitch-text-tertiary);
   line-height: 1.6;
 }

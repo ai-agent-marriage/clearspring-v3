@@ -1,3 +1,5 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 原生拍摄页样式 */
 
 .container {
@@ -34,12 +36,12 @@
 
 .placeholder-icon {
   font-size: 100rpx;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .placeholder-text {
   font-size: 28rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 /* 拍摄提示遮罩 */
@@ -60,14 +62,14 @@
   width: 500rpx;
   height: 500rpx;
   border: 4rpx solid rgba(255, 255, 255, 0.6);
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   box-shadow: 0 0 0 9999rpx rgba(0, 0, 0, 0.5);
 }
 
 .overlay-tip {
-  margin-top: var(--spacing-2);
+  margin-top: var(--stitch-spacing-md);
   font-size: 26rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
   text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.5);
 }
 
@@ -77,28 +79,28 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-radius: var(--stitch-radius-lg) var(--stitch-radius-lg) 0 0;
 }
 
 /* 模式选择 */
 .mode-selector {
   display: flex;
   justify-content: center;
-  gap: var(--spacing-3);
-  margin-bottom: var(--spacing-2);
+  gap: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .mode-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-1) var(--spacing-2);
-  transition: all var(--transition-base);
+  padding: var(--stitch-spacing-sm) var(--stitch-spacing-md);
+  transition: all var(--stitch-transition-base);
 }
 
 .mode-item:active {
@@ -112,16 +114,16 @@
 .mode-icon {
   font-size: 40rpx;
   margin-bottom: 4rpx;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .mode-text {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .mode-item.active .mode-text {
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   font-weight: 600;
 }
 
@@ -130,7 +132,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .capture-btn {
@@ -138,11 +140,11 @@
   height: 140rpx;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  border: 6rpx solid #fff;
+  border: 6rpx solid var(--stitch-bg-white);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .capture-btn:active {
@@ -150,44 +152,44 @@
 }
 
 .capture-btn.capturing {
-  background: var(--green-main);
-  border-color: var(--green-dim);
+  background: var(--stitch-green-primary);
+  border-color: var(--stitch-green-dim);
 }
 
 .capture-inner {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
-  background: #fff;
-  border: 4rpx solid var(--green-main);
-  transition: all var(--transition-base);
+  background: var(--stitch-bg-white);
+  border: 4rpx solid var(--stitch-green-primary);
+  transition: all var(--stitch-transition-base);
 }
 
 .capture-btn.capturing .capture-inner {
   width: 60rpx;
   height: 60rpx;
-  background: var(--green-main);
+  background: var(--stitch-green-primary);
 }
 
 .capture-tip {
-  margin-top: var(--spacing-1);
+  margin-top: var(--stitch-spacing-sm);
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* 功能选项 */
 .options-row {
   display: flex;
   justify-content: space-around;
-  padding: var(--spacing-1) 0;
+  padding: var(--stitch-spacing-sm) 0;
 }
 
 .option-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-1);
-  transition: all var(--transition-base);
+  padding: var(--stitch-spacing-sm);
+  transition: all var(--stitch-transition-base);
 }
 
 .option-item:active {
@@ -201,7 +203,7 @@
 
 .option-text {
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* ========== 预览弹窗 ========== */
@@ -221,8 +223,8 @@
 .preview-content {
   width: 90%;
   max-width: 600rpx;
-  background: #fff;
-  border-radius: var(--radius-lg);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
   overflow: hidden;
   animation: modalIn 0.3s ease-out;
 }
@@ -246,8 +248,8 @@
 
 .preview-actions {
   display: flex;
-  gap: var(--spacing-2);
-  padding: var(--spacing-2);
+  gap: var(--stitch-spacing-md);
+  padding: var(--stitch-spacing-md);
 }
 
 .btn-retake,
@@ -258,9 +260,9 @@
 .btn-outline {
   min-height: 88rpx;
   background: transparent;
-  border: 2rpx solid var(--green-main);
-  color: var(--green-main);
-  border-radius: var(--radius-md);
+  border: 2rpx solid var(--stitch-green-primary);
+  color: var(--stitch-green-primary);
+  border-radius: var(--stitch-radius-md);
   font-size: 28rpx;
 }
 
@@ -275,15 +277,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.8);
-  padding: var(--spacing-2) var(--spacing-3);
-  border-radius: var(--radius-md);
+  padding: var(--stitch-spacing-md) var(--stitch-spacing-lg);
+  border-radius: var(--stitch-radius-md);
   z-index: 2000;
   animation: fadeInOut 2s ease-in-out;
 }
 
 .toast-text {
   font-size: 28rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 @keyframes fadeInOut {

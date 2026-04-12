@@ -1,36 +1,38 @@
+@import "../../theme.wxss";
+
 /* 免费自主护生登记页样式 */
 
 .container {
   min-height: 100vh;
-  background-color: var(--bg-xuan);
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 140rpx;
 }
 
 /* 合规承诺书 */
 .compliance-card {
-  margin: var(--spacing-2);
-  background: #fff;
-  border: 2rpx solid var(--gold-main);
+  margin: var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
+  border: 2rpx solid var(--stitch-gold-primary);
 }
 
 .compliance-title {
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--gold-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-gold-primary);
+  margin-bottom: var(--stitch-spacing-sm);
   text-align: center;
 }
 
 .compliance-content {
-  background: var(--bg-xuan-light);
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-1);
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .compliance-text {
   font-size: 26rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.8;
   display: block;
 }
@@ -38,56 +40,56 @@
 .compliance-checkbox {
   display: flex;
   align-items: center;
-  padding: var(--spacing-1);
+  padding: var(--stitch-spacing-sm);
 }
 
 .checkbox {
   width: 40rpx;
   height: 40rpx;
-  border: 2rpx solid var(--text-dim);
+  border: 2rpx solid var(--stitch-text-secondary);
   border-radius: 8rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 16rpx;
-  transition: all var(--transition-fast);
+  transition: all var(--stitch-transition-fast);
 }
 
 .checkbox.checked {
-  background: var(--gold-main);
-  border-color: var(--gold-main);
+  background: var(--stitch-gold-primary);
+  border-color: var(--stitch-gold-primary);
 }
 
 .checkbox text {
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 28rpx;
   font-weight: bold;
 }
 
 .checkbox-label {
   font-size: 28rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* 表单区域 */
 .form-section {
-  margin: 0 var(--spacing-2) var(--spacing-2);
-  background: #fff;
-  border-radius: var(--radius-md);
-  padding: var(--spacing-2);
+  margin: 0 var(--stitch-spacing-md) var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
 }
 
 .form-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-2);
-  padding-bottom: var(--spacing-1);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-sm);
   border-bottom: 1rpx solid #e8e8e8;
 }
 
 .form-item {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .form-item:last-child {
@@ -97,24 +99,24 @@
 .form-label {
   display: block;
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 16rpx;
   font-weight: 500;
 }
 
 .required {
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .form-picker {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24rpx var(--spacing-2);
-  background: var(--bg-xuan-light);
-  border-radius: var(--radius-sm);
+  padding: 24rpx var(--stitch-spacing-md);
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .placeholder {
@@ -122,24 +124,24 @@
 }
 
 .picker-arrow {
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
   font-size: 32rpx;
 }
 
 .form-input {
   width: 100%;
-  padding: 24rpx var(--spacing-2);
-  background: var(--bg-xuan-light);
-  border-radius: var(--radius-sm);
+  padding: 24rpx var(--stitch-spacing-md);
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
   font-size: 28rpx;
   box-sizing: border-box;
 }
 
 .form-textarea {
   width: 100%;
-  padding: 24rpx var(--spacing-2);
-  background: var(--bg-xuan-light);
-  border-radius: var(--radius-sm);
+  padding: 24rpx var(--stitch-spacing-md);
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
   font-size: 28rpx;
   box-sizing: border-box;
   min-height: 160rpx;
@@ -164,7 +166,7 @@
   position: relative;
   width: 200rpx;
   height: 200rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   overflow: hidden;
 }
 
@@ -180,14 +182,14 @@
   width: 48rpx;
   height: 48rpx;
   background: rgba(0, 0, 0, 0.6);
-  border-radius: 0 var(--radius-sm) 0 var(--radius-sm);
+  border-radius: 0 var(--stitch-radius-sm) 0 var(--stitch-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .image-delete text {
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 32rpx;
   font-weight: bold;
 }
@@ -195,8 +197,8 @@
 .image-add {
   width: 200rpx;
   height: 200rpx;
-  border: 2rpx dashed var(--gold-main);
-  border-radius: var(--radius-sm);
+  border: 2rpx dashed var(--stitch-gold-primary);
+  border-radius: var(--stitch-radius-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,13 +208,13 @@
 
 .add-icon {
   font-size: 48rpx;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
   font-weight: 300;
 }
 
 .add-text {
   font-size: 24rpx;
-  color: var(--gold-main);
+  color: var(--stitch-gold-primary);
   margin-top: 8rpx;
 }
 
@@ -222,8 +224,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #fff;
-  padding: var(--spacing-2);
+  background: var(--stitch-bg-white);
+  padding: var(--stitch-spacing-md);
   border-top: 1rpx solid #e8e8e8;
   box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.05);
 }
@@ -231,16 +233,16 @@
 .btn-submit {
   width: 100%;
   height: 88rpx;
-  background: linear-gradient(135deg, var(--gold-main) 0%, var(--gold-dim) 100%);
-  color: #fff;
+  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
+  color: var(--stitch-bg-white);
   font-size: 32rpx;
   font-weight: 600;
-  border-radius: var(--radius-md);
+  border-radius: var(--stitch-radius-md);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-base);
+  transition: all var(--stitch-transition-base);
 }
 
 .btn-submit:active {

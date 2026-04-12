@@ -1,0 +1,253 @@
+<!-- 清如 ClearSpring - 机构设置页 V-10 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">机构设置</text>
+  </view>
+
+  <!-- 机构信息 -->
+  <view class="org-info-section glass">
+    <view class="org-header">
+      <image class="org-logo" src="{{orgInfo.logo}}" mode="aspectFill"/>
+      <view class="org-details">
+        <text class="org-name">{{orgInfo.name}}</text>
+        <text class="org-id">机构 ID: {{orgInfo.orgNo}}</text>
+        <view class="org-status {{orgInfo.status}}">
+          <text>{{orgInfo.statusText}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="org-actions">
+      <button class="btn btn-outline btn-small" bindtap="onEditOrgInfo">编辑资料</button>
+    </view>
+  </view>
+
+  <!-- 账户与安全 -->
+  <view class="setting-section">
+    <view class="section-title">账户与安全</view>
+    <view class="setting-list glass">
+      <view class="setting-item" bindtap="onSettingTap" data-action="phone">
+        <view class="setting-left">
+          <text class="setting-icon">📱</text>
+          <text class="setting-label">手机号</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value">{{orgInfo.phone}}</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="email">
+        <view class="setting-left">
+          <text class="setting-icon">📧</text>
+          <text class="setting-label">邮箱</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value">{{orgInfo.email}}</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="password">
+        <view class="setting-left">
+          <text class="setting-icon">🔐</text>
+          <text class="setting-label">登录密码</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value">已设置</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="wechat">
+        <view class="setting-left">
+          <text class="setting-icon">💬</text>
+          <text class="setting-label">微信绑定</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value {{wechatBound ? 'bound' : ''}}">{{wechatBound ? '已绑定' : '未绑定'}}</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 通知设置 -->
+  <view class="setting-section">
+    <view class="section-title">通知设置</view>
+    <view class="setting-list glass">
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">📋</text>
+          <text class="setting-label">订单通知</text>
+          <text class="setting-desc">新订单、订单状态变更提醒</text>
+        </view>
+        <switch class="setting-switch" checked="{{notifications.order}}" color="#4A5D4E" bindchange="onNotificationChange" data-type="order"/>
+      </view>
+      
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">💰</text>
+          <text class="setting-label">结算通知</text>
+          <text class="setting-desc">结算结果、到账提醒</text>
+        </view>
+        <switch class="setting-switch" checked="{{notifications.settlement}}" color="#4A5D4E" bindchange="onNotificationChange" data-type="settlement"/>
+      </view>
+      
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">👥</text>
+          <text class="setting-label">志愿者通知</text>
+          <text class="setting-desc">志愿者申请、任务接受提醒</text>
+        </view>
+        <switch class="setting-switch" checked="{{notifications.volunteer}}" color="#4A5D4E" bindchange="onNotificationChange" data-type="volunteer"/>
+      </view>
+      
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">📢</text>
+          <text class="setting-label">系统通知</text>
+          <text class="setting-desc">平台公告、规则更新提醒</text>
+        </view>
+        <switch class="setting-switch" checked="{{notifications.system}}" color="#4A5D4E" bindchange="onNotificationChange" data-type="system"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 隐私设置 -->
+  <view class="setting-section">
+    <view class="section-title">隐私设置</view>
+    <view class="setting-list glass">
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">👁️</text>
+          <text class="setting-label">机构信息可见性</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value" bindtap="onPrivacySetting">公开</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">📍</text>
+          <text class="setting-label">执行点位可见性</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value" bindtap="onLocationPrivacy">仅合作方可见</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item">
+        <view class="setting-left">
+          <text class="setting-icon">📊</text>
+          <text class="setting-label">统计数据可见性</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value" bindtap="onStatsPrivacy">公开</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 通用设置 -->
+  <view class="setting-section">
+    <view class="section-title">通用设置</view>
+    <view class="setting-list glass">
+      <view class="setting-item" bindtap="onSettingTap" data-action="language">
+        <view class="setting-left">
+          <text class="setting-icon">🌐</text>
+          <text class="setting-label">多语言</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value">{{language}}</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="cache">
+        <view class="setting-left">
+          <text class="setting-icon">🗄️</text>
+          <text class="setting-label">清除缓存</text>
+          <text class="setting-desc">清理临时文件和图片缓存</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value">{{cacheSize}}</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="version">
+        <view class="setting-left">
+          <text class="setting-icon">📦</text>
+          <text class="setting-label">关于我们</text>
+        </view>
+        <view class="setting-right">
+          <text class="setting-value">v{{version}}</text>
+          <text class="setting-arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 帮助与反馈 -->
+  <view class="setting-section">
+    <view class="section-title">帮助与反馈</view>
+    <view class="setting-list glass">
+      <view class="setting-item" bindtap="onSettingTap" data-action="help">
+        <view class="setting-left">
+          <text class="setting-icon">❓</text>
+          <text class="setting-label">帮助中心</text>
+        </view>
+        <text class="setting-arrow">›</text>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="feedback">
+        <view class="setting-left">
+          <text class="setting-icon">✍️</text>
+          <text class="setting-label">意见反馈</text>
+        </view>
+        <text class="setting-arrow">›</text>
+      </view>
+      
+      <view class="setting-item" bindtap="onSettingTap" data-action="contact">
+        <view class="setting-left">
+          <text class="setting-icon">☎️</text>
+          <text class="setting-label">联系我们</text>
+        </view>
+        <text class="setting-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 其他 -->
+  <view class="setting-section">
+    <view class="setting-list glass">
+      <view class="setting-item" bindtap="onSwitchToPrayer">
+        <view class="setting-left">
+          <text class="setting-icon">🙏</text>
+          <text class="setting-label">切换到祈福者端</text>
+          <text class="setting-desc">切换到祈福者版本</text>
+        </view>
+        <text class="setting-arrow">›</text>
+      </view>
+      
+      <view class="setting-item danger" bindtap="onLogout">
+        <view class="setting-left">
+          <text class="setting-icon">🚪</text>
+          <text class="setting-label">退出登录</text>
+        </view>
+        <text class="setting-arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer-info">
+    <text class="footer-text">清如 ClearSpring V4.0 - 机构端</text>
+    <text class="footer-subtext">心如止水 · 行善积德</text>
+  </view>
+</view>

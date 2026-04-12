@@ -1,29 +1,31 @@
+@import "../../theme.wxss";
+
 /* 清如 ClearSpring - 证据提交页样式 */
 
 .container {
-  padding: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
   padding-bottom: 200rpx;
-  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
   min-height: 100vh;
 }
 
 /* ========== 任务信息 ========== */
 .task-info-section {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
-  border-left: 6rpx solid var(--green-main);
+  border-radius: var(--stitch-radius-lg);
+  border-left: 6rpx solid var(--stitch-green-primary);
 }
 
 .task-title {
   display: block;
   font-size: 32rpx;
   font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-1);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .task-meta {
@@ -34,66 +36,66 @@
 .task-id,
 .task-date {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* ========== 上传区域 ========== */
 .upload-section {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .section-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: var(--text-main);
-  margin-bottom: var(--spacing-2);
-  padding-left: var(--spacing-1);
-  border-left: 6rpx solid var(--green-main);
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  padding-left: var(--stitch-spacing-sm);
+  border-left: 6rpx solid var(--stitch-green-primary);
 }
 
 .upload-group {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .upload-group-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .group-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .required {
-  color: var(--error-soft);
+  color: var(--stitch-error);
 }
 
 .group-count {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 /* 照片网格 */
 .upload-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
 }
 
 .photo-item {
   position: relative;
   aspect-ratio: 1;
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
   overflow: hidden;
 }
 
@@ -116,7 +118,7 @@
 }
 
 .delete-icon {
-  color: #fff;
+  color: var(--stitch-bg-white);
   font-size: 32rpx;
   font-weight: bold;
 }
@@ -131,7 +133,7 @@
   align-items: center;
   justify-content: center;
   font-size: 28rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }
 
 .photo-status.uploading {
@@ -148,13 +150,13 @@
 
 .upload-btn {
   aspect-ratio: 1;
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2rpx dashed var(--green-main);
+  border: 2rpx dashed var(--stitch-green-primary);
 }
 
 .upload-btn:active {
@@ -163,13 +165,13 @@
 
 .upload-icon {
   font-size: 48rpx;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
   margin-bottom: 8rpx;
 }
 
 .upload-text {
   font-size: 24rpx;
-  color: var(--green-main);
+  color: var(--stitch-green-primary);
 }
 
 .upload-btn-video {
@@ -180,25 +182,25 @@
 .video-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-1);
+  gap: var(--stitch-spacing-sm);
 }
 
 .video-item {
   position: relative;
   display: flex;
   align-items: center;
-  padding: var(--spacing-1);
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
+  padding: var(--stitch-spacing-sm);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
 }
 
 .video-thumbnail {
   position: relative;
   width: 200rpx;
   height: 120rpx;
-  border-radius: var(--radius-sm);
+  border-radius: var(--stitch-radius-sm);
   overflow: hidden;
-  margin-right: var(--spacing-1);
+  margin-right: var(--stitch-spacing-sm);
 }
 
 .thumbnail-image {
@@ -211,7 +213,7 @@
   bottom: 8rpx;
   right: 8rpx;
   font-size: 20rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
   background: rgba(0, 0, 0, 0.6);
   padding: 4rpx 8rpx;
   border-radius: 4rpx;
@@ -224,14 +226,14 @@
 .video-name {
   display: block;
   font-size: 26rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   margin-bottom: 4rpx;
 }
 
 .video-size {
   display: block;
   font-size: 22rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .video-delete {
@@ -240,7 +242,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: var(--spacing-1);
+  margin-right: var(--stitch-spacing-sm);
 }
 
 .video-progress {
@@ -256,19 +258,19 @@
 
 .progress-bar {
   height: 100%;
-  background: var(--green-main);
-  transition: width var(--transition-base);
+  background: var(--stitch-green-primary);
+  transition: width var(--stitch-transition-base);
 }
 
 /* 文字说明 */
 .description-input {
   width: 100%;
   min-height: 200rpx;
-  background: var(--bg-xuan);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-2);
+  background: var(--stitch-bg-primary);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
   font-size: 28rpx;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
   line-height: 1.6;
   box-sizing: border-box;
 }
@@ -277,42 +279,42 @@
   display: block;
   text-align: right;
   font-size: 24rpx;
-  color: var(--text-dim);
-  margin-top: var(--spacing-1);
+  color: var(--stitch-text-secondary);
+  margin-top: var(--stitch-spacing-sm);
 }
 
 /* ========== 位置信息 ========== */
 .location-section {
-  padding: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-radius: var(--radius-lg);
+  border-radius: var(--stitch-radius-lg);
 }
 
 .location-header {
   display: flex;
   align-items: center;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--stitch-spacing-sm);
 }
 
 .location-icon {
   font-size: 32rpx;
-  margin-right: var(--spacing-1);
+  margin-right: var(--stitch-spacing-sm);
 }
 
 .location-title {
   font-size: 28rpx;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--stitch-text-primary);
 }
 
 .location-address {
   display: block;
   font-size: 26rpx;
-  color: var(--text-dim);
-  margin-bottom: var(--spacing-2);
+  color: var(--stitch-text-secondary);
+  margin-bottom: var(--stitch-spacing-md);
   line-height: 1.5;
 }
 
@@ -322,8 +324,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: var(--spacing-2);
-  padding-bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
@@ -331,12 +333,12 @@
 }
 
 .submit-info {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--stitch-spacing-md);
 }
 
 .info-text {
   font-size: 24rpx;
-  color: var(--text-dim);
+  color: var(--stitch-text-secondary);
 }
 
 .btn-submit {
@@ -354,12 +356,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(186, 26, 26, 0.9);
-  padding: var(--spacing-2) var(--spacing-3);
-  border-radius: var(--radius-md);
+  padding: var(--stitch-spacing-md) var(--stitch-spacing-lg);
+  border-radius: var(--stitch-radius-md);
   z-index: 1000;
 }
 
 .failed-text {
   font-size: 28rpx;
-  color: #fff;
+  color: var(--stitch-bg-white);
 }

@@ -1,0 +1,457 @@
+/* 清如 ClearSpring - 机构资质管理页样式 V-09 */
+
+@import "../../theme.wxss";
+
+.container {
+  padding: var(--spacing-2);
+  padding-bottom: 160rpx;
+  background: linear-gradient(180deg, var(--bg-xuan) 0%, var(--bg-xuan-light) 100%);
+  min-height: 100vh;
+}
+
+/* ========== 页面标题 ========== */
+.page-header {
+  padding: var(--spacing-2) 0;
+  margin-bottom: var(--spacing-2);
+}
+
+.page-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: 12rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 资质状态卡片 ========== */
+.qualification-status-card {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.status-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.status-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64rpx;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.status-icon.verified {
+  background: rgba(0, 138, 23, 0.1);
+}
+
+.status-icon.pending {
+  background: rgba(255, 154, 68, 0.1);
+}
+
+.status-icon.rejected {
+  background: rgba(186, 26, 26, 0.1);
+}
+
+.status-icon.expired {
+  background: rgba(100, 100, 100, 0.1);
+}
+
+.status-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.status-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+.status-desc {
+  font-size: 26rpx;
+  color: var(--text-dim);
+}
+
+.status-date {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.status-actions {
+  margin-top: var(--spacing-2);
+}
+
+/* ========== 审核进度 ========== */
+.progress-section {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--green-main);
+  margin-bottom: var(--spacing-2);
+  display: block;
+}
+
+.text-error {
+  color: var(--error-soft);
+}
+
+.progress-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-1);
+}
+
+.timeline-dot {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: var(--text-light);
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.timeline-item.active .timeline-dot {
+  background: var(--green-main);
+}
+
+.timeline-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+  padding-bottom: var(--spacing-2);
+}
+
+.timeline-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.timeline-date {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.timeline-line {
+  width: 4rpx;
+  height: 48rpx;
+  background: var(--text-light);
+  margin-left: 10rpx;
+}
+
+.timeline-line.active {
+  background: var(--green-main);
+}
+
+/* ========== 驳回原因 ========== */
+.rejection-section {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.rejection-content {
+  padding: var(--spacing-2);
+  background: rgba(186, 26, 26, 0.05);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-2);
+}
+
+.rejection-text {
+  font-size: 28rpx;
+  color: var(--error-soft);
+  line-height: 1.6;
+}
+
+.rejection-suggestions {
+  padding: var(--spacing-2);
+  background: rgba(255, 154, 68, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.suggestions-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--warning);
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.suggestions-text {
+  font-size: 26rpx;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* ========== 证书列表 ========== */
+.certificates-section {
+  margin-bottom: var(--spacing-2);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-bottom: var(--spacing-1);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+.section-action {
+  font-size: 28rpx;
+  color: var(--green-main);
+  font-weight: 500;
+}
+
+.certificates-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.certificate-card {
+  padding: var(--spacing-3);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.cert-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.cert-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  background: rgba(74, 93, 78, 0.1);
+}
+
+.cert-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.cert-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--green-main);
+}
+
+.cert-type {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.cert-status {
+  padding: 4rpx 16rpx;
+  border-radius: var(--radius-sm);
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.cert-status.verified {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.cert-status.pending {
+  background: rgba(255, 154, 68, 0.1);
+  color: var(--warning);
+}
+
+.cert-status.rejected {
+  background: rgba(186, 26, 26, 0.1);
+  color: var(--error-soft);
+}
+
+.cert-status.draft {
+  background: rgba(100, 100, 100, 0.1);
+  color: var(--text-dim);
+}
+
+.cert-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-bottom: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1rpx solid var(--border-divider);
+}
+
+.cert-date,
+.cert-valid {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+.cert-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* ========== 空状态 ========== */
+.empty-state {
+  padding: var(--spacing-xxxl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-lg);
+}
+
+.empty-icon {
+  font-size: 96rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.empty-desc {
+  font-size: 26rpx;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* ========== 资质要求 ========== */
+.requirements-section {
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--radius-lg);
+}
+
+.requirements-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.requirement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2);
+  background: rgba(74, 93, 78, 0.05);
+  border-radius: var(--radius-sm);
+}
+
+.requirement-item.completed {
+  background: rgba(0, 138, 23, 0.05);
+}
+
+.requirement-icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.requirement-item.completed .requirement-icon {
+  background: rgba(0, 138, 23, 0.1);
+  color: var(--success);
+}
+
+.requirement-item:not(.completed) .requirement-icon {
+  background: rgba(74, 93, 78, 0.1);
+  color: var(--green-main);
+}
+
+.requirement-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.requirement-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.requirement-desc {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
+
+/* ========== 底部提示 ========== */
+.bottom-tip {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.tip-icon {
+  font-size: 32rpx;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: var(--text-dim);
+}
