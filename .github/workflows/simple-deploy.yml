@@ -7,17 +7,41 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SSH_KEY_PATH: /tmp/deploy_key_${{ github.run_id }}
     steps:
-      - name: Setup SSH
+      - name: Setup SSH (Secure Key Handling)
         run: |
+          set -e
+          echo "🔐 Setting up SSH with secure key handling..."
           mkdir -p ~/.ssh
-          echo "${{ secrets.VOLCANO_SSH_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H 101.96.192.63 >> ~/.ssh/known_hosts
+          chmod 700 ~/.ssh
+          
+          # Create temporary key file with restricted permissions
+          echo "${{ secrets.VOLCANO_SSH_KEY }}" > "$SSH_KEY_PATH"
+          chmod 600 "$SSH_KEY_PATH"
+          
+          # Add host key to known_hosts
+          ssh-keyscan -H 101.96.192.63 >> ~/.ssh/known_hosts 2>/dev/null || true
+          
+          # Verify key file exists and has correct permissions
+          if [ ! -f "$SSH_KEY_PATH" ]; then
+            echo "❌ SSH key file not created"
+            exit 1
+          fi
+          echo "✅ SSH setup completed"
+      
+      - name: Verify SSH Connection
+        run: |
+          echo "🔍 Verifying SSH connection..."
+          ssh -i "$SSH_KEY_PATH" -o IdentitiesOnly=yes -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=10 clearspring-bot@101.96.192.63 "echo '✅ SSH connection successful'" || {
+            echo "❌ SSH connection failed"
+            exit 1
+          }
       
       - name: Deploy to Server
         run: |
-          ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "
+          ssh -i "$SSH_KEY_PATH" -o IdentitiesOnly=yes -o ConnectTimeout=30 -o ServerAliveInterval=60 clearspring-bot@101.96.192.63 "
             echo '🚀 Starting deployment...'
             cd /home/clearspring-bot/clearspring-v3/api
             
@@ -70,8 +94,32 @@ jobs:
             
             # Health check
             sleep 2
-            curl -s http://localhost:3000/health
-          "
+            curl -s http://localhost:3000/health || {
+              echo '❌ Health check failed'
+              exit 1
+            }
+          " || {
+            echo "❌ Deployment failed, initiating rollback..."
+            # Rollback: Restore previous version
+            ssh -i "$SSH_KEY_PATH" -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "
+              cd /home/clearspring-bot/clearspring-v3/api
+              if [ -f 'app.js.backup' ]; then
+                cp app.js.backup app.js
+                pm2 restart clearspring-api
+                echo '✅ Rollback completed'
+              else
+                echo '⚠️ No backup available for rollback'
+              fi
+            "
+            exit 1
+          }
+      
+      - name: Cleanup SSH Key
+        if: always()
+        run: |
+          echo "🧹 Cleaning up temporary SSH key..."
+          rm -f "$SSH_KEY_PATH" || true
+          echo "✅ Cleanup completed"
       
       - name: Notify Success
         if: success()
