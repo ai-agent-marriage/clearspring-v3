@@ -1,82 +1,81 @@
-/* app.wxss - 全局样式 (Stitch 设计规范) */
+/* app.wxss - Stitch V3.0 禅意定制版全局样式 */
+/* 所有页面自动继承的视觉规范 */
 
-/* 主题色变量 */
+/* ===== 色彩系统 ===== */
 page {
-  --primary-color: #4A5D4E;
-  --secondary-color: #C9B037;
-  --background-color: #EFEEE9;
-  --text-color: #333333;
-  --text-secondary: #666666;
-  --text-placeholder: #999999;
-  --border-color: #E0E0E0;
-  --success-color: #4A5D4E;
-  --error-color: #D9534F;
-  --warning-color: #F0AD4E;
-  
-  /* Vant Weapp 主题定制 */
-  --van-primary-color: #4A5D4E;
-  --van-radius: 8rpx;
-  --van-background-color: #EFEEE9;
-  
-  /* 全局样式 */
-  font-family: 'Noto Serif SC', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #EFEEE9; /* 奶米白底色 */
+  color: #334537; /* 主色文字 */
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 28rpx;
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  box-sizing: border-box;
 }
 
-/* 通用容器 */
-.container {
-  padding: 24rpx;
-  box-sizing: border-box;
+/* ===== 字体系统 ===== */
+/* 标题类统一使用 Noto Serif 衬线体 */
+.headline, .title, .section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: bold;
 }
 
-/* 卡片样式 */
+/* ===== 间距系统 ===== */
+/* 模块间距统一 24rpx */
+.section-gap {
+  margin-bottom: 24rpx;
+}
+
+.card-gap {
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+/* ===== 通用卡片样式 ===== */
 .card {
   background-color: #FFFFFF;
-  border-radius: 8rpx;
-  padding: 24rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+  border-radius: 16rpx;
+  padding: 32rpx 24rpx;
+  box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
 }
 
-/* 按钮通用样式 */
+/* ===== 按钮样式 ===== */
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: #4A5D4E;
   color: #FFFFFF;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
+  font-family: 'Noto Serif SC', serif;
+  letter-spacing: 0.15em;
 }
 
-.btn-secondary {
-  background-color: var(--secondary-color);
+.btn-gold {
+  background-color: #C9B037;
   color: #FFFFFF;
-  border-radius: 8rpx;
+  border-radius: 16rpx;
 }
 
-/* 文本样式 */
+/* ===== 文字颜色 ===== */
 .text-primary {
-  color: var(--primary-color);
+  color: #4A5D4E;
 }
 
-.text-secondary {
-  color: var(--text-secondary);
+.text-gold {
+  color: #C9B037;
 }
 
-.text-center {
-  text-align: center;
+.text-gray {
+  color: #718096;
 }
 
-.text-bold {
-  font-weight: 600;
+.text-muted {
+  color: #676F68;
 }
 
-/* Flex 布局 */
-.flex {
-  display: flex;
+/* ===== 数字高亮（哑光金） ===== */
+.number-highlight {
+  color: #C9B037;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: bold;
 }
 
+/* ===== Flex 居中布局 ===== */
 .flex-center {
   display: flex;
   align-items: center;
@@ -89,17 +88,7 @@ page {
   justify-content: space-between;
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
+/* ===== 安全区域 ===== */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }
-
-/* 间距工具类 */
-.mt-8 { margin-top: 8rpx; }
-.mt-16 { margin-top: 16rpx; }
-.mt-24 { margin-top: 24rpx; }
-.mb-8 { margin-bottom: 8rpx; }
-.mb-16 { margin-bottom: 16rpx; }
-.mb-24 { margin-bottom: 24rpx; }
-.p-16 { padding: 16rpx; }
-.p-24 { padding: 24rpx; }
