@@ -4,5 +4,9 @@
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
-  "usingComponents": {}
+  "usingComponents": {
+    "icon-notification": "/components/icons/notification-icon",
+    "icon-check": "/components/icons/check-icon",
+    "icon-task": "/components/icons/task-icon"
+  }
 }

@@ -5,7 +5,7 @@
   <view class="header glass" role="banner">
     <view class="header-title">机构工作台</view>
     <view class="header-notification" bindtap="onNotification" role="button" aria-label="通知图标">
-      <text class="notification-icon" aria-hidden="true">🔔</text>
+      <icon-notification size="large" color="gold" />
     </view>
   </view>
 
@@ -17,7 +17,7 @@
     </view>
     <view class="org-status-row">
       <view class="status-badge audited" wx:if="{{org.audited}}" role="status" aria-label="已审核状态">
-        <text class="status-icon" aria-hidden="true">✅</text>
+        <icon-check size="small" color="green" />
         <text class="status-text">已审核</text>
       </view>
       <view class="org-total-orders">
