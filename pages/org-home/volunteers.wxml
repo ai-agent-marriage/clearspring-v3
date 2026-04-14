@@ -8,7 +8,7 @@
   <!-- 顶部操作区 -->
   <view class="action-section">
     <button class="btn btn-invite" bindtap="onGenerateInvite">
-      <text class="btn-icon">📩</text>
+      <icon-task size="medium" color="gold" />
       <text class="btn-text">生成邀请码</text>
     </button>
   </view>
@@ -58,7 +58,7 @@
   <view class="volunteers-section">
     <!-- 空状态 -->
     <view class="empty-state" wx:if="{{volunteers.length === 0}}">
-      <text class="empty-icon">👥</text>
+      <icon-inbox size="large" color="default" />
       <text class="empty-text">暂无绑定志愿者</text>
       <text class="empty-desc">生成邀请码邀请志愿者加入吧</text>
       <button class="btn btn-invite-empty" bindtap="onGenerateInvite">
@@ -72,9 +72,13 @@
         <view class="volunteer-info">
           <view class="volunteer-name">
             <text>{{item.name}}</text>
-            <text class="certified-badge" wx:if="{{item.certified}}">✅ 已实名</text>
+            <text class="certified-badge" wx:if="{{item.certified}}">
+              <icon-check size="small" color="green" /> 已实名
+            </text>
           </view>
-          <view class="volunteer-region">📍 {{item.region}}</view>
+          <view class="volunteer-region">
+            <icon-location size="small" color="default" /> {{item.region}}
+          </view>
         </view>
       </view>
       

@@ -4,5 +4,11 @@
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
-  "usingComponents": {}
+  "usingComponents": {
+    "icon-people": "/components/icons/people-icon",
+    "icon-check": "/components/icons/check-icon",
+    "icon-location": "/components/icons/location-icon",
+    "icon-inbox": "/components/icons/inbox-icon",
+    "icon-task": "/components/icons/task-icon"
+  }
 }
