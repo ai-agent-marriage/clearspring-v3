@@ -78,16 +78,14 @@
       </view>
     </view>
   </view>
+</view>
 
-  <!-- 护生功德林入口（吸底上方） -->
-  <view class="forest-section">
-    <button class="forest-btn" bindtap="goToForest">
-      <text class="forest-icon">🌳</text>
-      <text class="forest-text">护生功德林</text>
-      <text class="forest-arrow">›</text>
-    </button>
-  </view>
-  
-  <!-- 自定义 TabBar -->
-  <tab-bar selected="0"/>
+<!-- 护生功德林按钮（Fixed 悬浮，TabBar 之上） -->
+<view class="forest-fixed-btn" bindtap="goToForest">
+  <svg class="forest-icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2L12 22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12 6L8 10L12 14L16 10L12 6Z" fill="white"/>
+    <path d="M12 14L8 18L12 22L16 18L12 14Z" fill="white"/>
+  </svg>
+  <text class="forest-fixed-text">护生功德林</text>
 </view>

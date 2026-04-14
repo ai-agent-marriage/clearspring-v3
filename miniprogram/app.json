@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/zen/index",
     "pages/index/index",
     "pages/audio/index",
-    "pages/zen/index",
     "pages/zen/home1",
     "pages/zen/home2",
     "pages/zen/species-list",
