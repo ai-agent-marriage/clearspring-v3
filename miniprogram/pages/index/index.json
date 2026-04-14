@@ -1,8 +1,4 @@
 {
-  "usingComponents": {
-    "van-button": "@vant/weapp/button/index",
-    "van-tag": "@vant/weapp/tag/index"
-  },
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true
 }
