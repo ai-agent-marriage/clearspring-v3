@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "梵音",
-  "enablePullDownRefresh": true
+  "navigationBarBackgroundColor": "#4A5D4E",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "tab-bar": "/custom-tab-bar/index"
+  }
 }

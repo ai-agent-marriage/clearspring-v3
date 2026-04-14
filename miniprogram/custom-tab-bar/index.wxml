@@ -1,0 +1,50 @@
+<!--custom-tab-bar/index.wxml-->
+<view class="tabbar-container">
+  <!-- 首页 -->
+  <view class="tabbar-item {{selected === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+    <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 9L12 2L21 9V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9Z" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 21V12H15V21" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <text class="tabbar-text">首页</text>
+  </view>
+  
+  <!-- 梵音 -->
+  <view class="tabbar-item {{selected === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+    <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18V5L21 3V16" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" 
+            stroke="currentColor" stroke-width="2"/>
+      <circle cx="18" cy="16" r="3" 
+            stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <text class="tabbar-text">梵音</text>
+  </view>
+  
+  <!-- 禅理 -->
+  <view class="tabbar-item {{selected === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+    <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="9" 
+            stroke="currentColor" stroke-width="2"/>
+      <path d="M12 3C12 3 16 8 16 12C16 16 12 21 12 21" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 3C12 3 8 8 8 12C8 16 12 21 12 21" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <text class="tabbar-text">禅理</text>
+  </view>
+  
+  <!-- 我的 -->
+  <view class="tabbar-item {{selected === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+    <svg class="tabbar-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="8" r="4" 
+            stroke="currentColor" stroke-width="2"/>
+      <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" 
+            stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <text class="tabbar-text">我的</text>
+  </view>
+</view>

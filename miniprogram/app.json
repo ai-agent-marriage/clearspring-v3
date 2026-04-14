@@ -19,38 +19,6 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#EFEEE9"
   },
-  "tabBar": {
-    "color": "#718096",
-    "selectedColor": "#4A5D4E",
-    "backgroundColor": "#EFEEE9",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "assets/tabbar/home.png",
-        "selectedIconPath": "assets/tabbar/home-active.png"
-      },
-      {
-        "pagePath": "pages/audio/index",
-        "text": "梵音",
-        "iconPath": "assets/tabbar/audio.png",
-        "selectedIconPath": "assets/tabbar/audio-active.png"
-      },
-      {
-        "pagePath": "pages/zen/index",
-        "text": "禅理",
-        "iconPath": "assets/tabbar/zen.png",
-        "selectedIconPath": "assets/tabbar/zen-active.png"
-      },
-      {
-        "pagePath": "pages/profile/index",
-        "text": "我的",
-        "iconPath": "assets/tabbar/profile.png",
-        "selectedIconPath": "assets/tabbar/profile-active.png"
-      }
-    ]
-  },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

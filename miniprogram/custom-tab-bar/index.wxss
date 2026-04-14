@@ -1,0 +1,56 @@
+/* custom-tab-bar/index.wxss */
+/* Stitch V3.0 禅意定制版 TabBar 规范 */
+
+.tabbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: #EFEEE9;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 2rpx solid rgba(195, 200, 193, 0.15);
+  z-index: 1000;
+}
+
+.tabbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 16rpx 24rpx;
+  transition: all 0.3s ease;
+}
+
+.tabbar-icon {
+  width: 48rpx;
+  height: 48rpx;
+  color: #718096;
+  transition: color 0.3s ease;
+}
+
+.tabbar-item.active .tabbar-icon {
+  color: #4A5D4E;
+}
+
+.tabbar-text {
+  font-size: 20rpx;
+  color: #718096;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.tabbar-item.active .tabbar-text {
+  color: #4A5D4E;
+  font-weight: 500;
+}
+
+.tabbar-item:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
