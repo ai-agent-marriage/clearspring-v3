@@ -1,0 +1,121 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="护生物种" show-back="true" show-share="true"/>
+
+  <!-- Tab 导航 -->
+  <view class="tab-nav">
+    <view class="tab-item" bindtap="onSwitchTab" data-tab="0">
+      <text class="tab-text {{currentTab === 0 ? 'active' : ''}}">物种百科</text>
+    </view>
+    <view class="tab-item" bindtap="onSwitchTab" data-tab="1">
+      <text class="tab-text {{currentTab === 1 ? 'active' : ''}}">委托护生服务</text>
+    </view>
+    <view class="tab-item" bindtap="onSwitchTab" data-tab="2">
+      <text class="tab-text {{currentTab === 2 ? 'active' : ''}}">功德林榜单</text>
+    </view>
+  </view>
+
+  <!-- 发起护生委托 CTA -->
+  <view class="cta-section">
+    <view class="cta-card">
+      <view class="cta-content">
+        <view class="cta-text-section">
+          <text class="cta-title">发起护生委托</text>
+          <text class="cta-subtitle">选择科学护生方案，由专业团队执行，确保每一个生命都能回归自然，延续福报。</text>
+        </view>
+        <button class="cta-button" bindtap="onReserve">
+          <text class="material-icons cta-icon">add_circle</text>
+          <text class="cta-btn-text">立即预约</text>
+        </button>
+      </view>
+      <view class="cta-decoration"></view>
+    </view>
+  </view>
+
+  <!-- 委托明细列表 -->
+  <view class="orders-section">
+    <view class="section-header">
+      <text class="section-title">当前委托明细</text>
+      <text class="section-count">共 {{orders.length}} 笔服务</text>
+    </view>
+
+    <view class="orders-grid">
+      <!-- 订单卡片 1 -->
+      <view class="order-card" bindtap="onOrderDetail" data-id="1">
+        <view class="order-header">
+          <view class="order-info">
+            <image class="order-thumb" src="{{orders[0].image}}" mode="aspectFill"/>
+            <view class="order-text">
+              <text class="order-name">{{orders[0].name}}</text>
+              <text class="order-id">订单编号：{{orders[0].id}}</text>
+            </view>
+          </view>
+          <view class="order-status processing">执行中</view>
+        </view>
+        <view class="order-footer">
+          <view class="order-meta">
+            <view class="meta-item">
+              <text class="material-icons meta-icon">calendar_today</text>
+              <text class="meta-text">{{orders[0].date}}</text>
+            </view>
+            <view class="meta-item">
+              <text class="material-icons meta-icon">location_on</text>
+              <text class="meta-text">{{orders[0].location}}</text>
+            </view>
+          </view>
+          <view class="order-action">
+            <text class="action-text">详情</text>
+            <text class="material-icons action-icon">chevron_right</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 订单卡片 2 -->
+      <view class="order-card" bindtap="onOrderDetail" data-id="2">
+        <view class="order-header">
+          <view class="order-info">
+            <image class="order-thumb" src="{{orders[1].image}}" mode="aspectFill"/>
+            <view class="order-text">
+              <text class="order-name">{{orders[1].name}}</text>
+              <text class="order-id">订单编号：{{orders[1].id}}</text>
+            </view>
+          </view>
+          <view class="order-status completed">已完成</view>
+        </view>
+        <view class="order-footer">
+          <view class="order-meta">
+            <view class="meta-item">
+              <text class="material-icons meta-icon">calendar_today</text>
+              <text class="meta-text">{{orders[1].date}}</text>
+            </view>
+            <view class="meta-item">
+              <text class="material-icons meta-icon">location_on</text>
+              <text class="meta-text">{{orders[1].location}}</text>
+            </view>
+          </view>
+          <view class="order-action">
+            <text class="action-text">凭证</text>
+            <text class="material-icons action-icon">verified</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 合规确认弹窗 -->
+  <view class="modal-overlay {{showModal ? 'show' : ''}}" bindtap="hideModal">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-icon">
+        <text class="material-icons">gavel</text>
+      </view>
+      <view class="modal-body">
+        <text class="modal-title">合规护生承诺确认</text>
+        <text class="modal-desc">本人已阅读并知晓相关环保及宗教法规，承诺所委托护生物种符合当地生态安全标准，非外来入侵物种。</text>
+      </view>
+      <view class="modal-actions">
+        <button class="modal-btn primary" bindtap="onConfirm">确认并继续</button>
+        <button class="modal-btn secondary" bindtap="hideModal">返回修改</button>
+      </view>
+    </view>
+  </view>
+</view>

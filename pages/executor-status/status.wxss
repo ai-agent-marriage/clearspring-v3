@@ -1,0 +1,455 @@
+/* 审核状态 - O-03 - Stitch V3.0 规范 */
+
+page {
+  --bg-color: #EFEEE9;
+  --primary-color: #4A5D4E;
+  --primary-container: #4A5D4E;
+  --secondary-color: #C9B037;
+  --text-primary: #1B1C19;
+  --text-secondary: #434843;
+  --text-disabled: #737872;
+  --surface: #FFFFFF;
+  --surface-container: #F5F4EF;
+  --outline-variant: #C3C8C1;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  padding-bottom: 40rpx;
+}
+
+/* 导航栏 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 88rpx;
+  background-color: rgba(250, 249, 244, 0.4);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+  height: 100%;
+}
+
+.navbar-left,
+.navbar-right {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-size: 24rpx;
+  color: var(--primary-color);
+}
+
+.navbar-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* 主内容区域 */
+.main-content {
+  padding: 64rpx 20rpx 40rpx;
+  max-width: 750rpx;
+  margin: 0 auto;
+}
+
+/* 状态卡片 */
+.status-card {
+  background: linear-gradient(135deg, rgba(250, 249, 244, 0.9) 0%, rgba(233, 232, 227, 0.4) 100%);
+  border-radius: 32rpx;
+  padding: 40rpx;
+  margin-bottom: 24rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(circle at 20% 30%, rgba(74, 93, 78, 0.03) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, rgba(166, 137, 102, 0.03) 0%, transparent 40%);
+  z-index: -1;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24rpx;
+}
+
+.status-info {
+  flex: 1;
+}
+
+.status-label {
+  font-size: 20rpx;
+  color: var(--secondary-color);
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  margin-bottom: 8rpx;
+}
+
+.status-value {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48rpx;
+  font-weight: 900;
+  color: var(--primary-color);
+  margin-bottom: 8rpx;
+}
+
+.status-order-no {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background-color: rgba(201, 176, 55, 0.1);
+  padding: 12rpx 20rpx;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.status-time {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  color: var(--text-secondary);
+  opacity: 0.8;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+/* 详情区域 */
+.detail-section {
+  margin-bottom: 24rpx;
+}
+
+.section-title-with-line {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+.section-title-with-line::before {
+  content: '';
+  width: 4rpx;
+  height: 24rpx;
+  background-color: var(--secondary-color);
+  border-radius: 2rpx;
+  margin-right: 12rpx;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.detail-card {
+  background-color: var(--surface);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.04);
+  border: 1rpx solid rgba(195, 200, 193, 0.1);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 12rpx 0;
+}
+
+.detail-item:first-child {
+  padding-top: 0;
+}
+
+.detail-item:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.detail-icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(74, 93, 78, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.detail-content {
+  flex: 1;
+}
+
+.detail-label {
+  font-size: 16rpx;
+  color: var(--text-secondary);
+  opacity: 0.6;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1rpx;
+}
+
+.detail-value {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-top: 4rpx;
+}
+
+/* 服务卡片 */
+.service-card {
+  background-color: var(--surface-container);
+  border-radius: 24rpx;
+  padding: 32rpx;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.service-label {
+  font-size: 16rpx;
+  color: var(--secondary-color);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+  margin-bottom: 12rpx;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.tag {
+  background-color: rgba(74, 93, 78, 0.05);
+  padding: 8rpx 16rpx;
+  border-radius: 32rpx;
+  font-size: 20rpx;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.service-wish {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.service-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24rpx;
+  border-top: 1rpx solid rgba(195, 200, 193, 0.2);
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.contact-action {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+/* 费用区域 */
+.amount-section {
+  background-color: var(--surface);
+  border-radius: 32rpx;
+  padding: 40rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
+}
+
+.amount-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32rpx;
+}
+
+.amount-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.amount-total {
+  text-align: right;
+}
+
+.amount-label {
+  font-size: 16rpx;
+  color: var(--secondary-color);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 4rpx;
+}
+
+.amount-value {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48rpx;
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.amount-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.amount-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.amount-item-label {
+  color: var(--text-secondary);
+}
+
+.amount-item-value {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.amount-item-gold {
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.amount-item-gold .amount-item-label,
+.amount-item-gold .amount-item-value {
+  color: var(--secondary-color);
+}
+
+/* 合规区域 */
+.compliance-section {
+  background-color: rgba(74, 93, 78, 0.05);
+  border-radius: 32rpx;
+  padding: 40rpx;
+  border: 1rpx solid rgba(74, 93, 78, 0.1);
+  margin-bottom: 24rpx;
+}
+
+.compliance-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.checkbox {
+  transform: scale(1.2);
+}
+
+.compliance-label {
+  flex: 1;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.compliance-link {
+  color: var(--secondary-color);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: var(--primary-container);
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: 700;
+  padding: 40rpx 0;
+  border-radius: 24rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  box-shadow: 0 8rpx 32rpx rgba(74, 93, 78, 0.1);
+  transition: all 0.3s;
+}
+
+.btn-submit:active:not([disabled]) {
+  transform: scale(0.98);
+  filter: brightness(1.1);
+}
+
+.btn-submit[disabled] {
+  opacity: 0.5;
+}
+
+.footer-text {
+  text-align: center;
+  font-size: 16rpx;
+  color: var(--text-disabled);
+  text-transform: uppercase;
+  letter-spacing: 4rpx;
+  margin-top: 24rpx;
+}

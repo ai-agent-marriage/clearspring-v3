@@ -1,0 +1,65 @@
+<!-- 支付页面 - Stitch V3.0 规范 -->
+<view class="container">
+  <!-- 支付金额卡片 -->
+  <view class="amount-card">
+    <text class="amount-label">支付金额</text>
+    <text class="amount-value">¥{{amount.toFixed(2)}}</text>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="order-info">
+    <view class="info-row">
+      <text class="info-label">订单编号</text>
+      <text class="info-value">{{orderNo}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">支付状态</text>
+      <text class="info-value status-{{status}}">{{statusText}}</text>
+    </view>
+  </view>
+
+  <!-- 倒计时 -->
+  <view class="countdown-container">
+    <text class="countdown-label">剩余支付时间</text>
+    <text class="countdown-time">{{countdownText}}</text>
+  </view>
+
+  <!-- 支付按钮 -->
+  <view class="action-area">
+    <button 
+      class="btn-primary" 
+      bindtap="handlePay" 
+      disabled="{{isPaying}}"
+      loading="{{isPaying}}">
+      {{isPaying ? '支付中...' : '立即支付'}}
+    </button>
+    <button class="btn-secondary" bindtap="handleCancel">
+      取消支付
+    </button>
+  </view>
+
+  <!-- 支付结果弹窗 -->
+  <view class="result-modal {{showResult ? 'show' : ''}}" wx:if="{{showResult}}">
+    <view class="modal-content">
+      <view class="result-icon">
+        <text class="material-icons">{{status === 'success' ? 'check_circle' : 'error'}}</text>
+      </view>
+      <text class="result-title">{{resultTitle}}</text>
+      <text class="result-message">{{resultMessage}}</text>
+      
+      <view class="modal-actions">
+        <button 
+          class="btn-primary" 
+          bindtap="handleRetry"
+          wx:if="{{status !== 'success'}}">
+          重新支付
+        </button>
+        <button 
+          class="btn-secondary" 
+          bindtap="handleCancel">
+          {{status === 'success' ? '返回' : '取消'}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

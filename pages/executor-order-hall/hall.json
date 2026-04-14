@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "抢单大厅",
+  "navigationStyle": "custom",
+  "usingComponents": {},
+  "enablePullDownRefresh": true
+}

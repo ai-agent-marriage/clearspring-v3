@@ -1,0 +1,176 @@
+<!-- 资质审核页面 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="back-icon" bindtap="goBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="navbar-title">资质审核</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="showFilter">
+        <text class="material-icons">filter_list</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="material-icons search-icon">search</text>
+      <input class="search-input" placeholder="搜索机构名称、统一社会信用代码" placeholder-class="search-placeholder" bindinput="onSearchInput"/>
+    </view>
+  </view>
+
+  <!-- 状态筛选 Tabs -->
+  <scroll-view class="tabs-scroll" scroll-x="true">
+    <view class="tabs">
+      <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+        <text>全部</text>
+      </view>
+      <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+        <text>待审核</text>
+      </view>
+      <view class="tab-item {{currentTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+        <text>已通过</text>
+      </view>
+      <view class="tab-item {{currentTab === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+        <text>已拒绝</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 资质申请列表 -->
+  <scroll-view class="qualification-list-scroll" scroll-y="true">
+    <view class="qualification-list">
+      <!-- 资质卡片 1 -->
+      <view class="qualification-card">
+        <view class="qual-header">
+          <view class="qual-org-info">
+            <text class="qual-org-name">清如公益中心</text>
+            <view class="qual-type">
+              <text class="material-icons">verified</text>
+              <text>公益组织资质</text>
+            </view>
+          </view>
+          <view class="qual-status urgent">待审核</view>
+        </view>
+        <view class="qual-content">
+          <view class="qual-info-row">
+            <text class="info-label">统一社会信用代码：</text>
+            <text class="info-value">51330000MJ9876543X</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">法定代表人：</text>
+            <text class="info-value">张静修</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">注册资金：</text>
+            <text class="info-value">100 万元</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">申请时间：</text>
+            <text class="info-value">2024-05-01 10:30</text>
+          </view>
+          <view class="qual-documents">
+            <text class="doc-title">提交材料 (5)</text>
+            <view class="doc-list">
+              <view class="doc-item">
+                <text class="material-icons doc-icon">description</text>
+                <text class="doc-name">组织机构代码证</text>
+              </view>
+              <view class="doc-item">
+                <text class="material-icons doc-icon">description</text>
+                <text class="doc-name">法人身份证</text>
+              </view>
+              <view class="doc-item">
+                <text class="material-icons doc-icon">description</text>
+                <text class="doc-name">银行开户许可证</text>
+              </view>
+              <view class="doc-item">
+                <text class="material-icons doc-icon">description</text>
+                <text class="doc-name">公益活动记录</text>
+              </view>
+              <view class="doc-item">
+                <text class="material-icons doc-icon">description</text>
+                <text class="doc-name">年度审计报告</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="qual-actions">
+          <button class="btn btn-reject" bindtap="rejectQualification" data-id="ORG20240501">拒绝</button>
+          <button class="btn btn-view" bindtap="viewQualificationDetail" data-id="ORG20240501">查看详情</button>
+          <button class="btn btn-approve" bindtap="approveQualification" data-id="ORG20240501">通过</button>
+        </view>
+      </view>
+
+      <!-- 资质卡片 2 -->
+      <view class="qualification-card">
+        <view class="qual-header">
+          <view class="qual-org-info">
+            <text class="qual-org-name">西湖园林局</text>
+            <view class="qual-type">
+              <text class="material-icons">verified</text>
+              <text>政府机构资质</text>
+            </view>
+          </view>
+          <view class="qual-status completed">已通过</view>
+        </view>
+        <view class="qual-content">
+          <view class="qual-info-row">
+            <text class="info-label">统一社会信用代码：</text>
+            <text class="info-value">11330100002345678Y</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">法定代表人：</text>
+            <text class="info-value">李明远</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">申请时间：</text>
+            <text class="info-value">2024-04-15 09:00</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">审核时间：</text>
+            <text class="info-value">2024-04-16 14:30</text>
+          </view>
+        </view>
+        <view class="qual-actions">
+          <button class="btn btn-view" bindtap="viewQualificationDetail" data-id="GOV20240415">查看详情</button>
+        </view>
+      </view>
+
+      <!-- 资质卡片 3 -->
+      <view class="qualification-card">
+        <view class="qual-header">
+          <view class="qual-org-info">
+            <text class="qual-org-name">灵隐寺文物保护委员会</text>
+            <view class="qual-type">
+              <text class="material-icons">verified</text>
+              <text>宗教场所资质</text>
+            </view>
+          </view>
+          <view class="qual-status rejected">已拒绝</view>
+        </view>
+        <view class="qual-content">
+          <view class="qual-info-row">
+            <text class="info-label">统一社会信用代码：</text>
+            <text class="info-value">51330100MJ1234567Z</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">法定代表人：</text>
+            <text class="info-value">慧明法师</text>
+          </view>
+          <view class="qual-info-row">
+            <text class="info-label">拒绝原因：</text>
+            <text class="info-value reject-reason">材料不完整，缺少宗教活动场所登记证</text>
+          </view>
+        </view>
+        <view class="qual-actions">
+          <button class="btn btn-view" bindtap="viewQualificationDetail" data-id="REL20240410">查看详情</button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

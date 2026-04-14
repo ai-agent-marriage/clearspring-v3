@@ -1,238 +1,327 @@
-/* 护生功德林主页面样式 */
-/* Stitch Design System - UI 优化版本 */
-
-@import "../../theme.wxss";
+/* Stitch V3.0 设计规范 */
+/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 间距：24rpx */
 
 .container {
   min-height: 100vh;
-  background-color: var(--stitch-bg-primary);
-  padding-bottom: 120rpx;
+  background-color: #EFEEE9;
+  padding-bottom: 240rpx;
 }
 
-/* 合规声明栏 */
-.compliance-banner {
-  background: linear-gradient(135deg, var(--stitch-warning-light) 0%, rgba(255, 238, 186, 0.8) 100%);
-  padding: var(--stitch-spacing-sm) var(--stitch-spacing-md);
-  border-bottom: 1rpx solid rgba(224, 216, 160, 0.6);
-}
-
-.compliance-text {
-  display: flex;
-  align-items: center;
+/* 英雄视觉区域 */
+.hero-section {
+  position: relative;
+  height: 574rpx;
+  width: 100%;
   overflow: hidden;
 }
 
-.compliance-text text {
-  font-size: var(--stitch-font-l);
-  color: #856404;
-  white-space: nowrap;
-  animation: scroll-text 15s linear infinite;
-}
-
-@keyframes scroll-text {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Tab 栏 */
-.tab-bar {
-  display: flex;
-  background: var(--stitch-bg-white);
-  border-bottom: 1rpx solid var(--stitch-border-primary);
-}
-
-.tab-item {
-  flex: 1;
-  text-align: center;
-  padding: var(--stitch-spacing-md) 0;
-  font-size: var(--stitch-font-xxl);
-  color: var(--stitch-text-tertiary);
-  position: relative;
-  transition: all var(--stitch-transition-base);
-}
-
-.tab-item.active {
-  color: var(--stitch-gold-primary);
-  font-weight: var(--stitch-font-weight-semibold);
-}
-
-.tab-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60rpx;
-  height: 4rpx;
-  background: linear-gradient(90deg, var(--stitch-gold-primary), var(--stitch-gold-dim));
-  border-radius: var(--stitch-radius-sm);
-}
-
-/* Tab 内容区 */
-.tab-content {
-  padding: var(--stitch-spacing-md);
-}
-
-.tab-panel {
-  animation: fadeIn var(--stitch-transition-base);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10rpx); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* 操作卡片 */
-.action-card {
-  margin-bottom: var(--stitch-spacing-md);
-}
-
-.btn-primary-full {
+.hero-image {
   width: 100%;
-  height: var(--stitch-touch-target);
-  background: linear-gradient(135deg, var(--stitch-gold-primary) 0%, var(--stitch-gold-dim) 100%);
-  color: var(--stitch-bg-white);
-  font-size: var(--stitch-font-xxl);
-  font-weight: var(--stitch-font-weight-medium);
-  border-radius: var(--stitch-radius-md);
-  border: none;
+  height: 100%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(250, 249, 244, 0) 0%, rgba(250, 249, 244, 1) 100%);
+}
+
+.compliance-tag {
+  position: absolute;
+  top: 96rpx;
+  left: 24rpx;
+  background-color: rgba(254, 226, 100, 0.9);
+  backdrop-filter: blur(8rpx);
+  padding: 12rpx 32rpx;
+  border-radius: 32rpx;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all var(--stitch-transition-base);
+  gap: 8rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
 }
 
-.btn-primary-full:active {
-  opacity: 0.85;
-  transform: scale(0.98);
+.tag-icon {
+  font-size: 28rpx;
+  color: #756400;
 }
 
-/* 区块标题 */
-.section-title {
-  font-size: var(--stitch-font-xxxl);
-  font-weight: var(--stitch-font-weight-semibold);
-  color: var(--stitch-text-primary);
-  margin-bottom: var(--stitch-spacing-sm);
-  padding-left: var(--stitch-spacing-sm);
-  border-left: 4rpx solid var(--stitch-gold-primary);
+.tag-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: #756400;
 }
 
-/* 记录列表 */
-.records-section,
-.orders-section {
-  margin-top: var(--stitch-spacing-md);
-}
-
-.record-list,
-.order-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--stitch-spacing-sm);
-}
-
-.record-item,
-.order-item {
-  background: linear-gradient(180deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
-  border-radius: var(--stitch-radius-md);
-  padding: var(--stitch-spacing-md);
-  transition: all var(--stitch-transition-fast);
-}
-
-.record-item:active,
-.order-item:active {
-  transform: scale(0.98);
-}
-
-.record-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--stitch-spacing-sm);
-}
-
-.record-species {
-  font-size: var(--stitch-font-xxxl);
-  font-weight: var(--stitch-font-weight-semibold);
-  color: var(--stitch-text-primary);
-}
-
-.record-quantity {
-  font-size: var(--stitch-font-xl);
-  color: var(--stitch-gold-primary);
-  font-weight: var(--stitch-font-weight-medium);
-}
-
-.record-info {
+.hero-title-section {
+  position: absolute;
+  bottom: 48rpx;
+  left: 24rpx;
+  right: 24rpx;
   display: flex;
   flex-direction: column;
   gap: 8rpx;
 }
 
-.record-address,
-.record-date {
-  font-size: var(--stitch-font-xl);
-  color: var(--stitch-text-tertiary);
+.species-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 144rpx;
+  font-weight: 700;
+  color: #4A5D4E;
+  letter-spacing: -4rpx;
 }
 
-/* 订单样式 */
-.order-header {
+.species-latin {
+  font-size: 64rpx;
+  color: rgba(74, 93, 78, 0.7);
+  font-style: italic;
+}
+
+/* 内容区域 */
+.content-section {
+  padding: 0 24rpx;
+  margin-top: -32rpx;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+/* 通用卡片样式 */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 32rpx;
+  box-shadow: 0 24rpx 80rpx rgba(74, 93, 78, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.accent-line {
+  width: 4rpx;
+  height: 48rpx;
+  background-color: #FEE264;
+  border-radius: 4rpx;
+}
+
+.card-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 72rpx;
+  font-weight: 700;
+  color: #4A5D4E;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  line-height: 1.8;
+  color: rgba(27, 28, 25, 0.7);
+  font-weight: 300;
+  font-size: 40rpx;
+}
+
+.culture-quote {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 44rpx;
+}
+
+/* Bento Grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+
+.bento-item {
+  background-color: #F5F4EF;
+  border-radius: 32rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.bento-full {
+  grid-column: 1 / -1;
+  background-color: #4A5D4E;
+  color: #FFFFFF;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bento-icon {
+  font-size: 64rpx;
+  color: #533D20;
+}
+
+.bento-full .bento-icon {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 96rpx;
+}
+
+.bento-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.bento-label {
+  font-size: 24rpx;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4rpx;
+  color: rgba(74, 93, 78, 0.5);
+}
+
+.bento-full .bento-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bento-value {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #4A5D4E;
+}
+
+.bento-full .bento-value {
+  color: #FFFFFF;
+}
+
+/* 形态特征区域 */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  padding-top: 16rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 72rpx;
+  font-weight: 700;
+  color: #4A5D4E;
+}
+
+.image-card {
+  position: relative;
+  border-radius: 32rpx;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+}
+
+.image-caption {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(74, 93, 78, 0.6) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 24rpx;
+}
+
+.caption-text {
+  font-size: 28rpx;
+  color: #FFFFFF;
+  line-height: 1.6;
+}
+
+/* 科学统计卡片 */
+.stats-card {
+  background-color: #E9E8E3;
+  border-radius: 32rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.stat-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--stitch-spacing-sm);
+  padding-bottom: 16rpx;
 }
 
-.order-no {
-  font-size: var(--stitch-font-xl);
-  color: var(--stitch-text-tertiary);
+.stat-label {
+  font-size: 28rpx;
+  color: rgba(27, 28, 25, 0.6);
 }
 
-.order-status {
-  font-size: var(--stitch-font-l);
-  padding: var(--stitch-spacing-xs) var(--stitch-spacing-sm);
-  border-radius: var(--stitch-radius-sm);
-  background: var(--stitch-success-light);
-  color: var(--stitch-success);
+.stat-value {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #4A5D4E;
 }
 
-.order-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: var(--stitch-font-xxl);
-  color: var(--stitch-text-primary);
+.stat-divider {
+  height: 2rpx;
+  background-color: rgba(195, 200, 193, 0.15);
 }
 
-.order-amount {
-  font-weight: var(--stitch-font-weight-semibold);
-  color: var(--stitch-gold-primary);
+.protection-badge {
+  background-color: rgba(109, 84, 53, 0.2);
+  color: #533D20;
+  padding: 8rpx 24rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  font-weight: 700;
 }
 
-/* 页面底部 */
-.footer {
+/* 底部操作按钮 */
+.bottom-action {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: var(--stitch-bg-white);
-  padding: var(--stitch-spacing-md) var(--stitch-spacing-md);
-  border-top: 1rpx solid var(--stitch-border-primary);
-  display: flex;
-  justify-content: center;
+  padding: 16rpx 24rpx;
+  background-color: rgba(250, 249, 244, 0.8);
+  backdrop-filter: blur(16rpx);
+  z-index: 50;
 }
 
-.water-area-link {
+.action-btn {
+  width: 100%;
+  height: 96rpx;
+  background-color: #4A5D4E;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--stitch-spacing-sm) var(--stitch-spacing-xl);
-  background: rgba(212, 184, 123, 0.1);
-  border-radius: var(--stitch-radius-full);
-  border: 2rpx solid var(--stitch-gold-primary);
+  gap: 16rpx;
+  box-shadow: 0 8rpx 32rpx rgba(74, 93, 78, 0.2);
 }
 
-.link-text {
-  font-size: var(--stitch-font-xxl);
-  color: var(--stitch-gold-primary);
-  font-weight: var(--stitch-font-weight-medium);
+.action-btn::after {
+  border: none;
+}
+
+.action-icon {
+  font-size: 40rpx;
+  color: #FFFFFF;
+}
+
+.action-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #FFFFFF;
 }

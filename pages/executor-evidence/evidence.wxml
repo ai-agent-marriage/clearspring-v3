@@ -1,0 +1,99 @@
+<!-- 清如 ClearSpring - 志愿者详情页 (O-07) -->
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar">
+    <view class="top-bar-left">
+      <view class="back-btn" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="page-title">志愿者详情</text>
+    </view>
+    <view class="avatar">
+      <image class="avatar-img" src="{{volunteer.avatar}}" mode="aspectFill" />
+    </view>
+  </view>
+
+  <scroll-view class="content" scroll-y="true">
+    <!-- Profile Section -->
+    <view class="profile-section glass">
+      <view class="profile-content">
+        <image class="profile-avatar" src="{{volunteer.avatar}}" mode="aspectFill" />
+        <view class="profile-info">
+          <view class="name-row">
+            <text class="volunteer-name">{{volunteer.name}}</text>
+            <view class="verified-badge">
+              <text class="badge-text">实名认证</text>
+            </view>
+          </view>
+          <view class="location-row">
+            <text class="material-icons location-icon">location_on</text>
+            <text class="location-text">{{volunteer.location}}</text>
+          </view>
+          <text class="quote">"{{volunteer.quote}}"</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Metrics Grid -->
+    <view class="metrics-grid">
+      <view class="metric-item">
+        <text class="metric-label">累计任务</text>
+        <text class="metric-value">{{volunteer.metrics.tasks}}</text>
+      </view>
+      <view class="metric-item">
+        <text class="metric-label">公益时长</text>
+        <text class="metric-value">{{volunteer.metrics.hours}}</text>
+      </view>
+      <view class="metric-item">
+        <text class="metric-label">合规率</text>
+        <text class="metric-value">{{volunteer.metrics.compliance}}</text>
+      </view>
+    </view>
+
+    <!-- Content Tabs -->
+    <view class="tabs">
+      <view class="tab-item {{currentTab === 'execution' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="execution">
+        <text class="tab-text">执行记录</text>
+        <view class="tab-indicator" wx:if="{{currentTab === 'execution'}}"></view>
+      </view>
+      <view class="tab-item {{currentTab === 'violation' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="violation">
+        <text class="tab-text">违规记录</text>
+      </view>
+    </view>
+
+    <!-- Task List -->
+    <view class="task-list">
+      <view class="task-card" wx:for="{{taskList}}" wx:key="id">
+        <view class="task-info">
+          <view class="task-header">
+            <text class="task-id">{{item.id}}</text>
+            <view class="task-tag">
+              <text class="tag-text">{{item.type}}</text>
+            </view>
+          </view>
+          <text class="task-title">{{item.title}}</text>
+          <text class="task-date">{{item.date}}</text>
+        </view>
+        <view class="task-status">
+          <text class="status-text">已通过</text>
+          <text class="material-icons status-icon">check_circle</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Bottom Spacer -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+
+  <!-- Action Buttons -->
+  <view class="action-bar">
+    <button class="action-btn primary" bindtap="onAssignTask">
+      <text class="material-icons">assignment_add</text>
+      <text class="btn-text">分配新任务</text>
+    </button>
+    <button class="action-btn secondary" bindtap="onUnbind">
+      <text class="material-icons">person_remove</text>
+      <text class="btn-text">解绑志愿者</text>
+    </button>
+  </view>
+</view>

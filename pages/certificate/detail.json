@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "物种详情",
+  "navigationBarTitleText": "护生物种",
   "navigationStyle": "custom",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index",

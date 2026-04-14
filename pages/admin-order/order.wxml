@@ -1,0 +1,160 @@
+<!-- 订单管理页面 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="back-icon" bindtap="goBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="navbar-title">订单管理</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="showFilter">
+        <text class="material-icons">filter_list</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="material-icons search-icon">search</text>
+      <input class="search-input" placeholder="搜索订单编号、活动名称" placeholder-class="search-placeholder" bindinput="onSearchInput"/>
+    </view>
+  </view>
+
+  <!-- 状态筛选 Tabs -->
+  <scroll-view class="tabs-scroll" scroll-x="true">
+    <view class="tabs">
+      <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+        <text>全部</text>
+      </view>
+      <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+        <text>待审核</text>
+      </view>
+      <view class="tab-item {{currentTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+        <text>已通过</text>
+      </view>
+      <view class="tab-item {{currentTab === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+        <text>已拒绝</text>
+      </view>
+      <view class="tab-item {{currentTab === 4 ? 'active' : ''}}" bindtap="switchTab" data-index="4">
+        <text>已完成</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 订单列表 -->
+  <scroll-view class="order-list-scroll" scroll-y="true">
+    <view class="order-list">
+      <!-- 订单卡片 1 -->
+      <view class="order-card">
+        <view class="order-header">
+          <text class="order-id">订单号：#20240501</text>
+          <view class="order-status urgent">待审核</view>
+        </view>
+        <view class="order-content">
+          <text class="order-title">红锦鲤放生活动</text>
+          <view class="order-info">
+            <view class="info-item">
+              <text class="material-icons info-icon">calendar_today</text>
+              <text class="info-text">2024-05-15</text>
+            </view>
+            <view class="info-item">
+              <text class="material-icons info-icon">location_on</text>
+              <text class="info-text">西湖·孤山水域</text>
+            </view>
+            <view class="info-item">
+              <text class="material-icons info-icon">account_balance</text>
+              <text class="info-text">清如公益中心</text>
+            </view>
+          </view>
+          <view class="order-detail">
+            <text class="detail-label">放生数量：</text>
+            <text class="detail-value">500 尾</text>
+          </view>
+          <view class="order-detail">
+            <text class="detail-label">申请时间：</text>
+            <text class="detail-value">2024-05-01 14:30</text>
+          </view>
+        </view>
+        <view class="order-actions">
+          <button class="btn btn-reject" bindtap="rejectOrder" data-id="20240501">拒绝</button>
+          <button class="btn btn-approve" bindtap="approveOrder" data-id="20240501">通过</button>
+        </view>
+      </view>
+
+      <!-- 订单卡片 2 -->
+      <view class="order-card">
+        <view class="order-header">
+          <text class="order-id">订单号：#20240488</text>
+          <view class="order-status processing">执行中</view>
+        </view>
+        <view class="order-content">
+          <text class="order-title">白鹭保护计划</text>
+          <view class="order-info">
+            <view class="info-item">
+              <text class="material-icons info-icon">calendar_today</text>
+              <text class="info-text">2024-05-10</text>
+            </view>
+            <view class="info-item">
+              <text class="material-icons info-icon">location_on</text>
+              <text class="info-text">九溪十八涧</text>
+            </view>
+            <view class="info-item">
+              <text class="material-icons info-icon">account_balance</text>
+              <text class="info-text">清如公益中心</text>
+            </view>
+          </view>
+          <view class="order-detail">
+            <text class="detail-label">保护区域：</text>
+            <text class="detail-value">200 亩</text>
+          </view>
+          <view class="order-detail">
+            <text class="detail-label">申请时间：</text>
+            <text class="detail-value">2024-04-28 09:15</text>
+          </view>
+        </view>
+        <view class="order-actions">
+          <button class="btn btn-view" bindtap="viewOrderDetail" data-id="20240488">查看详情</button>
+        </view>
+      </view>
+
+      <!-- 订单卡片 3 -->
+      <view class="order-card">
+        <view class="order-header">
+          <text class="order-id">订单号：#20240475</text>
+          <view class="order-status completed">已完成</view>
+        </view>
+        <view class="order-content">
+          <text class="order-title">古树名木认养</text>
+          <view class="order-info">
+            <view class="info-item">
+              <text class="material-icons info-icon">calendar_today</text>
+              <text class="info-text">2024-04-20</text>
+            </view>
+            <view class="info-item">
+              <text class="material-icons info-icon">location_on</text>
+              <text class="info-text">灵隐寺</text>
+            </view>
+            <view class="info-item">
+              <text class="material-icons info-icon">account_balance</text>
+              <text class="info-text">西湖园林局</text>
+            </view>
+          </view>
+          <view class="order-detail">
+            <text class="detail-label">认养数量：</text>
+            <text class="detail-value">3 株</text>
+          </view>
+          <view class="order-detail">
+            <text class="detail-label">完成时间：</text>
+            <text class="detail-value">2024-04-20 16:00</text>
+          </view>
+        </view>
+        <view class="order-actions">
+          <button class="btn btn-view" bindtap="viewOrderDetail" data-id="20240475">查看详情</button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

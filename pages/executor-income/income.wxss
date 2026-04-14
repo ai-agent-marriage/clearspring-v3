@@ -1,0 +1,235 @@
+@import "../../theme.wxss";
+
+/* 清如 ClearSpring - 执行点位管理页 (O-08) */
+
+.container {
+  min-height: 100vh;
+  background: var(--stitch-bg-primary);
+  padding-bottom: 40rpx;
+}
+
+/* ========== Top Bar ========== */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 88rpx;
+  background: var(--stitch-bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32rpx;
+  z-index: 100;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.back-btn,
+.more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.back-btn:active,
+.more-btn:active {
+  opacity: 0.6;
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--stitch-text-primary);
+  font-family: var(--stitch-font-headline);
+}
+
+.material-icons {
+  font-size: 40rpx;
+  color: var(--stitch-text-primary);
+}
+
+/* ========== Content ========== */
+.content {
+  height: calc(100vh - 88rpx);
+  padding: 16rpx 24rpx 0;
+}
+
+/* ========== Compact Header ========== */
+.compact-header {
+  background: var(--stitch-bg-tertiary);
+  border-radius: 24rpx;
+  padding: 16rpx 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.header-label {
+  font-size: 24rpx;
+  color: var(--stitch-green-primary);
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.header-text {
+  font-size: 28rpx;
+  color: var(--stitch-green-primary);
+  font-weight: 500;
+}
+
+.add-btn {
+  background: var(--stitch-green-primary);
+  color: var(--stitch-text-inverse);
+  padding: 12rpx 24rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+.add-btn .material-icons {
+  font-size: 28rpx;
+  color: var(--stitch-text-inverse);
+}
+
+/* ========== Site List ========== */
+.site-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.site-card {
+  background: var(--stitch-bg-white);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  border: 2rpx solid rgba(195, 200, 193, 0.2);
+}
+
+.site-card.rejected {
+  border-color: rgba(186, 26, 26, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.site-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--stitch-text-primary);
+  font-family: var(--stitch-font-headline);
+}
+
+.status-badge {
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+.status-badge.approved {
+  background: rgba(74, 93, 78, 0.1);
+}
+
+.status-badge.pending {
+  background: rgba(254, 226, 100, 0.3);
+}
+
+.status-badge.rejected {
+  background: rgba(255, 218, 214, 1);
+}
+
+.badge-text {
+  font-size: 20rpx;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+
+.status-badge.approved .badge-text {
+  color: var(--stitch-green-container);
+}
+
+.status-badge.pending .badge-text {
+  color: var(--stitch-yellow-primary);
+}
+
+.status-badge.rejected .badge-text {
+  color: var(--stitch-error);
+}
+
+.site-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx 32rpx;
+  margin-bottom: 16rpx;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.meta-icon {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.meta-text {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.card-actions {
+  display: flex;
+  gap: 32rpx;
+  padding-top: 20rpx;
+  border-top: 2rpx solid rgba(195, 200, 193, 0.15);
+}
+
+.action-btn {
+  padding: 8rpx 0;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: var(--stitch-green-primary);
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.action-text:active {
+  opacity: 1;
+}
+
+.action-text.error {
+  color: var(--stitch-error);
+}
+
+.bottom-spacer {
+  height: 40rpx;
+}

@@ -1,0 +1,275 @@
+/* Stitch V3.0 设计规范 */
+/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 间距：24rpx */
+
+.container {
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  padding: 0 24rpx;
+  padding-bottom: 240rpx;
+}
+
+/* 灵性提示 */
+.prompt-section {
+  margin-top: 32rpx;
+  margin-bottom: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.prompt-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36rpx;
+  font-style: italic;
+  color: #6E5E00;
+  opacity: 0.8;
+}
+
+.prompt-divider {
+  width: 96rpx;
+  height: 2rpx;
+  background-color: rgba(195, 200, 193, 0.3);
+}
+
+/* 服务信息卡片 */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #F5F4EF;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.card-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 128rpx;
+  height: 128rpx;
+  opacity: 0.1;
+}
+
+.card-decoration image {
+  width: 100%;
+  height: 100%;
+}
+
+.card-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.service-image {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+  background-color: #E9E8E3;
+}
+
+.service-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.service-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36rpx;
+  color: #4A5D4E;
+}
+
+.service-id {
+  font-size: 24rpx;
+  color: rgba(27, 28, 25, 0.6);
+}
+
+/* 评分区域 */
+.rating-section {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 24rpx 80rpx rgba(74, 93, 78, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx;
+  text-align: center;
+}
+
+.rating-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #4A5D4E;
+}
+
+.stars {
+  display: flex;
+  gap: 12rpx;
+}
+
+.star {
+  font-size: 96rpx;
+  color: rgba(227, 226, 222, 0.8);
+  transition: all 0.2s;
+}
+
+.star.filled {
+  color: #E0C64B;
+  animation: star-breath 3s ease-in-out infinite;
+}
+
+@keyframes star-breath {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    color: #C9B037;
+  }
+}
+
+.rating-feedback {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #6E5E00;
+  margin-top: 16rpx;
+}
+
+/* 反馈输入 */
+.feedback-section {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 24rpx 80rpx rgba(74, 93, 78, 0.04);
+}
+
+.feedback-input {
+  width: 100%;
+  min-height: 320rpx;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 32rpx;
+  color: rgba(27, 28, 25, 0.8);
+  line-height: 1.6;
+  resize: none;
+}
+
+.feedback-input::placeholder {
+  color: rgba(115, 120, 114, 0.4);
+}
+
+.photo-upload-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.upload-btn {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 16rpx;
+  border: 4rpx dashed rgba(195, 200, 193, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  transition: all 0.2s;
+}
+
+.upload-btn:active {
+  background-color: #E9E8E3;
+}
+
+.upload-icon {
+  font-size: 48rpx;
+  color: rgba(27, 28, 25, 0.6);
+}
+
+.upload-text {
+  font-size: 20rpx;
+  font-weight: 500;
+  color: rgba(27, 28, 25, 0.6);
+}
+
+.photo-preview {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 匿名分享 */
+.anonymous-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8rpx;
+  margin-bottom: 40rpx;
+}
+
+.anonymous-label {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.anonymous-icon {
+  font-size: 40rpx;
+  color: rgba(74, 93, 78, 0.6);
+}
+
+.anonymous-text {
+  font-size: 28rpx;
+  color: rgba(27, 28, 25, 0.6);
+}
+
+.anonymous-switch {
+  transform: scale(1.1);
+}
+
+/* 提交按钮 */
+.submit-section {
+  padding: 0 8rpx;
+}
+
+.submit-button {
+  width: 100%;
+  height: 96rpx;
+  background-color: #4A5D4E;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba(74, 93, 78, 0.2);
+}
+
+.submit-button::after {
+  border: none;
+}
+
+.submit-text {
+  font-size: 32rpx;
+  font-weight: 500;
+  letter-spacing: 4rpx;
+  color: #FFFFFF;
+}

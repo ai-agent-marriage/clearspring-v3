@@ -1,0 +1,61 @@
+<!-- 清如 ClearSpring - 执行点位管理页 (O-08) -->
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar">
+    <view class="top-bar-left">
+      <view class="back-btn" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="page-title">执行点位管理</text>
+    </view>
+    <view class="more-btn">
+      <text class="material-icons">more_vert</text>
+    </view>
+  </view>
+
+  <scroll-view class="content" scroll-y="true">
+    <!-- Compact Header -->
+    <view class="compact-header glass">
+      <view class="header-left">
+        <text class="header-label">统计</text>
+        <text class="header-text">共 {{siteList.length}} 个合规地点</text>
+      </view>
+      <button class="add-btn" bindtap="onAddSite">
+        <text class="material-icons">add</text>
+        <text class="btn-text">新增点位</text>
+      </button>
+    </view>
+
+    <!-- Site List -->
+    <view class="site-list">
+      <view class="site-card {{item.status}}" wx:for="{{siteList}}" wx:key="id">
+        <view class="card-header">
+          <text class="site-name">{{item.name}}</text>
+          <view class="status-badge {{item.status}}">
+            <text class="badge-text">{{item.statusText}}</text>
+          </view>
+        </view>
+        
+        <view class="site-meta">
+          <view class="meta-item">
+            <text class="material-icons meta-icon">{{item.icon}}</text>
+            <text class="meta-text">{{item.type}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="material-icons meta-icon">location_on</text>
+            <text class="meta-text">{{item.address}}</text>
+          </view>
+        </view>
+
+        <view class="card-actions">
+          <view class="action-btn" wx:for="{{item.actions}}" wx:key="*this" wx:for-item="action" bindtap="onAction" data-action="{{action}}" data-id="{{item.id}}">
+            <text class="action-text {{item.status === 'rejected' && action === '查看原因' ? 'error' : ''}}">{{action}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Bottom Spacer -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>

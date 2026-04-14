@@ -1,0 +1,152 @@
+/* Stitch V3.0 设计规范 */
+/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 间距：24rpx | 字体：Noto Serif SC */
+
+.container {
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 96rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 中央品牌标识 */
+.branding-cluster {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 96rpx;
+}
+
+.branding-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48rpx;
+}
+
+.brand-icon {
+  opacity: 0.2;
+  margin-bottom: 32rpx;
+}
+
+.brand-icon .material-icons {
+  font-size: 144rpx;
+  color: #4A5D4E;
+}
+
+.brand-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 180rpx;
+  font-weight: 300;
+  letter-spacing: 14.4rpx;
+  color: #4A5D4E;
+  margin-left: 14.4rpx;
+}
+
+.tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 80rpx;
+  opacity: 0.6;
+}
+
+.tagline-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 64rpx;
+  font-weight: 300;
+  letter-spacing: 20rpx;
+  color: #4A5D4E;
+  margin-left: 20rpx;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+  padding-top: 80rpx;
+}
+
+.loading-dot {
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #4A5D4E;
+  border-radius: 50%;
+  animation: pulse-dot 3s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+/* 底部信息 */
+.footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24rpx;
+  max-width: 320rpx;
+}
+
+.footer-slogan {
+  font-size: 40rpx;
+  letter-spacing: 8rpx;
+  color: rgba(74, 93, 78, 0.3);
+  text-transform: uppercase;
+}
+
+.footer-divider {
+  height: 2rpx;
+  width: 128rpx;
+  background-color: rgba(195, 200, 193, 0.2);
+}
+
+.footer-notice {
+  font-size: 36rpx;
+  letter-spacing: 4rpx;
+  color: rgba(74, 93, 78, 0.2);
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 64rpx;
+}
+
+/* 装饰背景 */
+.container::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  right: -5%;
+  width: 80%;
+  height: 60%;
+  background: linear-gradient(135deg, rgba(211, 232, 213, 0.3) 0%, transparent 100%);
+  border-radius: 50%;
+  filter: blur(240rpx);
+  z-index: -1;
+}
+
+.container::after {
+  content: '';
+  position: fixed;
+  bottom: -10%;
+  left: -5%;
+  width: 80%;
+  height: 60%;
+  background: linear-gradient(135deg, rgba(226, 193, 155, 0.2) 0%, transparent 100%);
+  border-radius: 50%;
+  filter: blur(240rpx);
+  z-index: -1;
+}

@@ -1,0 +1,127 @@
+<!-- 管理后台首页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="menu-icon">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="navbar-title">管理后台</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn">
+        <text class="material-icons">notifications</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区 -->
+  <scroll-view class="main-content" scroll-y="true">
+    <!-- 数据统计卡片 -->
+    <view class="stats-section">
+      <view class="stats-grid">
+        <view class="stat-card">
+          <text class="stat-label">待审核订单</text>
+          <view class="stat-value">
+            <text class="stat-number">24</text>
+            <text class="stat-unit">单</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">待审核资质</text>
+          <view class="stat-value">
+            <text class="stat-number">12</text>
+            <text class="stat-unit">个</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">进行中申诉</text>
+          <view class="stat-value">
+            <text class="stat-number">05</text>
+            <text class="stat-unit">件</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">今日完成率</text>
+          <view class="stat-value">
+            <text class="stat-number">98.5</text>
+            <text class="stat-unit">%</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 快捷操作区 -->
+    <view class="quick-actions">
+      <view class="section-header">
+        <text class="section-title">快捷操作</text>
+      </view>
+      <view class="action-grid">
+        <view class="action-item">
+          <view class="action-icon">
+            <text class="material-icons">assignment</text>
+          </view>
+          <text class="action-label">订单审核</text>
+        </view>
+        <view class="action-item">
+          <view class="action-icon">
+            <text class="material-icons">verified</text>
+          </view>
+          <text class="action-label">资质审核</text>
+        </view>
+        <view class="action-item">
+          <view class="action-icon">
+            <text class="material-icons">gavel</text>
+          </view>
+          <text class="action-label">申诉仲裁</text>
+        </view>
+        <view class="action-item">
+          <view class="action-icon">
+            <text class="material-icons">analytics</text>
+          </view>
+          <text class="action-label">数据统计</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待处理事项 -->
+    <view class="pending-section">
+      <view class="section-header">
+        <text class="section-title">待处理事项</text>
+        <text class="section-more">查看全部</text>
+      </view>
+      <view class="pending-list">
+        <view class="pending-item">
+          <view class="pending-info">
+            <text class="pending-title">订单 #20240501 - 红锦鲤放生活动</text>
+            <view class="pending-meta">
+              <text class="material-icons pending-icon">schedule</text>
+              <text class="pending-time">提交于 10 分钟前</text>
+            </view>
+          </view>
+          <view class="pending-badge urgent">高优先级</view>
+        </view>
+        <view class="pending-item">
+          <view class="pending-info">
+            <text class="pending-title">资质申请 - 清如公益中心</text>
+            <view class="pending-meta">
+              <text class="material-icons pending-icon">schedule</text>
+              <text class="pending-time">提交于 30 分钟前</text>
+            </view>
+          </view>
+          <view class="pending-badge normal">待审核</view>
+        </view>
+        <view class="pending-item">
+          <view class="pending-info">
+            <text class="pending-title">申诉 #AP20240488 - 订单取消争议</text>
+            <view class="pending-meta">
+              <text class="material-icons pending-icon">schedule</text>
+              <text class="pending-time">提交于 1 小时前</text>
+            </view>
+          </view>
+          <view class="pending-badge normal">待处理</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

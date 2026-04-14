@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "清如管理后台",
+  "navigationBarBackgroundColor": "#4A5D4E",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#FFFFFF",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom"
+}

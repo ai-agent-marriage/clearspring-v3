@@ -1,0 +1,100 @@
+<!-- 原生拍摄 - O-06 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-content">
+      <view class="navbar-left" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <view class="navbar-title">拍摄记录</view>
+      <view class="navbar-right">
+        <text class="material-icons">close</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 相机预览区域 -->
+  <view class="camera-container">
+    <camera 
+      class="camera-preview"
+      device-position="back"
+      flash="off"
+      binderror="onCameraError"
+      bindinitdone="onCameraInit"
+    >
+      <!-- 网格线 -->
+      <view class="grid-overlay">
+        <view class="grid-line grid-line-h"></view>
+        <view class="grid-line grid-line-h"></view>
+        <view class="grid-line grid-line-v"></view>
+        <view class="grid-line grid-line-v"></view>
+      </view>
+    </camera>
+
+    <!-- 顶部信息 -->
+    <view class="camera-top-info">
+      <view class="info-badge">
+        <text class="material-icons">location_on</text>
+        <text>翠湖自然保护区</text>
+      </view>
+      <view class="info-time">2024.05.20 14:30</view>
+    </view>
+
+    <!-- 底部控制区域 -->
+    <view class="camera-controls">
+      <!-- 模式切换 -->
+      <view class="mode-switch">
+        <view class="mode-item mode-active">
+          <text class="material-icons">photo_camera</text>
+          <text>拍照</text>
+        </view>
+        <view class="mode-item">
+          <text class="material-icons">videocam</text>
+          <text>录像</text>
+        </view>
+      </view>
+
+      <!-- 拍摄按钮区域 -->
+      <view class="capture-area">
+        <!-- 相册预览 -->
+        <view class="preview-btn" bindtap="onViewGallery">
+          <image class="preview-thumb" src="/images/last-photo.jpg" mode="aspectFill" wx:if="{{lastPhoto}}"/>
+          <view class="preview-placeholder" wx:else>
+            <text class="material-icons">photo</text>
+          </view>
+        </view>
+
+        <!-- 拍摄按钮 -->
+        <view class="capture-btn" bindtap="onCapture">
+          <view class="capture-btn-inner"></view>
+        </view>
+
+        <!-- 翻转摄像头 -->
+        <view class="flip-btn" bindtap="onFlipCamera">
+          <text class="material-icons">flip_camera_ios</text>
+        </view>
+      </view>
+
+      <!-- 功能选项 -->
+      <view class="camera-options">
+        <view class="option-item" bindtap="onToggleFlash">
+          <text class="material-icons">{{flashOn ? 'flash_on' : 'flash_off'}}</text>
+        </view>
+        <view class="option-item" bindtap="onToggleTimer">
+          <text class="material-icons">timer</text>
+        </view>
+        <view class="option-item" bindtap="onToggleRatio">
+          <text class="material-icons">crop_5_4</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 拍摄提示 -->
+  <view class="capture-hint" wx:if="{{showHint}}">
+    <view class="hint-content">
+      <text class="material-icons">info</text>
+      <text>请确保拍摄内容清晰完整</text>
+    </view>
+  </view>
+</view>

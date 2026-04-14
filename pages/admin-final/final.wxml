@@ -1,0 +1,205 @@
+<!-- 最终版管理后台首页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="menu-icon" bindtap="toggleSidebar">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="navbar-title">清如管理后台</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="showNotifications">
+        <text class="material-icons">notifications</text>
+        <view class="notification-badge">3</view>
+      </view>
+      <view class="avatar" bindtap="goToProfile">
+        <image class="avatar-img" src="/static/images/admin-avatar.png" mode="aspectFill"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区 -->
+  <scroll-view class="main-content" scroll-y="true">
+    <!-- 欢迎卡片 -->
+    <view class="welcome-card">
+      <view class="welcome-content">
+        <text class="welcome-greeting">上午好，管理员</text>
+        <text class="welcome-subtitle">今日共有 24 项待处理事项</text>
+      </view>
+      <view class="welcome-date">
+        <text class="date-day">14</text>
+        <text class="date-month">2026 年 4 月</text>
+      </view>
+    </view>
+
+    <!-- 核心数据概览 -->
+    <view class="stats-section">
+      <view class="section-header">
+        <text class="section-title">数据概览</text>
+        <text class="section-more" bindtap="viewAllStats">
+          <text class="material-icons more-icon">trending_up</text>
+          <text>查看详情</text>
+        </text>
+      </view>
+      <view class="stats-grid">
+        <view class="stat-card primary" bindtap="goToOrderReview">
+          <view class="stat-icon">
+            <text class="material-icons">assignment</text>
+          </view>
+          <view class="stat-info">
+            <text class="stat-label">待审核订单</text>
+            <view class="stat-value">
+              <text class="stat-number">24</text>
+              <text class="stat-unit">单</text>
+            </view>
+          </view>
+        </view>
+        <view class="stat-card secondary" bindtap="goToQualificationReview">
+          <view class="stat-icon">
+            <text class="material-icons">verified</text>
+          </view>
+          <view class="stat-info">
+            <text class="stat-label">待审核资质</text>
+            <view class="stat-value">
+              <text class="stat-number">12</text>
+              <text class="stat-unit">个</text>
+            </view>
+          </view>
+        </view>
+        <view class="stat-card tertiary" bindtap="goToAppealReview">
+          <view class="stat-icon">
+            <text class="material-icons">gavel</text>
+          </view>
+          <view class="stat-info">
+            <text class="stat-label">进行中申诉</text>
+            <view class="stat-value">
+              <text class="stat-number">05</text>
+              <text class="stat-unit">件</text>
+            </view>
+          </view>
+        </view>
+        <view class="stat-card quaternary">
+          <view class="stat-icon">
+            <text class="material-icons">analytics</text>
+          </view>
+          <view class="stat-info">
+            <text class="stat-label">今日完成率</text>
+            <view class="stat-value">
+              <text class="stat-number">98.5</text>
+              <text class="stat-unit">%</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 快捷操作 -->
+    <view class="quick-actions">
+      <view class="section-header">
+        <text class="section-title">快捷操作</text>
+      </view>
+      <view class="action-grid">
+        <view class="action-item" bindtap="createOrder">
+          <view class="action-icon">
+            <text class="material-icons">add_circle_outline</text>
+          </view>
+          <text class="action-label">创建订单</text>
+        </view>
+        <view class="action-item" bindtap="exportReport">
+          <view class="action-icon">
+            <text class="material-icons">download</text>
+          </view>
+          <text class="action-label">导出报表</text>
+        </view>
+        <view class="action-item" bindtap="sendMessage">
+          <view class="action-icon">
+            <text class="material-icons">mail_outline</text>
+          </view>
+          <text class="action-label">群发消息</text>
+        </view>
+        <view class="action-item" bindtap="viewSettings">
+          <view class="action-icon">
+            <text class="material-icons">settings</text>
+          </view>
+          <text class="action-label">系统设置</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待处理事项 -->
+    <view class="pending-section">
+      <view class="section-header">
+        <text class="section-title">待处理事项</text>
+        <text class="section-more" bindtap="viewAllPending">查看全部</text>
+      </view>
+      <view class="pending-list">
+        <view class="pending-item" bindtap="handlePending" data-type="order" data-id="20240501">
+          <view class="pending-left">
+            <view class="pending-icon-wrapper urgent">
+              <text class="material-icons">assignment</text>
+            </view>
+            <view class="pending-info">
+              <text class="pending-title">订单 #20240501 - 红锦鲤放生活动</text>
+              <view class="pending-meta">
+                <text class="material-icons pending-icon">schedule</text>
+                <text class="pending-time">提交于 10 分钟前</text>
+              </view>
+            </view>
+          </view>
+          <view class="pending-badge urgent">高优先级</view>
+        </view>
+        <view class="pending-item" bindtap="handlePending" data-type="qualification" data-id="ORG20240501">
+          <view class="pending-left">
+            <view class="pending-icon-wrapper normal">
+              <text class="material-icons">verified</text>
+            </view>
+            <view class="pending-info">
+              <text class="pending-title">资质申请 - 清如公益中心</text>
+              <view class="pending-meta">
+                <text class="material-icons pending-icon">schedule</text>
+                <text class="pending-time">提交于 30 分钟前</text>
+              </view>
+            </view>
+          </view>
+          <view class="pending-badge normal">待审核</view>
+        </view>
+        <view class="pending-item" bindtap="handlePending" data-type="appeal" data-id="AP20240501">
+          <view class="pending-left">
+            <view class="pending-icon-wrapper normal">
+              <text class="material-icons">gavel</text>
+            </view>
+            <view class="pending-info">
+              <text class="pending-title">申诉 #AP20240501 - 订单取消争议</text>
+              <view class="pending-meta">
+                <text class="material-icons pending-icon">schedule</text>
+                <text class="pending-time">提交于 1 小时前</text>
+              </view>
+            </view>
+          </view>
+          <view class="pending-badge normal">待处理</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 系统公告 -->
+    <view class="notice-section">
+      <view class="section-header">
+        <text class="section-title">系统公告</text>
+        <text class="section-more" bindtap="viewAllNotices">查看全部</text>
+      </view>
+      <view class="notice-list">
+        <view class="notice-item">
+          <view class="notice-dot"></view>
+          <text class="notice-content">关于五一期间放生活动管理的通知</text>
+          <text class="notice-date">04-12</text>
+        </view>
+        <view class="notice-item">
+          <view class="notice-dot"></view>
+          <text class="notice-content">系统将于 4 月 20 日凌晨进行维护升级</text>
+          <text class="notice-date">04-10</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

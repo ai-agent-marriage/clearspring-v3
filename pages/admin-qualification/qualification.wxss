@@ -1,0 +1,361 @@
+/* 资质审核页面样式 */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #FFFFFF;
+}
+
+/* 顶部导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background-color: #4A5D4E;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.back-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.back-icon .material-icons {
+  color: #FFFFFF;
+  font-size: 32rpx;
+}
+
+.navbar-title {
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn .material-icons {
+  color: #FFFFFF;
+  font-size: 32rpx;
+}
+
+/* 搜索栏 */
+.search-bar {
+  margin-top: 88rpx;
+  padding: 24rpx;
+  background-color: #FFFFFF;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #F5F4EF;
+  border-radius: 24rpx;
+  padding: 20rpx 24rpx;
+  gap: 16rpx;
+}
+
+.search-icon {
+  color: #737872;
+  font-size: 32rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1B1C19;
+  background-color: transparent;
+}
+
+.search-placeholder {
+  color: #737872;
+}
+
+/* 状态筛选 Tabs */
+.tabs-scroll {
+  white-space: nowrap;
+  background-color: #FFFFFF;
+  border-bottom: 2rpx solid rgba(195, 200, 193, 0.3);
+}
+
+.tabs {
+  display: inline-flex;
+  padding: 0 24rpx;
+  gap: 24rpx;
+}
+
+.tab-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  font-size: 28rpx;
+  color: #434843;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.tab-item text {
+  font-weight: 500;
+}
+
+.tab-item.active {
+  color: #4A5D4E;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48rpx;
+  height: 6rpx;
+  background-color: #4A5D4E;
+  border-radius: 3rpx;
+}
+
+/* 资质列表滚动区 */
+.qualification-list-scroll {
+  flex: 1;
+  padding: 24rpx;
+  padding-bottom: 40rpx;
+}
+
+.qualification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* 资质卡片 */
+.qualification-card {
+  background-color: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 40rpx;
+  border: 2rpx solid rgba(195, 200, 193, 0.2);
+  box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
+}
+
+.qual-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32rpx;
+}
+
+.qual-org-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.qual-org-name {
+  color: #1B1C19;
+  font-size: 32rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.qual-type {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 16rpx;
+  background-color: rgba(74, 93, 78, 0.1);
+  border-radius: 24rpx;
+  width: fit-content;
+}
+
+.qual-type .material-icons {
+  color: #4A5D4E;
+  font-size: 28rpx;
+}
+
+.qual-type text {
+  color: #4A5D4E;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.qual-status {
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 20rpx;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.qual-status.urgent {
+  background-color: #FEE264;
+  color: #756400;
+}
+
+.qual-status.completed {
+  background-color: #D3E8D5;
+  color: #394B3D;
+}
+
+.qual-status.rejected {
+  background-color: #E9E8E3;
+  color: #434843;
+}
+
+.qual-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-bottom: 32rpx;
+}
+
+.qual-info-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.info-label {
+  color: #434843;
+  font-size: 24rpx;
+  min-width: 180rpx;
+}
+
+.info-value {
+  color: #1B1C19;
+  font-size: 24rpx;
+  font-weight: 500;
+  flex: 1;
+}
+
+.info-value.reject-reason {
+  color: #BA1A1A;
+}
+
+.qual-documents {
+  margin-top: 16rpx;
+}
+
+.doc-title {
+  color: #434843;
+  font-size: 24rpx;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.doc-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 16rpx 20rpx;
+  background-color: #F5F4EF;
+  border-radius: 16rpx;
+}
+
+.doc-icon {
+  color: #4A5D4E;
+  font-size: 32rpx;
+}
+
+.doc-name {
+  color: #1B1C19;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+/* 资质操作按钮 */
+.qual-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 80rpx;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-reject {
+  background-color: #E9E8E3;
+  color: #434843;
+}
+
+.btn-approve {
+  background-color: #4A5D4E;
+  color: #FFFFFF;
+}
+
+.btn-view {
+  background-color: rgba(74, 93, 78, 0.1);
+  color: #4A5D4E;
+}
+
+/* Material Icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24rpx;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "执行者首页",
+  "navigationStyle": "custom",
+  "usingComponents": {},
+  "enablePullDownRefresh": true
+}

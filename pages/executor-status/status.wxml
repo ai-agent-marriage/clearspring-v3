@@ -1,0 +1,152 @@
+<!-- 审核状态 - O-03 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-content">
+      <view class="navbar-left" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <view class="navbar-title">订单详情</view>
+      <view class="navbar-right"></view>
+    </view>
+  </view>
+
+  <!-- 主要内容 -->
+  <view class="main-content">
+    <!-- 订单状态卡片 -->
+    <view class="status-card">
+      <view class="status-header">
+        <view class="status-info">
+          <view class="status-label">ORDER STATUS</view>
+          <view class="status-value">待承接</view>
+          <view class="status-order-no">订单号：202311048892</view>
+        </view>
+        <view class="status-badge">
+          <text class="material-icons">check_circle</text>
+          <text>已支付</text>
+        </view>
+      </view>
+      <view class="status-time">
+        <text class="material-icons">schedule</text>
+        <text>2023-11-04 14:30</text>
+      </view>
+    </view>
+
+    <!-- 委托详情 -->
+    <view class="detail-section">
+      <view class="section-title-with-line">委托详情</view>
+      <view class="detail-grid">
+        <view class="detail-card">
+          <view class="detail-item">
+            <view class="detail-icon">
+              <text class="material-icons">calendar_today</text>
+            </view>
+            <view class="detail-content">
+              <view class="detail-label">Release Date</view>
+              <view class="detail-value">2023 年 11 月 10 日</view>
+            </view>
+          </view>
+          <view class="detail-item">
+            <view class="detail-icon">
+              <text class="material-icons">water_drop</text>
+            </view>
+            <view class="detail-content">
+              <view class="detail-label">Water Area</view>
+              <view class="detail-value">翠湖生态自然保护区</view>
+            </view>
+          </view>
+        </view>
+        <view class="detail-card">
+          <view class="detail-item">
+            <view class="detail-icon">
+              <text class="material-icons">set_meal</text>
+            </view>
+            <view class="detail-content">
+              <view class="detail-label">Species</view>
+              <view class="detail-value">锦鲤 (精品红白) / 30-35cm</view>
+            </view>
+          </view>
+          <view class="detail-item">
+            <view class="detail-icon">
+              <text class="material-icons">layers</text>
+            </view>
+            <view class="detail-content">
+              <view class="detail-label">Quantity</view>
+              <view class="detail-value">20 尾</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 服务标准和愿望 -->
+      <view class="service-card">
+        <view class="service-grid">
+          <view class="service-item">
+            <view class="service-label">Service Standard</view>
+            <view class="service-tags">
+              <view class="tag">全程影像</view>
+              <view class="tag">加持仪轨</view>
+              <view class="tag">纸质证书</view>
+            </view>
+          </view>
+          <view class="service-item">
+            <view class="service-label">Release Wish</view>
+            <view class="service-wish">"愿众生离苦得乐，家人身体安康，岁岁平安。"</view>
+          </view>
+        </view>
+        <view class="service-footer">
+          <view class="contact-info">
+            <text class="material-icons">contact_phone</text>
+            <text>联系人：李先生</text>
+          </view>
+          <view class="contact-action" bindtap="onViewContact">
+            <text>查看联系方式</text>
+            <text class="material-icons">open_in_new</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 费用明细 -->
+    <view class="amount-section">
+      <view class="amount-header">
+        <view class="amount-title">费用明细</view>
+        <view class="amount-total">
+          <view class="amount-label">Total Amount</view>
+          <view class="amount-value">¥ 3,200.00</view>
+        </view>
+      </view>
+      <view class="amount-list">
+        <view class="amount-item">
+          <view class="amount-item-label">生物采购费用</view>
+          <view class="amount-item-value">¥ 2,800.00</view>
+        </view>
+        <view class="amount-item">
+          <view class="amount-item-label">执行服务费用</view>
+          <view class="amount-item-value">¥ 400.00</view>
+        </view>
+        <view class="amount-item amount-item-gold">
+          <view class="amount-item-label">承接可得佣金 (15%)</view>
+          <view class="amount-item-value">¥ 480.00</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 合规与操作 -->
+    <view class="compliance-section">
+      <view class="compliance-checkbox">
+        <checkbox class="checkbox" checked="{{complianceChecked}}" bindchange="onComplianceChange"/>
+        <view class="compliance-label">
+          <text>本人已阅读并知晓并承诺遵守</text>
+          <text class="compliance-link" bindtap="onViewCommitment">《合规执行承诺书》</text>
+          <text>，将按照科学、生态、环保的原则进行操作，并确保过程透明、记录真实。</text>
+        </view>
+      </view>
+      <button class="btn-submit" bindtap="onAcceptOrder" disabled="{{!complianceChecked}}">
+        <text class="material-icons">assignment_turned_in</text>
+        <text>承接此订单</text>
+      </button>
+      <view class="footer-text">The Breath of Silence • Release Organization Only</view>
+    </view>
+  </view>
+</view>

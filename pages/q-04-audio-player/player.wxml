@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="梵音" show-back="true"/>
+
+  <!-- 播放器主体 -->
+  <view class="player-content">
+    <!-- 专辑封面 -->
+    <view class="album-cover">
+      <view class="cover-image">
+        <text class="material-icons album-icon">music_note</text>
+      </view>
+    </view>
+
+    <!-- 歌曲信息 -->
+    <view class="track-info">
+      <text class="track-title">晨钟暮鼓</text>
+      <text class="track-artist">清如梵音</text>
+    </view>
+
+    <!-- 播放进度 -->
+    <view class="progress-section">
+      <slider 
+        class="progress-bar"
+        value="{{progress}}"
+        min="0"
+        max="100"
+        activeColor="#4A5D4E"
+        backgroundColor="#E3E2DE"
+        block-size="28"
+        block-color="#4A5D4E"
+      />
+      <view class="time-labels">
+        <text class="current-time">{{currentTime}}</text>
+        <text class="total-time">{{totalTime}}</text>
+      </view>
+    </view>
+
+    <!-- 播放控制 -->
+    <view class="controls">
+      <view class="control-btn" bindtap="onPrevious">
+        <text class="material-icons">skip_previous</text>
+      </view>
+      <view class="control-btn play-btn" bindtap="onPlayPause">
+        <text class="material-icons play-icon">{{isPlaying ? 'pause' : 'play_arrow'}}</text>
+      </view>
+      <view class="control-btn" bindtap="onNext">
+        <text class="material-icons">skip_next</text>
+      </view>
+    </view>
+
+    <!-- 播放模式 -->
+    <view class="play-mode">
+      <text class="material-icons mode-icon">{{playMode === 0 ? 'repeat' : (playMode === 1 ? 'repeat_one' : 'shuffle')}}</text>
+      <text class="mode-text">{{playModeText}}</text>
+    </view>
+  </view>
+
+  <!-- 播放列表 -->
+  <view class="playlist-section">
+    <view class="section-header">
+      <text class="section-title">播放列表</text>
+      <text class="section-count">共 {{playlist.length}} 首</text>
+    </view>
+    <view class="playlist">
+      <view 
+        class="playlist-item {{index === currentIndex ? 'active' : ''}}"
+        wx:for="{{playlist}}"
+        wx:key="id"
+        bindtap="onSelectTrack"
+        data-index="{{index}}"
+      >
+        <view class="item-info">
+          <text class="item-index">{{index + 1}}</text>
+          <view class="item-text">
+            <text class="item-title">{{item.title}}</text>
+            <text class="item-duration">{{item.duration}}</text>
+          </view>
+        </view>
+        <text class="material-icons item-icon" wx:if="{{index === currentIndex}}">equalizer</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-spacer"></view>
+</view>

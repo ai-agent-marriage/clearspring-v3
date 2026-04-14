@@ -1,0 +1,73 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="服务评价" show-back="true"/>
+
+  <!-- 灵性提示 -->
+  <view class="prompt-section">
+    <text class="prompt-text">"愿此反馈，成就更多善因"</text>
+    <view class="prompt-divider"></view>
+  </view>
+
+  <!-- 服务信息卡片 -->
+  <view class="service-card">
+    <view class="card-decoration"></view>
+    <view class="card-content">
+      <image class="service-image" src="{{service.image}}" mode="aspectFill"/>
+      <view class="service-info">
+        <text class="service-name">{{service.name}}</text>
+        <text class="service-id">订单编号：{{service.orderId}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 评分区域 -->
+  <view class="rating-section">
+    <text class="rating-title">您对此次体验的感悟如何？</text>
+    <view class="stars">
+      <text 
+        class="material-icons star {{index < rating ? 'filled' : ''}}"
+        wx:for="{{[0,1,2,3,4]}}"
+        wx:key="*this"
+        bindtap="onRate"
+        data-rating="{{index + 1}}"
+      >grade</text>
+    </view>
+    <text class="rating-feedback">{{ratingFeedback}}</text>
+  </view>
+
+  <!-- 反馈输入 -->
+  <view class="feedback-section">
+    <textarea 
+      class="feedback-input"
+      placeholder="分享您的护生感悟，记录这份慈悲瞬间..."
+      value="{{feedback}}"
+      bindinput="onFeedbackInput"
+      maxlength="500"
+    />
+    <view class="photo-upload-area">
+      <view class="upload-btn" bindtap="onAddPhoto">
+        <text class="material-icons upload-icon">add_a_photo</text>
+        <text class="upload-text">上传合影/美景</text>
+      </view>
+      <view class="photo-preview" wx:for="{{photos}}" wx:key="*this">
+        <image class="preview-image" src="{{item}}" mode="aspectFill"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 匿名分享 -->
+  <view class="anonymous-section">
+    <view class="anonymous-label">
+      <text class="material-icons anonymous-icon">verified_user</text>
+      <text class="anonymous-text">匿名分享</text>
+    </view>
+    <switch class="anonymous-switch" checked="{{isAnonymous}}" bindchange="onAnonymousChange"/>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button class="submit-button" bindtap="onSubmit">
+      <text class="submit-text">提交慈悲感悟</text>
+    </button>
+  </view>
+</view>

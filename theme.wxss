@@ -6,11 +6,11 @@
 Page {
   /* ========== 色彩系统 ========== */
   
-  /* 主色调 - 禅意金系（祈福者端） */
-  --stitch-gold-primary: #D4B87B;     /* 禅意金主色 */
-  --stitch-gold-secondary: #C4A86B;   /* 禅意金次色 */
-  --stitch-gold-dim: #6E5E00;         /* 暖沙金暗色 */
-  --stitch-gold-light: #E8D5A3;       /* 禅意金浅色 */
+  /* 主色调 - 禅意金系（祈福者端）Stitch V3.0 规范 */
+  --stitch-gold-primary: #C9B037;     /* 辅助金 - Stitch V3.0 规范色 */
+  --stitch-gold-secondary: #B8A032;   /* 禅意金次色 */
+  --stitch-gold-dim: #9A8428;         /* 暖沙金暗色 */
+  --stitch-gold-light: #D4C065;       /* 禅意金浅色 */
   
   /* 辅助色 - 岱绿系（执行者端） */
   --stitch-green-primary: #4A5D4E;    /* 岱绿主色 */

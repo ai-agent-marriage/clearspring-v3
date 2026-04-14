@@ -1,0 +1,286 @@
+/* Stitch V3.0 设计规范 */
+/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 间距：24rpx */
+
+.container {
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  padding-bottom: 240rpx;
+}
+
+/* 滚动公告 */
+.notice-bar {
+  margin: 0 24rpx 32rpx;
+  overflow: hidden;
+  background-color: #F5F4EF;
+  border-radius: 16rpx;
+  padding: 16rpx 0;
+}
+
+.notice-content {
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.notice-text {
+  font-size: 28rpx;
+  color: rgba(74, 93, 78, 0.7);
+  font-weight: 500;
+  padding: 0 24rpx;
+}
+
+/* 英雄头部 */
+.hero-header {
+  margin-bottom: 48rpx;
+  padding: 0 24rpx;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24rpx;
+}
+
+.hero-text {
+  max-width: 400rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 96rpx;
+  line-height: 1.2;
+  color: #4A5D4E;
+  white-space: pre-line;
+}
+
+.hero-subtitle {
+  font-size: 28rpx;
+  color: rgba(27, 28, 25, 0.6);
+  line-height: 1.6;
+}
+
+.hero-image {
+  width: 192rpx;
+  height: 128rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  filter: grayscale(20%);
+}
+
+/* Tab 切换 */
+.tab-bar {
+  display: flex;
+  gap: 64rpx;
+  margin-bottom: 32rpx;
+  border-bottom: 2rpx solid rgba(195, 200, 193, 0.15);
+  padding: 0 24rpx;
+}
+
+.tab-item {
+  padding-bottom: 32rpx;
+  position: relative;
+}
+
+.tab-item.active {
+  border-bottom: 4rpx solid #4A5D4E;
+  margin-bottom: -2rpx;
+}
+
+.tab-text {
+  font-size: 28rpx;
+  color: rgba(27, 28, 25, 0.6);
+}
+
+.tab-item.active .tab-text {
+  font-weight: 600;
+  color: #4A5D4E;
+}
+
+/* 主操作按钮 */
+.main-action {
+  margin-bottom: 40rpx;
+  padding: 0 24rpx;
+}
+
+.action-button {
+  width: 100%;
+  height: 128rpx;
+  background-color: #4A5D4E;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  box-shadow: 0 16rpx 48rpx rgba(74, 93, 78, 0.1);
+}
+
+.action-button::after {
+  border: none;
+}
+
+.action-icon {
+  font-size: 48rpx;
+  color: #FFFFFF;
+}
+
+.action-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  color: #FFFFFF;
+}
+
+/* 护生记录区域 */
+.records-section {
+  padding: 0 24rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 72rpx;
+  color: #4A5D4E;
+}
+
+.section-subtitle {
+  font-size: 20rpx;
+  color: rgba(27, 28, 25, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 4rpx;
+}
+
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  transition: all 0.2s;
+}
+
+.record-item:active {
+  background-color: #EFEEE9;
+}
+
+.record-icon {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 50%;
+  background-color: rgba(74, 93, 78, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.record-icon .material-icons {
+  font-size: 72rpx;
+  color: #4A5D4E;
+}
+
+.record-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #4A5D4E;
+}
+
+.record-meta {
+  font-size: 24rpx;
+  color: rgba(27, 28, 25, 0.5);
+}
+
+.record-arrow {
+  font-size: 48rpx;
+  color: rgba(195, 200, 193, 0.5);
+}
+
+/* 状态标签 */
+.status-badge {
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
+.status-badge.approved {
+  background-color: #FEE264;
+  color: #756400;
+}
+
+.status-badge.checking {
+  background-color: #E3E2DE;
+  color: rgba(27, 28, 25, 0.6);
+}
+
+.status-badge.completed {
+  background-color: rgba(211, 232, 213, 0.5);
+  color: rgba(57, 75, 61, 0.8);
+}
+
+/* 搜索按钮 */
+.search-action {
+  margin-top: 48rpx;
+  padding: 0 24rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.search-button {
+  padding: 24rpx 64rpx;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2rpx solid rgba(195, 200, 193, 0.3);
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  backdrop-filter: blur(16rpx);
+}
+
+.search-button::after {
+  border: none;
+}
+
+.search-icon {
+  font-size: 36rpx;
+  color: #4A5D4E;
+}
+
+.search-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #4A5D4E;
+}

@@ -1,0 +1,236 @@
+/* Stitch V3.0 设计规范 */
+/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 间距：24rpx */
+
+.container {
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  padding-bottom: 240rpx;
+}
+
+.player-content {
+  padding: 48rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48rpx;
+}
+
+/* 专辑封面 */
+.album-cover {
+  width: 480rpx;
+  height: 480rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background: linear-gradient(135deg, #D3E8D5 0%, #E2C19B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 24rpx 80rpx rgba(74, 93, 78, 0.1);
+}
+
+.cover-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-icon {
+  font-size: 160rpx;
+  color: rgba(74, 93, 78, 0.3);
+}
+
+/* 歌曲信息 */
+.track-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  text-align: center;
+}
+
+.track-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #4A5D4E;
+}
+
+.track-artist {
+  font-size: 32rpx;
+  color: rgba(74, 93, 78, 0.6);
+}
+
+/* 播放进度 */
+.progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.progress-bar {
+  width: 100%;
+}
+
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: rgba(74, 93, 78, 0.5);
+}
+
+/* 播放控制 */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64rpx;
+  margin-top: 24rpx;
+}
+
+.control-btn {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background-color: rgba(74, 93, 78, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.control-btn:active {
+  background-color: rgba(74, 93, 78, 0.2);
+  transform: scale(0.95);
+}
+
+.play-btn {
+  width: 144rpx;
+  height: 144rpx;
+  background-color: #4A5D4E;
+}
+
+.play-btn:active {
+  background-color: #3D4F41;
+}
+
+.play-icon {
+  font-size: 64rpx;
+  color: #FFFFFF;
+}
+
+.control-btn .material-icons {
+  font-size: 40rpx;
+  color: #4A5D4E;
+}
+
+/* 播放模式 */
+.play-mode {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 24rpx;
+}
+
+.mode-icon {
+  font-size: 40rpx;
+  color: rgba(74, 93, 78, 0.5);
+}
+
+.mode-text {
+  font-size: 24rpx;
+  color: rgba(74, 93, 78, 0.5);
+}
+
+/* 播放列表 */
+.playlist-section {
+  margin-top: 64rpx;
+  padding: 0 48rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #4A5D4E;
+}
+
+.section-count {
+  font-size: 24rpx;
+  color: rgba(74, 93, 78, 0.5);
+}
+
+.playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(74, 93, 78, 0.04);
+  transition: all 0.2s;
+}
+
+.playlist-item:active {
+  background-color: #EFEEE9;
+}
+
+.playlist-item.active {
+  background-color: rgba(74, 93, 78, 0.05);
+  border-left: 4rpx solid #4A5D4E;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  flex: 1;
+}
+
+.item-index {
+  font-size: 28rpx;
+  color: rgba(74, 93, 78, 0.4);
+  width: 48rpx;
+  text-align: center;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  flex: 1;
+}
+
+.item-title {
+  font-size: 32rpx;
+  color: #4A5D4E;
+}
+
+.item-duration {
+  font-size: 24rpx;
+  color: rgba(74, 93, 78, 0.5);
+}
+
+.item-icon {
+  font-size: 40rpx;
+  color: #4A5D4E;
+}
+
+/* 底部占位 */
+.bottom-spacer {
+  height: 48rpx;
+}

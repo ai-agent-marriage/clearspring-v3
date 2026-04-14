@@ -1,0 +1,211 @@
+/* 支付页面 - Stitch V3.0 规范 */
+/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 间距：24rpx | 字体：Noto Serif SC */
+
+@import "../../theme.wxss";
+
+.container {
+  min-height: 100vh;
+  background-color: var(--stitch-bg-primary);
+  padding: var(--stitch-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-lg);
+}
+
+/* 支付金额卡片 */
+.amount-card {
+  background-color: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-xl) var(--stitch-spacing-lg);
+  text-align: center;
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.amount-label {
+  display: block;
+  font-size: var(--stitch-font-l);
+  color: var(--stitch-text-secondary);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.amount-value {
+  display: block;
+  font-family: var(--stitch-font-serif);
+  font-size: 72rpx;
+  font-weight: var(--stitch-font-weight-bold);
+  color: var(--stitch-green-primary);
+  letter-spacing: 4rpx;
+}
+
+/* 订单信息 */
+.order-info {
+  background-color: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-lg);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--stitch-spacing-sm) 0;
+  border-bottom: 1rpx solid var(--stitch-border-divider);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: var(--stitch-font-xl);
+  color: var(--stitch-text-secondary);
+}
+
+.info-value {
+  font-size: var(--stitch-font-xl);
+  color: var(--stitch-text-primary);
+  font-weight: var(--stitch-font-weight-medium);
+}
+
+.status-success {
+  color: var(--stitch-success);
+}
+
+.status-timeout,
+.status-failed,
+.status-cancelled {
+  color: var(--stitch-error);
+}
+
+.status-pending {
+  color: var(--stitch-warning);
+}
+
+/* 倒计时 */
+.countdown-container {
+  background-color: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-lg);
+  text-align: center;
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.countdown-label {
+  display: block;
+  font-size: var(--stitch-font-l);
+  color: var(--stitch-text-secondary);
+  margin-bottom: var(--stitch-spacing-xs);
+}
+
+.countdown-time {
+  display: block;
+  font-family: var(--stitch-font-serif);
+  font-size: 48rpx;
+  font-weight: var(--stitch-font-weight-bold);
+  color: var(--stitch-error);
+  letter-spacing: 4rpx;
+}
+
+/* 操作区域 */
+.action-area {
+  margin-top: auto;
+  padding-bottom: var(--stitch-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-md);
+}
+
+.btn-primary {
+  background-color: var(--stitch-green-primary);
+  color: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  padding: var(--stitch-spacing-md) 0;
+  border: none;
+}
+
+.btn-primary[disabled] {
+  background-color: var(--stitch-text-disabled);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--stitch-green-primary);
+  border: 2rpx solid var(--stitch-green-primary);
+  border-radius: var(--stitch-radius-md);
+  font-size: var(--stitch-font-xxl);
+  font-weight: var(--stitch-font-weight-semibold);
+  padding: var(--stitch-spacing-md) 0;
+}
+
+/* 结果弹窗 */
+.result-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.result-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-xl);
+  width: 80%;
+  max-width: 560rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--stitch-spacing-md);
+}
+
+.result-icon {
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.result-icon .material-icons {
+  font-size: 96rpx;
+  color: var(--stitch-green-primary);
+}
+
+.result-icon .material-icons[color="error"] {
+  color: var(--stitch-error);
+}
+
+.result-title {
+  font-family: var(--stitch-font-serif);
+  font-size: var(--stitch-font-xxxl);
+  font-weight: var(--stitch-font-weight-bold);
+  color: var(--stitch-text-primary);
+}
+
+.result-message {
+  font-size: var(--stitch-font-xl);
+  color: var(--stitch-text-secondary);
+  line-height: var(--stitch-line-height-base);
+}
+
+.modal-actions {
+  margin-top: var(--stitch-spacing-lg);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-md);
+}

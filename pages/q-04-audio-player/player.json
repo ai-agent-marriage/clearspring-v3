@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "物种详情",
+  "navigationBarTitleText": "梵音",
   "navigationStyle": "custom",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index",

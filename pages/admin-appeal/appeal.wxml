@@ -1,0 +1,184 @@
+<!-- 申诉仲裁页面 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="back-icon" bindtap="goBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="navbar-title">申诉仲裁</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="showFilter">
+        <text class="material-icons">filter_list</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="material-icons search-icon">search</text>
+      <input class="search-input" placeholder="搜索申诉编号、订单号" placeholder-class="search-placeholder" bindinput="onSearchInput"/>
+    </view>
+  </view>
+
+  <!-- 状态筛选 Tabs -->
+  <scroll-view class="tabs-scroll" scroll-x="true">
+    <view class="tabs">
+      <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+        <text>全部</text>
+      </view>
+      <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+        <text>待处理</text>
+      </view>
+      <view class="tab-item {{currentTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+        <text>处理中</text>
+      </view>
+      <view class="tab-item {{currentTab === 3 ? 'active' : ''}}" bindtap="switchTab" data-index="3">
+        <text>已结案</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 申诉列表 -->
+  <scroll-view class="appeal-list-scroll" scroll-y="true">
+    <view class="appeal-list">
+      <!-- 申诉卡片 1 -->
+      <view class="appeal-card">
+        <view class="appeal-header">
+          <view class="appeal-info">
+            <text class="appeal-id">申诉号：#AP20240501</text>
+            <text class="appeal-order">关联订单：#20240488</text>
+          </view>
+          <view class="appeal-status urgent">待处理</view>
+        </view>
+        <view class="appeal-content">
+          <view class="appeal-type">
+            <text class="type-label">申诉类型：</text>
+            <text class="type-value">订单取消争议</text>
+          </view>
+          <view class="appeal-parties">
+            <view class="party-item">
+              <text class="party-label">申诉方：</text>
+              <text class="party-value">清如公益中心</text>
+            </view>
+            <view class="party-item">
+              <text class="party-label">被诉方：</text>
+              <text class="party-value">西湖放生团队</text>
+            </view>
+          </view>
+          <view class="appeal-reason">
+            <text class="reason-label">申诉理由：</text>
+            <text class="reason-value">被诉方未按约定时间到达放生地点，导致活动延期，要求退还部分费用并赔偿损失。</text>
+          </view>
+          <view class="appeal-evidence">
+            <text class="evidence-title">提交凭证 (3)</text>
+            <view class="evidence-list">
+              <view class="evidence-item">
+                <text class="material-icons evidence-icon">description</text>
+                <text class="evidence-name">聊天记录截图</text>
+              </view>
+              <view class="evidence-item">
+                <text class="material-icons evidence-icon">photo</text>
+                <text class="evidence-name">现场照片</text>
+              </view>
+              <view class="evidence-item">
+                <text class="material-icons evidence-icon">receipt</text>
+                <text class="evidence-name">付款凭证</text>
+              </view>
+            </view>
+          </view>
+          <view class="appeal-time">
+            <text class="material-icons time-icon">schedule</text>
+            <text class="time-text">提交于 2024-05-01 16:30</text>
+          </view>
+        </view>
+        <view class="appeal-actions">
+          <button class="btn btn-reject" bindtap="rejectAppeal" data-id="AP20240501">驳回申诉</button>
+          <button class="btn btn-process" bindtap="processAppeal" data-id="AP20240501">开始处理</button>
+        </view>
+      </view>
+
+      <!-- 申诉卡片 2 -->
+      <view class="appeal-card">
+        <view class="appeal-header">
+          <view class="appeal-info">
+            <text class="appeal-id">申诉号：#AP20240495</text>
+            <text class="appeal-order">关联订单：#20240475</text>
+          </view>
+          <view class="appeal-status processing">处理中</view>
+        </view>
+        <view class="appeal-content">
+          <view class="appeal-type">
+            <text class="type-label">申诉类型：</text>
+            <text class="type-value">服务质量投诉</text>
+          </view>
+          <view class="appeal-parties">
+            <view class="party-item">
+              <text class="party-label">申诉方：</text>
+              <text class="party-value">张先生</text>
+            </view>
+            <view class="party-item">
+              <text class="party-label">被诉方：</text>
+              <text class="party-value">灵隐寺文物保护委员会</text>
+            </view>
+          </view>
+          <view class="appeal-reason">
+            <text class="reason-label">申诉理由：</text>
+            <text class="reason-value">认养的古树养护不到位，树叶枯黄，要求重新养护或退款。</text>
+          </view>
+          <view class="appeal-progress">
+            <text class="progress-label">当前进度：</text>
+            <text class="progress-value">已联系双方进行调解，等待现场核查</text>
+          </view>
+          <view class="appeal-time">
+            <text class="material-icons time-icon">schedule</text>
+            <text class="time-text">提交于 2024-04-25 10:15</text>
+          </view>
+        </view>
+        <view class="appeal-actions">
+          <button class="btn btn-view" bindtap="viewAppealDetail" data-id="AP20240495">查看详情</button>
+        </view>
+      </view>
+
+      <!-- 申诉卡片 3 -->
+      <view class="appeal-card">
+        <view class="appeal-header">
+          <view class="appeal-info">
+            <text class="appeal-id">申诉号：#AP20240480</text>
+            <text class="appeal-order">关联订单：#20240460</text>
+          </view>
+          <view class="appeal-status completed">已结案</view>
+        </view>
+        <view class="appeal-content">
+          <view class="appeal-type">
+            <text class="type-label">申诉类型：</text>
+            <text class="type-value">退款申请</text>
+          </view>
+          <view class="appeal-parties">
+            <view class="party-item">
+              <text class="party-label">申诉方：</text>
+              <text class="party-value">李女士</text>
+            </view>
+            <view class="party-item">
+              <text class="party-label">被诉方：</text>
+              <text class="party-value">九溪放生点</text>
+            </view>
+          </view>
+          <view class="appeal-result">
+            <text class="result-label">仲裁结果：</text>
+            <text class="result-value">支持申诉方，责令被诉方全额退款，并扣除信用分 10 分。</text>
+          </view>
+          <view class="appeal-time">
+            <text class="material-icons time-icon">schedule</text>
+            <text class="time-text">结案于 2024-04-22 14:00</text>
+          </view>
+        </view>
+        <view class="appeal-actions">
+          <button class="btn btn-view" bindtap="viewAppealDetail" data-id="AP20240480">查看详情</button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

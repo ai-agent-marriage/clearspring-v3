@@ -1,0 +1,179 @@
+<!-- 资质审核 - O-02 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-content">
+      <view class="navbar-left" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <view class="navbar-title">资质审核</view>
+      <view class="navbar-right">
+        <text class="material-icons">more_vert</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容 -->
+  <view class="main-content">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="header-title">资质审核</view>
+      <view class="header-subtitle">Executor Qualification</view>
+    </view>
+
+    <!-- 审核进度卡片 -->
+    <view class="progress-card">
+      <view class="progress-header">
+        <view class="progress-title">
+          <view class="progress-icon">
+            <text class="material-icons">verified</text>
+          </view>
+          <view class="progress-text">
+            <view class="progress-label">审核状态</view>
+            <view class="progress-value">审核中</view>
+          </view>
+        </view>
+        <view class="progress-badge">
+          <text class="material-icons">schedule</text>
+          <text>预计 2 个工作日</text>
+        </view>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-bar-fill" style="width: 60%;"></view>
+      </view>
+      <view class="progress-steps">
+        <view class="progress-step completed">
+          <view class="step-dot completed">
+            <text class="material-icons">check</text>
+          </view>
+          <view class="step-label">已提交</view>
+        </view>
+        <view class="progress-step completed">
+          <view class="step-dot completed">
+            <text class="material-icons">check</text>
+          </view>
+          <view class="step-label">初审中</view>
+        </view>
+        <view class="progress-step active">
+          <view class="step-dot active">3</view>
+          <view class="step-label">复审</view>
+        </view>
+        <view class="progress-step">
+          <view class="step-dot">4</view>
+          <view class="step-label">完成</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 资质信息 -->
+    <view class="info-section">
+      <view class="section-title-with-line">资质信息</view>
+      <view class="info-cards">
+        <view class="info-card">
+          <view class="info-item">
+            <view class="info-icon">
+              <text class="material-icons">badge</text>
+            </view>
+            <view class="info-content">
+              <view class="info-label">资质类型</view>
+              <view class="info-value">高级执行者</view>
+            </view>
+          </view>
+          <view class="info-item">
+            <view class="info-icon">
+              <text class="material-icons">calendar_today</text>
+            </view>
+            <view class="info-content">
+              <view class="info-label">申请日期</view>
+              <view class="info-value">2024-11-01</view>
+            </view>
+          </view>
+        </view>
+        <view class="info-card">
+          <view class="info-item">
+            <view class="info-icon">
+              <text class="material-icons">description</text>
+            </view>
+            <view class="info-content">
+              <view class="info-label">证书编号</view>
+              <view class="info-value">EXE-2024-8892</view>
+            </view>
+          </view>
+          <view class="info-item">
+            <view class="info-icon">
+              <text class="material-icons">location_on</text>
+            </view>
+            <view class="info-content">
+              <view class="info-label">服务区域</view>
+              <view class="info-value">杭州地区</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 审核材料 -->
+    <view class="materials-section">
+      <view class="section-title-with-line">审核材料</view>
+      <view class="materials-list">
+        <view class="material-item">
+          <view class="material-left">
+            <view class="material-icon material-icon-gold">
+              <text class="material-icons">description</text>
+            </view>
+            <view class="material-content">
+              <view class="material-title">身份证明</view>
+              <view class="material-status">已审核</view>
+            </view>
+          </view>
+          <view class="material-check">
+            <text class="material-icons" style="font-variation-settings: 'FILL' 1; color: #4A5D4E;">check_circle</text>
+          </view>
+        </view>
+        <view class="divider"></view>
+        <view class="material-item">
+          <view class="material-left">
+            <view class="material-icon material-icon-gold">
+              <text class="material-icons">description</text>
+            </view>
+            <view class="material-content">
+              <view class="material-title">资质证书</view>
+              <view class="material-status">已审核</view>
+            </view>
+          </view>
+          <view class="material-check">
+            <text class="material-icons" style="font-variation-settings: 'FILL' 1; color: #4A5D4E;">check_circle</text>
+          </view>
+        </view>
+        <view class="divider"></view>
+        <view class="material-item">
+          <view class="material-left">
+            <view class="material-icon">
+              <text class="material-icons">description</text>
+            </view>
+            <view class="material-content">
+              <view class="material-title">培训记录</view>
+              <view class="material-status">审核中</view>
+            </view>
+          </view>
+          <view class="material-loading">
+            <view class="loading-spinner"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 注意事项 -->
+    <view class="notice-section">
+      <view class="notice-title">
+        <text class="material-icons">info</text>
+        <text>审核须知</text>
+      </view>
+      <view class="notice-content">
+        <text>1. 审核结果将通过消息中心通知</text>
+        <text>2. 如有疑问请联系客服</text>
+        <text>3. 审核通过后即可承接订单</text>
+      </view>
+    </view>
+  </view>
+</view>

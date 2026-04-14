@@ -1,0 +1,124 @@
+<!-- 抢单大厅 - O-04 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-content">
+      <view class="navbar-left">
+        <text class="material-icons">menu</text>
+      </view>
+      <view class="navbar-title">抢单大厅</view>
+      <view class="navbar-right">
+        <text class="material-icons">notifications</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容 -->
+  <view class="main-content">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="header-left">
+        <view class="header-title">可承接订单</view>
+        <view class="header-subtitle">Browse ecology tasks</view>
+      </view>
+      <view class="header-right">
+        <view class="status-badge">Active Feed</view>
+      </view>
+    </view>
+
+    <!-- 筛选标签 -->
+    <view class="filter-chips">
+      <view class="chip chip-active">全部订单</view>
+      <view class="chip">植物类</view>
+      <view class="chip">菌类</view>
+      <view class="chip">地理标本</view>
+    </view>
+
+    <!-- 订单列表 -->
+    <view class="order-list">
+      <!-- 订单卡片 1: 紧急 -->
+      <view class="order-card" bindtap="onOrderTap" data-id="1">
+        <view class="order-header">
+          <view class="order-id">DS-8842-X</view>
+          <view class="order-price">¥2,400</view>
+        </view>
+        <view class="order-title">高山雪莲采集</view>
+        <view class="order-meta">
+          <view class="meta-tag meta-tag-urgent">
+            <text class="material-icons">schedule</text>
+            <text>02:45:12</text>
+          </view>
+          <view class="meta-location">
+            <text class="material-icons">location_on</text>
+            <text>阿勒泰地区</text>
+          </view>
+        </view>
+        <view class="order-footer">
+          <view class="order-team">
+            <view class="avatars">
+              <image class="avatar" src="/images/avatar1.png" mode="aspectFill"/>
+              <view class="avatar-more">+3</view>
+            </view>
+            <view class="team-label">预计酬劳</view>
+          </view>
+          <button class="btn-accept">承接</button>
+        </view>
+      </view>
+
+      <!-- 订单卡片 2: 标准 -->
+      <view class="order-card" bindtap="onOrderTap" data-id="2">
+        <view class="order-header">
+          <view class="order-id">DS-9102-Y</view>
+          <view class="order-price">¥850</view>
+        </view>
+        <view class="order-title">原始森林地衣采样</view>
+        <view class="order-meta">
+          <view class="meta-tag">
+            <text class="material-icons">schedule</text>
+            <text>23 小时后截止</text>
+          </view>
+          <view class="meta-location">
+            <text class="material-icons">location_on</text>
+            <text>神农架林区</text>
+          </view>
+        </view>
+        <view class="order-footer">
+          <view class="order-time">发布于 2 小时前</view>
+          <button class="btn-accept">承接</button>
+        </view>
+      </view>
+
+      <!-- 订单卡片 3: 高价值 -->
+      <view class="order-card order-card-highlight" bindtap="onOrderTap" data-id="3">
+        <view class="order-header">
+          <view class="order-id">DS-1120-Z</view>
+          <view class="order-price order-price-gold">¥5,200</view>
+        </view>
+        <view class="order-title">珍稀真菌孢子监测</view>
+        <view class="order-meta">
+          <view class="meta-tag">
+            <text class="material-icons">schedule</text>
+            <text>2 天后截止</text>
+          </view>
+          <view class="meta-requirement">
+            <text class="material-icons" style="font-variation-settings: 'FILL' 1;">star</text>
+            <text>高级资质要求</text>
+          </view>
+        </view>
+        <view class="order-footer">
+          <view class="order-difficulty">
+            <text class="material-icons">verified</text>
+            <text>高难度系数</text>
+          </view>
+          <button class="btn-accept">承接</button>
+        </view>
+      </view>
+
+      <!-- 结束提示 -->
+      <view class="end-message">
+        <text class="material-icons">filter_vintage</text>
+        <view class="end-text">End of Feed</view>
+      </view>
+    </view>
+  </view>
+</view>

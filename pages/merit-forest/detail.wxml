@@ -1,0 +1,100 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="自主护生登记" show-more="true"/>
+
+  <!-- 合规承诺书 -->
+  <view class="commitment-section">
+    <text class="section-title">《科学护生合规承诺书》</text>
+    <scroll-view class="commitment-content" scroll-y>
+      <text class="commitment-text">为维护生态平衡，本人在此郑重承诺：</text>
+      <text class="commitment-text">1. 严格遵守国家相关法律法规，不投放任何外来入侵物种（如巴西龟、鳄龟、福寿螺等）。</text>
+      <text class="commitment-text">2. 仅在政府允许的指定水域进行自主护生活动。</text>
+      <text class="commitment-text">3. 关注物种健康状况，确保投放过程符合动物福利要求。</text>
+      <text class="commitment-text">4. 护生现场保持环境整洁，不遗留任何塑料包装或废弃物。</text>
+      <text class="commitment-text">5. 坚持科学精神，以保护当地生态多样性为首要原则。</text>
+    </scroll-view>
+    <view class="checkbox-group">
+      <checkbox-group bindchange="onAgreeChange">
+        <label class="checkbox-label">
+          <checkbox value="agree" checked="{{isAgreed}}"/>
+          <text class="checkbox-text">我已阅读并承诺严格遵守合规要求</text>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <!-- 表单区域 -->
+  <form class="form-section" bindsubmit="onSubmit">
+    <!-- 护生日期 -->
+    <view class="form-item">
+      <text class="form-label">* 护生日期</text>
+      <view class="form-input date-input">
+        <input class="input-field" type="date" value="{{date}}" bindchange="onDateChange"/>
+        <text class="material-icons input-icon">calendar_month</text>
+      </view>
+    </view>
+
+    <!-- 投放水域 -->
+    <view class="form-item">
+      <text class="form-label">* 投放水域</text>
+      <view class="form-input">
+        <input class="input-field" placeholder="选择或输入投放水域名称" value="{{waterBody}}" bindinput="onWaterBodyInput"/>
+        <text class="material-icons input-icon">location_on</text>
+      </view>
+    </view>
+
+    <!-- 护生物种 -->
+    <view class="form-item">
+      <text class="form-label">* 护生物种</text>
+      <picker class="form-input picker-input" range="{{speciesOptions}}" value="{{speciesIndex}}" bindchange="onSpeciesChange">
+        <view class="picker-value">
+          <text class="{{speciesIndex >= 0 ? 'selected' : 'placeholder'}}">
+            {{speciesIndex >= 0 ? speciesOptions[speciesIndex] : '仅可选合规物种'}}
+          </text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 投放数量 -->
+    <view class="form-item">
+      <text class="form-label">* 投放数量</text>
+      <view class="form-input">
+        <input class="input-field" type="number" placeholder="输入投放数量" value="{{quantity}}" bindinput="onQuantityInput"/>
+        <text class="unit-text">条/只</text>
+      </view>
+    </view>
+
+    <!-- 现场照片上传 -->
+    <view class="form-item">
+      <text class="form-label">* 现场照片上传 ({{photos.length}}/6)</text>
+      <view class="photo-grid">
+        <view class="photo-upload" bindtap="onAddPhoto">
+          <text class="material-icons upload-icon">add_a_photo</text>
+        </view>
+        <view class="photo-item" wx:for="{{photos}}" wx:key="*this">
+          <image class="photo-image" src="{{item}}" mode="aspectFill"/>
+          <view class="photo-delete" bindtap="onDeletePhoto" data-index="{{index}}">
+            <text class="material-icons">close</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 护生心愿 -->
+    <view class="form-item">
+      <text class="form-label">护生心愿</text>
+      <view class="form-input textarea-input">
+        <textarea class="textarea-field" placeholder="愿以此功德，普及于一切..." value="{{wishes}}" bindinput="onWishesInput" maxlength="200"/>
+      </view>
+      <text class="char-count">{{wishesLength}}/200</text>
+    </view>
+  </form>
+
+  <!-- 底部提交按钮 -->
+  <view class="bottom-action">
+    <button class="submit-button" bindtap="onSubmit" disabled="{{!isAgreed}}">
+      <text class="material-icons submit-icon">send</text>
+      <text class="submit-text">提交护生记录</text>
+    </button>
+  </view>
+</view>

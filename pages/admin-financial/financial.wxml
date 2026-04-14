@@ -1,0 +1,143 @@
+<!-- 财务报表 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="menu-icon" bindtap="toggleMenu">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="navbar-title">财务报表</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="exportReport">
+        <text class="material-icons">download</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区 -->
+  <scroll-view class="main-content" scroll-y="true">
+    <!-- 时间筛选 -->
+    <view class="filter-section">
+      <view class="filter-group">
+        <view class="filter-item active" data-period="month" bindtap="changePeriod">
+          <text class="filter-text">本月</text>
+        </view>
+        <view class="filter-item" data-period="quarter" bindtap="changePeriod">
+          <text class="filter-text">本季度</text>
+        </view>
+        <view class="filter-item" data-period="year" bindtap="changePeriod">
+          <text class="filter-text">本年度</text>
+        </view>
+        <view class="filter-item" data-period="custom" bindtap="changePeriod">
+          <text class="filter-text">自定义</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 核心数据卡片 -->
+    <view class="stats-section">
+      <view class="stats-grid">
+        <view class="stat-card">
+          <text class="stat-label">总收入</text>
+          <view class="stat-value">
+            <text class="stat-number">¥{{totalIncome}}</text>
+          </view>
+          <view class="stat-trend up">
+            <text class="material-icons stat-trend-icon">trending_up</text>
+            <text class="stat-trend-text">+12.5%</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">总支出</text>
+          <view class="stat-value">
+            <text class="stat-number">¥{{totalExpense}}</text>
+          </view>
+          <view class="stat-trend down">
+            <text class="material-icons stat-trend-icon">trending_down</text>
+            <text class="stat-trend-text">-3.2%</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">净收益</text>
+          <view class="stat-value">
+            <text class="stat-number">¥{{netProfit}}</text>
+          </view>
+          <view class="stat-trend up">
+            <text class="material-icons stat-trend-icon">trending_up</text>
+            <text class="stat-trend-text">+8.7%</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">待结算</text>
+          <view class="stat-value">
+            <text class="stat-number">¥{{pendingSettle}}</text>
+          </view>
+          <view class="stat-trend">
+            <text class="stat-trend-text">待处理</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 收入支出对比图表区 -->
+    <view class="chart-section">
+      <view class="section-header">
+        <text class="section-title">收支趋势</text>
+      </view>
+      <view class="chart-container">
+        <view class="chart-placeholder">
+          <text class="material-icons chart-icon">bar_chart</text>
+          <text class="chart-text">收支趋势图表区域</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分类统计 -->
+    <view class="category-section">
+      <view class="section-header">
+        <text class="section-title">分类统计</text>
+      </view>
+      <view class="category-list">
+        <view class="category-item" wx:for="{{categories}}" wx:key="id">
+          <view class="category-info">
+            <text class="category-name">{{item.name}}</text>
+            <text class="category-amount">¥{{item.amount}}</text>
+          </view>
+          <view class="category-bar">
+            <view class="category-progress" style="width: {{item.percentage}}%"></view>
+          </view>
+          <text class="category-percent">{{item.percentage}}%</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 明细列表 -->
+    <view class="detail-section">
+      <view class="section-header">
+        <text class="section-title">收支明细</text>
+        <view class="header-actions">
+          <view class="action-btn" bindtap="filterType">
+            <text class="material-icons">filter_list</text>
+          </view>
+        </view>
+      </view>
+      <view class="detail-list">
+        <view class="detail-item" wx:for="{{details}}" wx:key="id">
+          <view class="detail-left">
+            <view class="detail-icon {{item.type}}">
+              <text class="material-icons">{{item.icon}}</text>
+            </view>
+            <view class="detail-info">
+              <text class="detail-title">{{item.title}}</text>
+              <text class="detail-time">{{item.time}}</text>
+            </view>
+          </view>
+          <view class="detail-amount {{item.amountType}}">
+            <text>{{item.amount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

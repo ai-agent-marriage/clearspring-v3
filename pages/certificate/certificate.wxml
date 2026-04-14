@@ -1,0 +1,103 @@
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="护生功德林" show-menu="true" show-share="true"/>
+
+  <!-- 滚动公告 -->
+  <view class="notice-bar">
+    <view class="notice-content">
+      <text class="notice-text">《科学护生合规声明》：科学放生，守护生态平衡。请严格遵守当地渔政规定，禁止投放外来有害物种。</text>
+    </view>
+  </view>
+
+  <!-- 英雄头部 -->
+  <view class="hero-header">
+    <view class="hero-content">
+      <view class="hero-text">
+        <text class="hero-title">众生皆有灵\n慈悲护万类</text>
+        <text class="hero-subtitle">科学指引，合法合规，让每一份善意都能在大自然中延续。</text>
+      </view>
+      <image class="hero-image" src="/images/merit-hero.jpg" mode="aspectFill"/>
+    </view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="0">
+      <text class="tab-text">自主护生登记</text>
+    </view>
+    <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="1">
+      <text class="tab-text">委托护生服务</text>
+    </view>
+  </view>
+
+  <!-- 主操作按钮 -->
+  <view class="main-action">
+    <button class="action-button" bindtap="onInitiateProtect">
+      <text class="material-icons action-icon">add_circle</text>
+      <text class="action-text">发起自主护生登记</text>
+    </button>
+  </view>
+
+  <!-- 护生记录列表 -->
+  <view class="records-section">
+    <view class="section-header">
+      <text class="section-title">护生记录</text>
+      <text class="section-subtitle">Recent History</text>
+    </view>
+    
+    <view class="records-list">
+      <!-- 记录项 1 -->
+      <view class="record-item" bindtap="onRecordTap" data-id="1">
+        <view class="record-icon">
+          <text class="material-icons">water_drop</text>
+        </view>
+        <view class="record-info">
+          <view class="record-header">
+            <text class="record-title">本地原生鱼类放流</text>
+            <view class="status-badge approved">已核准</view>
+          </view>
+          <text class="record-meta">北京市 · 怀柔水库 · 2023.10.24</text>
+        </view>
+        <text class="material-icons record-arrow">chevron_right</text>
+      </view>
+
+      <!-- 记录项 2 -->
+      <view class="record-item" bindtap="onRecordTap" data-id="2">
+        <view class="record-icon">
+          <text class="material-icons">nest_eco_leaf</text>
+        </view>
+        <view class="record-info">
+          <view class="record-header">
+            <text class="record-title">山林雀类科学回归</text>
+            <view class="status-badge checking">核查中</view>
+          </view>
+          <text class="record-meta">成都市 · 青城山 · 2023.10.20</text>
+        </view>
+        <text class="material-icons record-arrow">chevron_right</text>
+      </view>
+
+      <!-- 记录项 3 -->
+      <view class="record-item" bindtap="onRecordTap" data-id="3">
+        <view class="record-icon">
+          <text class="material-icons">eco</text>
+        </view>
+        <view class="record-info">
+          <view class="record-header">
+            <text class="record-title">冬日湿地生境维护</text>
+            <view class="status-badge completed">已圆满</view>
+          </view>
+          <text class="record-meta">杭州市 · 西溪湿地 · 2023.09.15</text>
+        </view>
+        <text class="material-icons record-arrow">chevron_right</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 合规水域查询按钮 -->
+  <view class="search-action">
+    <button class="search-button" bindtap="onSearchWater">
+      <text class="material-icons search-icon">location_on</text>
+      <text class="search-text">合规水域查询</text>
+    </button>
+  </view>
+</view>

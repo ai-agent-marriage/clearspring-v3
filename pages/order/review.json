@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "物种详情",
+  "navigationBarTitleText": "服务评价",
   "navigationStyle": "custom",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index",

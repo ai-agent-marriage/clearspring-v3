@@ -1,0 +1,130 @@
+<!-- 护生委托服务页面 - Stitch V3.0 规范 -->
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="护生委托服务" show-back="true"/>
+
+  <!-- 合规声明 -->
+  <view class="compliance-section">
+    <view class="section-header">
+      <text class="material-icons">gavel</text>
+      <text class="section-title">合规声明</text>
+    </view>
+    <view class="compliance-content">
+      <text class="compliance-text">1. 严格遵守法律法规，所有物种合法且经评估。</text>
+      <text class="compliance-text">2. 执行水域经调研，确保不对生态造成负面影响。</text>
+      <text class="compliance-text">3. 委托方承诺动机纯粹，不涉及非法交易。</text>
+    </view>
+    <label class="checkbox-label">
+      <checkbox checked="{{agreed}}" color="#4A5D4E"/>
+      <text class="checkbox-text">我已阅读并知晓相关规则</text>
+    </label>
+  </view>
+
+  <!-- 委托单详情 -->
+  <view class="form-section">
+    <view class="form-header">
+      <view class="header-left">
+        <text class="material-icons">assignment</text>
+        <text class="form-title">委托单详情</text>
+      </view>
+      <text class="required-tip">* 为必填项</text>
+    </view>
+
+    <view class="form-content">
+      <!-- 执行日期 -->
+      <view class="form-item">
+        <text class="form-label">执行日期 <text class="required">*</text></text>
+        <view class="input-wrapper">
+          <picker mode="date" value="{{execDate}}" bindchange="onDateChange">
+            <view class="picker-input">
+              <text>{{execDate || '请选择日期'}}</text>
+            </view>
+          </picker>
+          <text class="material-icons input-icon">calendar_today</text>
+        </view>
+      </view>
+
+      <!-- 执行水域 -->
+      <view class="form-item">
+        <text class="form-label">执行水域 <text class="required">*</text></text>
+        <picker mode="selector" range="{{waterOptions}}" range-key="name" value="{{waterIndex}}" bindchange="onWaterChange">
+          <view class="picker-input">
+            <text>{{waterOptions[waterIndex]?.name || '请选择水域'}}</text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 物种规格 -->
+      <view class="form-item">
+        <text class="form-label">物种规格 <text class="required">*</text></text>
+        <picker mode="selector" range="{{speciesOptions}}" range-key="name" value="{{speciesIndex}}" bindchange="onSpeciesChange">
+          <view class="picker-input">
+            <text>{{speciesOptions[speciesIndex]?.name || '请选择物种'}}</text>
+          </view>
+        </picker>
+      </view>
+
+      <!-- 投放份数 -->
+      <view class="form-item">
+        <text class="form-label">投放份数 <text class="required">*</text></text>
+        <input class="number-input" type="number" value="{{count}}" placeholder="请输入数量" bindinput="onCountInput"/>
+      </view>
+
+      <!-- 增值服务 -->
+      <view class="services-section">
+        <text class="services-label">增值服务</text>
+        <view class="services-grid">
+          <view class="service-item {{videoRecord ? 'active' : ''}}" bindtap="toggleVideoRecord">
+            <checkbox checked="{{videoRecord}}" color="#4A5D4E"/>
+            <text class="service-text">视频记录</text>
+          </view>
+          <view class="service-item {{wishTag ? 'active' : ''}}" bindtap="toggleWishTag">
+            <checkbox checked="{{wishTag}}" color="#4A5D4E"/>
+            <text class="service-text">心愿标识</text>
+          </view>
+          <view class="service-item {{report ? 'active' : ''}}" bindtap="toggleReport">
+            <checkbox checked="{{report}}" color="#4A5D4E"/>
+            <text class="service-text">监测报告</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 心愿寄语 -->
+      <view class="form-item">
+        <text class="form-label">心愿寄语</text>
+        <textarea class="wish-textarea" maxlength="200" placeholder="写下您的美好祝愿..." value="{{wishMessage}}" bindinput="onWishInput"/>
+        <text class="char-count">{{wishMessageLength}} / 200</text>
+      </view>
+
+      <!-- 委托方信息 -->
+      <view class="form-item">
+        <text class="form-label">委托方信息 <text class="required">*</text></text>
+        <view class="user-info">
+          <image class="user-avatar" src="{{userAvatar}}" mode="aspectFill"/>
+          <text class="user-name">{{userName}}</text>
+          <text class="user-tip">WeChat Nickname</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 装饰性引言 -->
+  <view class="quote-section">
+    <text class="quote-text">"上善若水，水利万物而不争。"</text>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-action-bar">
+    <view class="price-info">
+      <text class="price-label">服务套餐总额</text>
+      <view class="price-value">
+        <text class="currency">¥</text>
+        <text class="total-price">{{totalPrice}}</text>
+      </view>
+    </view>
+    <button class="submit-btn" bindtap="onSubmit">确认委托单</button>
+  </view>
+
+  <!-- TabBar -->
+  <tab-bar/>
+</view>

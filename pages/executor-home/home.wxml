@@ -1,0 +1,140 @@
+<!-- 执行者首页 - O-01 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-content">
+      <view class="navbar-left">
+        <text class="material-icons">menu</text>
+      </view>
+      <view class="navbar-title">执行者首页</view>
+      <view class="navbar-right">
+        <text class="material-icons">notifications</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容 -->
+  <view class="main-content">
+    <!-- 问候区域 -->
+    <view class="greeting-section">
+      <view class="greeting-title">晨安，执行者</view>
+      <view class="greeting-subtitle">心如止水，今日任务已就绪</view>
+    </view>
+
+    <!-- 核心数据指标 -->
+    <view class="metrics-grid">
+      <view class="metric-card">
+        <view class="metric-label">待处理任务</view>
+        <view class="metric-value">12</view>
+      </view>
+      <view class="metric-card">
+        <view class="metric-label">今日预约</view>
+        <view class="metric-value">48</view>
+      </view>
+      <view class="metric-card">
+        <view class="metric-label">待确认款项</view>
+        <view class="metric-value">6</view>
+      </view>
+      <view class="metric-card">
+        <view class="metric-label">累计完成</view>
+        <view class="metric-value metric-value-gold">1,284</view>
+      </view>
+    </view>
+
+    <!-- 功能矩阵 -->
+    <view class="function-section">
+      <view class="section-header">
+        <view class="section-title">功能矩阵</view>
+        <view class="section-subtitle">FUNCTION MATRIX</view>
+      </view>
+      <view class="function-grid">
+        <view class="function-item" bindtap="onOrderManage">
+          <view class="function-icon">
+            <text class="material-icons">receipt_long</text>
+          </view>
+          <view class="function-label">订单管理</view>
+        </view>
+        <view class="function-item" bindtap="onQualification">
+          <view class="function-icon function-icon-gold">
+            <text class="material-icons">volunteer_activism</text>
+          </view>
+          <view class="function-label">资质审核</view>
+        </view>
+        <view class="function-item" bindtap="onFinance">
+          <view class="function-icon">
+            <text class="material-icons">account_balance_wallet</text>
+          </view>
+          <view class="function-label">财务对账</view>
+        </view>
+        <view class="function-item" bindtap="onCompliance">
+          <view class="function-icon">
+            <text class="material-icons">gavel</text>
+          </view>
+          <view class="function-label">法务合规</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待办任务 -->
+    <view class="todo-section">
+      <view class="section-header">
+        <view class="section-title-with-line">待办任务</view>
+        <view class="section-action" bindtap="onViewAll">
+          <text>全部</text>
+          <text class="material-icons">chevron_right</text>
+        </view>
+      </view>
+      <view class="todo-list">
+        <view class="todo-item">
+          <view class="todo-left">
+            <view class="todo-dot todo-dot-red"></view>
+            <view class="todo-content">
+              <view class="todo-title">法会场地确认</view>
+              <view class="todo-time">截止 14:00</view>
+            </view>
+          </view>
+          <view class="todo-action-btn" bindtap="onHandleTodo">处理</view>
+        </view>
+        <view class="divider"></view>
+        <view class="todo-item">
+          <view class="todo-left">
+            <view class="todo-dot todo-dot-gold"></view>
+            <view class="todo-content">
+              <view class="todo-title">义工审核 (8 名)</view>
+              <view class="todo-time">待系统初筛完毕</view>
+            </view>
+          </view>
+          <view class="todo-action-btn" bindtap="onHandleTodo">处理</view>
+        </view>
+        <view class="divider"></view>
+        <view class="todo-item">
+          <view class="todo-left">
+            <view class="todo-dot todo-dot-gray"></view>
+            <view class="todo-content">
+              <view class="todo-title">财务周报复核</view>
+              <view class="todo-time">第 42 周数据汇总</view>
+            </view>
+          </view>
+          <view class="todo-action-btn" bindtap="onHandleTodo">处理</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 每日格言 -->
+    <view class="quote-section">
+      <view class="quote-overlay"></view>
+      <view class="quote-content">
+        <view class="quote-label">每日格言</view>
+        <view class="quote-text">"莫向外求。"</view>
+      </view>
+    </view>
+
+    <!-- 底部操作按钮 -->
+    <view class="bottom-action">
+      <button class="btn-primary btn-block" bindtap="onViewAsBeliever">
+        <text class="material-icons">visibility</text>
+        <text>以信众视角查看</text>
+      </button>
+    </view>
+  </view>
+</view>
