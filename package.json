@@ -7,6 +7,10 @@
     "dev": "echo '开发环境启动'",
     "build": "echo '生产环境构建'",
     "test": "echo '运行测试'",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:report": "playwright show-report",
     "deploy": "echo '部署到服务器'"
   },
   "keywords": [
@@ -20,5 +24,8 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:ai-agent-marriage/clearspring-v3.git"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
   }
 }

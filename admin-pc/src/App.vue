@@ -1,5 +1,5 @@
 <template>
-  <el-container class="app-container">
+  <el-container v-if="!isLoginPage" class="app-container">
     <!-- 侧边栏 -->
     <el-aside :width="isCollapse ? '64px' : '220px'" class="app-aside">
       <div class="logo">
@@ -94,6 +94,9 @@
       </el-main>
     </el-container>
   </el-container>
+  
+  <!-- 登录页直接显示 -->
+  <router-view v-else />
 </template>
 
 <script setup>
@@ -123,6 +126,9 @@ const isCollapse = ref(false)
 
 // 当前激活的菜单
 const activeMenu = computed(() => route.path)
+
+// 判断是否是登录页
+const isLoginPage = computed(() => route.path === '/login')
 
 // 管理员信息
 const adminName = ref('管理员')
@@ -166,14 +172,16 @@ const handleCommand = async (command) => {
 const loadCurrentUser = async () => {
   try {
     const res = await getCurrentUser()
-    adminName.value = res.data?.name || '管理员'
+    adminName.value = res.data?.nickname || res.data?.name || '管理员'
   } catch (error) {
     console.error('获取用户信息失败:', error)
   }
 }
 
 onMounted(() => {
-  loadCurrentUser()
+  if (!isLoginPage.value) {
+    loadCurrentUser()
+  }
 })
 </script>
 
@@ -194,11 +202,6 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     background-color: #002140;
-    
-    .logo-image {
-      height: 32px;
-      margin-right: 12px;
-    }
     
     .logo-text {
       color: #fff;
@@ -233,13 +236,16 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 24px;
   
   .header-left {
+    display: flex;
+    align-items: center;
+    
     .collapse-btn {
       font-size: 20px;
       cursor: pointer;
-      transition: color 0.3s;
+      transition: all 0.3s;
       
       &:hover {
         color: #1890ff;
@@ -249,27 +255,26 @@ onMounted(() => {
   
   .header-right {
     .user-info {
+      cursor: pointer;
       display: flex;
       align-items: center;
-      cursor: pointer;
       
       .username {
         margin-left: 8px;
-        color: #303133;
+        font-size: 14px;
       }
     }
   }
 }
 
 .app-main {
-  background-color: #f5f7fa;
-  padding: 20px;
+  background-color: #f0f2f5;
+  padding: 24px;
 }
 
-// 路由切换动画
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s;
 }
 
 .fade-enter-from,

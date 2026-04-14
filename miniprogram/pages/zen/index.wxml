@@ -1,4 +1,0 @@
-<!--pages/zen/index.wxml-->
-<view class="container">
-  <text>{{zenQuote}}</text>
-</view>

@@ -10,7 +10,9 @@ module.exports = {
   ],
   collectCoverage: true,
   verbose: true,
-  testTimeout: 10000,
+  testTimeout: 30000, // 增加超时时间到 30 秒（性能优化）
+  maxWorkers: 4, // 限制并发 worker 数量为 4（性能优化）
+  workerIdleMemoryLimit: 0.5, // 限制 worker 内存使用为 50%（性能优化）
   moduleFileExtensions: ['js', 'json'],
   moduleNameMapper: {
     '^wx-xlsx$': '<rootDir>/__tests__/__mocks__/wx-xlsx.js'

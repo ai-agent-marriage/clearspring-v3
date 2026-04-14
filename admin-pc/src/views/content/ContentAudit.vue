@@ -267,7 +267,7 @@
 import { ref, reactive, onMounted } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { ZoomIn, Refresh } from '@element-plus/icons-vue';
-import { cloudRequest } from '../api/request';
+import request from '@/api/request';
 
 // 加载状态
 const loading = ref(false);
@@ -349,7 +349,7 @@ const loadData = async () => {
       params.end_time = dateRange.value[1];
     }
     
-    const result = await cloudRequest({
+    const result = await request({
       name: 'getAuditList',
       data: params
     });
@@ -408,7 +408,7 @@ const handleAudit = (row, action) => {
 // 确认审核
 const confirmAudit = async (auditId, action, reason) => {
   try {
-    const result = await cloudRequest({
+    const result = await request({
       name: 'auditContent',
       data: {
         audit_id: auditId,

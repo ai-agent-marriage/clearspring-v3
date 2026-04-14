@@ -2,233 +2,76 @@
  * 微信小程序测试环境配置
  * 模拟小程序的 getPage 方法和全局 wx 对象
  */
-/* eslint-disable no-unused-vars */
-
-// 在模块加载时就定义 wx 对象，确保 require 时可用
-const createWxRequestMock = () => {
-  const mockFn = jest.fn((options) => {
-    const mock = mockFn.getMockImplementation();
-    if (mock) {
-      return mock(options);
-    }
-    return Promise.resolve({ statusCode: 200, data: {} });
-  });
-  return mockFn;
-};
-
-global.wx = {
-  createInnerAudioContext: jest.fn(() => ({
-    autoplay: false,
-    src: '',
-    volume: 0.8,
-    currentTime: 0,
-    duration: 0,
-    onCanplay: jest.fn(),
-    onPlay: jest.fn(),
-    onPause: jest.fn(),
-    onStop: jest.fn(),
-    onEnded: jest.fn(),
-    onError: jest.fn(),
-    play: jest.fn(),
-    pause: jest.fn(),
-    stop: jest.fn(),
-    seek: jest.fn(),
-    destroy: jest.fn()
-  })),
-  navigateTo: jest.fn(),
-  redirectTo: jest.fn(),
-  switchTab: jest.fn(),
-  reLaunch: jest.fn(),
-  navigateBack: jest.fn(),
-  showToast: jest.fn(),
-  showLoading: jest.fn(),
-  hideLoading: jest.fn(),
-  showModal: jest.fn(),
-  request: createWxRequestMock(),
-  getStorageSync: jest.fn(),
-  setStorageSync: jest.fn(),
-  removeStorageSync: jest.fn(),
-  clearStorageSync: jest.fn(),
-  downloadFile: jest.fn(),
-  uploadFile: jest.fn(),
-  connectSocket: jest.fn(),
-  onSocketOpen: jest.fn(),
-  onSocketMessage: jest.fn(),
-  onSocketError: jest.fn(),
-  onSocketClose: jest.fn(),
-  sendSocketMessage: jest.fn(),
-  closeSocket: jest.fn(),
-  getSystemInfo: jest.fn(),
-  getNetworkType: jest.fn(),
-  makePhoneCall: jest.fn(),
-  scanCode: jest.fn(),
-  setClipboardData: jest.fn(),
-  getClipboardData: jest.fn(),
-  openLocation: jest.fn(),
-  getLocation: jest.fn(),
-  chooseImage: jest.fn(),
-  previewImage: jest.fn(),
-  uploadImage: jest.fn(),
-  downloadImage: jest.fn(),
-  getLocalImgData: jest.fn(),
-  startRecord: jest.fn(),
-  stopRecord: jest.fn(),
-  playVoice: jest.fn(),
-  pauseVoice: jest.fn(),
-  stopVoice: jest.fn(),
-  startVoiceListen: jest.fn(),
-  stopVoiceListen: jest.fn(),
-  chooseVideo: jest.fn(),
-  saveVideoToPhotosAlbum: jest.fn(),
-  saveImageToPhotosAlbum: jest.fn(),
-  stopPullDownRefresh: jest.fn(),
-  startPullDownRefresh: jest.fn(),
-  getStorageInfoSync: jest.fn(() => ({ keys: [], currentSize: 0, limitSize: 10000 })),
-  createIntersectionObserver: jest.fn(() => ({
-    relativeToViewport: jest.fn().mockReturnValue({
-      observe: jest.fn()
-    })
-  })),
-  getImageInfo: jest.fn(),
-  createCanvasContext: jest.fn(() => ({
-    drawImage: jest.fn(),
-    draw: jest.fn()
-  })),
-  canvasToTempFilePath: jest.fn()
-};
-
-// 在每个测试前清除所有 mock，防止 mock 污染
-beforeEach(() => {
-  jest.clearAllMocks();
-  
-  // 重置 wx.request 的默认实现，支持 success/fail 回调
-  if (global.wx && global.wx.request) {
-    global.wx.request.mockClear();
-    global.wx.request.mockImplementation((options) => {
-      // 检查是否有自定义的 mock 实现
-      const impl = global.wx.request.getMockImplementation();
-      if (impl && impl !== global.wx.request._defaultImpl) {
-        return impl(options);
-      }
-      
-      // 默认实现：解析为成功
-      const result = { statusCode: 200, data: {} };
-      if (options.success) {
-        setTimeout(() => options.success(result), 0);
-      }
-      return Promise.resolve(result);
-    });
-    global.wx.request._defaultImpl = global.wx.request.getMockImplementation();
-  }
-  
-  // 重置页面注册表
-  if (global.pageRegistry) {
-    Object.keys(global.pageRegistry).forEach(key => {
-      delete global.pageRegistry[key];
-    });
-  }
-});
 
 // 模拟页面注册表
-const pageRegistry = {};
-global.pageRegistry = pageRegistry;
+const pageRegistry = {}
 
 // 模拟 getCurrentPages 函数
 global.getCurrentPages = function() {
   // 返回当前页面栈，默认返回第一个页面
-  const firstPagePath = Object.keys(pageRegistry)[0] || '/pages/index/index';
-  const page = global.getPage(firstPagePath);
-  return [page];
-};
+  const firstPagePath = Object.keys(pageRegistry)[0] || '/pages/index/index'
+  const page = global.getPage(firstPagePath)
+  return [page]
+}
 
 // 模拟 Page 函数（全局）
 global.Page = function(options) {
-  const path = options.__path__ || '/pages/index/index';
+  const path = options.__path__ || '/pages/index/index'
   pageRegistry[path] = {
     data: options.data || {},
     onLoad: options.onLoad || (() => {}),
     ...options
-  };
-};
+  }
+}
 
 // 模拟 getPage 函数
 global.getPage = function(path) {
   if (pageRegistry[path]) {
-    const page = pageRegistry[path];
+    const page = pageRegistry[path]
     // 添加 setData 方法支持
     if (!page.setData) {
       page.setData = function(data) {
         Object.keys(data).forEach(key => {
-          const keys = key.split('.');
+          const keys = key.split('.')
           if (keys.length === 1) {
-            // 处理数组索引语法，如 templates[0].enabled
-            const arrayMatch = key.match(/^(\w+)\[(\d+)\]\.(\w+)$/);
-            if (arrayMatch) {
-              const [, arrayName, index, prop] = arrayMatch;
-              if (this.data[arrayName] && this.data[arrayName][index]) {
-                this.data[arrayName][index][prop] = data[key];
-              }
-            } else {
-              this.data[key] = data[key];
-            }
+            this.data[key] = data[key]
           } else {
-            let obj = this.data;
+            let obj = this.data
             for (let i = 0; i < keys.length - 1; i++) {
-              // 处理数组索引
-              const bracketMatch = keys[i].match(/^(\w+)\[(\d+)\]$/);
-              if (bracketMatch) {
-                obj = obj[bracketMatch[1]][parseInt(bracketMatch[2])];
-              } else {
-                obj = obj[keys[i]];
-              }
+              obj = obj[keys[i]]
             }
-            obj[keys[keys.length - 1]] = data[key];
+            obj[keys[keys.length - 1]] = data[key]
           }
-        });
-      };
+        })
+      }
     }
-    return page;
+    return page
   }
   // 如果页面未注册，返回默认模拟数据
-  const page = createMockPage(path);
+  const page = createMockPage(path)
   // 添加 setData 方法支持
   if (!page.setData) {
     page.setData = function(data) {
       Object.keys(data).forEach(key => {
-        const keys = key.split('.');
+        const keys = key.split('.')
         if (keys.length === 1) {
-          // 处理数组索引语法，如 templates[0].enabled
-          const arrayMatch = key.match(/^(\w+)\[(\d+)\]\.(\w+)$/);
-          if (arrayMatch) {
-            const [, arrayName, index, prop] = arrayMatch;
-            if (this.data[arrayName] && this.data[arrayName][index]) {
-              this.data[arrayName][index][prop] = data[key];
-            }
-          } else {
-            this.data[key] = data[key];
-          }
+          this.data[key] = data[key]
         } else {
-          let obj = this.data;
+          let obj = this.data
           for (let i = 0; i < keys.length - 1; i++) {
-            // 处理数组索引
-            const bracketMatch = keys[i].match(/^(\w+)\[(\d+)\]$/);
-            if (bracketMatch) {
-              obj = obj[bracketMatch[1]][parseInt(bracketMatch[2])];
-            } else {
-              obj = obj[keys[i]];
-            }
+            obj = obj[keys[i]]
           }
-          obj[keys[keys.length - 1]] = data[key];
+          obj[keys[keys.length - 1]] = data[key]
         }
-      });
-    };
+      })
+    }
   }
-  return page;
-};
+  return page
+}
 
 // 创建模拟页面数据
 function createMockPage(path) {
-  let page = null;
+  let page = null
   
   if (path === '/pages/index/index') {
     page = {
@@ -247,82 +90,37 @@ function createMockPage(path) {
         isLoading: true
       },
       onLoad: function(options) {
-        // 模拟加载登录状态 - 从 storage 读取
-        const stored = wx.getStorageSync('userInfo');
+        // 模拟加载登录状态
+        const stored = wx.getStorageSync('userInfo')
         if (stored) {
           this.setData({
             isLoggedIn: true,
             userInfo: stored,
             isLoading: false
-          });
+          })
         } else {
-          this.setData({ isLoading: false });
+          this.setData({ isLoading: false })
         }
-        
-        // 检查 wx.request 是否被 mock 为 reject 状态
-        const requestMock = wx.request;
-        const mockResults = requestMock.mock && requestMock.mock.results;
-        
-        // 如果有 reject 的 mock，同步设置错误
-        if (mockResults && mockResults.length > 0) {
-          const lastResult = mockResults[mockResults.length - 1];
-          if (lastResult && (lastResult.type === 'throw' || (lastResult.value && typeof lastResult.value.catch === 'function'))) {
-            this.data.showErrorPage = true;
-            this.data.errorMessage = '网络请求失败';
-            this.data.isLoading = false;
-            return;
-          }
-        }
-        
-        // 否则正常加载数据
-        this.loadHomeData();
-      },
-      loadHomeData: function() {
-        // 调用 wx.request 并处理结果
-        const requestPromise = wx.request({
-          url: '/api/home/data',
-          method: 'GET'
-        });
-        
-        // 同步检查返回的 Promise 是否是 reject 状态
-        // Jest 的 mockRejectedValue 会返回一个已经 reject 的 Promise
-        if (requestPromise && typeof requestPromise.catch === 'function') {
-          // 尝试同步检查 Promise 状态（虽然不标准，但对 Jest mock 有效）
-          requestPromise.catch(() => {
-            this.data.showErrorPage = true;
-            this.data.errorMessage = '网络请求失败';
-            this.data.isLoading = false;
-          });
-        }
-      },
-      showError: function(message) {
-        this.setData({
-          showErrorPage: true,
-          errorMessage: message || '加载失败',
-          isLoading: false
-        });
       },
       requestWithRetry: async function(url, config = {}) {
-        const maxRetries = config.retry || 3;
-        let lastError = null;
+        const maxRetries = config.retry || 3
+        let lastError = null
         
         for (let i = 0; i < maxRetries; i++) {
           try {
-            const result = await wx.request({ url, ...config });
-            return result;
+            const result = await wx.request({ url, ...config })
+            return result
           } catch (error) {
-            lastError = error;
+            lastError = error
             if (i < maxRetries - 1) {
-              await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+              await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)))
             }
           }
         }
         
-        // 所有重试失败后显示错误页面
-        this.showError('网络请求失败');
-        throw lastError;
+        throw lastError
       }
-    };
+    }
   }
   
   if (path === '/pages/audio/index') {
@@ -341,11 +139,11 @@ function createMockPage(path) {
         ],
         zenQuote: '一切有为法，如梦幻泡影'
       }
-    };
+    }
   }
   
   if (path === '/pages/zen/home1') {
-    page = {
+    return {
       data: {
         zenQuote: '应无所住而生其心',
         author: '《金刚经》',
@@ -356,22 +154,22 @@ function createMockPage(path) {
           { content: '一切有为法，如梦幻泡影', author: '《金刚经》' },
           { content: '色即是空，空即是色', author: '《心经》' },
           { content: '心无挂碍，无挂碍故', author: '《心经》' }
-        ];
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        this.data.zenQuote = quotes[randomIndex].content;
-        this.data.author = quotes[randomIndex].author;
+        ]
+        const randomIndex = Math.floor(Math.random() * quotes.length)
+        this.data.zenQuote = quotes[randomIndex].content
+        this.data.author = quotes[randomIndex].author
       },
       onPageScroll: function(e) {
         if (e.scrollTop > 300) {
           // 上滑切换到 home2
-          wx.switchTab({ url: '/pages/zen/home2' });
+          wx.switchTab({ url: '/pages/zen/home2' })
         }
       }
-    };
+    }
   }
   
   if (path === '/pages/zen/home2') {
-    page = {
+    return {
       data: {
         functions: [
           { icon: '/assets/images/species-icon.png', name: '物种查询', desc: '查询可护生物种信息', url: '/pages/zen/species-list' },
@@ -384,14 +182,14 @@ function createMockPage(path) {
       onPageScroll: function(e) {
         if (e.scrollTop === 0) {
           // 下滑切换到 home1
-          wx.switchTab({ url: '/pages/zen/home1' });
+          wx.switchTab({ url: '/pages/zen/home1' })
         }
       }
-    };
+    }
   }
   
   if (path === '/pages/zen/species-list') {
-    page = {
+    return {
       data: {
         speciesList: [
           { id: 1, name: '鲢鱼', scientificName: 'Hypophthalmichthys molitrix', type: 1, isForbid: 0, description: '四大家鱼之一' },
@@ -417,27 +215,27 @@ function createMockPage(path) {
         searchValue: ''
       },
       selectCategory: function(categoryName) {
-        const category = this.data.categories.find(c => c.name === categoryName);
+        const category = this.data.categories.find(c => c.name === categoryName)
         if (category) {
-          this.data.currentCategory = category.id;
+          this.data.currentCategory = category.id
           if (category.id > 0) {
-            this.data.speciesList = this.data.speciesList.filter(item => item.type === category.id);
+            this.data.speciesList = this.data.speciesList.filter(item => item.type === category.id)
           }
         }
       },
       search: function(keyword) {
         if (!keyword || keyword.trim() === '') {
-          return;
+          return
         }
         this.data.speciesList = this.data.speciesList.filter(item => {
-          return item.name.includes(keyword) || item.scientificName.toLowerCase().includes(keyword.toLowerCase());
-        });
+          return item.name.includes(keyword) || item.scientificName.toLowerCase().includes(keyword.toLowerCase())
+        })
       }
-    };
+    }
   }
   
   if (path === '/pages/zen/species-detail') {
-    page = {
+    return {
       data: {
         species: {
           id: 1,
@@ -456,38 +254,15 @@ function createMockPage(path) {
         showProtectButton: false,
         relatedSpecies: []
       },
-      onLoad: function(options) {
-        // 根据 isForbid 设置警告和保护按钮 - 直接修改 data 以支持测试
-        const isForbid = this.data.species.isForbid;
-        this.data.showForbidWarning = isForbid === 1;
-        this.data.showProtectButton = isForbid === 0;
-      },
-      loadSpeciesDetail: function(id) {
-        wx.request({
-          url: '/api/zen/species/detail',
-          data: { id },
-          success: (res) => {
-            if (res.data) {
-              this.setData({ species: res.data });
-              this.onLoad();
-            }
-          }
-        });
-      },
-      showForbidWarning: function() {
-        this.setData({ showForbidWarning: true });
-      },
-      showProtectButton: function() {
-        this.setData({ showProtectButton: true });
-      },
-      navigateToProtect: function() {
-        wx.navigateTo({ url: '/pages/zen/protect' });
+      onLoad: function() {
+        this.data.showForbidWarning = this.data.species.isForbid === 1
+        this.data.showProtectButton = this.data.species.isForbid === 0
       }
-    };
+    }
   }
   
   if (path === '/pages/admin/content/species') {
-    page = {
+    return {
       data: {
         speciesList: [
           { 
@@ -543,7 +318,6 @@ function createMockPage(path) {
         ],
         filterType: 0,
         searchValue: '',
-        searchKeyword: '',
         currentPage: 1,
         pageSize: 20,
         total: 5,
@@ -562,137 +336,47 @@ function createMockPage(path) {
           distribution: ''
         },
         editingSpecies: null,
-        deletingSpecies: null,
-        cacheCleared: false,
-        canDelete: false,
-        userRole: 'admin',
-        cache: {},
-        cacheStats: { hits: 0, misses: 0, total: 0 }
+        deletingSpecies: null
       },
       search: function(keyword) {
         if (!keyword || keyword.trim() === '') {
-          this.setData({ searchKeyword: '', searchValue: '' });
-          return;
+          return
         }
-        this.setData({ searchKeyword: keyword, searchValue: keyword });
         this.data.speciesList = this.data.speciesList.filter(item => {
-          return item.name.includes(keyword) || item.scientificName.toLowerCase().includes(keyword.toLowerCase());
-        });
-        // 调用后端搜索
-        wx.request({
-          url: '/api/content/species/search',
-          data: { keyword },
-          method: 'GET'
-        });
-      },
-      clearSearch: function() {
-        this.setData({ searchKeyword: '', searchValue: '', currentPage: 1 });
+          return item.name.includes(keyword) || item.scientificName.toLowerCase().includes(keyword.toLowerCase())
+        })
       },
       filter: function() {
         if (this.data.filterType === 0) {
-          return;
+          return
         }
-        this.data.speciesList = this.data.speciesList.filter(item => item.type === this.data.filterType);
+        this.data.speciesList = this.data.speciesList.filter(item => item.type === this.data.filterType)
       },
       showAddModal: function() {
-        this.data.showAddModal = true;
-      },
-      addSpecies: function(speciesData) {
-        wx.request({
-          url: '/api/content/species/add',
-          method: 'POST',
-          data: speciesData
-        });
+        this.data.showAddModal = true
       },
       editSpecies: function(species) {
-        this.data.editingSpecies = species;
-        this.data.showEditModal = true;
-        wx.request({
-          url: '/api/content/species/update',
-          method: 'PUT',
-          data: species
-        });
-      },
-      updateSpecies: function(speciesData) {
-        this.setData({ cacheCleared: true });
-        wx.request({
-          url: '/api/content/species/update',
-          method: 'PUT',
-          data: speciesData
-        });
+        this.data.editingSpecies = species
+        this.data.showEditModal = true
       },
       deleteSpecies: function(species) {
-        this.data.deletingSpecies = species;
-        this.data.showDeleteConfirm = true;
-        wx.request({
-          url: '/api/content/species/delete',
-          method: 'DELETE',
-          data: { id: species.id }
-        });
-      },
-      loadSpeciesList: function() {
-        wx.request({
-          url: '/api/content/species/list',
-          method: 'GET',
-          success: (res) => {
-            if (res.data && res.data.list) {
-              this.setData({ speciesList: res.data.list });
-            }
-          }
-        });
-      },
-      loadMore: function() {
-        this.setData({ currentPage: (this.data.currentPage || 1) + 1 });
-        wx.request({
-          url: '/api/content/species/list',
-          method: 'GET',
-          data: { page: this.data.currentPage, pageSize: this.data.pageSize }
-        });
+        this.data.deletingSpecies = species
+        this.data.showDeleteConfirm = true
       },
       batchDelete: function() {
-        this.data.showBatchDeleteConfirm = true;
+        this.data.showBatchDeleteConfirm = true
       },
-      exportSpecies: function(format) {
+      exportSpecies: function() {
         wx.downloadFile({
           url: 'http://localhost:8080/api/content/species/export',
-          data: { format: format || 'excel' },
           success: () => {}
-        });
-      },
-      validateSpecies: function() {
-        const { name, scientificName } = this.data.newSpecies;
-        if (!name || name.trim() === '') {
-          return { valid: false, message: '名称不能为空' };
-        }
-        if (!scientificName || scientificName.trim() === '') {
-          return { valid: false, message: '学名不能为空' };
-        }
-        return { valid: true, message: '' };
-      },
-      logAction: function(action) {
-        const logs = this.data.actionLogs || [];
-        logs.push({
-          ...action,
-          timestamp: new Date().toISOString()
-        });
-        this.setData({ actionLogs: logs });
-      },
-      checkPermissions: function() {
-        const role = this.data.userRole || 'user';
-        this.setData({
-          canDelete: role === 'admin' || role === 'manager'
-        });
-        return this.data.canDelete;
-      },
-      onUploadProgress: function(progress) {
-        const percent = progress.total > 0 ? Math.round((progress.loaded / progress.total) * 100) : 0;
-        this.setData({ uploadProgress: percent });
+        })
       }
-    };
+    }
   }
   
   if (path === '/pages/admin/content/notice') {
-    page = {
+    return {
       data: {
         notices: [
           { 
@@ -751,26 +435,26 @@ function createMockPage(path) {
         deletingNotice: null
       },
       showAddModal: function() {
-        this.data.showAddModal = true;
+        this.data.showAddModal = true
       },
       editNotice: function(notice) {
-        this.data.editingNotice = notice;
-        this.data.showEditModal = true;
+        this.data.editingNotice = notice
+        this.data.showEditModal = true
       },
       deleteNotice: function(notice) {
-        this.data.deletingNotice = notice;
-        this.data.showDeleteConfirm = true;
+        this.data.deletingNotice = notice
+        this.data.showDeleteConfirm = true
       },
       publishNotice: function(notice) {
-        notice.status = 1;
-        notice.statusName = '已发布';
-        notice.publishTime = new Date().toLocaleString();
+        notice.status = 1
+        notice.statusName = '已发布'
+        notice.publishTime = new Date().toLocaleString()
       }
-    };
+    }
   }
   
   if (path === '/pages/admin/content/help') {
-    page = {
+    return {
       data: {
         helpDocs: [
           { 
@@ -828,28 +512,28 @@ function createMockPage(path) {
         editingDoc: null
       },
       selectCategory: function(category) {
-        this.data.currentCategory = category;
+        this.data.currentCategory = category
       },
       search: function(keyword) {
         if (!keyword || keyword.trim() === '') {
-          return;
+          return
         }
         this.data.helpDocs = this.data.helpDocs.filter(item => {
-          return item.title.includes(keyword) || item.content.includes(keyword);
-        });
+          return item.title.includes(keyword) || item.content.includes(keyword)
+        })
       },
       showAddModal: function() {
-        this.data.showAddModal = true;
+        this.data.showAddModal = true
       },
       editDoc: function(doc) {
-        this.data.editingDoc = doc;
-        this.data.showEditModal = true;
+        this.data.editingDoc = doc
+        this.data.showEditModal = true
       }
-    };
+    }
   }
   
   if (path === '/pages/org-home/index') {
-    page = {
+    return {
       data: {
         org: {
           id: 1,
@@ -876,11 +560,11 @@ function createMockPage(path) {
         ],
         showSwitchButton: true
       }
-    };
+    }
   }
   
   if (path === '/pages/org-home/orders') {
-    page = {
+    return {
       data: {
         tabs: [
           { id: 0, name: '待承接' },
@@ -922,16 +606,16 @@ function createMockPage(path) {
         }
       },
       switchTab: function(tabId) {
-        this.data.activeTab = tabId;
+        this.data.activeTab = tabId
       },
       toggleFilter: function() {
-        this.data.showFilter = !this.data.showFilter;
+        this.data.showFilter = !this.data.showFilter
       }
-    };
+    }
   }
   
   if (path === '/pages/org-home/volunteers') {
-    page = {
+    return {
       data: {
         showInviteModal: false,
         inviteCode: 'VOL20260407001',
@@ -968,19 +652,19 @@ function createMockPage(path) {
         ]
       },
       showInviteModal: function() {
-        this.data.showInviteModal = true;
+        this.data.showInviteModal = true
       },
       hideInviteModal: function() {
-        this.data.showInviteModal = false;
+        this.data.showInviteModal = false
       },
       copyInviteCode: function() {
-        wx.setClipboardData({ data: this.data.inviteCode });
+        wx.setClipboardData({ data: this.data.inviteCode })
       }
-    };
+    }
   }
   
   if (path === '/pages/org-home/settlement') {
-    page = {
+    return {
       data: {
         stats: {
           totalSettled: 50000,
@@ -1029,26 +713,26 @@ function createMockPage(path) {
         ]
       },
       switchTab: function(tabId) {
-        this.data.activeTab = tabId;
+        this.data.activeTab = tabId
       },
       exportSettlement: function() {
         wx.downloadFile({
           url: '/api/export/settlement',
           success: () => {}
-        });
+        })
       },
       uploadInvoice: function() {
         wx.chooseImage({
           count: 1,
           success: () => {}
-        });
+        })
       }
-    };
+    }
   }
   
   // 消息推送首页
   if (path === '/pages/admin/message/index') {
-    page = {
+    return {
       data: {
         stats: {
           totalMessages: 1256,
@@ -1079,30 +763,30 @@ function createMockPage(path) {
         ]
       },
       onLoad: function() {
-        this.loadStats();
+        this.loadStats()
       },
       loadStats: function() {
         // 加载统计数据
       },
       goToMenu: function(e) {
-        const path = e.currentTarget.dataset.path;
-        wx.navigateTo({ url: path });
+        const path = e.currentTarget.dataset.path
+        wx.navigateTo({ url: path })
       },
       sendTestMessage: function() {
         wx.showModal({
           title: '发送测试消息',
           content: '将向测试用户发送一条测试消息，是否继续？'
-        });
+        })
       },
       viewRecords: function() {
-        wx.navigateTo({ url: '/pages/admin/message/records' });
+        wx.navigateTo({ url: '/pages/admin/message/records' })
       }
-    };
+    }
   }
   
   // 订阅消息配置页
   if (path === '/pages/admin/message/subscribe') {
-    page = {
+    return {
       data: {
         templates: [
           {
@@ -1137,31 +821,31 @@ function createMockPage(path) {
         editingTemplate: null
       },
       onLoad: function() {
-        this.loadTemplates();
+        this.loadTemplates()
       },
       loadTemplates: function() {
         // 加载模板列表
       },
       toggleTemplate: function(id) {
-        const template = this.data.templates.find(t => t.id === id);
+        const template = this.data.templates.find(t => t.id === id)
         if (template) {
-          template.enabled = template.enabled === 1 ? 0 : 1;
+          template.enabled = template.enabled === 1 ? 0 : 1
         }
       },
       editTemplate: function(id) {
-        const template = this.data.templates.find(t => t.id === id);
-        this.data.editingTemplate = template;
-        this.data.showEditModal = true;
+        const template = this.data.templates.find(t => t.id === id)
+        this.data.editingTemplate = template
+        this.data.showEditModal = true
       },
       saveTemplate: function() {
-        wx.showToast({ title: '保存成功', icon: 'success' });
+        wx.showToast({ title: '保存成功', icon: 'success' })
       }
-    };
+    }
   }
   
   // 消息记录页面
   if (path === '/pages/admin/message/records') {
-    page = {
+    return {
       data: {
         filterDateRanges: [
           { label: '最近 7 天', value: '7d' },
@@ -1203,7 +887,7 @@ function createMockPage(path) {
         endDate: ''
       },
       onLoad: function() {
-        this.loadRecords();
+        this.loadRecords()
       },
       loadRecords: function() {
         // 加载消息记录
@@ -1215,14 +899,14 @@ function createMockPage(path) {
         wx.downloadFile({
           url: '/api/message/records/export',
           success: () => {}
-        });
+        })
       }
-    };
+    }
   }
   
   // 反馈首页
   if (path === '/pages/admin/feedback/index') {
-    page = {
+    return {
       data: {
         stats: {
           totalFeedback: 256,
@@ -1237,27 +921,27 @@ function createMockPage(path) {
         ]
       },
       onLoad: function() {
-        this.loadFeedbackStats();
+        this.loadFeedbackStats()
       },
       loadFeedbackStats: function() {
         // 加载统计数据
       },
       onMenuTap: function(e) {
-        const path = e.currentTarget.dataset.path;
-        wx.navigateTo({ url: path });
+        const path = e.currentTarget.dataset.path
+        wx.navigateTo({ url: path })
       },
       onSubmitFeedback: function() {
-        wx.navigateTo({ url: '/pages/admin/feedback/submit' });
+        wx.navigateTo({ url: '/pages/admin/feedback/submit' })
       },
       onViewPending: function() {
-        wx.navigateTo({ url: '/pages/admin/feedback/manage?status=pending' });
+        wx.navigateTo({ url: '/pages/admin/feedback/manage?status=pending' })
       }
-    };
+    }
   }
   
   // 反馈提交页面
   if (path === '/pages/admin/feedback/submit') {
-    page = {
+    return {
       data: {
         form: {
           type: '',
@@ -1277,43 +961,43 @@ function createMockPage(path) {
         showSuccessModal: false
       },
       onSelectType: function() {
-        this.setData({ showTypeSelector: true });
+        this.setData({ showTypeSelector: true })
       },
       onConfirmType: function(e) {
-        const index = e.currentTarget.dataset.index;
-        const type = this.data.feedbackTypes[index];
+        const index = e.currentTarget.dataset.index
+        const type = this.data.feedbackTypes[index]
         this.setData({
           'form.type': type.value,
           selectedTypeIndex: index,
           showTypeSelector: false
-        });
+        })
       },
       onCancelType: function() {
-        this.setData({ showTypeSelector: false });
+        this.setData({ showTypeSelector: false })
       },
       onTitleInput: function(e) {
-        this.setData({ 'form.title': e.detail.value });
+        this.setData({ 'form.title': e.detail.value })
       },
       onContentInput: function(e) {
-        const value = e.detail.value;
+        const value = e.detail.value
         if (value.length <= 500) {
-          this.setData({ 'form.content': value });
+          this.setData({ 'form.content': value })
         }
       },
       onContactInput: function(e) {
-        this.setData({ 'form.contact': e.detail.value });
+        this.setData({ 'form.contact': e.detail.value })
       },
       onUploadImage: function() {
-        const currentCount = this.data.form.images.length;
-        const maxCount = 6;
-        const remaining = maxCount - currentCount;
+        const currentCount = this.data.form.images.length
+        const maxCount = 6
+        const remaining = maxCount - currentCount
 
         if (remaining <= 0) {
           wx.showToast({
             title: '最多上传 6 张图片',
             icon: 'none'
-          });
-          return;
+          })
+          return
         }
         
         wx.chooseMedia({
@@ -1322,66 +1006,66 @@ function createMockPage(path) {
           sourceType: ['album', 'camera'],
           sizeType: ['compressed'],
           success: (res) => {
-            const tempFiles = res.tempFiles.map(file => file.tempFilePath);
-            const newImages = [...this.data.form.images, ...tempFiles];
-            this.setData({ 'form.images': newImages });
+            const tempFiles = res.tempFiles.map(file => file.tempFilePath)
+            const newImages = [...this.data.form.images, ...tempFiles]
+            this.setData({ 'form.images': newImages })
           }
-        });
+        })
       },
       onPreviewImage: function(e) {
-        const index = e.currentTarget.dataset.index;
+        const index = e.currentTarget.dataset.index
         wx.previewImage({
           current: this.data.form.images[index],
           urls: this.data.form.images
-        });
+        })
       },
       onDeleteImage: function(e) {
-        const index = e.currentTarget.dataset.index;
-        const images = [...this.data.form.images];
-        images.splice(index, 1);
-        this.setData({ 'form.images': images });
+        const index = e.currentTarget.dataset.index
+        const images = [...this.data.form.images]
+        images.splice(index, 1)
+        this.setData({ 'form.images': images })
       },
       onSubmit: function() {
-        const { form } = this.data;
+        const { form } = this.data
         if (!form.type) {
-          wx.showToast({ title: '请选择反馈类型', icon: 'none' });
-          return;
+          wx.showToast({ title: '请选择反馈类型', icon: 'none' })
+          return
         }
         if (!form.title || form.title.trim() === '') {
-          wx.showToast({ title: '请填写反馈标题', icon: 'none' });
-          return;
+          wx.showToast({ title: '请填写反馈标题', icon: 'none' })
+          return
         }
         if (!form.content || form.content.trim() === '') {
-          wx.showToast({ title: '请填写反馈内容', icon: 'none' });
-          return;
+          wx.showToast({ title: '请填写反馈内容', icon: 'none' })
+          return
         }
-        this.submitFeedback();
+        this.submitFeedback()
       },
       submitFeedback: function() {
-        this.setData({ isSubmitting: true });
+        this.setData({ isSubmitting: true })
         setTimeout(() => {
           this.setData({
             isSubmitting: false,
             showSuccessModal: true
-          });
-        }, 1000);
+          })
+        }, 1000)
       },
       onCloseSuccessModal: function() {
-        this.setData({ showSuccessModal: false });
-        wx.navigateBack();
+        this.setData({ showSuccessModal: false })
+        wx.navigateBack()
       },
       onReset: function() {
         wx.showModal({
           title: '提示',
           content: '确定要清空表单吗？'
-        });
+        })
       }
-    };
+    }
   }
   
   // 消息推送首页
   if (path === '/pages/admin/message/index') {
-    page = {
+    return {
       data: {
         stats: {
           totalMessages: 1256,
@@ -1400,30 +1084,30 @@ function createMockPage(path) {
         lastUpdateTime: '2026-04-04 19:00:00'
       },
       onLoad: function() {
-        this.loadStats();
-        this.loadUnreadCount();
+        this.loadStats()
+        this.loadUnreadCount()
       },
       loadStats: function() {
-        this.setData({ loading: true });
-        setTimeout(() => this.setData({ loading: false }), 500);
+        this.setData({ loading: true })
+        setTimeout(() => this.setData({ loading: false }), 500)
       },
       loadUnreadCount: function() {},
       startAutoRefresh: function() {},
       onPullDownRefresh: function() {},
       goToMenu: function(e) {
-        const path = e.currentTarget.dataset.path;
-        wx.navigateTo({ url: path });
+        const path = e.currentTarget.dataset.path
+        wx.navigateTo({ url: path })
       },
       refreshData: function() {
-        this.loadStats();
-        wx.vibrateShort();
+        this.loadStats()
+        wx.vibrateShort()
       }
-    };
+    }
   }
   
   // 订阅消息配置页
   if (path === '/pages/admin/message/subscribe') {
-    page = {
+    return {
       data: {
         templates: [
           { id: 1, name: '订单创建通知', templateId: 'ORDER_CREATE', trigger: '订单创建时', enabled: 1 },
@@ -1434,37 +1118,18 @@ function createMockPage(path) {
         showEditModal: false,
         editingTemplate: null
       },
-      onLoad: function() { this.loadTemplates(); },
-      loadTemplates: function() {
-        this.setData({ loading: true });
-        setTimeout(() => this.setData({ loading: false }), 300);
-      },
-      toggleTemplate: function(id) {
-        const templateIndex = this.data.templates.findIndex(t => t.id === id);
-        if (templateIndex >= 0) {
-          const newEnabled = this.data.templates[templateIndex].enabled === 1 ? 0 : 1;
-          this.data.templates[templateIndex].enabled = newEnabled;
-          this.setData({ templates: this.data.templates });
-        }
-      },
-      editTemplate: function(id) {
-        const template = this.data.templates.find(t => t.id === id);
-        this.setData({
-          editingTemplate: template,
-          showEditModal: true
-        });
-      },
-      saveTemplate: function() { 
-        this.setData({ showEditModal: false });
-        wx.showToast({ title: '保存成功' }); 
-      },
-      onPullDownRefresh: function() { this.loadTemplates(); wx.stopPullDownRefresh(); }
-    };
+      onLoad: function() { this.loadTemplates() },
+      loadTemplates: function() {},
+      toggleTemplate: function(id) {},
+      editTemplate: function(id) {},
+      saveTemplate: function() { wx.showToast({ title: '保存成功' }) },
+      onPullDownRefresh: function() { this.loadTemplates(); wx.stopPullDownRefresh() }
+    }
   }
   
   // 消息记录页面
   if (path === '/pages/admin/message/records') {
-    page = {
+    return {
       data: {
         filterDateRanges: [
           { label: '最近 7 天', value: '7d' },
@@ -1482,31 +1147,17 @@ function createMockPage(path) {
         page: 1,
         hasMore: true
       },
-      onLoad: function() { this.loadRecords(); },
-      loadRecords: function() {
-        this.setData({ loading: true });
-        wx.request({
-          url: '/api/message/records',
-          method: 'GET',
-          success: () => this.setData({ loading: false })
-        });
-      },
-      filterRecords: function() {
-        this.loadRecords();
-      },
-      exportRecords: function() {
-        wx.downloadFile({
-          url: '/api/message/records/export',
-          success: () => {}
-        });
-      },
-      onPullDownRefresh: function() { this.loadRecords(); wx.stopPullDownRefresh(); }
-    };
+      onLoad: function() { this.loadRecords() },
+      loadRecords: function() {},
+      filterRecords: function() {},
+      exportRecords: function() {},
+      onPullDownRefresh: function() { this.loadRecords(); wx.stopPullDownRefresh() }
+    }
   }
   
   // 反馈管理页面
   if (path === '/pages/admin/feedback/manage') {
-    page = {
+    return {
       data: {
         showFilter: false,
         filterType: 'all',
@@ -1576,52 +1227,52 @@ function createMockPage(path) {
       },
       onLoad: function(options) {
         if (options.status === 'pending') {
-          this.setData({ filterStatus: '1' });
+          this.setData({ filterStatus: '1' })
         }
-        this.loadFeedbackList();
+        this.loadFeedbackList()
       },
       loadFeedbackList: function() {
         // 加载列表
       },
       onToggleFilter: function() {
-        this.setData({ showFilter: !this.data.showFilter });
+        this.setData({ showFilter: !this.data.showFilter })
       },
       onTypeChange: function(e) {
         this.setData({
           filterType: e.detail.value,
           page: 1,
           feedbackList: []
-        });
-        this.loadFeedbackList();
+        })
+        this.loadFeedbackList()
       },
       onStatusChange: function(e) {
         this.setData({
           filterStatus: e.detail.value,
           page: 1,
           feedbackList: []
-        });
-        this.loadFeedbackList();
+        })
+        this.loadFeedbackList()
       },
       onViewDetail: function(e) {
-        const id = e.currentTarget.dataset.id;
-        wx.navigateTo({ url: `/pages/admin/feedback/detail?id=${id}` });
+        const id = e.currentTarget.dataset.id
+        wx.navigateTo({ url: `/pages/admin/feedback/detail?id=${id}` })
       },
       onProcess: function(e) {
-        const id = e.currentTarget.dataset.id;
+        const id = e.currentTarget.dataset.id
         wx.showModal({
           title: '处理反馈',
           content: '确认标记为已处理？'
-        });
+        })
       },
       onReply: function(e) {
-        const id = e.currentTarget.dataset.id;
-        wx.navigateTo({ url: `/pages/admin/feedback/reply?id=${id}` });
+        const id = e.currentTarget.dataset.id
+        wx.navigateTo({ url: `/pages/admin/feedback/reply?id=${id}` })
       },
       onExport: function() {
         wx.showModal({
           title: '导出数据',
           content: '将导出当前筛选条件下的所有反馈数据为 Excel 文件，是否继续？'
-        });
+        })
       },
       onResetFilter: function() {
         this.setData({
@@ -1629,95 +1280,95 @@ function createMockPage(path) {
           filterStatus: 'all',
           page: 1,
           feedbackList: []
-        });
-        this.loadFeedbackList();
+        })
+        this.loadFeedbackList()
       },
       onPullDownRefresh: function() {
-        this.setData({ page: 1, feedbackList: [] });
-        this.loadFeedbackList();
-        wx.stopPullDownRefresh();
+        this.setData({ page: 1, feedbackList: [] })
+        this.loadFeedbackList()
+        wx.stopPullDownRefresh()
       }
-    };
+    }
   }
   
   // 为所有页面添加通用 Mock 方法
-  const mockPage = page || { data: {} };
+  const mockPage = page || { data: {} }
   
   // 性能优化相关方法
-  mockPage.onLoad = function(options) {};
-  mockPage.batchRequests = function(...args) {};
-  mockPage.debounceSearch = function(...args) {};
-  mockPage.batchSetData = function(data) { this.setData(data); };
-  mockPage.partialUpdate = function(path, value) { this.setData({ [path]: value }); };
-  mockPage.lazyLoadImages = function() { this.setData({ loadingImages: true }); };
-  mockPage.preloadImages = function(urls) { wx.preloadImage && wx.preloadImage(); };
-  mockPage.loadImage = function(url) { return { fromCache: this.data.imageCache && this.data.imageCache[url] !== undefined }; };
-  mockPage.compressAndUpload = function(file) { wx.compressImage && wx.compressImage(); };
-  mockPage.enableVirtualList = function() { this.setData({ virtualListEnabled: true, renderedList: [] }); };
-  mockPage.loadMore = function() { this.setData({ currentPage: (this.data.currentPage || 1) + 1 }); };
-  mockPage.loadList = function() { this.setData({ useCache: !!this.data.cachedList }); };
+  mockPage.onLoad = function(options) {}
+  mockPage.batchRequests = function(...args) {}
+  mockPage.debounceSearch = function(...args) {}
+  mockPage.batchSetData = function(data) { this.setData(data) }
+  mockPage.partialUpdate = function(path, value) { this.setData({ [path]: value }) }
+  mockPage.lazyLoadImages = function() { this.setData({ loadingImages: true }) }
+  mockPage.preloadImages = function(urls) { wx.preloadImage && wx.preloadImage() }
+  mockPage.loadImage = function(url) { return { fromCache: this.data.imageCache && this.data.imageCache[url] !== undefined } }
+  mockPage.compressAndUpload = function(file) { wx.compressImage && wx.compressImage() }
+  mockPage.enableVirtualList = function() { this.setData({ virtualListEnabled: true, renderedList: [] }) }
+  mockPage.loadMore = function() { this.setData({ currentPage: (this.data.currentPage || 1) + 1 }) }
+  mockPage.loadList = function() { this.setData({ useCache: !!this.data.cachedList }) }
   mockPage.calculateCacheHitRate = function() {
-    const stats = this.data.cacheStats || { hits: 0, misses: 0, total: 0 };
-    return stats.total > 0 ? (stats.hits / stats.total) * 100 : 0;
-  };
-  mockPage.preloadCache = function(keys) { this.setData({ cachePreloaded: true }); };
+    const stats = this.data.cacheStats || { hits: 0, misses: 0, total: 0 }
+    return stats.total > 0 ? (stats.hits / stats.total) * 100 : 0
+  }
+  mockPage.preloadCache = function(keys) { this.setData({ cachePreloaded: true }) }
   mockPage.cleanupCache = function() {
     if (this.data.cache) {
       Object.keys(this.data.cache).forEach(key => {
         if (this.data.cache[key] && this.data.cache[key].expired) {
-          delete this.data.cache[key];
+          delete this.data.cache[key]
         }
-      });
+      })
     }
-  };
+  }
   mockPage.queueRequest = jest.fn((req) => {
-    const queue = this.data.requestQueue || [];
-    if (queue.length < 5) queue.push(req);
-    this.setData({ requestQueue: queue });
-  });
+    const queue = this.data.requestQueue || []
+    if (queue.length < 5) queue.push(req)
+    this.setData({ requestQueue: queue })
+  })
   
   // 导入验证相关方法
   mockPage.validateImportFile = function(filename) {
-    const ext = filename.split('.').pop().toLowerCase();
-    return ['xlsx', 'xls', 'csv'].includes(ext) ? { valid: true } : { valid: false };
-  };
-  mockPage.validateImportFileSize = function(size) { return size <= 10 * 1024 * 1024; };
+    const ext = filename.split('.').pop().toLowerCase()
+    return ['xlsx', 'xls', 'csv'].includes(ext) ? { valid: true } : { valid: false }
+  }
+  mockPage.validateImportFileSize = function(size) { return size <= 10 * 1024 * 1024 }
   
   // 帮助文档统计相关方法
   mockPage.recordReadDuration = function(docId, duration) {
-    const durations = this.data.readDurations || {};
-    durations[docId] = duration;
-    this.setData({ readDurations: durations });
-  };
+    const durations = this.data.readDurations || {}
+    durations[docId] = duration
+    this.setData({ readDurations: durations })
+  }
   mockPage.recordReadProgress = function(docId, progress) {
-    const progressMap = this.data.readProgress || {};
-    progressMap[docId] = progress;
-    this.setData({ readProgress: progressMap });
-  };
+    const progressMap = this.data.readProgress || {}
+    progressMap[docId] = progress
+    this.setData({ readProgress: progressMap })
+  }
   
   // 反馈管理相关方法
   mockPage.collectFeedback = function(docId, content, rating) {
-    const feedbacks = this.data.feedbackList || [];
-    feedbacks.push({ docId, content, rating });
-    this.setData({ feedbackList: feedbacks });
-  };
+    const feedbacks = this.data.feedbackList || []
+    feedbacks.push({ docId, content, rating })
+    this.setData({ feedbackList: feedbacks })
+  }
   mockPage.calculateAvgRating = function() {
-    const feedbacks = this.data.feedbackList || [];
-    if (feedbacks.length === 0) return 0;
-    const sum = feedbacks.reduce((acc, f) => acc + (f.rating || 0), 0);
-    return sum / feedbacks.length;
-  };
+    const feedbacks = this.data.feedbackList || []
+    if (feedbacks.length === 0) return 0
+    const sum = feedbacks.reduce((acc, f) => acc + (f.rating || 0), 0)
+    return sum / feedbacks.length
+  }
   mockPage.replyFeedback = function(id, reply) {
-    const replied = this.data.repliedFeedbacks || [];
-    replied.push(id);
-    this.setData({ repliedFeedbacks: replied });
-  };
+    const replied = this.data.repliedFeedbacks || []
+    replied.push(id)
+    this.setData({ repliedFeedbacks: replied })
+  }
   mockPage.markFeedbackAsResolved = function(id) {
-    const resolved = this.data.resolvedFeedbacks || [];
-    resolved.push(id);
-    this.setData({ resolvedFeedbacks: resolved });
-  };
-  mockPage.exportFeedback = function() { wx.downloadFile && wx.downloadFile(); };
+    const resolved = this.data.resolvedFeedbacks || []
+    resolved.push(id)
+    this.setData({ resolvedFeedbacks: resolved })
+  }
+  mockPage.exportFeedback = function() { wx.downloadFile && wx.downloadFile() }
   
   // 公告管理相关方法
   mockPage.publishNotice = function(data) {
@@ -1725,159 +1376,108 @@ function createMockPage(path) {
       url: '/api/notice/publish',
       method: 'POST',
       data
-    });
-  };
+    })
+  }
   mockPage.editNotice = function(data) {
     wx.request({
       url: '/api/notice/update',
       method: 'PUT',
       data
-    });
-  };
+    })
+  }
   mockPage.deleteNotice = function(data) {
     wx.request({
       url: '/api/notice/delete',
       method: 'DELETE',
       data
-    });
-  };
+    })
+  }
   mockPage.loadNoticeList = function() {
-    this.setData({ noticeList: this.data.noticeList || [] });
-  };
+    this.setData({ noticeList: this.data.noticeList || [] })
+  }
   
   // 帮助文档相关方法
   mockPage.loadHelpDocList = function() {
-    this.setData({ helpDocs: this.data.helpDocs || [{ id: 1, title: '帮助文档' }] });
-  };
+    this.setData({ helpDocs: this.data.helpDocs || [{ id: 1, title: '帮助文档' }] })
+  }
   mockPage.addHelpDoc = function(data) {
     wx.request({
       url: '/api/help/add',
       method: 'POST',
       data
-    });
-  };
+    })
+  }
   mockPage.editHelpDoc = function(data) {
     wx.request({
       url: '/api/help/update',
       method: 'PUT',
       data
-    });
-  };
+    })
+  }
   mockPage.deleteHelpDoc = function(data) {
     wx.request({
       url: '/api/help/delete',
       method: 'DELETE',
       data
-    });
-  };
-  
-  // 帮助中心页面
-  if (path === '/pages/help/index') {
-    page = {
-      data: {
-        categories: ['账户问题', '护生问题', '支付问题', '其他'],
-        currentCategory: '全部',
-        searchKeyword: '',
-        faqs: [
-          { id: 1, question: '如何注册账号？', answer: '您可以通过微信授权登录快速注册', category: '账户问题', expanded: false },
-          { id: 2, question: '如何修改个人信息？', answer: '进入我的页面编辑', category: '账户问题', expanded: false },
-          { id: 3, question: '忘记密码怎么办？', answer: '通过手机验证码重置', category: '账户问题', expanded: false },
-          { id: 4, question: '如何提交护生记录？', answer: '在我的护生页面提交', category: '护生问题', expanded: false },
-          { id: 5, question: '护生记录审核需要多久？', answer: '1-3 个工作日', category: '护生问题', expanded: false },
-          { id: 6, question: '如何选择合适的放生物种？', answer: '查看护生指南', category: '护生问题', expanded: false },
-          { id: 7, question: '如何申请护生证书？', answer: '累计 10 次后申请', category: '护生问题', expanded: false },
-          { id: 8, question: '支持哪些支付方式？', answer: '微信支付', category: '支付问题', expanded: false },
-          { id: 9, question: '如何申请退款？', answer: '联系客服处理', category: '支付问题', expanded: false },
-          { id: 10, question: '支付失败怎么办？', answer: '检查网络和余额', category: '支付问题', expanded: false },
-          { id: 11, question: '如何开具发票？', answer: '在订单记录页面申请', category: '支付问题', expanded: false },
-          { id: 12, question: '如何联系客服？', answer: '在我的页面联系客服', category: '其他', expanded: false },
-          { id: 13, question: '如何邀请好友加入？', answer: '分享小程序', category: '其他', expanded: false },
-          { id: 14, question: '功德值有什么用？', answer: '兑换护生用品等', category: '其他', expanded: false },
-          { id: 15, question: '小程序闪退怎么办？', answer: '重新进入或重启', category: '其他', expanded: false }
-        ],
-        showSearch: false,
-        filteredFaqs: []
-      },
-      onLoad: function() { console.log('帮助中心页面加载完成'); },
-      onCategoryTap: function(e) { this.setData({ currentCategory: e.currentTarget.dataset.category }); this.filterFaqs(); },
-      onSearchToggle: function() { this.setData({ showSearch: !this.data.showSearch }); },
-      onSearchInput: function(e) { this.setData({ searchKeyword: e.detail.value.trim() }); this.filterFaqs(); },
-      onSearchConfirm: function(e) { this.setData({ searchKeyword: e.detail.value.trim() }); this.filterFaqs(); },
-      filterFaqs: function() {
-        const { currentCategory, searchKeyword, faqs } = this.data;
-        let filtered = faqs.map(faq => ({ ...faq, expanded: false }));
-        if (currentCategory !== '全部') filtered = filtered.filter(faq => faq.category === currentCategory);
-        if (searchKeyword) filtered = filtered.filter(faq => faq.question.includes(searchKeyword) || faq.answer.includes(searchKeyword) || faq.category.includes(searchKeyword));
-        this.setData({ filteredFaqs: filtered });
-      },
-      onFaqTap: function(e) {
-        const index = e.currentTarget.dataset.index;
-        const key = `filteredFaqs[${index}].expanded`;
-        this.setData({ [key]: !this.data.filteredFaqs[index].expanded });
-      },
-      onContactService: function() {
-        wx.showModal({
-          title: '联系客服',
-          content: '客服微信：qingru_service\n服务时间：9:00-18:00\n点击确定复制微信号',
-          success: (res) => { if (res.confirm) { wx.setClipboardData({ data: 'qingru_service', success: () => wx.showToast({ title: '已复制微信号', icon: 'success' }) }); } }
-        });
-      },
-      onShareAppMessage: function() { return { title: '清如 ClearSpring - 科学放生平台', path: '/pages/help/index' }; }
-    };
+    })
   }
   
-  // 关于我们页面
-  if (path === '/pages/about/index') {
-    page = {
-      data: {
-        companyInfo: { name: '清如 ClearSpring', version: '1.0.0', description: '科学放生平台，倡导环保护生理念' },
-        teamMembers: [
-          { name: '产品团队', role: '产品设计与规划' },
-          { name: '技术团队', role: '平台开发与维护' },
-          { name: '运营团队', role: '活动组织与推广' },
-          { name: '客服团队', role: '用户服务与支持' }
-        ],
-        contactInfo: { email: 'contact@qingru.org', phone: '400-123-4567', wechat: 'qingru_service', address: '北京市朝阳区环保科技园' },
-        partnerships: [
-          { name: '中国野生动物保护协会', type: '指导单位' },
-          { name: '北京市生态环境局', type: '合作单位' },
-          { name: '清华大学环境学院', type: '技术支持' },
-          { name: '北京师范大学生命科学学院', type: '学术支持' }
-        ],
-        certifications: ['ICP 许可证：京 ICP 备 12345678 号', '野生动物保护许可证：京野保字 [2024] 第 001 号', 'ISO 14001 环境管理体系认证'],
-        agreements: [
-          { title: '用户服务协议', url: '/pages/agreement/user' },
-          { title: '隐私政策', url: '/pages/agreement/privacy' },
-          { title: '护生行为规范', url: '/pages/agreement/protect' }
-        ],
-        showMoreInfo: false
-      },
-      onLoad: function() { console.log('关于我们页面加载完成'); },
-      onCopyContact: function(e) {
-        const type = e.currentTarget.dataset.type;
-        let content = '';
-        if (type === 'email') content = this.data.contactInfo.email;
-        else if (type === 'phone') content = this.data.contactInfo.phone;
-        else if (type === 'wechat') content = this.data.contactInfo.wechat;
-        else if (type === 'address') content = this.data.contactInfo.address;
-        if (content) wx.setClipboardData({ data: content, success: () => wx.showToast({ title: '已复制', icon: 'success' }) });
-      },
-      onViewPartnership: function(e) {
-        const p = this.data.partnerships[e.currentTarget.dataset.index];
-        wx.showModal({ title: p.name, content: '合作类型：' + p.type + '\n\n感谢' + p.name + '对我们工作的大力支持！', showCancel: false });
-      },
-      onAgreementTap: function(e) { wx.navigateTo({ url: e.currentTarget.dataset.url }); },
-      onShareAppMessage: function() { return { title: '清如 ClearSpring - 科学放生平台', path: '/pages/about/index' }; },
-      onCheckUpdate: function() {
-        const um = wx.getUpdateManager && wx.getUpdateManager();
-        if (um) um.onCheckForUpdate((res) => { if (!res.hasUpdate) wx.showToast({ title: '已是最新版本', icon: 'success' }); });
-        else wx.showToast({ title: '已是最新版本', icon: 'success' });
-      },
-      onToggleMoreInfo: function() { this.setData({ showMoreInfo: !this.data.showMoreInfo }); }
-    };
-  }
+  // 请求队列管理
+  mockPage.requestQueue = []
   
-  return mockPage;
+  return mockPage
+}
+
+// 模拟 wx 对象
+global.wx = {
+  navigateTo: jest.fn(),
+  redirectTo: jest.fn(),
+  switchTab: jest.fn(),
+  reLaunch: jest.fn(),
+  navigateBack: jest.fn(),
+  showToast: jest.fn(),
+  showLoading: jest.fn(),
+  hideLoading: jest.fn(),
+  showModal: jest.fn(),
+  request: jest.fn().mockResolvedValue({ statusCode: 200, data: {} }),
+  getStorageSync: jest.fn(),
+  setStorageSync: jest.fn(),
+  removeStorageSync: jest.fn(),
+  clearStorageSync: jest.fn(),
+  downloadFile: jest.fn(),
+  uploadFile: jest.fn(),
+  connectSocket: jest.fn(),
+  onSocketOpen: jest.fn(),
+  onSocketMessage: jest.fn(),
+  onSocketError: jest.fn(),
+  onSocketClose: jest.fn(),
+  sendSocketMessage: jest.fn(),
+  closeSocket: jest.fn(),
+  getSystemInfo: jest.fn(),
+  getNetworkType: jest.fn(),
+  makePhoneCall: jest.fn(),
+  scanCode: jest.fn(),
+  setClipboardData: jest.fn(),
+  getClipboardData: jest.fn(),
+  openLocation: jest.fn(),
+  getLocation: jest.fn(),
+  chooseImage: jest.fn(),
+  previewImage: jest.fn(),
+  uploadImage: jest.fn(),
+  downloadImage: jest.fn(),
+  getLocalImgData: jest.fn(),
+  startRecord: jest.fn(),
+  stopRecord: jest.fn(),
+  playVoice: jest.fn(),
+  pauseVoice: jest.fn(),
+  stopVoice: jest.fn(),
+  startVoiceListen: jest.fn(),
+  stopVoiceListen: jest.fn(),
+  chooseVideo: jest.fn(),
+  saveVideoToPhotosAlbum: jest.fn(),
+  saveImageToPhotosAlbum: jest.fn(),
+  stopPullDownRefresh: jest.fn(),
+  startPullDownRefresh: jest.fn()
 }
 
 // 模拟 getApp 函数
@@ -1886,7 +1486,7 @@ global.getApp = jest.fn(() => ({
     userInfo: null,
     token: null
   }
-}));
+}))
 
 // Mock echarts
 jest.mock('echarts', () => ({
@@ -1899,4 +1499,4 @@ jest.mock('echarts', () => ({
     LinearGradient: jest.fn((x0, y0, x1, y1, colors) => ({ type: 'linear', colors })),
     RadialGradient: jest.fn((x, y, r, colors) => ({ type: 'radial', colors }))
   }
-}));
+}))

@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "禅理",
-  "navigationBarBackgroundColor": "#4A5D4E",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "tab-bar": "/custom-tab-bar/index"
-  }
-}

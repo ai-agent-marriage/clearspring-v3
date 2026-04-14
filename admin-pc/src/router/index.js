@@ -16,6 +16,9 @@ import RoleManage from '../views/user/RoleManage.vue'
 // 订单管理模块
 import OrderList from '../views/order/OrderList.vue'
 
+// 执行者管理模块
+import ExecutorManage from '../views/user/ExecutorManage.vue'
+
 // 内容管理模块
 import ContentAudit from '../views/content/ContentAudit.vue'
 
@@ -90,6 +93,14 @@ const routes = [
     name: 'OrderList',
     component: OrderList,
     meta: { title: '订单管理', requiresAuth: true, icon: 'List' }
+  },
+  
+  // 执行者管理模块
+  {
+    path: '/executors',
+    name: 'ExecutorManage',
+    component: ExecutorManage,
+    meta: { title: '执行者管理', requiresAuth: true, icon: 'User' }
   },
   
   // 内容管理模块

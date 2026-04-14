@@ -28,6 +28,18 @@
     "multi-team-coding": {
       "version": "1.0.0",
       "installedAt": 1774836063201
+    },
+    "test-runner": {
+      "version": "1.0.0",
+      "installedAt": 1775990401809
+    },
+    "quack-code-review": {
+      "version": "1.0.0",
+      "installedAt": 1775990462351
+    },
+    "e2e-test-orchestrator": {
+      "version": "1.0.0",
+      "installedAt": 1776005582295
     }
   }
 }
