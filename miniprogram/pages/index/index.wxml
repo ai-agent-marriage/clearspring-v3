@@ -79,11 +79,15 @@
     </view>
   </view>
 
-  <!-- 底部吸底按钮 -->
-  <view class="bottom-action">
+  <!-- 护生功德林入口（吸底上方） -->
+  <view class="forest-section">
     <button class="forest-btn" bindtap="goToForest">
       <text class="forest-icon">🌳</text>
       <text class="forest-text">护生功德林</text>
+      <text class="forest-arrow">›</text>
     </button>
   </view>
+  
+  <!-- 底部安全区域（为 TabBar 留空间） -->
+  <view class="bottom-safe-area"></view>
 </view>

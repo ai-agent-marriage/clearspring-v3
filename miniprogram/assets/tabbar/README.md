@@ -1,15 +1,28 @@
-# Tabbar 图标资源
+# TabBar 图标说明
 
-请在此目录放置以下图标文件（建议尺寸：81x81px）：
+需要以下 8 个图标文件（PNG 格式，81x81px）：
 
-- home.png / home-active.png - 首页图标
-- audio.png / audio-active.png - 梵音图标
-- zen.png / zen-active.png - 禅理图标
-- profile.png / profile-active.png - 我的图标
+## 首页
+- home.png（未选中，线性白色图标）
+- home-active.png（选中，墨绿 #4A5D4E 填充）
 
-图标设计规范：
-- 格式：PNG
-- 尺寸：81x81px
-- 背景：透明
-- 未选中颜色：#999999
-- 选中颜色：#4A5D4E
+## 梵音
+- audio.png（未选中，线性白色图标）
+- audio-active.png（选中，墨绿 #4A5D4E 填充）
+
+## 禅理
+- zen.png（未选中，线性白色图标）
+- zen-active.png（选中，墨绿 #4A5D4E 填充）
+
+## 我的
+- profile.png（未选中，线性白色图标）
+- profile-active.png（选中，墨绿 #4A5D4E 填充）
+
+## 设计规范
+- 尺寸：81x81px（@2x: 162x162px）
+- 格式：PNG 透明背景
+- 风格：线性图标（2px 描边）
+- 未选中：#718096（灰色）
+- 已选中：#4A5D4E（墨绿）
+
+临时方案：可使用微信开发者工具自动生成
