@@ -29,7 +29,7 @@
   <view class="summary-cards">
     <view class="summary-card glass card-income">
       <view class="card-header">
-        <text class="card-icon">💰</text>
+        <icon-money size="medium" color="green" />
         <text class="card-label">总收入</text>
       </view>
       <view class="card-value text-green">¥{{summary.totalIncome}}</view>
@@ -47,7 +47,7 @@
     
     <view class="summary-card glass card-expense">
       <view class="card-header">
-        <text class="card-icon">📤</text>
+        <icon-export size="medium" color="error" />
         <text class="card-label">总支出</text>
       </view>
       <view class="card-value text-red">¥{{summary.totalExpense}}</view>
@@ -60,7 +60,7 @@
     
     <view class="summary-card glass card-profit">
       <view class="card-header">
-        <text class="card-icon">📊</text>
+        <icon-chart size="medium" color="gold" />
         <text class="card-label">净利润</text>
       </view>
       <view class="card-value {{summary.netProfit >= 0 ? 'text-green' : 'text-red'}}">¥{{summary.netProfit}}</view>
@@ -80,21 +80,21 @@
     <view class="stat-list">
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">🎯</text>
+          <icon-target size="medium" color="gold" />
           <text class="stat-label">委托护生收入</text>
         </view>
         <text class="stat-value">¥{{incomeDetail.entrustedIncome}}</text>
       </view>
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">🌿</text>
+          <icon-plant size="medium" color="green" />
           <text class="stat-label">自主护生收入</text>
         </view>
         <text class="stat-value">¥{{incomeDetail.selfIncome}}</text>
       </view>
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">➕</text>
+          <icon-add size="medium" color="default" />
           <text class="stat-label">增值服务收入</text>
         </view>
         <text class="stat-value">¥{{incomeDetail.valueAddedIncome}}</text>
@@ -116,28 +116,28 @@
     <view class="stat-list">
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">👥</text>
+          <icon-people size="medium" color="green" />
           <text class="stat-label">志愿者酬劳</text>
         </view>
         <text class="stat-value">¥{{expenseDetail.volunteerPayment}}</text>
       </view>
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">🐟</text>
+          <icon-fish size="medium" color="default" />
           <text class="stat-label">物种采购</text>
         </view>
         <text class="stat-value">¥{{expenseDetail.speciesPurchase}}</text>
       </view>
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">🚗</text>
+          <icon-transport size="medium" color="default" />
           <text class="stat-label">交通费用</text>
         </view>
         <text class="stat-value">¥{{expenseDetail.transportation}}</text>
       </view>
       <view class="stat-item">
         <view class="stat-left">
-          <text class="stat-icon">📦</text>
+          <icon-package size="medium" color="default" />
           <text class="stat-label">物料成本</text>
         </view>
         <text class="stat-value">¥{{expenseDetail.materials}}</text>
@@ -179,7 +179,7 @@
     <view class="section-title">导出报表</view>
     <view class="export-options">
       <view class="export-item" bindtap="onExportReport" data-type="excel">
-        <text class="export-icon">📄</text>
+        <icon-document size="medium" color="green" />
         <view class="export-info">
           <text class="export-name">Excel 报表</text>
           <text class="export-desc">包含详细收支明细</text>
@@ -187,7 +187,7 @@
         <text class="export-arrow">›</text>
       </view>
       <view class="export-item" bindtap="onExportReport" data-type="pdf">
-        <text class="export-icon">📑</text>
+        <icon-document size="medium" color="gold" />
         <view class="export-info">
           <text class="export-name">PDF 报表</text>
           <text class="export-desc">适合打印和分享</text>

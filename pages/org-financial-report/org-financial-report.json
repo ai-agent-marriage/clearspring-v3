@@ -1,5 +1,18 @@
 {
   "navigationBarTitleText": "财务报表",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "icon-money": "/components/icons/money-icon",
+    "icon-chart": "/components/icons/chart-icon",
+    "icon-target": "/components/icons/target-icon",
+    "icon-plant": "/components/icons/plant-icon",
+    "icon-add": "/components/icons/add-icon",
+    "icon-people": "/components/icons/people-icon",
+    "icon-fish": "/components/icons/fish-icon",
+    "icon-transport": "/components/icons/transport-icon",
+    "icon-package": "/components/icons/package-icon",
+    "icon-document": "/components/icons/document-icon",
+    "icon-export": "/components/icons/export-icon"
+  }
 }

@@ -1,0 +1,36 @@
+/* 图标组件样式 */
+
+.icon-small {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.icon-medium {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.icon-large {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.icon-default {
+  color: var(--stitch-text-primary);
+}
+
+.icon-gold {
+  color: var(--stitch-gold-primary);
+}
+
+.icon-green {
+  color: var(--stitch-green-primary);
+}
+
+.icon-warning {
+  color: var(--stitch-warning);
+}
+
+.icon-error {
+  color: var(--stitch-error);
+}

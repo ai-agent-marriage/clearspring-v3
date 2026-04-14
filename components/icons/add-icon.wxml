@@ -1,0 +1,8 @@
+<component>
+  <!-- 添加/加号图标 -->
+  <view class="icon-{{size || 'medium'}} {{color || 'default'}} {{customClass}}" style="display: inline-flex; align-items: center; justify-content: center;">
+    <svg width="{{size === 'small' ? '20' : size === 'large' ? '40' : '24'}}" height="{{size === 'small' ? '20' : size === 'large' ? '40' : '24'}}" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+    </svg>
+  </view>
+</component>
