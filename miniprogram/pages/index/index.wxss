@@ -1,286 +1,6 @@
-/* pages/index/index.wxss */
-/* Stitch V3.0 禅意定制版设计规范 */
-
-/* ===== 变量定义 ===== */
-/* 配色系统 */
-/* 主色：#4A5D4E (墨绿) */
-/* 底色：#EFEEE9 (奶米白) */
-/* 辅助金：#C9B037 (哑光金) */
-
-.container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #EFEEE9;
-  padding-bottom: 280rpx; /* 为 TabBar + 功德林按钮留出空间 */
-}
-
-/* ===== 顶部自定义导航栏 ===== */
-.custom-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 88rpx;
-  background-color: #4A5D4E;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 32rpx;
-  height: 100%;
-}
-
-.navbar-icon {
-  width: 44rpx;
-  height: 44rpx;
-  opacity: 0.9;
-}
-
-.navbar-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #FFFFFF;
-  font-family: 'Noto Serif SC', serif;
-  letter-spacing: 0.3em;
-}
-
-.navbar-avatar {
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-}
-
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ===== 主要内容区 ===== */
-.main-content {
-  margin-top: 120rpx;
-  padding: 0 32rpx;
-  display: flex;
-  flex-direction: column;
-  gap: 48rpx;
-}
-
-/* ===== 核心佛历卡片 ===== */
-.lunar-card {
-  position: relative;
-  background-color: #FFFFFF;
-  border-radius: 16rpx;
-  overflow: hidden;
-  box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
-}
-
-.ink-wash-bg {
-  position: absolute;
-  top: -48rpx;
-  left: -32rpx;
-  width: 192rpx;
-  height: 192rpx;
-  background: radial-gradient(circle at 70% 20%, rgba(74, 93, 78, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* 上层：日期信息 */
-.date-section {
-  padding: 64rpx 32rpx;
-  text-align: center;
-  border-bottom: 2rpx solid rgba(195, 200, 193, 0.15);
-  position: relative;
-  z-index: 1;
-}
-
-.lunar-badge {
-  display: inline-block;
-  background-color: #C9B037;
-  color: #FFFFFF;
-  font-size: 20rpx;
-  padding: 8rpx 32rpx;
-  border-radius: 32rpx;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  margin-bottom: 32rpx;
-}
-
-.big-day {
-  display: block;
-  font-size: 120rpx;
-  font-weight: bold;
-  color: #334537;
-  font-family: 'Noto Serif SC', serif;
-  line-height: 1;
-  margin-bottom: 16rpx;
-}
-
-.month-year {
-  display: block;
-  font-size: 26rpx;
-  color: #676F68;
-  letter-spacing: 0.15em;
-  font-weight: 500;
-  margin-bottom: 16rpx;
-}
-
-.date-details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16rpx;
-  font-size: 22rpx;
-  color: #506354;
-}
-
-.date-details .divider {
-  opacity: 0.3;
-}
-
-/* 中层：宜忌分栏 */
-.fortune-section {
-  display: flex;
-  background-color: rgba(245, 244, 239, 0.5);
-}
-
-.fortune-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 48rpx 32rpx;
-  gap: 12rpx;
-}
-
-.fortune-column.yi {
-  border-right: 2rpx solid rgba(195, 200, 193, 0.15);
-}
-
-.fortune-label {
-  font-size: 18rpx;
-  color: #676F68;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.6;
-}
-
-.fortune-text {
-  font-size: 32rpx;
-  font-weight: bold;
-  color: #334537;
-  font-family: 'Noto Serif SC', serif;
-}
-
-.fortune-text.error {
-  color: #BA1A1A;
-}
-
-.fortune-divider {
-  width: 2rpx;
-  background-color: rgba(195, 200, 193, 0.15);
-}
-
-/* 下层：禅理短句 */
-.quote-section {
-  padding: 80rpx 48rpx;
-  text-align: center;
-  position: relative;
-}
-
-.quote-icon {
-  position: absolute;
-  top: 32rpx;
-  left: 48rpx;
-  font-size: 64rpx;
-  color: #C9B037;
-  opacity: 0.2;
-  font-family: serif;
-}
-
-.quote-text {
-  display: block;
-  font-size: 30rpx;
-  color: #334537;
-  font-family: 'Noto Serif SC', serif;
-  line-height: 2;
-  font-style: italic;
-}
-
-.quote-source {
-  display: block;
-  font-size: 20rpx;
-  color: #676F68;
-  margin-top: 32rpx;
-  letter-spacing: 0.2em;
-  opacity: 0.4;
-}
-
-/* ===== 打卡操作区 ===== */
-.checkin-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24rpx;
-}
-
-.checkin-btn {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 192rpx;
-  background: linear-gradient(135deg, #4A5D4E 0%, #334537 100%);
-  border-radius: 16rpx;
-  gap: 16rpx;
-  box-shadow: 0 8rpx 24rpx rgba(74, 93, 78, 0.15);
-  transition: transform 0.2s;
-}
-
-.checkin-btn:active {
-  transform: scale(0.95);
-}
-
-.checkin-btn[disabled] {
-  background: linear-gradient(135deg, #E3E2DE 0%, #D3D2CE 100%);
-  opacity: 0.6;
-}
-
-.checkin-btn.evening {
-  background: linear-gradient(135deg, #5A6D5E 0%, #43554E 100%);
-}
-
-.checkin-icon {
-  font-size: 56rpx;
-}
-
-.checkin-text {
-  font-size: 28rpx;
-  color: #FFFFFF;
-  font-weight: 500;
-  font-family: 'Noto Serif SC', serif;
-}
-
-.checkin-status {
-  position: absolute;
-  top: 16rpx;
-  right: 16rpx;
-  font-size: 36rpx;
-  color: #C9B037;
-  font-weight: bold;
-}
-
 /* ===== 打卡数据卡片 ===== */
+/* Stitch V3.0 - 数字使用哑光金 #C9B037 */
+
 .stats-card {
   display: flex;
   align-items: center;
@@ -288,6 +8,7 @@
   border-radius: 16rpx;
   padding: 64rpx 48rpx;
   box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
+  margin: 0 32rpx 48rpx;
 }
 
 .stats-item {
@@ -298,10 +19,11 @@
   gap: 16rpx;
 }
 
+/* 数字提亮：哑光金 #C9B037 - Stitch 设计的灵魂 */
 .stats-number {
   font-size: 72rpx;
   font-weight: bold;
-  color: #C9B037;
+  color: #C9B037; /* 哑光金 */
   font-family: 'Noto Serif SC', serif;
   line-height: 1;
 }
@@ -310,6 +32,7 @@
   font-size: 24rpx;
   color: #676F68;
   letter-spacing: 0.1em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .stats-divider {
@@ -317,54 +40,4 @@
   height: 96rpx;
   background-color: rgba(195, 200, 193, 0.15);
   margin: 0 48rpx;
-}
-
-/* ===== 护生功德林入口（吸底上方） ===== */
-.forest-section {
-  margin: 0 32rpx 48rpx;
-  position: relative;
-  z-index: 100;
-}
-
-.forest-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16rpx;
-  height: 112rpx;
-  background: linear-gradient(135deg, #4A5D4E 0%, #334537 100%);
-  border-radius: 16rpx;
-  border: none;
-  box-shadow: 0 16rpx 48rpx rgba(74, 93, 78, 0.25);
-  position: relative;
-}
-
-.forest-btn:active {
-  transform: scale(0.98);
-}
-
-.forest-icon {
-  font-size: 44rpx;
-}
-
-.forest-text {
-  font-size: 34rpx;
-  color: #FFFFFF;
-  font-weight: bold;
-  font-family: 'Noto Serif SC', serif;
-  letter-spacing: 0.15em;
-}
-
-.forest-arrow {
-  position: absolute;
-  right: 32rpx;
-  font-size: 48rpx;
-  color: rgba(255, 255, 255, 0.6);
-  line-height: 1;
-}
-
-/* 底部安全区域（为 TabBar 留空间） */
-.bottom-safe-area {
-  height: 120rpx;
-  flex-shrink: 0;
 }

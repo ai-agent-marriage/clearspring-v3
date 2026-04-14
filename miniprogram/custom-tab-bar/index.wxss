@@ -1,18 +1,18 @@
 /* custom-tab-bar/index.wxss */
-/* Stitch V3.0 禅意定制版 TabBar 规范 */
+/* Stitch V3.0 禅意定制版 - 典雅纤细风格 */
 
 .tabbar-container {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 120rpx;
+  height: 112rpx;
   padding-bottom: env(safe-area-inset-bottom);
   background-color: #EFEEE9;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 2rpx solid rgba(195, 200, 193, 0.15);
+  border-top: none; /* 移除边框，使用留白分隔 */
   z-index: 1000;
 }
 
@@ -21,36 +21,38 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8rpx;
-  padding: 16rpx 24rpx;
+  gap: 12rpx;
+  padding: 20rpx 32rpx;
   transition: all 0.3s ease;
 }
 
 .tabbar-icon {
-  width: 48rpx;
-  height: 48rpx;
+  width: 44rpx;
+  height: 44rpx;
   color: #718096;
   transition: color 0.3s ease;
 }
 
+/* 选中态：墨绿 #4A5D4E */
 .tabbar-item.active .tabbar-icon {
   color: #4A5D4E;
 }
 
 .tabbar-text {
-  font-size: 20rpx;
+  font-size: 22rpx;
   color: #718096;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   transition: color 0.3s ease;
 }
 
+/* 选中态：墨绿 #4A5D4E */
 .tabbar-item.active .tabbar-text {
   color: #4A5D4E;
   font-weight: 500;
 }
 
 .tabbar-item:active {
-  transform: scale(0.95);
-  opacity: 0.8;
+  opacity: 0.7;
+  transform: scale(0.98);
 }
