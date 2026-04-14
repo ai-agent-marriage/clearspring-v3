@@ -1,79 +1,87 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-  <!-- 日期卡片 -->
-  <view class="card date-card">
-    <view class="solar-date text-center text-bold text-primary">{{solarDate}}</view>
-    <view class="lunar-date text-center text-secondary mt-8">{{lunarDate}}</view>
-    <view class="ganzhi text-center text-secondary mt-8">{{ganzhi}}</view>
-  </view>
-
-  <!-- 禅理展示 -->
-  <view class="card zen-card">
-    <view class="zen-content text-center">
-      <text class="zen-text">{{zenQuote}}</text>
-    </view>
-    <view class="zen-actions flex-center mt-24">
-      <view class="action-btn" bindtap="onRefreshZen">
-        <text class="action-icon">🔄</text>
-        <text class="action-text">刷新</text>
-      </view>
-      <view class="action-btn" bindtap="onCollectZen">
-        <text class="action-icon">⭐</text>
-        <text class="action-text">收藏</text>
-      </view>
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <text class="header-title">清如</text>
+    <view class="header-actions">
+      <image class="action-icon" src="/assets/icons/settings.png" bindtap="goToSettings"></image>
+      <image class="avatar" src="{{userInfo.avatarUrl}}" bindtap="goToProfile"></image>
     </view>
   </view>
 
-  <!-- 宜忌分栏 -->
-  <view class="suit-avoid-card">
-    <view class="suit-section card">
-      <view class="section-title text-primary text-bold mb-16">宜</view>
-      <view class="tags-container">
-        <van-tag plain type="success" wx:for="{{suit}}" wx:key="*index">{{item}}</van-tag>
+  <!-- 核心佛历卡片 -->
+  <view class="lunar-card">
+    <!-- 上层：日期信息 -->
+    <view class="date-section">
+      <view class="gregorian-date">
+        <text class="day">{{currentDate.day}}</text>
+        <text class="month-year">{{currentDate.month}}月 {{currentDate.year}}</text>
+      </view>
+      <view class="weekday">{{currentDate.weekday}}</view>
+      <view class="lunar-date">
+        <text class="lunar-text">佛历 {{currentDate.lunarYear}}年</text>
+        <text class="ganzhi">{{currentDate.ganZhi}}年 {{currentDate.lunarMonth}}月 {{currentDate.lunarDay}}</text>
       </view>
     </view>
-    <view class="avoid-section card">
-      <view class="section-title text-error text-bold mb-16">忌</view>
-      <view class="tags-container">
-        <van-tag plain type="danger" wx:for="{{avoid}}" wx:key="*index">{{item}}</van-tag>
-      </view>
-    </view>
-  </view>
 
-  <!-- 打卡按钮区 -->
-  <view class="checkin-card card">
-    <view class="section-title text-center text-bold mb-24">今日打卡</view>
-    <view class="checkin-buttons flex-between">
-      <van-button 
-        type="primary" 
-        size="large"
-        block
-        bind:click="onMorningCheckIn"
-        disabled="{{morningCheckIn}}"
-      >
-        {{morningCheckIn ? '已打卡' : '晨起礼佛'}}
-      </van-button>
+    <!-- 中层：宜忌分栏 -->
+    <view class="yi-ji-section">
+      <view class="yi-column">
+        <text class="yi-ji-title yi">宜</text>
+        <view class="yi-ji-list">
+          <text class="yi-ji-item" wx:for="{{suit}}" wx:key="*this">{{item}}</text>
+        </view>
+      </view>
       <view class="divider"></view>
-      <van-button 
-        type="primary" 
-        size="large"
-        block
-        bind:click="onEveningCheckIn"
-        disabled="{{eveningCheckIn}}"
-      >
-        {{eveningCheckIn ? '已打卡' : '晚间打坐'}}
-      </van-button>
+      <view class="ji-column">
+        <text class="yi-ji-title ji">忌</text>
+        <view class="yi-ji-list">
+          <text class="yi-ji-item" wx:for="{{avoid}}" wx:key="*this">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 下层：禅理短句 -->
+    <view class="zen-quote-section">
+      <text class="zen-quote">"{{zenQuote.text}}"</text>
+      <text class="zen-author">—— {{zenQuote.author}}</text>
     </view>
   </view>
 
-  <!-- 占位空间，避免被功德林按钮遮挡 -->
-  <view class="spacer"></view>
-</view>
+  <!-- 打卡操作区 -->
+  <view class="checkin-section">
+    <view class="checkin-buttons">
+      <button class="checkin-btn morning" bindtap="morningCheckin" disabled="{{morningChecked}}">
+        <text class="btn-icon">🙏</text>
+        <text class="btn-text">晨起礼佛</text>
+        <text class="btn-status" wx:if="{{morningChecked}}">✓</text>
+      </button>
+      <button class="checkin-btn evening" bindtap="eveningCheckin" disabled="{{eveningChecked}}">
+        <text class="btn-icon">🧘</text>
+        <text class="btn-text">晚间打坐</text>
+        <text class="btn-status" wx:if="{{eveningChecked}}">✓</text>
+      </button>
+    </view>
+  </view>
 
-<!-- 吸底功德林按钮 -->
-<view class="merit-button-container" bindtap="onMeritTap">
-  <view class="merit-button">
-    <view class="merit-icon">🙏</view>
-    <view class="merit-count">功德 {{meritCount}}</view>
+  <!-- 打卡数据卡片 -->
+  <view class="stats-card">
+    <view class="stats-item">
+      <text class="stats-number highlight">{{continuousDays}}</text>
+      <text class="stats-label">连续打卡</text>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <text class="stats-number highlight">{{totalDays}}</text>
+      <text class="stats-label">累计打卡</text>
+    </view>
+  </view>
+
+  <!-- 底部吸底按钮 -->
+  <view class="bottom-action">
+    <button class="forest-btn" bindtap="goToForest">
+      <text class="forest-text">护生功德林</text>
+      <text class="forest-icon">🌳</text>
+    </button>
   </view>
 </view>

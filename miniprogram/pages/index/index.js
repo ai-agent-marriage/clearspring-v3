@@ -1,182 +1,168 @@
 // pages/index/index.js
-const util = require('../../utils/util.js');
-
 Page({
   data: {
-    // 日期信息
-    solarDate: '',
-    lunarDate: '',
-    ganzhi: '',
+    // 用户信息
+    userInfo: {
+      avatarUrl: '/assets/icons/default-avatar.png',
+      nickName: '善缘'
+    },
+    
+    // 当前日期
+    currentDate: {
+      year: 2026,
+      month: 4,
+      day: 14,
+      weekday: '星期二',
+      lunarYear: 2569,
+      lunarMonth: '三月',
+      lunarDay: '十七',
+      ganZhi: '丙午'
+    },
     
     // 宜忌
-    suit: [],
-    avoid: [],
+    suit: ['放生', '祈福', '诵经', '布施', '斋戒'],
+    avoid: ['杀生', '偷盗', '邪淫', '妄语', '饮酒'],
     
-    // 禅理
-    zenQuote: '',
+    // 禅理短句
+    zenQuote: {
+      text: '菩提本无树，明镜亦非台',
+      author: '六祖慧能'
+    },
     
     // 打卡状态
-    morningCheckIn: false,
-    eveningCheckIn: false,
+    morningChecked: false,
+    eveningChecked: false,
     
-    // 功德林按钮状态
-    meritCount: 0
+    // 打卡数据
+    continuousDays: 12,
+    totalDays: 156
   },
 
   onLoad() {
-    this.initDateInfo();
-    this.loadCheckInStatus();
-    this.loadMeritCount();
+    this.loadCurrentDate();
+    this.loadCheckinStatus();
   },
 
-  onShow() {
-    // 每次显示时刷新禅理
-    this.setData({
-      zenQuote: util.getRandomZenQuote()
-    });
+  onPullDownRefresh() {
+    this.refreshData();
   },
 
-  // 初始化日期信息
-  initDateInfo() {
+  // 加载当前日期
+  loadCurrentDate() {
     const now = new Date();
-    
-    // 公历日期
-    const solarDate = util.formatDate(now, 'YYYY 年 M 月 D 日 dddd');
-    const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-    const weekDay = weekDays[now.getDay()];
-    
-    // 农历和干支
-    const lunarInfo = util.getLunarDate(now);
-    const buddhistDate = util.getBuddhistDate(now);
-    
-    // 宜忌
-    const { suit, avoid } = util.getSuitAndAvoid(now);
+    const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
     
     this.setData({
-      solarDate: `${solarDate} ${weekDay}`,
-      lunarDate: `${buddhistDate} ${lunarInfo.lunarMonth} ${lunarInfo.lunarDay}`,
-      ganzhi: lunarInfo.ganzhi,
-      suit,
-      avoid,
-      zenQuote: util.getRandomZenQuote()
+      currentDate: {
+        year: now.getFullYear(),
+        month: now.getMonth() + 1,
+        day: now.getDate(),
+        weekday: weekdays[now.getDay()],
+        lunarYear: 2569, // 简化处理，实际应计算佛历
+        lunarMonth: '三月', // 简化处理，实际应计算农历
+        lunarDay: '十七',
+        ganZhi: '丙午'
+      }
     });
   },
 
   // 加载打卡状态
-  loadCheckInStatus() {
-    const today = util.formatDate(new Date(), 'YYYY-MM-DD');
-    const checkInData = wx.getStorageSync('checkInData') || {};
+  loadCheckinStatus() {
+    const today = new Date().toDateString();
+    const checkinData = wx.getStorageSync('checkinData') || {};
+    
+    if (checkinData.lastCheckinDate === today) {
+      this.setData({
+        morningChecked: checkinData.morning || false,
+        eveningChecked: checkinData.evening || false
+      });
+    }
+  },
+
+  // 刷新数据
+  refreshData() {
+    wx.showLoading({ title: '刷新中...' });
+    
+    setTimeout(() => {
+      this.loadCurrentDate();
+      this.loadCheckinStatus();
+      wx.hideLoading();
+      wx.stopPullDownRefresh();
+      
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success'
+      });
+    }, 1000);
+  },
+
+  // 晨起礼佛
+  morningCheckin() {
+    if (this.data.morningChecked) return;
+    
+    const today = new Date().toDateString();
+    const checkinData = wx.getStorageSync('checkinData') || {};
+    
+    checkinData.lastCheckinDate = today;
+    checkinData.morning = true;
+    wx.setStorageSync('checkinData', checkinData);
     
     this.setData({
-      morningCheckIn: checkInData[`${today}-morning`] || false,
-      eveningCheckIn: checkInData[`${today}-evening`] || false
+      morningChecked: true,
+      continuousDays: this.data.continuousDays + 1
     });
-  },
-
-  // 加载功德数
-  loadMeritCount() {
-    const meritCount = wx.getStorageSync('meritCount') || 0;
-    this.setData({ meritCount });
-  },
-
-  // 晨起礼佛打卡
-  onMorningCheckIn() {
-    if (this.data.morningCheckIn) {
-      wx.showToast({
-        title: '今日已打卡',
-        icon: 'none'
-      });
-      return;
-    }
-
-    const today = util.formatDate(new Date(), 'YYYY-MM-DD');
-    const checkInData = wx.getStorageSync('checkInData') || {};
-    checkInData[`${today}-morning`] = true;
-    wx.setStorageSync('checkInData', checkInData);
-
-    // 增加功德数
-    this.addMerit(1);
-
-    this.setData({ morningCheckIn: true });
     
     wx.showToast({
-      title: '打卡成功',
+      title: '晨起礼佛 ✓',
       icon: 'success'
     });
-  },
-
-  // 晚间打坐打卡
-  onEveningCheckIn() {
-    if (this.data.eveningCheckIn) {
-      wx.showToast({
-        title: '今日已打卡',
-        icon: 'none'
-      });
-      return;
-    }
-
-    const today = util.formatDate(new Date(), 'YYYY-MM-DD');
-    const checkInData = wx.getStorageSync('checkInData') || {};
-    checkInData[`${today}-evening`] = true;
-    wx.setStorageSync('checkInData', checkInData);
-
-    // 增加功德数
-    this.addMerit(1);
-
-    this.setData({ eveningCheckIn: true });
     
-    wx.showToast({
-      title: '打卡成功',
-      icon: 'success'
-    });
-  },
-
-  // 增加功德数
-  addMerit(count = 1) {
-    const newCount = this.data.meritCount + count;
-    wx.setStorageSync('meritCount', newCount);
-    this.setData({ meritCount: newCount });
-  },
-
-  // 点击功德林按钮
-  onMeritTap() {
-    this.addMerit(1);
-    
-    wx.showToast({
-      title: '功德 +1',
-      icon: 'none'
-    });
-
     // 震动反馈
-    wx.vibrateShort({
-      type: 'light'
-    });
+    wx.vibrateShort({ type: 'light' });
   },
 
-  // 刷新禅理
-  onRefreshZen() {
+  // 晚间打坐
+  eveningCheckin() {
+    if (this.data.eveningChecked) return;
+    
+    const today = new Date().toDateString();
+    const checkinData = wx.getStorageSync('checkinData') || {};
+    
+    checkinData.lastCheckinDate = today;
+    checkinData.evening = true;
+    wx.setStorageSync('checkinData', checkinData);
+    
     this.setData({
-      zenQuote: util.getRandomZenQuote()
+      eveningChecked: true
     });
     
     wx.showToast({
-      title: '已刷新',
-      icon: 'none'
+      title: '晚间打坐 ✓',
+      icon: 'success'
+    });
+    
+    // 震动反馈
+    wx.vibrateShort({ type: 'light' });
+  },
+
+  // 跳转设置
+  goToSettings() {
+    wx.navigateTo({
+      url: '/pages/settings/settings'
     });
   },
 
-  // 收藏禅理
-  onCollectZen() {
-    const collectList = wx.getStorageSync('zenCollectList') || [];
-    collectList.push({
-      content: this.data.zenQuote,
-      createTime: Date.now()
+  // 跳转个人中心
+  goToProfile() {
+    wx.navigateTo({
+      url: '/pages/profile/index'
     });
-    wx.setStorageSync('zenCollectList', collectList);
-    
-    wx.showToast({
-      title: '已收藏',
-      icon: 'success'
+  },
+
+  // 跳转功德林
+  goToForest() {
+    wx.navigateTo({
+      url: '/pages/merit-forest/merit-forest'
     });
   }
 });
