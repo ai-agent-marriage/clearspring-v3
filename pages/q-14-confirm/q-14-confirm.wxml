@@ -1,0 +1,106 @@
+<!-- 订单确认页面 - Stitch V3.0 规范 -->
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="护生委托服务" show-back="true"/>
+
+  <!-- 主视觉区域 -->
+  <view class="hero-section">
+    <image class="hero-image" src="{{heroImage}}" mode="aspectFill"/>
+    <view class="hero-overlay"></view>
+    <view class="hero-text">
+      <text class="hero-title">万物有灵</text>
+      <text class="hero-subtitle">Order Review</text>
+    </view>
+  </view>
+
+  <!-- 委托详情卡片 -->
+  <view class="order-card">
+    <view class="card-header">
+      <text class="card-title">委托详情</text>
+      <text class="card-tag">Scientific Release</text>
+    </view>
+
+    <view class="order-details">
+      <view class="detail-item">
+        <text class="detail-label">执行日期</text>
+        <text class="detail-value">{{execDate}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">指定水域</text>
+        <text class="detail-value">{{waterArea}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">护生品种</text>
+        <text class="detail-value">{{species}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">委托份数</text>
+        <text class="detail-value">{{count}} 份 (约 {{quantity}} 尾)</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">委托人</text>
+        <text class="detail-value">{{requester}}</text>
+      </view>
+
+      <!-- 增值服务 -->
+      <view class="services-section">
+        <text class="services-title">增值服务</text>
+        <view class="services-tags">
+          <text class="service-tag" wx:if="{{videoRecord}}">现场祈福录像</text>
+          <text class="service-tag" wx:if="{{certificate}}">功德碑电子存证</text>
+        </view>
+      </view>
+
+      <!-- 心愿寄语 -->
+      <view class="wish-section">
+        <text class="wish-title">心愿寄语</text>
+        <text class="wish-text">{{wishMessage}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 费用明细 -->
+  <view class="amount-section">
+    <text class="section-title">费用明细</text>
+    <view class="amount-details">
+      <view class="amount-item">
+        <text class="amount-label">护生善款 ({{count}}份)</text>
+        <text class="amount-value">¥ {{baseAmount}}</text>
+      </view>
+      <view class="amount-item">
+        <text class="amount-label">增值服务费用</text>
+        <text class="amount-value">¥ {{serviceAmount}}</text>
+      </view>
+      <view class="amount-item">
+        <text class="amount-label">环保监测与人力</text>
+        <text class="amount-value">¥ {{monitorAmount}}</text>
+      </view>
+      <view class="amount-total">
+        <text class="total-label">应付总额</text>
+        <text class="total-value">¥ {{totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 协议勾选 -->
+  <view class="agreement-section">
+    <checkbox checked="{{agreed}}" color="#4A5D4E" bindchange="onAgreeChange"/>
+    <text class="agreement-text">
+      我已阅读并同意 
+      <text class="agreement-link" bindtap="viewAgreement">《委托服务协议》</text>
+      本人承诺所托护生物种符合当地生态保护要求。
+    </text>
+  </view>
+
+  <!-- 底部支付按钮 -->
+  <view class="bottom-pay-bar">
+    <button class="pay-btn" bindtap="onPay">
+      <text>提交委托单并支付</text>
+      <view class="price-divider"></view>
+      <text class="pay-amount">¥ {{totalAmount}}</text>
+    </button>
+  </view>
+
+  <!-- TabBar -->
+  <tab-bar/>
+</view>

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "执行者管理",
+  "navigationBarBackgroundColor": "#4A5D4E",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#FFFFFF",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": false
+}

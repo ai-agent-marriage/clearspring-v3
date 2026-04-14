@@ -1,0 +1,88 @@
+<!-- 委托结果页面 - Stitch V3.0 规范 -->
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="委托结果" show-back="false"/>
+
+  <!-- 成功状态 -->
+  <view class="success-section">
+    <view class="success-icon-wrapper">
+      <text class="success-icon">check_circle</text>
+    </view>
+    <text class="success-title">委托成功</text>
+    <text class="success-subtitle">功德无量，善缘广结</text>
+  </view>
+
+  <!-- 订单信息卡片 -->
+  <view class="order-card">
+    <view class="order-header">
+      <text class="order-label">订单编号</text>
+      <text class="order-id">{{orderId}}</text>
+    </view>
+
+    <view class="order-info">
+      <view class="info-item">
+        <view class="info-left">
+          <text class="material-icons">pet_supplies</text>
+          <text class="info-label">护生物种</text>
+        </view>
+        <text class="info-value">{{species}}</text>
+      </view>
+
+      <view class="info-item">
+        <view class="info-left">
+          <text class="material-icons">calendar_today</text>
+          <text class="info-label">执行日期</text>
+        </view>
+        <text class="info-value">{{execDate}}</text>
+      </view>
+
+      <view class="info-item">
+        <view class="info-left">
+          <text class="material-icons">water_drop</text>
+          <text class="info-label">执行水域</text>
+        </view>
+        <text class="info-value">{{waterArea}}</text>
+      </view>
+
+      <view class="info-item">
+        <view class="info-left">
+          <text class="material-icons">task_alt</text>
+          <text class="info-label">投放份数</text>
+        </view>
+        <text class="info-value">{{count}} 份</text>
+      </view>
+    </view>
+
+    <view class="order-footer">
+      <text class="amount-label">支付金额</text>
+      <text class="amount-value">¥ {{totalAmount}}</text>
+    </view>
+  </view>
+
+  <!-- 功德证书 -->
+  <view class="certificate-section">
+    <text class="section-title">功德证书</text>
+    <view class="certificate-card">
+      <image class="certificate-image" src="{{certificateImage}}" mode="aspectFill"/>
+      <button class="save-cert-btn" bindtap="saveCertificate">
+        <text class="material-icons">download</text>
+        <text>保存证书</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button class="action-btn primary" bindtap="viewDetails">查看订单详情</button>
+    <button class="action-btn secondary" bindtap="shareMerit">分享功德</button>
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="tip-section">
+    <text class="material-icons">info</text>
+    <text class="tip-text">执行完成后，您将收到执行凭证和视频记录（如已选购）</text>
+  </view>
+
+  <!-- TabBar -->
+  <tab-bar/>
+</view>

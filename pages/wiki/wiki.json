@@ -2,5 +2,8 @@
   "navigationBarTitleText": "科普百科",
   "navigationBarBackgroundColor": "#EFEEE9",
   "navigationBarTextStyle": "dark",
-  "enablePullDownRefresh": false
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "tab-bar": "/custom-tab-bar/index"
+  }
 }

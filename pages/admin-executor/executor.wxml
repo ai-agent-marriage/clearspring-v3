@@ -1,0 +1,157 @@
+<!-- 执行者管理 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="menu-icon" bindtap="toggleMenu">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="navbar-title">执行者管理</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="addExecutor">
+        <text class="material-icons">person_add</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区 -->
+  <scroll-view class="main-content" scroll-y="true">
+    <!-- 搜索与筛选 -->
+    <view class="search-section">
+      <view class="search-bar">
+        <text class="material-icons search-icon">search</text>
+        <input class="search-input" placeholder="搜索执行者姓名/手机号/ID" bindinput="onSearch" />
+      </view>
+      <view class="filter-tabs">
+        <view class="filter-tab active" data-status="all" bindtap="changeStatus">
+          <text>全部</text>
+        </view>
+        <view class="filter-tab" data-status="verified" bindtap="changeStatus">
+          <text>已认证</text>
+        </view>
+        <view class="filter-tab" data-status="pending" bindtap="changeStatus">
+          <text>待审核</text>
+        </view>
+        <view class="filter-tab" data-status="rejected" bindtap="changeStatus">
+          <text>已拒绝</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 数据统计 -->
+    <view class="stats-section">
+      <view class="stats-grid">
+        <view class="stat-card">
+          <text class="stat-label">总执行者</text>
+          <view class="stat-value">
+            <text class="stat-number">{{totalExecutors}}</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">已认证</text>
+          <view class="stat-value">
+            <text class="stat-number">{{verifiedCount}}</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">待审核</text>
+          <view class="stat-value">
+            <text class="stat-number">{{pendingCount}}</text>
+          </view>
+        </view>
+        <view class="stat-card">
+          <text class="stat-label">本月活跃</text>
+          <view class="stat-value">
+            <text class="stat-number">{{activeCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待审核列表 -->
+    <view class="pending-section" wx:if="{{pendingList.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">待审核资质</text>
+        <text class="section-count">{{pendingList.length}}个待处理</text>
+      </view>
+      <view class="pending-list">
+        <view class="pending-item" wx:for="{{pendingList}}" wx:key="id">
+          <view class="executor-info">
+            <view class="avatar" style="background-image: url({{item.avatar}})">
+              <text class="avatar-text">{{item.name[0]}}</text>
+            </view>
+            <view class="info-content">
+              <text class="executor-name">{{item.name}}</text>
+              <text class="executor-org">{{item.organization}}</text>
+              <view class="executor-meta">
+                <text class="material-icons">schedule</text>
+                <text>提交于 {{item.submitTime}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="action-buttons">
+            <button class="btn-reject" bindtap="rejectExecutor" data-id="{{item.id}}">拒绝</button>
+            <button class="btn-approve" bindtap="approveExecutor" data-id="{{item.id}}">通过</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 执行者列表 -->
+    <view class="executor-section">
+      <view class="section-header">
+        <text class="section-title">执行者列表</text>
+        <view class="header-actions">
+          <view class="action-btn" bindtap="sortBy">
+            <text class="material-icons">sort</text>
+          </view>
+        </view>
+      </view>
+      <view class="executor-list">
+        <view class="executor-item" wx:for="{{executorList}}" wx:key="id">
+          <view class="executor-info">
+            <view class="avatar" style="background-image: url({{item.avatar}})">
+              <text class="avatar-text">{{item.name[0]}}</text>
+            </view>
+            <view class="info-content">
+              <view class="name-row">
+                <text class="executor-name">{{item.name}}</text>
+                <view class="badge {{item.status}}">
+                  <text>{{item.statusText}}</text>
+                </view>
+              </view>
+              <text class="executor-org">{{item.organization}}</text>
+              <view class="executor-meta">
+                <text class="material-icons">phone</text>
+                <text>{{item.phone}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="executor-stats">
+            <view class="stat-item">
+              <text class="stat-value-small">{{item.completedTasks}}</text>
+              <text class="stat-label-small">完成任务</text>
+            </view>
+            <view class="stat-item">
+              <text class="stat-value-small">{{item.serviceHours}}h</text>
+              <text class="stat-label-small">服务时长</text>
+            </view>
+            <view class="stat-item">
+              <text class="stat-value-small">{{item.rating}}</text>
+              <text class="stat-label-small">评分</text>
+            </view>
+          </view>
+          <view class="item-actions">
+            <view class="action-icon" bindtap="viewDetail" data-id="{{item.id}}">
+              <text class="material-icons">visibility</text>
+            </view>
+            <view class="action-icon" bindtap="editExecutor" data-id="{{item.id}}">
+              <text class="material-icons">edit</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

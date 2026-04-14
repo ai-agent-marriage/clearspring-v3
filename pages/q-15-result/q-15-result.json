@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "委托结果",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "tab-bar": "/custom-tab-bar/index",
+    "navbar": "/components/navbar/navbar"
+  }
+}

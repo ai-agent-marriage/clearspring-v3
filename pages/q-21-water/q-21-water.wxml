@@ -1,0 +1,13 @@
+<!-- 页面模板 - Stitch V3.0 规范 -->
+<view class="container">
+  <!-- 自定义导航栏 -->
+  <navbar title="{{pageTitle}}" show-back="true"/>
+  
+  <!-- 页面内容 -->
+  <view class="content">
+    <text>{{pageTitle}}</text>
+  </view>
+  
+  <!-- TabBar -->
+  <tab-bar/>
+</view>

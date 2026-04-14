@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "订单确认",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "tab-bar": "/custom-tab-bar/index",
+    "navbar": "/components/navbar/navbar"
+  }
+}

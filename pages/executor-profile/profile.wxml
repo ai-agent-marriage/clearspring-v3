@@ -1,0 +1,108 @@
+<!-- 清如 ClearSpring - 结算管理页 (O-09) -->
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar glass">
+    <view class="top-bar-left">
+      <view class="menu-btn" bindtap="onMenu">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="page-title">结算管理</text>
+    </view>
+    <view class="settings-btn" bindtap="onSettings">
+      <text class="material-icons">settings</text>
+    </view>
+  </view>
+
+  <scroll-view class="content" scroll-y="true">
+    <!-- Dashboard Overview -->
+    <view class="dashboard">
+      <!-- Cumulative Card -->
+      <view class="dash-card cumulative glass">
+        <view class="card-content">
+          <text class="card-label">累计结算金额</text>
+          <view class="amount-row">
+            <text class="amount">¥ 128,490.00</text>
+            <view class="trend">
+              <text class="material-icons trend-icon">trending_up</text>
+              <text class="trend-text">较上月增长 12.4%</text>
+            </view>
+          </view>
+        </view>
+        <text class="card-icon material-icons">payments</text>
+      </view>
+
+      <!-- Secondary Stats -->
+      <view class="stats-row">
+        <view class="stat-card pending glass">
+          <text class="stat-label">待结算订单</text>
+          <text class="stat-amount">¥ 12,300.00</text>
+          <text class="stat-desc">24 笔待处理</text>
+        </view>
+        <view class="stat-card completed glass">
+          <text class="stat-label">已完成订单</text>
+          <text class="stat-amount">1,402</text>
+          <text class="stat-desc">评分 4.9/5.0</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Tab System -->
+    <view class="tabs">
+      <view class="tab-group">
+        <view class="tab-item {{currentTab === 'pending' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="pending">
+          <text class="tab-text">待结算订单</text>
+          <view class="tab-indicator" wx:if="{{currentTab === 'pending'}}"></view>
+        </view>
+        <view class="tab-item {{currentTab === 'history' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="history">
+          <text class="tab-text">结算记录</text>
+        </view>
+        <view class="tab-item {{currentTab === 'invoice' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="invoice">
+          <text class="tab-text">发票管理</text>
+        </view>
+      </view>
+      <view class="filter-btn" bindtap="onFilter">
+        <text class="material-icons">filter_list</text>
+        <text class="filter-text">筛选条件</text>
+      </view>
+    </view>
+
+    <!-- Orders List -->
+    <view class="order-list">
+      <view class="order-card" wx:for="{{orderList}}" wx:key="id">
+        <view class="order-header">
+          <view class="order-tags">
+            <view class="order-tag">{{item.series}}</view>
+            <text class="order-id">{{item.id}}</text>
+          </view>
+        </view>
+        <text class="order-title">{{item.title}}</text>
+        <view class="order-meta">
+          <view class="meta-item">
+            <text class="material-icons">schedule</text>
+            <text class="meta-text">{{item.time}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="material-icons">hourglass_empty</text>
+            <text class="meta-text">{{item.settlement}}</text>
+          </view>
+        </view>
+        <view class="order-footer">
+          <view class="order-amount">
+            <text class="amount">{{item.amount}}</text>
+            <text class="status-text">Ready for Settlement</text>
+          </view>
+          <button class="detail-btn" bindtap="onDetail" data-id="{{item.id}}">查看详情</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- Load More -->
+    <view class="load-more" bindtap="onLoadMore">
+      <text class="material-icons">keyboard_double_arrow_down</text>
+      <text class="load-text">加载更多数据</text>
+    </view>
+
+    <!-- Bottom Spacer -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>
