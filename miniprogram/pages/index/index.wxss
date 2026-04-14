@@ -6,7 +6,7 @@
   flex-direction: column;
   min-height: 100vh;
   background-color: #EFEEE9;
-  padding-bottom: 200rpx; /* 为 Fixed 按钮和 TabBar 留空间 */
+  padding-bottom: 240rpx; /* 为功德林按钮和 TabBar 留空间 */
 }
 
 /* ===== 顶部自定义导航栏 ===== */
@@ -316,9 +316,11 @@
 }
 
 /* ===== 护生功德林按钮（Fixed 悬浮，TabBar 之上） ===== */
+/* 像素级校准：完美居中 + 间距压缩 */
+
 .forest-fixed-btn {
   position: fixed;
-  bottom: 140rpx; /* TabBar 高度 112rpx + 间距 28rpx */
+  bottom: 120rpx; /* TabBar 高度 112rpx + 8rpx 间距 */
   left: 0;
   right: 0;
   display: flex;
@@ -326,7 +328,9 @@
   justify-content: center;
   gap: 16rpx;
   width: calc(100% - 64rpx); /* 左右各留 32rpx 边距 */
+  max-width: 680rpx; /* 最大宽度，避免过宽 */
   height: 88rpx;
+  margin: 0 auto; /* 居中修正 */
   background-color: #4A5D4E; /* 纯色 #4A5D4E */
   border-radius: 44rpx; /* 半圆角 */
   box-shadow: 0 12rpx 32rpx rgba(74, 93, 78, 0.25);
@@ -341,6 +345,7 @@
 .forest-icon-svg {
   width: 40rpx;
   height: 40rpx;
+  flex-shrink: 0;
 }
 
 .forest-fixed-text {

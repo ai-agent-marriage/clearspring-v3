@@ -1,5 +1,5 @@
 /* custom-tab-bar/index.wxss */
-/* Stitch V3.0 禅意定制版 - 典雅纤细风格 */
+/* Stitch V3.0 禅意定制版 - 确保可见性 */
 
 .tabbar-container {
   position: fixed;
@@ -8,12 +8,12 @@
   right: 0;
   height: 112rpx;
   padding-bottom: env(safe-area-inset-bottom);
-  background-color: #EFEEE9;
+  background-color: #EFEEE9; /* 奶米白 */
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: none; /* 移除边框，使用留白分隔 */
-  z-index: 1000;
+  border-top: 2rpx solid rgba(195, 200, 193, 0.15);
+  z-index: 1000; /* 确保高于内容区 */
 }
 
 .tabbar-item {
@@ -29,7 +29,7 @@
 .tabbar-icon {
   width: 44rpx;
   height: 44rpx;
-  color: #718096;
+  color: #718096; /* 未选中灰色 */
   transition: color 0.3s ease;
 }
 

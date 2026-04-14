@@ -1,11 +1,10 @@
 {
-  "navigationBarTitleText": "清如",
+  "navigationBarTitleText": "禅理",
   "navigationBarBackgroundColor": "#4A5D4E",
   "navigationBarTextStyle": "white",
   "backgroundColor": "#EFEEE9",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "light",
-  "navigationStyle": "custom",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index"
   }
