@@ -1,0 +1,132 @@
+/* 导航栏组件样式 - Stitch V3.0 规范 */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #EFEEE9;
+  z-index: 1000;
+}
+
+.status-bar {
+  width: 100%;
+  background-color: #EFEEE9;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  padding: 0 24rpx;
+  position: relative;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  min-width: 100rpx;
+  flex: 1;
+}
+
+.navbar-back {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8rpx;
+}
+
+.back-icon {
+  font-size: 40rpx;
+  color: #4A5D4E;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.back-text {
+  font-size: 28rpx;
+  color: #4A5D4E;
+  margin-left: 8rpx;
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+  max-width: 60%;
+}
+
+.navbar-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a202c;
+  text-align: center;
+}
+
+.navbar-title.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 100rpx;
+  flex: 1;
+}
+
+.navbar-action {
+  font-size: 28rpx;
+  color: #4A5D4E;
+  padding: 8rpx 16rpx;
+  cursor: pointer;
+}
+
+.navbar-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1rpx;
+  background-color: rgba(0, 0, 0, 0.08);
+  transform: scaleY(0.5);
+}
+
+/* 变体样式 */
+.navbar-dark {
+  background-color: #1a202c;
+}
+
+.navbar-dark .status-bar {
+  background-color: #1a202c;
+}
+
+.navbar-dark .navbar-title {
+  color: #ffffff;
+}
+
+.navbar-dark .back-icon,
+.navbar-dark .back-text,
+.navbar-dark .navbar-action {
+  color: #ffffff;
+}
+
+.navbar-transparent {
+  background-color: transparent;
+}
+
+.navbar-transparent .status-bar {
+  background-color: transparent;
+}
+
+/* 透明导航栏的文字颜色 */
+.navbar-light-text .navbar-title,
+.navbar-light-text .back-icon,
+.navbar-light-text .back-text,
+.navbar-light-text .navbar-action {
+  color: #ffffff;
+}

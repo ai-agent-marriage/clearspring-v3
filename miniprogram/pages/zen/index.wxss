@@ -1,0 +1,72 @@
+/* pages/zen/index.wxss - 禅理功能页 */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #EFEEE9;
+  padding: 32rpx;
+  padding-bottom: 240rpx;
+}
+
+.page-header {
+  text-align: center;
+  padding: 48rpx 0;
+}
+
+.page-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #4A5D4E;
+  font-family: 'Noto Serif SC', serif;
+  margin-bottom: 16rpx;
+}
+
+.page-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: #676F68;
+  letter-spacing: 0.2em;
+}
+
+.zen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24rpx;
+}
+
+.zen-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 48rpx 24rpx;
+  gap: 16rpx;
+  box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
+}
+
+.zen-card:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+.zen-icon {
+  font-size: 64rpx;
+  margin-bottom: 8rpx;
+}
+
+.zen-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #334537;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.zen-desc {
+  font-size: 22rpx;
+  color: #718096;
+  text-align: center;
+}

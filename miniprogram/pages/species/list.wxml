@@ -1,0 +1,106 @@
+<!--pages/species/list.wxml-->
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar">
+    <view class="top-bar-content">
+      <view class="top-bar-left">
+        <text class="material-icons search-icon">search</text>
+        <text class="page-title">生物放生名录</text>
+      </view>
+      <text class="material-icons menu-icon">menu_book</text>
+    </view>
+  </view>
+
+  <view class="main-content">
+    <!-- Search Section -->
+    <view class="search-section">
+      <view class="search-box">
+        <text class="material-icons search-icon-inside">search</text>
+        <input class="search-input" placeholder="搜索物种名称/学名"/>
+      </view>
+    </view>
+
+    <!-- Category Chips -->
+    <scroll-view class="category-scroll" scroll-x="true">
+      <view class="category-chips">
+        <view class="chip active">全部分类</view>
+        <view class="chip">鱼类</view>
+        <view class="chip">鸟类</view>
+        <view class="chip">爬行类</view>
+        <view class="chip">两栖类</view>
+      </view>
+    </scroll-view>
+
+    <!-- Species List -->
+    <view class="species-grid">
+      <!-- Card 1 -->
+      <view class="species-card">
+        <view class="card-image-wrapper">
+          <image class="card-image" src="https://example.com/koi.jpg" mode="aspectFill"/>
+          <view class="card-badge allowed">可合规投放</view>
+        </view>
+        <view class="card-content">
+          <view class="card-header">
+            <text class="card-title">红锦鲤</text>
+            <text class="card-latin-name">Cyprinus rubrofuscus</text>
+          </view>
+          <text class="card-desc">常见观赏鱼，适宜淡水环境。具有极高的观赏价值，且在我国大部分淡水水系中均能自然生存。</text>
+          <view class="card-footer">
+            <view class="card-tag">
+              <text class="material-icons tag-icon">water_drop</text>
+              <text>淡水物种</text>
+            </view>
+            <text class="material-icons arrow-icon">arrow_forward_ios</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Card 2 -->
+      <view class="species-card">
+        <view class="card-image-wrapper">
+          <image class="card-image" src="https://example.com/turtle.jpg" mode="aspectFill"/>
+          <view class="card-badge forbidden">禁止投放</view>
+        </view>
+        <view class="card-content">
+          <view class="card-header">
+            <text class="card-title">巴西龟</text>
+            <text class="card-latin-name">Trachemys scripta elegans</text>
+          </view>
+          <text class="card-desc">外来入侵物种，严禁自然水域投放。其适应性强，会排挤本土龟类，破坏生态平衡。</text>
+          <view class="card-footer">
+            <view class="card-tag warning">
+              <text class="material-icons tag-icon">warning</text>
+              <text>生态威胁</text>
+            </view>
+            <text class="material-icons arrow-icon">arrow_forward_ios</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- Card 3 -->
+      <view class="species-card">
+        <view class="card-image-wrapper">
+          <image class="card-image" src="https://example.com/egret.jpg" mode="aspectFill"/>
+          <view class="card-badge allowed">可合规投放</view>
+        </view>
+        <view class="card-content">
+          <view class="card-header">
+            <text class="card-title">白鹭</text>
+            <text class="card-latin-name">Egretta garzetta</text>
+          </view>
+          <text class="card-desc">国家二级保护动物，适宜湿地环境。放生需遵循相关野生动物保护法律法规。</text>
+          <view class="card-footer">
+            <view class="card-tag">
+              <text class="material-icons tag-icon">forest</text>
+              <text>湿地物种</text>
+            </view>
+            <text class="material-icons arrow-icon">arrow_forward_ios</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Tab Bar Placeholder -->
+  <view class="tab-bar-placeholder"></view>
+</view>

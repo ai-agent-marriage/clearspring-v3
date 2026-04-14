@@ -1,0 +1,37 @@
+<custom-tab-bar>
+  <view class="tab-bar {{animationClass}}" style="z-index: 1000;">
+    <view class="tab-bar-border"></view>
+    <view 
+      class="tab-bar-item {{currentIndex === 0 ? 'active' : ''}}" 
+      data-index="0" 
+      bindtap="onTabTap"
+    >
+      <view class="tab-bar-icon">
+        <view class="icon-font {{currentIndex === 0 ? 'active' : ''}}">🎵</view>
+      </view>
+      <view class="tab-bar-text {{currentIndex === 0 ? 'active' : ''}}">梵音</view>
+    </view>
+    
+    <view 
+      class="tab-bar-item {{currentIndex === 1 ? 'active' : ''}}" 
+      data-index="1" 
+      bindtap="onTabTap"
+    >
+      <view class="tab-bar-icon">
+        <view class="icon-font {{currentIndex === 1 ? 'active' : ''}}">📖</view>
+      </view>
+      <view class="tab-bar-text {{currentIndex === 1 ? 'active' : ''}}">禅理</view>
+    </view>
+    
+    <view 
+      class="tab-bar-item {{currentIndex === 2 ? 'active' : ''}}" 
+      data-index="2" 
+      bindtap="onTabTap"
+    >
+      <view class="tab-bar-icon">
+        <view class="icon-font {{currentIndex === 2 ? 'active' : ''}}">👤</view>
+      </view>
+      <view class="tab-bar-text {{currentIndex === 2 ? 'active' : ''}}">我的</view>
+    </view>
+  </view>
+</custom-tab-bar>

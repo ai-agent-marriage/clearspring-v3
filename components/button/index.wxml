@@ -1,0 +1,27 @@
+<!-- 按钮组件 - Stitch V3.0 规范 -->
+<button 
+  class="btn {{customClass}} btn-{{type}} btn-{{size}} {{shapeClass}}" 
+  style="{{customStyle}}"
+  disabled="{{disabled}}"
+  loading="{{loading}}"
+  bindtap="onTap"
+  hover-class="{{disabled ? '' : 'btn-hover'}}"
+  hover-start-time="20"
+  hover-stay-time="70"
+>
+  <!-- 加载图标 -->
+  <view class="btn-loading" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+  </view>
+  
+  <!-- 按钮图标 -->
+  <view class="btn-icon" wx:if="{{icon}}">
+    <text class="icon-font">{{icon}}</text>
+  </view>
+  
+  <!-- 按钮文字 -->
+  <text class="btn-text">{{text}}</text>
+  
+  <!-- 自定义插槽 -->
+  <slot wx:if="{{slot}}"></slot>
+</button>

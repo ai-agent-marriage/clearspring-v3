@@ -117,7 +117,9 @@
   color: #334537;
   font-family: 'Noto Serif SC', serif;
   line-height: 1;
-  margin-bottom: 12rpx;
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
 }
 
 .month-year {
@@ -126,7 +128,9 @@
   color: #676F68;
   letter-spacing: 0.15em;
   font-weight: 500;
-  margin-bottom: 12rpx;
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
 }
 
 .date-details {
@@ -196,7 +200,7 @@
   position: absolute;
   top: 24rpx;
   left: 32rpx;
-  font-size: 48rpx;
+  width: 48rpx;
   color: #C9B037;
   opacity: 0.2;
   font-family: serif;
@@ -254,8 +258,8 @@
   background: linear-gradient(135deg, #5A6D5E 0%, #43554E 100%);
 }
 
-.checkin-icon {
-  font-size: 48rpx;
+.checkin-icon-svg {
+  width: 48rpx;
 }
 
 .checkin-text {

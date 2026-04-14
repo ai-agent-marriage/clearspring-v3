@@ -1,30 +1,37 @@
 // custom-tab-bar/index.js
 Component({
   data: {
-    selected: 0
+    current: 0,
+    isIphoneX: false
   },
 
   methods: {
-    switchTab(e) {
+    onTabTap(e) {
       const index = e.currentTarget.dataset.index;
       const pages = getCurrentPages();
       const currentPage = pages[pages.length - 1];
       const currentPath = currentPage.route;
 
-      // 3 个 Tab：梵音/禅理/我的
       const tabPaths = [
-        'pages/audio/index',
-        'pages/zen/index',
-        'pages/profile/index'
+        '/pages/audio/audio',
+        '/pages/zen/zen',
+        '/pages/profile/profile'
       ];
 
-      if (currentPath !== tabPaths[index]) {
+      if (currentPath !== tabPaths[index].replace('/pages/', '').split('/').slice(1).join('/')) {
         wx.switchTab({
-          url: '/' + tabPaths[index]
+          url: tabPaths[index]
         });
       }
 
-      this.setData({ selected: index });
+      this.setData({ current: index });
     }
+  },
+
+  ready() {
+    const systemInfo = wx.getSystemInfoSync();
+    this.setData({
+      isIphoneX: systemInfo.safeArea && systemInfo.safeArea.bottom !== systemInfo.screenHeight
+    });
   }
 });

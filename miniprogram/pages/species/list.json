@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "tab-bar": "/custom-tab-bar/index"
+  },
+  "navigationBarStyle": "custom",
+  "backgroundColor": "#EFEEE9"
+}

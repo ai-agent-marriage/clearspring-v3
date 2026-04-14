@@ -1,0 +1,76 @@
+/* 卡片组件样式 - Stitch V3.0 规范 */
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  margin: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.card:active {
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  padding: 24rpx 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.card-subtitle {
+  font-size: 26rpx;
+  color: #718096;
+  margin-top: 8rpx;
+  line-height: 1.4;
+}
+
+.card-extra {
+  display: flex;
+  align-items: center;
+}
+
+.card-body {
+  padding: 32rpx;
+  font-size: 28rpx;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.card-footer {
+  padding: 24rpx 32rpx;
+  border-top: 1rpx solid #f0f0f0;
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 变体样式 */
+.card-borderless {
+  box-shadow: none;
+  border: 1rpx solid #e2e8f0;
+}
+
+.card-shadow-lg {
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.12);
+}
+
+.card-compact .card-body {
+  padding: 20rpx;
+}
+
+.card-compact .card-header {
+  padding: 20rpx 24rpx;
+}

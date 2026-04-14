@@ -1,0 +1,39 @@
+<!-- 导航栏组件 - Stitch V3.0 规范 -->
+<view class="navbar {{customClass}}" style="{{customStyle}}; padding-top: {{statusBarHeight}}px;">
+  <!-- 状态栏占位 -->
+  <view class="status-bar" style="height: {{statusBarHeight}}px;"></view>
+  
+  <!-- 导航栏内容 -->
+  <view class="navbar-content">
+    <!-- 左侧区域 -->
+    <view class="navbar-left" bindtap="onLeftTap">
+      <slot name="left">
+        <view class="navbar-back" wx:if="{{showBack}}">
+          <text class="back-icon">←</text>
+          <text class="back-text" wx:if="{{backText}}">{{backText}}</text>
+        </view>
+      </slot>
+    </view>
+    
+    <!-- 中间标题区域 -->
+    <view class="navbar-center" bindtap="onTitleTap">
+      <slot name="center">
+        <view class="navbar-title {{titleEllipsis ? 'ellipsis' : ''}}">
+          {{title}}
+        </view>
+      </slot>
+    </view>
+    
+    <!-- 右侧区域 -->
+    <view class="navbar-right" bindtap="onRightTap">
+      <slot name="right">
+        <view class="navbar-action" wx:if="{{rightText}}">
+          {{rightText}}
+        </view>
+      </slot>
+    </view>
+  </view>
+  
+  <!-- 底部边框 -->
+  <view class="navbar-border" wx:if="{{border}}"></view>
+</view>
