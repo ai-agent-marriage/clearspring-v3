@@ -42,12 +42,12 @@
   justify-content: center;
 }
 
-.icon-font {
+.tab-bar-icon svg {
   color: #718096;
   transition: color 0.3s ease;
 }
 
-.icon-font.active {
+.tab-bar-item.active .tab-bar-icon svg {
   color: #4A5D4E;
 }
 

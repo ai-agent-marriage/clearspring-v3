@@ -52,7 +52,10 @@
     "navigationBarTitleText": "清如 ClearSpring",
     "navigationBarTextStyle": "black"
   },
-
+  "tabBar": {
+    "custom": true,
+    "list": []
+  },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
   "usingComponents": {

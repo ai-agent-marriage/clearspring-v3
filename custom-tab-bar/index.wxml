@@ -1,35 +1,45 @@
 <custom-tab-bar>
   <view class="tab-bar {{animationClass}}" style="z-index: 1000;">
     <view class="tab-bar-border"></view>
+    
+    <!-- 梵音 Tab -->
     <view 
       class="tab-bar-item {{currentIndex === 0 ? 'active' : ''}}" 
       data-index="0" 
       bindtap="onTabTap"
     >
       <view class="tab-bar-icon">
-        <view class="icon-font {{currentIndex === 0 ? 'active' : ''}}">🎵</view>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
       </view>
       <view class="tab-bar-text {{currentIndex === 0 ? 'active' : ''}}">梵音</view>
     </view>
     
+    <!-- 禅理 Tab -->
     <view 
       class="tab-bar-item {{currentIndex === 1 ? 'active' : ''}}" 
       data-index="1" 
       bindtap="onTabTap"
     >
       <view class="tab-bar-icon">
-        <view class="icon-font {{currentIndex === 1 ? 'active' : ''}}">📖</view>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+        </svg>
       </view>
       <view class="tab-bar-text {{currentIndex === 1 ? 'active' : ''}}">禅理</view>
     </view>
     
+    <!-- 我的 Tab -->
     <view 
       class="tab-bar-item {{currentIndex === 2 ? 'active' : ''}}" 
       data-index="2" 
       bindtap="onTabTap"
     >
       <view class="tab-bar-icon">
-        <view class="icon-font {{currentIndex === 2 ? 'active' : ''}}">👤</view>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
       </view>
       <view class="tab-bar-text {{currentIndex === 2 ? 'active' : ''}}">我的</view>
     </view>

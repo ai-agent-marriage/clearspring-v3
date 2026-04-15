@@ -7,11 +7,11 @@ Component({
   data: {
     currentIndex: 0,
     animationClass: 'tab-bar-animation',
-    // 页面路径配置
+    // 页面路径配置（需要是 TabBar 页面）
     pages: [
-      '/pages/yinyin/index',  // 梵音
-      '/pages/chanli/index',  // 禅理
-      '/pages/mine/index'     // 我的
+      '/pages/index/index',      // 首页（梵音）
+      '/pages/zen/index',        // 禅理
+      '/pages/profile/profile'   // 我的
     ]
   },
 
