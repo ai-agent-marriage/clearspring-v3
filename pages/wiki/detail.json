@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "百科详情",
   "navigationBarBackgroundColor": "#EFEEE9",
-  "navigationBarTextStyle": "dark",
+  "navigationBarTextStyle": "black",
   "enablePullDownRefresh": false
 }

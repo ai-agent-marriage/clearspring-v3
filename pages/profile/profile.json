@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "我的",
   "navigationBarBackgroundColor": "#EFEEE9",
-  "navigationBarTextStyle": "dark",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index"
   }

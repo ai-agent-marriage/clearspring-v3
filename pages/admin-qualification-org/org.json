@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "机构资质管理",
+  "navigationBarBackgroundColor": "#4A5D4E",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#FFFFFF",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": false
+}

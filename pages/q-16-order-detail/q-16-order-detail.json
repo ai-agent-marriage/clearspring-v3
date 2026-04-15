@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "页面",
+  "navigationBarTitleText": "订单详情",
   "navigationStyle": "custom",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index",

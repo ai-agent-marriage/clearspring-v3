@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "关于我们",
   "navigationBarBackgroundColor": "#EFEEE9",
-  "navigationBarTextStyle": "dark",
+  "navigationBarTextStyle": "black",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index"

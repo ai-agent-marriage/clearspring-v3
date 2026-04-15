@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "帮助中心",
   "navigationBarBackgroundColor": "#EFEEE9",
-  "navigationBarTextStyle": "dark",
+  "navigationBarTextStyle": "black",
   "enablePullDownRefresh": false,
   "backgroundTextStyle": "dark",
   "usingComponents": {

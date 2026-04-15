@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "财务报表",
   "navigationBarBackgroundColor": "#FFFFFF",
-  "navigationBarTextStyle": "dark",
+  "navigationBarTextStyle": "black",
   "usingComponents": {}
 }
