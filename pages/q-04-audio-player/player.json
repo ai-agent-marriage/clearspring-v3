@@ -3,6 +3,6 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "tab-bar": "/custom-tab-bar/index",
-    "navbar": "/components/navbar/navbar"
+    "navbar": "/components/navbar/index"
   }
 }
