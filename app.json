@@ -66,8 +66,5 @@
     ]
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2",
-  "usingComponents": {
-    "painter": "/components/painter/painter"
-  }
+  "style": "v2"
 }
