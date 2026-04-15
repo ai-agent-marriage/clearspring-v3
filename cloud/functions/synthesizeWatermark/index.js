@@ -79,7 +79,7 @@ async function synthesizeVideoWatermark(fileID, watermarkData) {
   // 注意：实际视频处理需要使用 ffmpeg 或云服务商的视频处理功能
   // 微信云开发支持视频处理插件，这里使用简化实现
   
-  console.log('合成视频水印:', {
+  // [CLEANED] console.log('合成视频水印:', {
     fileID,
     watermarkText,
     config: WATERMARK_CONFIG
@@ -113,7 +113,7 @@ async function synthesizeImageWatermark(fileID, watermarkData) {
     gps
   ];
   
-  console.log('合成图片水印:', {
+  // [CLEANED] console.log('合成图片水印:', {
     fileID,
     watermarkText,
     config: WATERMARK_CONFIG

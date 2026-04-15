@@ -12,7 +12,7 @@
 .header {
   padding: 40rpx 30rpx;
   background-color: var(--stitch-bg-white);
-  border-bottom: 1rpx solid var(--stitch-border-secondary);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .title {
@@ -34,7 +34,7 @@
 
 .content {
   background-color: var(--stitch-bg-white);
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   padding: 40rpx;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
 }
@@ -49,13 +49,13 @@
 .footer {
   padding: 30rpx;
   background-color: var(--stitch-bg-white);
-  border-top: 1rpx solid var(--stitch-border-secondary);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .agree-btn {
   background-color: var(--stitch-gold-primary);
   color: var(--stitch-bg-white);
-  border-radius: 40rpx;
+  border-radius: 24rpx;
   padding: 24rpx 0;
   font-size: 32rpx;
   border: none;

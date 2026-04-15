@@ -1,4 +1,0 @@
-<!--pages/order/index.wxml-->
-<view class="container">
-  <text>订单页面</text>
-</view>

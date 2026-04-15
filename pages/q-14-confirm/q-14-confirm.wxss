@@ -2,7 +2,7 @@
 
 .container {
   min-height: 100vh;
-  background-color: #FAF9F4;
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 240rpx;
 }
 
@@ -40,7 +40,7 @@
 .hero-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 44rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
   letter-spacing: 8rpx;
 }
 
@@ -55,7 +55,7 @@
 .order-card {
   margin: 0 32rpx 32rpx;
   padding: 40rpx;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
   border-radius: 24rpx;
   box-shadow: 0 8rpx 40rpx rgba(74, 93, 78, 0.04);
 }
@@ -65,7 +65,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 24rpx;
-  border-bottom: 1rpx solid rgba(195, 200, 193, 0.15);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
   margin-bottom: 32rpx;
 }
 
@@ -73,15 +73,15 @@
   font-family: 'Noto Serif SC', serif;
   font-size: 32rpx;
   font-weight: 700;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .card-tag {
   font-size: 18rpx;
-  color: #533D20;
+  color: var(--stitch-primary-dark);
   padding: 8rpx 16rpx;
   border-radius: 24rpx;
-  border: 1rpx solid rgba(195, 200, 193, 0.3);
+  border: 1rpx solid rgba(74, 93, 78, 0.04);
   letter-spacing: 2rpx;
   text-transform: uppercase;
 }
@@ -109,14 +109,14 @@
 .detail-value {
   font-family: 'Noto Serif SC', serif;
   font-size: 26rpx;
-  color: #1B1C19;
+  color: var(--stitch-primary);
   text-align: right;
 }
 
 /* 增值服务 */
 .services-section {
   padding-top: 24rpx;
-  border-top: 1rpx solid rgba(195, 200, 193, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .services-title {
@@ -136,17 +136,17 @@
 
 .service-tag {
   font-size: 20rpx;
-  color: #6E5E00;
+  color: var(--stitch-gold);
   padding: 8rpx 16rpx;
   background-color: rgba(254, 226, 100, 0.15);
-  border-radius: 12rpx;
-  border: 1rpx solid rgba(254, 226, 100, 0.3);
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(212, 184, 123, 0.08);
 }
 
 /* 心愿寄语 */
 .wish-section {
   padding-top: 24rpx;
-  border-top: 1rpx solid rgba(195, 200, 193, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .wish-title {
@@ -161,7 +161,7 @@
 .wish-text {
   font-family: 'Noto Serif SC', serif;
   font-size: 24rpx;
-  color: #1B1C19;
+  color: var(--stitch-primary);
   font-style: italic;
   line-height: 1.8;
 }
@@ -170,7 +170,7 @@
 .amount-section {
   margin: 0 32rpx 32rpx;
   padding: 40rpx;
-  background-color: #F5F4EF;
+  background-color: var(--stitch-bg-primary);
   border-radius: 24rpx;
 }
 
@@ -178,7 +178,7 @@
   display: block;
   font-family: 'Noto Serif SC', serif;
   font-size: 32rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   margin-bottom: 24rpx;
 }
 
@@ -201,7 +201,7 @@
 
 .amount-value {
   font-size: 26rpx;
-  color: #1B1C19;
+  color: var(--stitch-primary);
 }
 
 .amount-total {
@@ -216,13 +216,13 @@
 .total-label {
   font-family: 'Noto Serif SC', serif;
   font-size: 32rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .total-value {
   font-size: 44rpx;
   font-weight: 700;
-  color: #6E5E00;
+  color: var(--stitch-gold);
 }
 
 /* 协议区域 */
@@ -241,7 +241,7 @@
 }
 
 .agreement-link {
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   font-weight: 600;
 }
 
@@ -252,14 +252,14 @@
   left: 0;
   width: 100%;
   padding: 24rpx 48rpx;
-  background: linear-gradient(to top, #FAF9F4 0%, rgba(250, 249, 244, 0.95) 100%);
+  background: linear-gradient(to top, var(--stitch-bg-primary) 0%, rgba(250, 249, 244, 0.95) 100%);
 }
 
 .pay-btn {
   width: 100%;
   padding: 32rpx;
-  background-color: #4A5D4E;
-  color: #FFFFFF;
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
   border-radius: 24rpx;
   font-family: 'Noto Serif SC', serif;
   font-size: 32rpx;

@@ -41,7 +41,7 @@ Page({
   },
 
   onLoad() {
-    console.log('订单列表页加载完成');
+    // [CLEANED] console.log('订单列表页加载完成');
   },
 
   // Tab 切换

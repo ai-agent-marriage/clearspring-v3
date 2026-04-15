@@ -1,0 +1,169 @@
+<!-- 系统设置 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="menu-icon" bindtap="toggleMenu">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="navbar-title">系统设置</text>
+    </view>
+  </view>
+
+  <!-- 主要内容区 -->
+  <scroll-view class="main-content" scroll-y="true">
+    <!-- 基础设置 -->
+    <view class="setting-section">
+      <view class="section-title">基础设置</view>
+      <view class="setting-list">
+        <view class="setting-item" bindtap="editPlatformName">
+          <view class="setting-info">
+            <text class="setting-label">平台名称</text>
+            <text class="setting-value">清如生态公益平台</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="editContactInfo">
+          <view class="setting-info">
+            <text class="setting-label">客服联系方式</text>
+            <text class="setting-value">400-888-8888</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="editPlatformRules">
+          <view class="setting-info">
+            <text class="setting-label">平台规则</text>
+            <text class="setting-value">已设置</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 通知设置 -->
+    <view class="setting-section">
+      <view class="section-title">通知设置</view>
+      <view class="setting-list">
+        <view class="setting-item">
+          <view class="setting-info">
+            <text class="setting-label">新订单通知</text>
+            <text class="setting-desc">接收新订单推送通知</text>
+          </view>
+          <switch class="setting-switch" checked="{{notifications.newOrder}}" bindchange="toggleNewOrder" color="#4A5D4E"/>
+        </view>
+        <view class="setting-item">
+          <view class="setting-info">
+            <text class="setting-label">资质审核通知</text>
+            <text class="setting-desc">接收新资质审核申请</text>
+          </view>
+          <switch class="setting-switch" checked="{{notifications.qualReview}}" bindchange="toggleQualReview" color="#4A5D4E"/>
+        </view>
+        <view class="setting-item">
+          <view class="setting-info">
+            <text class="setting-label">申诉仲裁通知</text>
+            <text class="setting-desc">接收新申诉仲裁请求</text>
+          </view>
+          <switch class="setting-switch" checked="{{notifications.appeal}}" bindchange="toggleAppeal" color="#4A5D4E"/>
+        </view>
+        <view class="setting-item">
+          <view class="setting-info">
+            <text class="setting-label">系统公告通知</text>
+            <text class="setting-desc">接收系统升级等公告</text>
+          </view>
+          <switch class="setting-switch" checked="{{notifications.system}}" bindchange="toggleSystem" color="#4A5D4E"/>
+        </view>
+      </view>
+    </view>
+
+    <!-- 安全设置 -->
+    <view class="setting-section">
+      <view class="section-title">安全设置</view>
+      <view class="setting-list">
+        <view class="setting-item" bindtap="changePassword">
+          <view class="setting-info">
+            <text class="setting-label">修改密码</text>
+            <text class="setting-desc">定期修改密码保障安全</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="viewLoginLog">
+          <view class="setting-info">
+            <text class="setting-label">登录日志</text>
+            <text class="setting-desc">查看最近登录记录</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="manageDevices">
+          <view class="setting-info">
+            <text class="setting-label">设备管理</text>
+            <text class="setting-desc">管理已登录设备</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分账设置 -->
+    <view class="setting-section">
+      <view class="section-title">分账设置</view>
+      <view class="setting-list">
+        <view class="setting-item" bindtap="configPlatformRate">
+          <view class="setting-info">
+            <text class="setting-label">平台服务费率</text>
+            <text class="setting-value">{{platformRate}}%</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="configExecutorRate">
+          <view class="setting-info">
+            <text class="setting-label">执行者分成比例</text>
+            <text class="setting-value">{{executorRate}}%</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="configSettleCycle">
+          <view class="setting-info">
+            <text class="setting-label">结算周期</text>
+            <text class="setting-value">{{settleCycle}}</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 其他设置 -->
+    <view class="setting-section">
+      <view class="section-title">其他</view>
+      <view class="setting-list">
+        <view class="setting-item" bindtap="checkUpdate">
+          <view class="setting-info">
+            <text class="setting-label">检查更新</text>
+            <text class="setting-value">当前版本 v3.0.1</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="clearCache">
+          <view class="setting-info">
+            <text class="setting-label">清除缓存</text>
+            <text class="setting-value">{{cacheSize}}MB</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+        <view class="setting-item" bindtap="viewHelp">
+          <view class="setting-info">
+            <text class="setting-label">帮助与反馈</text>
+          </view>
+          <text class="material-icons setting-arrow">chevron_right</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 退出登录按钮 -->
+    <view class="logout-section">
+      <button class="logout-btn" bindtap="logout">
+        <text class="material-icons">logout</text>
+        <text>退出登录</text>
+      </button>
+    </view>
+  </scroll-view>
+</view>

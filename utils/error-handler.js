@@ -200,7 +200,7 @@ const ErrorHandler = {
       name: 'log-error',
       data: errorData,
       success: (res) => {
-        console.log('错误日志上报成功:', res);
+        // [CLEANED] console.log('错误日志上报成功:', res);
       },
       fail: (failError) => {
         console.error('错误日志上报失败:', failError);
@@ -231,7 +231,7 @@ const ErrorHandler = {
         logs.splice(0, logs.length - 100);
       }
       wx.setStorageSync('error_logs', logs);
-      console.log('错误日志本地保存成功');
+      // [CLEANED] console.log('错误日志本地保存成功');
     } catch (e) {
       console.error('本地保存错误日志失败:', e);
     }

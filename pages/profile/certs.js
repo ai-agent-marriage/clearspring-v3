@@ -112,7 +112,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('证书管理页加载完成', options);
+    // [CLEANED] console.log('证书管理页加载完成', options);
     
     // 如果从订单详情页跳转过来，传入 orderNo
     if (options.orderNo) {

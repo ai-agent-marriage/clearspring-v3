@@ -66,7 +66,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: var(--stitch-spacing-md);
-  border-top: 1rpx solid rgba(74, 93, 78, 0.08);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .notice-status {
@@ -175,7 +175,7 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
   z-index: 100;
 }
 

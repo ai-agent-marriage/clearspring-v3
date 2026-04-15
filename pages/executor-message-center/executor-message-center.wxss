@@ -91,7 +91,7 @@
   font-size: 20rpx;
   color: var(--stitch-bg-white);
   background: var(--stitch-error);
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   padding: 0 8rpx;
 }
 

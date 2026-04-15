@@ -61,7 +61,7 @@ let cleanupTimer = null;
  */
 function init() {
   if (CONFIG.DEBUG) {
-    console.log('[Cache] 初始化缓存系统');
+    // [CLEANED] console.log('[Cache] 初始化缓存系统');
   }
   
   // 创建存储目录
@@ -158,7 +158,7 @@ function set(key, value, expireMilliseconds = CONFIG.DEFAULT_EXPIRE) {
     stats.sets++;
     
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] SET: ${key}, expire: ${expireMilliseconds}ms`);
+      // [CLEANED] console.log(`[Cache] SET: ${key}, expire: ${expireMilliseconds}ms`);
     }
     
     return true;
@@ -206,7 +206,7 @@ function getCachedValue(key, cacheItem, expireMilliseconds) {
   if (!cacheItem) {
     stats.misses++;
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] MISS: ${key}`);
+      // [CLEANED] console.log(`[Cache] MISS: ${key}`);
     }
     return null;
   }
@@ -218,7 +218,7 @@ function getCachedValue(key, cacheItem, expireMilliseconds) {
     remove(key);
     stats.misses++;
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] EXPIRED: ${key}`);
+      // [CLEANED] console.log(`[Cache] EXPIRED: ${key}`);
     }
     return null;
   }
@@ -240,7 +240,7 @@ function getCachedValue(key, cacheItem, expireMilliseconds) {
   stats.hits++;
   
   if (CONFIG.DEBUG) {
-    console.log(`[Cache] HIT: ${key}`);
+    // [CLEANED] console.log(`[Cache] HIT: ${key}`);
   }
   
   return cacheItem.value;
@@ -294,7 +294,7 @@ function remove(key) {
     if (deleted) {
       stats.deletes++;
       if (CONFIG.DEBUG) {
-        console.log(`[Cache] REMOVE: ${key}`);
+        // [CLEANED] console.log(`[Cache] REMOVE: ${key}`);
       }
     }
     
@@ -334,7 +334,7 @@ function clear() {
     resetStats();
     
     if (CONFIG.DEBUG) {
-      console.log('[Cache] CLEAR ALL');
+      // [CLEANED] console.log('[Cache] CLEAR ALL');
     }
     
     return true;
@@ -435,7 +435,7 @@ function cleanup() {
     if (count > 0) {
       stats.cleanups += count;
       if (CONFIG.DEBUG) {
-        console.log(`[Cache] CLEANUP: ${count} items`);
+        // [CLEANED] console.log(`[Cache] CLEANUP: ${count} items`);
       }
     }
     
@@ -508,7 +508,7 @@ function evictOldest() {
   if (oldestKey) {
     memoryCache.delete(oldestKey);
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] EVICT: ${removeKeyPrefix(oldestKey)}`);
+      // [CLEANED] console.log(`[Cache] EVICT: ${removeKeyPrefix(oldestKey)}`);
     }
   }
 }
@@ -585,7 +585,7 @@ function restoreFromStorage() {
     });
     
     if (CONFIG.DEBUG) {
-      console.log(`[Cache] 从存储恢复 ${count} 项缓存`);
+      // [CLEANED] console.log(`[Cache] 从存储恢复 ${count} 项缓存`);
     }
   } catch (error) {
     console.error('[Cache] 恢复存储失败:', error);
@@ -618,7 +618,7 @@ async function preload(items) {
   await Promise.all(promises);
   
   if (CONFIG.DEBUG) {
-    console.log('[Cache] 预加载完成');
+    // [CLEANED] console.log('[Cache] 预加载完成');
   }
 }
 
@@ -633,12 +633,12 @@ async function cachedAsync(key, loader, expireMilliseconds = CONFIG.DEFAULT_EXPI
   // 尝试从缓存获取
   const cached = get(key);
   if (cached !== null) {
-    console.log(`[Cache] 命中缓存：${key}`);
+    // [CLEANED] console.log(`[Cache] 命中缓存：${key}`);
     return cached;
   }
   
   // 缓存未命中，执行加载器
-  console.log(`[Cache] 未命中，执行加载：${key}`);
+  // [CLEANED] console.log(`[Cache] 未命中，执行加载：${key}`);
   const data = await loader();
   
   // 保存到缓存

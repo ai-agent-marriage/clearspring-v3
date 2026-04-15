@@ -59,7 +59,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('物种管理页面加载');
+    // [CLEANED] console.log('物种管理页面加载');
     this.loadSpeciesList();
   },
 
@@ -78,7 +78,7 @@ Page({
   async loadSpeciesList() {
     try {
       // TODO: 实际从云函数获取物种列表
-      console.log('加载物种列表');
+      // [CLEANED] console.log('加载物种列表');
     } catch (error) {
       console.error('加载物种列表失败:', error);
       wx.showToast({
@@ -92,7 +92,7 @@ Page({
     try {
       // TODO: 实际从云函数刷新物种列表
       await new Promise(resolve => setTimeout(resolve, 500));
-      console.log('物种列表刷新完成');
+      // [CLEANED] console.log('物种列表刷新完成');
     } catch (error) {
       console.error('刷新物种列表失败:', error);
     }
@@ -162,7 +162,7 @@ Page({
   // 点击物种卡片
   onSpeciesTap(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('点击物种:', id);
+    // [CLEANED] console.log('点击物种:', id);
     
     wx.navigateTo({
       url: `/pages/admin/content/species-detail?id=${id}`
@@ -172,7 +172,7 @@ Page({
   // 编辑物种
   onEditSpecies(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('编辑物种:', id);
+    // [CLEANED] console.log('编辑物种:', id);
     
     wx.navigateTo({
       url: `/pages/admin/content/species-edit?id=${id}&action=edit`
@@ -182,7 +182,7 @@ Page({
   // 删除物种
   onDeleteSpecies(e) {
     const { id, name } = e.currentTarget.dataset;
-    console.log('删除物种:', id, name);
+    // [CLEANED] console.log('删除物种:', id, name);
     
     wx.showModal({
       title: '确认删除',

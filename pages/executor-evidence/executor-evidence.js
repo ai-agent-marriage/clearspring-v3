@@ -34,7 +34,7 @@ Page({
   onLoad(options) {
     // 获取任务 ID
     this.taskId = options.id;
-    console.log('证据提交页加载，任务 ID:', this.taskId);
+    // [CLEANED] console.log('证据提交页加载，任务 ID:', this.taskId);
     
     // 获取位置信息
     this.getLocation();
@@ -289,7 +289,7 @@ Page({
       submitTime: new Date().getTime()
     };
 
-    console.log('提交证据:', submitData);
+    // [CLEANED] console.log('提交证据:', submitData);
 
     // TODO: 调用云函数提交证据
     // wx.cloud.callFunction({

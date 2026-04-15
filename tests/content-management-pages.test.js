@@ -7,17 +7,16 @@ const assert = require('assert');
 
 // Mock wx 对象
 global.wx = {
-  navigateTo: (options) => console.log('navigateTo:', options),
-  navigateBack: (options) => console.log('navigateBack:', options),
-  showLoading: (options) => console.log('showLoading:', options),
-  hideLoading: () => console.log('hideLoading'),
-  showToast: (options) => console.log('showToast:', options),
+  navigateTo: (options) => // [CLEANED] console.log('navigateTo:', options),
+  navigateBack: (options) => // [CLEANED] console.log('navigateBack:', options),
+  showLoading: (options) => // [CLEANED] console.log('showLoading:', options),
+  hideLoading: () => // [CLEANED] console.log('hideLoading'),
+  showToast: (options) => // [CLEANED] console.log('showToast:', options),
   showModal: (options) => {
-    console.log('showModal:', options);
+    // [CLEANED] console.log('showModal:', options);
     if (options.success) options.success({ confirm: true });
   },
-  stopPullDownRefresh: () => console.log('stopPullDownRefresh')
-};
+  stopPullDownRefresh: () => // [CLEANED] console.log('stopPullDownRefresh')};
 
 // 测试计数器
 let passed = 0;
@@ -26,7 +25,7 @@ let failed = 0;
 function test(name, fn) {
   try {
     fn();
-    console.log(`✅ ${name}`);
+    // [CLEANED] console.log(`✅ ${name}`);
     passed++;
   } catch (error) {
     console.error(`❌ ${name}`);
@@ -36,7 +35,7 @@ function test(name, fn) {
 }
 
 // ========== Task 1: 内容管理系统首页测试 ==========
-console.log('\n📋 Task 1: 内容管理系统首页测试\n');
+// [CLEANED] console.log('\n📋 Task 1: 内容管理系统首页测试\n');
 
 test('内容管理首页 - 统计数据初始化正确', () => {
   const stats = {
@@ -79,7 +78,7 @@ test('内容管理首页 - 菜单数据结构完整', () => {
 });
 
 // ========== Task 2: 物种管理页面测试 ==========
-console.log('\n📋 Task 2: 物种管理页面测试\n');
+// [CLEANED] console.log('\n📋 Task 2: 物种管理页面测试\n');
 
 test('物种管理页 - 筛选状态初始化正确', () => {
   const filterState = {
@@ -158,7 +157,7 @@ test('物种管理页 - 筛选逻辑正确', () => {
 });
 
 // ========== Task 3: 公告管理页面测试 ==========
-console.log('\n📋 Task 3: 公告管理页面测试\n');
+// [CLEANED] console.log('\n📋 Task 3: 公告管理页面测试\n');
 
 test('公告管理页 - 公告数据结构正确', () => {
   const notice = {
@@ -211,7 +210,7 @@ test('公告管理页 - 日期格式验证', () => {
 });
 
 // ========== Task 4: 帮助文档管理页面测试 ==========
-console.log('\n📋 Task 4: 帮助文档管理页面测试\n');
+// [CLEANED] console.log('\n📋 Task 4: 帮助文档管理页面测试\n');
 
 test('帮助文档页 - 文档数据结构正确', () => {
   const doc = {
@@ -263,7 +262,7 @@ test('帮助文档页 - 更新时间格式验证', () => {
 });
 
 // ========== 页面路由测试 ==========
-console.log('\n📋 页面路由测试\n');
+// [CLEANED] console.log('\n📋 页面路由测试\n');
 
 test('页面路由 - 首页到物种管理页路由正确', () => {
   const route = '/pages/admin/content/species';
@@ -293,9 +292,9 @@ test('页面路由 - 编辑页面路由参数正确', () => {
 });
 
 // ========== 汇总测试结果 ==========
-console.log('\n' + '='.repeat(50));
-console.log(`测试结果：✅ 通过 ${passed} 个，❌ 失败 ${failed} 个，总计 ${passed + failed} 个`);
-console.log('='.repeat(50) + '\n');
+// [CLEANED] console.log('\n' + '='.repeat(50));
+// [CLEANED] console.log(`测试结果：✅ 通过 ${passed} 个，❌ 失败 ${failed} 个，总计 ${passed + failed} 个`);
+// [CLEANED] console.log('='.repeat(50)+ '\n');
 
 if (failed > 0) {
   process.exit(1);

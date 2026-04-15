@@ -44,7 +44,7 @@ Page({
    * @param {Object} options - 页面参数
    */
   onLoad(options) {
-    console.log('机构端首页加载');
+    // [CLEANED] console.log('机构端首页加载');
     this.loadOrgData();
   },
 
@@ -79,7 +79,7 @@ Page({
       const cached = cache.get(cacheKey, 300000); // 5 分钟缓存
       
       if (cached) {
-        console.log('[缓存命中] 机构数据');
+        // [CLEANED] console.log('[缓存命中] 机构数据');
         // P2-001 性能优化：批量 setData
         this.setData({ 
           org: cached.org,
@@ -93,7 +93,7 @@ Page({
       }
       
       // 缓存未命中，从云函数加载
-      console.log('[缓存未命中] 从云函数加载机构数据');
+      // [CLEANED] console.log('[缓存未命中] 从云函数加载机构数据');
       const res = await wx.cloud.callFunction({
         name: 'org-data',
         data: { 
@@ -168,7 +168,7 @@ Page({
       wx.showLoading({ title: '刷新中...', mask: true });
       await this.loadOrgData();
       wx.hideLoading();
-      console.log('数据刷新完成');
+      // [CLEANED] console.log('数据刷新完成');
     } catch (error) {
       wx.hideLoading();
       console.error('刷新数据失败:', error);
@@ -202,7 +202,7 @@ Page({
    */
   onTodoTap(e) {
     const { type, action } = e.currentTarget.dataset;
-    console.log('点击待办:', type, action);
+    // [CLEANED] console.log('点击待办:', type, action);
     
     switch (type) {
       case 'audit':
@@ -231,7 +231,7 @@ Page({
    */
   onFunctionTap(e) {
     const { path } = e.currentTarget.dataset;
-    console.log('点击功能入口:', path);
+    // [CLEANED] console.log('点击功能入口:', path);
     
     if (path) {
       wx.navigateTo({

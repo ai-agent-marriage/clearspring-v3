@@ -35,7 +35,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('公告管理页面加载');
+    // [CLEANED] console.log('公告管理页面加载');
     this.loadNotices();
   },
 
@@ -54,7 +54,7 @@ Page({
   async loadNotices() {
     try {
       // TODO: 实际从云函数获取公告列表
-      console.log('加载公告列表');
+      // [CLEANED] console.log('加载公告列表');
     } catch (error) {
       console.error('加载公告列表失败:', error);
       wx.showToast({
@@ -68,7 +68,7 @@ Page({
     try {
       // TODO: 实际从云函数刷新公告列表
       await new Promise(resolve => setTimeout(resolve, 500));
-      console.log('公告列表刷新完成');
+      // [CLEANED] console.log('公告列表刷新完成');
     } catch (error) {
       console.error('刷新公告列表失败:', error);
     }
@@ -79,7 +79,7 @@ Page({
   // 点击公告卡片
   onNoticeTap(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('点击公告:', id);
+    // [CLEANED] console.log('点击公告:', id);
     
     wx.navigateTo({
       url: `/pages/admin/content/notice-detail?id=${id}`
@@ -89,7 +89,7 @@ Page({
   // 编辑公告
   onEditNotice(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('编辑公告:', id);
+    // [CLEANED] console.log('编辑公告:', id);
     
     wx.navigateTo({
       url: `/pages/admin/content/notice-edit?id=${id}&action=edit`
@@ -99,7 +99,7 @@ Page({
   // 删除公告
   onDeleteNotice(e) {
     const { id, title } = e.currentTarget.dataset;
-    console.log('删除公告:', id, title);
+    // [CLEANED] console.log('删除公告:', id, title);
     
     wx.showModal({
       title: '确认删除',
@@ -126,7 +126,7 @@ Page({
   // 上架公告
   onPublishNotice(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('上架公告:', id);
+    // [CLEANED] console.log('上架公告:', id);
     
     wx.showModal({
       title: '确认上架',
@@ -157,7 +157,7 @@ Page({
   // 下架公告
   onUnpublishNotice(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('下架公告:', id);
+    // [CLEANED] console.log('下架公告:', id);
     
     wx.showModal({
       title: '确认下架',

@@ -1,10 +1,10 @@
 /* Stitch V3.0 设计规范 */
-/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 背景色：var(--stitch-bg-primary) | 主色：var(--stitch-primary) | 辅助金：var(--stitch-gold) */
 /* 间距：24rpx */
 
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 240rpx;
 }
 
@@ -31,8 +31,8 @@
 
 .tab-text.active {
   font-weight: 700;
-  color: #4A5D4E;
-  border-bottom: 4rpx solid #4A5D4E;
+  color: var(--stitch-primary);
+  border-bottom: 4rpx solid var(--stitch-primary);
   margin-bottom: -2rpx;
 }
 
@@ -45,7 +45,7 @@
 .cta-card {
   position: relative;
   overflow: hidden;
-  background-color: #4A5D4E;
+  background-color: var(--stitch-primary);
   border-radius: 24rpx;
   padding: 32rpx;
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
@@ -69,7 +69,7 @@
 .cta-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 72rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 .cta-subtitle {
@@ -79,10 +79,10 @@
 }
 
 .cta-button {
-  background-color: #FEE264;
-  color: #756400;
+  background-color: var(--stitch-gold-light);
+  color: var(--stitch-gold);
   padding: 32rpx 64rpx;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   gap: 16rpx;
@@ -128,7 +128,7 @@
 .section-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 72rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .section-count {
@@ -144,7 +144,7 @@
 }
 
 .order-card {
-  background-color: #F5F4EF;
+  background-color: var(--stitch-bg-primary);
   border-radius: 24rpx;
   padding: 24rpx;
   display: flex;
@@ -154,7 +154,7 @@
 }
 
 .order-card:active {
-  background-color: #E9E8E3;
+  background-color: var(--stitch-bg-primary);
 }
 
 .order-header {
@@ -171,7 +171,7 @@
 .order-thumb {
   width: 128rpx;
   height: 128rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   flex-shrink: 0;
 }
 
@@ -184,7 +184,7 @@
 .order-name {
   font-size: 36rpx;
   font-weight: 700;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .order-id {
@@ -194,18 +194,18 @@
 
 .order-status {
   padding: 8rpx 24rpx;
-  border-radius: 8rpx;
+  border-radius: 24rpx;
   font-size: 24rpx;
   font-weight: 700;
 }
 
 .order-status.processing {
   background-color: rgba(110, 94, 0, 0.1);
-  color: #6E5E00;
+  color: var(--stitch-gold);
 }
 
 .order-status.completed {
-  background-color: #E3E2DE;
+  background-color: var(--stitch-bg-primary);
   color: rgba(27, 28, 25, 0.6);
 }
 
@@ -247,12 +247,12 @@
 .action-text {
   font-size: 28rpx;
   font-weight: 700;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .action-icon {
   font-size: 32rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 /* 弹窗 */
@@ -274,8 +274,8 @@
 
 .modal-content {
   position: relative;
-  background-color: #F5F4EF;
-  border-radius: 32rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
   padding: 32rpx;
   width: 100%;
   max-width: 560rpx;
@@ -289,7 +289,7 @@
   width: 128rpx;
   height: 128rpx;
   border-radius: 50%;
-  background-color: #FEE264;
+  background-color: var(--stitch-gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,7 +297,7 @@
 
 .modal-icon .material-icons {
   font-size: 96rpx;
-  color: #756400;
+  color: var(--stitch-gold);
 }
 
 .modal-body {
@@ -311,7 +311,7 @@
 .modal-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 72rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .modal-desc {
@@ -343,8 +343,8 @@
 }
 
 .modal-btn.primary {
-  background-color: #4A5D4E;
-  color: #FFFFFF;
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
 }
 
 .modal-btn.secondary {

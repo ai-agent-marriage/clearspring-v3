@@ -14,31 +14,31 @@ Page({
 
   // 切换 Tab
   onSwitchTab(e) {
-    const tab = e.currentTarget.dataset.tab
+    const tab = e.currentTarget.dataset.tab;
     this.setData({
       currentTab: parseInt(tab)
-    })
+    });
   },
 
   // 发起护生登记
   onInitiateProtect() {
     wx.navigateTo({
       url: '/pages/protect/register'
-    })
+    });
   },
 
   // 查看记录详情
   onRecordTap(e) {
-    const id = e.currentTarget.dataset.id
+    const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/pages/protect/detail?id=${id}`
-    })
+    });
   },
 
   // 合规水域查询
   onSearchWater() {
     wx.navigateTo({
       url: '/pages/protect/water-search'
-    })
+    });
   }
-})
+});

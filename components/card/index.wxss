@@ -2,7 +2,7 @@
 
 .card {
   background-color: #ffffff;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   margin: 24rpx;
   overflow: hidden;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.08);
@@ -15,7 +15,7 @@
 
 .card-header {
   padding: 24rpx 32rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.03);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +50,7 @@
 
 .card-footer {
   padding: 24rpx 32rpx;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
   background-color: #fafafa;
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@
 /* 变体样式 */
 .card-borderless {
   box-shadow: none;
-  border: 1rpx solid #e2e8f0;
+  border: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .card-shadow-lg {

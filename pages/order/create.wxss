@@ -61,7 +61,7 @@
 
 .compliance-action {
   padding-top: var(--stitch-spacing-sm);
-  border-top: 1rpx solid #e8e8e8;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .checkbox-label {
@@ -133,7 +133,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20rpx 0;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .picker-text {
@@ -157,7 +157,7 @@
   align-items: center;
   justify-content: flex-end;
   padding: 20rpx 0;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .quantity-btn {
@@ -191,7 +191,7 @@
 /* 增值服务 */
 .extra-services {
   padding: 20rpx 0;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .service-list {
@@ -253,7 +253,7 @@
 /* 用户信息 */
 .user-info {
   padding: 20rpx 0;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .user-text {
@@ -269,7 +269,7 @@
   right: 0;
   background: var(--stitch-bg-white);
   padding: 24rpx var(--stitch-spacing-md);
-  border-top: 1rpx solid #e8e8e8;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
   display: flex;
   align-items: center;
   justify-content: space-between;

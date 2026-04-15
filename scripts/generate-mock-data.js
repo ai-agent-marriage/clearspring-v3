@@ -456,39 +456,39 @@ function validateData(data) {
 // ==================== 主函数 ====================
 
 function generateAllData() {
-  console.log('🚀 开始生成模拟数据...');
+  // [CLEANED] console.log('🚀 开始生成模拟数据...');
   
   // 生成基础数据
   const users = generateUsers(80);
-  console.log(`✅ 生成用户数据：${users.length} 条`);
+  // [CLEANED] console.log(`✅ 生成用户数据：${users.length} 条`);
   
   const executors = generateExecutors(25);
-  console.log(`✅ 生成执行者数据：${executors.length} 条`);
+  // [CLEANED] console.log(`✅ 生成执行者数据：${executors.length} 条`);
   
   const organizations = generateOrganizations(8);
-  console.log(`✅ 生成机构数据：${organizations.length} 条`);
+  // [CLEANED] console.log(`✅ 生成机构数据：${organizations.length} 条`);
   
   const volunteers = generateVolunteers(users, organizations, 40);
-  console.log(`✅ 生成志愿者数据：${volunteers.length} 条`);
+  // [CLEANED] console.log(`✅ 生成志愿者数据：${volunteers.length} 条`);
   
   const orders = generateOrders(users, executors, organizations, 150);
-  console.log(`✅ 生成订单数据：${orders.length} 条`);
+  // [CLEANED] console.log(`✅ 生成订单数据：${orders.length} 条`);
   
   const reviews = generateReviews(users, orders, 80);
-  console.log(`✅ 生成评价数据：${reviews.length} 条`);
+  // [CLEANED] console.log(`✅ 生成评价数据：${reviews.length} 条`);
   
   // 验证数据
-  console.log('\n🔍 验证数据...');
+  // [CLEANED] console.log('\n🔍 验证数据...');
   const errors = validateData({ users, orders, reviews });
   if (errors.length > 0) {
-    console.log('❌ 数据验证失败:');
-    errors.forEach(e => console.log(`  - ${e}`));
+    // [CLEANED] console.log('❌ 数据验证失败:');
+    errors.forEach(e => // [CLEANED] console.log(`  - ${e}`));
   } else {
-    console.log('✅ 数据验证通过');
+    // [CLEANED] console.log('✅ 数据验证通过');
   }
   
   // 保存数据
-  console.log('\n💾 保存数据到文件...');
+  // [CLEANED] console.log('\n💾 保存数据到文件...');
   const outputDir = path.join(__dirname, '..', 'data', 'mock');
   
   fs.writeFileSync(path.join(outputDir, 'users.json'), JSON.stringify(users, null, 2));
@@ -498,7 +498,7 @@ function generateAllData() {
   fs.writeFileSync(path.join(outputDir, 'orders.json'), JSON.stringify(orders, null, 2));
   fs.writeFileSync(path.join(outputDir, 'reviews.json'), JSON.stringify(reviews, null, 2));
   
-  console.log('✅ 数据文件保存完成');
+  // [CLEANED] console.log('✅ 数据文件保存完成');
   
   // 生成统计信息
   const stats = {
@@ -528,21 +528,21 @@ function generateAllData() {
     stats.species[o.species] = (stats.species[o.species] || 0) + 1;
   });
   
-  console.log('\n📊 数据统计:');
-  console.log(`  用户总数：${stats.users}`);
-  console.log(`  执行者总数：${stats.executors}`);
-  console.log(`  机构总数：${stats.organizations}`);
-  console.log(`  志愿者总数：${stats.volunteers}`);
-  console.log(`  订单总数：${stats.orders}`);
-  console.log(`  评价总数：${stats.reviews}`);
-  console.log('\n  订单状态分布:');
+  // [CLEANED] console.log('\n📊 数据统计:');
+  // [CLEANED] console.log(`  用户总数：${stats.users}`);
+  // [CLEANED] console.log(`  执行者总数：${stats.executors}`);
+  // [CLEANED] console.log(`  机构总数：${stats.organizations}`);
+  // [CLEANED] console.log(`  志愿者总数：${stats.volunteers}`);
+  // [CLEANED] console.log(`  订单总数：${stats.orders}`);
+  // [CLEANED] console.log(`  评价总数：${stats.reviews}`);
+  // [CLEANED] console.log('\n  订单状态分布:');
   Object.entries(stats.orderStatuses).forEach(([status, count]) => {
-    console.log(`    ${status}: ${count} (${(count / stats.orders * 100).toFixed(1)}%)`);
+    // [CLEANED] console.log(`    ${status}: ${count} (${(count / stats.orders * 100).toFixed(1)}%)`);
   });
   
-  console.log('\n  服务类型分布:');
+  // [CLEANED] console.log('\n  服务类型分布:');
   Object.entries(stats.serviceTypes).forEach(([type, count]) => {
-    console.log(`    ${type}: ${count} (${(count / stats.orders * 100).toFixed(1)}%)`);
+    // [CLEANED] console.log(`    ${type}: ${count} (${(count / stats.orders * 100).toFixed(1)}%)`);
   });
   
   return { users, executors, organizations, volunteers, orders, reviews, stats };

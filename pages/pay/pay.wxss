@@ -1,5 +1,5 @@
 /* 支付页面 - Stitch V3.0 规范 */
-/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 背景色：var(--stitch-bg-primary) | 主色：var(--stitch-primary) | 辅助金：var(--stitch-gold) */
 /* 间距：24rpx | 字体：Noto Serif SC */
 
 @import "../../theme.wxss";
@@ -51,7 +51,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--stitch-spacing-sm) 0;
-  border-bottom: 1rpx solid var(--stitch-border-divider);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .info-row:last-child {

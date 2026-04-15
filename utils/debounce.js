@@ -16,7 +16,7 @@
  * @example
  * // 基础用法：搜索输入防抖
  * const searchHandler = debounce((keyword) => {
- *   console.log('搜索:', keyword);
+ *   // [CLEANED] console.log('搜索:', keyword);
  * }, 500);
  * 
  * input.on('input', (e) => {
@@ -62,7 +62,7 @@ function debounce(func, wait = 300, immediate = false) {
  * @example
  * // 滚动事件节流
  * const scrollHandler = throttle(() => {
- *   console.log('滚动中...');
+ *   // [CLEANED] console.log('滚动中...');
  * }, 200);
  * 
  * page.onScroll(scrollHandler);

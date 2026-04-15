@@ -1,15 +1,418 @@
-/* 页面样式 - Stitch V3.0 规范 */
+/* 订单详情页面 - Stitch V3.0 规范 */
+
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
-  padding-bottom: 240rpx;
+  background-color: var(--stitch-bg-primary);
+  padding-bottom: 280rpx;
 }
 
-.content {
-  padding: 48rpx;
+/* 进度条区域 */
+.progress-section {
+  padding: 48rpx 32rpx;
+  background: linear-gradient(180deg, rgba(74, 93, 78, 0.03) 0%, rgba(250, 249, 244, 0) 100%);
+}
+
+.progress-line {
+  position: relative;
+  height: 4rpx;
+  background-color: var(--stitch-bg-primary);
+  margin: 0 48rpx 48rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.progress-line-active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: var(--stitch-primary);
+  transition: width 0.3s ease;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-step {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 16rpx;
+}
+
+.step-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background-color: var(--stitch-bg-primary);
+  color: var(--stitch-gray);
+  display: flex;
+  align-items: center;
   justify-content: center;
-  min-height: 60vh;
+}
+
+.step-icon.current {
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
+  box-shadow: 0 8rpx 32rpx rgba(74, 93, 78, 0.2);
+}
+
+.step-icon.active {
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
+}
+
+.step-icon .material-icons {
+  font-size: 32rpx;
+}
+
+.step-label {
+  font-size: 22rpx;
+  color: rgba(67, 72, 67, 0.6);
+}
+
+.step-label.current {
+  color: var(--stitch-primary);
+  font-weight: 700;
+}
+
+/* 信息卡片 */
+.info-card {
+  margin: 32rpx;
+  padding: 32rpx;
+  background-color: var(--stitch-white);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 40rpx rgba(74, 93, 78, 0.02);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  border-left: 8rpx solid var(--stitch-primary);
+  padding-left: 24rpx;
+}
+
+.card-header .material-icons {
+  font-size: 40rpx;
+  color: var(--stitch-primary);
+}
+
+.card-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36rpx;
+  color: var(--stitch-primary);
+}
+
+.card-title-border {
+  display: block;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32rpx;
+  color: var(--stitch-primary);
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
+  margin-bottom: 32rpx;
+}
+
+/* 信息内容 */
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 26rpx;
+  color: rgba(67, 72, 67, 0.6);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: var(--stitch-primary);
+}
+
+.info-value.highlight {
+  color: var(--stitch-primary);
+  font-weight: 600;
+}
+
+.info-value.service {
+  color: var(--stitch-gold);
+  font-weight: 600;
+}
+
+.info-tag {
+  padding: 8rpx 16rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: var(--stitch-primary);
+}
+
+/* 心愿寄语 */
+.wish-section {
+  padding-top: 24rpx;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
+}
+
+.wish-label {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(67, 72, 67, 0.6);
+  margin-bottom: 16rpx;
+}
+
+.wish-content {
+  padding: 24rpx;
+  background-color: rgba(245, 244, 239, 0.5);
+  border-radius: 24rpx;
+}
+
+.wish-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28rpx;
+  color: var(--stitch-primary);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+/* 执行反馈 */
+.feedback-section {
+  margin: 0 32rpx 32rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.section-header .header-left {
+  border-left: 8rpx solid var(--stitch-gold);
+}
+
+.section-header .material-icons {
+  font-size: 40rpx;
+  color: var(--stitch-gold);
+}
+
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 36rpx;
+  color: var(--stitch-primary);
+}
+
+/* 照片网格 */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+}
+
+.photo-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background-color: var(--stitch-bg-primary);
+}
+
+.photo-image {
+  width: 100%;
+  height: 100%;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.photo-item:active .photo-overlay {
+  opacity: 1;
+}
+
+.photo-overlay .material-icons {
+  font-size: 64rpx;
+  color: var(--stitch-white);
+}
+
+.photo-label {
+  position: absolute;
+  bottom: 16rpx;
+  left: 16rpx;
+  padding: 8rpx 16rpx;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8rpx);
+  border-radius: 24rpx;
+  font-size: 20rpx;
+  color: var(--stitch-white);
+}
+
+/* 金额卡片 */
+.amount-card {
+  margin: 0 32rpx 32rpx;
+  padding: 32rpx;
+  background-color: var(--stitch-white);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 40rpx rgba(74, 93, 78, 0.02);
+}
+
+.amount-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amount-label {
+  font-size: 26rpx;
+  color: rgba(67, 72, 67, 0.6);
+}
+
+.amount-value {
+  font-size: 28rpx;
+  color: var(--stitch-primary);
+}
+
+.amount-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32rpx;
+  margin-top: 16rpx;
+  border-top: 2rpx dashed rgba(195, 200, 193, 0.4);
+}
+
+.total-label {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32rpx;
+  color: var(--stitch-primary);
+  font-weight: 700;
+}
+
+.total-value {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 44rpx;
+  color: var(--stitch-primary);
+  font-weight: 700;
+}
+
+/* 支付信息 */
+.payment-info {
+  padding-top: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-label {
+  font-size: 24rpx;
+  color: rgba(67, 72, 67, 0.5);
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.payment-method .material-icons {
+  font-size: 32rpx;
+  color: #07C160;
+}
+
+.payment-method text {
+  font-size: 24rpx;
+  color: var(--stitch-primary);
+}
+
+.payment-value {
+  font-size: 24rpx;
+  color: var(--stitch-primary);
+}
+
+/* 底部操作栏 */
+.bottom-action-bar {
+  position: fixed;
+  bottom: 128rpx;
+  left: 0;
+  width: 100%;
+  padding: 24rpx 48rpx;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16rpx);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
+  display: flex;
+  gap: 24rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 96rpx;
+  border-radius: 24rpx;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+.action-btn.secondary {
+  flex: 1;
+  background-color: var(--stitch-white);
+  color: var(--stitch-primary);
+  border: 2rpx solid var(--stitch-primary);
+}
+
+.action-btn.secondary:active {
+  background-color: rgba(74, 93, 78, 0.05);
+}
+
+.action-btn.primary {
+  flex: 2;
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
+  box-shadow: 0 16rpx 48rpx rgba(74, 93, 78, 0.2);
+}
+
+.action-btn.primary:active {
+  background-color: var(--stitch-primary-dark);
+}
+
+.action-btn .material-icons {
+  font-size: 40rpx;
 }

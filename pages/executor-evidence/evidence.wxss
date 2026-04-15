@@ -73,7 +73,7 @@
 /* ========== Profile Section ========== */
 .profile-section {
   background: var(--stitch-bg-white);
-  border-radius: 48rpx;
+  border-radius: 24rpx;
   padding: 64rpx;
   margin-bottom: 32rpx;
   box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
@@ -91,7 +91,7 @@
 .profile-avatar {
   width: 128rpx;
   height: 128rpx;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
 }
 
@@ -159,7 +159,7 @@
 
 .metric-item {
   background: var(--stitch-bg-secondary);
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   padding: 32rpx 16rpx;
   display: flex;
   flex-direction: column;
@@ -212,7 +212,7 @@
   right: 0;
   height: 4rpx;
   background: var(--stitch-yellow-primary);
-  border-radius: 2rpx;
+  border-radius: 24rpx;
 }
 
 /* ========== Task List ========== */
@@ -224,7 +224,7 @@
 
 .task-card {
   background: var(--stitch-bg-tertiary);
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   padding: 32rpx;
   display: flex;
   align-items: center;
@@ -258,7 +258,7 @@
 .task-tag {
   background: rgba(74, 93, 78, 0.05);
   padding: 8rpx 16rpx;
-  border-radius: 12rpx;
+  border-radius: 24rpx;
 }
 
 .tag-text {
@@ -309,7 +309,7 @@
 .action-btn {
   flex: 1;
   height: 88rpx;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,31 +1,34 @@
 {
   "name": "clearspring-v3",
   "version": "3.0.0",
-  "description": "清如 ClearSpring V3 - 放生服务微信小程序",
-  "private": true,
+  "description": "清如 ClearSpring V3 小程序",
+  "main": "app.js",
   "scripts": {
-    "dev": "echo '开发环境启动'",
-    "build": "echo '生产环境构建'",
-    "test": "echo '运行测试'",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
     "test:e2e:report": "playwright show-report",
-    "deploy": "echo '部署到服务器'"
-  },
-  "keywords": [
-    "wechat",
-    "miniprogram",
-    "clearspring",
-    "v3"
-  ],
-  "author": "杨金霖",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:ai-agent-marriage/clearspring-v3.git"
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:project": "playwright test --project=chromium",
+    "test:e2e:mobile": "playwright test --project=mobile-chrome",
+    "test:e2e:grep": "playwright test --grep",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1"
-  }
+    "@playwright/test": "1.59.1",
+    "@types/node": "20.19.39",
+    "@vitest/coverage-v8": "^4.1.4",
+    "jsdom": "^29.0.2",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.4"
+  },
+  "keywords": [
+    "clearspring",
+    "miniprogram",
+    "e2e",
+    "playwright"
+  ],
+  "author": "ClearSpring Team",
+  "license": "MIT"
 }

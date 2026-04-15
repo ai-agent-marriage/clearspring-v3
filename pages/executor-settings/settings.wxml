@@ -1,0 +1,101 @@
+<!-- 清如 ClearSpring - 机构账户设置页 (O-12) -->
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar glass">
+    <view class="top-bar-left">
+      <view class="back-btn" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="page-title">机构账户设置</text>
+    </view>
+    <view class="more-btn">
+      <text class="material-icons">more_vert</text>
+    </view>
+  </view>
+
+  <scroll-view class="content" scroll-y="true">
+    <!-- Quick Action -->
+    <view class="quick-action glass" bindtap="onAddAccount">
+      <view class="action-left">
+        <view class="action-icon">
+          <text class="material-icons">person_add</text>
+        </view>
+        <view class="action-info">
+          <text class="action-title">Create Account</text>
+          <text class="action-desc">添加新的机构子账户或成员</text>
+        </view>
+      </view>
+      <text class="material-icons action-arrow">chevron_right</text>
+    </view>
+
+    <!-- User List Section -->
+    <view class="user-section">
+      <view class="section-header">
+        <text class="section-title">账户列表</text>
+        <text class="section-count">共 {{userList.length}} 位成员</text>
+      </view>
+      
+      <view class="user-list">
+        <view class="user-item" wx:for="{{userList}}" wx:key="id">
+          <view class="user-avatar-wrap">
+            <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill" wx:if="{{item.avatar}}" />
+            <view class="user-avatar-placeholder" wx:else>
+              <text class="material-icons">person</text>
+            </view>
+            <view class="status-dot {{item.status}}"></view>
+          </view>
+          <view class="user-info">
+            <view class="user-name-row">
+              <text class="user-name">{{item.name}}</text>
+              <view class="role-badge {{item.role}}">
+                <text class="role-text">{{item.roleText}}</text>
+              </view>
+            </view>
+            <text class="user-email">{{item.email}}</text>
+          </view>
+          <view class="user-settings" bindtap="onUserSettings" data-id="{{item.id}}">
+            <text class="material-icons">settings</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="load-more" bindtap="onLoadMore">
+        <text class="load-text">加载更多成员</text>
+        <text class="material-icons">keyboard_double_arrow_down</text>
+      </view>
+    </view>
+
+    <!-- Subscription Card -->
+    <view class="subscription-card glass">
+      <text class="material-icons subscription-icon">verified_user</text>
+      <text class="card-title">机构配额</text>
+      
+      <view class="quota-list">
+        <view class="quota-item">
+          <view class="quota-header">
+            <text class="quota-label">账户席位</text>
+            <text class="quota-value">{{quota.seats}} / {{quota.maxSeats}}</text>
+          </view>
+          <view class="quota-bar">
+            <view class="quota-progress" style="width: {{quota.seatsPercent}}%"></view>
+          </view>
+        </view>
+        
+        <view class="quota-item">
+          <view class="quota-header">
+            <text class="quota-label">数据存储</text>
+            <text class="quota-value">{{quota.storage}}%</text>
+          </view>
+          <view class="quota-bar">
+            <view class="quota-progress storage" style="width: {{quota.storage}}%"></view>
+          </view>
+        </view>
+      </view>
+
+      <button class="upgrade-btn" bindtap="onUpgrade">升级席位</button>
+    </view>
+
+    <!-- Bottom Spacer -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>

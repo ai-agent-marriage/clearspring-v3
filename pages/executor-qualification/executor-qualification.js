@@ -21,7 +21,7 @@ Page({
 
   onLoad(options) {
     // 页面加载
-    console.log('资质审核页加载');
+    // [CLEANED] console.log('资质审核页加载');
   },
 
   onShow() {
@@ -186,7 +186,7 @@ Page({
       submitTime: new Date().getTime()
     };
 
-    console.log('提交资质审核:', formData);
+    // [CLEANED] console.log('提交资质审核:', formData);
 
     // TODO: 实际项目中调用云函数提交
     // wx.cloud.callFunction({

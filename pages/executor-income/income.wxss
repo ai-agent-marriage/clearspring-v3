@@ -95,7 +95,7 @@
   background: var(--stitch-green-primary);
   color: var(--stitch-text-inverse);
   padding: 12rpx 24rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   gap: 8rpx;
@@ -147,7 +147,7 @@
 
 .status-badge {
   padding: 8rpx 16rpx;
-  border-radius: 8rpx;
+  border-radius: 24rpx;
 }
 
 .status-badge.approved {

@@ -16,7 +16,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('记录详情页加载，recordId:', options.id);
+    // [CLEANED] console.log('记录详情页加载，recordId:', options.id);
     // 实际场景中应根据 options.id 从后端获取数据
   },
 

@@ -24,48 +24,48 @@ Page({
   onPlayPause() {
     this.setData({
       isPlaying: !this.data.isPlaying
-    })
+    });
     // TODO: 调用音频播放 API
   },
 
   // 上一首
   onPrevious() {
-    const newIndex = this.data.currentIndex > 0 ? this.data.currentIndex - 1 : this.data.playlist.length - 1
+    const newIndex = this.data.currentIndex > 0 ? this.data.currentIndex - 1 : this.data.playlist.length - 1;
     this.setData({
       currentIndex: newIndex,
       progress: 0,
       currentTime: '00:00'
-    })
+    });
   },
 
   // 下一首
   onNext() {
-    const newIndex = this.data.currentIndex < this.data.playlist.length - 1 ? this.data.currentIndex + 1 : 0
+    const newIndex = this.data.currentIndex < this.data.playlist.length - 1 ? this.data.currentIndex + 1 : 0;
     this.setData({
       currentIndex: newIndex,
       progress: 0,
       currentTime: '00:00'
-    })
+    });
   },
 
   // 选择歌曲
   onSelectTrack(e) {
-    const index = e.currentTarget.dataset.index
+    const index = e.currentTarget.dataset.index;
     this.setData({
       currentIndex: index,
       isPlaying: true,
       progress: 0,
       currentTime: '00:00'
-    })
+    });
   },
 
   // 切换播放模式
   togglePlayMode() {
-    const modes = ['列表循环', '单曲循环', '随机播放']
-    const newMode = (this.data.playMode + 1) % 3
+    const modes = ['列表循环', '单曲循环', '随机播放'];
+    const newMode = (this.data.playMode + 1) % 3;
     this.setData({
       playMode: newMode,
       playModeText: modes[newMode]
-    })
+    });
   }
-})
+});

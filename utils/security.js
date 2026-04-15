@@ -14,7 +14,7 @@ export function checkImage(filePath) {
       mediaType: 1, // 1: 图片
       image: filePath,
       success: () => {
-        console.log('图片审核通过:', filePath);
+        // [CLEANED] console.log('图片审核通过:', filePath);
         resolve(true);
       },
       fail: (err) => {
@@ -40,7 +40,7 @@ export function checkText(content) {
     wx.security.msgSecCheck({
       content: content,
       success: () => {
-        console.log('文本审核通过');
+        // [CLEANED] console.log('文本审核通过');
         resolve(true);
       },
       fail: (err) => {

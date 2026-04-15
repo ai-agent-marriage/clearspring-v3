@@ -1,0 +1,66 @@
+<!-- 清如 ClearSpring - 消息通知页 (O-11) -->
+<view class="container">
+  <!-- Top Bar -->
+  <view class="top-bar">
+    <view class="top-bar-left">
+      <view class="back-btn" bindtap="onBack">
+        <text class="material-icons">arrow_back</text>
+      </view>
+      <text class="page-title">消息通知</text>
+    </view>
+    <text class="read-all-btn" bindtap="onMarkAllRead">全部已读</text>
+  </view>
+
+  <scroll-view class="content" scroll-y="true">
+    <!-- Sticky Tabs -->
+    <view class="tabs-sticky">
+      <scroll-view class="tabs-scroll" scroll-x="true" show-scrollbar="false">
+        <view class="tabs-list">
+          <view class="tab-item {{currentTab === 'order' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="order">
+            <text class="tab-text">订单通知</text>
+          </view>
+          <view class="tab-item {{currentTab === 'user' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="user">
+            <text class="tab-text">用户通知</text>
+          </view>
+          <view class="tab-item {{currentTab === 'audit' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="audit">
+            <text class="tab-text">审核通知</text>
+          </view>
+          <view class="tab-item {{currentTab === 'platform' ? 'active' : ''}}" bindtap="onSwitchTab" data-tab="platform">
+            <text class="tab-text">平台公告</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- Notification List -->
+    <view class="notification-list">
+      <view class="notification-card {{item.read ? 'read' : ''}}" wx:for="{{notificationList}}" wx:key="id">
+        <view class="card-header">
+          <view class="header-left">
+            <view class="unread-dot" wx:if="{{!item.read}}"></view>
+            <text class="card-title">{{item.title}}</text>
+          </view>
+          <text class="card-time">{{item.time}}</text>
+        </view>
+        <text class="card-content">{{item.content}}</text>
+        <view class="card-footer">
+          <button class="action-btn {{item.type}}" bindtap="onAction" data-id="{{item.id}}" data-type="{{item.actionType}}">
+            <text class="btn-text">{{item.actionText}}</text>
+            <text class="material-icons" wx:if="{{item.actionType === 'primary'}}">arrow_forward</text>
+          </button>
+        </view>
+      </view>
+
+      <!-- Empty State -->
+      <view class="empty-state" wx:if="{{notificationList.length === 0}}">
+        <view class="empty-icon">
+          <text class="material-icons">self_improvement</text>
+        </view>
+        <text class="empty-text">暂无更多喧嚣</text>
+      </view>
+    </view>
+
+    <!-- Bottom Spacer -->
+    <view class="bottom-spacer"></view>
+  </scroll-view>
+</view>

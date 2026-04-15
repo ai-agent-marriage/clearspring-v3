@@ -135,7 +135,7 @@ Page({
     }
   },
 
-  highlightVolunteer(volunteerId) { console.log('高亮志愿者:', volunteerId); },
+  highlightVolunteer(volunteerId) { // [CLEANED] console.log('高亮志愿者:', volunteerId); },
 
   formatDate(date) {
     const year = date.getFullYear();

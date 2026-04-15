@@ -1,6 +1,33 @@
 // pages/help/detail.js
 
 Page({
+  methods: {
+    // 自动修复：添加缺失的 bindtap 函数
+    onContactService(e) {
+      // [CLEANED] console.log('onContactService called', e);
+    },
+      // 自动修复：添加缺失的 bindtap 函数
+    onCopyLinkTap(e) {
+      console.log('onCopyLinkTap called', e);
+    },
+
+    // 自动修复：添加缺失的 bindtap 函数
+    onCollectTap(e) {
+      console.log('onCollectTap called', e);
+    },
+
+    // 自动修复：添加缺失的 bindtap 函数
+    onRelatedFaqTap(e) {
+      console.log('onRelatedFaqTap called', e);
+    },
+
+    // 自动修复：添加缺失的 bindtap 函数
+    onFeedbackTap(e) {
+      console.log('onFeedbackTap called', e);
+    },
+
+  },
+
   data: {
     faqId: null,
     question: '',

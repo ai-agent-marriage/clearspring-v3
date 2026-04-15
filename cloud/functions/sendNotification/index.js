@@ -199,7 +199,7 @@ async function sendSubscribeMessage(toUser, templateId, data, page) {
     // 检查订阅次数
     const count = await getSubscribeCount(toUser, templateId);
     if (count <= 0) {
-      console.log(`用户 ${toUser} 无订阅消息次数，跳过发送`);
+      // [CLEANED] console.log(`用户 ${toUser} 无订阅消息次数，跳过发送`);
       return { success: false, reason: 'no_subscribe_count' };
     }
     

@@ -1,7 +1,7 @@
 /* 页面样式 - Stitch V3.0 规范 */
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 240rpx;
 }
 

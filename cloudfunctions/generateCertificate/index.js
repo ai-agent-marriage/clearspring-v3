@@ -104,7 +104,7 @@ async function generateCertificateImage(certificateData) {
   
   const cloudPath = `certificates/${certificateData.orderId}/${certificateData.certificateNo}.png`;
   
-  console.log('[TODO] 证书图片生成:', {
+  // [CLEANED] console.log('[TODO] 证书图片生成:', {
     certificateNo: certificateData.certificateNo,
     species: certificateData.species,
     quantity: certificateData.quantity,

@@ -63,7 +63,7 @@ Page({
    * 页面加载
    */
   onLoad() {
-    console.log('订单管理页加载');
+    // [CLEANED] console.log('订单管理页加载');
     this.loadOrders();
   },
 
@@ -97,7 +97,7 @@ Page({
       const cached = cache.get(cacheKey, 180000); // 3 分钟缓存
       
       if (cached) {
-        console.log('[缓存命中] 订单列表');
+        // [CLEANED] console.log('[缓存命中] 订单列表');
         this.setData({ 
           orders: cached.orders,
           isEmpty: cached.isEmpty,
@@ -109,7 +109,7 @@ Page({
       }
       
       // 缓存未命中，从云函数加载
-      console.log('[缓存未命中] 从云函数加载订单列表');
+      // [CLEANED] console.log('[缓存未命中] 从云函数加载订单列表');
       const res = await wx.cloud.callFunction({
         name: 'order-list',
         data: { 
@@ -174,7 +174,7 @@ Page({
       ErrorHandler.showLoading('刷新中...');
       await this.loadOrders();
       ErrorHandler.hideLoading();
-      console.log('订单刷新完成');
+      // [CLEANED] console.log('订单刷新完成');
     } catch (error) {
       ErrorHandler.hideLoading();
       console.error('刷新订单失败:', error);
@@ -276,7 +276,7 @@ Page({
    * 应用筛选
    */
   onApplyFilter() {
-    console.log('应用筛选:', {
+    // [CLEANED] console.log('应用筛选:', {
       dateRange: this.data.filterDateRange,
       waterArea: this.data.filterWaterArea,
       volunteer: this.data.filterVolunteer
@@ -309,7 +309,7 @@ Page({
    */
   onOrderAction(e) {
     const { action, order } = e.currentTarget.dataset;
-    console.log('订单操作:', action, order);
+    // [CLEANED] console.log('订单操作:', action, order);
     
     switch (action) {
       case 'accept':

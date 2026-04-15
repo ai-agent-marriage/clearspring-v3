@@ -78,7 +78,7 @@ async function synthesizeVideoWatermark(fileID, watermarkData) {
     `位置：${gps}`
   ].join(' | ');
   
-  console.log('[TODO] 合成视频水印:', {
+  // [CLEANED] console.log('[TODO] 合成视频水印:', {
     fileID,
     watermarkText,
     config: WATERMARK_CONFIG
@@ -114,7 +114,7 @@ async function synthesizeImageWatermark(fileID, watermarkData) {
     gps
   ];
   
-  console.log('[TODO] 合成图片水印:', {
+  // [CLEANED] console.log('[TODO] 合成图片水印:', {
     fileID,
     watermarkText,
     config: WATERMARK_CONFIG

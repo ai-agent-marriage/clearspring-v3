@@ -67,7 +67,7 @@
 /* ========== Status Card ========== */
 .status-card {
   background: var(--stitch-bg-white);
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 24rpx;
   box-shadow: 0 4rpx 12rpx rgba(74, 93, 78, 0.06);
@@ -101,7 +101,7 @@
 .pro-badge {
   background: rgba(74, 93, 78, 0.1);
   padding: 8rpx 12rpx;
-  border-radius: 8rpx;
+  border-radius: 24rpx;
 }
 
 .badge-text {
@@ -132,7 +132,7 @@
 /* ========== Info Section ========== */
 .info-section {
   background: var(--stitch-bg-white);
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   overflow: hidden;
   margin-bottom: 24rpx;
   box-shadow: 0 4rpx 12rpx rgba(74, 93, 78, 0.06);
@@ -225,7 +225,7 @@
 
 .doc-card {
   background: var(--stitch-bg-white);
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   padding: 16rpx;
   display: flex;
   align-items: center;
@@ -236,7 +236,7 @@
 .doc-thumb {
   width: 100rpx;
   height: 128rpx;
-  border-radius: 12rpx;
+  border-radius: 24rpx;
   background: var(--stitch-bg-variant);
 }
 
@@ -261,7 +261,7 @@
 .doc-btn {
   flex: 1;
   height: 56rpx;
-  border-radius: 12rpx;
+  border-radius: 24rpx;
   font-size: 26rpx;
   font-weight: 700;
   display: flex;
@@ -295,7 +295,7 @@
 .submit-btn {
   width: 100%;
   height: 88rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   background: rgba(74, 93, 78, 0.4);
   color: var(--stitch-text-on-green);
   font-size: 32rpx;

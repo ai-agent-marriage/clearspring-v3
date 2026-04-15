@@ -1,18 +1,18 @@
 /* 任务助手 - O-05 - Stitch V3.0 规范 */
 
 page {
-  --bg-color: #EFEEE9;
-  --primary-color: #4A5D4E;
-  --primary-container: #4A5D4E;
-  --secondary-color: #C9B037;
-  --text-primary: #1B1C19;
-  --text-secondary: #434843;
-  --text-disabled: #737872;
-  --surface: #FFFFFF;
-  --surface-container: #F5F4EF;
-  --outline-variant: #C3C8C1;
-  --error: #BA1A1A;
-  --error-container: #FFDAD6;
+  --bg-color: var(--stitch-bg-primary);
+  --primary-color: var(--stitch-primary);
+  --primary-container: var(--stitch-primary);
+  --secondary-color: var(--stitch-gold);
+  --text-primary: var(--stitch-primary);
+  --text-secondary: var(--stitch-primary);
+  --text-disabled: var(--stitch-gray);
+  --surface: var(--stitch-white);
+  --surface-container: var(--stitch-bg-primary);
+  --outline-variant: var(--stitch-border);
+  --error: var(--stitch-gray);
+  --error-container: var(--stitch-gray);
 }
 
 .container {
@@ -111,13 +111,13 @@ page {
 
 .step-dot.completed {
   background-color: var(--primary-container);
-  color: #FFFFFF;
+  color: var(--stitch-white);
   border-color: var(--primary-container);
 }
 
 .step-dot.active {
   background-color: var(--secondary-color);
-  color: #FFFFFF;
+  color: var(--stitch-white);
   border-color: var(--secondary-color);
   box-shadow: 0 4rpx 12rpx rgba(201, 176, 55, 0.3);
 }
@@ -176,7 +176,7 @@ page {
   padding: 24rpx;
   margin-bottom: 16rpx;
   box-shadow: 0 4rpx 16rpx rgba(74, 93, 78, 0.04);
-  border: 1rpx solid rgba(195, 200, 193, 0.1);
+  border: 1rpx solid rgba(74, 93, 78, 0.04);
   position: relative;
   overflow: hidden;
 }
@@ -209,7 +209,7 @@ page {
   background-color: rgba(74, 93, 78, 0.1);
   color: var(--primary-container);
   padding: 8rpx 16rpx;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   font-size: 16rpx;
   font-weight: 700;
   letter-spacing: 2rpx;
@@ -258,7 +258,7 @@ page {
   justify-content: space-between;
   align-items: center;
   padding-top: 24rpx;
-  border-top: 1rpx solid rgba(195, 200, 193, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .order-date {
@@ -313,7 +313,7 @@ page {
   border-radius: 24rpx;
   padding: 24rpx;
   margin-bottom: 16rpx;
-  border: 1rpx solid rgba(195, 200, 193, 0.1);
+  border: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .section-header {
@@ -335,7 +335,7 @@ page {
   align-items: center;
   gap: 8rpx;
   padding: 8rpx 16rpx;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   font-size: 16rpx;
   font-weight: 700;
   text-transform: uppercase;
@@ -344,7 +344,7 @@ page {
 .status-unassigned {
   background-color: rgba(186, 26, 26, 0.1);
   color: var(--error);
-  border: 1rpx solid rgba(186, 26, 26, 0.2);
+  border: 1rpx solid rgba(186, 26, 26, 0.08);
 }
 
 .status-dot {
@@ -410,11 +410,11 @@ page {
 
 .btn-assign {
   background-color: var(--primary-container);
-  color: #FFFFFF;
+  color: var(--stitch-white);
   font-size: 20rpx;
   font-weight: 700;
   padding: 16rpx 32rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   border: none;
   box-shadow: 0 4rpx 12rpx rgba(74, 93, 78, 0.1);
   transition: all 0.2s;
@@ -455,7 +455,7 @@ page {
   position: absolute;
   bottom: 16rpx;
   left: 20rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
   z-index: 1;
 }
 
@@ -487,17 +487,17 @@ page {
   align-items: center;
   gap: 12rpx;
   padding: 16rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
 }
 
 .env-item-weather {
   background-color: rgba(201, 176, 55, 0.05);
-  border: 1rpx solid rgba(201, 176, 55, 0.1);
+  border: 1rpx solid rgba(212, 184, 123, 0.08);
 }
 
 .env-item-ph {
   background-color: rgba(74, 93, 78, 0.05);
-  border: 1rpx solid rgba(74, 93, 78, 0.1);
+  border: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .env-item .material-icons {

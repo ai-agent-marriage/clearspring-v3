@@ -1,0 +1,171 @@
+/* 系统设置样式 */
+
+/* 容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--stitch-white);
+}
+
+/* 顶部导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background-color: var(--stitch-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-icon .material-icons {
+  color: var(--stitch-white);
+  font-size: 32rpx;
+}
+
+.navbar-title {
+  color: var(--stitch-white);
+  font-size: 32rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+}
+
+/* 主要内容区 */
+.main-content {
+  flex: 1;
+  margin-top: 88rpx;
+  padding: 24rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 设置区块 */
+.setting-section {
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  color: var(--stitch-primary);
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 0 8rpx 16rpx;
+}
+
+.setting-list {
+  background-color: var(--stitch-white);
+  border-radius: 24rpx;
+  padding: 0 40rpx;
+  border: 2rpx solid rgba(195, 200, 193, 0.3);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 0;
+  border-bottom: 2rpx solid rgba(195, 200, 193, 0.2);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+.setting-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.setting-label {
+  color: var(--stitch-primary);
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.setting-value {
+  color: var(--stitch-primary);
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.setting-desc {
+  color: var(--stitch-gray);
+  font-size: 22rpx;
+}
+
+.setting-arrow {
+  color: var(--stitch-border);
+  font-size: 32rpx;
+}
+
+.setting-switch {
+  transform: scale(0.9);
+}
+
+/* 退出登录区块 */
+.logout-section {
+  margin-top: 24rpx;
+  padding: 0 8rpx;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  background-color: rgba(186, 26, 26, 0.1);
+  color: var(--stitch-gray);
+  padding: 32rpx 0;
+  border-radius: 24rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.logout-btn .material-icons {
+  font-size: 40rpx;
+}
+
+/* Material Icons 字体 */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24rpx;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

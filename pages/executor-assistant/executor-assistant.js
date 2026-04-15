@@ -30,13 +30,13 @@ Page({
     // wx.cloud.callFunction({
     //   name: 'getCurrentTaskStatus'
     // })
-    console.log('加载任务状态');
+    // [CLEANED] console.log('加载任务状态');
   },
 
   // ========== 刷新任务状态 ==========
   refreshTaskStatus() {
     // TODO: 调用云函数刷新
-    console.log('刷新任务状态');
+    // [CLEANED] console.log('刷新任务状态');
   },
 
   // ========== 事件处理 ==========
@@ -87,7 +87,7 @@ Page({
         // 扫码签到
         wx.scanCode({
           success: (res) => {
-            console.log('扫码结果:', res.result);
+            // [CLEANED] console.log('扫码结果:', res.result);
             wx.showToast({
               title: '签到成功',
               icon: 'success'

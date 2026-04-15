@@ -60,6 +60,6 @@ Page({
   // 查看全部待处理事项
   viewAllPending() {
     // 可以跳转到待处理事项列表页
-    console.log('查看全部待处理事项');
+    // [CLEANED] console.log('查看全部待处理事项');
   }
 });

@@ -55,12 +55,12 @@ Page({
   // 加载仪表盘数据
   loadDashboardData() {
     // 从服务器获取最新数据
-    console.log('加载仪表盘数据');
+    // [CLEANED] console.log('加载仪表盘数据');
   },
 
   // 切换侧边栏
   toggleSidebar() {
-    console.log('切换侧边栏');
+    // [CLEANED] console.log('切换侧边栏');
   },
 
   // 显示通知
@@ -117,7 +117,7 @@ Page({
     wx.showActionSheet({
       itemList: ['导出 Excel', '导出 PDF', '导出 CSV'],
       success: (res) => {
-        console.log('导出报表类型:', res.tapIndex);
+        // [CLEANED] console.log('导出报表类型:', res.tapIndex);
       }
     });
   },

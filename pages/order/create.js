@@ -44,7 +44,7 @@ Page({
       maxDate: this.formatDate(maxDate)
     });
 
-    console.log('委托下单页加载完成');
+    // [CLEANED] console.log('委托下单页加载完成');
   },
 
   // 格式化日期为 YYYY-MM-DD

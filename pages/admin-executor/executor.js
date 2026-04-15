@@ -76,13 +76,13 @@ Page({
   // 加载执行者数据
   loadExecutorData() {
     // TODO: 调用云函数获取执行者数据
-    console.log('加载执行者数据');
+    // [CLEANED] console.log('加载执行者数据');
   },
 
   // 搜索
   onSearch(e) {
     const keyword = e.detail.value;
-    console.log('搜索关键词', keyword);
+    // [CLEANED] console.log('搜索关键词', keyword);
     // TODO: 实现搜索逻辑
   },
 
@@ -101,7 +101,7 @@ Page({
       content: '确认通过该执行者的资质审核？',
       success: (res) => {
         if (res.confirm) {
-          console.log('通过审核', id);
+          // [CLEANED] console.log('通过审核', id);
           // TODO: 调用云函数更新状态
         }
       }
@@ -117,7 +117,7 @@ Page({
       editable: true,
       success: (res) => {
         if (res.confirm && res.content) {
-          console.log('拒绝审核', id, res.content);
+          // [CLEANED] console.log('拒绝审核', id, res.content);
           // TODO: 调用云函数更新状态
         }
       }
@@ -135,7 +135,7 @@ Page({
   // 编辑执行者
   editExecutor(e) {
     const id = e.currentTarget.dataset.id;
-    console.log('编辑执行者', id);
+    // [CLEANED] console.log('编辑执行者', id);
   },
 
   // 排序
@@ -143,7 +143,7 @@ Page({
     wx.showActionSheet({
       itemList: ['按完成任务排序', '按服务时长排序', '按评分排序', '按提交时间排序'],
       success: (res) => {
-        console.log('排序方式', res.tapIndex);
+        // [CLEANED] console.log('排序方式', res.tapIndex);
       }
     });
   },
@@ -157,6 +157,6 @@ Page({
 
   // 切换菜单
   toggleMenu() {
-    console.log('切换菜单');
+    // [CLEANED] console.log('切换菜单');
   }
 });

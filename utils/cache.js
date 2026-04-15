@@ -88,8 +88,7 @@ function cleanExpired(force = false) {
   metadata.lastClean = now
   saveMetadata(metadata)
   
-  console.log(`[缓存] 清理完成，剩余 ${validKeys.length} 条缓存`)
-}
+  // [CLEANED] console.log(`[缓存] 清理完成，剩余 ${validKeys.length} 条缓存`)}
 
 /**
  * 检查缓存大小，超出限制时清理最旧的缓存
@@ -107,8 +106,7 @@ function checkCacheSize() {
     metadata.keys = metadata.keys.slice(keysToRemove.length)
     saveMetadata(metadata)
     
-    console.log(`[缓存] 容量超限，已清理 ${keysToRemove.length} 条旧缓存`)
-  }
+    // [CLEANED] console.log(`[缓存] 容量超限，已清理 ${keysToRemove.length} 条旧缓存`)}
 }
 
 /**
@@ -151,8 +149,7 @@ export function set(key, value, options = {}) {
       CACHE_CONFIG.MEMORY_CACHE[cacheKey] = cacheData
     }
     
-    console.log(`[缓存] 设置缓存：${key}`)
-  } catch (e) {
+    // [CLEANED] console.log(`[缓存] 设置缓存：${key}`)} catch (e) {
     console.error('[缓存] 设置缓存失败', key, e)
     
     // 存储失败时尝试清理
@@ -236,8 +233,7 @@ export function remove(key) {
     metadata.keys = metadata.keys.filter(k => k !== key)
     saveMetadata(metadata)
     
-    console.log(`[缓存] 删除缓存：${key}`)
-  } catch (e) {
+    // [CLEANED] console.log(`[缓存] 删除缓存：${key}`)} catch (e) {
     console.error('[缓存] 删除缓存失败', key, e)
   }
 }
@@ -260,8 +256,7 @@ export function clear() {
     // 重置元数据
     saveMetadata({ keys: [], lastClean: Date.now() })
     
-    console.log('[缓存] 清空所有缓存')
-  } catch (e) {
+    // [CLEANED] console.log('[缓存] 清空所有缓存')} catch (e) {
     console.error('[缓存] 清空缓存失败', e)
   }
 }
@@ -346,13 +341,11 @@ export async function cachedRequest(key, requestFn, expiry = CACHE_CONFIG.DEFAUL
   // 尝试从缓存获取
   const cached = get(key)
   if (cached !== null) {
-    console.log(`[缓存] 命中缓存：${key}`)
-    return cached
+    // [CLEANED] console.log(`[缓存] 命中缓存：${key}`)return cached
   }
   
   // 缓存未命中，执行请求
-  console.log(`[缓存] 未命中，执行请求：${key}`)
-  const data = await requestFn()
+  // [CLEANED] console.log(`[缓存] 未命中，执行请求：${key}`)const data = await requestFn()
   
   // 保存到缓存
   set(key, data, { expiry })
@@ -365,9 +358,7 @@ export async function cachedRequest(key, requestFn, expiry = CACHE_CONFIG.DEFAUL
  * 建议在 app.js 中调用
  */
 export function initCache() {
-  console.log('[缓存] 初始化缓存系统')
-  
-  // 启动时清理过期缓存
+  // [CLEANED] console.log('[缓存] 初始化缓存系统')// 启动时清理过期缓存
   cleanExpired()
   
   // 设置定时清理（每 30 分钟）

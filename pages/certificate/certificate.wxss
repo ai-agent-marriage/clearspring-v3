@@ -1,10 +1,10 @@
 /* Stitch V3.0 设计规范 */
-/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 背景色：var(--stitch-bg-primary) | 主色：var(--stitch-primary) | 辅助金：var(--stitch-gold) */
 /* 间距：24rpx */
 
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 240rpx;
 }
 
@@ -12,8 +12,8 @@
 .notice-bar {
   margin: 0 24rpx 32rpx;
   overflow: hidden;
-  background-color: #F5F4EF;
-  border-radius: 16rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
   padding: 16rpx 0;
 }
 
@@ -58,7 +58,7 @@
   font-family: 'Noto Serif SC', serif;
   font-size: 96rpx;
   line-height: 1.2;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   white-space: pre-line;
 }
 
@@ -71,7 +71,7 @@
 .hero-image {
   width: 192rpx;
   height: 128rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
   filter: grayscale(20%);
 }
@@ -91,7 +91,7 @@
 }
 
 .tab-item.active {
-  border-bottom: 4rpx solid #4A5D4E;
+  border-bottom: 4rpx solid var(--stitch-primary);
   margin-bottom: -2rpx;
 }
 
@@ -102,7 +102,7 @@
 
 .tab-item.active .tab-text {
   font-weight: 600;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 /* 主操作按钮 */
@@ -114,7 +114,7 @@
 .action-button {
   width: 100%;
   height: 128rpx;
-  background-color: #4A5D4E;
+  background-color: var(--stitch-primary);
   border-radius: 24rpx;
   display: flex;
   align-items: center;
@@ -129,14 +129,14 @@
 
 .action-icon {
   font-size: 48rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 .action-text {
   font-size: 32rpx;
   font-weight: 600;
   letter-spacing: 4rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 /* 护生记录区域 */
@@ -154,7 +154,7 @@
 .section-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 72rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .section-subtitle {
@@ -175,13 +175,13 @@
   align-items: center;
   gap: 16rpx;
   padding: 20rpx;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
   border-radius: 24rpx;
   transition: all 0.2s;
 }
 
 .record-item:active {
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
 }
 
 .record-icon {
@@ -196,7 +196,7 @@
 
 .record-icon .material-icons {
   font-size: 72rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .record-info {
@@ -215,7 +215,7 @@
 .record-title {
   font-size: 32rpx;
   font-weight: 500;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .record-meta {
@@ -231,18 +231,18 @@
 /* 状态标签 */
 .status-badge {
   padding: 8rpx 16rpx;
-  border-radius: 8rpx;
+  border-radius: 24rpx;
   font-size: 20rpx;
   font-weight: 700;
 }
 
 .status-badge.approved {
-  background-color: #FEE264;
-  color: #756400;
+  background-color: var(--stitch-gold-light);
+  color: var(--stitch-gold);
 }
 
 .status-badge.checking {
-  background-color: #E3E2DE;
+  background-color: var(--stitch-bg-primary);
   color: rgba(27, 28, 25, 0.6);
 }
 
@@ -263,7 +263,7 @@
   padding: 24rpx 64rpx;
   background-color: rgba(255, 255, 255, 0.5);
   border: 2rpx solid rgba(195, 200, 193, 0.3);
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   gap: 16rpx;
@@ -276,11 +276,11 @@
 
 .search-icon {
   font-size: 36rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .search-text {
   font-size: 28rpx;
   font-weight: 500;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }

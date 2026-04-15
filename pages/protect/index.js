@@ -18,6 +18,6 @@ Page({
   onProtect() {
     wx.navigateTo({
       url: '/pages/protect/register'
-    })
+    });
   }
-})
+});

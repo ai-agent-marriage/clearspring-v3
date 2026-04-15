@@ -37,7 +37,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('帮助文档管理页面加载');
+    // [CLEANED] console.log('帮助文档管理页面加载');
     this.loadHelpDocs();
   },
 
@@ -56,7 +56,7 @@ Page({
   async loadHelpDocs() {
     try {
       // TODO: 实际从云函数获取帮助文档列表
-      console.log('加载帮助文档列表');
+      // [CLEANED] console.log('加载帮助文档列表');
     } catch (error) {
       console.error('加载帮助文档列表失败:', error);
       wx.showToast({
@@ -70,7 +70,7 @@ Page({
     try {
       // TODO: 实际从云函数刷新帮助文档列表
       await new Promise(resolve => setTimeout(resolve, 500));
-      console.log('帮助文档列表刷新完成');
+      // [CLEANED] console.log('帮助文档列表刷新完成');
     } catch (error) {
       console.error('刷新帮助文档列表失败:', error);
     }
@@ -81,7 +81,7 @@ Page({
   // 点击文档卡片
   onDocTap(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('点击文档:', id);
+    // [CLEANED] console.log('点击文档:', id);
     
     wx.navigateTo({
       url: `/pages/admin/content/help-detail?id=${id}`
@@ -91,7 +91,7 @@ Page({
   // 编辑文档
   onEditDoc(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('编辑文档:', id);
+    // [CLEANED] console.log('编辑文档:', id);
     
     wx.navigateTo({
       url: `/pages/admin/content/help-edit?id=${id}&action=edit`
@@ -101,7 +101,7 @@ Page({
   // 删除文档
   onDeleteDoc(e) {
     const { id, title } = e.currentTarget.dataset;
-    console.log('删除文档:', id, title);
+    // [CLEANED] console.log('删除文档:', id, title);
     
     wx.showModal({
       title: '确认删除',

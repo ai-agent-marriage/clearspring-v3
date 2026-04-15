@@ -18,7 +18,7 @@ const { promisify } = require('./cloud.js');
  * const compressAndUpload = async (tempFilePath) => {
  *   try {
  *     const result = await compressImage(tempFilePath, 80);
- *     console.log(`压缩成功：${result.originalSize}KB -> ${result.compressedSize}KB`);
+ *     // [CLEANED] console.log(`压缩成功：${result.originalSize}KB -> ${result.compressedSize}KB`);
  *     // 上传压缩后的图片
  *     await wx.cloud.uploadFile({
  *       cloudPath: 'images/cert.jpg',
@@ -84,7 +84,7 @@ async function compressImage(src, quality = 80) {
  *   const results = await compressImages(paths, 75);
  *   
  *   results.forEach((result, index) => {
- *     console.log(`图片${index + 1}: ${result.src} -> ${result.compressedPath}`);
+ *     // [CLEANED] console.log(`图片${index + 1}: ${result.src} -> ${result.compressedPath}`);
  *   });
  *   
  *   return results;
@@ -132,7 +132,7 @@ async function compressImages(srcList, quality = 80) {
  *     quality: 75
  *   });
  *   
- *   console.log(`已选择并压缩 ${result.compressedCount} 张图片`);
+ *   // [CLEANED] console.log(`已选择并压缩 ${result.compressedCount} 张图片`);
  *   
  *   // 上传压缩后的图片
  *   for (const file of result.tempFiles) {

@@ -9,7 +9,7 @@ Page({
   },
 
   onLoad() {
-    console.log('服务页加载完成');
+    // [CLEANED] console.log('服务页加载完成');
   },
 
   selectService(e) {

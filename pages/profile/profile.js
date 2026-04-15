@@ -59,7 +59,7 @@ Page({
   },
 
   onLoad() {
-    console.log('个人页加载完成');
+    // [CLEANED] console.log('个人页加载完成');
     this.checkLoginStatus();
     this.loadStats();
   },
@@ -115,14 +115,14 @@ Page({
           avatarUrl: userInfo.avatarUrl,
           nickname: userInfo.nickName
         });
-        console.log('用户登录成功', userInfo);
+        // [CLEANED] console.log('用户登录成功', userInfo);
         wx.showToast({
           title: '登录成功',
           icon: 'success'
         });
       },
       fail: (err) => {
-        console.log('用户取消登录', err);
+        // [CLEANED] console.log('用户取消登录', err);
         wx.showToast({
           title: '取消登录',
           icon: 'none'

@@ -22,7 +22,7 @@ Page({
   onLoad(options) {
     // 获取传入参数
     this.purpose = options.purpose || 'evidence'; // 拍摄用途：evidence/idcard/handheld
-    console.log('拍摄页加载，用途:', this.purpose);
+    // [CLEANED] console.log('拍摄页加载，用途:', this.purpose);
   },
 
   onShow() {
@@ -50,7 +50,7 @@ Page({
   },
 
   onCameraStop() {
-    console.log('相机停止');
+    // [CLEANED] console.log('相机停止');
   },
 
   onCameraError(e) {
@@ -81,7 +81,7 @@ Page({
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        console.log('拍照成功:', res.tempImagePath);
+        // [CLEANED] console.log('拍照成功:', res.tempImagePath);
         
         this.setData({
           isCapturing: false,
@@ -105,7 +105,7 @@ Page({
     
     ctx.startRecord({
       timeoutCallback: (res) => {
-        console.log('录像超时');
+        // [CLEANED] console.log('录像超时');
         this.handleVideoResult(res.tempThumbPath, res.tempVideoPath);
       }
     });
@@ -114,7 +114,7 @@ Page({
   stopVideo() {
     ctx.stopRecord({
       success: (res) => {
-        console.log('录像成功');
+        // [CLEANED] console.log('录像成功');
         this.handleVideoResult(res.tempThumbPath, res.tempVideoPath);
       },
       fail: (err) => {

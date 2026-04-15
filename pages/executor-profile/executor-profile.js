@@ -42,13 +42,13 @@ Page({
     // wx.cloud.callFunction({
     //   name: 'getExecutorProfile'
     // })
-    console.log('加载个人资料');
+    // [CLEANED] console.log('加载个人资料');
   },
 
   // ========== 刷新数据 ==========
   refreshProfileData() {
     // TODO: 刷新数据
-    console.log('刷新个人资料');
+    // [CLEANED] console.log('刷新个人资料');
   },
 
   // ========== 菜单点击 ==========

@@ -17,7 +17,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('内容管理系统首页加载');
+    // [CLEANED] console.log('内容管理系统首页加载');
     this.loadStats();
   },
 
@@ -37,7 +37,7 @@ Page({
   async loadStats() {
     try {
       // TODO: 实际从云函数获取统计数据
-      console.log('加载统计数据');
+      // [CLEANED] console.log('加载统计数据');
     } catch (error) {
       console.error('加载统计数据失败:', error);
       wx.showToast({
@@ -51,7 +51,7 @@ Page({
     try {
       // TODO: 实际从云函数刷新统计数据
       await new Promise(resolve => setTimeout(resolve, 500));
-      console.log('统计数据刷新完成');
+      // [CLEANED] console.log('统计数据刷新完成');
     } catch (error) {
       console.error('刷新统计数据失败:', error);
     }
@@ -62,7 +62,7 @@ Page({
   // 点击功能菜单
   onMenuTap(e) {
     const { path } = e.currentTarget.dataset;
-    console.log('点击功能菜单:', path);
+    // [CLEANED] console.log('点击功能菜单:', path);
     
     if (path) {
       wx.navigateTo({

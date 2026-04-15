@@ -1,16 +1,16 @@
 /* 原生拍摄 - O-06 - Stitch V3.0 规范 */
 
 page {
-  --bg-color: #EFEEE9;
-  --primary-color: #4A5D4E;
-  --primary-container: #4A5D4E;
-  --secondary-color: #C9B037;
-  --text-primary: #1B1C19;
-  --text-secondary: #434843;
-  --text-disabled: #737872;
-  --surface: #FFFFFF;
-  --surface-container: #F5F4EF;
-  --outline-variant: #C3C8C1;
+  --bg-color: var(--stitch-bg-primary);
+  --primary-color: var(--stitch-primary);
+  --primary-container: var(--stitch-primary);
+  --secondary-color: var(--stitch-gold);
+  --text-primary: var(--stitch-primary);
+  --text-secondary: var(--stitch-primary);
+  --text-disabled: var(--stitch-gray);
+  --surface: var(--stitch-white);
+  --surface-container: var(--stitch-bg-primary);
+  --outline-variant: var(--stitch-border);
 }
 
 .container {
@@ -55,14 +55,14 @@ page {
 .material-icons {
   font-family: 'Material Icons';
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 .navbar-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 32rpx;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 /* 相机容器 */
@@ -137,8 +137,8 @@ page {
   gap: 8rpx;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 12rpx 24rpx;
-  border-radius: 32rpx;
-  color: #FFFFFF;
+  border-radius: 24rpx;
+  color: var(--stitch-white);
   font-size: 22rpx;
   font-weight: 500;
   backdrop-filter: blur(8px);
@@ -147,8 +147,8 @@ page {
 .info-time {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 12rpx 24rpx;
-  border-radius: 32rpx;
-  color: #FFFFFF;
+  border-radius: 24rpx;
+  color: var(--stitch-white);
   font-size: 22rpx;
   font-weight: 500;
   backdrop-filter: blur(8px);
@@ -189,7 +189,7 @@ page {
 }
 
 .mode-active {
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 .mode-item .material-icons {
@@ -207,7 +207,7 @@ page {
 .preview-btn {
   width: 80rpx;
   height: 80rpx;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.1);
   display: flex;
@@ -236,7 +236,7 @@ page {
   height: 120rpx;
   border-radius: 50%;
   background-color: transparent;
-  border: 4rpx solid #FFFFFF;
+  border: 4rpx solid var(--stitch-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -251,7 +251,7 @@ page {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
 }
 
 .flip-btn {
@@ -309,7 +309,7 @@ page {
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.7);
   padding: 24rpx 40rpx;
-  border-radius: 32rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   gap: 12rpx;
@@ -321,7 +321,7 @@ page {
   display: flex;
   align-items: center;
   gap: 12rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
   font-size: 24rpx;
   font-weight: 500;
 }

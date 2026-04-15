@@ -42,7 +42,7 @@
 .form-group {
   margin-bottom: var(--stitch-spacing-lg);
   padding-bottom: var(--stitch-spacing-md);
-  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .form-group:last-of-type {
@@ -195,7 +195,7 @@
   width: 44rpx;
   height: 44rpx;
   border: 2rpx solid var(--stitch-green-primary);
-  border-radius: 8rpx;
+  border-radius: 24rpx;
   margin-right: var(--stitch-spacing-sm);
   display: flex;
   align-items: center;
@@ -235,7 +235,7 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .btn-submit {

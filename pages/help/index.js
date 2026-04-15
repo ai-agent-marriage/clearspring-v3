@@ -125,7 +125,7 @@ Page({
   },
 
   onLoad() {
-    console.log('帮助中心页面加载完成');
+    // [CLEANED] console.log('帮助中心页面加载完成');
   },
 
   // 切换分类

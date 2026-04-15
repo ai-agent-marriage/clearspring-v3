@@ -7,25 +7,25 @@ const assert = require('assert');
 
 // Mock wx 对象
 global.wx = {
-  navigateTo: (options) => console.log('navigateTo:', options),
-  switchTab: (options) => console.log('switchTab:', options),
-  showLoading: (options) => console.log('showLoading:', options),
-  hideLoading: () => console.log('hideLoading'),
-  showToast: (options) => console.log('showToast:', options),
+  navigateTo: (options) => // [CLEANED] console.log('navigateTo:', options),
+  switchTab: (options) => // [CLEANED] console.log('switchTab:', options),
+  showLoading: (options) => // [CLEANED] console.log('showLoading:', options),
+  hideLoading: () => // [CLEANED] console.log('hideLoading'),
+  showToast: (options) => // [CLEANED] console.log('showToast:', options),
   showModal: (options) => {
-    console.log('showModal:', options);
+    // [CLEANED] console.log('showModal:', options);
     if (options.success) options.success({ confirm: true });
   },
   setClipboardData: (options) => {
-    console.log('setClipboardData:', options);
+    // [CLEANED] console.log('setClipboardData:', options);
     if (options.success) options.success();
   },
-  showShareMenu: (options) => console.log('showShareMenu:', options),
+  showShareMenu: (options) => // [CLEANED] console.log('showShareMenu:', options),
   chooseMedia: (options) => {
-    console.log('chooseMedia:', options);
+    // [CLEANED] console.log('chooseMedia:', options);
     if (options.success) options.success({ tempFiles: [{ tempFilePath: '/tmp/test.jpg' }] });
   },
-  stopPullDownRefresh: () => console.log('stopPullDownRefresh'),
+  stopPullDownRefresh: () => // [CLEANED] console.log('stopPullDownRefresh'),
   createCameraContext: () => ({})
 };
 
@@ -36,7 +36,7 @@ let failed = 0;
 function test(name, fn) {
   try {
     fn();
-    console.log(`✅ ${name}`);
+    // [CLEANED] console.log(`✅ ${name}`);
     passed++;
   } catch (error) {
     console.error(`❌ ${name}`);
@@ -46,7 +46,7 @@ function test(name, fn) {
 }
 
 // ========== Task 7.1: 机构端首页测试 ==========
-console.log('\n📋 Task 7.1: 机构端首页测试\n');
+// [CLEANED] console.log('\n📋 Task 7.1: 机构端首页测试\n');
 
 test('机构首页 - 数据初始化正确', () => {
   const data = {
@@ -97,7 +97,7 @@ test('机构首页 - 功能入口配置正确', () => {
 });
 
 // ========== Task 7.2: 机构订单管理页测试 ==========
-console.log('\n📋 Task 7.2: 机构订单管理页测试\n');
+// [CLEANED] console.log('\n📋 Task 7.2: 机构订单管理页测试\n');
 
 test('订单管理页 - Tab 配置正确', () => {
   const tabs = ['全部', '待承接', '待执行', '执行中', '待确认', '已完成', '已取消'];
@@ -140,7 +140,7 @@ test('订单管理页 - 状态映射正确', () => {
 });
 
 // ========== Task 7.3: 机构志愿者管理页测试 ==========
-console.log('\n📋 Task 7.3: 机构志愿者管理页测试\n');
+// [CLEANED] console.log('\n📋 Task 7.3: 机构志愿者管理页测试\n');
 
 test('志愿者管理页 - 数据统计正确', () => {
   const stats = {
@@ -180,7 +180,7 @@ test('志愿者管理页 - 邀请码格式正确', () => {
 });
 
 // ========== Task 7.4: 机构结算管理页测试 ==========
-console.log('\n📋 Task 7.4: 机构结算管理页测试\n');
+// [CLEANED] console.log('\n📋 Task 7.4: 机构结算管理页测试\n');
 
 test('结算管理页 - Tab 配置正确', () => {
   const tabs = ['待结算订单', '结算记录', '发票管理'];
@@ -230,9 +230,9 @@ test('结算管理页 - 结算记录数据结构正确', () => {
 });
 
 // ========== 汇总测试结果 ==========
-console.log('\n' + '='.repeat(50));
-console.log(`测试结果：✅ 通过 ${passed} 个，❌ 失败 ${failed} 个，总计 ${passed + failed} 个`);
-console.log('='.repeat(50) + '\n');
+// [CLEANED] console.log('\n' + '='.repeat(50));
+// [CLEANED] console.log(`测试结果：✅ 通过 ${passed} 个，❌ 失败 ${failed} 个，总计 ${passed + failed} 个`);
+// [CLEANED] console.log('='.repeat(50)+ '\n');
 
 if (failed > 0) {
   process.exit(1);

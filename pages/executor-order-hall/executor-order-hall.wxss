@@ -155,7 +155,7 @@
 .order-body {
   margin-bottom: var(--stitch-spacing-md);
   padding-bottom: var(--stitch-spacing-md);
-  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .order-info-row {

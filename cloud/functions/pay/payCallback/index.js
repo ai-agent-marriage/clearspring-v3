@@ -272,7 +272,7 @@ exports.main = async (event, context) => {
     const processedCheck = await checkCallbackProcessed(transaction_id);
     
     if (processedCheck && processedCheck.isProcessed) {
-      console.log(`交易 ${transaction_id} 已处理，返回成功（幂等性）`);
+      // [CLEANED] console.log(`交易 ${transaction_id} 已处理，返回成功（幂等性）`);
       // 已处理，直接返回成功（确保微信不再重复回调）
       return generateSuccessXml('SUCCESS', '已处理');
     }
@@ -307,7 +307,7 @@ exports.main = async (event, context) => {
     const amount = parseFloat(total_fee || 0) / 100;
     await sendPaySuccessNotification(openid || '', orderNo, amount);
     
-    console.log(`支付回调处理成功：orderNo=${orderNo}, transactionId=${transaction_id}, amount=${amount}`);
+    // [CLEANED] console.log(`支付回调处理成功：orderNo=${orderNo}, transactionId=${transaction_id}, amount=${amount}`);
     
     // 9. 返回成功响应
     return generateSuccessXml('SUCCESS', 'OK');

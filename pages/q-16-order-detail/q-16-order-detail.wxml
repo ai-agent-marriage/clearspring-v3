@@ -1,13 +1,157 @@
-<!-- 页面模板 - Stitch V3.0 规范 -->
+<!-- 订单详情页面 - Stitch V3.0 规范 -->
 <view class="container">
   <!-- 自定义导航栏 -->
-  <navbar title="{{pageTitle}}" show-back="true"/>
-  
-  <!-- 页面内容 -->
-  <view class="content">
-    <text>{{pageTitle}}</text>
+  <navbar title="订单详情" show-back="true"/>
+
+  <!-- 状态进度条 -->
+  <view class="progress-section">
+    <view class="progress-line">
+      <view class="progress-line-active" style="width: {{progressWidth}}%"></view>
+    </view>
+    <view class="progress-steps">
+      <view class="progress-step {{stepIndex >= 0 ? 'active' : ''}}">
+        <view class="step-icon">
+          <text class="material-icons">check</text>
+        </view>
+        <text class="step-label">已支付</text>
+      </view>
+      <view class="progress-step {{stepIndex >= 1 ? 'active' : ''}}">
+        <view class="step-icon">
+          <text class="material-icons">check</text>
+        </view>
+        <text class="step-label">已承接</text>
+      </view>
+      <view class="progress-step {{stepIndex >= 2 ? 'active' : ''}}">
+        <view class="step-icon current">
+          <text class="material-icons">auto_awesome</text>
+        </view>
+        <text class="step-label current">已执行</text>
+      </view>
+      <view class="progress-step {{stepIndex >= 3 ? 'active' : ''}}">
+        <view class="step-icon">
+          <text class="material-icons">pending</text>
+        </view>
+        <text class="step-label">已确认</text>
+      </view>
+      <view class="progress-step {{stepIndex >= 4 ? 'active' : ''}}">
+        <view class="step-icon">
+          <text class="material-icons">done_all</text>
+        </view>
+        <text class="step-label">已完成</text>
+      </view>
+    </view>
   </view>
-  
+
+  <!-- 基础信息卡片 -->
+  <view class="info-card">
+    <view class="card-header">
+      <view class="header-left">
+        <text class="material-icons">info</text>
+        <text class="card-title">基础信息</text>
+      </view>
+    </view>
+
+    <view class="info-content">
+      <view class="info-row">
+        <text class="info-label">订单编号</text>
+        <text class="info-value select-all">{{orderId}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">下单时间</text>
+        <text class="info-value">{{orderTime}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">执行日期</text>
+        <text class="info-value">{{execTime}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">水域（资质编号）</text>
+        <text class="info-value highlight">{{waterArea}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">物种</text>
+        <text class="info-tag">{{species}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">数量</text>
+        <text class="info-value">{{quantity}}</text>
+      </view>
+      <view class="info-row">
+        <text class="info-label">增值服务</text>
+        <text class="info-value service">{{services}}</text>
+      </view>
+      <view class="wish-section">
+        <text class="wish-label">心愿寄语</text>
+        <view class="wish-content">
+          <text class="wish-text">{{wishMessage}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 执行反馈 -->
+  <view class="feedback-section">
+    <view class="section-header">
+      <view class="header-left">
+        <text class="material-icons">feedback</text>
+        <text class="section-title">执行反馈</text>
+      </view>
+    </view>
+
+    <view class="photo-grid">
+      <view class="photo-item" wx:for="{{photos}}" wx:key="id" bindtap="previewImage" data-url="{{item.url}}">
+        <image class="photo-image" src="{{item.url}}" mode="aspectFill"/>
+        <view class="photo-overlay">
+          <text class="material-icons">zoom_in</text>
+        </view>
+        <text class="photo-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 金额明细 -->
+  <view class="amount-card">
+    <text class="card-title-border">金额明细</text>
+    
+    <view class="amount-content">
+      <view class="amount-row">
+        <text class="amount-label">订单小计</text>
+        <text class="amount-value">¥ {{orderAmount}}</text>
+      </view>
+      <view class="amount-row">
+        <text class="amount-label">服务费</text>
+        <text class="amount-value">¥ {{serviceAmount}}</text>
+      </view>
+      <view class="amount-total">
+        <text class="total-label">支付金额</text>
+        <text class="total-value">¥ {{totalAmount}}</text>
+      </view>
+
+      <view class="payment-info">
+        <view class="payment-row">
+          <text class="payment-label">支付方式</text>
+          <view class="payment-method">
+            <text class="material-icons wechat">account_balance_wallet</text>
+            <text>微信支付</text>
+          </view>
+        </view>
+        <view class="payment-row">
+          <text class="payment-label">流水号</text>
+          <text class="payment-value">{{transactionId}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-action-bar">
+    <button class="action-btn secondary" bindtap="onReview">申请复核</button>
+    <button class="action-btn primary" bindtap="onComplete">
+      <text>确认圆满完成</text>
+      <text class="material-icons">celebration</text>
+    </button>
+  </view>
+
   <!-- TabBar -->
   <tab-bar/>
 </view>

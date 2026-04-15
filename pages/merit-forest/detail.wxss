@@ -1,17 +1,17 @@
 /* Stitch V3.0 设计规范 */
-/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 背景色：var(--stitch-bg-primary) | 主色：var(--stitch-primary) | 辅助金：var(--stitch-gold) */
 /* 间距：24rpx */
 
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 240rpx;
 }
 
 /* 合规承诺书区域 */
 .commitment-section {
   margin: 0 16rpx 24rpx;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
   border-radius: 24rpx;
   padding: 24rpx;
   box-shadow: 0 8rpx 40rpx rgba(74, 93, 78, 0.04);
@@ -23,13 +23,13 @@
 .section-title {
   font-family: 'Noto Serif SC', serif;
   font-size: 36rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .commitment-content {
   height: 256rpx;
-  background-color: #F5F4EF;
-  border-radius: 16rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
   padding: 16rpx;
 }
 
@@ -77,12 +77,12 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 4rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .form-input {
-  background-color: #F5F4EF;
-  border-radius: 16rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
   padding: 32rpx;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@
 }
 
 .form-input:focus-within {
-  border-bottom-color: #4A5D4E;
+  border-bottom-color: var(--stitch-primary);
 }
 
 .input-field {
@@ -109,7 +109,7 @@
 
 .input-icon {
   font-size: 40rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .date-input {
@@ -174,7 +174,7 @@
 
 .photo-upload {
   aspect-ratio: 1;
-  background-color: #E9E8E3;
+  background-color: var(--stitch-bg-primary);
   border-radius: 24rpx;
   border: 4rpx dashed rgba(195, 200, 193, 0.5);
   display: flex;
@@ -184,17 +184,17 @@
 }
 
 .photo-upload:active {
-  background-color: #E3E2DE;
+  background-color: var(--stitch-bg-primary);
 }
 
 .upload-icon {
   font-size: 96rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .photo-item {
   aspect-ratio: 1;
-  background-color: #F5F4EF;
+  background-color: var(--stitch-bg-primary);
   border-radius: 24rpx;
   border: 2rpx solid rgba(195, 200, 193, 0.3);
   overflow: hidden;
@@ -217,7 +217,7 @@
 
 .photo-delete .material-icons {
   font-size: 24rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 /* 底部提交按钮 */
@@ -235,7 +235,7 @@
 .submit-button {
   width: 100%;
   height: 96rpx;
-  background-color: #4A5D4E;
+  background-color: var(--stitch-primary);
   border-radius: 24rpx;
   display: flex;
   align-items: center;
@@ -254,11 +254,11 @@
 
 .submit-icon {
   font-size: 40rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 .submit-text {
   font-size: 32rpx;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }

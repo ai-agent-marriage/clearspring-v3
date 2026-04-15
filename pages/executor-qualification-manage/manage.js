@@ -32,7 +32,7 @@ Page({
   },
 
   onLoad() {
-    console.log('资质管理页加载');
+    // [CLEANED] console.log('资质管理页加载');
     // TODO: 加载资质数据
   },
 
@@ -42,21 +42,21 @@ Page({
 
   onEdit(e) {
     const { field } = e.currentTarget.dataset;
-    console.log('编辑字段:', field);
+    // [CLEANED] console.log('编辑字段:', field);
     // TODO: 打开编辑表单
     wx.showToast({ title: '编辑', icon: 'none' });
   },
 
   onPreview(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('预览文档:', id);
+    // [CLEANED] console.log('预览文档:', id);
     // TODO: 预览文档
     wx.showToast({ title: '预览', icon: 'none' });
   },
 
   onUpdate(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('更新文档:', id);
+    // [CLEANED] console.log('更新文档:', id);
     // TODO: 更新文档
     wx.showToast({ title: '更新', icon: 'none' });
   }

@@ -316,8 +316,7 @@ const handleCancel = (row) => {
 
 // 选择变化
 const handleSelectionChange = (selection) => {
-  console.log('选中的订单:', selection)
-}
+  // [CLEANED] console.log('选中的订单:', selection)}
 
 onMounted(() => {
   loadOrderList()

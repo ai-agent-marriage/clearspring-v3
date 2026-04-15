@@ -24,7 +24,7 @@ Page({
   },
 
   onLoad() {
-    console.log('结算管理页加载');
+    // [CLEANED] console.log('结算管理页加载');
     // TODO: 加载结算数据
   },
 
@@ -48,7 +48,7 @@ Page({
 
   onDetail(e) {
     const { id } = e.currentTarget.dataset;
-    console.log('查看详情:', id);
+    // [CLEANED] console.log('查看详情:', id);
     // TODO: 跳转到订单详情
     wx.showToast({ title: '查看详情', icon: 'none' });
   },

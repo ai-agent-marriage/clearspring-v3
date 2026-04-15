@@ -163,7 +163,7 @@ exports.main = async (event, context) => {
         
         // 这里可以根据业务类型触发不同的后续处理
         // 例如：删除违规内容、通知用户等
-        console.log('内容已驳回，业务类型:', businessType, '业务 ID:', businessId);
+        // [CLEANED] console.log('内容已驳回，业务类型:', businessType, '业务 ID:', businessId);
         
         // 可选：发送飞书通知给相关人员
         // await cloud.callFunction({

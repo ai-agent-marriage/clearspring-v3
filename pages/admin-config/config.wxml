@@ -1,0 +1,206 @@
+<!-- 分账配置 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="navbar-left">
+      <view class="menu-icon" bindtap="toggleMenu">
+        <text class="material-icons">menu</text>
+      </view>
+      <text class="navbar-title">分账配置</text>
+    </view>
+    <view class="navbar-right">
+      <view class="icon-btn" bindtap="saveConfig">
+        <text class="material-icons">save</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主要内容区 -->
+  <scroll-view class="main-content" scroll-y="true">
+    <!-- 分账比例配置 -->
+    <view class="config-section">
+      <view class="section-header">
+        <text class="section-title">分账比例配置</text>
+        <text class="section-desc">设置平台与执行者的分成比例</text>
+      </view>
+      <view class="ratio-config">
+        <view class="ratio-card">
+          <view class="ratio-header">
+            <view class="ratio-icon platform">
+              <text class="material-icons">account_balance</text>
+            </view>
+            <text class="ratio-label">平台服务费</text>
+          </view>
+          <view class="ratio-value">
+            <text class="ratio-number">{{platformRate}}</text>
+            <text class="ratio-unit">%</text>
+          </view>
+          <slider class="ratio-slider" min="0" max="100" value="{{platformRate}}" bindchange="onPlatformRateChange" block-size="20" active-color="#4A5D4E"/>
+          <text class="ratio-desc">每笔订单平台收取的服务费比例</text>
+        </view>
+        <view class="ratio-divider">
+          <text class="material-icons">remove</text>
+        </view>
+        <view class="ratio-card">
+          <view class="ratio-header">
+            <view class="ratio-icon executor">
+              <text class="material-icons">person</text>
+            </view>
+            <text class="ratio-label">执行者所得</text>
+          </view>
+          <view class="ratio-value">
+            <text class="ratio-number">{{executorRate}}</text>
+            <text class="ratio-unit">%</text>
+          </view>
+          <slider class="ratio-slider" min="0" max="100" value="{{executorRate}}" disabled block-size="20" active-color="#6E5E00"/>
+          <text class="ratio-desc">执行者完成任务后获得的分成比例</text>
+        </view>
+      </view>
+      <view class="ratio-warning">
+        <text class="material-icons">info</text>
+        <text>平台服务费与执行者所得比例之和必须为 100%</text>
+      </view>
+    </view>
+
+    <!-- 结算周期配置 -->
+    <view class="config-section">
+      <view class="section-header">
+        <text class="section-title">结算周期</text>
+        <text class="section-desc">设置执行者收益的结算时间</text>
+      </view>
+      <view class="settle-options">
+        <view class="settle-option {{settleCycle === 'T+1' ? 'active' : ''}}" data-cycle="T+1" bindtap="selectSettleCycle">
+          <view class="option-icon">
+            <text class="material-icons">today</text>
+          </view>
+          <view class="option-info">
+            <text class="option-title">T+1</text>
+            <text class="option-desc">次日结算</text>
+          </view>
+          <view class="option-radio {{settleCycle === 'T+1' ? 'checked' : ''}}"></view>
+        </view>
+        <view class="settle-option {{settleCycle === 'T+3' ? 'active' : ''}}" data-cycle="T+3" bindtap="selectSettleCycle">
+          <view class="option-icon">
+            <text class="material-icons">date_range</text>
+          </view>
+          <view class="option-info">
+            <text class="option-title">T+3</text>
+            <text class="option-desc">3 日后结算</text>
+          </view>
+          <view class="option-radio {{settleCycle === 'T+3' ? 'checked' : ''}}"></view>
+        </view>
+        <view class="settle-option {{settleCycle === 'T+7' ? 'active' : ''}}" data-cycle="T+7" bindtap="selectSettleCycle">
+          <view class="option-icon">
+            <text class="material-icons">event</text>
+          </view>
+          <view class="option-info">
+            <text class="option-title">T+7</text>
+            <text class="option-desc">7 日后结算</text>
+          </view>
+          <view class="option-radio {{settleCycle === 'T+7' ? 'checked' : ''}}"></view>
+        </view>
+        <view class="settle-option {{settleCycle === 'monthly' ? 'active' : ''}}" data-cycle="monthly" bindtap="selectSettleCycle">
+          <view class="option-icon">
+            <text class="material-icons">calendar_month</text>
+          </view>
+          <view class="option-info">
+            <text class="option-title">月结</text>
+            <text class="option-desc">每月 15 日结算</text>
+          </view>
+          <view class="option-radio {{settleCycle === 'monthly' ? 'checked' : ''}}"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 最低提现金额 -->
+    <view class="config-section">
+      <view class="section-header">
+        <text class="section-title">最低提现金额</text>
+        <text class="section-desc">执行者可申请提现的最低金额</text>
+      </view>
+      <view class="amount-config">
+        <view class="amount-input-group">
+          <text class="amount-symbol">¥</text>
+          <input class="amount-input" type="digit" value="{{minWithdraw}}" bindinput="onMinWithdrawChange" placeholder="请输入金额"/>
+        </view>
+        <view class="amount-presets">
+          <view class="preset-tag" data-amount="10" bindtap="setMinWithdraw">10 元</view>
+          <view class="preset-tag" data-amount="50" bindtap="setMinWithdraw">50 元</view>
+          <view class="preset-tag" data-amount="100" bindtap="setMinWithdraw">100 元</view>
+          <view class="preset-tag" data-amount="500" bindtap="setMinWithdraw">500 元</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 手续费配置 -->
+    <view class="config-section">
+      <view class="section-header">
+        <text class="section-title">提现手续费</text>
+        <text class="section-desc">执行者提现时收取的手续费</text>
+      </view>
+      <view class="fee-config">
+        <view class="fee-item">
+          <text class="fee-label">手续费率</text>
+          <view class="fee-input-group">
+            <input class="fee-input" type="digit" value="{{withdrawFeeRate}}" bindinput="onFeeRateChange"/>
+            <text class="fee-unit">%</text>
+          </view>
+        </view>
+        <view class="fee-item">
+          <text class="fee-label">单笔最高</text>
+          <view class="fee-input-group">
+            <text class="fee-symbol">¥</text>
+            <input class="fee-input" type="digit" value="{{maxFee}}" bindinput="onMaxFeeChange"/>
+          </view>
+        </view>
+        <view class="fee-item">
+          <view class="fee-switch-label">
+            <text class="fee-label">免费提现额度</text>
+            <text class="fee-desc">每月累计低于此额度免手续费</text>
+          </view>
+          <switch class="fee-switch" checked="{{freeWithdrawEnabled}}" bindchange="toggleFreeWithdraw" color="#4A5D4E"/>
+        </view>
+        <view class="fee-item" wx:if="{{freeWithdrawEnabled}}">
+          <text class="fee-label">免费额度</text>
+          <view class="fee-input-group">
+            <text class="fee-symbol">¥</text>
+            <input class="fee-input" type="digit" value="{{freeWithdrawAmount}}" bindinput="onFreeAmountChange"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 分账规则说明 -->
+    <view class="config-section">
+      <view class="section-header">
+        <text class="section-title">分账规则说明</text>
+      </view>
+      <view class="rule-content">
+        <view class="rule-item">
+          <text class="rule-number">1</text>
+          <text class="rule-text">分账比例调整后，新订单按新比例执行，历史订单不受影响</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">2</text>
+          <text class="rule-text">结算周期调整后，T+1/T+3/T+7 从订单完成次日开始计算</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">3</text>
+          <text class="rule-text">月结模式固定于每月 15 日结算上月 16 日至本月 15 日的订单</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-number">4</text>
+          <text class="rule-text">提现手续费在提现时自动扣除，实时到账</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 保存按钮 -->
+    <view class="save-actions">
+      <button class="save-btn" bindtap="saveConfig">
+        <text class="material-icons">check</text>
+        <text>保存配置</text>
+      </button>
+    </view>
+  </scroll-view>
+</view>

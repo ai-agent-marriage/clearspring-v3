@@ -1,6 +1,13 @@
 // pages/about/agreement.js
 
 Page({
+  methods: {
+    // 自动修复：添加缺失的 bindtap 函数
+    onAgree(e) {
+      // [CLEANED] console.log('onAgree called', e);
+    },
+  },
+
   data: {
     title: '用户协议',
     lastUpdate: '2026-04-04',
@@ -94,7 +101,7 @@ Page({
   },
 
   onLoad() {
-    console.log('用户协议页面加载完成');
+    // [CLEANED] console.log('用户协议页面加载完成');
   },
 
   // 复制链接

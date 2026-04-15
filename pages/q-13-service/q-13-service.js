@@ -34,53 +34,53 @@ Page({
   onDateChange(e) {
     this.setData({
       execDate: e.detail.value
-    })
+    });
   },
 
   // 水域选择
   onWaterChange(e) {
     this.setData({
       waterIndex: e.detail.value
-    })
+    });
   },
 
   // 物种选择
   onSpeciesChange(e) {
     this.setData({
       speciesIndex: e.detail.value
-    })
+    });
   },
 
   // 数量输入
   onCountInput(e) {
     this.setData({
       count: e.detail.value
-    })
-    this.calculatePrice()
+    });
+    this.calculatePrice();
   },
 
   // 切换视频记录
   toggleVideoRecord() {
     this.setData({
       videoRecord: !this.data.videoRecord
-    })
-    this.calculatePrice()
+    });
+    this.calculatePrice();
   },
 
   // 切换心愿标识
   toggleWishTag() {
     this.setData({
       wishTag: !this.data.wishTag
-    })
-    this.calculatePrice()
+    });
+    this.calculatePrice();
   },
 
   // 切换监测报告
   toggleReport() {
     this.setData({
       report: !this.data.report
-    })
-    this.calculatePrice()
+    });
+    this.calculatePrice();
   },
 
   // 心愿输入
@@ -88,19 +88,19 @@ Page({
     this.setData({
       wishMessage: e.detail.value,
       wishMessageLength: e.detail.value.length
-    })
+    });
   },
 
   // 计算价格
   calculatePrice() {
-    const basePrice = this.data.count * 10
-    const videoPrice = this.data.videoRecord ? 99 : 0
-    const wishPrice = this.data.wishTag ? 50 : 0
-    const reportPrice = this.data.report ? 50 : 0
-    const total = basePrice + videoPrice + wishPrice + reportPrice
+    const basePrice = this.data.count * 10;
+    const videoPrice = this.data.videoRecord ? 99 : 0;
+    const wishPrice = this.data.wishTag ? 50 : 0;
+    const reportPrice = this.data.report ? 50 : 0;
+    const total = basePrice + videoPrice + wishPrice + reportPrice;
     this.setData({
       totalPrice: total.toFixed(2)
-    })
+    });
   },
 
   // 提交委托单
@@ -109,22 +109,22 @@ Page({
       wx.showToast({
         title: '请先同意合规声明',
         icon: 'none'
-      })
-      return
+      });
+      return;
     }
 
     if (!this.data.execDate) {
       wx.showToast({
         title: '请选择执行日期',
         icon: 'none'
-      })
-      return
+      });
+      return;
     }
 
     // TODO: 提交委托单
     wx.showToast({
       title: '提交成功',
       icon: 'success'
-    })
+    });
   }
-})
+});

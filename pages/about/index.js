@@ -88,7 +88,7 @@ Page({
   },
 
   onLoad() {
-    console.log('关于我们页面加载完成');
+    // [CLEANED] console.log('关于我们页面加载完成');
   },
 
   // 展开/收起更新日志

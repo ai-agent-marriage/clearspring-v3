@@ -1,6 +1,6 @@
 App({
   onLaunch() {
-    console.log('清如 ClearSpring 小程序启动');
+    // [CLEANED] console.log('清如 ClearSpring 小程序启动');
     
     try {
       // 1. 初始化云开发
@@ -28,7 +28,7 @@ App({
       env: this.globalData.cloudEnv,
       traceUser: true
     });
-    console.log('[云开发] 初始化完成');
+    // [CLEANED] console.log('[云开发] 初始化完成');
   },
   
   /**
@@ -37,10 +37,10 @@ App({
   checkSession() {
     wx.checkSession({
       success: () => {
-        console.log('[登录态] 有效');
+        // [CLEANED] console.log('[登录态] 有效');
       },
       fail: () => {
-        console.log('[登录态] 已过期');
+        // [CLEANED] console.log('[登录态] 已过期');
         // 清除本地缓存
         wx.removeStorageSync('token');
         wx.removeStorageSync('userInfo');

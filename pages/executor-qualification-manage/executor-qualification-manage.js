@@ -217,8 +217,8 @@ Page({
         sourceType: ['camera', 'album']
       });
       
-      console.log('选择的证书图片:', result.tempFiles);
-      console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
+      // [CLEANED] console.log('选择的证书图片:', result.tempFiles);
+      // [CLEANED] console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
       
       try {
         // TODO: 上传证书图片到云存储
@@ -265,8 +265,8 @@ Page({
         sourceType: ['camera', 'album']
       });
       
-      console.log('选择的资质证书图片:', result.tempFiles);
-      console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
+      // [CLEANED] console.log('选择的资质证书图片:', result.tempFiles);
+      // [CLEANED] console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
       
       try {
         // TODO: 上传资质证书图片到云存储
@@ -365,7 +365,7 @@ Page({
     this.setData({ skillTags });
     
     // TODO: 保存到云端
-    console.log('更新擅长领域:', skillTags.filter(tag => tag.active));
+    // [CLEANED] console.log('更新擅长领域:', skillTags.filter(tag => tag.active));
   },
 
   /**

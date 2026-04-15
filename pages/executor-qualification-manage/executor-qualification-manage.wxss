@@ -318,7 +318,7 @@
   gap: 8rpx;
   margin-bottom: var(--stitch-spacing-md);
   padding-bottom: var(--stitch-spacing-md);
-  border-bottom: 1rpx solid var(--border-divider);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .cert-date,

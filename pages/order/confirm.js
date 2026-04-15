@@ -79,7 +79,7 @@ Page({
       }
     }
 
-    console.log('订单确认页加载完成');
+    // [CLEANED] console.log('订单确认页加载完成');
   },
 
   // 格式化日期

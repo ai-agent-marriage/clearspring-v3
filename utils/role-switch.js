@@ -148,9 +148,7 @@ export function checkBackgroundTasks() {
  */
 function executeBackgroundTask(task) {
   // 实际应调用云函数
-  console.log('[后台任务] 开始执行:', task.type)
-  
-  // 模拟执行
+  // [CLEANED] console.log('[后台任务] 开始执行:', task.type)// 模拟执行
   setTimeout(() => {
     task.status = 'completed'
     task.completeTime = Date.now()
@@ -162,8 +160,7 @@ function executeBackgroundTask(task) {
     // 触发服务通知（实际应通过云函数）
     wx.emit('backgroundTaskCompleted', task)
     
-    console.log('[后台任务] 执行完成:', task.type)
-  }, 1000)
+    // [CLEANED] console.log('[后台任务] 执行完成:', task.type)}, 1000)
 }
 
 /**

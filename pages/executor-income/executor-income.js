@@ -99,7 +99,7 @@ Page({
     // wx.cloud.callFunction({
     //   name: 'getIncomeData'
     // })
-    console.log('加载收入数据');
+    // [CLEANED] console.log('加载收入数据');
   },
 
   // ========== 刷新数据 ==========
@@ -144,7 +144,7 @@ Page({
     wx.showActionSheet({
       itemList: types,
       success: (res) => {
-        console.log('选择类型:', types[res.tapIndex]);
+        // [CLEANED] console.log('选择类型:', types[res.tapIndex]);
         // TODO: 根据类型筛选
       }
     });
@@ -155,7 +155,7 @@ Page({
     wx.showActionSheet({
       itemList: statuses,
       success: (res) => {
-        console.log('选择状态:', statuses[res.tapIndex]);
+        // [CLEANED] console.log('选择状态:', statuses[res.tapIndex]);
         // TODO: 根据状态筛选
       }
     });

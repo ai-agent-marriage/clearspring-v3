@@ -37,7 +37,7 @@ Page({
   },
 
   onLoad() {
-    console.log('执行点位管理页加载');
+    // [CLEANED] console.log('执行点位管理页加载');
     // TODO: 加载点位列表
   },
 
@@ -55,7 +55,7 @@ Page({
 
   onAction(e) {
     const { action, id } = e.currentTarget.dataset;
-    console.log('操作:', action, '点位 ID:', id);
+    // [CLEANED] console.log('操作:', action, '点位 ID:', id);
     
     // TODO: 根据操作类型处理
     wx.showToast({

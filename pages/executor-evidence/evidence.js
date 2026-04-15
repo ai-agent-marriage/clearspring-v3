@@ -37,7 +37,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log('志愿者详情页加载，志愿者 ID:', options.id);
+    // [CLEANED] console.log('志愿者详情页加载，志愿者 ID:', options.id);
     // TODO: 根据 options.id 加载志愿者数据
   },
 

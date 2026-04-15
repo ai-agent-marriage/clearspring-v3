@@ -64,7 +64,7 @@ Page({
    * 页面加载
    */
   onLoad() {
-    console.log('志愿者管理页加载');
+    // [CLEANED] console.log('志愿者管理页加载');
     this.loadVolunteers();
   },
 
@@ -157,7 +157,7 @@ Page({
       ErrorHandler.showLoading('刷新中...');
       await this.loadVolunteers();
       ErrorHandler.hideLoading();
-      console.log('志愿者刷新完成');
+      // [CLEANED] console.log('志愿者刷新完成');
     } catch (error) {
       ErrorHandler.hideLoading();
       console.error('刷新志愿者失败:', error);
@@ -241,7 +241,7 @@ Page({
    * 应用筛选
    */
   onApplyFilter() {
-    console.log('应用筛选:', {
+    // [CLEANED] console.log('应用筛选:', {
       region: this.data.filterRegion,
       compliance: this.data.filterCompliance
     });
@@ -272,7 +272,7 @@ Page({
    */
   onVolunteerAction(e) {
     const { action, volunteer } = e.currentTarget.dataset;
-    console.log('志愿者操作:', action, volunteer);
+    // [CLEANED] console.log('志愿者操作:', action, volunteer);
     
     switch (action) {
       case 'detail':

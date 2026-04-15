@@ -38,7 +38,7 @@ const PAGES_TO_SCREENSHOT = [
 ];
 
 async function takeScreenshots() {
-  console.log('🚀 开始自动化截图...\n');
+  // [CLEANED] console.log('🚀 开始自动化截图...\n');
   
   const project = await ci.openProject({
     projectPath: PROJECT_PATH,
@@ -48,7 +48,7 @@ async function takeScreenshots() {
 
   for (const page of PAGES_TO_SCREENSHOT) {
     try {
-      console.log(`📸 正在截取：${page.name} (${page.path})`);
+      // [CLEANED] console.log(`📸 正在截取：${page.name} (${page.path})`);
       
       const screenshotPath = path.join(OUTPUT_DIR, `${page.name}.png`);
       
@@ -56,13 +56,13 @@ async function takeScreenshots() {
       // 这里生成占位文件
       fs.writeFileSync(screenshotPath, '');
       
-      console.log(`✅ 完成：${page.name}\n`);
+      // [CLEANED] console.log(`✅ 完成：${page.name}\n`);
     } catch (error) {
       console.error(`❌ 失败：${page.name} - ${error.message}\n`);
     }
   }
   
-  console.log('🎉 截图完成！请检查 review-materials/screenshots/ 目录');
+  // [CLEANED] console.log('🎉 截图完成！请检查 review-materials/screenshots/ 目录');
 }
 
 takeScreenshots().catch(console.error);

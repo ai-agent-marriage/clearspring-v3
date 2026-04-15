@@ -211,7 +211,7 @@ async function callWechatDivisionAPI(transactionData) {
   // TODO: 实现真实的微信支付分账 API 调用
   // 当前为模拟实现
   
-  console.log('[TODO] 微信支付分账 API 调用:', {
+  // [CLEANED] console.log('[TODO] 微信支付分账 API 调用:', {
     transactionId: transactionData.transactionId,
     orderId: transactionData.orderId,
     totalAmount: transactionData.amount,

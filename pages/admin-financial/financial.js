@@ -68,7 +68,7 @@ Page({
   // 加载财务数据
   loadFinancialData() {
     // TODO: 调用云函数获取财务数据
-    console.log('加载财务数据');
+    // [CLEANED] console.log('加载财务数据');
   },
 
   // 切换时间周期
@@ -83,14 +83,14 @@ Page({
     wx.showActionSheet({
       itemList: ['导出 Excel', '导出 PDF', '发送邮件'],
       success: (res) => {
-        console.log('导出报表', res.tapIndex);
+        // [CLEANED] console.log('导出报表', res.tapIndex);
       }
     });
   },
 
   // 切换菜单
   toggleMenu() {
-    console.log('切换菜单');
+    // [CLEANED] console.log('切换菜单');
   },
 
   // 筛选类型
@@ -98,7 +98,7 @@ Page({
     wx.showActionSheet({
       itemList: ['全部', '收入', '支出', '待结算'],
       success: (res) => {
-        console.log('筛选类型', res.tapIndex);
+        // [CLEANED] console.log('筛选类型', res.tapIndex);
       }
     });
   }

@@ -117,14 +117,14 @@ Page({
       wx.requestSubscribeMessage({
         tmplIds: ['MESSAGE_TEMPLATE_ID'],
         success: (res) => {
-          console.log('订阅消息授权成功', res);
+          // [CLEANED] console.log('订阅消息授权成功', res);
           wx.showToast({
             title: '已开启推送',
             icon: 'success'
           });
         },
         fail: (err) => {
-          console.log('订阅消息授权失败', err);
+          // [CLEANED] console.log('订阅消息授权失败', err);
           this.setData({
             'notifications.subscribeMessage': false
           });

@@ -105,7 +105,7 @@ Page({
   },
 
   onLoad() {
-    console.log('订单管理页加载完成');
+    // [CLEANED] console.log('订单管理页加载完成');
     this.loadOrders();
   },
 

@@ -1,10 +1,10 @@
 /* Stitch V3.0 设计规范 */
-/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 背景色：var(--stitch-bg-primary) | 主色：var(--stitch-primary) | 辅助金：var(--stitch-gold) */
 /* 间距：24rpx */
 
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
   padding-bottom: 240rpx;
 }
 
@@ -22,7 +22,7 @@
   height: 480rpx;
   border-radius: 24rpx;
   overflow: hidden;
-  background: linear-gradient(135deg, #D3E8D5 0%, #E2C19B 100%);
+  background: linear-gradient(135deg, var(--stitch-primary) 0%, #E2C19B 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,7 +53,7 @@
   font-family: 'Noto Serif SC', serif;
   font-size: 48rpx;
   font-weight: 700;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .track-artist {
@@ -108,21 +108,21 @@
 .play-btn {
   width: 144rpx;
   height: 144rpx;
-  background-color: #4A5D4E;
+  background-color: var(--stitch-primary);
 }
 
 .play-btn:active {
-  background-color: #3D4F41;
+  background-color: var(--stitch-primary-dark);
 }
 
 .play-icon {
   font-size: 64rpx;
-  color: #FFFFFF;
+  color: var(--stitch-white);
 }
 
 .control-btn .material-icons {
   font-size: 40rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 /* 播放模式 */
@@ -160,7 +160,7 @@
   font-family: 'Noto Serif SC', serif;
   font-size: 36rpx;
   font-weight: 700;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .section-count {
@@ -179,19 +179,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 24rpx;
-  background-color: #FFFFFF;
-  border-radius: 16rpx;
+  background-color: var(--stitch-white);
+  border-radius: 24rpx;
   box-shadow: 0 4rpx 20rpx rgba(74, 93, 78, 0.04);
   transition: all 0.2s;
 }
 
 .playlist-item:active {
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
 }
 
 .playlist-item.active {
   background-color: rgba(74, 93, 78, 0.05);
-  border-left: 4rpx solid #4A5D4E;
+  border-left: 4rpx solid var(--stitch-primary);
 }
 
 .item-info {
@@ -217,7 +217,7 @@
 
 .item-title {
   font-size: 32rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .item-duration {
@@ -227,7 +227,7 @@
 
 .item-icon {
   font-size: 40rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 /* 底部占位 */

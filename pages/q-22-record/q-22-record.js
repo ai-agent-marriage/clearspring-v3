@@ -7,4 +7,4 @@ Page({
   onLoad(options) {
     // 初始化页面
   }
-})
+});

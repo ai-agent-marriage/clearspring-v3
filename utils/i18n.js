@@ -189,7 +189,7 @@ let currentLang = DEFAULT_LANG;
 function init(lang = DEFAULT_LANG) {
   if (SUPPORTED_LANGS.includes(lang)) {
     currentLang = lang;
-    console.log('[i18n] 初始化成功，当前语言:', lang);
+    // [CLEANED] console.log('[i18n] 初始化成功，当前语言:', lang);
     return true;
   } else {
     console.warn('[i18n] 不支持的语言:', lang, '使用默认语言:', DEFAULT_LANG);
@@ -262,7 +262,7 @@ function addMessage(lang, key, value) {
     messages[lang] = {};
   }
   messages[lang][key] = value;
-  console.log('[i18n] 添加自定义翻译:', lang, key, value);
+  // [CLEANED] console.log('[i18n] 添加自定义翻译:', lang, key, value);
 }
 
 /**
@@ -275,7 +275,7 @@ function addMessages(lang, newMessages) {
     messages[lang] = {};
   }
   Object.assign(messages[lang], newMessages);
-  console.log('[i18n] 批量添加翻译:', lang, Object.keys(newMessages).length, '条');
+  // [CLEANED] console.log('[i18n] 批量添加翻译:', lang, Object.keys(newMessages).length, '条');
 }
 
 module.exports = {

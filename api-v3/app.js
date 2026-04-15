@@ -135,6 +135,6 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => { console.log('🚀 ClearSpring V3 API running on port ' + PORT); console.log('📊 Dashboard: GET /api/dashboard/stats'); console.log('📦 Orders: GET /api/orders'); console.log('👥 Executors: GET /api/executors'); console.log('✅ Qualifications: GET /api/qualifications'); });
+server.listen(PORT, () => { // [CLEANED] console.log('🚀 ClearSpring V3 API running on port ' + PORT); // [CLEANED] console.log('📊 Dashboard: GET /api/dashboard/stats'); // [CLEANED] console.log('📦 Orders: GET /api/orders'); // [CLEANED] console.log('👥 Executors: GET /api/executors'); // [CLEANED] console.log('✅ Qualifications: GET /api/qualifications'); });
 process.on('SIGTERM', () => { server.close(() => process.exit(0)); });
 process.on('SIGINT', () => { server.close(() => process.exit(0)); });

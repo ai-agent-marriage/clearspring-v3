@@ -48,7 +48,7 @@ const CONFIG = {
 function log(message, level = 'INFO') {
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] [${level}] ${message}`;
-  console.log(logMessage);
+  // [CLEANED] console.log(logMessage);
   
   // 写入日志文件
   fs.appendFileSync(CONFIG.paths.logFile, logMessage + '\n');
@@ -321,12 +321,12 @@ async function main() {
     log(`报告已保存至：${CONFIG.paths.reportFile}`);
     
     log('========== OBU 内容导入完成 ==========');
-    console.log('\n导入摘要:');
-    console.log(`总文章数：${importResults.total}`);
-    console.log(`成功：${importResults.success}`);
-    console.log(`失败：${importResults.failed}`);
-    console.log(`成功率：${((importResults.success / importResults.total) * 100).toFixed(2)}%`);
-    console.log(`\n详细报告：${CONFIG.paths.reportFile}`);
+    // [CLEANED] console.log('\n导入摘要:');
+    // [CLEANED] console.log(`总文章数：${importResults.total}`);
+    // [CLEANED] console.log(`成功：${importResults.success}`);
+    // [CLEANED] console.log(`失败：${importResults.failed}`);
+    // [CLEANED] console.log(`成功率：${((importResults.success / importResults.total)* 100).toFixed(2)}%`);
+    // [CLEANED] console.log(`\n详细报告：${CONFIG.paths.reportFile}`);
     
   } catch (error) {
     log(`导入过程发生错误：${error.message}`, 'ERROR');

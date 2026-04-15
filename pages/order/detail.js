@@ -37,7 +37,7 @@ Page({
 
   onLoad(options) {
     const { orderNo } = options;
-    console.log('订单详情页加载，订单号:', orderNo);
+    // [CLEANED] console.log('订单详情页加载，订单号:', orderNo);
 
     // 模拟加载订单数据
     this.loadOrderDetail(orderNo);
@@ -51,7 +51,7 @@ Page({
     
     setTimeout(() => {
       wx.hideLoading();
-      console.log('订单数据加载完成');
+      // [CLEANED] console.log('订单数据加载完成');
     }, 500);
   },
 

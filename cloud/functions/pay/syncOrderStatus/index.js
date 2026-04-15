@@ -303,11 +303,11 @@ exports.main = async (event, context) => {
   };
   
   try {
-    console.log('开始同步订单状态...');
+    // [CLEANED] console.log('开始同步订单状态...');
     
     // 1. 同步处理中的订单
     const pendingOrders = await queryPendingOrders();
-    console.log(`待同步订单数：${pendingOrders.length}`);
+    // [CLEANED] console.log(`待同步订单数：${pendingOrders.length}`);
     
     for (const order of pendingOrders) {
       stats.totalProcessed++;
@@ -316,7 +316,7 @@ exports.main = async (event, context) => {
       
       if (result.success) {
         stats.syncSuccess++;
-        console.log(`订单 ${order.order_no} 同步成功：${result.newStatus}`);
+        // [CLEANED] console.log(`订单 ${order.order_no} 同步成功：${result.newStatus}`);
       } else {
         stats.syncFailed++;
         console.error(`订单 ${order.order_no} 同步失败：${result.reason}`);
@@ -325,14 +325,14 @@ exports.main = async (event, context) => {
     
     // 2. 取消超时订单
     const timeoutOrders = await queryTimeoutOrders();
-    console.log(`超时订单数：${timeoutOrders.length}`);
+    // [CLEANED] console.log(`超时订单数：${timeoutOrders.length}`);
     
     for (const order of timeoutOrders) {
       const result = await cancelTimeoutOrder(order);
       
       if (result.success) {
         stats.timeoutCancelled++;
-        console.log(`订单 ${order.order_no} 已取消（超时）`);
+        // [CLEANED] console.log(`订单 ${order.order_no} 已取消（超时）`);
         
         // 发送超时通知
         if (order.user_id) {
@@ -345,7 +345,7 @@ exports.main = async (event, context) => {
     const duration = Date.now() - startTime;
     stats.duration = duration;
     
-    console.log('订单状态同步完成:', stats);
+    // [CLEANED] console.log('订单状态同步完成:', stats);
     
     return {
       success: true,

@@ -65,7 +65,7 @@ Page({
     // wx.cloud.callFunction({
     //   name: 'getExecutorProfile'
     // })
-    console.log('加载执行者数据');
+    // [CLEANED] console.log('加载执行者数据');
   },
 
   // ========== 刷新数据 ==========

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
 }
 
 /* 顶部导航栏 */
@@ -14,7 +14,7 @@
   align-items: center;
   height: 88rpx;
   padding: 0 24rpx;
-  background-color: #4A5D4E;
+  background-color: var(--stitch-primary);
   position: fixed;
   top: 0;
   left: 0;
@@ -39,12 +39,12 @@
 }
 
 .back-icon .material-icons {
-  color: #FFFFFF;
+  color: var(--stitch-white);
   font-size: 32rpx;
 }
 
 .navbar-title {
-  color: #FFFFFF;
+  color: var(--stitch-white);
   font-size: 32rpx;
   font-weight: 700;
   font-family: 'Noto Serif SC', serif;
@@ -66,7 +66,7 @@
 }
 
 .icon-btn .material-icons {
-  color: #FFFFFF;
+  color: var(--stitch-white);
   font-size: 32rpx;
 }
 
@@ -74,38 +74,38 @@
 .search-bar {
   margin-top: 88rpx;
   padding: 24rpx;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
 }
 
 .search-input-wrapper {
   display: flex;
   align-items: center;
-  background-color: #F5F4EF;
+  background-color: var(--stitch-bg-primary);
   border-radius: 24rpx;
   padding: 20rpx 24rpx;
   gap: 16rpx;
 }
 
 .search-icon {
-  color: #737872;
+  color: var(--stitch-gray);
   font-size: 32rpx;
 }
 
 .search-input {
   flex: 1;
   font-size: 28rpx;
-  color: #1B1C19;
+  color: var(--stitch-primary);
   background-color: transparent;
 }
 
 .search-placeholder {
-  color: #737872;
+  color: var(--stitch-gray);
 }
 
 /* 状态筛选 Tabs */
 .tabs-scroll {
   white-space: nowrap;
-  background-color: #FFFFFF;
+  background-color: var(--stitch-white);
   border-bottom: 2rpx solid rgba(195, 200, 193, 0.3);
 }
 
@@ -120,7 +120,7 @@
   align-items: center;
   padding: 24rpx 32rpx;
   font-size: 28rpx;
-  color: #434843;
+  color: var(--stitch-primary);
   position: relative;
   transition: all 0.3s;
 }
@@ -130,7 +130,7 @@
 }
 
 .tab-item.active {
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .tab-item.active::after {
@@ -141,8 +141,8 @@
   transform: translateX(-50%);
   width: 48rpx;
   height: 6rpx;
-  background-color: #4A5D4E;
-  border-radius: 3rpx;
+  background-color: var(--stitch-primary);
+  border-radius: 24rpx;
 }
 
 /* 资质列表滚动区 */
@@ -160,8 +160,8 @@
 
 /* 资质卡片 */
 .qualification-card {
-  background-color: #FFFFFF;
-  border-radius: 32rpx;
+  background-color: var(--stitch-white);
+  border-radius: 24rpx;
   padding: 40rpx;
   border: 2rpx solid rgba(195, 200, 193, 0.2);
   box-shadow: 0 12rpx 40rpx rgba(74, 93, 78, 0.06);
@@ -182,7 +182,7 @@
 }
 
 .qual-org-name {
-  color: #1B1C19;
+  color: var(--stitch-primary);
   font-size: 32rpx;
   font-weight: 700;
   font-family: 'Noto Serif SC', serif;
@@ -199,12 +199,12 @@
 }
 
 .qual-type .material-icons {
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   font-size: 28rpx;
 }
 
 .qual-type text {
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   font-size: 22rpx;
   font-weight: 500;
 }
@@ -218,18 +218,18 @@
 }
 
 .qual-status.urgent {
-  background-color: #FEE264;
-  color: #756400;
+  background-color: var(--stitch-gold-light);
+  color: var(--stitch-gold);
 }
 
 .qual-status.completed {
-  background-color: #D3E8D5;
-  color: #394B3D;
+  background-color: var(--stitch-primary);
+  color: var(--stitch-primary-dark);
 }
 
 .qual-status.rejected {
-  background-color: #E9E8E3;
-  color: #434843;
+  background-color: var(--stitch-bg-primary);
+  color: var(--stitch-primary);
 }
 
 .qual-content {
@@ -245,20 +245,20 @@
 }
 
 .info-label {
-  color: #434843;
+  color: var(--stitch-primary);
   font-size: 24rpx;
   min-width: 180rpx;
 }
 
 .info-value {
-  color: #1B1C19;
+  color: var(--stitch-primary);
   font-size: 24rpx;
   font-weight: 500;
   flex: 1;
 }
 
 .info-value.reject-reason {
-  color: #BA1A1A;
+  color: var(--stitch-gray);
 }
 
 .qual-documents {
@@ -266,7 +266,7 @@
 }
 
 .doc-title {
-  color: #434843;
+  color: var(--stitch-primary);
   font-size: 24rpx;
   font-weight: 700;
   margin-bottom: 16rpx;
@@ -284,17 +284,17 @@
   align-items: center;
   gap: 12rpx;
   padding: 16rpx 20rpx;
-  background-color: #F5F4EF;
-  border-radius: 16rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
 }
 
 .doc-icon {
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   font-size: 32rpx;
 }
 
 .doc-name {
-  color: #1B1C19;
+  color: var(--stitch-primary);
   font-size: 22rpx;
   font-weight: 500;
 }
@@ -322,18 +322,18 @@
 }
 
 .btn-reject {
-  background-color: #E9E8E3;
-  color: #434843;
+  background-color: var(--stitch-bg-primary);
+  color: var(--stitch-primary);
 }
 
 .btn-approve {
-  background-color: #4A5D4E;
-  color: #FFFFFF;
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
 }
 
 .btn-view {
   background-color: rgba(74, 93, 78, 0.1);
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 /* Material Icons */

@@ -28,34 +28,34 @@ Page({
 
   // 切换 Tab
   onSwitchTab(e) {
-    const tab = e.currentTarget.dataset.tab
+    const tab = e.currentTarget.dataset.tab;
     this.setData({
       currentTab: parseInt(tab)
-    })
+    });
   },
 
   // 立即预约
   onReserve() {
     this.setData({
       showModal: true
-    })
+    });
   },
 
   // 确认合规
   onConfirm() {
     this.setData({
       showModal: false
-    })
+    });
     wx.navigateTo({
       url: '/pages/protect/register'
-    })
+    });
   },
 
   // 隐藏弹窗
   hideModal() {
     this.setData({
       showModal: false
-    })
+    });
   },
 
   // 停止事件冒泡
@@ -65,9 +65,9 @@ Page({
 
   // 订单详情
   onOrderDetail(e) {
-    const id = e.currentTarget.dataset.id
+    const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/pages/order/detail?id=${id}`
-    })
+    });
   }
-})
+});

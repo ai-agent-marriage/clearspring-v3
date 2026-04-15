@@ -73,7 +73,7 @@ async function getSubscribeCount(openid, templateId) {
   // TODO: 查询微信订阅消息次数
   // 当前为模拟实现，返回 1 表示可以发送
   
-  console.log('[TODO] 查询订阅消息次数:', {
+  // [CLEANED] console.log('[TODO] 查询订阅消息次数:', {
     openid: openid.slice(-8),
     templateId
   });
@@ -89,7 +89,7 @@ async function getSubscribeCount(openid, templateId) {
  */
 async function decreaseSubscribeCount(openid, templateId) {
   // TODO: 扣减用户的订阅消息次数
-  console.log('[TODO] 扣减订阅消息次数:', {
+  // [CLEANED] console.log('[TODO] 扣减订阅消息次数:', {
     openid: openid.slice(-8),
     templateId
   });
@@ -182,7 +182,7 @@ async function sendSubscribeMessage(toUser, templateId, data, page) {
     // 检查订阅次数
     const count = await getSubscribeCount(toUser, templateId);
     if (count <= 0) {
-      console.log(`用户 ${toUser} 无订阅消息次数，跳过发送`);
+      // [CLEANED] console.log(`用户 ${toUser} 无订阅消息次数，跳过发送`);
       return { success: false, reason: 'no_subscribe_count' };
     }
     
@@ -195,7 +195,7 @@ async function sendSubscribeMessage(toUser, templateId, data, page) {
     //   miniprogramState: 'formal'
     // });
     
-    console.log('[TODO] 发送订阅消息:', {
+    // [CLEANED] console.log('[TODO] 发送订阅消息:', {
       toUser: toUser.slice(-8),
       templateId,
       page,

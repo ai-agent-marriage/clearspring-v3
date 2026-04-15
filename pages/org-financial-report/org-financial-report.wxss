@@ -172,7 +172,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: var(--spacing-2);
-  border-bottom: 1rpx solid var(--border-divider);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .stat-item:last-child {
@@ -294,7 +294,7 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20rpx);
   -webkit-backdrop-filter: blur(20rpx);
-  border-top: 1rpx solid var(--border-divider);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .bottom-bar .btn {

@@ -64,30 +64,30 @@ Chat history is a BUFFER. This file is STORAGE.
 
 const commands = {
   init: () => {
-    console.log('🧠 Initializing Elite Longterm Memory...\n');
+    // [CLEANED] console.log('🧠 Initializing Elite Longterm Memory...\n');
     
     // Create SESSION-STATE.md
     if (!fs.existsSync('SESSION-STATE.md')) {
       fs.writeFileSync('SESSION-STATE.md', TEMPLATES['session-state']);
-      console.log('✓ Created SESSION-STATE.md (Hot RAM)');
+      // [CLEANED] console.log('✓ Created SESSION-STATE.md (Hot RAM)');
     } else {
-      console.log('• SESSION-STATE.md already exists');
+      // [CLEANED] console.log('• SESSION-STATE.md already exists');
     }
     
     // Create MEMORY.md
     if (!fs.existsSync('MEMORY.md')) {
       fs.writeFileSync('MEMORY.md', TEMPLATES['memory-md']);
-      console.log('✓ Created MEMORY.md (Curated Archive)');
+      // [CLEANED] console.log('✓ Created MEMORY.md (Curated Archive)');
     } else {
-      console.log('• MEMORY.md already exists');
+      // [CLEANED] console.log('• MEMORY.md already exists');
     }
     
     // Create memory directory
     if (!fs.existsSync('memory')) {
       fs.mkdirSync('memory', { recursive: true });
-      console.log('✓ Created memory/ directory');
+      // [CLEANED] console.log('✓ Created memory/ directory');
     } else {
-      console.log('• memory/ directory already exists');
+      // [CLEANED] console.log('• memory/ directory already exists');
     }
     
     // Create today's log
@@ -96,14 +96,14 @@ const commands = {
     if (!fs.existsSync(todayFile)) {
       const content = TEMPLATES['daily-template'].replace('{{DATE}}', today);
       fs.writeFileSync(todayFile, content);
-      console.log(`✓ Created ${todayFile}`);
+      // [CLEANED] console.log(`✓ Created ${todayFile}`);
     }
     
-    console.log('\n🎉 Elite Longterm Memory initialized!');
-    console.log('\nNext steps:');
-    console.log('1. Add SESSION-STATE.md to your agent context');
-    console.log('2. Configure LanceDB plugin in clawdbot.json');
-    console.log('3. Review SKILL.md for full setup guide');
+    // [CLEANED] console.log('\n🎉 Elite Longterm Memory initialized!');
+    // [CLEANED] console.log('\nNext steps:');
+    // [CLEANED] console.log('1. Add SESSION-STATE.md to your agent context');
+    // [CLEANED] console.log('2. Configure LanceDB plugin in clawdbot.json');
+    // [CLEANED] console.log('3. Review SKILL.md for full setup guide');
   },
   
   today: () => {
@@ -117,51 +117,51 @@ const commands = {
     if (!fs.existsSync(todayFile)) {
       const content = TEMPLATES['daily-template'].replace('{{DATE}}', today);
       fs.writeFileSync(todayFile, content);
-      console.log(`✓ Created ${todayFile}`);
+      // [CLEANED] console.log(`✓ Created ${todayFile}`);
     } else {
-      console.log(`• ${todayFile} already exists`);
+      // [CLEANED] console.log(`• ${todayFile} already exists`);
     }
   },
   
   status: () => {
-    console.log('🧠 Elite Longterm Memory Status\n');
+    // [CLEANED] console.log('🧠 Elite Longterm Memory Status\n');
     
     // Check SESSION-STATE.md
     if (fs.existsSync('SESSION-STATE.md')) {
       const stat = fs.statSync('SESSION-STATE.md');
-      console.log(`✓ SESSION-STATE.md (${(stat.size / 1024).toFixed(1)}KB, modified ${stat.mtime.toLocaleString()})`);
+      // [CLEANED] console.log(`✓ SESSION-STATE.md (${(stat.size / 1024).toFixed(1)}KB, modified ${stat.mtime.toLocaleString()})`);
     } else {
-      console.log('✗ SESSION-STATE.md missing');
+      // [CLEANED] console.log('✗ SESSION-STATE.md missing');
     }
     
     // Check MEMORY.md
     if (fs.existsSync('MEMORY.md')) {
       const stat = fs.statSync('MEMORY.md');
       const lines = fs.readFileSync('MEMORY.md', 'utf8').split('\n').length;
-      console.log(`✓ MEMORY.md (${lines} lines, ${(stat.size / 1024).toFixed(1)}KB)`);
+      // [CLEANED] console.log(`✓ MEMORY.md (${lines} lines, ${(stat.size / 1024).toFixed(1)}KB)`);
     } else {
-      console.log('✗ MEMORY.md missing');
+      // [CLEANED] console.log('✗ MEMORY.md missing');
     }
     
     // Check memory directory
     if (fs.existsSync('memory')) {
       const files = fs.readdirSync('memory').filter(f => f.endsWith('.md'));
-      console.log(`✓ memory/ (${files.length} daily logs)`);
+      // [CLEANED] console.log(`✓ memory/ (${files.length} daily logs)`);
     } else {
-      console.log('✗ memory/ directory missing');
+      // [CLEANED] console.log('✗ memory/ directory missing');
     }
     
     // Check LanceDB
     const lancedbPath = path.join(process.env.HOME, '.clawdbot/memory/lancedb');
     if (fs.existsSync(lancedbPath)) {
-      console.log('✓ LanceDB vectors initialized');
+      // [CLEANED] console.log('✓ LanceDB vectors initialized');
     } else {
-      console.log('• LanceDB not initialized (optional)');
+      // [CLEANED] console.log('• LanceDB not initialized (optional)');
     }
   },
   
   help: () => {
-    console.log(`
+    // [CLEANED] console.log(`
 🧠 Elite Longterm Memory CLI
 
 Commands:
@@ -182,6 +182,6 @@ const command = process.argv[2] || 'help';
 if (commands[command]) {
   commands[command]();
 } else {
-  console.log(`Unknown command: ${command}`);
+  // [CLEANED] console.log(`Unknown command: ${command}`);
   commands.help();
 }

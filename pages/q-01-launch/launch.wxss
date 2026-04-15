@@ -1,10 +1,10 @@
 /* Stitch V3.0 设计规范 */
-/* 背景色：#EFEEE9 | 主色：#4A5D4E | 辅助金：#C9B037 */
+/* 背景色：var(--stitch-bg-primary) | 主色：var(--stitch-primary) | 辅助金：var(--stitch-gold) */
 /* 间距：24rpx | 字体：Noto Serif SC */
 
 .container {
   min-height: 100vh;
-  background-color: #EFEEE9;
+  background-color: var(--stitch-bg-primary);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,7 +37,7 @@
 
 .brand-icon .material-icons {
   font-size: 144rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
 }
 
 .brand-title {
@@ -45,7 +45,7 @@
   font-size: 180rpx;
   font-weight: 300;
   letter-spacing: 14.4rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   margin-left: 14.4rpx;
 }
 
@@ -63,7 +63,7 @@
   font-size: 64rpx;
   font-weight: 300;
   letter-spacing: 20rpx;
-  color: #4A5D4E;
+  color: var(--stitch-primary);
   margin-left: 20rpx;
 }
 
@@ -75,7 +75,7 @@
 .loading-dot {
   width: 24rpx;
   height: 24rpx;
-  background-color: #4A5D4E;
+  background-color: var(--stitch-primary);
   border-radius: 50%;
   animation: pulse-dot 3s ease-in-out infinite;
 }

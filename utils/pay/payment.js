@@ -87,7 +87,7 @@ async function initiateWechatPay(payParams) {
       signType: payParams.signType,
       paySign: payParams.paySign,
       success: (res) => {
-        console.log('微信支付成功:', res);
+        // [CLEANED] console.log('微信支付成功:', res);
         resolve({
           success: true,
           status: PAY_STATUS.SUCCESS,

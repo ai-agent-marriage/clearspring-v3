@@ -19,7 +19,7 @@ Page({
       statusBarHeight: systemInfo.statusBarHeight || 20
     });
 
-    console.log('证书预览页加载，certId:', options.id);
+    // [CLEANED] console.log('证书预览页加载，certId:', options.id);
     // 实际场景中应根据 options.id 从后端获取证书数据
   },
 

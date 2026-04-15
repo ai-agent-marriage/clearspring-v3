@@ -74,9 +74,7 @@ function QualificationReviewH5() {
       operator: 'admin_h5',
       platform: 'mobile'
     }
-    console.log('Audit Log:', auditLog)
-
-    // 移动到下一条或完成
+    // [CLEANED] console.log('Audit Log:', auditLog)// 移动到下一条或完成
     if (currentIndex < reviews.length - 1) {
       setCurrentIndex(currentIndex + 1)
     } else {

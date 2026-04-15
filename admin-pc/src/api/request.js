@@ -5,9 +5,7 @@ import DOMPurify from 'dompurify'
 
 // 创建 axios 实例
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://101.96.192.63/api'
-console.log('🔧 API Base URL:', API_BASE_URL)
-
-const request = axios.create({
+// [CLEANED] console.log('🔧 API Base URL:', API_BASE_URL)const request = axios.create({
   baseURL: API_BASE_URL,
   timeout: 15000 // 请求超时时间
 })

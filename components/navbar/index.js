@@ -87,7 +87,7 @@ Component({
         wx.navigateBack({
           delta: 1,
           fail: () => {
-            console.log('无法返回上一页');
+            // [CLEANED] console.log('无法返回上一页');
           }
         });
       }

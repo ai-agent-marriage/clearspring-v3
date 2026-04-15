@@ -82,8 +82,8 @@ Page({
         count: 9, quality: 80, sourceType: ['camera', 'album']
       });
       
-      console.log('选择的证书图片:', result.tempFiles);
-      console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
+      // [CLEANED] console.log('选择的证书图片:', result.tempFiles);
+      // [CLEANED] console.log(`已压缩 ${result.compressedCount}/${result.totalCount} 张图片`);
       
       try {
         // TODO: 上传证书图片到云存储

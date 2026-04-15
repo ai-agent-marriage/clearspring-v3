@@ -15,7 +15,7 @@ Page({
     if (options.orderId) {
       this.setData({
         orderId: options.orderId
-      })
+      });
     }
   },
 
@@ -24,22 +24,22 @@ Page({
     wx.showToast({
       title: '正在保存...',
       icon: 'loading'
-    })
+    });
     
     // TODO: 保存图片到相册
     setTimeout(() => {
       wx.showToast({
         title: '保存成功',
         icon: 'success'
-      })
-    }, 1000)
+      });
+    }, 1000);
   },
 
   // 查看订单详情
   viewDetails() {
     wx.navigateTo({
       url: `/pages/order-detail/order-detail?orderId=${this.data.orderId}`
-    })
+    });
   },
 
   // 分享功德
@@ -47,7 +47,7 @@ Page({
     wx.showShareMenu({
       withShareTicket: true,
       menus: ['shareAppMessage', 'shareTimeline']
-    })
+    });
   },
 
   // 分享给好友
@@ -56,7 +56,7 @@ Page({
       title: '我刚刚完成了一次护生委托，功德无量！',
       path: `/pages/index/index?inviter=${this.data.orderId}`,
       imageUrl: this.data.certificateImage
-    }
+    };
   },
 
   // 分享到朋友圈
@@ -65,6 +65,6 @@ Page({
       title: '护生功德 · 善缘广结',
       query: `orderId=${this.data.orderId}`,
       imageUrl: this.data.certificateImage
-    }
+    };
   }
-})
+});

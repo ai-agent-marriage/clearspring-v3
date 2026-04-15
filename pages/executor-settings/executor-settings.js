@@ -158,7 +158,7 @@ Page({
       wx.getUserProfile({
         desc: '用于微信绑定',
         success: (res) => {
-          console.log('用户信息:', res.userInfo);
+          // [CLEANED] console.log('用户信息:', res.userInfo);
           // TODO: 调用云函数绑定微信
           this.setData({ wechatBound: true });
           wx.showToast({
@@ -200,7 +200,7 @@ Page({
     });
     
     // TODO: 同步到云端
-    console.log('通知设置更新:', notifications);
+    // [CLEANED] console.log('通知设置更新:', notifications);
   },
 
   /**

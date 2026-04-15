@@ -12,8 +12,7 @@ export function initCloud() {
     env: CLOUD_ENV,
     traceUser: true
   })
-  console.log('[云开发] 初始化完成')
-}
+  // [CLEANED] console.log('[云开发] 初始化完成')}
 
 /**
  * 云函数调用封装
@@ -103,8 +102,7 @@ export async function uploadEvidence(fileData, taskId, options = {}) {
     
     if (uploadRecord && uploadRecord.status === 'pending') {
       // 断点续传：从已上传的位置继续
-      console.log('[断点续传] 继续上传:', uploadRecord.uploadedBytes)
-      return resumeUpload(fileData, taskId, uploadRecord, onProgress)
+      // [CLEANED] console.log('[断点续传] 继续上传:', uploadRecord.uploadedBytes)return resumeUpload(fileData, taskId, uploadRecord, onProgress)
     }
     
     // 2. 全新上传
@@ -165,8 +163,7 @@ export async function uploadEvidence(fileData, taskId, options = {}) {
 async function resumeUpload(fileData, taskId, record, onProgress) {
   // 实际实现需要云函数支持分片上传
   // 这里简化处理：重新上传但跳过已确认的部分
-  console.log('[断点续传] 重新上传文件')
-  return uploadEvidence(fileData, taskId, { onProgress })
+  // [CLEANED] console.log('[断点续传] 重新上传文件')return uploadEvidence(fileData, taskId, { onProgress })
 }
 
 /**

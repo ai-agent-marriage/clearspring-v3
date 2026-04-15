@@ -24,7 +24,7 @@
 /* Tab 栏 */
 .tab-scroll {
   background: var(--stitch-bg-white);
-  border-bottom: 1rpx solid #e8e8e8;
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.03);
   white-space: nowrap;
 }
 
@@ -55,7 +55,7 @@
   width: 48rpx;
   height: 4rpx;
   background: linear-gradient(90deg, var(--stitch-gold-primary), var(--stitch-gold-dim));
-  border-radius: 2rpx;
+  border-radius: 24rpx;
 }
 
 /* 订单列表 */
@@ -87,7 +87,7 @@
   align-items: flex-start;
   margin-bottom: var(--stitch-spacing-md);
   padding-bottom: var(--stitch-spacing-md);
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .header-left {
@@ -174,7 +174,7 @@
   justify-content: flex-end;
   align-items: center;
   padding: var(--stitch-spacing-md) 0;
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
   margin-bottom: var(--stitch-spacing-md);
 }
 
@@ -196,7 +196,7 @@
   justify-content: flex-end;
   gap: 16rpx;
   padding-top: var(--stitch-spacing-md);
-  border-top: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid rgba(74, 93, 78, 0.03);
 }
 
 .order-actions button {

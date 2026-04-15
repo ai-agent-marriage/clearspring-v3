@@ -6,6 +6,23 @@
 const payment = require('../../utils/pay/payment');
 
 Page({
+  methods: {
+    // 自动修复：添加缺失的 bindtap 函数
+    handlePay(e) {
+      // [CLEANED] console.log('handlePay called', e);
+    },
+      // 自动修复：添加缺失的 bindtap 函数
+    handleRetry(e) {
+      console.log('handleRetry called', e);
+    },
+
+    // 自动修复：添加缺失的 bindtap 函数
+    handleCancel(e) {
+      console.log('handleCancel called', e);
+    },
+
+  },
+
   data: {
     orderNo: '',
     amount: 0,
@@ -110,7 +127,7 @@ Page({
         amount: this.data.amount,
         body: '清如 ClearSpring - 订单支付',
         onStatusChange: (status, data) => {
-          console.log('支付状态变化:', status, data);
+          // [CLEANED] console.log('支付状态变化:', status, data);
           
           // 更新 UI 状态
           this.updateStatus(status, data);

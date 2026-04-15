@@ -28,16 +28,16 @@ class MockDatabase {
   }
 
   async connect() {
-    console.log('🔌 连接数据库...');
+    // [CLEANED] console.log('🔌 连接数据库...');
     await this.sleep(500); // 模拟连接延迟
-    console.log('✅ 数据库连接成功');
+    // [CLEANED] console.log('✅ 数据库连接成功');
     return true;
   }
 
   async disconnect() {
-    console.log('🔌 断开数据库连接...');
+    // [CLEANED] console.log('🔌 断开数据库连接...');
     await this.sleep(300);
-    console.log('✅ 数据库连接已断开');
+    // [CLEANED] console.log('✅ 数据库连接已断开');
   }
 
   async insert(collection, documents) {
@@ -68,7 +68,7 @@ class MockDatabase {
     }
     
     if (CONFIG.verbose) {
-      console.log(`  📦 ${collection}: 插入 ${inserted.length}, 更新 ${updated.length}`);
+      // [CLEANED] console.log(`  📦 ${collection}: 插入 ${inserted.length}, 更新 ${updated.length}`);
     }
     
     return { inserted: inserted.length, updated: updated.length };
@@ -109,7 +109,7 @@ class MockDatabase {
   }
 
   async validateDataIntegrity() {
-    console.log('\n🔍 验证数据完整性...');
+    // [CLEANED] console.log('\n🔍 验证数据完整性...');
     const errors = [];
     
     // 验证订单关联的用户是否存在
@@ -156,15 +156,15 @@ class MockDatabase {
     }
     
     if (errors.length > 0) {
-      console.log('❌ 数据完整性验证失败:');
-      errors.slice(0, 10).forEach(e => console.log(`  - ${e}`));
+      // [CLEANED] console.log('❌ 数据完整性验证失败:');
+      errors.slice(0, 10).forEach(e => // [CLEANED] console.log(`  - ${e}`));
       if (errors.length > 10) {
-        console.log(`  ... 还有 ${errors.length - 10} 个错误`);
+        // [CLEANED] console.log(`  ... 还有 ${errors.length - 10} 个错误`);
       }
       return false;
     }
     
-    console.log('✅ 数据完整性验证通过');
+    // [CLEANED] console.log('✅ 数据完整性验证通过');
     return true;
   }
 }
@@ -177,10 +177,10 @@ class DataImporter {
   }
 
   async importFile(collection, filePath) {
-    console.log(`\n📥 导入 ${collection}...`);
+    // [CLEANED] console.log(`\n📥 导入 ${collection}...`);
     
     if (!fs.existsSync(filePath)) {
-      console.log(`❌ 文件不存在：${filePath}`);
+      // [CLEANED] console.log(`❌ 文件不存在：${filePath}`);
       this.results[collection] = { success: false, error: '文件不存在' };
       return false;
     }
@@ -188,15 +188,15 @@ class DataImporter {
     const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     
     if (!Array.isArray(data)) {
-      console.log(`❌ 数据格式错误：${filePath}`);
+      // [CLEANED] console.log(`❌ 数据格式错误：${filePath}`);
       this.results[collection] = { success: false, error: '数据格式错误' };
       return false;
     }
     
-    console.log(`  读取到 ${data.length} 条记录`);
+    // [CLEANED] console.log(`  读取到 ${data.length} 条记录`);
     
     if (CONFIG.dryRun) {
-      console.log(`  [空跑模式] 跳过实际导入`);
+      // [CLEANED] console.log(`  [空跑模式] 跳过实际导入`);
       this.results[collection] = { 
         success: true, 
         count: data.length,
@@ -216,7 +216,7 @@ class DataImporter {
       const result = await this.db.insert(collection, batch);
       
       if (CONFIG.verbose) {
-        console.log(`  批次 ${i + 1}/${batches}: 导入 ${batch.length} 条`);
+        // [CLEANED] console.log(`  批次 ${i + 1}/${batches}: 导入 ${batch.length} 条`);
       }
     }
     
@@ -229,7 +229,7 @@ class DataImporter {
       updated: this.db.getStats().updated
     };
     
-    console.log(`✅ ${collection} 导入完成，共 ${finalCount} 条记录`);
+    // [CLEANED] console.log(`✅ ${collection} 导入完成，共 ${finalCount} 条记录`);
     return true;
   }
 
@@ -243,10 +243,10 @@ class DataImporter {
       { collection: 'reviews', file: 'reviews.json' }
     ];
     
-    console.log('🚀 开始导入数据...');
-    console.log(`📁 数据目录：${CONFIG.dataDir}`);
-    console.log(`📦 批量大小：${CONFIG.batchSize}`);
-    console.log(`🔍 空跑模式：${CONFIG.dryRun ? '是' : '否'}`);
+    // [CLEANED] console.log('🚀 开始导入数据...');
+    // [CLEANED] console.log(`📁 数据目录：${CONFIG.dataDir}`);
+    // [CLEANED] console.log(`📦 批量大小：${CONFIG.batchSize}`);
+    // [CLEANED] console.log(`🔍 空跑模式：${CONFIG.dryRun ? '是' : '否'}`);
     
     let successCount = 0;
     for (const { collection, file } of files) {
@@ -255,7 +255,7 @@ class DataImporter {
       if (success) successCount++;
     }
     
-    console.log(`\n✅ 导入完成：${successCount}/${files.length} 个集合成功`);
+    // [CLEANED] console.log(`\n✅ 导入完成：${successCount}/${files.length} 个集合成功`);
     return successCount === files.length;
   }
 
@@ -367,9 +367,9 @@ node scripts/import-mock-data.js --drop
 async function main() {
   const startTime = Date.now();
   
-  console.log('='.repeat(60));
-  console.log('📊 模拟数据导入工具');
-  console.log('='.repeat(60));
+  // [CLEANED] console.log('='.repeat(60));
+  // [CLEANED] console.log('📊 模拟数据导入工具');
+  // [CLEANED] console.log('='.repeat(60));
   
   const db = new MockDatabase();
   
@@ -394,17 +394,17 @@ async function main() {
       // 保存报告
       const reportPath = path.join(__dirname, '..', 'docs', 'data', 'mock-data-import-report.md');
       fs.writeFileSync(reportPath, report);
-      console.log(`\n📄 导入报告已保存：${reportPath}`);
+      // [CLEANED] console.log(`\n📄 导入报告已保存：${reportPath}`);
       
       // 打印报告摘要
-      console.log('\n' + '='.repeat(60));
-      console.log('📊 导入统计摘要');
-      console.log('='.repeat(60));
+      // [CLEANED] console.log('\n' + '='.repeat(60));
+      // [CLEANED] console.log('📊 导入统计摘要');
+      // [CLEANED] console.log('='.repeat(60));
       const results = importer.getResults();
       Object.entries(results).forEach(([key, value]) => {
-        console.log(`${key.padEnd(15)}: ${String(value.count).padStart(4)} 条 ${value.success ? '✅' : '❌'}`);
+        // [CLEANED] console.log(`${key.padEnd(15)}: ${String(value.count).padStart(4)} 条 ${value.success ? '✅' : '❌'}`);
       });
-      console.log('='.repeat(60));
+      // [CLEANED] console.log('='.repeat(60));
     }
     
   } catch (error) {
@@ -415,7 +415,7 @@ async function main() {
   }
   
   const totalDuration = Date.now() - startTime;
-  console.log(`\n⏱️  总耗时：${(totalDuration / 1000).toFixed(2)} 秒`);
+  // [CLEANED] console.log(`\n⏱️  总耗时：${(totalDuration / 1000).toFixed(2)} 秒`);
 }
 
 // 运行

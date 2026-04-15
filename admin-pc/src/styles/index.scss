@@ -42,7 +42,7 @@ html, body {
 
 // 卡片样式优化
 .el-card {
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
   
   .el-card__header {
@@ -63,7 +63,7 @@ html, body {
 
 // 对话框圆角
 .el-dialog {
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 // 响应式布局辅助类
@@ -93,7 +93,7 @@ html, body {
 // 统计卡片
 .stat-card {
   background: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 20px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
   

@@ -77,7 +77,7 @@
   display: flex;
   justify-content: space-around;
   padding-top: var(--stitch-spacing-md);
-  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .stat-item {
@@ -164,7 +164,7 @@
 .qual-skills {
   margin-top: var(--stitch-spacing-md);
   padding-top: var(--stitch-spacing-md);
-  border-top: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-top: 1rpx solid rgba(74, 93, 78, 0.04);
 }
 
 .skills-label {
@@ -196,7 +196,7 @@
   display: flex;
   align-items: center;
   padding: var(--stitch-spacing-md);
-  border-bottom: 1rpx solid rgba(74, 93, 78, 0.1);
+  border-bottom: 1rpx solid rgba(74, 93, 78, 0.04);
   transition: all var(--stitch-transition-base);
   position: relative;
 }
@@ -234,7 +234,7 @@
   height: 36rpx;
   background: var(--stitch-error);
   color: var(--stitch-bg-white);
-  border-radius: 18rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   justify-content: center;

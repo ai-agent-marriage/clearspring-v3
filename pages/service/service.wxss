@@ -19,7 +19,7 @@ page {
 
 .service-card {
   background-color: var(--stitch-bg-white);
-  border-radius: 12rpx;
+  border-radius: 24rpx;
   padding: 24rpx;
   display: flex;
   justify-content: space-between;

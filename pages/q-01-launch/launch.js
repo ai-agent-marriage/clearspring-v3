@@ -11,6 +11,6 @@ Page({
       // wx.reLaunch({
       //   url: '/pages/index/index'
       // })
-    }, 3000)
+    }, 3000);
   }
-})
+});

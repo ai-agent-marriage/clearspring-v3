@@ -26,14 +26,14 @@ Page({
   onAgreeChange(e) {
     this.setData({
       agreed: e.detail.value
-    })
+    });
   },
 
   // 查看协议
   viewAgreement() {
     wx.navigateTo({
       url: '/pages/agreement/agreement'
-    })
+    });
   },
 
   // 支付
@@ -42,8 +42,8 @@ Page({
       wx.showToast({
         title: '请先同意协议',
         icon: 'none'
-      })
-      return
+      });
+      return;
     }
 
     // TODO: 调用支付 API
@@ -53,20 +53,20 @@ Page({
         wx.showToast({
           title: '支付成功',
           icon: 'success'
-        })
+        });
         // 跳转到结果页
         setTimeout(() => {
           wx.navigateTo({
             url: '/pages/q-15-result/q-15-result'
-          })
-        }, 1500)
+          });
+        }, 1500);
       },
       fail: () => {
         wx.showToast({
           title: '支付失败',
           icon: 'none'
-        })
+        });
       }
-    })
+    });
   }
-})
+});

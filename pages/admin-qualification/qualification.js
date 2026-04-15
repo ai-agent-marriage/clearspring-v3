@@ -55,13 +55,13 @@ Page({
 
   // 显示筛选
   showFilter() {
-    console.log('显示筛选');
+    // [CLEANED] console.log('显示筛选');
   },
 
   // 搜索输入
   onSearchInput(e) {
     const keyword = e.detail.value;
-    console.log('搜索关键词:', keyword);
+    // [CLEANED] console.log('搜索关键词:', keyword);
   },
 
   // 切换 Tab
@@ -80,7 +80,7 @@ Page({
       content: '确认通过该资质审核？',
       success: (res) => {
         if (res.confirm) {
-          console.log('通过资质:', qualId);
+          // [CLEANED] console.log('通过资质:', qualId);
           wx.showToast({
             title: '已通过',
             icon: 'success'
@@ -99,7 +99,7 @@ Page({
       editable: true,
       success: (res) => {
         if (res.confirm) {
-          console.log('拒绝资质:', qualId, '原因:', res.content);
+          // [CLEANED] console.log('拒绝资质:', qualId, '原因:', res.content);
           wx.showToast({
             title: '已拒绝',
             icon: 'success'

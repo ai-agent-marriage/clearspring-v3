@@ -1,0 +1,478 @@
+/* 分账配置样式 */
+
+/* 容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--stitch-white);
+}
+
+/* 顶部导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background-color: var(--stitch-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-icon .material-icons {
+  color: var(--stitch-white);
+  font-size: 32rpx;
+}
+
+.navbar-title {
+  color: var(--stitch-white);
+  font-size: 32rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon-btn .material-icons {
+  color: var(--stitch-white);
+  font-size: 32rpx;
+}
+
+/* 主要内容区 */
+.main-content {
+  flex: 1;
+  margin-top: 88rpx;
+  padding: 24rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 配置区块 */
+.config-section {
+  margin-bottom: 24rpx;
+  background-color: var(--stitch-white);
+  border-radius: 24rpx;
+  padding: 40rpx;
+  border: 2rpx solid rgba(195, 200, 193, 0.3);
+}
+
+.section-header {
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  color: var(--stitch-primary);
+  font-size: 32rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.section-desc {
+  color: var(--stitch-gray);
+  font-size: 24rpx;
+}
+
+/* 分账比例配置 */
+.ratio-config {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.ratio-card {
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.ratio-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.ratio-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 24rpx;
+}
+
+.ratio-icon.platform {
+  background-color: rgba(74, 93, 78, 0.1);
+}
+
+.ratio-icon.platform .material-icons {
+  color: var(--stitch-primary);
+}
+
+.ratio-icon.executor {
+  background-color: rgba(110, 94, 0, 0.1);
+}
+
+.ratio-icon.executor .material-icons {
+  color: var(--stitch-gold);
+}
+
+.ratio-icon .material-icons {
+  font-size: 32rpx;
+}
+
+.ratio-label {
+  color: var(--stitch-primary);
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.ratio-value {
+  display: flex;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
+.ratio-number {
+  color: var(--stitch-primary);
+  font-size: 64rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.ratio-unit {
+  color: var(--stitch-primary);
+  font-size: 32rpx;
+}
+
+.ratio-slider {
+  width: 100%;
+}
+
+.ratio-desc {
+  color: var(--stitch-gray);
+  font-size: 22rpx;
+}
+
+.ratio-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--stitch-border);
+}
+
+.ratio-divider .material-icons {
+  font-size: 32rpx;
+}
+
+.ratio-warning {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-top: 24rpx;
+  padding: 20rpx;
+  background-color: rgba(186, 26, 26, 0.05);
+  border-radius: 24rpx;
+}
+
+.ratio-warning .material-icons {
+  color: var(--stitch-gray);
+  font-size: 28rpx;
+}
+
+.ratio-warning text {
+  color: var(--stitch-gray);
+  font-size: 22rpx;
+}
+
+/* 结算周期选项 */
+.settle-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24rpx;
+}
+
+.settle-option {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 28rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
+  border: 2rpx solid transparent;
+}
+
+.settle-option.active {
+  background-color: rgba(74, 93, 78, 0.1);
+  border-color: var(--stitch-primary);
+}
+
+.option-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 24rpx;
+  background-color: rgba(74, 93, 78, 0.1);
+}
+
+.option-icon .material-icons {
+  color: var(--stitch-primary);
+  font-size: 28rpx;
+}
+
+.option-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.option-title {
+  color: var(--stitch-primary);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.option-desc {
+  color: var(--stitch-gray);
+  font-size: 22rpx;
+}
+
+.option-radio {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: 2rpx solid var(--stitch-border);
+}
+
+.option-radio.checked {
+  border-color: var(--stitch-primary);
+  background-color: var(--stitch-primary);
+}
+
+/* 金额配置 */
+.amount-config {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.amount-input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
+  padding: 20rpx 32rpx;
+}
+
+.amount-symbol {
+  color: var(--stitch-primary);
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-right: 8rpx;
+}
+
+.amount-input {
+  flex: 1;
+  font-size: 32rpx;
+  color: var(--stitch-primary);
+  font-weight: 700;
+}
+
+.amount-presets {
+  display: flex;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+.preset-tag {
+  padding: 12rpx 24rpx;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
+  color: var(--stitch-primary);
+  font-size: 24rpx;
+}
+
+/* 手续费配置 */
+.fee-config {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.fee-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fee-label {
+  color: var(--stitch-primary);
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.fee-desc {
+  color: var(--stitch-gray);
+  font-size: 22rpx;
+  display: block;
+  margin-top: 4rpx;
+}
+
+.fee-switch-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.fee-input-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--stitch-bg-primary);
+  border-radius: 24rpx;
+  padding: 12rpx 20rpx;
+}
+
+.fee-symbol {
+  color: var(--stitch-primary);
+  font-size: 24rpx;
+  font-weight: 700;
+  margin-right: 4rpx;
+}
+
+.fee-input {
+  width: 120rpx;
+  font-size: 24rpx;
+  color: var(--stitch-primary);
+  text-align: right;
+}
+
+.fee-unit {
+  color: var(--stitch-primary);
+  font-size: 24rpx;
+  margin-left: 4rpx;
+}
+
+.fee-switch {
+  transform: scale(0.9);
+}
+
+/* 规则说明 */
+.rule-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.rule-item {
+  display: flex;
+  gap: 16rpx;
+  align-items: flex-start;
+}
+
+.rule-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: rgba(74, 93, 78, 0.1);
+  color: var(--stitch-primary);
+  font-size: 24rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.rule-text {
+  color: var(--stitch-primary);
+  font-size: 26rpx;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* 保存按钮 */
+.save-actions {
+  margin-top: 24rpx;
+  padding: 0 8rpx;
+}
+
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  background-color: var(--stitch-primary);
+  color: var(--stitch-white);
+  padding: 32rpx 0;
+  border-radius: 24rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+}
+
+.save-btn .material-icons {
+  font-size: 40rpx;
+}
+
+/* Material Icons 字体 */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24rpx;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

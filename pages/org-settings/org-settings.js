@@ -96,7 +96,7 @@ Page({
     const notifications = { ...this.data.notifications, [type]: checked };
     this.setData({ notifications });
     wx.setStorageSync('org_settings', { notifications, language: this.data.language });
-    console.log('通知设置更新:', notifications);
+    // [CLEANED] console.log('通知设置更新:', notifications);
   },
 
   onPrivacySetting() { wx.showActionSheet({ itemList: ['公开', '仅合作方可见', '私密'], success: () => wx.showToast({ title: '已更新', icon: 'success' }) }); },

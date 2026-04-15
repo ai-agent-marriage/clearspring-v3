@@ -73,7 +73,6 @@ router.beforeEach(async (to, from, next) => {
 // 路由后置守卫
 router.afterEach((to, from) => {
   // 可以在这里添加埋点统计等操作
-  console.log('路由变化:', from.path, '->', to.path)
-})
+  // [CLEANED] console.log('路由变化:', from.path, '->', to.path)})
 
 export default router

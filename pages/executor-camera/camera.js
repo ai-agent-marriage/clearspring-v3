@@ -34,7 +34,7 @@ Page({
 
   // 相机初始化完成
   onCameraInit() {
-    console.log('相机初始化完成');
+    // [CLEANED] console.log('相机初始化完成');
   },
 
   // 相机错误
