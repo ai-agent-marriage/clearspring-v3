@@ -13,57 +13,15 @@
     "pages/protect/index",
     "pages/protect/register",
     "pages/protect/detail",
-    "pages/protect/cert-preview"
+    "pages/protect/cert-preview",
+    "pages/executor-evidence/evidence",
+    "pages/executor-income/income",
+    "pages/executor-profile/profile",
+    "pages/executor-qualification-manage/manage",
+    "pages/executor-message-center/messages",
+    "pages/executor-settings/settings"
   ],
   "subPackages": [
-    {
-      "root": "pages/executor",
-      "pages": [
-        "executor-qualification/executor-qualification",
-        "executor-status/executor-status",
-        "executor-camera/executor-camera",
-        "executor-evidence/executor-evidence",
-        "executor-income/executor-income",
-        "executor-profile/executor-profile",
-        "executor-qualification-manage/executor-qualification-manage",
-        "executor-message-center/executor-message-center",
-        "executor-settings/executor-settings"
-      ]
-    },
-    {
-      "root": "pages/volunteer-home",
-      "pages": [
-        "index",
-        "tasks",
-        "task-detail",
-        "submit"
-      ]
-    },
-    {
-      "root": "pages/org-home",
-      "pages": [
-        "index",
-        "orders",
-        "volunteers",
-        "settlement"
-      ]
-    },
-    {
-      "root": "pages/order",
-      "pages": [
-        "create",
-        "confirm",
-        "list",
-        "detail"
-      ]
-    },
-    {
-      "root": "pages/help",
-      "pages": [
-        "index",
-        "detail"
-      ]
-    },
     {
       "root": "pages/about",
       "pages": [
