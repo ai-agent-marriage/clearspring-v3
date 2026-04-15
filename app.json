@@ -31,21 +31,6 @@
       ]
     }
   ],
-  "preloadRule": {
-    "pages/index/index": {
-      "network": "all",
-      "packages": [
-        "pages/volunteer-home",
-        "pages/org-home"
-      ]
-    },
-    "pages/executor-home/executor-home": {
-      "network": "wifi",
-      "packages": [
-        "pages/executor"
-      ]
-    }
-  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
