@@ -73,7 +73,7 @@
         <text class="date-month">{{item.month}}</text>
       </view>
       <view class="history-content">
-        <view class="history-title">{{item.title}}</text>
+        <view class="history-title">{{item.title}}</view>
         <text class="history-location">{{item.location}}</text>
         <text class="history-count">放生数量：{{item.count}}</text>
       </view>
