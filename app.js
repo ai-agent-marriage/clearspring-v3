@@ -132,10 +132,6 @@ App({
     // 云服务配置
     cloudEnv: 'clearspring-prod',
     // API 基础地址（分环境配置）
-    apiBase: {
-      dev: 'https://dev-api.clearspring.com',
-      test: 'https://test-api.clearspring.com',
-      prod: 'https://api.clearspring.com'
-    }[process.env?.NODE_ENV || 'prod']
+    apiBase: 'https://api.clearspring.com'
   }
 });

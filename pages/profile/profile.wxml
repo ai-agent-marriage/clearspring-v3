@@ -111,7 +111,7 @@
         </view>
         <text class="menu-arrow">›</text>
       </view>
-      <view class="menu-item" bindtap="navigateTo" data-item="{{{name: '设置', path: '/pages/settings/settings'}}}">
+      <view class="menu-item" bindtap="navigateTo" data-name="设置" data-path="/pages/settings/settings">
         <view class="menu-left">
           <text class="menu-icon">⚙️</text>
           <text class="menu-name">设置</text>
