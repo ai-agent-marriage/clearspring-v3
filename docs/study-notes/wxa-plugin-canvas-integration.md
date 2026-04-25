@@ -15,7 +15,7 @@
 ### 方式一：Git 克隆（推荐）
 
 ```bash
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 git clone https://github.com/jasondu/wxa-plugin-canvas.git components/painter
 ```
 

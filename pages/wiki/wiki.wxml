@@ -21,7 +21,7 @@
         bindtap="onSpeciesTap"
         data-species="{{item}}"
       >
-        <image class="species-image" src="{{item.image}}" mode="aspectFill"></image>
+        <image class="species-image" lazy-load="true" src="{{item.image}}" mode="aspectFill"></image>
         <view class="species-info">
           <view class="species-header">
             <text class="species-name">{{item.name}}</text>
@@ -97,7 +97,7 @@
         <text class="ecology-title">为什么要科学放生？</text>
         <text class="ecology-text">不当放生可能导致外来物种入侵、破坏本地生态系统、造成动物死亡等严重后果。请选择本地原生物种，在合适的水域和季节进行放生。</text>
       </view>
-      <image class="ecology-illustration" src="/images/wiki/ecology.png" mode="widthFix"></image>
+      <image class="ecology-illustration" lazy-load="true" src="/images/wiki/ecology.png" mode="widthFix"></image>
     </view>
 
     <view class="ecology-card card">
@@ -105,7 +105,7 @@
         <text class="ecology-title">放生的意义</text>
         <text class="ecology-text">放生不仅是宗教仪式，更是对生命的尊重和对生态环境的保护。每一次如法的放生，都是在积累福德，也是在为地球生态做出贡献。</text>
       </view>
-      <image class="ecology-illustration" src="/images/wiki/meaning.png" mode="widthFix"></image>
+      <image class="ecology-illustration" lazy-load="true" src="/images/wiki/meaning.png" mode="widthFix"></image>
     </view>
   </view>
 </view>

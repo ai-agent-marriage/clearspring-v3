@@ -411,7 +411,7 @@
 ### 代码质量检查
 ```bash
 # ESLint 检查
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run lint
 # → ✅ 0 错误，0 警告
 

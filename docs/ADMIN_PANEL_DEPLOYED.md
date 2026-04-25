@@ -54,7 +54,7 @@ http://101.96.192.63/admin/
 
 ```bash
 # 在服务器上
-cd /root/.openclaw/workspace/admin-pc
+cd /home/admin/.openclaw/workspace/admin-pc
 npm run dev
 
 # 访问 http://localhost:5173
@@ -72,7 +72,7 @@ server {
     listen 80;
     server_name admin.springs.dexoconnect.com;
     
-    root /root/.openclaw/workspace/admin-pc/dist;
+    root /home/admin/.openclaw/workspace/admin-pc/dist;
     index index.html;
     
     # SPA 路由支持
@@ -187,7 +187,7 @@ tail -f /var/log/nginx/error.log
 
 ### 重新构建
 ```bash
-cd /root/.openclaw/workspace/admin-pc
+cd /home/admin/.openclaw/workspace/admin-pc
 npm run build
 # 自动部署到 dist/
 ```
@@ -262,7 +262,7 @@ curl http://localhost:3000/health
 
 **检查 API 地址配置**:
 ```bash
-cat /root/.openclaw/workspace/admin-pc/.env
+cat /home/admin/.openclaw/workspace/admin-pc/.env
 # VITE_API_BASE_URL=http://localhost:8080/api
 ```
 

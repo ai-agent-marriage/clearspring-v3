@@ -61,7 +61,7 @@
       <view class="volunteer-list">
         <view class="volunteer-card glass" wx:for="{{volunteers}}" wx:key="id">
           <view class="volunteer-header">
-            <image class="volunteer-avatar" src="{{item.avatar}}" mode="aspectFill"/>
+            <image class="volunteer-avatar" lazy-load="true" src="{{item.avatar}}" mode="aspectFill"/>
             <view class="volunteer-info">
               <view class="volunteer-name-row">
                 <text class="volunteer-name">{{item.name}}</text>

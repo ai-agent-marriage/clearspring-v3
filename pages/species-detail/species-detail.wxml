@@ -1,0 +1,147 @@
+<!--pages/species-detail/species-detail.wxml-->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 主要内容 -->
+  <view wx:else class="content">
+    <!-- 物种图片 -->
+    <view class="image-gallery">
+      <swiper 
+        class="image-swiper"
+        indicator-dots
+        autoplay="{{false}}"
+        circular
+      >
+        <swiper-item wx:for="{{species.images}}" wx:key="index">
+          <image 
+            class="swiper-image"
+            src="{{item}}"
+            mode="aspectFill"
+            bindtap="onPreviewImage"
+            data-index="{{index}}"
+          ></image>
+        </swiper-item>
+      </swiper>
+      
+      <view class="image-indicator">
+        <text>{{currentImageIndex + 1}} / {{species.images.length}}</text>
+      </view>
+    </view>
+
+    <!-- 基本信息 -->
+    <view class="info-card glass">
+      <view class="info-header">
+        <view>
+          <text class="species-name">{{species.name}}</text>
+          <text class="species-scientific">{{species.scientific_name}}</text>
+        </view>
+        <view class="protection-badge {{species.protection_level === '入侵物种' ? 'danger' : ''}}">
+          {{species.protection_level}}
+        </view>
+      </view>
+
+      <view class="info-tags">
+        <view class="tag">{{species.category_text}}</view>
+        <view wx:if="{{species.is_releasable}}" class="tag allowed">✓ 可投放</view>
+        <view wx:else class="tag forbidden">✕ 禁止投放</view>
+      </view>
+    </view>
+
+    <!-- 详细信息 -->
+    <view class="detail-section">
+      <view class="section-title">
+        <text class="title-icon">📖</text>
+        <text>物种介绍</text>
+      </view>
+      <text class="section-content">{{species.description}}</text>
+    </view>
+
+    <view wx:if="{{species.cultural_meaning}}" class="detail-section">
+      <view class="section-title">
+        <text class="title-icon">🏮</text>
+        <text>文化寓意</text>
+      </view>
+      <text class="section-content">{{species.cultural_meaning}}</text>
+    </view>
+
+    <view class="detail-section">
+      <view class="section-title">
+        <text class="title-icon">🌊</text>
+        <text>适宜生境</text>
+      </view>
+      <text class="section-content">{{species.suitable_habitat}}</text>
+    </view>
+
+    <view class="detail-section">
+      <view class="section-title">
+        <text class="title-icon">📅</text>
+        <text>最佳投放季节</text>
+      </view>
+      <text class="section-content">{{species.best_release_season}}</text>
+    </view>
+
+    <!-- 投放要求 -->
+    <view class="detail-section">
+      <view class="section-title">
+        <text class="title-icon">⚠️</text>
+        <text>投放要求</text>
+      </view>
+      <view class="requirements-list">
+        <view 
+          class="requirement-item"
+          wx:for="{{species.release_requirements}}"
+          wx:key="index"
+        >
+          <text class="requirement-dot">•</text>
+          <text class="requirement-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 警告信息 -->
+    <view wx:if="{{species.warnings && species.warnings.length > 0}}" class="warning-section">
+      <view class="section-title">
+        <text class="title-icon">🚫</text>
+        <text>注意事项</text>
+      </view>
+      <view class="warnings-list">
+        <view 
+          class="warning-item"
+          wx:for="{{species.warnings}}"
+          wx:key="index"
+        >
+          <text class="warning-icon">!</text>
+          <text class="warning-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 法律依据 -->
+    <view class="legal-section">
+      <text class="legal-label">法律依据：</text>
+      <text class="legal-content">{{species.legal_basis}}</text>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-bar">
+      <button 
+        wx:if="{{species.is_releasable}}"
+        class="btn btn-primary btn-lg"
+        bindtap="onProtectTap"
+      >
+        我要护生
+      </button>
+      <button 
+        wx:else
+        class="btn btn-disabled btn-lg"
+        disabled
+      >
+        禁止投放
+      </button>
+    </view>
+  </view>
+</view>

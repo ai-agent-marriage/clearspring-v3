@@ -41,12 +41,12 @@
 
 **Agent B 发现的文件**:
 ```
-/root/.openclaw/workspace/pages/protect/cert-preview.js
-/root/.openclaw/workspace/pages/protect/cert-preview.wxml
-/root/.openclaw/workspace/pages/protect/cert-preview.wxss
-/root/.openclaw/workspace/pages/protect/detail.js
-/root/.openclaw/workspace/pages/protect/detail.wxml
-/root/.openclaw/workspace/pages/protect/detail.wxss
+/home/admin/.openclaw/workspace/pages/protect/cert-preview.js
+/home/admin/.openclaw/workspace/pages/protect/cert-preview.wxml
+/home/admin/.openclaw/workspace/pages/protect/cert-preview.wxss
+/home/admin/.openclaw/workspace/pages/protect/detail.js
+/home/admin/.openclaw/workspace/pages/protect/detail.wxml
+/home/admin/.openclaw/workspace/pages/protect/detail.wxss
 ```
 
 ### 2.2 证书预览页（O-12）审查对比

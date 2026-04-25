@@ -227,7 +227,7 @@ jobs:
 #### 5.1 推送测试提交
 
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 添加工作流文件
 git add .github/workflows/deploy.yml

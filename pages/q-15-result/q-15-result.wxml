@@ -63,7 +63,7 @@
   <view class="certificate-section">
     <text class="section-title">功德证书</text>
     <view class="certificate-card">
-      <image class="certificate-image" src="{{certificateImage}}" mode="aspectFill"/>
+      <image class="certificate-image" lazy-load="true" src="{{certificateImage}}" mode="aspectFill"/>
       <button class="save-cert-btn" bindtap="saveCertificate">
         <text class="material-icons">download</text>
         <text>保存证书</text>

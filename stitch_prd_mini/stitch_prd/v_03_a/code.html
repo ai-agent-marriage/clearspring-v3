@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>任务详情 - 呼吸的寂静</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#ebcaa3",
+                    "surface-bright": "#faf9f4",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-high": "#e9e8e3",
+                    "primary-container": "#4a5d4e",
+                    "outline-variant": "#c3c8c1",
+                    "surface-container-low": "#f5f4ef",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#506354",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1b1c19",
+                    "secondary": "#6e5e00",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container": "#efeee9",
+                    "secondary-container": "#fee264",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "tertiary-container": "#6d5435",
+                    "background": "#faf9f4",
+                    "inverse-surface": "#30312e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "inverse-primary": "#b7ccb9",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-secondary-container": "#756400",
+                    "on-background": "#1b1c19",
+                    "tertiary": "#533d20",
+                    "primary": "#334537",
+                    "on-secondary-fixed": "#211b00",
+                    "secondary-fixed": "#fee264",
+                    "on-tertiary-fixed": "#291801",
+                    "on-primary-fixed": "#0e1f13",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-dim": "#dbdad5",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-container-highest": "#e3e2de",
+                    "outline": "#737872",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#c0d5c2",
+                    "surface": "#faf9f4",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e3e2de",
+                    "on-surface-variant": "#434843",
+                    "inverse-on-surface": "#f2f1ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.05) 0%, transparent 50%);
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen pb-24 selection:bg-secondary-container">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-4 h-14 w-full fixed top-0 z-50 bg-[#4A5D4E] shadow-sm bg-opacity-90 backdrop-blur-md">
+<div class="flex items-center gap-2">
+<button class="text-white hover:bg-white/10 p-2 rounded-full transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline text-xl text-white font-bold tracking-tight">任务详情</h1>
+</div>
+<button class="text-white hover:bg-white/10 p-2 rounded-full transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-16 px-4 max-w-2xl mx-auto space-y-4">
+<!-- Status Card: Compact Zen Layout -->
+<section class="relative overflow-hidden rounded-2xl bg-surface-container-low p-5 ink-wash-bg group">
+<div class="relative z-10 flex items-center justify-between gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<div class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase">
+                            Status
+                        </div>
+</div>
+<h2 class="font-headline text-2xl text-primary font-bold mb-1">已完成</h2>
+<p class="text-on-surface-variant text-xs leading-relaxed">
+                        感谢您的无私奉献。该志愿服务任务已圆满结束，相关资料已审核通过。
+                    </p>
+</div>
+<div class="flex items-center justify-center bg-surface-container-lowest w-16 h-16 rounded-full shadow-md shrink-0">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Decorative "Void" circle -->
+<div class="absolute -right-6 -top-6 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+</section>
+<!-- Task Info & Review Section -->
+<div class="space-y-4">
+<!-- Review Content (High Density Bento) -->
+<div class="bg-surface-container-low rounded-2xl p-5">
+<h3 class="font-headline text-lg text-primary mb-4 flex items-center gap-2 border-b border-outline-variant/30 pb-2">
+<span class="material-symbols-outlined text-xl" data-icon="history_edu">history_edu</span>
+                    提交记录摘要
+                </h3>
+<div class="space-y-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold tracking-widest text-primary/60 uppercase">任务名称</span>
+<p class="text-base font-medium">深山古刹数字化档案整理</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold tracking-widest text-primary/60 uppercase">完成时间</span>
+<p class="text-sm text-on-surface">2023年10月24日</p>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold tracking-widest text-primary/60 uppercase">服务时长</span>
+<p class="text-sm text-on-surface">8.5 小时</p>
+</div>
+</div>
+<div class="space-y-2">
+<span class="text-[10px] font-bold tracking-widest text-primary/60 uppercase">提交素材 (3)</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="relative aspect-square rounded-lg overflow-hidden group cursor-pointer bg-surface-container-high">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="close-up of ancient chinese manuscript" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUikkmWEuFR0LwXZBr81ci8UY7FFpTHM3BG3TrpRANZjUeQA4o_AqZTIfWAo7zu6qxllNZ9RlsovbCY0wqoUwliPbu9kF4MHXmrYYUuekclplNvgIx7KA5vkAZV4IueQU9dh2SGHzp_tzc14vgUoUNkZTYgWkcKmCmkxtXYVf0zkYQWU6oupkU_TGcBDMxasf310xUtdDhA3aGC2MVb-hPYJHJB-Tm7d4D53KtV3lRouaGZbr7OwpRi80FcL29lyUb4t0M5qwEf85x"/>
+</div>
+<div class="relative aspect-square rounded-lg overflow-hidden group cursor-pointer bg-surface-container-high">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="misty morning view of traditional pagoda" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPcPVThKVgo84GzOGqwwD1PV0tih-xWvyQ_N1xokMCbonLmxVzZvfXJQvrH7G1-ZTdAlEitGQi-56LMo37Hxt2RYiJqNnIZRlTGfFPjoeCc4pXEptr40jYR6oPc5DLePTYRUBQDcZ8UbDb837RC_nUM_ng9LDVJGATs4mMacgSI2GfGglzfMKzbY21tMjIhZt2JRV6SG3iSeDmRdzSt5oQs_EO2_hQLVvbWnC6uzNMAPbDRrmaal1xG-4Yd5qlqkcHGWquow13fCHz"/>
+</div>
+<div class="relative aspect-square rounded-lg overflow-hidden group cursor-pointer bg-surface-container-high flex items-center justify-center border border-dashed border-outline-variant">
+<div class="text-center">
+<span class="material-symbols-outlined text-primary/40 text-2xl" data-icon="play_circle">play_circle</span>
+<p class="text-[8px] text-primary/60 mt-0.5">视频回传</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Review Message -->
+<div class="bg-tertiary-container text-on-tertiary-container rounded-2xl p-4 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-bold text-[10px] mb-1 flex items-center gap-2 uppercase tracking-wider opacity-80">
+<span class="material-symbols-outlined text-xs" data-icon="auto_awesome">auto_awesome</span>
+                        审核评价
+                    </h4>
+<p class="text-xs leading-relaxed italic opacity-95">
+                        "工作非常细致，尤其是对古籍边缘的拍摄极其清晰，为后续的AI识别提供了巨大的帮助。功德无量。"
+                    </p>
+</div>
+<div class="absolute -bottom-2 -right-2 opacity-10">
+<span class="material-symbols-outlined text-7xl" data-icon="format_quote">format_quote</span>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="pt-2 flex flex-col gap-3">
+<button class="w-full bg-[#C9B037] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 shadow-md shadow-[#C9B037]/20 transition-all hover:scale-[1.01] active:scale-95 group">
+<span class="material-symbols-outlined text-xl" data-icon="military_tech">military_tech</span>
+<span class="text-sm">查看公益证书</span>
+<span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<button class="w-full text-primary font-medium py-3 rounded-xl border border-primary/10 hover:bg-surface-container-high transition-colors text-xs">
+                返回任务列表
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 py-1.5 border-t border-[#4A5D4E]/10 bg-[#FAF9F4] rounded-t-xl shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] opacity-60 hover:bg-[#EFEEE9] px-3 py-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="library_music">library_music</span>
+<span class="font-label text-[10px] tracking-wide mt-0.5">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] opacity-60 hover:bg-[#EFEEE9] px-3 py-1 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="menu_book">menu_book</span>
+<span class="font-label text-[10px] tracking-wide mt-0.5">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#C9B037] text-white rounded-lg px-4 py-1 transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-2xl" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label text-[10px] tracking-wide mt-0.5">我的</span>
+</a>
+</nav>
+</body></html>

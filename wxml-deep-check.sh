@@ -2,7 +2,7 @@
 
 # WXML 深度检查脚本 - bindtap 函数和组件引用检查
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/admin/.openclaw/workspace"
 DEEP_REPORT="$WORKSPACE/wxml-deep-check-report.md"
 
 echo "# WXML 深度检查报告" > "$DEEP_REPORT"

@@ -237,7 +237,7 @@ WHERE DATE(create_time) = CURDATE();
 
 ```bash
 # 1. 进入项目目录
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 2. 执行数据库建表（在微信云开发控制台手动执行）
 # cloud/database-schema-content-audit.sql

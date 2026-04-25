@@ -199,7 +199,7 @@ docs/e2e/
 
 ```bash
 # 安装依赖
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 npm install -D @playwright/test
 npx playwright install chromium
 

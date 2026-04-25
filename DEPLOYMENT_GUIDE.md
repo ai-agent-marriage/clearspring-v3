@@ -29,7 +29,7 @@
 1. **打开微信开发者工具**
    ```bash
    # 导入项目
-   项目路径：/root/.openclaw/workspace/projects/clearspring
+   项目路径：/home/admin/.openclaw/workspace/projects/clearspring
    AppID: wxa914ecc15836bda6
    ```
 

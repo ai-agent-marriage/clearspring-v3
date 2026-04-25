@@ -130,6 +130,7 @@ Page({
             const keepKeys = ['org_settings', 'user_info', 'token', 'openid'];
             const storageInfo = wx.getStorageInfoSync();
             for (const key of storageInfo.keys) {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
               if (!keepKeys.includes(key)) { wx.removeStorageSync(key); }
             }
             this.setData({ cacheSize: '0 MB' });

@@ -44,7 +44,7 @@
       <view class="order-card" bindtap="onOrderDetail" data-id="1">
         <view class="order-header">
           <view class="order-info">
-            <image class="order-thumb" src="{{orders[0].image}}" mode="aspectFill"/>
+            <image class="order-thumb" lazy-load="true" src="{{orders[0].image}}" mode="aspectFill"/>
             <view class="order-text">
               <text class="order-name">{{orders[0].name}}</text>
               <text class="order-id">订单编号：{{orders[0].id}}</text>
@@ -74,7 +74,7 @@
       <view class="order-card" bindtap="onOrderDetail" data-id="2">
         <view class="order-header">
           <view class="order-info">
-            <image class="order-thumb" src="{{orders[1].image}}" mode="aspectFill"/>
+            <image class="order-thumb" lazy-load="true" src="{{orders[1].image}}" mode="aspectFill"/>
             <view class="order-text">
               <text class="order-name">{{orders[1].name}}</text>
               <text class="order-id">订单编号：{{orders[1].id}}</text>

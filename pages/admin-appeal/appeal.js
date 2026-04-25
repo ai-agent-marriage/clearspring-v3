@@ -1,4 +1,6 @@
 // 申诉仲裁页面
+const auth = require('../../utils/auth');
+
 Page({
   data: {
     currentTab: 0,
@@ -42,6 +44,10 @@ Page({
   },
 
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) {
+      return;
+    }
     // 加载申诉列表
   },
 

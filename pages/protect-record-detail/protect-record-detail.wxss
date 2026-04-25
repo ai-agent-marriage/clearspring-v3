@@ -1,0 +1,290 @@
+@import "../../theme.wxss";
+
+.container {
+  min-height: 100vh;
+  background: var(--stitch-bg-primary);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
+}
+
+/* ========== 加载状态 ========== */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid rgba(74, 93, 78, 0.2);
+  border-top-color: var(--stitch-green-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: var(--stitch-spacing-md);
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+/* ========== 状态卡片 ========== */
+
+.status-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--stitch-spacing-sm);
+  padding: var(--stitch-spacing-lg);
+  border-radius: var(--stitch-radius-md);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.status-card.approved {
+  background: var(--stitch-success-light);
+  border: 1rpx solid var(--stitch-success);
+}
+
+.status-card.pending {
+  background: var(--stitch-warning-light);
+  border: 1rpx solid var(--stitch-warning);
+}
+
+.status-card.rejected {
+  background: var(--stitch-error-light);
+  border: 1rpx solid var(--stitch-error);
+}
+
+.status-icon {
+  font-size: 40rpx;
+}
+
+.status-text {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.status-card.approved .status-text {
+  color: var(--stitch-success);
+}
+
+.status-card.pending .status-text {
+  color: var(--stitch-warning);
+}
+
+.status-card.rejected .status-text {
+  color: var(--stitch-error);
+}
+
+/* ========== 信息卡片 ========== */
+
+.info-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-sm);
+  border-bottom: 1rpx solid var(--stitch-border-light);
+}
+
+.record-no {
+  font-size: 26rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.record-date {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--stitch-text-primary);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--stitch-spacing-md);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-xs);
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: var(--stitch-text-tertiary);
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: var(--stitch-text-primary);
+  font-weight: 500;
+}
+
+.info-value.gold {
+  color: var(--stitch-gold-primary);
+  font-size: 32rpx;
+}
+
+/* ========== 照片区域 ========== */
+
+.photos-section {
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--stitch-spacing-xs);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.title-icon {
+  font-size: 32rpx;
+}
+
+.section-title text:last-child {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--stitch-spacing-sm);
+}
+
+.photo-item {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--stitch-radius-sm);
+  overflow: hidden;
+}
+
+.photo-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========== 心愿区域 ========== */
+
+.wish-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.wish-content {
+  display: block;
+  font-size: 28rpx;
+  color: var(--stitch-text-primary);
+  line-height: 1.8;
+  padding: var(--stitch-spacing-sm) 0;
+}
+
+/* ========== 审核信息 ========== */
+
+.audit-section {
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.audit-info {
+  display: flex;
+  gap: var(--stitch-spacing-sm);
+}
+
+.audit-label {
+  font-size: 26rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.audit-time {
+  font-size: 26rpx;
+  color: var(--stitch-text-primary);
+}
+
+/* ========== 证书区域 ========== */
+
+.certificate-section {
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.certificate-card {
+  position: relative;
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  overflow: hidden;
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.certificate-image {
+  width: 100%;
+}
+
+.certificate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.certificate-card:active .certificate-overlay {
+  opacity: 1;
+}
+
+.certificate-action {
+  font-size: 28rpx;
+  color: var(--stitch-bg-white);
+  background: rgba(0, 0, 0, 0.6);
+  padding: var(--stitch-spacing-sm) var(--stitch-spacing-md);
+  border-radius: var(--stitch-radius-full);
+}
+
+/* ========== 操作栏 ========== */
+
+.action-bar {
+  display: flex;
+  gap: var(--stitch-spacing-sm);
+  padding: var(--stitch-spacing-md);
+}
+
+.action-bar .btn {
+  flex: 1;
+}

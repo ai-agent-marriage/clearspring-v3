@@ -85,7 +85,7 @@ curl http://localhost:3000/api/version
 - **类型**: RSA 4096
 - **指纹**: SHA256:RzrEWvaO7P9z3iCY4XWSzmHfoGm2oMG63Qo085JXSBU
 - **存储位置**: 
-  - 私钥：`/root/.openclaw/workspace/deploy/clearspring_deploy_key`
+  - 私钥：`/home/admin/.openclaw/workspace/deploy/clearspring_deploy_key`
   - 公钥：服务器 `~/.ssh/authorized_keys`
 
 ### 端口安全

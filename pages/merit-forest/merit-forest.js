@@ -81,6 +81,7 @@ Page({
     const column1 = [];
     
     certificates.forEach((cert, index) => {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
       if (index % 2 === 0) {
         column0.push(cert);
       } else {

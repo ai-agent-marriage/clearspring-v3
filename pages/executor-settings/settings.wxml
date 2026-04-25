@@ -38,7 +38,7 @@
       <view class="user-list">
         <view class="user-item" wx:for="{{userList}}" wx:key="id">
           <view class="user-avatar-wrap">
-            <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill" wx:if="{{item.avatar}}" />
+            <image class="user-avatar" lazy-load="true" src="{{item.avatar}}" mode="aspectFill" wx:if="{{item.avatar}}" />
             <view class="user-avatar-placeholder" wx:else>
               <text class="material-icons">person</text>
             </view>

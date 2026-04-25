@@ -13,12 +13,12 @@ Page({
     },
       // 自动修复：添加缺失的 bindtap 函数
     handleRetry(e) {
-      console.log('handleRetry called', e);
+      // [CLEANED] console.log('handleRetry called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     handleCancel(e) {
-      console.log('handleCancel called', e);
+      // [CLEANED] console.log('handleCancel called', e);
     },
 
   },

@@ -10,7 +10,7 @@
 ## 完成的工作
 
 ### 1. 文件扫描 ✅
-- 扫描工作目录：`/root/.openclaw/workspace`
+- 扫描工作目录：`/home/admin/.openclaw/workspace`
 - 找到 WXML 文件：**200+** 个
 - 包含 Emoji 的文件：**50+** 个
 - 排除 node_modules 中的第三方组件文件
@@ -31,7 +31,7 @@
 | 空状态 | 📭😕 | 4+ |
 
 ### 3. 生成替换报告 ✅
-文件：`/root/.openclaw/workspace/EMOJI_REPLACEMENT_REPORT.md`
+文件：`/home/admin/.openclaw/workspace/EMOJI_REPLACEMENT_REPORT.md`
 
 包含：
 - 完整的 Emoji 到 SVG 映射表（50+ 个映射）
@@ -60,7 +60,7 @@
 **总计完成**：22 个 Emoji 替换
 
 ### 5. 创建批量脚本 ✅
-文件：`/root/.openclaw/workspace/scripts/emoji-replace.sh`
+文件：`/home/admin/.openclaw/workspace/scripts/emoji-replace.sh`
 
 包含：
 - 完整的 Emoji 到 SVG 路径映射
@@ -164,15 +164,15 @@
 ## 文件清单
 
 ### 生成的文件
-1. `/root/.openclaw/workspace/EMOJI_REPLACEMENT_REPORT.md` - 完整替换报告
-2. `/root/.openclaw/workspace/scripts/emoji-replace.sh` - 批量替换脚本
-3. `/root/.openclaw/workspace/EMOJI_REPLACEMENT_SUMMARY.md` - 本总结文件
+1. `/home/admin/.openclaw/workspace/EMOJI_REPLACEMENT_REPORT.md` - 完整替换报告
+2. `/home/admin/.openclaw/workspace/scripts/emoji-replace.sh` - 批量替换脚本
+3. `/home/admin/.openclaw/workspace/EMOJI_REPLACEMENT_SUMMARY.md` - 本总结文件
 
 ### 已修改的文件
-1. `/root/.openclaw/workspace/pages/executor-settings/executor-settings.wxml`
-2. `/root/.openclaw/workspace/pages/executor-message-center/executor-message-center.wxml`
-3. `/root/.openclaw/workspace/pages/org-home/orders.wxml`
-4. `/root/.openclaw/workspace/pages/org-home/settlement.wxml`
+1. `/home/admin/.openclaw/workspace/pages/executor-settings/executor-settings.wxml`
+2. `/home/admin/.openclaw/workspace/pages/executor-message-center/executor-message-center.wxml`
+3. `/home/admin/.openclaw/workspace/pages/org-home/orders.wxml`
+4. `/home/admin/.openclaw/workspace/pages/org-home/settlement.wxml`
 
 ---
 

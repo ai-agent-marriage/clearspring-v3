@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#334537",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-primary-fixed": "#0e1f13",
+                    "primary-container": "#4a5d4e",
+                    "on-surface": "#1b1c19",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#e3e2de",
+                    "outline-variant": "#c3c8c1",
+                    "on-background": "#1b1c19",
+                    "surface-dim": "#dbdad5",
+                    "surface-container-low": "#f5f4ef",
+                    "inverse-on-surface": "#f2f1ec",
+                    "surface-bright": "#faf9f4",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#c0d5c2",
+                    "inverse-primary": "#b7ccb9",
+                    "on-secondary-container": "#756400",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#fee264",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-tint": "#506354",
+                    "surface-container-highest": "#e3e2de",
+                    "secondary": "#6e5e00",
+                    "error": "#ba1a1a",
+                    "surface": "#faf9f4",
+                    "inverse-surface": "#30312e",
+                    "surface-container": "#efeee9",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-surface-variant": "#434843",
+                    "on-secondary-fixed-variant": "#534600",
+                    "tertiary": "#533d20",
+                    "on-secondary-fixed": "#211b00",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#291801",
+                    "on-tertiary-container": "#ebcaa3",
+                    "background": "#faf9f4",
+                    "on-error-container": "#93000a",
+                    "outline": "#737872",
+                    "tertiary-container": "#6d5435",
+                    "surface-container-high": "#e9e8e3",
+                    "secondary-container": "#fee264",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "secondary-fixed-dim": "#e0c64b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash {
+            background: radial-gradient(circle at 70% 20%, rgba(74, 93, 78, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 10% 80%, rgba(110, 94, 0, 0.03) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen pb-32">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-primary-container h-16 flex justify-between items-center px-6 transition-all duration-300">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white" data-icon="settings">settings</span>
+</div>
+<h1 class="text-xl tracking-[0.3em] font-headline font-bold text-white">清如</h1>
+<div class="w-8 h-8 rounded-full bg-surface-variant/20 flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="soft focus portrait of a person in meditation pose with warm morning light and minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3lTOO19wKCHfyIvYgVTGz8NdLoiDqisPS9fg1vIC6efaW0iUuFi9ZZdzlpo_6pDld7zRbwECwNxQ6jP0Lyth_JmK_99fJrknM4AP6uKzit1fOtvpG5R0UZnw52myoC4WHLBpORZY1B9sG_1PWv9qXjztH6BK71jINeQundJXRMa73U47seNq6Gf7ujOMh1_rAhdtrJ9bcR6EjppxkePt5oVI6vBHXz8uu0QL4l1GEzjyZ1Al4be3f-aA6LYlYxwzooe8paFtIdjxx"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-md mx-auto space-y-8 ink-wash">
+<!-- Buddhist Calendar Central Card -->
+<section class="relative group">
+<!-- Decorative Ink Wash Background for Headline -->
+<div class="absolute -top-12 -left-8 w-48 h-48 opacity-10 pointer-events-none">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<path d="M44.7,-76.4C58.3,-69.2,70.1,-57.4,78.5,-43.8C86.8,-30.2,91.7,-15.1,90.2,-0.9C88.6,13.3,80.7,26.7,71.4,38.7C62.1,50.7,51.4,61.4,38.8,69.5C26.2,77.6,13.1,83.1,-0.8,84.5C-14.7,85.9,-29.4,83.2,-42.6,76.1C-55.8,69,-67.4,57.5,-75.6,44.1C-83.8,30.7,-88.6,15.3,-88.8,-0.1C-89,-15.5,-84.7,-31,-76,-44.3C-67.3,-57.6,-54.2,-68.7,-40.1,-75.4C-26,-82.1,-13,-84.4,0.7,-85.5C14.3,-86.7,28.7,-86.7,42.7,-81.2" fill="#334537" transform="translate(100 100)"></path>
+</svg>
+</div>
+<div class="bg-surface-container-lowest rounded-[8px] overflow-hidden shadow-[0_12px_40px_rgba(74,93,78,0.06)] relative z-10">
+<!-- Top Layer: Date -->
+<div class="p-8 text-center border-b border-outline-variant/15">
+<div class="text-secondary-container bg-primary-container/90 inline-block px-4 py-1 rounded-full text-xs tracking-widest mb-4 font-bold">佛历 二五六八年</div>
+<h2 class="text-5xl font-headline font-bold text-primary mb-2">24</h2>
+<p class="text-sm text-on-surface-variant tracking-wide font-medium">二零二四年 五月 · 癸卯年 丁巳月</p>
+<div class="mt-2 flex justify-center gap-4 text-xs font-label text-primary/60">
+<span>农历 四月十七</span>
+<span class="opacity-30">|</span>
+<span>宜：沐浴 祭祀</span>
+</div>
+</div>
+<!-- Middle Layer: Fortune -->
+<div class="grid grid-cols-2 text-center py-6 bg-surface-container-low/50">
+<div class="border-r border-outline-variant/15 px-4">
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant/60 block mb-1">宜 · Appropriate</span>
+<p class="text-primary font-bold text-lg">安身 守道</p>
+</div>
+<div class="px-4">
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant/60 block mb-1">忌 · Forbidden</span>
+<p class="text-error font-bold text-lg">贪嗔 妄语</p>
+</div>
+</div>
+<!-- Bottom Layer: Quote -->
+<div class="p-10 text-center relative">
+<span class="material-symbols-outlined text-secondary/20 absolute top-4 left-6 scale-150" data-icon="format_quote">format_quote</span>
+<p class="font-headline text-lg leading-relaxed text-primary italic">
+                        “心如工画师，能画诸世间。五蕴悉从生，无法而不造。”
+                    </p>
+<p class="text-[10px] mt-6 text-on-surface-variant/40 tracking-[0.2em]">——《华严经》</p>
+</div>
+</div>
+</section>
+<!-- Check-in Buttons -->
+<section class="grid grid-cols-2 gap-4">
+<button class="bg-primary-container text-white py-4 rounded-[8px] flex flex-col items-center justify-center gap-2 shadow-sm transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="brightness_5">brightness_5</span>
+<span class="text-sm font-bold tracking-widest">晨起礼佛</span>
+</button>
+<button class="bg-surface-variant/40 text-on-surface-variant/40 py-4 rounded-[8px] flex flex-col items-center justify-center gap-2 cursor-not-allowed">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+<span class="text-sm font-bold tracking-widest">晚间打坐</span>
+</button>
+</section>
+<!-- Stats Card -->
+<section class="bg-surface-container-low rounded-[8px] p-6 flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<h3 class="text-xs text-on-surface-variant font-bold tracking-tight uppercase">功德统计 · Stats</h3>
+<p class="text-xs text-on-surface-variant/60">精进不懈，因果不虚</p>
+</div>
+<div class="flex gap-8">
+<div class="text-center">
+<p class="text-2xl font-bold text-secondary">12</p>
+<p class="text-[10px] text-on-surface-variant/40 uppercase">连续</p>
+</div>
+<div class="text-center">
+<p class="text-2xl font-bold text-secondary">156</p>
+<p class="text-[10px] text-on-surface-variant/40 uppercase">累计</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Action Button -->
+<div class="fixed bottom-24 left-0 w-full px-6 pointer-events-none">
+<button class="w-full bg-primary-container text-white py-4 rounded-full shadow-lg flex items-center justify-center gap-3 pointer-events-auto active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="park">park</span>
+<span class="font-bold tracking-[0.2em]">护生功德林</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-primary shadow-[0_-4px_20px_rgba(74,93,78,0.04)] rounded-t-3xl flex justify-around items-center px-4 py-3 pb-safe">
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] dark:text-[#EFEEE9] opacity-70 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="music_note">music_note</span>
+<span class="text-[11px] font-sans tracking-tight uppercase mt-1">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-xl px-6 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="text-[11px] font-sans tracking-tight uppercase mt-1">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] dark:text-[#EFEEE9] opacity-70 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[11px] font-sans tracking-tight uppercase mt-1">我的</span>
+</a>
+</nav>
+</body></html>

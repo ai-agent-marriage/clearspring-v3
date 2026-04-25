@@ -8,8 +8,8 @@
 
 ## 📍 密钥文件位置
 
-- **私钥**: `/root/.openclaw/workspace/deploy/clearspring_deploy_key`
-- **公钥**: `/root/.openclaw/workspace/deploy/clearspring_deploy_key.pub`
+- **私钥**: `/home/admin/.openclaw/workspace/deploy/clearspring_deploy_key`
+- **公钥**: `/home/admin/.openclaw/workspace/deploy/clearspring_deploy_key.pub`
 
 ---
 
@@ -62,7 +62,7 @@ exit
 
 ```bash
 # 在本地测试 SSH 连接（使用部署密钥）
-ssh -i /root/.openclaw/workspace/deploy/clearspring_deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "echo '✅ SSH 连接成功'"
+ssh -i /home/admin/.openclaw/workspace/deploy/clearspring_deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63 "echo '✅ SSH 连接成功'"
 ```
 
 预期输出：`✅ SSH 连接成功`
@@ -71,7 +71,7 @@ ssh -i /root/.openclaw/workspace/deploy/clearspring_deploy_key -o IdentitiesOnly
 
 ```bash
 # SSH 登录服务器
-ssh -i /root/.openclaw/workspace/deploy/clearspring_deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63
+ssh -i /home/admin/.openclaw/workspace/deploy/clearspring_deploy_key -o IdentitiesOnly=yes clearspring-bot@101.96.192.63
 
 # 检查 Node.js
 node -v  # 应显示 v18+
@@ -115,7 +115,7 @@ b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAgEAqdfZ8+Mrzd9E0AuxufH30STtH5bngalPy/divLOPD8EgkeLRT8Tc
 39lqLTYrR/iw8TtH9qFxmGpa1v0rMq8Qhn0hB8PhXRz7163oIk1UU33Ubo9kICs+sraXLC
 /3Tx4+LPvNZcl/5c6nghR8AsFrZkqZGwjzPgh7vSZ3yW9OwLo+AkiG7p7vrZOWd9Nlbebd
-[... 完整私钥内容见文件：/root/.openclaw/workspace/deploy/clearspring_deploy_key ...]
+[... 完整私钥内容见文件：/home/admin/.openclaw/workspace/deploy/clearspring_deploy_key ...]
 -----END OPENSSH PRIVATE KEY-----
 ```
 
@@ -123,7 +123,7 @@ NhAAAAAwEAAQAAAgEAqdfZ8+Mrzd9E0AuxufH30STtH5bngalPy/divLOPD8EgkeLRT8Tc
 
 ```bash
 # 查看完整私钥
-cat /root/.openclaw/workspace/deploy/clearspring_deploy_key
+cat /home/admin/.openclaw/workspace/deploy/clearspring_deploy_key
 ```
 
 ### 步骤 7: 测试 Secrets 验证
@@ -150,7 +150,7 @@ cat /root/.openclaw/workspace/deploy/clearspring_deploy_key
 ### SSH 连接失败
 ```bash
 # 查看详细日志
-ssh -v -i /root/.openclaw/workspace/deploy/clearspring_deploy_key clearspring-bot@101.96.192.63
+ssh -v -i /home/admin/.openclaw/workspace/deploy/clearspring_deploy_key clearspring-bot@101.96.192.63
 ```
 
 ### 权限错误

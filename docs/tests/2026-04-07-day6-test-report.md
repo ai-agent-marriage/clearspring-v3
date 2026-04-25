@@ -268,7 +268,7 @@
 ### 测试文件位置
 
 ```
-/root/.openclaw/workspace/
+/home/admin/.openclaw/workspace/
 ├── miniprogram/__tests__/
 │   ├── org.test.js              # 机构板块单元测试
 │   ├── integration-org.test.js  # 机构集成测试

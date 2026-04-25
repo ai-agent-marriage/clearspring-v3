@@ -20,7 +20,7 @@ DESCRIBE order_protect;
 
 #### 方式一：使用微信开发者工具
 1. 打开微信开发者工具
-2. 导入项目（根目录：`/root/.openclaw/workspace`）
+2. 导入项目（根目录：`/home/admin/.openclaw/workspace`）
 3. 右键点击 `cloud/functions/pay` 目录
 4. 选择「上传并部署：云端安装依赖」
 

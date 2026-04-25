@@ -18,6 +18,13 @@ Page({
     hasMore: true
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad(options) {
     if (options.orderId) { this.loadOrderInfo(options.orderId); }
     if (options.volunteerId) { this.highlightVolunteer(options.volunteerId); }

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>执行点位管理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f5f4ef",
+                    "on-surface": "#1b1c19",
+                    "primary-container": "#4a5d4e",
+                    "inverse-surface": "#30312e",
+                    "tertiary-container": "#6d5435",
+                    "on-tertiary-fixed": "#291801",
+                    "secondary-container": "#fee264",
+                    "tertiary": "#533d20",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "outline-variant": "#c3c8c1",
+                    "secondary": "#6e5e00",
+                    "outline": "#737872",
+                    "surface-variant": "#e3e2de",
+                    "surface-container-high": "#e9e8e3",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dbdad5",
+                    "primary": "#334537",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1b1c19",
+                    "surface": "#faf9f4",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "background": "#faf9f4",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container-highest": "#e3e2de",
+                    "inverse-primary": "#b7ccb9",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#434843",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-primary-container": "#c0d5c2",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "surface-tint": "#506354",
+                    "on-secondary-container": "#756400",
+                    "surface-bright": "#faf9f4",
+                    "secondary-fixed": "#fee264",
+                    "surface-container": "#efeee9",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "primary-fixed": "#d3e8d5",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-secondary-fixed": "#211b00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif SC', serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-[#FAF9F4] dark:bg-stone-900 flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="text-[#334537] dark:text-stone-200 active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="text-lg font-serif text-[#334537] dark:text-stone-100 font-bold">执行点位管理</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537] dark:text-stone-200" data-icon="more_vert">more_vert</span>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-4 mt-2">
+<!-- Compact Header Section -->
+<section class="flex items-center justify-between py-2 mb-4 bg-surface-container rounded-xl px-4">
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold text-primary/60 tracking-wider">统计</span>
+<p class="text-sm font-medium text-primary">共 3 个合规地点</p>
+</div>
+<button class="bg-primary text-on-primary px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                新增点位
+            </button>
+</section>
+<!-- Site List Cards (High Density) -->
+<div class="space-y-3">
+<!-- Card 1: Approved -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col gap-2 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-primary tracking-tight">静心湖放生点</h3>
+<span class="bg-primary/10 text-primary-container px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest">已核准</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="water">water</span>
+                        淡水湖泊
+                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                        浙江省杭州市西湖区灵隐路
+                    </div>
+</div>
+<!-- Action Row (Subtle) -->
+<div class="mt-1 pt-3 border-t border-outline-variant/10 flex justify-end gap-4">
+<button class="text-xs text-primary/70 font-medium hover:text-primary">查看地图</button>
+<button class="text-xs text-primary/70 font-medium hover:text-primary">编辑详情</button>
+</div>
+</div>
+<!-- Card 2: Pending -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col gap-2 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-primary tracking-tight">归源溪流监测站</h3>
+<span class="bg-secondary-container/30 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest">审核中</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="waves">waves</span>
+                        山涧溪流
+                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                        浙江省杭州市余杭区径山镇
+                    </div>
+</div>
+<div class="mt-1 pt-3 border-t border-outline-variant/10 flex justify-end gap-4">
+<button class="text-xs text-primary/70 font-medium hover:text-primary">查看进度</button>
+<button class="text-xs text-primary/70 font-medium hover:text-primary">撤回申请</button>
+</div>
+</div>
+<!-- Card 3: Rejected -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col gap-2 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-primary tracking-tight">莫干山云海泉</h3>
+<span class="bg-error-container text-error px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest">已驳回</span>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="tsunami">tsunami</span>
+                        天然泉眼
+                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                        浙江省湖州市德清县
+                    </div>
+</div>
+<div class="mt-1 pt-3 border-t border-outline-variant/10 flex justify-end gap-4">
+<button class="text-xs text-error font-medium hover:opacity-80">查看原因</button>
+<button class="text-xs text-primary/70 font-medium hover:text-primary">重新申请</button>
+</div>
+</div>
+</div>
+<!-- Decorative Zen Element -->
+<div class="mt-8 flex justify-center opacity-10 pointer-events-none">
+<div class="w-16 h-16 border-2 border-primary rounded-full flex items-center justify-center">
+<div class="w-10 h-10 border border-primary rounded-full"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#FAF9F4]/40 dark:bg-stone-900/40 backdrop-blur-xl">
+<div class="flex flex-col items-center justify-center text-[#4A5D4E]/70 dark:text-stone-400 px-4 py-1 hover:opacity-80">
+<span class="material-symbols-outlined mb-1" data-icon="library_music">library_music</span>
+<span class="font-sans text-xs tracking-wide">梵音</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#4A5D4E]/70 dark:text-stone-400 px-4 py-1 hover:opacity-80">
+<span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+<span class="font-sans text-xs tracking-wide">禅理</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#C9B037] text-white rounded-xl px-4 py-1 Active: scale-95 transition-transform">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-sans text-xs tracking-wide font-bold">我的</span>
+</div>
+</nav>
+</body></html>

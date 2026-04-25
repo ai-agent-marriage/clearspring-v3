@@ -1,0 +1,90 @@
+<!--pages/species-list/species-list.wxml-->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-input"
+        placeholder="搜索物种名称、学名"
+        value="{{keyword}}"
+        bindinput="onKeywordInput"
+        bindconfirm="onSearch"
+      />
+      <text wx:if="{{keyword}}" class="clear-icon" bindtap="onClear">✕</text>
+    </view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="category-filter">
+    <scroll-view 
+      class="category-scroll"
+      scroll-x
+      enable-flex
+    >
+      <view 
+        class="category-item {{currentCategory === item.value ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="value"
+        bindtap="onCategoryChange"
+        data-value="{{item.value}}"
+      >
+        <text>{{item.label}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading && speciesList.length === 0}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 物种列表 -->
+  <view wx:else class="species-list">
+    <view 
+      class="species-card"
+      wx:for="{{speciesList}}"
+      wx:key="species_id"
+      bindtap="onSpeciesTap"
+      data-species="{{item}}"
+    >
+      <image 
+        class="species-cover"
+        src="{{item.cover_url}}"
+        mode="aspectFill"
+        lazy-load
+      ></image>
+      
+      <view class="species-info">
+        <view class="species-header">
+          <text class="species-name">{{item.name}}</text>
+          <view class="protection-tag {{item.protection_level === '入侵物种' ? 'danger' : ''}}">
+            {{item.protection_level}}
+          </view>
+        </view>
+        
+        <text class="species-scientific">{{item.scientific_name}}</text>
+        
+        <view class="species-tags">
+          <view class="tag tag-category">{{item.category_text}}</text>
+          <view wx:if="{{item.is_releasable}}" class="tag tag-allowed">可投放</view>
+          <view wx:else class="tag tag-forbidden">禁止投放</view>
+        </view>
+        
+        <text class="species-brief">{{item.brief}}</text>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view wx:if="{{hasMore}}" class="load-more" bindtap="loadMore">
+      <text>{{loadingMore ? '加载中...' : '加载更多'}}</text>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{!loading && speciesList.length === 0}}" class="empty-state">
+      <text class="empty-icon">🔍</text>
+      <text class="empty-text">暂无相关物种</text>
+    </view>
+  </view>
+</view>

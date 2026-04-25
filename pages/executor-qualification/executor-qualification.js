@@ -19,6 +19,13 @@ Page({
     canSubmit: false
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad(options) {
     // 页面加载
     // [CLEANED] console.log('资质审核页加载');

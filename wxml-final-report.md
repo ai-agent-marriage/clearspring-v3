@@ -173,5 +173,5 @@ color: #4A5D4E;
 ---
 
 **检查工具**: 自定义 Bash 脚本
-**工作目录**: /root/.openclaw/workspace
+**工作目录**: /home/admin/.openclaw/workspace
 **检查耗时**: ~3 分钟

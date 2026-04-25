@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#b7ccb9",
+                        "primary-fixed": "#d3e8d5",
+                        "surface-container-low": "#f5f4ef",
+                        "surface": "#faf9f4",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-dim": "#dbdad5",
+                        "on-secondary-fixed-variant": "#534600",
+                        "inverse-primary": "#b7ccb9",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#faf9f4",
+                        "inverse-surface": "#30312e",
+                        "tertiary-container": "#6d5435",
+                        "on-background": "#1b1c19",
+                        "on-surface-variant": "#434843",
+                        "on-primary-container": "#c0d5c2",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-variant": "#e3e2de",
+                        "primary": "#334537",
+                        "outline-variant": "#c3c8c1",
+                        "on-secondary-container": "#756400",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary-fixed": "#fee264",
+                        "surface-tint": "#506354",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#faf9f4",
+                        "on-tertiary-container": "#ebcaa3",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#6e5e00",
+                        "on-surface": "#1b1c19",
+                        "surface-container-highest": "#e3e2de",
+                        "on-tertiary-fixed": "#291801",
+                        "outline": "#737872",
+                        "tertiary": "#533d20",
+                        "secondary-container": "#fee264",
+                        "primary-container": "#4a5d4e",
+                        "surface-container-high": "#e9e8e3",
+                        "surface-container": "#efeee9",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #efeee9;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(239, 238, 233, 0.9) 0%, rgba(245, 244, 239, 0.6) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ink-wash-bg::after {
+            content: "";
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(74, 93, 78, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(60px);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface selection:bg-primary-fixed selection:text-primary min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-6 h-16 bg-[#4A5D4E] shadow-sm opacity-90 backdrop-blur-md transition-opacity duration-300 ease-in-out">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-white hover:bg-white/10 p-2 rounded-full cursor-pointer transition-colors" data-icon="arrow_back">arrow_back</span>
+</div>
+<h1 class="font-['Noto_Serif'] text-lg tracking-wide text-white absolute left-1/2 -translate-x-1/2">践行者入驻</h1>
+<div class="w-10"></div>
+</header>
+<main class="pt-20 pb-24 px-6 max-w-lg mx-auto relative z-10 ink-wash-bg min-h-screen">
+<!-- Hero Section -->
+<div class="text-center mb-6">
+<h2 class="font-headline text-[32px] font-bold text-primary mb-2">选择入驻身份</h2>
+<p class="font-body text-[18px] text-outline leading-tight max-w-[90%] mx-auto">请选择您的入驻身份，完成注册后即可承接护生执行任务</p>
+</div>
+<!-- Identity Options Grid -->
+<div class="space-y-4">
+<!-- Card 1: Individual Volunteer -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_8px_30px_rgba(74,93,78,0.04)] border border-transparent hover:border-primary-fixed transition-all duration-300 group">
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 bg-surface-container-low rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="person">person</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-primary mb-1">公益志愿者 (个人)</h3>
+<p class="text-outline text-xs mb-6 leading-relaxed">微信实名认证+签署合规承诺书，即可快速入驻</p>
+<button class="w-full bg-[#4A5D4E] text-white py-3 rounded-lg font-medium tracking-wide active:scale-95 transition-all shadow-md hover:shadow-lg">
+                        去注册
+                    </button>
+</div>
+</div>
+<!-- Card 2: Institution -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-[0_8px_30px_rgba(74,93,78,0.04)] border border-transparent hover:border-primary-fixed transition-all duration-300 group">
+<div class="flex flex-col items-center text-center">
+<div class="w-14 h-14 bg-surface-container-low rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-3xl" data-icon="business">business</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-primary mb-1">合规执行机构</h3>
+<p class="text-outline text-xs mb-6 leading-relaxed">具备护生相关资质的企业/公益组织，可申请入驻</p>
+<button class="w-full border-2 border-[#4A5D4E] text-[#4A5D4E] py-3 rounded-lg font-medium tracking-wide active:scale-95 transition-all hover:bg-primary-container hover:text-white">
+                        去申请
+                    </button>
+</div>
+</div>
+</div>
+<!-- Compliance Link -->
+<div class="mt-8 text-center">
+<a class="inline-flex items-center text-xs text-outline hover:text-primary transition-colors underline underline-offset-4 decoration-outline-variant" href="#">
+                《践行者入驻合规声明》
+            </a>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-8 bg-[#FAF9F4] dark:bg-[#1A1C19] rounded-t-3xl shadow-[0_-4px_20px_rgba(74,93,78,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#334537]/60 dark:text-[#FAF9F4]/60 hover:text-[#334537] dark:hover:text-[#C9B037] tap-highlight-none active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="library_music">library_music</span>
+<span class="font-['Plus_Jakarta_Sans'] text-xs font-medium">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/60 dark:text-[#FAF9F4]/60 hover:text-[#334537] dark:hover:text-[#C9B037] tap-highlight-none active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="self_improvement">self_improvement</span>
+<span class="font-['Plus_Jakarta_Sans'] text-xs font-medium">禅理</span>
+</a>
+<!-- Active Tab: 我的 -->
+<a class="flex flex-col items-center justify-center text-[#6e5e00] dark:text-[#C9B037] scale-110 transition-transform tap-highlight-none active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-xs font-medium">我的</span>
+</a>
+</nav>
+</body></html>

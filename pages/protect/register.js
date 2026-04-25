@@ -12,17 +12,17 @@ Page({
     },
       // 自动修复：添加缺失的 bindtap 函数
     toggleAgree(e) {
-      console.log('toggleAgree called', e);
+      // [CLEANED] console.log('toggleAgree called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     deleteImage(e) {
-      console.log('deleteImage called', e);
+      // [CLEANED] console.log('deleteImage called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     previewImage(e) {
-      console.log('previewImage called', e);
+      // [CLEANED] console.log('previewImage called', e);
     },
 
   },
@@ -37,6 +37,13 @@ Page({
       images: [],
       wish: ''
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     speciesList: [
       { id: 1, name: '鲢鱼' },
       { id: 2, name: '鳙鱼' },
@@ -124,6 +131,7 @@ Page({
         
         // 内容安全审核
         for (const image of tempFiles) {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
           const pass = await checkImage(image);
           if (!pass) {
             return;

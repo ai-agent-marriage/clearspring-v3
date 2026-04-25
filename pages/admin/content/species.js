@@ -16,6 +16,13 @@ Page({
         isForbid: 0,
         statusName: '可投放'
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: 2,
         name: '清道夫',

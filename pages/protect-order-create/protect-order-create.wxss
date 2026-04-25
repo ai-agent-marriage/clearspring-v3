@@ -1,0 +1,264 @@
+@import "../../theme.wxss";
+
+.container {
+  min-height: 100vh;
+  background: var(--stitch-bg-primary);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+
+/* ========== 表单区域 ========== */
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-xl);
+}
+
+.form-item {
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  padding: var(--stitch-spacing-md);
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.form-label.required::before {
+  content: '*';
+  color: var(--stitch-error);
+  margin-right: 4rpx;
+}
+
+.form-tip {
+  display: block;
+  font-size: 24rpx;
+  color: var(--stitch-text-tertiary);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.form-input {
+  width: 100%;
+  font-size: 28rpx;
+  color: var(--stitch-text-primary);
+  padding: var(--stitch-spacing-sm) 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.placeholder {
+  color: var(--stitch-text-tertiary);
+}
+
+.selected-text {
+  color: var(--stitch-text-primary);
+}
+
+.arrow {
+  font-size: 32rpx;
+  color: var(--stitch-text-tertiary);
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.input-suffix {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+  margin-left: var(--stitch-spacing-sm);
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  font-size: 28rpx;
+  color: var(--stitch-text-primary);
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
+  padding: var(--stitch-spacing-sm);
+}
+
+/* ========== 服务项目 ========== */
+
+.service-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stitch-spacing-sm);
+}
+
+.service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--stitch-spacing-md);
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+}
+
+.service-item.selected {
+  background: var(--stitch-green-primary);
+  border-color: var(--stitch-green-primary);
+}
+
+.service-item.selected .service-name,
+.service-item.selected .service-desc,
+.service-item.selected .service-price {
+  color: var(--stitch-bg-white);
+}
+
+.service-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.service-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--stitch-text-primary);
+}
+
+.service-desc {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.service-price {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--stitch-gold-primary);
+}
+
+/* ========== 协议勾选 ========== */
+
+.agreement {
+  background: var(--stitch-info-light);
+  border: 1rpx solid var(--stitch-info);
+}
+
+.agreement-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--stitch-spacing-sm);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.agreement-label:last-child {
+  margin-bottom: 0;
+}
+
+.agreement-text {
+  flex: 1;
+  font-size: 26rpx;
+  color: var(--stitch-text-primary);
+  line-height: 1.6;
+}
+
+/* ========== 费用明细 ========== */
+
+.price-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.price-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.price-label {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.price-value {
+  font-size: 28rpx;
+  color: var(--stitch-text-primary);
+  font-weight: 500;
+}
+
+.price-divider {
+  height: 1rpx;
+  background: var(--stitch-border-light);
+  margin: var(--stitch-spacing-md) 0;
+}
+
+.price-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+}
+
+.total-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--stitch-gold-primary);
+}
+
+/* ========== 提交栏 ========== */
+
+.submit-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--stitch-bg-white);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: var(--stitch-spacing-md);
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-info .price-label {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.price-info .price-value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--stitch-gold-primary);
+}
+
+.submit-bar .btn {
+  flex: 1;
+}

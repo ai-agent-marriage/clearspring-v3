@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c3c8c1",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-tint": "#506354",
+                    "on-secondary-fixed-variant": "#534600",
+                    "secondary-container": "#fee264",
+                    "on-background": "#1b1c19",
+                    "surface-variant": "#e3e2de",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#291801",
+                    "surface-container-highest": "#e3e2de",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#30312e",
+                    "surface-container-low": "#f5f4ef",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#faf9f4",
+                    "on-surface": "#1b1c19",
+                    "surface-bright": "#faf9f4",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b7ccb9",
+                    "tertiary-container": "#6d5435",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-secondary-fixed": "#211b00",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-surface-variant": "#434843",
+                    "primary-container": "#4a5d4e",
+                    "primary": "#334537",
+                    "tertiary": "#533d20",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#faf9f4",
+                    "on-tertiary-container": "#ebcaa3",
+                    "secondary-fixed": "#fee264",
+                    "primary-fixed": "#d3e8d5",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-primary-container": "#c0d5c2",
+                    "outline": "#737872",
+                    "on-secondary-container": "#756400",
+                    "surface-container-high": "#e9e8e3",
+                    "secondary": "#6e5e00",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container": "#efeee9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at top right, rgba(51, 69, 55, 0.05) 0%, transparent 70%),
+                        radial-gradient(circle at bottom left, rgba(110, 94, 0, 0.03) 0%, transparent 50%);
+        }
+        .star-breath {
+            animation: breath 3s ease-in-out infinite;
+        }
+        @keyframes breath {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); color: #C9B037; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body min-h-screen pb-24 overflow-x-hidden ink-wash-bg">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-xl flex items-center px-6 h-16 w-full">
+<div class="flex items-center space-x-4">
+<button class="active:scale-95 duration-200 p-2 hover:bg-[#4A5D4E]/10 transition-colors rounded-full">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#FAF9F4]" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Noto_Serif_SC'] text-xl font-bold tracking-tight text-[#334537] dark:text-[#FAF9F4]">服务评价</h1>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Spiritual Prompt -->
+<div class="mb-8 text-center">
+<p class="text-secondary font-headline text-lg italic opacity-80 mb-2">“愿此反馈，成就更多善因”</p>
+<div class="w-12 h-px bg-outline-variant/30 mx-auto"></div>
+</div>
+<!-- Service Info Card -->
+<div class="bg-surface-container-low rounded-xl p-6 mb-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 opacity-10 pointer-events-none">
+<img alt="Zen ink wash illustration" class="w-full h-full object-contain" data-alt="Delicate traditional Chinese ink wash painting of a single lotus flower and lily pad with soft brushstrokes on textured paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnjXdAp9xilu4t6kZZDQuoZISPKdjKQfZPbm9K7KD0S32Z_xKGlt8C4EKI8obZc1-cwGrxqqkDFfSJI80BIxZGXTxR_-L1P2eKjG2vfYlRiV5pe_c-YLr8Br0aFi6911JDCKQ--V3CQH3cKxMmeaZxZi1AZhntn0XBceKNthNM7yR1La9vgNZUuJ3465TdWH7pHu0o-9lXBGM2iYP0kmTbQyhIiuet0efXM1HrVP8bw2EKjs02QpeQ4abM3KfCTIgggr43aDE18IyB"/>
+</div>
+<div class="flex items-center space-x-4 relative z-10">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-high">
+<img alt="Product" class="w-full h-full object-cover" data-alt="Professional landscape of a tranquil Zen garden with raked sand and minimalist stone arrangements under soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvd0yksuvlKi309eUUJn0RhT066mHiD3EM9ZqxIecNPY_eAJl6opcR248DInb7LwvREJ7r6FDzaSwjEf4p_b8fBlMsN6zVF8EMqTZNZpMaog0aT5RrlKFjFyNg3bnEAsFM8Hdpyfua4irh7WnY-GaI2FwNj7sH_3bl1-ATfo7gdSV2Jw6_R__095bPyo3ZJ8FYq8RGHnxrNBWhWSKkMf7uVvODsvoE8OCYIX98P1bwcQ3c4ZtMZOByUHHDzYLsgyeM6W0k2DHXe6Cp"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline text-primary text-lg">静心梵音 · 祈福护生服务</h3>
+<p class="text-on-surface-variant text-sm mt-1">订单编号: BF88293041</p>
+</div>
+</div>
+</div>
+<!-- Rating Section -->
+<div class="bg-surface-container-lowest rounded-xl p-8 mb-6 shadow-[0_12px_40px_rgba(74,93,78,0.04)] text-center">
+<h4 class="text-primary font-medium mb-6">您对此次体验的感悟如何？</h4>
+<div class="flex justify-center space-x-3 mb-2">
+<span class="material-symbols-outlined text-4xl text-secondary-fixed-dim star-breath" data-icon="grade" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span class="material-symbols-outlined text-4xl text-secondary-fixed-dim star-breath" data-icon="grade" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span class="material-symbols-outlined text-4xl text-secondary-fixed-dim star-breath" data-icon="grade" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span class="material-symbols-outlined text-4xl text-secondary-fixed-dim star-breath" data-icon="grade" style="font-variation-settings: 'FILL' 1;">grade</span>
+<span class="material-symbols-outlined text-4xl text-surface-variant" data-icon="grade">grade</span>
+</div>
+<p class="text-secondary text-sm font-medium mt-4">善心流转，法喜充满</p>
+</div>
+<!-- Feedback Input -->
+<div class="bg-surface-container-lowest rounded-xl p-6 mb-6 shadow-[0_12px_40px_rgba(74,93,78,0.04)]">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 resize-none h-40 leading-relaxed" placeholder="分享您的护生感悟，记录这份慈悲瞬间..."></textarea>
+<div class="mt-6 flex flex-wrap gap-4">
+<button class="w-24 h-24 rounded-lg border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform" data-icon="add_a_photo">add_a_photo</span>
+<span class="text-[10px] mt-2 font-medium">上传合影/美景</span>
+</button>
+</div>
+</div>
+<!-- Anonymous Toggle -->
+<div class="flex items-center justify-between px-2 mb-10">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary/60" data-icon="verified_user">verified_user</span>
+<span class="text-sm text-on-surface-variant">匿名分享</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-medium tracking-wide shadow-lg active:scale-[0.98] transition-all hover:bg-primary/90">
+            提交慈悲感悟
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#FAF9F4] dark:bg-[#334537] border-t-[0.5px] border-[#334537]/10 flex justify-around items-center px-8 pb-safe shadow-[0_-4px_20px_rgba(74,93,78,0.04)] z-50">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#FAF9F4]/50 hover:text-[#334537] dark:hover:text-[#FAF9F4] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="library_music">library_music</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[12px] tracking-wide uppercase mt-1">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#FAF9F4]/50 hover:text-[#334537] dark:hover:text-[#FAF9F4] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[12px] tracking-wide uppercase mt-1">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#6e5e00] dark:text-[#C9B037] font-bold scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[12px] tracking-wide uppercase mt-1">我的</span>
+</a>
+</nav>
+</body></html>

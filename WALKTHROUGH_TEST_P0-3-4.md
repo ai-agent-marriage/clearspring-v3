@@ -587,7 +587,7 @@ const order = await db.collection('order_protect')
 
 2. [ ] 部署云函数
    ```bash
-   cd /root/.openclaw/workspace/cloud
+   cd /home/admin/.openclaw/workspace/cloud
    chmod +x deploy-content-audit.sh
    ./deploy-content-audit.sh
    ```

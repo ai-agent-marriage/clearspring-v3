@@ -1,0 +1,141 @@
+<!--pages/protect-self-register/protect-self-register.wxml-->
+<view class="container">
+  <!-- 表单内容 -->
+  <view class="form-section">
+    <!-- 护生物种 -->
+    <view class="form-item">
+      <text class="form-label required">护生物种</text>
+      <view class="form-input" bindtap="onSelectSpecies">
+        <text wx:if="{{!formData.species_id}}" class="placeholder">请选择物种</text>
+        <text wx:else class="selected-text">{{formData.species_name}}</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 投放数量 -->
+    <view class="form-item">
+      <text class="form-label required">投放数量</text>
+      <view class="input-wrapper">
+        <input 
+          class="form-input"
+          type="number"
+          placeholder="请输入数量"
+          value="{{formData.quantity}}"
+          bindinput="onQuantityInput"
+        />
+        <text class="input-suffix">尾/只</text>
+      </view>
+    </view>
+
+    <!-- 护生日期 -->
+    <view class="form-item">
+      <text class="form-label required">护生日期</text>
+      <picker 
+        mode="date" 
+        value="{{formData.protect_date}}"
+        start="{{minDate}}"
+        end="{{maxDate}}"
+        bindchange="onDateChange"
+      >
+        <view class="form-input">
+          <text wx:if="{{!formData.protect_date}}" class="placeholder">请选择日期</text>
+          <text wx:else>{{formData.protect_date}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 投放水域 -->
+    <view class="form-item">
+      <text class="form-label required">投放水域</text>
+      <input 
+        class="form-input"
+        placeholder="请输入投放水域名称"
+        value="{{formData.water_area}}"
+        bindinput="onWaterAreaInput"
+      />
+    </view>
+
+    <!-- 现场照片 -->
+    <view class="form-item">
+      <text class="form-label required">现场照片</text>
+      <text class="form-tip">至少上传 1 张，最多 6 张</text>
+      <view class="photo-grid">
+        <view 
+          class="photo-item"
+          wx:for="{{formData.photos}}"
+          wx:key="index"
+        >
+          <image 
+            class="photo-image"
+            src="{{item.url}}"
+            mode="aspectFill"
+            bindtap="onPreviewPhoto"
+            data-index="{{index}}"
+          ></image>
+          <view class="photo-delete" bindtap="onDeletePhoto" data-index="{{index}}">
+            <text>✕</text>
+          </view>
+        </view>
+        
+        <view 
+          wx:if="{{formData.photos.length < 6}}"
+          class="photo-upload"
+          bindtap="onUploadPhoto"
+        >
+          <text class="upload-icon">+</text>
+          <text class="upload-text">上传照片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 护生心愿 -->
+    <view class="form-item">
+      <text class="form-label">护生心愿</text>
+      <text class="form-tip">可选，最多 200 字</text>
+      <textarea 
+        class="form-textarea"
+        placeholder="写下您的美好祝愿"
+        maxlength="200"
+        value="{{formData.wish_message}}"
+        bindinput="onWishInput"
+      ></textarea>
+    </view>
+
+    <!-- 合规承诺 -->
+    <view class="form-item commitment">
+      <checkbox-group bindchange="onCommitmentChange">
+        <label class="commitment-label">
+          <checkbox value="1" checked="{{formData.commitment_accepted}}" />
+          <text class="commitment-text">
+            我承诺本次护生行动符合科学放生要求，不使用外来入侵物种，不在饮用水源地投放
+          </text>
+        </label>
+      </checkbox-group>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-bar">
+    <button 
+      class="btn btn-primary btn-lg"
+      bindtap="onSubmit"
+      disabled="{{!canSubmit}}"
+    >
+      提交登记
+    </button>
+  </view>
+
+  <!-- 提交成功弹窗 -->
+  <view class="modal" wx:if="{{showSuccessModal}}">
+    <view class="modal-content">
+      <view class="success-icon">✓</view>
+      <text class="success-title">登记成功</text>
+      <text class="success-text">您的护生记录已提交审核</text>
+      <view class="modal-actions">
+        <button class="btn btn-primary" bindtap="onViewRecord">查看记录</button>
+        <button class="btn btn-secondary" bindtap="onGoHome">返回首页</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -10,7 +10,7 @@
 
 ### 1. test-runner (3.675 分) ⭐⭐⭐⭐⭐
 
-**安装路径**: `/root/.openclaw/workspace/skills/test-runner/`
+**安装路径**: `/home/admin/.openclaw/workspace/skills/test-runner/`
 
 **核心功能**:
 - ✅ 自动发现测试文件
@@ -40,7 +40,7 @@ clawhub run test-runner --coverage
 
 ### 2. quack-code-review (3.692 分) ⭐⭐⭐⭐⭐
 
-**安装路径**: `/root/.openclaw/workspace/skills/quack-code-review/`
+**安装路径**: `/home/admin/.openclaw/workspace/skills/quack-code-review/`
 
 **核心功能**:
 - ✅ 代码规范检查
@@ -144,7 +144,7 @@ clawhub run quack-code-review --performance
 
 2. **安全警告**: quack-code-review 被标记为可疑
    - 建议：审查技能代码后再使用
-   - 路径：`/root/.openclaw/workspace/skills/quack-code-review/`
+   - 路径：`/home/admin/.openclaw/workspace/skills/quack-code-review/`
 
 3. **测试文件**: test-runner 需要预先编写测试文件
    - 建议：为每个模块编写对应的测试文件

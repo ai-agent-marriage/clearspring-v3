@@ -21,7 +21,7 @@ miniprogram-simulate --version
 ### 2. 安装 ESLint 插件
 
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 安装 ESLint
 npm install --save-dev eslint
@@ -36,7 +36,7 @@ npm install --save-dev @typescript-eslint/parser
 ### 3. 初始化 ESLint 配置
 
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 npx eslint --init
 ```
 
@@ -118,7 +118,7 @@ module.exports = {
 
 echo "🔍 开始配置检查..."
 
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 errors=0
 
 # 1. 检查 app.json pages 路径
@@ -184,7 +184,7 @@ fi
 
 echo "🔍 开始 WXML 检查..."
 
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 errors=0
 
 # 1. 检查 view 标签匹配

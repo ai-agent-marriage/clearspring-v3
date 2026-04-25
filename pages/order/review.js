@@ -5,6 +5,13 @@ Page({
       orderId: 'BF88293041',
       image: '/images/service-preview.jpg'
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     rating: 0,
     ratingFeedback: '',
     feedback: '',

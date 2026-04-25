@@ -6,7 +6,7 @@
 
 set -e
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/admin/.openclaw/workspace"
 MEMORY_FILE="$WORKSPACE/MEMORY.md"
 MEMORY_DIR="$WORKSPACE/memory"
 DATE=$(date +%Y-%m-%d)

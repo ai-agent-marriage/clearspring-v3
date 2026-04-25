@@ -1,7 +1,7 @@
 # Stitch V3.0 设计规范检查报告
 
 **检查时间**: 2026-04-15 11:32 GMT+8  
-**检查范围**: `/root/.openclaw/workspace/pages/`  
+**检查范围**: `/home/admin/.openclaw/workspace/pages/`  
 **文件总数**: 99 个 WXSS 文件 + 99 个 WXML 文件 = 198 个文件
 
 ---

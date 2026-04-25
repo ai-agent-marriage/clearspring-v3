@@ -90,7 +90,7 @@ server {
 0 2 * * * certbot renew --quiet --post-hook "systemctl reload nginx"
 
 # 每日记忆更新（每天 11:00 PM）
-0 23 * * * /root/.openclaw/workspace/scripts/daily-memory-update.sh
+0 23 * * * /home/admin/.openclaw/workspace/scripts/daily-memory-update.sh
 
 # API 监控（每 1 分钟）
 * * * * * /home/clearspring-bot/clearspring-v3/api/scripts/monitor.sh

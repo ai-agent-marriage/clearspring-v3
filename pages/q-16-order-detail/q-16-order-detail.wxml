@@ -100,7 +100,7 @@
 
     <view class="photo-grid">
       <view class="photo-item" wx:for="{{photos}}" wx:key="id" bindtap="previewImage" data-url="{{item.url}}">
-        <image class="photo-image" src="{{item.url}}" mode="aspectFill"/>
+        <image class="photo-image" lazy-load="true" src="{{item.url}}" mode="aspectFill"/>
         <view class="photo-overlay">
           <text class="material-icons">zoom_in</text>
         </view>

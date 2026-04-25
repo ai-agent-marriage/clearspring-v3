@@ -129,7 +129,7 @@ VOLCANO_SSH_KEY       Added 2026-04-05T10:20:12Z
 
 ```bash
 # 推送测试提交
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 git commit --allow-empty -m "ci: 触发 CI/CD 测试"
 git push origin dev
 ```

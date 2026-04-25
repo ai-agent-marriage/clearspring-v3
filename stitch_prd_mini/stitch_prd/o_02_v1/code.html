@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Sanctuary - 订单</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e9e8e3",
+                        "outline-variant": "#c3c8c1",
+                        "surface-container-highest": "#e3e2de",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "surface-tint": "#506354",
+                        "outline": "#737872",
+                        "on-surface": "#1b1c19",
+                        "tertiary-container": "#6d5435",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#fee264",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf9f4",
+                        "on-primary-container": "#c0d5c2",
+                        "inverse-surface": "#30312e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f5f4ef",
+                        "on-primary": "#ffffff",
+                        "primary": "#4A5D4E",
+                        "primary-fixed": "#d3e8d5",
+                        "on-background": "#1b1c19",
+                        "secondary-container": "#C9B037",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "secondary": "#C9B037",
+                        "background": "#EFEEE9",
+                        "surface-dim": "#dbdad5",
+                        "on-tertiary-fixed": "#291801",
+                        "surface": "#FAF9F4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#0e1f13",
+                        "tertiary": "#533d20",
+                        "surface-variant": "#e3e2de",
+                        "on-surface-variant": "#434843",
+                        "on-secondary-fixed": "#211b00",
+                        "surface-container": "#efeee9",
+                        "on-tertiary-container": "#ebcaa3",
+                        "tertiary-fixed": "#ffddb6",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-secondary-fixed-variant": "#534600"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Noto Serif SC', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md flex justify-between items-center px-4 py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">menu</span>
+<h1 class="text-lg font-serif text-primary tracking-wide">订单</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</div>
+</header>
+<main class="pt-14 px-4 max-w-2xl mx-auto">
+<!-- Section Header -->
+<div class="mb-4 mt-2 flex justify-between items-end">
+<div>
+<h2 class="text-2xl font-serif text-primary">可承接订单</h2>
+<p class="text-on-surface-variant text-[11px] font-body tracking-wider uppercase opacity-70">Browse ecology tasks</p>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-outline uppercase tracking-widest">Active Feed</span>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 mb-4 overflow-x-auto pb-1 scrollbar-hide">
+<span class="px-4 py-1.5 rounded-full bg-secondary text-on-primary text-[11px] font-medium whitespace-nowrap">全部订单</span>
+<span class="px-4 py-1.5 rounded-full bg-surface text-on-surface-variant text-[11px] font-medium whitespace-nowrap border border-outline-variant/30">植物类</span>
+<span class="px-4 py-1.5 rounded-full bg-surface text-on-surface-variant text-[11px] font-medium whitespace-nowrap border border-outline-variant/30">菌类</span>
+<span class="px-4 py-1.5 rounded-full bg-surface text-on-surface-variant text-[11px] font-medium whitespace-nowrap border border-outline-variant/30">地理标本</span>
+</div>
+<!-- Order Cards List -->
+<div class="space-y-3">
+<!-- Order Card 1: Urgent -->
+<div class="bg-surface rounded-lg p-4 border border-outline-variant/20 shadow-sm transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<div class="flex-1">
+<span class="text-[9px] font-mono text-outline uppercase tracking-wider mb-0.5 block">DS-8842-X</span>
+<h3 class="text-base font-serif text-primary leading-tight">高山雪莲采集</h3>
+</div>
+<div class="text-right">
+<span class="text-lg font-bold text-primary">¥2,400</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 mb-3 text-[11px] text-on-surface-variant">
+<div class="flex items-center gap-1 bg-error-container/50 text-on-error-container px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span class="font-bold">02:45:12</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">location_on</span>
+<span>阿勒泰地区</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-outline-variant/10">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-1.5">
+<img class="w-5 h-5 rounded-full border border-surface" data-alt="ecologist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDySu5VY_KL3vLniZAK9yfGlAxS8L9hMrVVzc7bFKzxLsAUxeoO527PqlIrbOW-P1TJqW9JbCldJCcQErZkT0o_GCcbuL9P1RKK763l5gvxO75Cfn62bR-GNEjSoyH3h4BnmRua3fI-yMVRb6Rxl1CU4eH42lA7P-6LLiyV5Hkq8kx5tA1Anbyv56IxBVl3RVT75a-Zqy8LHqgDNhGlOmTMIo50Jrkf3Xzx_XOhV97qadzst-hnwXFBMs6RGElxt7A_CAYjtHUXUGHh"/>
+<div class="w-5 h-5 rounded-full border border-surface bg-surface-container flex items-center justify-center text-[7px] text-on-surface-variant font-bold">+3</div>
+</div>
+<span class="text-[10px] text-outline">预计酬劳</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-1.5 rounded text-xs font-medium tracking-wide">承接</button>
+</div>
+</div>
+<!-- Order Card 2: Standard -->
+<div class="bg-surface rounded-lg p-4 border border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<div class="flex-1">
+<span class="text-[9px] font-mono text-outline uppercase tracking-wider mb-0.5 block">DS-9102-Y</span>
+<h3 class="text-base font-serif text-primary leading-tight">原始森林地衣采样</h3>
+</div>
+<div class="text-right">
+<span class="text-lg font-bold text-primary">¥850</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 mb-3 text-[11px] text-on-surface-variant">
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>23小时后截止</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">location_on</span>
+<span>神农架林区</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-outline-variant/10">
+<span class="text-[10px] text-outline">发布于 2小时前</span>
+<button class="bg-primary text-on-primary px-6 py-1.5 rounded text-xs font-medium tracking-wide">承接</button>
+</div>
+</div>
+<!-- Order Card 3: High Value -->
+<div class="bg-surface rounded-lg p-4 border-l-4 border-l-secondary border border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<div class="flex-1">
+<span class="text-[9px] font-mono text-outline uppercase tracking-wider mb-0.5 block">DS-1120-Z</span>
+<h3 class="text-base font-serif text-primary leading-tight">珍稀真菌孢子监测</h3>
+</div>
+<div class="text-right">
+<span class="text-lg font-bold text-secondary">¥5,200</span>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 mb-3 text-[11px] text-on-surface-variant">
+<div class="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>2天后截止</span>
+</div>
+<div class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span>高级资质要求</span>
+</div>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-outline-variant/10">
+<div class="flex items-center gap-1 text-secondary text-[10px] font-bold tracking-tight">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>高难度系数</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-1.5 rounded text-xs font-medium tracking-wide">承接</button>
+</div>
+</div>
+<!-- Compact End Message -->
+<div class="py-6 flex flex-col items-center opacity-30">
+<span class="material-symbols-outlined text-2xl mb-1">filter_vintage</span>
+<p class="text-[9px] tracking-[0.2em] uppercase font-bold">End of Feed</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-2 pb-safe bg-surface border-t border-outline-variant/20">
+<a class="flex flex-col items-center justify-center text-primary/40 flex-1 py-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] font-medium mt-0.5">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary/40 flex-1 py-1" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="self_improvement">self_improvement</span>
+<span class="text-[10px] font-medium mt-0.5">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-primary bg-secondary rounded-lg mx-2 flex-1 py-1 shadow-md" href="#">
+<span class="material-symbols-outlined text-[22px]" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-medium mt-0.5">我的</span>
+</a>
+</nav>
+</body></html>

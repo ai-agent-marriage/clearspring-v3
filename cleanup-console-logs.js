@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 配置
-const WORKSPACE_ROOT = '/root/.openclaw/workspace';
+const WORKSPACE_ROOT = '/home/admin/.openclaw/workspace';
 const EXCLUDE_DIRS = ['node_modules', '.vite', 'dist', 'coverage', '.git'];
 const INCLUDE_EXTENSIONS = ['.js', '.ts', '.jsx', '.tsx', '.vue'];
 

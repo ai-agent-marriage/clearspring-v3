@@ -1,3 +1,5 @@
+const auth = require('../../utils/auth');
+
 // 最终版管理后台首页
 Page({
   data: {
@@ -48,6 +50,9 @@ Page({
   },
 
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) { return; }
+
     // 页面加载时的初始化逻辑
     this.loadDashboardData();
   },

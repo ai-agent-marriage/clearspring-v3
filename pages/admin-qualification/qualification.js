@@ -1,3 +1,5 @@
+const auth = require('../../utils/auth');
+
 // 资质审核页面
 Page({
   data: {
@@ -43,6 +45,9 @@ Page({
   },
 
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) { return; }
+
     // 加载资质列表
   },
 

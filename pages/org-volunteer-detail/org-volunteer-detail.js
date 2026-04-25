@@ -15,6 +15,13 @@ Page({
       location: '江苏省苏州市', registerDate: '2025-03-15', serviceDays: 128, completedOrders: 56,
       rating: 98, totalHours: 256, skills: ['护生执行', '活动组织', '摄影记录'], phone: '138****5678'
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     certificates: [],
     serviceHistory: [],
     reviews: []

@@ -2,7 +2,7 @@
 
 # WXML P0 问题详细定位脚本
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/admin/.openclaw/workspace"
 P0_DETAIL_REPORT="$WORKSPACE/wxml-p0-detailed-report.md"
 
 echo "# WXML P0 问题详细定位报告" > "$P0_DETAIL_REPORT"

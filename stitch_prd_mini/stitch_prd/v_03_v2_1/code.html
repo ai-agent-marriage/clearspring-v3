@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>任务详情 - 呼吸的静默</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#ebcaa3",
+                    "surface-bright": "#faf9f4",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-high": "#e9e8e3",
+                    "primary-container": "#4a5d4e",
+                    "outline-variant": "#c3c8c1",
+                    "surface-container-low": "#f5f4ef",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#506354",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#1b1c19",
+                    "secondary": "#6e5e00",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container": "#efeee9",
+                    "secondary-container": "#fee264",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "tertiary-container": "#6d5435",
+                    "background": "#faf9f4",
+                    "inverse-surface": "#30312e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "inverse-primary": "#b7ccb9",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-secondary-container": "#756400",
+                    "on-background": "#1b1c19",
+                    "tertiary": "#533d20",
+                    "primary": "#334537",
+                    "on-secondary-fixed": "#211b00",
+                    "secondary-fixed": "#fee264",
+                    "on-tertiary-fixed": "#291801",
+                    "on-primary-fixed": "#0e1f13",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-dim": "#dbdad5",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-container-highest": "#e3e2de",
+                    "outline": "#737872",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#c0d5c2",
+                    "surface": "#faf9f4",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#434843",
+                    "inverse-on-surface": "#f2f1ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f4; color: #1b1c19; }
+        .serif-text { font-family: 'Noto Serif SC', serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, rgba(74, 93, 78, 0.03) 0%, rgba(201, 176, 55, 0.03) 100%);
+        }
+        .whisper-shadow { box-shadow: 0 4px 20px rgba(74, 93, 78, 0.04); }
+    </style>
+</head>
+<body class="bg-surface overflow-x-hidden min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-4 h-14 w-full fixed top-0 z-50 bg-[#4A5D4E] text-white shadow-sm bg-opacity-90 backdrop-blur-md">
+<div class="flex items-center gap-2">
+<button class="active:scale-95 transition-transform p-2 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-white font-headline text-xl tracking-tight">任务详情</h1>
+</div>
+<div class="flex items-center">
+<button class="active:scale-95 transition-transform p-2 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-32 px-4 max-w-2xl mx-auto w-full flex-grow">
+<!-- Status Card - Compressed -->
+<section class="mb-3 animate-fade-in">
+<div class="bg-surface-container-lowest rounded-lg p-4 whisper-shadow ink-wash-bg relative overflow-hidden border border-primary/5">
+<div class="relative z-10 flex justify-between items-center">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span class="text-primary text-[10px] tracking-widest font-medium uppercase">当前状态</span>
+</div>
+<h2 class="font-headline text-2xl text-primary">执行中</h2>
+</div>
+<div class="text-right">
+<p class="text-on-surface-variant text-[10px] mb-0.5">剩余时间</p>
+<p class="font-label text-lg font-bold text-primary">04:22:15</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Layout - Compressed -->
+<div class="grid grid-cols-1 gap-3">
+<!-- Species Focus - Tighter Layout -->
+<div class="bg-surface-container-low rounded-lg p-4 border border-primary/5">
+<div class="flex gap-4 items-start">
+<div class="w-24 h-24 rounded-md overflow-hidden shrink-0 shadow-sm">
+<img alt="物种详情" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFWfXQja9l6qVjYwE-JC-aGhZohvxP-GEWbx_60xvma4VQOnHuh37GFHiDifTXnGjOQ9Vr-UcEKyuGNedsgnOTlJJRST58UhW7K-RiH57NW0ZhX8-J5XKxvFgYiWhAwtBzjaS8IO986fHgnTKrwGiTMScChMNR2-kPikJMxFg9eVqBzDsWqCpfu-PqlwnNu0caANo99ocdbXk-19i1AOXWq56SGb-EiOSehqiKwuURaHgJrXxbUuMprjq1dMxl_jvuTRKnBVDTOU4-"/>
+</div>
+<div class="flex-1">
+<span class="text-tertiary-container text-[10px] font-bold tracking-widest block mb-0.5">目标物种</span>
+<h3 class="font-headline text-lg text-primary mb-1">白山兜兰 (Cypripedium)</h3>
+<p class="text-on-surface-variant leading-snug text-xs line-clamp-3">
+                            国家一级保护植物。生长在海拔1200-1800米针阔混交林下。记录其开花密度与周边湿度。
+                        </p>
+<div class="mt-2 flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 bg-primary/5 rounded-full text-[10px] text-primary font-medium">重点保护</span>
+<span class="px-2 py-0.5 bg-primary/5 rounded-full text-[10px] text-primary font-medium">科研观测</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Map & Coordinates - Combined Compact -->
+<div class="bg-surface-container-low rounded-lg p-4 border border-primary/5">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="text-primary font-bold text-xs tracking-wide">精准坐标</span>
+</div>
+<div class="flex gap-4 items-center">
+<div class="w-32 aspect-video bg-surface-container rounded-md overflow-hidden relative shrink-0">
+<img alt="地图" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3rG7PTDDN8d3tH61CqfKwKFdQenfqA-mVPEBrDXoywD-Hn9-Ffh9TsJKWiVE2n_1ytKssrkxuPiZm6_DGc60_vajfqTEpOPyCOwRNJY5Jm2Du-Z2GiHO8GcaNC22EOn7MStMsl4zqfcsaPdatLhePJrE5_lyTdUEpZ62bXEHmE_S1WEpwpRMXaV-X0weJ08_P4pvJq6iQ_cugiqdENE6SCyrHo2ekrpvSD3O4RkPx335vl_0Sz2Y4E9tib2_Q_CXGRwz4uiFpSr50"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-2 h-2 bg-secondary-container rounded-full animate-ping"></div>
+<div class="w-1.5 h-1.5 bg-secondary-container rounded-full absolute"></div>
+</div>
+</div>
+<div>
+<p class="text-primary font-bold text-sm tracking-tight">41.9833° N, 128.0833° E</p>
+<p class="text-on-surface-variant text-[10px] mt-0.5 italic">长白山保护区 · A-042</p>
+</div>
+</div>
+</div>
+<!-- User Wishes - Slimmer -->
+<div class="bg-surface-container-low rounded-lg p-4 border border-primary/5">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-lg">temp_preferences_eco</span>
+<span class="text-primary font-bold text-xs tracking-wide">发起者寄语</span>
+</div>
+<div class="relative pl-6">
+<span class="material-symbols-outlined text-outline-variant/30 text-3xl absolute top-[-4px] left-[-4px]">format_quote</span>
+<p class="serif-text text-primary text-xs leading-relaxed italic">
+                        “这株兰花是我父亲在三十年前记录下的，希望能看到它今年依然在山谷中静静绽放。”
+                    </p>
+</div>
+<div class="mt-3 flex items-center gap-2 border-t border-outline-variant/10 pt-2">
+<div class="w-6 h-6 rounded-full bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[14px]">person</span>
+</div>
+<p class="text-[10px] font-bold text-primary">林先森 <span class="font-normal text-on-surface-variant/70 ml-1">资深观察员</span></p>
+</div>
+</div>
+</div>
+<!-- Task Checklist - Compact List -->
+<section class="mt-4">
+<h4 class="font-bold text-primary text-[10px] mb-2 tracking-widest uppercase opacity-70">执行清单</h4>
+<div class="space-y-2">
+<div class="flex items-center gap-3 bg-surface-container-lowest px-3 py-2.5 rounded-lg whisper-shadow border border-primary/5">
+<span class="material-symbols-outlined text-secondary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-primary text-xs font-medium">到达指定坐标点位</span>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-lowest px-3 py-2.5 rounded-lg whisper-shadow opacity-70 border border-primary/5">
+<span class="material-symbols-outlined text-outline text-lg">radio_button_unchecked</span>
+<span class="text-primary text-xs">采集植株近景照片 (3-5张)</span>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-lowest px-3 py-2.5 rounded-lg whisper-shadow opacity-70 border border-primary/5">
+<span class="material-symbols-outlined text-outline text-lg">radio_button_unchecked</span>
+<span class="text-primary text-xs">记录周围环境湿度数值</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation & Action -->
+<div class="fixed bottom-0 w-full z-50 bg-surface/95 backdrop-blur-md border-t border-primary/10">
+<!-- Main Action Button (In-page) -->
+<div class="px-4 py-3">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold tracking-widest text-xs hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-md">
+<span class="material-symbols-outlined text-sm">publish</span>
+                提交执行结果
+            </button>
+</div>
+<!-- Bottom Tab Bar -->
+<nav class="flex justify-around items-center h-14 pb-1">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant/60">
+<span class="material-symbols-outlined text-xl">psychology_alt</span>
+<span class="text-[10px] font-medium">梵音</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant/60">
+<span class="material-symbols-outlined text-xl">eco</span>
+<span class="text-[10px] font-medium">禅理</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">我的</span>
+</button>
+</nav>
+</div>
+<!-- Decorative Zen Elements -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-1/4 -left-10 w-48 h-48 bg-[#C9B037]/5 rounded-full blur-[80px]"></div>
+<div class="absolute bottom-1/4 -right-10 w-56 h-56 bg-[#4A5D4E]/5 rounded-full blur-[80px]"></div>
+</div>
+</body></html>

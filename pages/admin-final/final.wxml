@@ -14,7 +14,7 @@
         <view class="notification-badge">3</view>
       </view>
       <view class="avatar" bindtap="goToProfile">
-        <image class="avatar-img" src="/static/images/admin-avatar.png" mode="aspectFill"/>
+        <image class="avatar-img" lazy-load="true" src="/static/images/admin-avatar.png" mode="aspectFill"/>
       </view>
     </view>
   </view>

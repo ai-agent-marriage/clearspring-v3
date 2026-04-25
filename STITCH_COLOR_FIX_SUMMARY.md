@@ -64,7 +64,7 @@
 
 ## 📁 交付物
 
-1. ✅ **修复报告**: `/root/.openclaw/workspace/STITCH_COLOR_FIX_REPORT.md`
+1. ✅ **修复报告**: `/home/admin/.openclaw/workspace/STITCH_COLOR_FIX_REPORT.md`
 2. ✅ **备份文件**: `/tmp/wxss_backup/`
 3. ✅ **替换脚本**: `/tmp/color_replacements.sh`
 4. ✅ **验证脚本**: `/tmp/verify_fix.sh`

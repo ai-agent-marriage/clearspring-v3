@@ -81,7 +81,7 @@
   <!-- 预览确认弹窗 -->
   <view wx:if="{{showPreview}}" class="preview-modal" catchtap="onModalBackdropTap">
     <view class="preview-content" catchtap="onModalContentTap">
-      <image class="preview-image" src="{{previewImage}}" mode="aspectFit" />
+      <image class="preview-image" lazy-load="true" src="{{previewImage}}" mode="aspectFit" />
       
       <view class="preview-actions">
         <button class="btn btn-outline btn-retake" bindtap="onRetake">重拍</button>

@@ -19,6 +19,13 @@ Page({
     requirements: []
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad(options) {
     if (options.status) { this.updateStatus(options.status); }
     this.loadQualificationData();

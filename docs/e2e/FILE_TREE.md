@@ -1,7 +1,7 @@
 # E2E 测试文件树
 
 ```
-/root/.openclaw/workspace/
+/home/admin/.openclaw/workspace/
 │
 ├── 📄 playwright.config.ts                    # Playwright 主配置
 ├── 📄 package.json                            # 已添加测试脚本

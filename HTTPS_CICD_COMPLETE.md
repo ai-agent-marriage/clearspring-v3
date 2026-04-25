@@ -133,7 +133,7 @@ cat ~/.ssh/github_actions
 
 ```bash
 # 推送测试提交到 main 分支
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 git checkout main
 echo "# CI/CD Test" >> README.md
 git add README.md
@@ -148,7 +148,7 @@ git push origin main
 ## 文件清单
 
 ```
-/root/.openclaw/workspace/
+/home/admin/.openclaw/workspace/
 ├── .github/
 │   ├── workflows/
 │   │   └── deploy.yml              # GitHub Actions 工作流

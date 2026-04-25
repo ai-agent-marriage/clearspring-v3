@@ -75,7 +75,7 @@
       <text class="section-title-main">资质文件</text>
       <view class="docs-list">
         <view class="doc-card" wx:for="{{docList}}" wx:key="id">
-          <image class="doc-thumb" src="{{item.thumb}}" mode="aspectFill" />
+          <image class="doc-thumb" lazy-load="true" src="{{item.thumb}}" mode="aspectFill" />
           <view class="doc-info">
             <text class="doc-name">{{item.name}}</text>
             <view class="doc-actions">

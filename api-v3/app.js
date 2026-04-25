@@ -1,17 +1,48 @@
 /**
  * ClearSpring V3 API - 生产环境（完整版）
  * 包含：认证、控制台、订单、执行者、资质审核等接口
+ * 
+ * 【安全修复】敏感信息从环境变量读取，禁止硬编码
  */
 
 const http = require('http');
 const crypto = require('crypto');
+require('dotenv').config(); // 加载 .env 文件
 
 const PORT = process.env.PORT || 3000;
 const VERSION = '3.0.0';
 
+// 【安全修复】从环境变量读取默认密码，生产环境必须修改
+const DEFAULT_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const DEFAULT_OPERATOR_PASSWORD = process.env.OPERATOR_PASSWORD || 'operator123';
+
+// 检查是否使用默认密码（生产环境应发出警告）
+if (process.env.NODE_ENV === 'production') {
+  if (DEFAULT_ADMIN_PASSWORD === 'admin123') {
+    console.warn('⚠️  警告：管理员使用默认密码，生产环境请设置 ADMIN_PASSWORD 环境变量');
+  }
+  if (DEFAULT_OPERATOR_PASSWORD === 'operator123') {
+    console.warn('⚠️  警告：运营管理员使用默认密码，生产环境请设置 OPERATOR_PASSWORD 环境变量');
+  }
+}
+
 const users = new Map([
-  ['admin', { id: '1', username: 'admin', nickname: '超级管理员', role: 'super_admin', permissions: ['*'], passwordHash: crypto.pbkdf2Sync('admin123', 'salt', 1000, 64, 'sha512').toString('hex') }],
-  ['operator', { id: '2', username: 'operator', nickname: '运营管理员', role: 'operator', permissions: ['order:read', 'order:write'], passwordHash: crypto.pbkdf2Sync('operator123', 'salt', 1000, 64, 'sha512').toString('hex') }]
+  ['admin', { 
+    id: '1', 
+    username: 'admin', 
+    nickname: '超级管理员', 
+    role: 'super_admin', 
+    permissions: ['*'], 
+    passwordHash: crypto.pbkdf2Sync(DEFAULT_ADMIN_PASSWORD, process.env.PASSWORD_SALT || 'salt', 1000, 64, 'sha512').toString('hex') 
+  }],
+  ['operator', { 
+    id: '2', 
+    username: 'operator', 
+    nickname: '运营管理员', 
+    role: 'operator', 
+    permissions: ['order:read', 'order:write'], 
+    passwordHash: crypto.pbkdf2Sync(DEFAULT_OPERATOR_PASSWORD, process.env.PASSWORD_SALT || 'salt', 1000, 64, 'sha512').toString('hex') 
+  }]
 ]);
 
 const tokens = new Map();

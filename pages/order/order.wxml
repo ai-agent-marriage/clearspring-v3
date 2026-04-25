@@ -104,7 +104,7 @@
 
     <!-- 空状态 -->
     <view class="empty-state" wx:else>
-      <image class="empty-icon" src="/images/empty-order.png" mode="aspectFit" />
+      <image class="empty-icon" lazy-load="true" src="/images/empty-order.png" mode="aspectFit" />
       <text class="empty-text">暂无订单</text>
       <text class="empty-hint">快去委托第一笔护生订单吧~</text>
     </view>
@@ -116,7 +116,7 @@
     <view class="modal-content">
       <view class="modal-header">
         <text class="modal-title">订单详情</text>
-        <image class="close-btn" src="/images/close.png" mode="aspectFit" bindtap="closeDetail" />
+        <image class="close-btn" lazy-load="true" src="/images/close.png" mode="aspectFit" bindtap="closeDetail" />
       </view>
       
       <scroll-view class="modal-body" scroll-y>

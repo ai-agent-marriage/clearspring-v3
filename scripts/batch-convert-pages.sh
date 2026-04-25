@@ -1,8 +1,8 @@
 #!/bin/bash
 # Stitch 全量页面自动化转换脚本
 
-STITCH_DIR="/root/.openclaw/workspace/stitch_prd"
-MINIPROGRAM_DIR="/root/.openclaw/workspace/miniprogram/pages"
+STITCH_DIR="/home/admin/.openclaw/workspace/stitch_prd"
+MINIPROGRAM_DIR="/home/admin/.openclaw/workspace/miniprogram/pages"
 
 echo "🎨 Stitch 全量页面自动化转换开始"
 echo "================================"

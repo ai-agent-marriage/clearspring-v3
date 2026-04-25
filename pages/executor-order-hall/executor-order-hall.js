@@ -15,6 +15,13 @@ Page({
     pageSize: 10
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad(options) {
     this.loadOrders();
   },

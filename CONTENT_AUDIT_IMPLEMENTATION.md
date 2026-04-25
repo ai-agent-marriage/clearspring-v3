@@ -88,7 +88,7 @@ source cloud/database-schema-content-audit.sql
 
 **部署命令**:
 ```bash
-cd /root/.openclaw/workspace/cloud
+cd /home/admin/.openclaw/workspace/cloud
 chmod +x deploy-content-audit.sh
 ./deploy-content-audit.sh
 ```
@@ -218,7 +218,7 @@ CREATE TABLE `content_audit` (
 ### 2. 云函数部署
 
 ```bash
-cd /root/.openclaw/workspace/cloud
+cd /home/admin/.openclaw/workspace/cloud
 chmod +x deploy-content-audit.sh
 ./deploy-content-audit.sh
 ```

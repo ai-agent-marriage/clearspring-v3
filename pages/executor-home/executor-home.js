@@ -15,6 +15,13 @@ Page({
       hours: 5.5,
       rating: 4.9
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     
     // 进行中任务
     ongoingTasks: [

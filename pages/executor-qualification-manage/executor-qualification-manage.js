@@ -40,6 +40,13 @@ Page({
         issueDate: '2025-06-15',
         validDate: '2028-06-15'
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: 'cert_002',
         name: '健康管理师证书',

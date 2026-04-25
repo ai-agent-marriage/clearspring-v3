@@ -19,6 +19,13 @@ Page({
       serviceFee: '400.00',
       commission: '480.00'
     }
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
   },
 
   onLoad() {

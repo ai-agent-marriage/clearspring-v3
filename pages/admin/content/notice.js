@@ -10,6 +10,13 @@ Page({
         status: 1,
         statusName: '已发布'
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: 2,
         title: '春季护生活动通知',

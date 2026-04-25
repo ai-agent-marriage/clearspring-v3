@@ -232,12 +232,13 @@ async function callWechatDivisionAPI(transactionData) {
  * @param {object} event - 事件对象
  * @param {string} event.orderId - 订单 ID
  * @param {string} event.transactionId - 微信支付交易 ID（可选，已有支付时提供）
+ * @param {number} event.amount - 支付金额（可选，用于校验）
  * @returns {object} - 分账结果
  */
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext();
   const openid = wxContext.OPENID;
-  const { orderId, transactionId: externalTransactionId } = event;
+  const { orderId, transactionId: externalTransactionId, amount: requestAmount } = event;
   
   try {
     // 1. 校验用户登录状态
@@ -309,13 +310,49 @@ exports.main = async (event, context) => {
       };
     }
     
-    // 7. 计算分账
+    // 7. 【安全增强】后端金额校验（防止前端篡改金额）
+    if (requestAmount !== undefined && requestAmount !== null) {
+      // 金额必须为正数
+      if (typeof requestAmount !== 'number' || requestAmount <= 0) {
+        return {
+          success: false,
+          errorCode: 'INVALID_REQUEST_AMOUNT',
+          message: '请求金额格式错误'
+        };
+      }
+      
+      // 金额不能超过 100 万元
+      if (requestAmount > 1000000) {
+        return {
+          success: false,
+          errorCode: 'AMOUNT_EXCEEDS_LIMIT',
+          message: '金额超过上限'
+        };
+      }
+      
+      // 请求金额必须与订单金额一致（允许 0.01 元误差）
+      const amountDiff = Math.abs(requestAmount - order.actualPrice);
+      if (amountDiff > 0.01) {
+        console.error('[支付安全] 金额校验失败:', {
+          requestAmount,
+          orderAmount: order.actualPrice,
+          diff: amountDiff
+        });
+        return {
+          success: false,
+          errorCode: 'AMOUNT_MISMATCH',
+          message: '支付金额与订单金额不一致'
+        };
+      }
+    }
+    
+    // 8. 计算分账
     const division = calculateDivision(order.actualPrice);
     
-    // 8. 创建交易记录
+    // 9. 创建交易记录
     const transactionId = await createTransaction(order, division);
     
-    // 9. 调用微信支付分账 API
+    // 10. 调用微信支付分账 API
     // TODO: 实现真实的 API 调用
     const divisionResult = await callWechatDivisionAPI({
       ...division,
@@ -323,13 +360,13 @@ exports.main = async (event, context) => {
       orderId: order.orderId
     });
     
-    // 10. 更新订单支付状态
+    // 11. 更新订单支付状态
     await updateOrderPayment(orderId, externalTransactionId || transactionId);
     
-    // 11. 更新执行者收入
+    // 12. 更新执行者收入
     await updateExecutorIncome(order.executorId, division.executorIncome);
     
-    // 12. 记录审计日志
+    // 13. 记录审计日志
     await logAudit(openid, 'payment_division', transactionId, 'division', {
       orderId,
       totalAmount: division.totalAmount,

@@ -1,4 +1,6 @@
 // 执行者管理
+const auth = require('../../utils/auth');
+
 Page({
   data: {
     status: 'all',
@@ -70,6 +72,10 @@ Page({
   },
 
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) {
+      return;
+    }
     this.loadExecutorData();
   },
 

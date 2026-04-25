@@ -35,7 +35,7 @@ e2e/
 ### 1. 安装依赖
 
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 npm install -D @playwright/test
 npx playwright install chromium
 ```

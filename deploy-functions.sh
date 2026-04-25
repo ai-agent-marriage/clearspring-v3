@@ -7,7 +7,7 @@ set -e
 # 配置
 ENV_ID="clearspring-prod"
 REGION="ap-guangzhou"
-PROJECT_ROOT="/root/.openclaw/workspace/projects/clearspring"
+PROJECT_ROOT="/home/admin/.openclaw/workspace/projects/clearspring"
 FUNCTIONS_DIR="$PROJECT_ROOT/cloud/functions"
 
 echo "🚀 清如 ClearSpring - 云函数部署脚本"

@@ -106,7 +106,7 @@
 
 ```bash
 # 1. 代码质量检查
-cd /root/.openclaw/workspace/projects/clearspring
+cd /home/admin/.openclaw/workspace/projects/clearspring
 
 # 2. 文件完整性验证
 find pages -name "*.wxml" | wc -l  # 应该 26 个

@@ -16,47 +16,47 @@ Page({
     },
       // 自动修复：添加缺失的 bindtap 函数
     onBatchSettle(e) {
-      console.log('onBatchSettle called', e);
+      // [CLEANED] console.log('onBatchSettle called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onExportSettlement(e) {
-      console.log('onExportSettlement called', e);
+      // [CLEANED] console.log('onExportSettlement called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onEditInvoice(e) {
-      console.log('onEditInvoice called', e);
+      // [CLEANED] console.log('onEditInvoice called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onViewInvoice(e) {
-      console.log('onViewInvoice called', e);
+      // [CLEANED] console.log('onViewInvoice called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onViewSettlementDetail(e) {
-      console.log('onViewSettlementDetail called', e);
+      // [CLEANED] console.log('onViewSettlementDetail called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onSaveInvoice(e) {
-      console.log('onSaveInvoice called', e);
+      // [CLEANED] console.log('onSaveInvoice called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onTabChange(e) {
-      console.log('onTabChange called', e);
+      // [CLEANED] console.log('onTabChange called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onCancelInvoice(e) {
-      console.log('onCancelInvoice called', e);
+      // [CLEANED] console.log('onCancelInvoice called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onViewSettlementRecord(e) {
-      console.log('onViewSettlementRecord called', e);
+      // [CLEANED] console.log('onViewSettlementRecord called', e);
     },
 
   },
@@ -65,6 +65,13 @@ Page({
     tabs: ['待结算订单', '结算记录', '发票管理'],
     activeTab: 0,
     stats: { totalSettled: 45680, pendingSettle: 2990, settledOrders: 150 },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     pendingSettlements: [],
     settlementRecords: [],
     invoiceInfo: { company: '', taxNo: '', address: '', phone: '', bank: '', bankAccount: '', status: '未提交' },

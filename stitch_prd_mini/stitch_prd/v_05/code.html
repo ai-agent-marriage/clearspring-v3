@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>我的公益证书</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#faf9f4",
+                    "on-surface": "#1b1c19",
+                    "surface-bright": "#faf9f4",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#b7ccb9",
+                    "tertiary-container": "#6d5435",
+                    "inverse-on-surface": "#f2f1ec",
+                    "outline-variant": "#c3c8c1",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-tint": "#506354",
+                    "on-secondary-fixed-variant": "#534600",
+                    "secondary-container": "#fee264",
+                    "on-background": "#1b1c19",
+                    "surface-variant": "#e3e2de",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#291801",
+                    "surface-container-highest": "#e3e2de",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#30312e",
+                    "surface-container-low": "#f5f4ef",
+                    "secondary-fixed": "#fee264",
+                    "primary-fixed": "#d3e8d5",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-primary-container": "#c0d5c2",
+                    "outline": "#737872",
+                    "on-secondary-container": "#756400",
+                    "surface-container-high": "#e9e8e3",
+                    "secondary": "#6e5e00",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container": "#efeee9",
+                    "on-secondary-fixed": "#211b00",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-surface-variant": "#434843",
+                    "primary-container": "#4a5d4e",
+                    "primary": "#334537",
+                    "tertiary": "#533d20",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#faf9f4",
+                    "on-tertiary-container": "#ebcaa3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #faf9f4;
+        }
+        .serif-font {
+            font-family: 'Noto Serif', serif;
+        }
+        .ink-wash-gradient {
+            background: linear-gradient(135deg, rgba(74, 93, 78, 0.05) 0%, rgba(183, 204, 185, 0.1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#334537]/40 backdrop-blur-xl flex items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#FAF9F4] tap-highlight-transparent active:scale-95 transition-opacity hover:opacity-80 cursor-pointer" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-['Noto_Serif'] font-bold text-xl text-[#334537] dark:text-[#FAF9F4]">我的公益证书</h1>
+</div>
+</header>
+<main class="pt-20 px-6 space-y-6">
+<!-- Summary Card: Bento Style Editorial -->
+<section class="bg-surface-container-lowest rounded-lg p-8 shadow-[0_12px_40px_rgba(74,93,78,0.06)] overflow-hidden relative">
+<div class="absolute -right-10 -top-10 w-40 h-40 ink-wash-gradient rounded-full blur-3xl opacity-50"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div class="space-y-1">
+<p class="text-on-surface-variant/60 text-sm tracking-wider font-medium">公益历程累计</p>
+<h2 class="serif-font text-3xl text-primary">善行记录</h2>
+</div>
+<div class="grid grid-cols-3 gap-8 w-full md:w-auto">
+<div class="text-center md:text-left">
+<p class="text-primary font-bold text-2xl">128</p>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">累计完成任务</p>
+</div>
+<div class="text-center md:text-left">
+<p class="text-primary font-bold text-2xl">352<span class="text-xs ml-0.5">h</span></p>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">累计服务时长</p>
+</div>
+<div class="text-center md:text-left">
+<p class="text-primary font-bold text-2xl">15</p>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-tighter">获得证书</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section Title with Asymmetry -->
+<div class="flex items-baseline justify-between pt-2">
+<h3 class="serif-font text-2xl text-primary">荣誉证书库</h3>
+<div class="h-[1px] flex-grow mx-6 bg-outline-variant opacity-15"></div>
+<span class="text-secondary text-sm font-medium">按时间排序</span>
+</div>
+<!-- Certificate Grid -->
+<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+<!-- Card 1 -->
+<div class="flex flex-col space-y-3 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-surface-container overflow-hidden relative shadow-sm group-hover:shadow-lg transition-all duration-300">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all" data-alt="Vertical certificate with traditional ink-wash painting style of mountains and bamboo on aged paper texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqZKkoe40_p0Y6eyV6UTePfPWc9kqDugPQxlfNskdrYWX4JloYz8-rMtFwq5_agz8QiVQDub8whyM0PW0eikcA5utGC48MaMAkA20sVZBvhQxxMsUO_cqgZgPXptcmXBQMEM97oYdb3vzAERRqdOFNoI4ffnuyb7hdYw976JL2TpXfW6RilYSL_q8IGgLr3WFNQf4Wpq_lE9wTN5vRWiR5VMvdzT-e3FDKn3xMYSbr_oPDzaLIHQoIVIOru7OkOp7CU5nFTqs3PIZo"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-bold text-primary text-sm leading-snug line-clamp-1">科学护生圆满证书</h4>
+<div class="flex flex-col text-[10px] text-on-surface-variant/70 space-y-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]" data-icon="calendar_today">calendar_today</span> 2024-04-06</span>
+<span class="font-mono opacity-60">ORD-20240406-082</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col space-y-3 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-surface-container overflow-hidden relative shadow-sm group-hover:shadow-lg transition-all duration-300">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all" data-alt="Artistic certificate layout with subtle gold leaf accents and soft nature-inspired watercolor background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzKQjwJhOcljJYgbAFQRLSZMqd-Tfif4_Hlon87jt75i4iuhd-tQynwr8G3t7_xKbvaN-2UD-ioyNw31hCkxkyv6sx-cIrNU9ldV69wPwHvg2emXk7TGIbc1V1SzNXuBCb2RUmUqQLKTFkuYh6bZb4vFFg_68BojuMFvsVpRtxLVjMB7vKfQAV_jlmXQHfJubbx_mrKf518XoWINc5QKrEl0tD5nDnKz4sIivnYppFmQhyyl6VPBQjylz9QKtH6BP6ks99LAS8lhKl"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-bold text-primary text-sm leading-snug line-clamp-1">慈心公益先行者证书</h4>
+<div class="flex flex-col text-[10px] text-on-surface-variant/70 space-y-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]" data-icon="calendar_today">calendar_today</span> 2024-03-21</span>
+<span class="font-mono opacity-60">ORD-20240321-115</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col space-y-3 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-surface-container overflow-hidden relative shadow-sm group-hover:shadow-lg transition-all duration-300">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all" data-alt="Traditional vertical layout certificate with minimalist brush strokes of a pine tree on rice paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4--Xw8hurLcz7yPLhjmir_j9-zwP0DQTIgcW1qB1GRRpRvHNhQxpYvQ48fv7sK9O3eBy8yCNJTiWEwtjsNjljOpLaaFLPQhwflOgEc07qVt2TwhQ2bPSIEVt2qWDeKHC4lWZXOcWz9XZww4S4Q_zvlNzdE19-CAwqHTajlnBR4C2vZJW4QnjHahph9SWJpFZESLucVC2pVAaH8iRBg5YNYg8PfyDmU-VQNU4GRA7p4JbRXh2HWXx5AI13MXQ4w4rzkaPHE8MIBROj"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-bold text-primary text-sm leading-snug line-clamp-1">森林守护公益证书</h4>
+<div class="flex flex-col text-[10px] text-on-surface-variant/70 space-y-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]" data-icon="calendar_today">calendar_today</span> 2024-02-15</span>
+<span class="font-mono opacity-60">ORD-20240215-042</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col space-y-3 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-surface-container overflow-hidden relative shadow-sm group-hover:shadow-lg transition-all duration-300">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all" data-alt="Elegant certificate design featuring a circular zen motif and soft morning mist landscape illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUH0S0kbSQzUNUeYrSI2TFjlgRpPLjgHvXBLEbnkkrg_z5WYxxH8zpUR3rIdDWWoMQda2g3CFFt-ygGPv7iIrcx6_rQrLB7vx0XGRMi5Vbt0ARktK5M84CF8iMbJHpb7UZGrnabZSfomD6wzfeDdRnHl-nuWx-3fvg0SJpaMRHX5XebWYZd0I64wYXclIITsz9eVbd7AY9w8Tyj26INGT-1DNy2G49sdTH2cQua4NOtmeOSW00DQXOQ243UHpuwH7rR-umdgneTEgT"/>
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-3 right-3">
+<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="px-1 space-y-1">
+<h4 class="font-bold text-primary text-sm leading-snug line-clamp-1">助学兴教荣誉证书</h4>
+<div class="flex flex-col text-[10px] text-on-surface-variant/70 space-y-0.5">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]" data-icon="calendar_today">calendar_today</span> 2024-01-10</span>
+<span class="font-mono opacity-60">ORD-20240110-221</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 bg-[#FAF9F4] dark:bg-[#334537] flex justify-around items-center px-8 pb-safe z-50 rounded-t-lg shadow-[0_-4px_20px_rgba(74,93,78,0.04)]">
+<!-- Tab 1 -->
+<a class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#FAF9F4]/50 hover:text-[#6e5e00] transition-colors active:scale-[0.98] duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="library_music">library_music</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[12px] tracking-wide mt-1">梵音</span>
+</a>
+<!-- Tab 2 -->
+<a class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#FAF9F4]/50 hover:text-[#6e5e00] transition-colors active:scale-[0.98] duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[12px] tracking-wide mt-1">禅理</span>
+</a>
+<!-- Tab 3: Active -->
+<a class="flex flex-col items-center justify-center text-[#334537] dark:text-[#C9B037] font-bold hover:text-[#6e5e00] transition-colors active:scale-[0.98] duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[12px] tracking-wide mt-1">我的</span>
+</a>
+</nav>
+</body></html>

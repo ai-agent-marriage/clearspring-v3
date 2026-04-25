@@ -5,7 +5,7 @@
 
   <!-- 主视觉区域 -->
   <view class="hero-section">
-    <image class="hero-image" src="{{heroImage}}" mode="aspectFill"/>
+    <image class="hero-image" lazy-load="true" src="{{heroImage}}" mode="aspectFill"/>
     <view class="hero-overlay"></view>
     <view class="hero-text">
       <text class="hero-title">万物有灵</text>

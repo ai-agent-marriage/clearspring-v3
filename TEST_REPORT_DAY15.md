@@ -177,7 +177,7 @@
 
 #### ESLint 检查结果
 ```bash
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run lint
 ```
 
@@ -215,13 +215,13 @@ npm run test:coverage
 ### 下一步行动
 1. 运行前端单元测试
    ```bash
-   cd /root/.openclaw/workspace/miniprogram
+   cd /home/admin/.openclaw/workspace/miniprogram
    npm test
    ```
 
 2. 运行后端单元测试
    ```bash
-   cd /root/.openclaw/workspace/backend/ruoyi-admin
+   cd /home/admin/.openclaw/workspace/backend/ruoyi-admin
    mvn test
    ```
 

@@ -2,7 +2,7 @@
 # Emoji 批量替换脚本
 # 将 WXML 文件中的图标类 Emoji 替换为 SVG
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/admin/.openclaw/workspace"
 
 # 定义 Emoji 到 SVG 的映射
 # 格式：Emoji|SVG 路径数据

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "secondary": "#6e5e00",
+                        "inverse-surface": "#30312e",
+                        "primary-fixed": "#d3e8d5",
+                        "primary": "#334537",
+                        "on-surface": "#1b1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#faf9f4",
+                        "surface-dim": "#dbdad5",
+                        "secondary-container": "#fee264",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface": "#faf9f4",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f2f1ec",
+                        "surface-container-high": "#e9e8e3",
+                        "background": "#faf9f4",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f5f4ef",
+                        "outline-variant": "#c3c8c1",
+                        "tertiary": "#533d20",
+                        "on-secondary-fixed-variant": "#534600",
+                        "on-secondary-container": "#756400",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#b7ccb9",
+                        "outline": "#737872",
+                        "on-tertiary-fixed": "#291801",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-background": "#1b1c19",
+                        "surface-tint": "#506354",
+                        "secondary-fixed": "#fee264",
+                        "surface-container-highest": "#e3e2de",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#6d5435",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-surface-variant": "#434843",
+                        "on-primary-container": "#c0d5c2",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-container": "#efeee9",
+                        "surface-variant": "#e3e2de",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "secondary-fixed-dim": "#e0c64b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(110, 94, 0, 0.03) 0%, transparent 40%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24 ink-wash-bg">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/80 dark:bg-[#1A1C19]/80 backdrop-blur-md shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#334537] dark:text-[#DDE5DA]">search</span>
+<h1 class="font-['Noto_Serif'] text-xl tracking-tight font-bold text-[#334537] dark:text-[#DDE5DA]">生物放生名录</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537]/60">menu_book</span>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Search Section -->
+<section class="mb-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-lg">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl py-4 pl-12 pr-4 shadow-[0_4px_20px_rgba(74,93,78,0.04)] focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline-variant" placeholder="搜索物种名称/学名" type="text"/>
+</div>
+</section>
+<!-- Category Chips -->
+<section class="mb-10 -mx-6">
+<div class="flex overflow-x-auto gap-3 px-6 no-scrollbar">
+<button class="whitespace-nowrap px-6 py-2 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm transition-all shadow-sm">
+                    全部分类
+                </button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-primary text-primary font-medium text-sm hover:bg-surface-container-high transition-all">
+                    鱼类
+                </button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-primary text-primary font-medium text-sm hover:bg-surface-container-high transition-all">
+                    鸟类
+                </button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-primary text-primary font-medium text-sm hover:bg-surface-container-high transition-all">
+                    爬行类
+                </button>
+<button class="whitespace-nowrap px-6 py-2 rounded-full border border-primary text-primary font-medium text-sm hover:bg-surface-container-high transition-all">
+                    两栖类
+                </button>
+</div>
+</section>
+<!-- Species List -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<article class="bg-surface-container-low rounded-2xl overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a bright red koi fish swimming in clear pond water with soft ripples and dappled sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIIrFwc1ZbDvPS8lC-EvTd8GKERWcPNFplBBKQb11uZ5mBNRDTvt69CO1l6nd4Dy51m1HuT53PVu6BpPi9h5uYZkv4z0KdKDlPPkhN7w4lJKqyNgVQWT1I_0Ef1rk0Mq8KtiTsfZneA-bqxeBCIL15JRFSqvOI0_nd8t1dv7-Xg-fNsVGsa0n-oB0CV-ifCXKvpOfys6BYrmvhKSAjFrW7KmE1VSiLhwUp6k_rzE7YVrcDDzLyfd6DSJwnKtMCk9vSAeWecYixU_nk"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#38A169] text-white px-3 py-1 rounded-lg text-xs font-bold tracking-wide">可合规投放</span>
+</div>
+</div>
+<div class="p-5">
+<div class="mb-2">
+<h3 class="text-xl font-bold text-on-surface">红锦鲤</h3>
+<p class="text-xs italic text-outline font-body">Cyprinus rubrofuscus</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">
+                        常见观赏鱼，适宜淡水环境。具有极高的观赏价值，且在我国大部分淡水水系中均能自然生存。
+                    </p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">water_drop</span> 淡水物种
+                        </span>
+<button class="text-primary hover:text-primary-container">
+<span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-low rounded-2xl overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A Red-eared slider turtle resting on a rock near a river bank with bright daylight and clear water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCyNVSO9EisbvIC1Ln78j788H9Zky-Qt7GKiZFg5mbvsUk8uRvL7yFOyGGgLFpXQNwd6Tt5qKIiUm5ZNtwgdP7Cr_H36QnVxw3sRk1c2RVmny9jN4oL9cEWQQ2iuSqvPWaMshCmGupN4bwxe34RhdGRkVQZaYKzCcdbYJ4bzIKlfyph1EWcFRna0I9yCj4WVWrpVTP21DIQHua7mVAawVvLC6ocIEqFsKURGv7k2t1FsYOXvkB-F16Ba9zaB5JjFGPiEY-itrbfCzh"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#E53E3E] text-white px-3 py-1 rounded-lg text-xs font-bold tracking-wide">禁止投放</span>
+</div>
+</div>
+<div class="p-5">
+<div class="mb-2">
+<h3 class="text-xl font-bold text-on-surface">巴西龟</h3>
+<p class="text-xs italic text-outline font-body">Trachemys scripta elegans</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">
+                        外来入侵物种，严禁自然水域投放。其适应性强，会排挤本土龟类，破坏生态平衡。
+                    </p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span> 生态威胁
+                        </span>
+<button class="text-primary hover:text-primary-container">
+<span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 (Placeholder for Grid) -->
+<article class="bg-surface-container-low rounded-2xl overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+<div class="aspect-[4/3] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Elegant white bird standing in a shallow marsh with morning fog and soft golden light reflecting in the water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQwbLF-q9oT91-BsriBIAlJCHh2jF1zXbaFBwpZuIi3Pdof9sOuRuDcysagvr3TSMJWNUVdMACwm-mq2KXPeS_t8SFKtCSC5msJtlbhWHA9zL3O6txpFith9sKjPh9FviNtm6xiR9NAyt6yEUlaHer0Lwp2c8_Iy6EA9QRrv7FzGdaiVte1VSY1RBt7hxW8uaiQ4Ii0YzQpBIX5c3BRE4OQtJLKpXd58_21LyqABCHudGjn2-nlUZ4mA71enAjs-ctUKBbMSQSLGo_"/>
+<div class="absolute top-4 left-4">
+<span class="bg-[#38A169] text-white px-3 py-1 rounded-lg text-xs font-bold tracking-wide">可合规投放</span>
+</div>
+</div>
+<div class="p-5">
+<div class="mb-2">
+<h3 class="text-xl font-bold text-on-surface">白鹭</h3>
+<p class="text-xs italic text-outline font-body">Egretta garzetta</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-4">
+                        国家二级保护动物，适宜湿地环境。放生需遵循相关野生动物保护法律法规。
+                    </p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-tertiary flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">forest</span> 湿地物种
+                        </span>
+<button class="text-primary hover:text-primary-container">
+<span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#FAF9F4] dark:bg-[#1A1C19] z-50 rounded-t-lg shadow-[0_-4px_20px_rgba(74,93,78,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#DDE5DA]/50 px-5 py-1.5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-['Plus_Jakarta_Sans'] text-xs tracking-wide">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#4A5D4E] text-[#FAF9F4] rounded-2xl px-5 py-1.5 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-['Plus_Jakarta_Sans'] text-xs tracking-wide font-semibold">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#DDE5DA]/50 px-5 py-1.5 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-xs tracking-wide">我的</span>
+</a>
+</nav>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

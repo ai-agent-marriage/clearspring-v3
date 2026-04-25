@@ -58,7 +58,7 @@
       <view class="capture-area">
         <!-- 相册预览 -->
         <view class="preview-btn" bindtap="onViewGallery">
-          <image class="preview-thumb" src="/images/last-photo.jpg" mode="aspectFill" wx:if="{{lastPhoto}}"/>
+          <image class="preview-thumb" lazy-load="true" src="/images/last-photo.jpg" mode="aspectFill" wx:if="{{lastPhoto}}"/>
           <view class="preview-placeholder" wx:else>
             <text class="material-icons">photo</text>
           </view>

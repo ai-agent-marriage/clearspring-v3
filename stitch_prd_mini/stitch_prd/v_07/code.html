@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c3c8c1",
+                    "tertiary": "#533d20",
+                    "on-secondary-fixed-variant": "#534600",
+                    "on-secondary-container": "#756400",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface": "#faf9f4",
+                    "primary-container": "#4a5d4e",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f1ec",
+                    "surface-container-high": "#e9e8e3",
+                    "background": "#faf9f4",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f4ef",
+                    "on-surface": "#1b1c19",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#faf9f4",
+                    "surface-dim": "#dbdad5",
+                    "secondary-container": "#fee264",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "secondary": "#6e5e00",
+                    "inverse-surface": "#30312e",
+                    "primary-fixed": "#d3e8d5",
+                    "primary": "#334537",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container": "#efeee9",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-container-highest": "#e3e2de",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#6d5435",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-surface-variant": "#434843",
+                    "on-primary-container": "#c0d5c2",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-tint": "#506354",
+                    "secondary-fixed": "#fee264",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#b7ccb9",
+                    "outline": "#737872",
+                    "on-tertiary-fixed": "#291801",
+                    "on-secondary-fixed": "#211b00",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-background": "#1b1c19"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f4; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .tonal-transition-ink-wash { background: linear-gradient(180deg, rgba(250, 249, 244, 0.9) 0%, rgba(239, 238, 233, 0.4) 100%); }
+        .ink-wash-overlay { background: linear-gradient(135deg, rgba(74, 93, 78, 0.03) 0%, rgba(201, 176, 55, 0.03) 100%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 backdrop-blur-xl shadow-[0_12px_40px_rgba(74,93,78,0.06)]">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-2xl mx-auto">
+<button class="material-symbols-outlined text-primary hover:bg-primary-container/10 p-2 rounded-full transition-colors" data-icon="arrow_back">arrow_back</button>
+<h1 class="text-xl font-headline font-bold tracking-tight text-primary">合规知识库</h1>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</div>
+</header>
+<main class="pt-20 pb-24 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Search Section -->
+<section class="mt-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container border-none rounded-xl focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder-on-surface-variant/60 transition-all" placeholder="搜索合规政策、指南或物种..." type="text"/>
+</div>
+</section>
+<!-- Category Tabs -->
+<nav class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+<button class="px-5 py-2.5 rounded-full bg-secondary-container text-on-secondary-container font-medium whitespace-nowrap text-sm">全部</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium whitespace-nowrap text-sm hover:bg-surface-container-high transition-colors">执行规范</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium whitespace-nowrap text-sm hover:bg-surface-container-high transition-colors">合规政策</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium whitespace-nowrap text-sm hover:bg-surface-container-high transition-colors">物种识别</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium whitespace-nowrap text-sm hover:bg-surface-container-high transition-colors">水域指南</button>
+</nav>
+<!-- Featured Training Card -->
+<section>
+<div class="group relative rounded-3xl overflow-hidden aspect-video shadow-xl bg-primary-container">
+<img alt="Mountain landscape" class="w-full h-full object-cover opacity-80" data-alt="misty mountain peak at dawn with ethereal light and soft green forest valley in early morning mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxH3yiafLcrIIcvCaANYkENZz1SPXQxZ0CdkRxPmYoO_-rS3v4KTxE8iPJEbtzSfA5ADCCEjyCW7fd1mMzBn9f_DwpWZ70dmSGzjMSr-LCQrbs_FzoMy9oEtMA0CRK9xl9Lwvm4LcSps4c5iLQwUabnKSHD04TN8PR-rM3psD0BpcPLwDe-4-PXAAuOlSLKEhiPB3lzUIa_avJ1DHPPViQWHmitYky5EOoRqJ_OS3-ggWLtSdTT7eHJHHiB-RBblzgXvbzBsbFenj4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="w-16 h-16 rounded-full bg-surface/20 backdrop-blur-md border border-surface/30 flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-surface text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-widest rounded-md mb-2 inline-block">Featured</span>
+<h2 class="text-xl font-headline text-surface leading-tight">志愿巡护安全操作与法律边界指南</h2>
+</div>
+</div>
+</section>
+<!-- Article List -->
+<section class="space-y-6">
+<h3 class="text-xs font-bold text-outline uppercase tracking-widest px-1">最新发布</h3>
+<div class="grid gap-6">
+<!-- Pinned Article 1 -->
+<article class="bg-surface-container-low p-6 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="ink-wash-overlay absolute inset-0 pointer-events-none"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-2 py-0.5 bg-primary-container text-on-primary text-[10px] font-medium rounded-sm">置顶</span>
+<span class="text-[10px] text-outline font-medium tracking-wider uppercase">执行规范</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-primary mb-2">《数字避难所》志愿者实地考察行为准则 V2.1</h4>
+<p class="text-sm text-on-surface-variant/80 leading-relaxed mb-4 line-clamp-2">本准则规定了志愿者在进行野外物种监测及水域采样过程中的最低安全距离与数据脱敏流程...</p>
+<div class="flex justify-between items-center border-t border-outline-variant/10 pt-4">
+<time class="text-xs text-outline">2024年3月12日</time>
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="bg-surface-container-low p-6 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] text-outline font-medium tracking-wider uppercase text-tertiary">物种识别</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-primary mb-2">亚洲黑熊亚种识别特征与保护现状分析</h4>
+<p class="text-sm text-on-surface-variant/80 leading-relaxed mb-4 line-clamp-2">详细解析如何在远距离通过形态特征区分不同区域的黑熊亚种，并记录其活动频率变化...</p>
+<div class="flex justify-between items-center border-t border-outline-variant/10 pt-4">
+<time class="text-xs text-outline">2024年3月10日</time>
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Article 3 -->
+<article class="bg-surface-container-low p-6 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] text-outline font-medium tracking-wider uppercase text-secondary">水域指南</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-primary mb-2">枯水期河道巡护安全注意事项</h4>
+<p class="text-sm text-on-surface-variant/80 leading-relaxed mb-4 line-clamp-2">针对春季枯水期河床裸露情况，指导志愿者如何在复杂地形下确保人身安全并完成生态记录...</p>
+<div class="flex justify-between items-center border-t border-outline-variant/10 pt-4">
+<time class="text-xs text-outline">2024年3月05日</time>
+<span class="material-symbols-outlined text-primary-container text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-[#FAF9F4] dark:bg-[#334537] z-50 flex justify-around items-center px-4 py-3 pb-safe shadow-[0_-8px_30px_rgba(74,93,78,0.04)] rounded-t-lg">
+<div class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#FAF9F4]/50 transition-transform duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="library_books">library_books</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] uppercase tracking-widest mt-1">梵音</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#334537]/50 dark:text-[#FAF9F4]/50 transition-transform duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="play_circle">play_circle</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] uppercase tracking-widest mt-1">禅理</span>
+</div>
+<!-- Active: Profile (我的) -->
+<div class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-xl px-4 py-1 transition-transform duration-200">
+<span class="material-symbols-outlined text-2xl" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] uppercase tracking-widest mt-0.5">我的</span>
+</div>
+</nav>
+</body></html>

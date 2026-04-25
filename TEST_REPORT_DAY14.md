@@ -352,7 +352,7 @@
 ### ESLint 检查
 
 ```bash
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run lint
 ```
 

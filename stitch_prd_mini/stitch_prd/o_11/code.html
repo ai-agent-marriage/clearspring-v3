@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b7ccb9",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-tint": "#506354",
+                    "on-tertiary-fixed": "#291801",
+                    "surface-container-low": "#f5f4ef",
+                    "on-primary-container": "#c0d5c2",
+                    "tertiary-fixed": "#ffddb6",
+                    "on-secondary-container": "#756400",
+                    "on-secondary-fixed-variant": "#534600",
+                    "surface-bright": "#faf9f4",
+                    "secondary-container": "#fee264",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#434843",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#faf9f4",
+                    "outline": "#737872",
+                    "on-surface": "#1b1c19",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "tertiary": "#533d20",
+                    "on-tertiary-container": "#ebcaa3",
+                    "tertiary-container": "#6d5435",
+                    "primary-container": "#4a5d4e",
+                    "background": "#faf9f4",
+                    "surface-container": "#efeee9",
+                    "secondary-fixed": "#fee264",
+                    "primary": "#334537",
+                    "secondary": "#6e5e00",
+                    "on-background": "#1b1c19",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "surface-container-high": "#e9e8e3",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e3e2de",
+                    "on-secondary-fixed": "#211b00",
+                    "inverse-surface": "#30312e",
+                    "outline-variant": "#c3c8c1",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "surface-variant": "#e3e2de",
+                    "on-primary-fixed": "#0e1f13"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .ink-wash-mask {
+            background: linear-gradient(135deg, rgba(74, 93, 78, 0.03) 0%, rgba(250, 249, 244, 0) 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container font-body text-on-surface antialiased min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-primary-container text-on-primary backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:bg-white/10 transition-colors rounded-full p-2 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">arrow_back</span>
+</button>
+<h1 class="font-headline text-xl tracking-tight text-white">消息通知</h1>
+</div>
+<button class="text-sm font-medium text-white/80 hover:text-white transition-opacity">全部已读</button>
+</header>
+<main class="pt-16 pb-24 max-w-2xl mx-auto px-4">
+<!-- Sticky Tabs -->
+<nav class="sticky top-16 z-40 bg-surface-container py-4 flex items-center gap-2 overflow-x-auto hide-scrollbar">
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-primary-container text-white font-medium text-sm shadow-sm">
+                订单通知
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-container-highest transition-colors">
+                用户通知
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-container-highest transition-colors">
+                审核通知
+            </button>
+<button class="whitespace-nowrap px-6 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm hover:bg-surface-container-highest transition-colors">
+                平台公告
+            </button>
+</nav>
+<!-- Notification List -->
+<div class="mt-4 space-y-4">
+<!-- Item 1: Active Task -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(74,93,78,0.04)] transition-all duration-300 hover:translate-y-[-2px]">
+<div class="ink-wash-mask absolute inset-0 pointer-events-none"></div>
+<div class="relative flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error shrink-0"></div>
+<h3 class="font-semibold text-primary text-base">新订单待承接 - TASK-4021</h3>
+</div>
+<span class="text-xs text-outline font-medium">2026-04-12 10:30</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">您有一笔新的红锦鲤护生委托订单待承接，请尽快处理。此委托包含三项仪式及配套文疏。</p>
+<div class="flex justify-end">
+<button class="flex items-center gap-2 px-6 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold text-sm hover:brightness-105 transition-all">
+                        去处理
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Item 2: Read Message -->
+<div class="group relative overflow-hidden bg-surface-container-lowest/70 rounded-xl p-5 border border-outline-variant/10 transition-all duration-300">
+<div class="relative flex justify-between items-start mb-2 opacity-70">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-transparent shrink-0"></div>
+<h3 class="font-medium text-primary text-base">订单已完成 - TASK-3988</h3>
+</div>
+<span class="text-xs text-outline font-medium">2026-04-11 15:45</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4 opacity-80">恭喜！您的委托任务“山间禅坐护生”已圆满完成，酬劳已结算至您的钱包。</p>
+<div class="flex justify-end">
+<button class="text-primary font-semibold text-sm hover:underline">查看详情</button>
+</div>
+</div>
+<!-- Item 3: System Alert -->
+<div class="group relative overflow-hidden bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(74,93,78,0.04)] transition-all duration-300">
+<div class="ink-wash-mask absolute inset-0 pointer-events-none opacity-50"></div>
+<div class="relative flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error shrink-0"></div>
+<h3 class="font-semibold text-primary text-base">护生场地环境预警</h3>
+</div>
+<span class="text-xs text-outline font-medium">2026-04-11 08:00</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">监测到梵音谷近期水位波动，请在执行任务前务必确认实地安全，佩戴好防护装备。</p>
+<div class="flex justify-end">
+<button class="flex items-center gap-2 px-6 py-2 bg-surface-container-high text-on-surface-variant rounded-lg font-bold text-sm hover:bg-surface-container-highest transition-all">
+                        了解风险
+                    </button>
+</div>
+</div>
+<!-- Empty Space Aesthetic -->
+<div class="py-12 flex flex-col items-center opacity-30 select-none">
+<div class="w-16 h-16 bg-surface-container-highest rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-4xl">self_improvement</span>
+</div>
+<p class="font-headline italic text-lg tracking-widest">暂无更多喧嚣</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<footer class="fixed bottom-0 w-full z-50 bg-[#FAF9F4] dark:bg-[#334537] shadow-[0_-4px_20px_rgba(74,93,78,0.04)] flex justify-around items-center px-4 pb-safe h-20 border-t border-[#4A5D4E]/10">
+<button class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#FAF9F4]/50 hover:text-[#334537] dark:hover:text-[#C9B037] transition-all">
+<span class="material-symbols-outlined mb-1">menu_book</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] uppercase tracking-widest">Sanskrit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-[#4A5D4E]/50 dark:text-[#FAF9F4]/50 hover:text-[#334537] dark:hover:text-[#C9B037] transition-all">
+<span class="material-symbols-outlined mb-1">self_improvement</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] uppercase tracking-widest">Zen</span>
+</button>
+<!-- Me Tab - Active based on request -->
+<button class="flex flex-col items-center justify-center text-[#334537] dark:text-[#C9B037] bg-[#C9B037]/10 rounded-xl px-6 py-1.5 transition-all">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[11px] uppercase tracking-widest font-bold">Me</span>
+</button>
+</footer>
+</body></html>

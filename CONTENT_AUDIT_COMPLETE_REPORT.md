@@ -45,7 +45,7 @@
 
 **部署方式**:
 ```bash
-cd /root/.openclaw/workspace/cloud
+cd /home/admin/.openclaw/workspace/cloud
 ./deploy-content-audit.sh
 ```
 
@@ -146,7 +146,7 @@ cd /root/.openclaw/workspace/cloud
 
 ```bash
 # 1. 进入项目目录
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 2. 执行数据库建表（微信云开发控制台）
 # 复制 cloud/database-schema-content-audit.sql 内容并执行

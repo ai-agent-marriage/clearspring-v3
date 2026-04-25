@@ -21,6 +21,13 @@ Page({
     // 时间线
     timeline: [
       { id: 1, event: '提交资质审核', time: '2026-03-27 10:30', status: 'completed' },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       { id: 2, event: '审核中', time: '2026-03-27 15:20', status: 'active' },
       { id: 3, event: '审核完成', time: '-', status: 'pending' }
     ]

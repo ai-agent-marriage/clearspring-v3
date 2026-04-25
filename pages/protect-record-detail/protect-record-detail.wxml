@@ -1,0 +1,112 @@
+<!--pages/protect-record-detail/protect-record-detail.wxml-->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 主要内容 -->
+  <view wx:else class="content">
+    <!-- 状态卡片 -->
+    <view class="status-card {{record.status}}">
+      <view class="status-icon">
+        <text wx:if="{{record.status === 'approved'}}">✓</text>
+        <text wx:elif="{{record.status === 'pending'}}">⏳</text>
+        <text wx:elif="{{record.status === 'rejected'}}">✕</text>
+      </view>
+      <text class="status-text">{{record.status_text}}</text>
+    </view>
+
+    <!-- 基本信息 -->
+    <view class="info-card glass">
+      <view class="info-header">
+        <text class="record-no">{{record.record_no}}</text>
+        <text class="record-date">{{record.protection_date}}</text>
+      </view>
+
+      <view class="info-grid">
+        <view class="info-item">
+          <text class="info-label">物种</text>
+          <text class="info-value">{{record.species_name}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">数量</text>
+          <text class="info-value gold">{{record.quantity}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">水域</text>
+          <text class="info-value">{{record.water_area}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 现场照片 -->
+    <view class="photos-section">
+      <view class="section-title">
+        <text class="title-icon">📷</text>
+        <text>现场照片</text>
+      </view>
+      <view class="photo-grid">
+        <view 
+          class="photo-item"
+          wx:for="{{record.photos}}"
+          wx:key="index"
+          bindtap="onPreviewPhoto"
+          data-index="{{index}}"
+        >
+          <image 
+            class="photo-image"
+            src="{{item}}"
+            mode="aspectFill"
+          ></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 护生心愿 -->
+    <view wx:if="{{record.wish}}" class="wish-section glass">
+      <view class="section-title">
+        <text class="title-icon">🙏</text>
+        <text>护生心愿</text>
+      </view>
+      <text class="wish-content">{{record.wish}}</text>
+    </view>
+
+    <!-- 审核信息 -->
+    <view wx:if="{{record.audit_time}}" class="audit-section">
+      <view class="audit-info">
+        <text class="audit-label">审核时间：</text>
+        <text class="audit-time">{{formatAuditTime}}</text>
+      </view>
+    </view>
+
+    <!-- 证书 -->
+    <view wx:if="{{record.has_certificate}}" class="certificate-section">
+      <view class="section-title">
+        <text class="title-icon">📜</text>
+        <text>护生证书</text>
+      </view>
+      <view class="certificate-card" bindtap="onViewCertificate">
+        <image 
+          class="certificate-image"
+          src="{{record.certificate.image_url}}"
+          mode="widthFix"
+        ></image>
+        <view class="certificate-overlay">
+          <text class="certificate-action">点击查看证书</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-bar">
+      <button wx:if="{{record.has_certificate}}" class="btn btn-primary" bindtap="onShareCertificate">
+        分享证书
+      </button>
+      <button class="btn btn-secondary" bindtap="onGoBack">
+        返回
+      </button>
+    </view>
+  </view>
+</view>

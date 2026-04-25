@@ -31,6 +31,26 @@ Page({
     failedCount: 0
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+    }
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
+    if (this.refreshTimer) {
+      clearInterval(this.refreshTimer);
+    }
+    if (this.pollTimer) {
+      clearInterval(this.pollTimer);
+    }
+    // 清理 setTimeout
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad(options) {
     // 获取任务 ID
     this.taskId = options.id;
@@ -109,6 +129,7 @@ Page({
 
   uploadPhotos(photosToUpload) {
     photosToUpload.forEach((photo, index) => {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
       const realIndex = this.data.photos.length - photosToUpload.length + index;
       
       this.setData({
@@ -206,6 +227,7 @@ Page({
 
   uploadVideos(videosToUpload) {
     videosToUpload.forEach((video, index) => {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
       const realIndex = this.data.videos.length - videosToUpload.length + index;
       
       // 模拟上传进度
@@ -251,10 +273,38 @@ Page({
 
   // ========== 文字说明 ==========
   onDescriptionInput(e) {
+    // 【安全增强】XSS 过滤
+    const input = e.detail.value || '';
+    const sanitizedInput = this.sanitizeInput(input);
+    
     this.setData({
-      description: e.detail.value
+      description: sanitizedInput
     });
     this.validateSubmit();
+  },
+  
+  // 【安全增强】输入过滤方法
+  sanitizeInput(input) {
+    // 导入安全工具（在文件顶部添加 import）
+    // 这里使用内联实现，避免破坏模块结构
+    if (typeof input !== 'string') return input;
+    
+    // 移除危险标签
+    let result = input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+    result = result.replace(/javascript:/gi, '');
+    result = result.replace(/\s*on\w+\s*=\s*["'][^"']*["']/gi, '');
+    
+    // 转义 HTML 实体
+    const htmlEntities = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#x27;'
+    };
+    result = result.replace(/[&<>"']/g, (char) => htmlEntities[char]);
+    
+    return result;
   },
 
   // ========== 验证提交 ==========

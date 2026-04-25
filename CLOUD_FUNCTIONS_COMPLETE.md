@@ -3,7 +3,7 @@
 ## 📋 任务概述
 
 **开发内容**: 8 个云函数 + 6 个数据库集合设计  
-**输出位置**: `/root/.openclaw/workspace/projects/clearspring/cloud/functions/`  
+**输出位置**: `/home/admin/.openclaw/workspace/projects/clearspring/cloud/functions/`  
 **提交方式**: 每完成 2 个云函数提交一次代码到 GitHub
 
 ---

@@ -28,7 +28,7 @@
 
 ### 方法 1：微信开发者工具（推荐）
 1. 打开微信开发者工具
-2. 导入项目：`/root/.openclaw/workspace/miniprogram`
+2. 导入项目：`/home/admin/.openclaw/workspace/miniprogram`
 3. 选择对应页面
 4. 点击工具栏"截图"按钮
 5. 保存到：`review-materials/screenshots/`

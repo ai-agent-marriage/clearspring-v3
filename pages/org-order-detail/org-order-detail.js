@@ -27,6 +27,13 @@ Page({
       completeTime: '',
       evidence: []
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     
     // 志愿者信息
     volunteer: {

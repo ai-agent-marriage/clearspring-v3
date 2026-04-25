@@ -17,7 +17,7 @@
 **检查命令**：
 ```bash
 # 检查 pages 路径是否存在
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 cat app.json | grep -o '"pages/[^"]*"' | while read path; do
   path=$(echo $path | tr -d '"')
   if [ ! -d "$path" ]; then
@@ -37,7 +37,7 @@ done
 **检查命令**：
 ```bash
 # 检查 subPackages 目录是否存在
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 cat app.json | grep -A 20 '"subPackages"' | grep '"root"' | cut -d'"' -f4 | while read root; do
   if [ ! -d "$root" ]; then
     echo "❌ 子分包目录不存在：$root"
@@ -103,7 +103,7 @@ done
 **检查命令**：
 ```bash
 # 检查所有页面的 navigationBarTextStyle
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 grep -r "navigationBarTextStyle" pages/ --include="*.json" | grep -v "black" | grep -v "white"
 ```
 
@@ -143,7 +143,7 @@ grep -r "navigationBarTextStyle" pages/ --include="*.json" | grep -v "black" | g
 **检查命令**：
 ```bash
 # 检查标签不匹配（简单版本）
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 grep -n "</text>" pages/**/*.wxml | grep -v "<text"
 ```
 
@@ -181,7 +181,7 @@ grep -n "</text>" pages/**/*.wxml | grep -v "<text"
 **检查命令**：
 ```bash
 # 检查 Node.js 代码
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 grep -r "process\." pages/ app.js --include="*.js"
 grep -r "require(" pages/ app.js --include="*.js" | grep -v "require('wx')"
 ```
@@ -194,7 +194,7 @@ grep -r "require(" pages/ app.js --include="*.js" | grep -v "require('wx')"
 **检查命令**：
 ```bash
 # 统计 console.log 数量
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 grep -r "console\.log" pages/ --include="*.js" | wc -l
 ```
 
@@ -206,7 +206,7 @@ grep -r "console\.log" pages/ --include="*.js" | wc -l
 **检查命令**：
 ```bash
 # 检查 setInterval 是否清理
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 grep -r "setInterval" pages/ --include="*.js" -A 5 | grep -v "clearInterval"
 ```
 
@@ -240,7 +240,7 @@ grep -r "setInterval" pages/ --include="*.js" -A 5 | grep -v "clearInterval"
 
 echo "🔍 开始配置审查..."
 
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 1. 检查 app.json pages 路径
 echo "✅ 检查 app.json pages 路径..."

@@ -56,7 +56,7 @@
         <view class="order-footer">
           <view class="order-team">
             <view class="avatars">
-              <image class="avatar" src="/images/avatar1.png" mode="aspectFill"/>
+              <image class="avatar" lazy-load="true" src="/images/avatar1.png" mode="aspectFill"/>
               <view class="avatar-more">+3</view>
             </view>
             <view class="team-label">预计酬劳</view>

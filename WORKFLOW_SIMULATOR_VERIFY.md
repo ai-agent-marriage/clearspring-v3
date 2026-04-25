@@ -173,7 +173,7 @@ console.log('📸 截图保存至:', screenshotDir);
 
 echo "🔍 开始构建验证..."
 
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 1. 检查 JSON 文件语法
 echo "✅ 检查 JSON 文件语法..."

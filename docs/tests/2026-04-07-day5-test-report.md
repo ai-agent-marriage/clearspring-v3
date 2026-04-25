@@ -182,7 +182,7 @@
 ### 3.1 ESLint 检查
 
 ```bash
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run lint
 ```
 
@@ -283,22 +283,22 @@ npm run lint
 
 ### 7.1 测试文件路径
 
-- 小程序单元测试: `/root/.openclaw/workspace/miniprogram/__tests__/volunteer.test.js`
-- 小程序集成测试: `/root/.openclaw/workspace/miniprogram/__tests__/integration-volunteer.test.js`
-- Java 执行结果测试: `/root/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/TaskExecuteServiceTest.java`
-- Java 志愿者服务测试: `/root/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/VolunteerServiceTest.java`
-- Java 机构服务测试: `/root/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/OrgManageServiceTest.java`
-- Java 结算服务测试: `/root/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/SettlementServiceTest.java`
+- 小程序单元测试: `/home/admin/.openclaw/workspace/miniprogram/__tests__/volunteer.test.js`
+- 小程序集成测试: `/home/admin/.openclaw/workspace/miniprogram/__tests__/integration-volunteer.test.js`
+- Java 执行结果测试: `/home/admin/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/TaskExecuteServiceTest.java`
+- Java 志愿者服务测试: `/home/admin/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/VolunteerServiceTest.java`
+- Java 机构服务测试: `/home/admin/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/OrgManageServiceTest.java`
+- Java 结算服务测试: `/home/admin/.openclaw/workspace/backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/SettlementServiceTest.java`
 
 ### 7.2 测试执行命令
 
 ```bash
 # 小程序测试
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run test
 
 # 后端测试
-cd /root/.openclaw/workspace/backend
+cd /home/admin/.openclaw/workspace/backend
 mvn test
 ```
 

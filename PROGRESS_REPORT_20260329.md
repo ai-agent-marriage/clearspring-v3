@@ -89,7 +89,7 @@
 
 **操作内容**:
 1. 打开微信开发者工具
-2. 导入项目：`/root/.openclaw/workspace/projects/clearspring`
+2. 导入项目：`/home/admin/.openclaw/workspace/projects/clearspring`
 3. 使用 AppID: `wxa914ecc15836bda6`
 4. 点击「云开发」→ 创建环境 `clearspring-prod`
 5. 右键点击 `cloud/functions/login` → 「上传并部署：云端安装依赖」

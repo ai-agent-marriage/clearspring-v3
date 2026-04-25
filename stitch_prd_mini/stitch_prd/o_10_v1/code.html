@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>资质管理 - Institutional Qualification Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#faf9f4",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "tertiary-container": "#6d5435",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d3e8d5",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e3e2de",
+                        "surface-dim": "#dbdad5",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#fee264",
+                        "on-background": "#1b1c19",
+                        "surface-container-high": "#e9e8e3",
+                        "inverse-on-surface": "#f2f1ec",
+                        "tertiary": "#533d20",
+                        "surface-tint": "#506354",
+                        "on-surface": "#1b1c19",
+                        "primary-container": "#4a5d4e",
+                        "on-secondary-container": "#756400",
+                        "on-tertiary-fixed": "#291801",
+                        "on-primary": "#ffffff",
+                        "primary": "#334537",
+                        "on-tertiary-container": "#ebcaa3",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e3e2de",
+                        "surface-container-low": "#f5f4ef",
+                        "outline-variant": "#c3c8c1",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-container": "#c0d5c2",
+                        "on-primary-fixed": "#0e1f13",
+                        "surface-container": "#efeee9",
+                        "secondary": "#6e5e00",
+                        "on-surface-variant": "#434843",
+                        "tertiary-fixed": "#ffddb6",
+                        "secondary-container": "#fee264",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#30312e",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "outline": "#737872",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "surface-bright": "#faf9f4",
+                        "inverse-primary": "#b7ccb9",
+                        "background": "#faf9f4",
+                        "on-secondary-fixed-variant": "#534600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-[#efeee9] text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 backdrop-blur-xl flex items-center justify-between px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="hover:bg-[#4A5D4E]/10 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined text-[#334537]">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-[#334537]">资质管理</h1>
+</div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#334537]/60">more_horiz</span>
+</div>
+</header>
+<main class="pt-20 px-4 space-y-4 max-w-2xl mx-auto">
+<!-- Status Card (Compact) -->
+<section class="relative overflow-hidden rounded-lg p-4 bg-surface-container-lowest shadow-[0_4px_12px_rgba(74,93,78,0.06)]">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-on-surface-variant text-[11px] mb-0.5">审核状态</p>
+<div class="flex items-center gap-2">
+<span class="text-lg font-bold text-primary">已通过</span>
+<div class="bg-primary-container/10 px-1.5 py-0.5 rounded text-primary text-[10px] font-semibold">
+                        PRO
+                    </div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-on-surface-variant text-[10px] uppercase tracking-wider">最后核验日期</p>
+<p class="text-on-surface font-semibold text-sm">2024-05-12</p>
+</div>
+</div>
+</section>
+<!-- Institutional Info Section (Compact) -->
+<section class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(74,93,78,0.06)]">
+<div class="px-4 py-3 flex items-center justify-between border-b border-outline-variant/15">
+<h2 class="text-base font-bold text-primary">机构信息</h2>
+</div>
+<div class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<div class="px-4 py-3 flex items-center justify-between">
+<div class="space-y-0.5">
+<label class="text-[10px] text-on-surface-variant/70 font-semibold tracking-wide">机构全称</label>
+<p class="text-sm text-on-surface font-medium">生态守护（北京）环境科技有限公司</p>
+</div>
+<button class="text-primary text-xs font-semibold hover:opacity-70 transition-opacity">编辑</button>
+</div>
+<!-- Row 2 -->
+<div class="px-4 py-3 flex items-center justify-between">
+<div class="space-y-0.5">
+<label class="text-[10px] text-on-surface-variant/70 font-semibold tracking-wide">统一社会信用代码</label>
+<p class="text-sm text-on-surface font-medium">91110108MA017XXXXX</p>
+</div>
+<button class="text-primary text-xs font-semibold hover:opacity-70 transition-opacity">编辑</button>
+</div>
+<!-- Row 3 -->
+<div class="px-4 py-3 flex items-center justify-between">
+<div class="space-y-0.5">
+<label class="text-[10px] text-on-surface-variant/70 font-semibold tracking-wide">法人信息</label>
+<p class="text-sm text-on-surface font-medium">张建国 (110108********001X)</p>
+</div>
+<button class="text-primary text-xs font-semibold hover:opacity-70 transition-opacity">编辑</button>
+</div>
+<!-- Row 4 -->
+<div class="px-4 py-3 flex items-center justify-between">
+<div class="space-y-0.5">
+<label class="text-[10px] text-on-surface-variant/70 font-semibold tracking-wide">机构地址</label>
+<p class="text-sm text-on-surface font-medium line-clamp-1">北京市朝阳区林翠东路甲1号院森林公园北区</p>
+</div>
+<button class="text-primary text-xs font-semibold hover:opacity-70 transition-opacity">编辑</button>
+</div>
+</div>
+</section>
+<!-- Credential Documents Section (High-density horizontal card style) -->
+<section class="space-y-3">
+<h2 class="text-base font-bold text-primary px-1">资质文件</h2>
+<div class="space-y-2">
+<!-- Doc 1: Business License -->
+<div class="bg-surface-container-lowest rounded-lg p-2.5 shadow-[0_4px_12px_rgba(74,93,78,0.06)] flex items-center gap-4">
+<div class="w-16 h-20 rounded-md bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="close up of a formal stamped legal document" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfElK-mQTLcTTYrxDQkPF3va8xUpavnnAjp1Pv6A1HZBL5vly8cbkEukD_FL8GjODPMV2By9GW8LMx9KPX4wbC0Ag-ICCUTMEvOUsovi-H0OMaIIDE7UD5wvKF_M_CKM5TWqoIJQHVsrIfO7aaNc1-Qp0AlOLK0_mc-fm5IBWvujn0ENog2oFRT2xOsmVAVlDcK5_U2biyF5XYBmNoqgcyXt-K0EVNOoJaYbaGok0xu-LXEAQ9nEFRM4d63dMDgRtcR9iCeexNzPVs"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-bold text-on-surface mb-2">营业执照</h3>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 text-[11px] font-bold text-primary bg-primary-fixed/30 rounded-md hover:bg-primary-fixed/50 transition-colors">预览</button>
+<button class="flex-1 py-1.5 text-[11px] font-bold text-on-primary bg-primary-container rounded-md hover:opacity-90 transition-opacity">更新</button>
+</div>
+</div>
+</div>
+<!-- Doc 2: Release Qualification Certificate -->
+<div class="bg-surface-container-lowest rounded-lg p-2.5 shadow-[0_4px_12px_rgba(74,93,78,0.06)] flex items-center gap-4">
+<div class="w-16 h-20 rounded-md bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="professional identification certificate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKRd5eyX-sLUHuc1UFJUd3f2lbUG3Wdw_J8tR47rB_MbwVhkDxm4E3YwkO9nVDxDGcureF9vxD86CwCD51O9q3vSk53xn0VkJ7KyctbuLPEwoJPIlZwwCmfxyVRDd67GndawRz1STBaW8JprNQON4vPLyBxn0Q_UfCDtZ0J381rCTlep9VjhzDZJgrCZEyF6uzSoZ2IuQ2jpPq5YyARMP6r7u68Ss8pQfKNydrB84ZdOO7oTg9l_b81-1XqeKMf3589ED1k1saD2qN"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-bold text-on-surface mb-2">护生资质证明</h3>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 text-[11px] font-bold text-primary bg-primary-fixed/30 rounded-md hover:bg-primary-fixed/50 transition-colors">预览</button>
+<button class="flex-1 py-1.5 text-[11px] font-bold text-on-primary bg-primary-container rounded-md hover:opacity-90 transition-opacity">更新</button>
+</div>
+</div>
+</div>
+<!-- Doc 3: Water Cooperation Agreement -->
+<div class="bg-surface-container-lowest rounded-lg p-2.5 shadow-[0_4px_12px_rgba(74,93,78,0.06)] flex items-center gap-4">
+<div class="w-16 h-20 rounded-md bg-surface-variant overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="official agreement document" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgl1_2Xkw0h7AXlAuURE2LHKOhBAk36i6yX-py2lygAr7Z406PFqJvAwE0-V80dUwMANAAPeHxS4UzSyz1fdxl17D-IcGYf2Ziz4Dfvq_EA0y7M32nZUcQmhl7lCznL36ukFxZx2Tezhsx_MkOmS78C0EsjjwXtAkbwQZVh4giTPTx3A3uSTBeWJO8XXmD4k8jU0-1RFFakG-AQNI7da4bwSOsIzM926z4sC9NbxnFXGFjmfpQtXQojGowvpnb72_Y632a1kvkSMdd"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-bold text-on-surface mb-2">水域合作协议</h3>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 text-[11px] font-bold text-primary bg-primary-fixed/30 rounded-md hover:bg-primary-fixed/50 transition-colors">预览</button>
+<button class="flex-1 py-1.5 text-[11px] font-bold text-on-primary bg-primary-container rounded-md hover:opacity-90 transition-opacity">更新</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Action -->
+<div class="pt-4 pb-8">
+<button class="w-full py-3.5 rounded-lg bg-primary-container/40 text-on-primary-container font-bold text-base cursor-not-allowed transition-all" disabled="">
+            提交审核
+        </button>
+<p class="text-center text-on-surface-variant/60 text-[10px] mt-3 leading-relaxed">
+            * 资料修改后需重新进入审核流程，审核期间机构功能将受限
+        </p>
+</div>
+</main>
+<!-- BottomNavBar (3 Tabs, "Me" active) -->
+<nav class="fixed bottom-0 left-0 w-full bg-[#FAF9F4] flex justify-around items-center px-4 pb-6 pt-2 z-50 rounded-t-lg shadow-[0_-8px_24px_rgba(74,93,78,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-6 py-1.5 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">temple_buddhist</span>
+<span class="text-[11px] font-semibold mt-1">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-6 py-1.5 hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">self_improvement</span>
+<span class="text-[11px] font-semibold mt-1">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#4A5D4E] text-[#FAF9F4] rounded-lg px-6 py-1.5 transition-all shadow-lg shadow-[#4A5D4E]/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[11px] font-semibold mt-1">我的</span>
+</a>
+</nav>
+</body></html>

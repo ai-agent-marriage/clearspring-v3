@@ -3,6 +3,13 @@ Page({
     
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad() {
     // 启动页逻辑：可在此处添加初始化逻辑
     // 例如：检查用户登录状态、加载配置等

@@ -9,7 +9,7 @@
       <text class="page-title">志愿者详情</text>
     </view>
     <view class="avatar">
-      <image class="avatar-img" src="{{volunteer.avatar}}" mode="aspectFill" />
+      <image class="avatar-img" lazy-load="true" src="{{volunteer.avatar}}" mode="aspectFill" />
     </view>
   </view>
 
@@ -17,7 +17,7 @@
     <!-- Profile Section -->
     <view class="profile-section glass">
       <view class="profile-content">
-        <image class="profile-avatar" src="{{volunteer.avatar}}" mode="aspectFill" />
+        <image class="profile-avatar" lazy-load="true" src="{{volunteer.avatar}}" mode="aspectFill" />
         <view class="profile-info">
           <view class="name-row">
             <text class="volunteer-name">{{volunteer.name}}</text>

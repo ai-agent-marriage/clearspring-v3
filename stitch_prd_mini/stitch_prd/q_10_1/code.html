@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#6e5e00",
+                    "surface-variant": "#e3e2de",
+                    "secondary-container": "#fee264",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-tint": "#506354",
+                    "inverse-surface": "#30312e",
+                    "on-surface": "#1b1c19",
+                    "surface-container-high": "#e9e8e3",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "tertiary-container": "#6d5435",
+                    "surface-container-highest": "#e3e2de",
+                    "secondary-fixed": "#fee264",
+                    "surface-dim": "#dbdad5",
+                    "primary-container": "#4a5d4e",
+                    "on-primary-fixed": "#0e1f13",
+                    "on-surface-variant": "#434843",
+                    "surface": "#faf9f4",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#ebcaa3",
+                    "inverse-primary": "#b7ccb9",
+                    "on-primary-container": "#c0d5c2",
+                    "background": "#faf9f4",
+                    "outline-variant": "#c3c8c1",
+                    "surface-container": "#efeee9",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-secondary-fixed": "#211b00",
+                    "primary-fixed": "#d3e8d5",
+                    "primary": "#334537",
+                    "on-tertiary-fixed": "#291801",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-secondary-fixed-variant": "#534600",
+                    "inverse-on-surface": "#f2f1ec",
+                    "surface-bright": "#faf9f4",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "outline": "#737872",
+                    "on-background": "#1b1c19",
+                    "on-secondary-container": "#756400",
+                    "tertiary": "#533d20",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 93, 78, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.05) 0%, transparent 50%);
+        }
+        .scrolling-notice {
+            animation: scroll-left 20s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 dark:bg-[#1A1C19]/40 backdrop-blur-xl transition-opacity">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#334537] cursor-pointer active:scale-95 transition-transform" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-headline font-bold text-[#334537] text-xl tracking-tight">护生功德林</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#334537] cursor-pointer active:scale-95 transition-transform" data-icon="receipt_long">receipt_long</span>
+<span class="material-symbols-outlined text-[#334537] cursor-pointer active:scale-95 transition-transform" data-icon="share">share</span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-32 px-6 max-w-screen-md mx-auto ink-wash-bg min-h-screen">
+<!-- Scrolling Notice -->
+<div class="mb-8 overflow-hidden bg-surface-container-low py-2 rounded-lg">
+<div class="scrolling-notice whitespace-nowrap text-sm text-primary/70 font-medium">
+                《科学护生合规声明》：科学放生，守护生态平衡。请严格遵守当地渔政规定，禁止投放外来有害物种。
+            </div>
+</div>
+<!-- Asymmetric Hero Header -->
+<div class="relative mb-12">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div class="max-w-xs">
+<h2 class="font-headline text-4xl leading-tight text-primary mb-2">众生皆有灵<br/>慈悲护万类</h2>
+<p class="text-on-surface-variant text-sm leading-relaxed">科学指引，合法合规，让每一份善意都能在大自然中延续。</p>
+</div>
+<div class="w-full md:w-48 h-32 rounded-xl overflow-hidden shadow-sm">
+<img alt="Scientific Animal Release" class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" data-alt="Close up of a pair of hands gently releasing a small native bird into a lush green forest clearing at sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsxCvLLUTRS4eYXZJr7qMCHFn1THjA6VqiZol6V2J6FxcNUeZ5qaCGen3gDivrWatFrGk9nsONzUx81MV7gSMNBsUGw1a-yLhbQ7GyUD4xdOitIszTjmek56C6yKLLDjQsgPNFjDu24UXqAFFPXceDp-c37hZ8xbNiPKZCq0bRbGG6k0t6xXJLDa8pzZIhsA_Zx-Tw2dzppTCSGLg4CCXy7MgpBmuFVp55N0zT_wdOkKVC0CGx5S9cX4LBmicGesC6UaE95oEtEjJe"/>
+</div>
+</div>
+</div>
+<!-- Tab Switching -->
+<nav class="flex space-x-8 mb-8 border-b border-outline-variant/15">
+<button class="pb-4 text-sm font-semibold border-b-2 border-primary text-primary transition-colors">
+                自主护生登记
+            </button>
+<button class="pb-4 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">
+                委托护生服务
+            </button>
+</nav>
+<!-- Main Action Button -->
+<div class="mb-10">
+<button class="w-full py-5 bg-primary-container text-white rounded-xl shadow-lg shadow-primary/10 flex items-center justify-center gap-3 active:scale-[0.98] transition-all group">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="text-base font-semibold tracking-wide">发起自主护生登记</span>
+</button>
+</div>
+<!-- Records List - Bento Grid Style -->
+<section>
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline text-xl text-primary">护生记录</h3>
+<span class="text-xs text-on-surface-variant uppercase tracking-widest font-label">Recent History</span>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Record Item 1 -->
+<div class="p-5 bg-surface-container-lowest rounded-xl flex items-center gap-4 group hover:bg-surface-container transition-colors">
+<div class="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="water_drop">water_drop</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-medium text-primary">本地原生鱼类放流</h4>
+<span class="text-[10px] px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full font-bold">已核准</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">北京市 · 怀柔水库 · 2023.10.24</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Record Item 2 -->
+<div class="p-5 bg-surface-container-lowest rounded-xl flex items-center gap-4 group hover:bg-surface-container transition-colors">
+<div class="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="nest_eco_leaf">nest_eco_leaf</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-medium text-primary">山林雀类科学回归</h4>
+<span class="text-[10px] px-2 py-1 bg-surface-variant text-on-surface-variant rounded-full font-bold">核查中</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">成都市 · 青城山 · 2023.10.20</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Record Item 3 -->
+<div class="p-5 bg-surface-container-lowest rounded-xl flex items-center gap-4 group hover:bg-surface-container transition-colors opacity-80">
+<div class="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="eco">eco</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-medium text-primary">冬日湿地生境维护</h4>
+<span class="text-[10px] px-2 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full font-bold">已圆满</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-1">杭州市 · 西溪湿地 · 2023.09.15</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Minimal Search Button -->
+<div class="mt-12 flex justify-center">
+<button class="px-8 py-3 bg-white/50 border border-outline-variant/30 text-primary text-sm font-medium rounded-full backdrop-blur-md flex items-center gap-2 active:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="location_on">location_on</span>
+                合规水域查询
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-20 px-8 pb-safe bg-[#FAF9F4] dark:bg-[#1A1C19] shadow-[0_-4px_20px_rgba(74,93,78,0.04)] rounded-t-lg z-50">
+<div class="flex flex-col items-center justify-center text-[#334537]/40 dark:text-[#EFEEE9]/40 hover:text-[#334537] dark:hover:text-[#EFEEE9] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="library_music">library_music</span>
+<span class="font-label text-xs tracking-widest uppercase mt-1">梵音</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#6e5e00] dark:text-[#C9B037] scale-110 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="menu_book" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label text-xs tracking-widest uppercase mt-1">禅理</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#334537]/40 dark:text-[#EFEEE9]/40 hover:text-[#334537] dark:hover:text-[#EFEEE9] transition-all cursor-pointer">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+<span class="font-label text-xs tracking-widest uppercase mt-1">我的</span>
+</div>
+</nav>
+</body></html>

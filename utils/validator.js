@@ -1,9 +1,104 @@
 /**
  * 表单验证工具类
  * 提供常用的表单验证功能
+ * 安全增强：特殊字符过滤、长度限制、XSS 防护
  */
 
 const Validator = {
+  /**
+   * XSS 危险字符列表
+   */
+  DANGEROUS_CHARS: [
+    { pattern: /</g, replacement: '&lt;' },
+    { pattern: />/g, replacement: '&gt;' },
+    { pattern: /"/g, replacement: '&quot;' },
+    { pattern: /'/g, replacement: '&#x27;' },
+    { pattern: /\//g, replacement: '&#x2F;' },
+    { pattern: /`/g, replacement: '&#x60;' },
+    { pattern: /=/g, replacement: '&#x3D;' }
+  ],
+
+  /**
+   * SQL 注入危险字符
+   */
+  SQL_INJECTION_CHARS: [
+    /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|UNION|FROM|WHERE)\b)/gi,
+    /(--|;|\/\*|\*\/)/g,
+    /(\b(OR|AND)\b\s+\d+\s*=\s*\d+)/gi
+  ],
+
+  /**
+   * 过滤 XSS 危险字符
+   * @param {string} input - 输入字符串
+   * @returns {string} - 过滤后的字符串
+   */
+  sanitizeInput(input) {
+    if (!input || typeof input !== 'string') {
+      return '';
+    }
+    
+    let result = input;
+    this.DANGEROUS_CHARS.forEach(({ pattern, replacement }) => {
+      result = result.replace(pattern, replacement);
+    });
+    
+    return result;
+  },
+
+  /**
+   * 检测 SQL 注入尝试
+   * @param {string} input - 输入字符串
+   * @returns {boolean} - 是否包含 SQL 注入特征
+   */
+  detectSQLInjection(input) {
+    if (!input || typeof input !== 'string') {
+      return false;
+    }
+    
+    return this.SQL_INJECTION_CHARS.some(pattern => pattern.test(input));
+  },
+
+  /**
+   * 验证并过滤输入
+   * @param {string} value - 输入值
+   * @param {number} maxLength - 最大长度限制
+   * @param {boolean} allowHTML - 是否允许 HTML 字符（默认 false）
+   * @returns {Object} { valid: boolean, message: string, sanitizedValue: string }
+   */
+  validateAndSanitize(value, maxLength = 500, allowHTML = false) {
+    if (!value) {
+      return { valid: true, message: '', sanitizedValue: '' };
+    }
+
+    // 类型检查
+    if (typeof value !== 'string') {
+      return { valid: false, message: '输入必须是字符串', sanitizedValue: '' };
+    }
+
+    // 长度检查
+    if (value.length > maxLength) {
+      return { 
+        valid: false, 
+        message: `输入长度不能超过${maxLength}字符`, 
+        sanitizedValue: '' 
+      };
+    }
+
+    // SQL 注入检测
+    if (this.detectSQLInjection(value)) {
+      return { 
+        valid: false, 
+        message: '输入包含非法字符', 
+        sanitizedValue: '' 
+      };
+    }
+
+    // XSS 过滤
+    const sanitizedValue = allowHTML ? value : this.sanitizeInput(value);
+
+    return { valid: true, message: '', sanitizedValue };
+  },
+
   /**
    * 验证单位名称（必填）
    * @param {string} value - 单位名称
@@ -15,6 +110,14 @@ const Validator = {
     }
     if (value.trim().length < 2) {
       return { valid: false, message: '单位名称至少 2 个字符' };
+    }
+    // 添加长度限制（最多 100 字符）
+    if (value.trim().length > 100) {
+      return { valid: false, message: '单位名称不能超过 100 字符' };
+    }
+    // 特殊字符过滤检查
+    if (this.detectSQLInjection(value)) {
+      return { valid: false, message: '单位名称包含非法字符' };
     }
     return { valid: true, message: '' };
   },
@@ -33,6 +136,10 @@ const Validator = {
     if (!taxNoRegex.test(value.trim())) {
       return { valid: false, message: '税号格式不正确（15/18/20 位）' };
     }
+    // 特殊字符过滤检查
+    if (this.detectSQLInjection(value)) {
+      return { valid: false, message: '税号包含非法字符' };
+    }
     return { valid: true, message: '' };
   },
 
@@ -50,6 +157,10 @@ const Validator = {
     const phoneRegex = /^1[3-9]\d{9}$/;
     if (!phoneRegex.test(value.trim())) {
       return { valid: false, message: '手机号格式不正确（11 位）' };
+    }
+    // 特殊字符过滤检查
+    if (this.detectSQLInjection(value)) {
+      return { valid: false, message: '手机号包含非法字符' };
     }
     return { valid: true, message: '' };
   },
@@ -110,6 +221,10 @@ const Validator = {
     if (!emailRegex.test(value.trim())) {
       return { valid: false, message: '邮箱格式不正确' };
     }
+    // 长度限制（最多 100 字符）
+    if (value.trim().length > 100) {
+      return { valid: false, message: '邮箱地址不能超过 100 字符' };
+    }
     return { valid: true, message: '' };
   },
 
@@ -126,6 +241,14 @@ const Validator = {
 
     if (value.trim().length < 5) {
       return { valid: false, message: '地址至少 5 个字符' };
+    }
+    // 长度限制（最多 200 字符）
+    if (value.trim().length > 200) {
+      return { valid: false, message: '地址不能超过 200 字符' };
+    }
+    // 特殊字符过滤检查
+    if (this.detectSQLInjection(value)) {
+      return { valid: false, message: '地址包含非法字符' };
     }
     return { valid: true, message: '' };
   },
@@ -158,6 +281,10 @@ const Validator = {
     if (!value || !value.trim()) {
       return { valid: false, message: `请输入${fieldName}` };
     }
+    // 特殊字符过滤检查
+    if (this.detectSQLInjection(value)) {
+      return { valid: false, message: `${fieldName}包含非法字符` };
+    }
     return { valid: true, message: '' };
   },
 
@@ -180,6 +307,10 @@ const Validator = {
     }
     if (length > max) {
       return { valid: false, message: `${fieldName}最多${max}个字符` };
+    }
+    // 特殊字符过滤检查
+    if (this.detectSQLInjection(value)) {
+      return { valid: false, message: `${fieldName}包含非法字符` };
     }
     return { valid: true, message: '' };
   },

@@ -11,6 +11,13 @@ Page({
     wishesLength: 0
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad() {
     // 初始化表单
   },

@@ -89,6 +89,7 @@ export async function grabOrder(orderId) {
 /**
  * 上传证据（支持断点续传）
  * V4.0 要求：断点续传 + 本地缓存 + 网络容错
+ * 安全增强：图片大小限制、格式验证、上传失败处理
  */
 export async function uploadEvidence(fileData, taskId, options = {}) {
   const {
@@ -96,7 +97,34 @@ export async function uploadEvidence(fileData, taskId, options = {}) {
     retryCount = 3
   } = options
   
+  // 【安全增强】图片大小限制（最大 5MB）
+  const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+  
+  // 【安全增强】允许的图片格式
+  const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+  
   try {
+    // 【安全增强】验证文件大小
+    if (fileData.size && fileData.size > MAX_FILE_SIZE) {
+      const sizeMB = (fileData.size / 1024 / 1024).toFixed(2)
+      wx.showModal({
+        title: '文件过大',
+        content: `图片大小不能超过 5MB，当前大小为 ${sizeMB}MB`,
+        showCancel: false
+      })
+      throw new Error(`文件大小超限：${sizeMB}MB`)
+    }
+    
+    // 【安全增强】验证文件格式
+    if (fileData.type && !ALLOWED_IMAGE_TYPES.includes(fileData.type)) {
+      wx.showModal({
+        title: '格式不支持',
+        content: '仅支持 JPG、PNG、GIF、WebP 格式的图片',
+        showCancel: false
+      })
+      throw new Error(`文件格式不支持：${fileData.type}`)
+    }
+    
     // 1. 检查是否有未完成的上传记录
     const uploadRecord = wx.getStorageSync(`upload_${taskId}`)
     
@@ -133,6 +161,14 @@ export async function uploadEvidence(fileData, taskId, options = {}) {
       fail: (error) => {
         // 上传失败，保留记录用于续传
         console.error('[上传失败]', error)
+        
+        // 【安全增强】上传失败处理
+        wx.showModal({
+          title: '上传失败',
+          content: error.errMsg || '图片上传失败，请重试',
+          showCancel: false
+        })
+        
         throw error
       }
     })
@@ -152,6 +188,18 @@ export async function uploadEvidence(fileData, taskId, options = {}) {
       error: error.message,
       retryCount: (wx.getStorageSync(`upload_${taskId}`)?.retryCount || 0) + 1
     })
+    
+    // 【安全增强】失败次数超限提示
+    const currentRetryCount = wx.getStorageSync(`upload_${taskId}`)?.retryCount || 0
+    if (currentRetryCount >= retryCount) {
+      wx.showModal({
+        title: '上传失败',
+        content: '多次尝试上传失败，请检查网络连接后重试',
+        showCancel: false
+      })
+      // 清除失败记录
+      wx.removeStorageSync(`upload_${taskId}`)
+    }
     
     throw error
   }

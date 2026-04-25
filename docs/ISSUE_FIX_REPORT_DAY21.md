@@ -104,7 +104,7 @@
 
 **执行命令**:
 ```bash
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run test:coverage
 ```
 

@@ -117,7 +117,7 @@
 ### ESLint 检查
 
 ```bash
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm run lint
 ```
 
@@ -202,7 +202,7 @@ backend/ruoyi-admin/src/test/java/com/ruoyi/qingru/
 
 ```bash
 # 运行所有测试
-cd /root/.openclaw/workspace/miniprogram
+cd /home/admin/.openclaw/workspace/miniprogram
 npm test
 
 # 运行护生板块测试
@@ -222,7 +222,7 @@ npm run lint
 
 ```bash
 # 运行所有测试
-cd /root/.openclaw/workspace/backend
+cd /home/admin/.openclaw/workspace/backend
 mvn test
 
 # 运行订单服务测试

@@ -28,7 +28,7 @@
           bindtap="onPreviewPhoto"
           data-index="{{index}}"
         >
-          <image class="photo-image" src="{{item}}" mode="aspectFill" />
+          <image class="photo-image" lazy-load="true" src="{{item}}" mode="aspectFill" />
           <view class="photo-delete" catchtap="onDeletePhoto" data-index="{{index}}">
             <text class="delete-icon">×</text>
           </view>
@@ -66,7 +66,7 @@
           data-index="{{index}}"
         >
           <view class="video-thumbnail">
-            <image class="thumbnail-image" src="{{item.thumb}}" mode="aspectFill" />
+            <image class="thumbnail-image" lazy-load="true" src="{{item.thumb}}" mode="aspectFill" />
             <text class="video-duration">{{item.duration}}</text>
           </view>
           <view class="video-info">

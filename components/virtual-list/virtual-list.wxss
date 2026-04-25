@@ -1,0 +1,23 @@
+/* 清如 ClearSpring - 虚拟列表组件样式 */
+
+.virtual-list-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.virtual-scroll,
+.normal-scroll {
+  width: 100%;
+}
+
+.virtual-spacer {
+  position: relative;
+  width: 100%;
+}
+
+.virtual-item,
+.normal-item {
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -1,3 +1,5 @@
+const auth = require('../../utils/auth');
+
 // 系统设置
 Page({
   data: {
@@ -7,6 +9,13 @@ Page({
       appeal: false,
       system: true
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     platformRate: 10,
     executorRate: 90,
     settleCycle: 'T+7',
@@ -14,6 +23,9 @@ Page({
   },
 
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) { return; }
+
     // 加载设置
   },
 

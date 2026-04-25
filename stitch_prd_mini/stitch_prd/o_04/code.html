@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#e0c64b",
+                    "secondary-container": "#fee264",
+                    "on-background": "#1b1c19",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#6d5435",
+                    "surface-tint": "#506354",
+                    "on-secondary-container": "#756400",
+                    "inverse-surface": "#30312e",
+                    "tertiary": "#533d20",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf9f4",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-surface-variant": "#434843",
+                    "outline-variant": "#c3c8c1",
+                    "on-secondary-fixed": "#211b00",
+                    "on-surface": "#1b1c19",
+                    "inverse-primary": "#b7ccb9",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container-low": "#f5f4ef",
+                    "surface": "#faf9f4",
+                    "surface-container-highest": "#e3e2de",
+                    "background": "#faf9f4",
+                    "on-tertiary-fixed": "#291801",
+                    "error": "#ba1a1a",
+                    "surface-container": "#efeee9",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "primary-container": "#4a5d4e",
+                    "outline": "#737872",
+                    "on-primary-fixed": "#0e1f13",
+                    "primary": "#334537",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#534600",
+                    "surface-variant": "#e3e2de",
+                    "surface-dim": "#dbdad5",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "secondary": "#6e5e00",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container-high": "#e9e8e3",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#fee264",
+                    "inverse-on-surface": "#f2f1ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: linear-gradient(135deg, #FAF9F4 0%, #EFEEE9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .ink-wash-bg::before {
+            content: "";
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(74, 93, 78, 0.03) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#FAF9F4]/40 backdrop-blur-xl flex items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4 w-full">
+<button class="p-2 hover:bg-[#EFEEE9] rounded-full transition-colors text-[#334537]">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-serif text-[#334537] font-bold tracking-tight">我的订单</h1>
+</div>
+</header>
+<!-- Content Wrapper -->
+<main class="pt-20 px-4 max-w-2xl mx-auto space-y-6">
+<!-- Status Tab Bar -->
+<nav class="flex overflow-x-auto no-scrollbar gap-2 py-2 sticky top-16 bg-background/80 backdrop-blur-md z-40">
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-primary text-on-primary whitespace-nowrap">全部</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container text-on-surface-variant whitespace-nowrap hover:bg-surface-container-high transition-colors">待执行</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container text-on-surface-variant whitespace-nowrap hover:bg-surface-container-high transition-colors">执行中</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container text-on-surface-variant whitespace-nowrap hover:bg-surface-container-high transition-colors">待用户确认</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container text-on-surface-variant whitespace-nowrap hover:bg-surface-container-high transition-colors">已完成</button>
+<button class="px-5 py-2 rounded-full text-sm font-medium bg-surface-container text-on-surface-variant whitespace-nowrap hover:bg-surface-container-high transition-colors">已取消</button>
+</nav>
+<!-- Filter Bar -->
+<section class="flex gap-3 overflow-x-auto pb-2">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-xl text-sm border-none">
+<span class="text-on-surface-variant">日期</span>
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-xl text-sm border-none">
+<span class="text-on-surface-variant">水域</span>
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-xl text-sm border-none">
+<span class="text-on-surface-variant">志愿者</span>
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</button>
+</section>
+<!-- Order List -->
+<div class="space-y-4">
+<!-- Card 1: 待执行 -->
+<article class="bg-surface-container-lowest rounded-[8px] p-6 shadow-[0_12px_40px_rgba(74,93,78,0.04)] relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-[10px] uppercase tracking-widest text-tertiary font-bold">ORD2024-001</span>
+<h3 class="text-lg font-serif mt-1">放生法会：红锦鲤共修</h3>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-xs rounded-full font-medium">待执行</span>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">category</span>
+<span>物种: 红锦鲤</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>日期: 2024-10-15</span>
+</div>
+</div>
+<div class="flex justify-end pt-4 border-t border-outline-variant/15">
+<button class="px-6 py-2 bg-primary text-on-primary rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                        分配任务
+                    </button>
+</div>
+</article>
+<!-- Card 2: 执行中 -->
+<article class="bg-surface-container-lowest rounded-[8px] p-6 shadow-[0_12px_40px_rgba(74,93,78,0.04)] relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-[10px] uppercase tracking-widest text-tertiary font-bold">ORD2024-002</span>
+<h3 class="text-lg font-serif mt-1">湖心亭生态养护订单</h3>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs rounded-full font-medium">执行中</span>
+</div>
+<div class="space-y-2 mb-6">
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">person</span>
+<span>负责人: 张明 (志愿者)</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>水域: 西湖翡翠湾</span>
+</div>
+</div>
+<div class="flex justify-end pt-4 border-t border-outline-variant/15">
+<button class="px-6 py-2 border border-primary text-primary rounded-lg text-sm font-semibold hover:bg-primary/5 transition-colors">
+                        查看详情
+                    </button>
+</div>
+</article>
+<!-- Card 3: 待用户确认 -->
+<article class="bg-surface-container-lowest rounded-[8px] p-6 shadow-[0_12px_40px_rgba(74,93,78,0.04)] relative overflow-hidden group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-[10px] uppercase tracking-widest text-tertiary font-bold">ORD2024-003</span>
+<h3 class="text-lg font-serif mt-1">慈悲放生系列 - 泥鳅</h3>
+</div>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-xs rounded-full font-medium">待用户确认</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
+                    所有物种已按照规范投放至预定水域，执行视频及环境照片已上传，请审核相关材料以完成订单结算。
+                </p>
+<div class="flex justify-end pt-4 border-t border-outline-variant/15">
+<button class="px-6 py-2 bg-primary text-on-primary rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
+                        审核执行材料
+                    </button>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#FAF9F4] dark:bg-[#334537] rounded-t-3xl shadow-[0_-12px_40px_rgba(74,93,78,0.06)] flex justify-around items-center h-20 px-8 pb-safe">
+<!-- 梵音 (Home/Music) -->
+<div class="flex flex-col items-center justify-center text-[#533d20] dark:text-[#A68966] px-5 py-1 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label text-[10px] uppercase tracking-widest mt-1">梵音</span>
+</div>
+<!-- 禅意 (Meditation) -->
+<div class="flex flex-col items-center justify-center text-[#533d20] dark:text-[#A68966] px-5 py-1 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">self_improvement</span>
+<span class="font-label text-[10px] uppercase tracking-widest mt-1">禅意</span>
+</div>
+<!-- 我的 (Profile - Active) -->
+<div class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-xl px-5 py-1 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label text-[10px] uppercase tracking-widest mt-1 font-bold">我的</span>
+</div>
+</nav>
+</body></html>

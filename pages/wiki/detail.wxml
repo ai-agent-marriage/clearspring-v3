@@ -20,7 +20,7 @@
   <view class="detail-content" wx:if="{{detailType === 'species'}}">
     <!-- 物种图片 -->
     <view class="species-image-wrapper">
-      <image class="species-image" src="{{speciesData.image}}" mode="aspectFill"></image>
+      <image class="species-image" lazy-load="true" src="{{speciesData.image}}" mode="aspectFill"></image>
       <view class="species-category">{{speciesData.category}}</view>
     </view>
 

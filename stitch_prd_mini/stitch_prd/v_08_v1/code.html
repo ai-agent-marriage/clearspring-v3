@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-Hans"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>通知中心 - The Breath of Silence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#faf9f4",
+                        "primary-fixed-dim": "#b7ccb9",
+                        "surface-dim": "#dbdad5",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "primary-fixed": "#d3e8d5",
+                        "surface": "#faf9f4",
+                        "tertiary-container": "#6d5435",
+                        "on-background": "#1b1c19",
+                        "on-tertiary-container": "#ebcaa3",
+                        "background": "#EFEEE9",
+                        "on-primary-container": "#c0d5c2",
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "on-tertiary-fixed": "#291801",
+                        "on-surface-variant": "#434843",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e3e2de",
+                        "on-secondary-fixed": "#211b00",
+                        "primary-container": "#4A5D4E",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f5f4ef",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#4A5D4E",
+                        "surface-container-high": "#e9e8e3",
+                        "primary": "#4A5D4E",
+                        "outline": "#737872",
+                        "outline-variant": "#c3c8c1",
+                        "inverse-on-surface": "#f2f1ec",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "tertiary-fixed": "#ffddb6",
+                        "surface-container-highest": "#e3e2de",
+                        "on-secondary-container": "#756400",
+                        "on-surface": "#1b1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#6e5e00",
+                        "inverse-primary": "#b7ccb9",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#efeee9",
+                        "secondary-fixed": "#fee264",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#534600",
+                        "tertiary": "#533d20",
+                        "secondary-container": "#fee264",
+                        "inverse-surface": "#30312e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif SC", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #EFEEE9; }
+        .serif { font-family: 'Noto Serif SC', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen pb-16">
+<!-- TopAppBar -->
+<nav class="sticky top-0 z-50 bg-[#FAF9F4] flex justify-between items-center w-full px-5 py-3 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#4A5D4E] cursor-pointer" data-icon="arrow_back">arrow_back</span>
+<h1 class="serif text-lg font-semibold text-[#4A5D4E]">通知</h1>
+</div>
+<button class="text-[#4A5D4E] opacity-70 font-label tracking-wide text-xs hover:opacity-100 transition-opacity">全部已读</button>
+</nav>
+<!-- Content Area -->
+<main class="px-4 pt-3">
+<!-- Category Tabs -->
+<div class="flex gap-6 mb-4 overflow-x-auto no-scrollbar py-1">
+<button class="relative pb-1 text-[#4A5D4E] font-semibold whitespace-nowrap text-sm">
+            任务通知
+            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[#4A5D4E]"></span>
+</button>
+<button class="pb-1 text-[#4A5D4E] opacity-50 whitespace-nowrap text-sm hover:opacity-100 transition-opacity">审核通知</button>
+<button class="pb-1 text-[#4A5D4E] opacity-50 whitespace-nowrap text-sm hover:opacity-100 transition-opacity">平台公告</button>
+</div>
+<!-- Notification List -->
+<div class="space-y-2.5">
+<!-- Notification Card 1 -->
+<div class="bg-white rounded-lg p-3.5 shadow-sm relative">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-[#4A5D4E]"></div>
+<h3 class="font-bold text-[#4A5D4E] text-sm">新任务分配</h3>
+</div>
+<span class="text-[10px] text-[#4A5D4E] opacity-50">10分钟前</span>
+</div>
+<p class="text-[13px] text-on-surface-variant mb-2 leading-relaxed">您已被分配到“社区古籍整理”志愿项目，请及时确认参与意向并查看具体排班。</p>
+<div class="flex justify-end">
+<button class="bg-[#4A5D4E] text-white text-[11px] px-4 py-1.5 rounded font-medium active:scale-95 transition-transform">去处理</button>
+</div>
+</div>
+<!-- Notification Card 2 -->
+<div class="bg-white rounded-lg p-3.5 shadow-sm relative">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-[#4A5D4E]"></div>
+<h3 class="font-bold text-[#4A5D4E] text-sm">打卡提醒</h3>
+</div>
+<span class="text-[10px] text-[#4A5D4E] opacity-50">1小时前</span>
+</div>
+<p class="text-[13px] text-on-surface-variant mb-2 leading-relaxed">下午的“禅茶文化导览”任务即将开始，请记得准时到达指定地点签到。</p>
+<div class="flex justify-end">
+<button class="bg-[#4A5D4E] text-white text-[11px] px-4 py-1.5 rounded font-medium active:scale-95 transition-transform">去处理</button>
+</div>
+</div>
+<!-- Notification Card 3 (Read/Completed state) -->
+<div class="bg-white/60 opacity-90 rounded-lg p-3.5 border border-[#4A5D4E]/5">
+<div class="flex justify-between items-center mb-1.5">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-transparent"></div>
+<h3 class="font-bold text-[#4A5D4E] text-sm">任务更新成功</h3>
+</div>
+<span class="text-[10px] text-[#4A5D4E] opacity-50">昨天</span>
+</div>
+<p class="text-[13px] text-on-surface-variant mb-2 leading-relaxed">您的“周末书法助教”任务申请已获批准，系统已自动更新您的日程安排。</p>
+<div class="flex justify-end">
+<button class="text-[#4A5D4E] text-[11px] px-4 py-1.5 rounded font-medium border border-[#4A5D4E]/20 active:scale-95 transition-transform">查看详情</button>
+</div>
+</div>
+<!-- Poetic Void / Decorative Element - Compacted -->
+<div class="py-6 flex flex-col items-center opacity-30">
+<span class="material-symbols-outlined text-2xl mb-2 text-[#4A5D4E]" data-icon="filter_vintage">filter_vintage</span>
+<p class="serif italic text-[11px] text-[#4A5D4E]">于喧嚣中 寻得一丝静谧</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-4 pt-2 bg-[#FAF9F4]/80 backdrop-blur-md z-50 border-t border-[#4A5D4E]/10">
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] opacity-60 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined text-[20px] mb-0.5" data-icon="auto_stories">auto_stories</span>
+<span class="text-[10px] tracking-tight font-label font-medium">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#4A5D4E] opacity-60 hover:opacity-100 transition-opacity" href="#">
+<span class="material-symbols-outlined text-[20px] mb-0.5" data-icon="self_improvement">self_improvement</span>
+<span class="text-[10px] tracking-tight font-label font-medium">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#4A5D4E] text-[#FAF9F4] rounded-lg px-5 py-1 active:scale-95 duration-150 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px] mb-0.5" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] tracking-tight font-label font-medium">我的</span>
+</a>
+</nav>
+</body></html>

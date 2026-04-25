@@ -118,7 +118,7 @@
     <!-- 环境信息 -->
     <view class="env-grid">
       <view class="env-image">
-        <image class="env-img" src="/images/release-site.jpg" mode="aspectFill"/>
+        <image class="env-img" lazy-load="true" src="/images/release-site.jpg" mode="aspectFill"/>
         <view class="env-overlay"></view>
         <view class="env-label">
           <view class="label-text">Release Site</view>

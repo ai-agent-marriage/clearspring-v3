@@ -8,7 +8,7 @@
   <!-- 志愿者信息卡片 -->
   <view class="volunteer-profile-card glass">
     <view class="profile-header">
-      <image class="volunteer-avatar" src="{{volunteerInfo.avatar}}" mode="aspectFill"/>
+      <image class="volunteer-avatar" lazy-load="true" src="{{volunteerInfo.avatar}}" mode="aspectFill"/>
       <view class="profile-info">
         <view class="volunteer-name-row">
           <text class="volunteer-name">{{volunteerInfo.name}}</text>
@@ -148,7 +148,7 @@
     <view class="reviews-list">
       <view class="review-item glass" wx:for="{{reviews}}" wx:key="id">
         <view class="review-header">
-          <image class="reviewer-avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <image class="reviewer-avatar" lazy-load="true" src="{{item.avatar}}" mode="aspectFill"/>
           <view class="reviewer-info">
             <text class="reviewer-name">{{item.reviewerName}}</text>
             <text class="review-date">{{item.date}}</text>

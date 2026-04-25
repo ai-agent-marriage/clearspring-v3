@@ -3,7 +3,7 @@
 # Stitch V3.0 边框修复脚本 - 最终版
 # 将 1px/1rpx 实线边框替换为无边界设计（阴影/渐变）
 
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 定义需要排除的目录
 EXCLUDE_PATTERN="node_modules\|coverage\|tests/\|dist/\|backend/"

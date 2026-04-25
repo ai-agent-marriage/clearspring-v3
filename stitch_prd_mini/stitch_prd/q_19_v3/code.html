@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffddb6",
+                    "on-secondary-container": "#756400",
+                    "on-primary-container": "#c0d5c2",
+                    "on-secondary-fixed-variant": "#534600",
+                    "surface-bright": "#faf9f4",
+                    "secondary-container": "#fee264",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#434843",
+                    "surface-dim": "#dbdad5",
+                    "surface": "#faf9f4",
+                    "inverse-primary": "#b7ccb9",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ec",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "surface-tint": "#506354",
+                    "on-tertiary-fixed": "#291801",
+                    "surface-container-low": "#f5f4ef",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-background": "#1b1c19",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e9e8e3",
+                    "on-secondary-fixed": "#211b00",
+                    "surface-container-highest": "#e3e2de",
+                    "inverse-surface": "#30312e",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c3c8c1",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "surface-variant": "#e3e2de",
+                    "on-primary-fixed": "#0e1f13",
+                    "outline": "#737872",
+                    "on-surface": "#1b1c19",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "tertiary": "#533d20",
+                    "on-tertiary-container": "#ebcaa3",
+                    "tertiary-container": "#6d5435",
+                    "primary-container": "#4a5d4e",
+                    "background": "#faf9f4",
+                    "surface-container": "#efeee9",
+                    "secondary-fixed": "#fee264",
+                    "secondary": "#6e5e00",
+                    "primary": "#334537"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+      }
+      .ink-wash-bg {
+        background: radial-gradient(circle at top right, rgba(74, 93, 78, 0.05), transparent), radial-gradient(circle at bottom left, rgba(201, 176, 55, 0.05), transparent)
+      }
+      .paper-texture {
+        background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBkIsEnSTZOf5aT1-wVPLPwoAF6ZJaV7sIJEWyK4MXEroqrQBd0XvMy4uLmBtfiKF8msf8eGX_BTgZZZdyLNtw89VAjFk_vl5VlPdPCgtfKcBy5Hmgf-CQnsrLtQQF0BraT4dS8GL6HI0VHMEoV8lztrkRsddgm8m5Wgven5r3D8hc85_bXg2Lfz2E18tFYP2lPTNcbDkN9XjyEUCbFxyDt-Sgym4kzDlKPb7Ibha5OFA0yU_jdrXQE9V4Auc22FVeX5j83CL53m8I_)
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface antialiased ink-wash-bg min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full bg-[#FAF9F4]/40 backdrop-blur-xl flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#4A5D4E]/10 transition-colors active:scale-95 duration-300 ease-out rounded-full">
+<span class="material-symbols-outlined text-[#334537]">menu</span>
+</button>
+<h1 class="font-headline font-bold text-xl tracking-widest text-[#334537]">证书阁</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-[#4A5D4E]/10 transition-colors active:scale-95 duration-300 ease-out rounded-full">
+<span class="material-symbols-outlined text-[#334537]">search</span>
+</button>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto pb-20">
+<!-- Certificate Hero Section -->
+<div class="relative group">
+<div class="absolute -inset-8 bg-primary-container/10 blur-3xl rounded-full opacity-40"></div>
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-[0_15px_45px_rgba(51,69,55,0.12)] border border-white/50">
+<!-- Replace main image with IMAGE_475 -->
+<img alt="莲花印章风格禅意证书" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVpqKR9nmZkTGkRizevnTwo3bfmV2EPiLlFi8JVtCniCMLdHLza5ONeKtG6T-v2nU2L7-GR1nHAttGV7x3vjWbd6QM4A8J9QwHy_4dwfHK-TYwGwMoDajFM5rOoIl1Hyha9_vbq7Ffi9QM1_jFiUYh_Tv70xaBZaBmahm-tyf900-waAHdRaxRnWxGocDQDSkjiMNjPj4_5UeKO7R5Gw2vQq3AW286zsWXSomMesUs8iXmfUf7Hzr1k7cMnz0pg_wtp2SwUZG_DB5d"/>
+<!-- Soft background fusion gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-background/10 mix-blend-soft-light"></div>
+</div>
+</div>
+<!-- Detailed Information Card -->
+<div class="mt-8 bg-surface-container-low/80 rounded-xl p-6 paper-texture relative overflow-hidden backdrop-blur-sm border border-surface-container-high/50">
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-7xl" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+</div>
+<div class="space-y-4 relative z-10">
+<div class="space-y-0.5">
+<h2 class="font-headline text-xl text-primary">持证详情</h2>
+<p class="text-on-surface-variant text-xs leading-relaxed">此证书由证悟阁权威认证，记录您的精神成长历程。</p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2 border-t border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[16px]">fingerprint</span>
+</div>
+<div class="min-w-0">
+<p class="text-[9px] uppercase tracking-wider text-outline mb-0.5">证书编号 ID</p>
+<p class="font-medium text-on-surface text-xs truncate">CX-9823-7712</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[16px]">calendar_today</span>
+</div>
+<div class="min-w-0">
+<p class="text-[9px] uppercase tracking-wider text-outline mb-0.5">颁发日期 DATE</p>
+<p class="font-medium text-on-surface text-xs">23年08月24日</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer pt-2 border-t border-outline-variant/30">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[16px]">shopping_bag</span>
+</div>
+<div class="flex-1 flex justify-between items-center">
+<div>
+<p class="text-[9px] uppercase tracking-wider text-outline mb-0.5">关联订单 ORDER</p>
+<p class="font-medium text-on-surface text-xs">查看原始修习记录</p>
+</div>
+<span class="material-symbols-outlined text-[14px] text-outline">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons: Compact Capsule Design -->
+<div class="mt-6 flex items-center gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary-container text-white h-11 px-6 rounded-full font-medium hover:opacity-90 transition-all active:scale-95 text-sm shadow-sm">
+<span class="material-symbols-outlined text-lg">download</span>
+                保存相册
+            </button>
+<button class="flex-1 flex items-center justify-center gap-2 bg-secondary-container text-on-secondary-container h-11 px-6 rounded-full font-medium hover:opacity-90 transition-all active:scale-95 text-sm shadow-sm border border-secondary-container">
+<span class="material-symbols-outlined text-lg">share</span>
+                分享喜悦
+            </button>
+</div>
+<!-- Quote / Decorative Element -->
+<div class="text-center mt-8">
+<p class="font-headline italic text-primary/40 text-lg">“心如工画师，能画诸世间”</p>
+<div class="w-px bg-gradient-to-b from-primary/20 to-transparent mx-auto h-6 mt-4"></div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full bg-[#FAF9F4]/80 backdrop-blur-xl flex justify-around items-center px-4 pb-6 pt-2 shadow-[0_-12px_40px_rgba(74,93,78,0.06)] z-50">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-6 py-1.5 hover:text-[#4A5D4E] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">library_music</span>
+<span class="font-label tracking-widest text-[11px]">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-lg px-6 py-1.5 transition-all scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+<span class="font-label tracking-widest text-[11px]">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-6 py-1.5 hover:text-[#4A5D4E] transition-all" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label tracking-widest text-[11px]">我的</span>
+</a>
+</nav>
+</body></html>

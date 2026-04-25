@@ -12,6 +12,13 @@ Page({
       wish: '平安顺遂',
       userInfo: '清如用户'
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     amount: {
       baseAmount: 299,
       extraAmount: 99,

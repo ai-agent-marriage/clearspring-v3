@@ -3,7 +3,7 @@
   <!-- 个人信息卡片 -->
   <view class="profile-card glass">
     <view class="profile-header">
-      <image class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
+      <image class="avatar" lazy-load="true" src="{{userInfo.avatar}}" mode="aspectFill" />
       <view class="profile-info">
         <text class="nickname">{{userInfo.nickname}}</text>
         <view class="profile-tags">

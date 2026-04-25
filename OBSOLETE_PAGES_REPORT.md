@@ -22,7 +22,7 @@
 ## ✅ 删除列表 (可安全删除)
 
 ### 1. projects/ 目录
-**路径**: `/root/.openclaw/workspace/projects/`  
+**路径**: `/home/admin/.openclaw/workspace/projects/`  
 **原因**: 
 - 备份项目目录，包含 clearspring-v2 完整备份
 - 有独立备份文件 `clearspring-v2-backup-20260330-123930.tar.gz`
@@ -32,13 +32,13 @@
 **建议操作**: 
 ```bash
 # 确认备份 tar.gz 文件存在后删除
-rm -rf /root/.openclaw/workspace/projects/
+rm -rf /home/admin/.openclaw/workspace/projects/
 ```
 
 ---
 
 ### 2. pages/admin/ 目录 (空壳)
-**路径**: `/root/.openclaw/workspace/pages/admin/`  
+**路径**: `/home/admin/.openclaw/workspace/pages/admin/`  
 **原因**:
 - 仅包含 `content/` 子目录，无实际页面文件
 - 实际使用的是 `pages/admin-content/` 等独立目录
@@ -46,13 +46,13 @@ rm -rf /root/.openclaw/workspace/projects/
 
 **建议操作**:
 ```bash
-rm -rf /root/.openclaw/workspace/pages/admin/
+rm -rf /home/admin/.openclaw/workspace/pages/admin/
 ```
 
 ---
 
 ### 3. pages/q-xx-* 系列 (设计稿页面 - 部分)
-**路径**: `/root/.openclaw/workspace/pages/q-*`  
+**路径**: `/home/admin/.openclaw/workspace/pages/q-*`  
 **可删除的设计稿页面**:
 
 | 目录 | 原因 | 引用情况 |
@@ -90,7 +90,7 @@ rm -rf /root/.openclaw/workspace/pages/admin/
 **建议操作**:
 ```bash
 # 批量删除设计稿页面
-rm -rf /root/.openclaw/workspace/pages/q-{01,04,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33}-*
+rm -rf /home/admin/.openclaw/workspace/pages/q-{01,04,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33}-*
 ```
 
 ---
@@ -138,7 +138,7 @@ rm -rf /root/.openclaw/workspace/pages/q-{01,04,13,14,15,16,17,18,19,20,21,22,23
 ---
 
 ### 3. miniprogram/ 目录 (待确认)
-**路径**: `/root/.openclaw/workspace/miniprogram/`  
+**路径**: `/home/admin/.openclaw/workspace/miniprogram/`  
 **状态**: ⚠️ **待确认**
 
 **特征**:
@@ -159,7 +159,7 @@ rm -rf /root/.openclaw/workspace/pages/q-{01,04,13,14,15,16,17,18,19,20,21,22,23
 ## ❓ 待确认列表
 
 ### 1. miniprogram/pages/q-* 系列
-**路径**: `/root/.openclaw/workspace/miniprogram/pages/q-*`
+**路径**: `/home/admin/.openclaw/workspace/miniprogram/pages/q-*`
 
 **目录列表**:
 - q-01-launch
@@ -181,7 +181,7 @@ rm -rf /root/.openclaw/workspace/pages/q-{01,04,13,14,15,16,17,18,19,20,21,22,23
 ---
 
 ### 2. auto-screenshot.js 依赖的 admin 页面
-**文件**: `/root/.openclaw/workspace/auto-screenshot.js`
+**文件**: `/home/admin/.openclaw/workspace/auto-screenshot.js`
 
 **依赖页面**:
 - `pages/admin/content/index` - 内容审核
@@ -207,10 +207,10 @@ rm -rf /root/.openclaw/workspace/pages/q-{01,04,13,14,15,16,17,18,19,20,21,22,23
 ### 优先级 P0 (可立即删除)
 ```bash
 # 1. 备份项目目录
-rm -rf /root/.openclaw/workspace/projects/
+rm -rf /home/admin/.openclaw/workspace/projects/
 
 # 2. 空壳 admin 目录
-rm -rf /root/.openclaw/workspace/pages/admin/
+rm -rf /home/admin/.openclaw/workspace/pages/admin/
 ```
 
 ### 优先级 P1 (设计稿页面清理)
@@ -221,7 +221,7 @@ for dir in q-01-launch q-04-audio-player q-13-service q-14-confirm q-15-result \
            q-21-water q-22-record q-23-share q-24-invite q-25-guest q-26-task \
            q-27-signin q-28-calendar q-29-notification q-30-settings \
            q-31-about q-32-help q-33-feedback; do
-  rm -rf /root/.openclaw/workspace/pages/$dir
+  rm -rf /home/admin/.openclaw/workspace/pages/$dir
 done
 ```
 

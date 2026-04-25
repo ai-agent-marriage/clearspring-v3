@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>志愿者个人中心</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Noto Serif SC & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e9e8e3",
+                    "on-error": "#ffffff",
+                    "secondary": "#6e5e00",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "primary": "#334537",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "background": "#faf9f4",
+                    "secondary-fixed": "#fee264",
+                    "surface-container-highest": "#e3e2de",
+                    "outline": "#737872",
+                    "surface-variant": "#e3e2de",
+                    "inverse-primary": "#b7ccb9",
+                    "surface-tint": "#506354",
+                    "on-secondary-fixed-variant": "#534600",
+                    "surface-dim": "#dbdad5",
+                    "surface-bright": "#faf9f4",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f2f1ec",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#d3e8d5",
+                    "on-primary-fixed": "#0e1f13",
+                    "outline-variant": "#c3c8c1",
+                    "on-tertiary-container": "#ebcaa3",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#756400",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-container-low": "#f5f4ef",
+                    "surface": "#faf9f4",
+                    "on-surface-variant": "#434843",
+                    "on-primary-container": "#c0d5c2",
+                    "on-background": "#1b1c19",
+                    "inverse-surface": "#30312e",
+                    "on-secondary-fixed": "#211b00",
+                    "tertiary": "#533d20",
+                    "secondary-container": "#fee264",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#6d5435",
+                    "on-tertiary-fixed": "#291801",
+                    "on-surface": "#1b1c19",
+                    "surface-container": "#efeee9",
+                    "primary-container": "#4a5d4e",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b7ccb9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif SC", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(51, 69, 55, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(201, 176, 55, 0.03) 0%, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen text-on-background pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F4]/40 backdrop-blur-xl flex justify-between items-center px-6 py-4">
+<button class="hover:bg-[#EFEEE9] transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[#334537]" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-bold text-[#334537] font-headline">我的</h1>
+<button class="hover:bg-[#EFEEE9] transition-colors p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[#334537]" data-icon="settings">settings</span>
+</button>
+</header>
+<!-- Top User Area -->
+<section class="bg-primary-container pt-28 pb-20 px-8 relative overflow-hidden">
+<!-- Abstract Ink Decoration -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary-fixed rounded-full blur-3xl -mr-20 -mt-20"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="relative">
+<img alt="User Avatar" class="w-24 h-24 rounded-full object-cover border-4 border-surface-container-low/20 shadow-xl" data-alt="Close-up portrait of a serene man with a gentle smile, soft natural lighting, minimalist aesthetic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBCoJ5wKXHnsleZn4oR_o9h_5dCgnKSgutSP5zmxrQGvQXdaZ1EPbq2QbnYhRQvU7tQCxek6dsYNtA3aCed14igfNf0t0OXBjC7Pch4aN-8qOTRBxc9LlmYq9kteTl6uM9LW2w_DLNBhjeNOoADpO5xY06ownwKYePm3TUjOMJljOkVEwfxLmR4QqrZSLv0csqiyZfBBrhaZaxsrdkTpqLY5SvQEOWPBwx0NQBMRFPrf3ghGzwF1nr-QNghcl2lGYkmYLOk9FVcbJh"/>
+<div class="absolute bottom-0 right-0 bg-secondary px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] text-on-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h2 class="mt-4 text-2xl font-bold text-surface-container-lowest tracking-tight">林先森</h2>
+<div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 bg-primary/30 backdrop-blur-sm rounded-full border border-surface-container-lowest/10">
+<span class="text-[10px] uppercase font-bold text-surface-container-lowest tracking-widest">已实名认证</span>
+</div>
+</div>
+</section>
+<!-- Data Dashboard (Floating Cards) -->
+<section class="px-6 -mt-10 relative z-20">
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] flex flex-col items-center text-center border border-outline-variant/10">
+<span class="text-secondary font-bold text-xl font-body">12</span>
+<span class="text-[10px] text-outline mt-1 font-medium leading-tight">完成任务数</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] flex flex-col items-center text-center border border-outline-variant/10">
+<span class="text-secondary font-bold text-xl font-body">24h</span>
+<span class="text-[10px] text-outline mt-1 font-medium leading-tight">公益时长</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-[0_12px_40px_rgba(74,93,78,0.06)] flex flex-col items-center text-center border border-outline-variant/10">
+<span class="text-secondary font-bold text-xl font-body">100%</span>
+<span class="text-[10px] text-outline mt-1 font-medium leading-tight">合规执行率</span>
+</div>
+</div>
+</section>
+<!-- Main Content Area with Ink Wash Background -->
+<main class="ink-wash-bg px-6 pt-10">
+<!-- Function List -->
+<div class="space-y-3">
+<div class="group flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl hover:bg-surface-container-low transition-all active:scale-[0.98] cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+</div>
+<span class="font-medium text-on-surface">我的执行台账</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="group flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl hover:bg-surface-container-low transition-all active:scale-[0.98] cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
+</div>
+<span class="font-medium text-on-surface">我的证书</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="group flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl hover:bg-surface-container-low transition-all active:scale-[0.98] cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="library_books">library_books</span>
+</div>
+<span class="font-medium text-on-surface">合规知识库</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="group flex items-center justify-between p-5 bg-surface-container-lowest rounded-2xl hover:bg-surface-container-low transition-all active:scale-[0.98] cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+</div>
+<span class="font-medium text-on-surface">意见反馈</span>
+</div>
+<span class="material-symbols-outlined text-outline/40 group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="mt-10 mb-10 space-y-3">
+<button class="w-full flex items-center justify-between p-5 bg-surface-container-low/50 rounded-2xl hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline" data-icon="manage_accounts">manage_accounts</span>
+<span class="text-sm font-medium text-on-surface">账号设置</span>
+</div>
+<span class="material-symbols-outlined text-outline/30" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-5 bg-surface-container-low/50 rounded-2xl hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline" data-icon="visibility">visibility</span>
+<span class="text-sm font-medium text-on-surface">切换为祈福者视角</span>
+</div>
+<span class="material-symbols-outlined text-outline/30" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full mt-4 flex items-center justify-center gap-2 p-5 bg-error-container/20 text-error rounded-2xl hover:bg-error-container/40 transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-semibold">退出登录</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-[#FAF9F4]/80 backdrop-blur-lg rounded-t-2xl shadow-[0_-4px_20px_rgba(74,93,78,0.06)] z-50">
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-4 py-1.5 hover:text-[#6e5e00] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-[10px] font-medium uppercase mt-1">梵音</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#334537]/50 px-4 py-1.5 hover:text-[#6e5e00] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="text-[10px] font-medium uppercase mt-1">禅理</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-xl px-4 py-1.5 scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-medium uppercase mt-1">我的</span>
+</a>
+</nav>
+</body></html>

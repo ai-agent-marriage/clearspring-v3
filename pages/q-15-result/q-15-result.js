@@ -10,6 +10,13 @@ Page({
     certificateImage: '/images/certificate-sample.png'
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad(options) {
     // 从上一页获取订单数据
     if (options.orderId) {

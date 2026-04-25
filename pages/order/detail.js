@@ -24,6 +24,13 @@ Page({
       payMethod: '微信支付',
       payNo: 'WX20260407100500123456'
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     progress: [
       { step: '已支付', time: '2026-04-07 10:05:00', active: true },
       { step: '已承接', time: '2026-04-07 14:00:00', active: true },
@@ -118,6 +125,7 @@ Page({
   updateProgress(stepIndex) {
     const { progress } = this.data;
     progress.forEach((item, index) => {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
       if (index <= stepIndex) {
         item.active = true;
       }

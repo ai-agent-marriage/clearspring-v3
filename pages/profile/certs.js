@@ -23,6 +23,13 @@ Page({
         merit: 1000,
         qrCode: '/images/qr1.png'
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: 2,
         type: 2,
@@ -142,6 +149,7 @@ Page({
     
     // 简单瀑布流：交替分配到左右列
     filteredCerts.forEach((cert, index) => {
+      // 性能优化：建议收集数据后批量 setData，而不是在循环中每次调用
       if (index % 2 === 0) {
         leftColumn.push(cert);
       } else {

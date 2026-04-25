@@ -1,3 +1,5 @@
+const auth = require('../../utils/auth');
+
 // 数据导出
 Page({
   data: {
@@ -9,6 +11,13 @@ Page({
     canExport: true,
     previewData: [
       { id: 1, orderNo: 'ORD-20240501-001', type: '任务收入', amount: '¥2,580', time: '2024-05-01' },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       { id: 2, orderNo: 'ORD-20240428-002', type: '任务收入', amount: '¥1,860', time: '2024-04-28' },
       { id: 3, orderNo: 'ORD-20240425-003', type: '任务收入', amount: '¥3,200', time: '2024-04-25' },
       { id: 4, orderNo: 'ORD-20240420-004', type: '服务费', amount: '¥258', time: '2024-04-20' },
@@ -17,6 +26,9 @@ Page({
   },
 
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) { return; }
+
     // 页面加载
   },
 

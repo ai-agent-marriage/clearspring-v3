@@ -15,6 +15,13 @@ Page({
         team: 4,
         published: '30 分钟前'
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: '2',
         code: 'DS-9102-Y',

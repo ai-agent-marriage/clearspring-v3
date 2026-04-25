@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e9e8e3",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#533d20",
+                    "inverse-primary": "#b7ccb9",
+                    "on-surface": "#1b1c19",
+                    "primary-fixed-dim": "#b7ccb9",
+                    "on-tertiary-fixed": "#291801",
+                    "tertiary-fixed-dim": "#e2c19b",
+                    "surface-container-low": "#f5f4ef",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f2f1ec",
+                    "tertiary-fixed": "#ffddb6",
+                    "surface-bright": "#faf9f4",
+                    "on-background": "#1b1c19",
+                    "secondary-fixed-dim": "#e0c64b",
+                    "on-secondary-container": "#756400",
+                    "on-tertiary-fixed-variant": "#594325",
+                    "on-tertiary-container": "#ebcaa3",
+                    "surface": "#faf9f4",
+                    "secondary": "#6e5e00",
+                    "outline-variant": "#c3c8c1",
+                    "on-surface-variant": "#434843",
+                    "secondary-container": "#C9B037",
+                    "on-primary-fixed-variant": "#394b3d",
+                    "error": "#ba1a1a",
+                    "primary-container": "#4A5D4E",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#534600",
+                    "error-container": "#ffdad6",
+                    "background": "#faf9f4",
+                    "surface-dim": "#dbdad5",
+                    "surface-container-highest": "#e3e2de",
+                    "inverse-surface": "#30312e",
+                    "on-primary-fixed": "#0e1f13",
+                    "primary-fixed": "#d3e8d5",
+                    "secondary-fixed": "#C9B037",
+                    "on-secondary-fixed": "#211b00",
+                    "tertiary-container": "#6d5435",
+                    "primary": "#4A5D4E",
+                    "surface-tint": "#506354",
+                    "on-error": "#ffffff",
+                    "outline": "#737872",
+                    "on-primary-container": "#c0d5c2",
+                    "surface-container": "#efeee9",
+                    "surface-variant": "#e3e2de"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #faf9f4;
+        }
+        h1, h2, .serif {
+            font-family: 'Noto Serif', serif;
+        }
+        .seamless-shadow {
+            box-shadow: 0 4px 20px rgba(74, 93, 78, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full bg-[#EFEEE9]/80 backdrop-blur-md flex justify-between items-center px-6 py-4 border-b border-outline-variant/10">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity duration-300">arrow_back</button>
+<h1 class="text-lg font-serif text-primary">订单详情</h1>
+</div>
+</header>
+<main class="pt-16 max-w-2xl mx-auto">
+<!-- Progress Header (Seamless integration) -->
+<section class="bg-surface-container-low px-6 py-6 border-b border-outline-variant/10">
+<div class="flex justify-between items-center relative px-2">
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-outline-variant/30 -translate-y-1/2"></div>
+<div class="absolute top-1/2 left-0 w-2/3 h-[2px] bg-secondary-container -translate-y-1/2"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-[10px] mt-2 font-label text-on-surface-variant/60">已接单</span>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-[10px] mt-2 font-label text-on-surface-variant/60">执行中</span>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-5 h-5 rounded-full bg-secondary-container flex items-center justify-center ring-4 ring-surface-container-low">
+<span class="material-symbols-outlined text-[12px] text-white font-bold">check</span>
+</div>
+<span class="text-[10px] mt-2 font-label text-secondary-container font-bold">待审核</span>
+</div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<span class="text-[10px] mt-2 font-label text-on-surface-variant/40">已结算</span>
+</div>
+</div>
+</section>
+<!-- Content Group (High Density) -->
+<div class="px-4 space-y-1 mt-1">
+<!-- Volunteer Card -->
+<section class="bg-white rounded-t-xl p-5 flex justify-between items-center seamless-shadow">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high ring-2 ring-primary/5">
+<img alt="志愿者头像" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMHJUuOF5unxvCCnbJAC5VOOTt6YwTksYt3ewINpjftk0TcRZz2tbefKuYwGqKyE2WtYYU7sTI-KqNmyD_7DVspNcJdrmsurUbSxj8PkoPMRFR18LonOPgFtDdtiR-CJREPLFDEXQK8h0KSSppDHL_rut-5LE2ej1V-QLxX4a5okD7wR9qFxt_Lo2u8URSWhKsF19jesE10SOmDSXqdoqFKSPCivjPLOtr3aTKrHblCFfvKjz64TJh75d4CYi3_go1jBwlzB-dFNqV"/>
+</div>
+<div>
+<p class="text-on-surface-variant/50 text-[10px] font-label leading-none mb-1">执行志愿者</p>
+<h2 class="text-base font-bold text-primary leading-none">张志远</h2>
+</div>
+</div>
+<button class="text-primary/70 px-3 py-1.5 rounded-lg text-xs font-label bg-surface-container-low border border-outline-variant/10 active:scale-95 transition-transform">
+                更换人员
+            </button>
+</section>
+<!-- Audit Materials Grid (Compact 3-column Square) -->
+<section class="bg-white p-5 space-y-4 seamless-shadow">
+<div class="flex items-center gap-2">
+<h2 class="text-sm font-bold text-primary">执行材料审核</h2>
+<div class="h-[1px] flex-grow bg-outline-variant/10"></div>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="风景图片" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3DL6bVXjj3xO-PlU6-pm8OAhhK17V-FeVI5lAVq7vz2UuVwb4yPLUsL8-dZG0q8EikepGDSHImJe5ShfEHRcqGrR0j9YB1pE7sC4hOOhslcnQ_Lv05LJX7YzBqnD3zsGP25NC4cMVo_k18CxX-JJ4oTsLAIF15dPlK45msVv2JiMP-bhpkTazeXUx00fGVGeFBn2xSBDjWgE-npGNDe2oqB5t7UQCjydHeW5NPGsvTtakAwyqJBZsk3LV4l8i45a0zh9rFWiTqv69"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="植物图片" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJhvkzbO9_20raOILVT8RAycb3Qh_-Se02aQEnHzCT8_xeGK3o_orjZpnaSr1PPMsvlcw1x2q9UNnUdxF-BhGq0jpr3WFZHwkNgN2YKnGnePMb1hZ3mVanQ3UZfM_VOirplVaKS9WprubYqgPEXXzVS3zF6s118NuToWSgCPomlS1oboyfq-jXs_8mNSj8MgJ5LO4qgKM3s4jJ40BnD0LN-cvxgwKheRgmHZYAw_6EDM83bAuMw8VWgcwUtp4-orQnxTG6pbme9v5L"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="森林图片" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBotJmAoVZQHFP1EJEMrTFD30MrXDoh1ZSB3ojCUuZiLcTAwl_32XF7kj-zocZB0DIgTm_UABam4O4rHmpdxfer2HGkh21hQGLr1G4OW64koUwxTXBWq5w0dPith6B2cySMrdu5sUz5zuYHpo9vqmHrUA9i8jYhTkmQLFACD3KgZnC679zQ7VfxzlGwViE0YQSHIWGeqD9FST_3A4IL_4z6CZbTvVkfWKLuxLMRsnnEZi_1_PLWsWEBxqAs3d3M-Ep5TV8UZTF4nUzM"/>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border-l-2 border-secondary-container">
+<p class="text-on-surface-variant text-xs leading-relaxed italic">
+                    "已完成指定区域的环境巡护工作，并按要求进行了植物样本的影像记录。所有操作均符合生态保护准则。"
+                </p>
+<p class="mt-2 text-[10px] font-label text-on-surface-variant/40 text-right">提交于 2023.10.24 14:30</p>
+</div>
+</section>
+<!-- Actions -->
+<section class="bg-white rounded-b-xl p-5 space-y-4 seamless-shadow">
+<div class="flex gap-3">
+<button class="flex-1 bg-primary-container text-white py-3.5 rounded-xl font-label text-sm hover:opacity-95 active:scale-[0.98] transition-all shadow-md">
+                    审核通过
+                </button>
+<button class="flex-1 bg-white border border-primary/20 text-primary py-3.5 rounded-xl font-label text-sm active:scale-[0.98] transition-all">
+                    驳回修改
+                </button>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-2">
+<div>
+<h3 class="text-[10px] font-label uppercase tracking-wider text-on-surface-variant/40 mb-0.5">订单编号</h3>
+<p class="text-xs font-mono text-primary">#ORD-2023-X99</p>
+</div>
+<div>
+<h3 class="text-[10px] font-label uppercase tracking-wider text-on-surface-variant/40 mb-0.5">任务地点</h3>
+<p class="text-xs text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">location_on</span>
+                        苍山洱海自然保护区
+                    </p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#EFEEE9]/95 backdrop-blur-sm z-50 border-t border-outline-variant/10">
+<!-- Inactive: 梵音 -->
+<a class="flex flex-col items-center justify-center text-primary/60 hover:text-primary transition-colors duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="text-[10px] font-bold tracking-tight mt-1">梵音</span>
+</a>
+<!-- Inactive: 禅理 -->
+<a class="flex flex-col items-center justify-center text-primary/60 hover:text-primary transition-colors duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+<span class="text-[10px] font-bold tracking-tight mt-1">禅理</span>
+</a>
+<!-- Active: 我的 (Highlighted) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-white rounded-2xl px-5 py-1.5 transition-all duration-300 shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold tracking-tight mt-0.5">我的</span>
+</a>
+</nav>
+</body></html>

@@ -15,6 +15,13 @@ Page({
       rating: 4.9,
       rate: '98%'
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     
     // 交易记录
     transactions: [

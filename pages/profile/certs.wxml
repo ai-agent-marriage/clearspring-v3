@@ -68,7 +68,7 @@
           catchtap="toggleSelect"
           data-id="{{item.id}}"
         >
-          <image wx:if="{{selectedIds.includes(item.id)}}" src="/images/checked.png" mode="aspectFit" />
+          <image wx:if="{{selectedIds.includes(item.id)}}" lazy-load="true" src="/images/checked.png" mode="aspectFit" />
         </view>
 
         <!-- 证书图片 -->
@@ -112,7 +112,7 @@
           catchtap="toggleSelect"
           data-id="{{item.id}}"
         >
-          <image wx:if="{{selectedIds.includes(item.id)}}" src="/images/checked.png" mode="aspectFit" />
+          <image wx:if="{{selectedIds.includes(item.id)}}" lazy-load="true" src="/images/checked.png" mode="aspectFit" />
         </view>
 
         <!-- 证书图片 -->
@@ -142,7 +142,7 @@
 
   <!-- 空状态 -->
   <view class="empty-state" wx:if="{{leftColumn.length === 0 && rightColumn.length === 0}}">
-    <image class="empty-icon" src="/images/empty-cert.png" mode="aspectFit" />
+    <image class="empty-icon" lazy-load="true" src="/images/empty-cert.png" mode="aspectFit" />
     <text class="empty-text">暂无证书</text>
     <text class="empty-hint">完成护生或修行即可获得证书~</text>
   </view>
@@ -153,7 +153,7 @@
     <view class="modal-content">
       <view class="modal-header">
         <text class="modal-title">证书详情</text>
-        <image class="close-btn" src="/images/close.png" mode="aspectFit" bindtap="closeDetail" />
+        <image class="close-btn" lazy-load="true" src="/images/close.png" mode="aspectFit" bindtap="closeDetail" />
       </view>
       
       <scroll-view class="modal-body" scroll-y>

@@ -113,7 +113,7 @@
           data-url="{{item}}"
           bindtap="previewImage"
         >
-          <image class="image" src="{{item}}" mode="aspectFill" />
+          <image class="image" lazy-load="true" src="{{item}}" mode="aspectFill" />
           <view class="image-overlay">
             <text class="overlay-icon">🔍</text>
           </view>

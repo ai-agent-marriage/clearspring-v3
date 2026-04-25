@@ -8,6 +8,13 @@ Page({
       noticeCount: 15,
       helpDocCount: 28
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     // 功能菜单
     menus: [
       { icon: '🐟', name: '物种管理', count: 52, path: '/pages/admin/content/species' },

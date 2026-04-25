@@ -9,7 +9,7 @@
 ## 📋 机制说明
 
 ### 自动化脚本
-**路径**: `/root/.openclaw/workspace/scripts/daily-memory-update.sh`
+**路径**: `/home/admin/.openclaw/workspace/scripts/daily-memory-update.sh`
 
 **功能**:
 1. ✅ 获取当日 Git 提交统计
@@ -21,7 +21,7 @@
 ### Cron 配置
 ```bash
 # 每日 23:00 执行
-0 23 * * * /root/.openclaw/workspace/scripts/daily-memory-update.sh >> /root/.openclaw/workspace/logs/daily-memory.log 2>&1
+0 23 * * * /home/admin/.openclaw/workspace/scripts/daily-memory-update.sh >> /home/admin/.openclaw/workspace/logs/daily-memory.log 2>&1
 ```
 
 ---
@@ -73,7 +73,7 @@
 
 ## 🔧 日志文件
 
-**路径**: `/root/.openclaw/workspace/logs/daily-memory.log`
+**路径**: `/home/admin/.openclaw/workspace/logs/daily-memory.log`
 
 **内容**:
 - 每次执行的时间戳
@@ -140,12 +140,12 @@
 
 ### 查看执行日志
 ```bash
-tail -f /root/.openclaw/workspace/logs/daily-memory.log
+tail -f /home/admin/.openclaw/workspace/logs/daily-memory.log
 ```
 
 ### 手动触发
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 ./scripts/daily-memory-update.sh
 ```
 
@@ -161,7 +161,7 @@ crontab -l | grep -v "daily-memory-update" | crontab -
 
 ### 启用自动更新
 ```bash
-echo "0 23 * * * /root/.openclaw/workspace/scripts/daily-memory-update.sh >> /root/.openclaw/workspace/logs/daily-memory.log 2>&1" | crontab -
+echo "0 23 * * * /home/admin/.openclaw/workspace/scripts/daily-memory-update.sh >> /home/admin/.openclaw/workspace/logs/daily-memory.log 2>&1" | crontab -
 ```
 
 ---

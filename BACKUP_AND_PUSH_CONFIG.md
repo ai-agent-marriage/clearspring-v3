@@ -86,7 +86,7 @@ Git 提交：40+ 次
 ## 🔄 自动化脚本
 
 ### 推送脚本位置
-`/root/.openclaw/workspace/scripts/auto-push.sh`
+`/home/admin/.openclaw/workspace/scripts/auto-push.sh`
 
 ### 使用方法
 ```bash
@@ -101,7 +101,7 @@ git log --oneline -5
 ### 推送日志
 查看最新推送日志:
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 tail -20 .git/logs/refs/heads/main
 ```
 

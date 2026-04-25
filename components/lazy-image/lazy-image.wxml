@@ -1,0 +1,37 @@
+<!-- 清如 ClearSpring - 图片懒加载占位图组件 -->
+
+<view class="lazy-image-container {{className}}" style="border-radius: {{borderRadius}};" bindtap="_onTap">
+  <!-- 占位图 -->
+  <view 
+    wx:if="{{isLoading || hasError}}" 
+    class="placeholder {{_getPlaceholderClass()}}"
+    style="border-radius: {{borderRadius}};"
+  >
+    <!-- 加载动画 -->
+    <view wx:if="{{isLoading && showAnimation}}" class="loading-spinner">
+      <view class="spinner-circle"></view>
+      <view class="spinner-circle"></view>
+      <view class="spinner-circle"></view>
+    </view>
+    
+    <!-- 错误图标 -->
+    <view wx:if="{{hasError}}" class="error-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+      </svg>
+      <text class="error-text">加载失败</text>
+    </view>
+  </view>
+  
+  <!-- 真实图片 -->
+  <image
+    wx:if="{{src}}"
+    class="real-image {{loaded ? 'loaded' : ''}}"
+    src="{{src}}"
+    mode="{{mode}}"
+    lazy-load="true"
+    bindload="onLoad"
+    binderror="onError"
+    style="border-radius: {{borderRadius}};"
+  />
+</view>

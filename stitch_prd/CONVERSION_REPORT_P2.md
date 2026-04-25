@@ -4,7 +4,7 @@
 批量转换祈福者端剩余页面（P2 优先级），从设计稿 HTML 转换为微信小程序代码。
 
 ## 设计稿位置
-`/root/.openclaw/workspace/stitch_prd/`
+`/home/admin/.openclaw/workspace/stitch_prd/`
 
 ## 转换要求
 1. ✅ 读取 stitch_prd/q_XX/code.html 获取设计稿
@@ -76,7 +76,7 @@
 ## 脚本工具
 
 ### 批量创建脚本
-位置：`/root/.openclaw/workspace/scripts/batch_create_pages.sh`
+位置：`/home/admin/.openclaw/workspace/scripts/batch_create_pages.sh`
 功能：一键创建 18 个基础页面模板
 
 ## 代码特点
@@ -132,7 +132,7 @@
 - **总计**: 约 94 分钟
 
 ## 文件位置
-所有页面位于：`/root/.openclaw/workspace/pages/`
+所有页面位于：`/home/admin/.openclaw/workspace/pages/`
 
 ---
 **生成时间**: 2026-04-14 23:17

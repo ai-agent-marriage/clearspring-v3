@@ -1,0 +1,373 @@
+@import "../../theme.wxss";
+
+.container {
+  min-height: 100vh;
+  background: var(--stitch-bg-primary);
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
+}
+
+/* ========== 加载状态 ========== */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid rgba(74, 93, 78, 0.2);
+  border-top-color: var(--stitch-green-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: var(--stitch-spacing-md);
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+/* ========== 月份选择器 ========== */
+
+.month-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.month-btn {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--stitch-bg-secondary);
+  border-radius: 50%;
+  font-size: 40rpx;
+  color: var(--stitch-green-primary);
+}
+
+.month-btn:active {
+  opacity: 0.8;
+}
+
+.month-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+  font-family: var(--stitch-font-serif);
+}
+
+/* ========== 今日禅理卡片 ========== */
+
+.zen-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.zen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.zen-label {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.zen-date {
+  font-size: 26rpx;
+  color: var(--stitch-gold-primary);
+}
+
+.zen-content {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  font-family: var(--stitch-font-serif);
+  color: var(--stitch-text-primary);
+  line-height: 1.6;
+  text-align: center;
+  padding: var(--stitch-spacing-md) 0;
+}
+
+/* ========== 打卡状态 ========== */
+
+.checkin-status {
+  display: flex;
+  gap: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.checkin-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--stitch-spacing-md);
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.checkin-item.completed {
+  background: linear-gradient(135deg, var(--stitch-success-light) 0%, rgba(0, 138, 23, 0.05) 100%);
+  border: 1rpx solid var(--stitch-success);
+}
+
+.checkin-icon {
+  font-size: 48rpx;
+  margin-bottom: var(--stitch-spacing-xs);
+}
+
+.checkin-label {
+  font-size: 26rpx;
+  color: var(--stitch-text-primary);
+  margin-bottom: 4rpx;
+}
+
+.checkin-status-text {
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.checkin-item.completed .checkin-status-text {
+  color: var(--stitch-success);
+  font-weight: 500;
+}
+
+/* ========== 日历网格 ========== */
+
+.calendar-grid {
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-md);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.weekday-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--stitch-spacing-xs);
+  margin-bottom: var(--stitch-spacing-sm);
+  padding-bottom: var(--stitch-spacing-sm);
+  border-bottom: 1rpx solid var(--stitch-border-light);
+}
+
+.weekday-item {
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--stitch-spacing-xs);
+}
+
+.day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--stitch-bg-secondary);
+  border-radius: var(--stitch-radius-sm);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.day-cell:active {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+.day-cell.today {
+  background: var(--stitch-green-primary);
+}
+
+.day-cell.checked {
+  border: 2rpx solid var(--stitch-gold-primary);
+}
+
+.day-number {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--stitch-text-primary);
+}
+
+.day-cell.today .day-number {
+  color: var(--stitch-bg-white);
+}
+
+.day-lunar {
+  font-size: 20rpx;
+  color: var(--stitch-text-tertiary);
+  margin-top: 4rpx;
+}
+
+.day-cell.today .day-lunar {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.checkin-dot {
+  position: absolute;
+  bottom: 8rpx;
+  width: 12rpx;
+  height: 12rpx;
+  background: var(--stitch-gold-primary);
+  border-radius: 50%;
+}
+
+/* ========== 日期详情卡片 ========== */
+
+.day-detail-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.detail-header {
+  text-align: center;
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-sm);
+  border-bottom: 1rpx solid var(--stitch-border-light);
+}
+
+.detail-date {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+  margin-bottom: 8rpx;
+}
+
+.detail-lunar {
+  display: block;
+  font-size: 26rpx;
+  color: var(--stitch-text-secondary);
+}
+
+.detail-content {
+  display: flex;
+  gap: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-md);
+}
+
+.detail-section {
+  flex: 1;
+}
+
+.section-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--stitch-success);
+  margin-bottom: var(--stitch-spacing-sm);
+}
+
+.section-label.avoid {
+  color: var(--stitch-error);
+}
+
+.suitable-list, .avoid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--stitch-spacing-xs);
+}
+
+.suitable-item {
+  font-size: 24rpx;
+  color: var(--stitch-text-primary);
+  background: var(--stitch-success-light);
+  padding: 4rpx 12rpx;
+  border-radius: var(--stitch-radius-sm);
+}
+
+.avoid-item {
+  font-size: 24rpx;
+  color: var(--stitch-text-primary);
+  background: var(--stitch-error-light);
+  padding: 4rpx 12rpx;
+  border-radius: var(--stitch-radius-sm);
+}
+
+.checkin-actions {
+  display: flex;
+  gap: var(--stitch-spacing-sm);
+}
+
+.checkin-actions .btn {
+  flex: 1;
+}
+
+/* ========== 统计卡片 ========== */
+
+.stats-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  box-shadow: var(--stitch-shadow-sm);
+}
+
+.stats-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--stitch-text-primary);
+  margin-bottom: var(--stitch-spacing-md);
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--stitch-spacing-sm);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--stitch-gold-primary);
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--stitch-text-secondary);
+}

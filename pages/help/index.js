@@ -20,6 +20,13 @@ Page({
         category: '账户问题',
         expanded: false
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: 2,
         question: '如何修改个人信息？',

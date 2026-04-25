@@ -4,7 +4,7 @@
 
   <!-- 英雄视觉区域 -->
   <view class="hero-section">
-    <image class="hero-image" src="{{species.image}}" mode="aspectFill"/>
+    <image class="hero-image" lazy-load="true" src="{{species.image}}" mode="aspectFill"/>
     <view class="hero-overlay"></view>
     
     <!-- 浮动标签 -->
@@ -66,7 +66,7 @@
         <text class="section-title">形态特征</text>
       </view>
       <view class="image-card">
-        <image class="card-image" src="{{species.detailImage}}" mode="aspectFill"/>
+        <image class="card-image" lazy-load="true" src="{{species.detailImage}}" mode="aspectFill"/>
         <view class="image-caption">
           <text class="caption-text">中型涉禽，身披洁白丝状羽，颈部修长呈"S"型。繁殖期枕部着生两条狭长矛状羽，随风飘动，仪态万千。</text>
         </view>

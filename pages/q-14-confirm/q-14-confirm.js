@@ -18,6 +18,13 @@ Page({
     totalAmount: '1329.00'
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad() {
     // 从上一页获取订单数据
   },

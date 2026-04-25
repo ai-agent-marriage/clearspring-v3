@@ -68,7 +68,7 @@
   <view class="species-info-section glass">
     <view class="section-title">护生信息</view>
     <view class="species-card">
-      <image class="species-image" src="{{orderInfo.speciesImage}}" mode="aspectFill" wx:if="{{orderInfo.speciesImage}}"/>
+      <image class="species-image" lazy-load="true" src="{{orderInfo.speciesImage}}" mode="aspectFill" wx:if="{{orderInfo.speciesImage}}"/>
       <view class="species-info" wx:if="{{!orderInfo.speciesImage}}">
         <text class="species-name">{{orderInfo.speciesName}}</text>
         <text class="species-desc">{{orderInfo.speciesDesc}}</text>
@@ -95,7 +95,7 @@
   <view class="volunteer-info-section glass" wx:if="{{orderInfo.volunteer}}">
     <view class="section-title">执行志愿者</view>
     <view class="volunteer-card" bindtap="onViewVolunteer">
-      <image class="volunteer-avatar" src="{{orderInfo.volunteer.avatar}}" mode="aspectFill"/>
+      <image class="volunteer-avatar" lazy-load="true" src="{{orderInfo.volunteer.avatar}}" mode="aspectFill"/>
       <view class="volunteer-info">
         <view class="volunteer-header">
           <text class="volunteer-name">{{orderInfo.volunteer.name}}</text>

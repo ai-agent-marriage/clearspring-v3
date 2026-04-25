@@ -110,7 +110,7 @@
 ## 📁 目录结构
 
 ```
-/root/.openclaw/workspace/
+/home/admin/.openclaw/workspace/
 ├── playwright.config.ts              # Playwright 配置
 ├── package.json                      # 添加测试脚本
 ├── .gitignore                        # 添加测试产物排除
@@ -167,7 +167,7 @@
 ### 运行测试
 
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 运行所有测试
 npm run test:e2e

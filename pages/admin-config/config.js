@@ -1,4 +1,6 @@
 // 分账配置
+const auth = require('../../utils/auth');
+
 Page({
   data: {
     platformRate: 10,
@@ -11,7 +13,18 @@ Page({
     freeWithdrawAmount: 1000
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad() {
+    // 【安全修复】验证管理员登录状态
+    if (!auth.requireAdminAuth(this)) {
+      return;
+    }
     this.loadConfig();
   },
 

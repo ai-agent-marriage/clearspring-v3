@@ -16,7 +16,7 @@
         <text class="hero-title">众生皆有灵\n慈悲护万类</text>
         <text class="hero-subtitle">科学指引，合法合规，让每一份善意都能在大自然中延续。</text>
       </view>
-      <image class="hero-image" src="/images/merit-hero.jpg" mode="aspectFill"/>
+      <image class="hero-image" lazy-load="true" src="/images/merit-hero.jpg" mode="aspectFill"/>
     </view>
   </view>
 

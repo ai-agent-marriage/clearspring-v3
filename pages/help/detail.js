@@ -8,22 +8,22 @@ Page({
     },
       // 自动修复：添加缺失的 bindtap 函数
     onCopyLinkTap(e) {
-      console.log('onCopyLinkTap called', e);
+      // [CLEANED] console.log('onCopyLinkTap called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onCollectTap(e) {
-      console.log('onCollectTap called', e);
+      // [CLEANED] console.log('onCollectTap called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onRelatedFaqTap(e) {
-      console.log('onRelatedFaqTap called', e);
+      // [CLEANED] console.log('onRelatedFaqTap called', e);
     },
 
     // 自动修复：添加缺失的 bindtap 函数
     onFeedbackTap(e) {
-      console.log('onFeedbackTap called', e);
+      // [CLEANED] console.log('onFeedbackTap called', e);
     },
 
   },

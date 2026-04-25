@@ -1,0 +1,69 @@
+<!--pages/zen-daily/zen-daily.wxml-->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 主要内容 -->
+  <view wx:else class="content">
+    <!-- 背景图 -->
+    <view class="background-image" style="background-image: url({{currentBg}});"></view>
+    
+    <!-- 禅理卡片 -->
+    <view class="zen-card glass">
+      <view class="zen-header">
+        <text class="zen-date">{{zenData.date}}</text>
+        <text class="zen-category">{{zenData.category}}</text>
+      </view>
+      
+      <view class="zen-content">
+        <text class="zen-text">{{zenData.content}}</text>
+        <text class="zen-source">{{zenData.source}}</text>
+      </view>
+      
+      <!-- 背景图切换 -->
+      <view class="bg-switcher">
+        <view 
+          class="bg-dot {{currentIndex === index ? 'active' : ''}}"
+          wx:for="{{zenData.background_images}}"
+          wx:key="index"
+          wx:for-index="index"
+          bindtap="onBgChange"
+          data-index="{{index}}"
+        ></view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <button class="btn btn-primary btn-lg" bindtap="onGeneratePoster">
+        <text class="btn-icon">📷</text>
+        <text>生成海报</text>
+      </button>
+      <button class="btn btn-secondary btn-lg" bindtap="onShare">
+        <text class="btn-icon">📤</text>
+        <text>分享</text>
+      </button>
+    </view>
+
+    <!-- 海报预览弹窗 -->
+    <view class="modal" wx:if="{{showPosterModal}}" bindtap="hidePosterModal">
+      <view class="modal-content" catchtap="stopPropagation">
+        <view class="poster-preview">
+          <image 
+            class="poster-image"
+            src="{{posterUrl}}"
+            mode="widthFix"
+            bindload="onPosterLoad"
+          ></image>
+        </view>
+        <view class="modal-actions">
+          <button class="btn btn-primary" bindtap="onSavePoster">保存海报</button>
+          <button class="btn btn-secondary" bindtap="onSharePoster">分享海报</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

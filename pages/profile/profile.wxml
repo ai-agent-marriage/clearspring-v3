@@ -3,7 +3,7 @@
   <!-- 用户信息卡片 -->
   <view class="card profile-card">
     <view class="user-info">
-      <image class="avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+      <image class="avatar" lazy-load="true" src="{{avatarUrl}}" mode="aspectFill"></image>
       <view class="user-details">
         <text class="nickname">{{nickname || '点击登录'}}</text>
         <text class="user-id" wx:if="{{userId}}">ID: {{userId}}</text>

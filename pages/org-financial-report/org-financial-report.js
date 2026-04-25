@@ -16,6 +16,13 @@ Page({
       expenseTrend: -5.2,
       profitTrend: 28.5
     },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
     
     // 收入明细
     incomeDetail: {

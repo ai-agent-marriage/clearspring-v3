@@ -13,6 +13,13 @@ Page({
     wishMessage: '愿法界众生，离苦得乐。家宅安宁，福慧增长。',
     photos: [
       { id: 1, url: '/images/execution-01.jpg', label: '现场照片 01' },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       { id: 2, url: '/images/execution-02.jpg', label: '投放确认单' }
     ],
     orderAmount: '3280.00',

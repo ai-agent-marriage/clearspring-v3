@@ -55,7 +55,7 @@
       <view class="form-item">
         <text class="form-label">身份证正面 <text class="required">*</text></text>
         <view class="upload-area" bindtap="onUploadIdCardFront">
-          <image wx:if="{{idCardFront}}" class="upload-image" src="{{idCardFront}}" mode="aspectFill" />
+          <image wx:if="{{idCardFront}}" class="upload-image" lazy-load="true" src="{{idCardFront}}" mode="aspectFill" />
           <view wx:else class="upload-placeholder">
             <text class="upload-icon">+</text>
             <text class="upload-text">上传正面</text>
@@ -66,7 +66,7 @@
       <view class="form-item">
         <text class="form-label">身份证反面 <text class="required">*</text></text>
         <view class="upload-area" bindtap="onUploadIdCardBack">
-          <image wx:if="{{idCardBack}}" class="upload-image" src="{{idCardBack}}" mode="aspectFill" />
+          <image wx:if="{{idCardBack}}" class="upload-image" lazy-load="true" src="{{idCardBack}}" mode="aspectFill" />
           <view wx:else class="upload-placeholder">
             <text class="upload-icon">+</text>
             <text class="upload-text">上传反面</text>
@@ -77,7 +77,7 @@
       <view class="form-item">
         <text class="form-label">手持身份证 <text class="required">*</text></text>
         <view class="upload-area" bindtap="onUploadHandheld">
-          <image wx:if="{{handheld}}" class="upload-image" src="{{handheld}}" mode="aspectFill" />
+          <image wx:if="{{handheld}}" class="upload-image" lazy-load="true" src="{{handheld}}" mode="aspectFill" />
           <view wx:else class="upload-placeholder">
             <text class="upload-icon">+</text>
             <text class="upload-text">上传手持照</text>
@@ -109,7 +109,7 @@
         <text class="form-label">相关证书（可选）</text>
         <view class="upload-area upload-area-multi" bindtap="onUploadCertificates">
           <view class="upload-list" wx:if="{{certificates.length > 0}}">
-            <image wx:for="{{certificates}}" wx:key="*this" class="upload-image-small" src="{{item}}" mode="aspectFill" />
+            <image wx:for="{{certificates}}" wx:key="*this" class="upload-image-small" lazy-load="true" src="{{item}}" mode="aspectFill" />
           </view>
           <view wx:else class="upload-placeholder">
             <text class="upload-icon">+</text>

@@ -8,7 +8,7 @@
   <!-- 机构信息 -->
   <view class="org-info-section glass">
     <view class="org-header">
-      <image class="org-logo" src="{{orgInfo.logo}}" mode="aspectFill"/>
+      <image class="org-logo" lazy-load="true" src="{{orgInfo.logo}}" mode="aspectFill"/>
       <view class="org-details">
         <text class="org-name">{{orgInfo.name}}</text>
         <text class="org-id">机构 ID: {{orgInfo.orgNo}}</text>

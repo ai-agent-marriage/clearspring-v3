@@ -9,6 +9,13 @@ Page({
         category: '护生指南',
         updateTime: '2026-04-01'
       },
+
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
       {
         id: 2,
         title: '物种投放注意事项',

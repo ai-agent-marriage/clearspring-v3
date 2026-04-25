@@ -105,7 +105,7 @@ Date:   Sat Apr 4 11:45:00 2026 +0800
 
 - **GitHub**: https://github.com/ai-agent-marriage/clearspring-v3
 - **2.0 仓库**: https://github.com/ai-agent-marriage/clearspring-miniprogram
-- **备份位置**: `/root/.openclaw/workspace/projects/clearspring-v2-backup-20260404-113615.tar.gz`
+- **备份位置**: `/home/admin/.openclaw/workspace/projects/clearspring-v2-backup-20260404-113615.tar.gz`
 
 ---
 

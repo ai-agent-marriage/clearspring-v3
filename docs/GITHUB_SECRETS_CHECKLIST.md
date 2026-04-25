@@ -80,7 +80,7 @@ cat ~/.ssh/id_rsa
 ### 第四步：提交工作流文件（2 分钟）
 
 ```bash
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 # 查看变更
 git status

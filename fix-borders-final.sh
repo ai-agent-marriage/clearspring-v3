@@ -3,7 +3,7 @@
 # Stitch V3.0 边框修复脚本 - 最终执行版
 # 将 1px/1rpx 实线边框替换为更淡的边框（符合无边界设计）
 
-cd /root/.openclaw/workspace
+cd /home/admin/.openclaw/workspace
 
 echo "🔍 Stitch V3.0 边框修复开始..."
 echo "=========================================="

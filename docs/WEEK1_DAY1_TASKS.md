@@ -18,7 +18,7 @@
 **工作包**:
 - [ ] 1.1 创建 miniprogram/ 目录结构
   ```bash
-  cd /root/.openclaw/workspace
+  cd /home/admin/.openclaw/workspace
   mkdir -p miniprogram/{pages,components,utils,assets,styles}
   ```
 
@@ -71,7 +71,7 @@
 **工作包**:
 - [ ] 2.1 克隆 RuoYi-Vue 框架
   ```bash
-  cd /root/.openclaw/workspace
+  cd /home/admin/.openclaw/workspace
   git clone https://github.com/yangzongzhuan/RuoYi-Vue.git backend
   ```
 
@@ -120,7 +120,7 @@
 **工作包**:
 - [ ] 3.1 克隆 vue-element-admin 模板
   ```bash
-  cd /root/.openclaw/workspace
+  cd /home/admin/.openclaw/workspace
   git clone https://github.com/PanJiaChen/vue-element-admin.git admin-web
   ```
 
@@ -205,7 +205,7 @@
 **工作包**:
 - [ ] 5.1 安装 ESLint + Prettier
   ```bash
-  cd /root/.openclaw/workspace/miniprogram
+  cd /home/admin/.openclaw/workspace/miniprogram
   npm install --save-dev eslint prettier
   ```
 
@@ -254,7 +254,7 @@
 
 - [ ] 6.2 执行 Git 提交
   ```bash
-  cd /root/.openclaw/workspace
+  cd /home/admin/.openclaw/workspace
   git add .
   git commit -m "init: ClearSpring V3 项目初始化
   

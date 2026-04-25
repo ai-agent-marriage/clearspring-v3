@@ -128,13 +128,13 @@ echo "✅ 清理完成"
 
 ```bash
 # 每 90 天执行一次密钥轮换
-0 0 */90 * * /root/.openclaw/workspace/scripts/ssh-key-rotation.sh >> /root/.openclaw/workspace/logs/ssh-rotation.log 2>&1
+0 0 */90 * * /home/admin/.openclaw/workspace/scripts/ssh-key-rotation.sh >> /home/admin/.openclaw/workspace/logs/ssh-rotation.log 2>&1
 ```
 
 ### 查看轮换日志
 
 ```bash
-tail -f /root/.openclaw/workspace/logs/ssh-rotation.log
+tail -f /home/admin/.openclaw/workspace/logs/ssh-rotation.log
 ```
 
 ---

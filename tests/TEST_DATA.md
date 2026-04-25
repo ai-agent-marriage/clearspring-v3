@@ -209,5 +209,5 @@ const newUser = testData.generateUser('prayer');
 
 ---
 
-**文件位置**: `/root/.openclaw/workspace/projects/clearspring/tests/test-data.js`  
+**文件位置**: `/home/admin/.openclaw/workspace/projects/clearspring/tests/test-data.js`  
 **维护方式**: 随功能迭代持续更新

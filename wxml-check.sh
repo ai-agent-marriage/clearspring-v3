@@ -3,7 +3,7 @@
 # WXML 语法和规范性检查脚本
 # 检查所有 pages/ 目录下的 WXML 文件
 
-WORKSPACE="/root/.openclaw/workspace"
+WORKSPACE="/home/admin/.openclaw/workspace"
 REPORT_FILE="$WORKSPACE/wxml-check-report.md"
 TEMP_DIR="/tmp/wxml-check"
 

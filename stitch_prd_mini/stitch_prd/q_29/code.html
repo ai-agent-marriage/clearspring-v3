@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#e2c19b",
+                        "surface-container-low": "#f5f4ef",
+                        "surface-container": "#efeee9",
+                        "on-tertiary-container": "#ebcaa3",
+                        "primary-fixed": "#d3e8d5",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#533d20",
+                        "on-primary-fixed": "#0e1f13",
+                        "on-tertiary-fixed": "#291801",
+                        "secondary": "#6e5e00",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#211b00",
+                        "on-primary-container": "#c0d5c2",
+                        "surface-container-high": "#e9e8e3",
+                        "secondary-fixed-dim": "#e0c64b",
+                        "inverse-primary": "#b7ccb9",
+                        "surface-dim": "#dbdad5",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary": "#334537",
+                        "background": "#faf9f4",
+                        "tertiary-fixed": "#ffddb6",
+                        "secondary-container": "#fee264",
+                        "outline-variant": "#c3c8c1",
+                        "on-secondary-fixed-variant": "#534600",
+                        "on-surface": "#1b1c19",
+                        "surface": "#faf9f4",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#506354",
+                        "on-primary-fixed-variant": "#394b3d",
+                        "surface-bright": "#faf9f4",
+                        "outline": "#737872",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#756400",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#4a5d4e",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e3e2de",
+                        "on-error": "#ffffff",
+                        "on-background": "#1b1c19",
+                        "on-surface-variant": "#434843",
+                        "tertiary-container": "#6d5435",
+                        "on-tertiary-fixed-variant": "#594325",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed": "#fee264",
+                        "surface-variant": "#e3e2de",
+                        "primary-fixed-dim": "#b7ccb9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "serif": ["Noto Serif SC", "serif"],
+                        "sans": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ink-wash-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(51, 69, 55, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(110, 94, 0, 0.03) 0%, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center px-4 h-16 bg-[#334537] dark:bg-stone-950 text-[#FAF9F4]">
+<div class="flex items-center gap-4 w-full max-w-5xl mx-auto">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-opacity active:scale-95 duration-150">arrow_back</span>
+<h1 class="font-serif text-xl tracking-wide flex-1">护生科普</h1>
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-opacity">search</span>
+</div>
+</header>
+<main class="pt-16 pb-24 max-w-5xl mx-auto px-4 ink-wash-bg min-h-screen">
+<!-- NavigationDrawer (Category Tabs) -->
+<nav class="flex overflow-x-auto whitespace-nowrap px-4 py-4 gap-6 sticky top-16 bg-background/80 backdrop-blur-md z-40 no-scrollbar">
+<a class="text-[#6e5e00] font-bold border-b-2 border-[#6e5e00] font-sans text-sm tracking-tight pb-1" href="#">全部</a>
+<a class="text-[#533d20] opacity-60 font-sans text-sm tracking-tight hover:text-[#334537] transition-all pb-1" href="#">合规政策</a>
+<a class="text-[#533d20] opacity-60 font-sans text-sm tracking-tight hover:text-[#334537] transition-all pb-1" href="#">物种科普</a>
+<a class="text-[#533d20] opacity-60 font-sans text-sm tracking-tight hover:text-[#334537] transition-all pb-1" href="#">水域指南</a>
+<a class="text-[#533d20] opacity-60 font-sans text-sm tracking-tight hover:text-[#334537] transition-all pb-1" href="#">公益动态</a>
+</nav>
+<!-- Policy Hero / Carousel Section -->
+<section class="mt-6 mb-10">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low border border-primary/10 group">
+<div class="flex items-stretch min-h-[180px]">
+<div class="flex-1 p-8 flex flex-col justify-center">
+<div class="inline-flex items-center gap-2 mb-3">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+<span class="text-xs font-bold text-secondary tracking-widest">重要政策公告</span>
+</div>
+<h2 class="font-serif text-2xl text-primary leading-tight mb-4">关于加强城市重要水域护生管理的指导意见 (2024年修订版)</h2>
+<div class="flex items-center gap-4 text-xs text-tertiary/60">
+<span>发布日期：2024.10.24</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span> 12.4k</span>
+</div>
+</div>
+<div class="w-1/3 hidden md:block relative">
+<img alt="official policy document with classic fountain pen on vintage textured paper" class="absolute inset-0 w-full h-full object-cover grayscale-[30%] opacity-80" data-alt="close-up of official policy document with classic fountain pen on vintage textured paper with soft side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm9M9r5IXP-0AmyZH1cAXo06Vk8AdjuRxJf02JJgyPAMDXsAiz7nraNt54uYlN_C5Gn0Ai8mWxzHNlBApWeuXhH9kd5WMOZDhsk_vWURaQ0QnFMOL63bDAfPzpmcfGaD0ifv5hynqLD-YgGsXnC8sVWaHOfsDux2_oNyIDBBYiIh4PS8fOezYGYPZO7RkTCfdx89NxenyyBMdYRTqDBQC9MulH5CKharxp1spB3ML3gsbDJ74tlKApwIZBwl4IUoViHGFtXDEelSIv"/>
+</div>
+</div>
+<!-- Carousel Dots -->
+<div class="absolute bottom-4 left-8 flex gap-1.5">
+<span class="w-6 h-1 bg-secondary rounded-full"></span>
+<span class="w-1.5 h-1 bg-outline-variant rounded-full"></span>
+<span class="w-1.5 h-1 bg-outline-variant rounded-full"></span>
+</div>
+</div>
+</section>
+<!-- Article List Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-end mb-2">
+<h3 class="font-serif text-xl text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">menu_book</span>
+                    合规宣贯
+                </h3>
+<span class="text-xs text-tertiary/60 font-sans">共 142 篇内容</span>
+</div>
+<!-- List Item 1 -->
+<article class="bg-surface-container-lowest p-5 rounded-lg flex gap-6 hover:shadow-[0_12px_40px_rgba(74,93,78,0.06)] transition-all cursor-pointer">
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<span class="px-2 py-0.5 bg-surface-container-high text-primary-container text-[10px] font-bold rounded mb-2 inline-block">合规指南</span>
+<h4 class="font-serif text-lg leading-snug text-primary group-hover:text-secondary transition-colors">禁止非法买卖、运输受保护水生野生动物及其制品的法律风险提示</h4>
+<p class="text-sm text-tertiary/80 mt-2 line-clamp-2">详细解读《野生动物保护法》最新修正条款，明确各类保护名录中水生生物的法律地位及违规后果。</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4 text-[11px] text-tertiary/50">
+<span>2小时前</span>
+<span>阅读 3,102</span>
+</div>
+<span class="material-symbols-outlined text-tertiary/40">arrow_forward</span>
+</div>
+</div>
+<div class="w-28 h-28 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="close-up of scales on a traditional koi fish in clear pond water" class="w-full h-full object-cover" data-alt="macro photograph of vibrant orange and white koi fish scales under shimmering clear mountain spring water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCinH5JJXMleb1mC79-OFqSSiwGnLnrED_Wl07HvXA1VSluzeTJ4FVLERvdEcebXwiBqs7ZgMRBEUHJKuGtJ57823Pct6fqOg-fNKP0kfkHDT12HgNPHzDpxyHy0JvjR_yilo7Xvn11TKjBlk-1eHF4SIkJMnvLnTgNB07dCylYCIH1GYx6ewYYNqqxMsc8uzQRm2cdkwlDXThc4vfCLtNYhfnGGaVoOYHPrdnNiXuD9NVb8OoRIvvonCHgrh6JvTMvq7TZe4_BSsh"/>
+</div>
+</article>
+<!-- List Item 2 -->
+<article class="bg-surface-container-lowest p-5 rounded-lg flex gap-6 hover:shadow-[0_12px_40px_rgba(74,93,78,0.06)] transition-all cursor-pointer">
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<span class="px-2 py-0.5 bg-surface-container-high text-primary-container text-[10px] font-bold rounded mb-2 inline-block">水域指南</span>
+<h4 class="font-serif text-lg leading-snug text-primary">长江流域重点水域禁捕期间科学放流点位及适宜物种目录</h4>
+<p class="text-sm text-tertiary/80 mt-2 line-clamp-2">科学选择放生地点与物种是护生的基础，严禁在长江流域投放外来物种。本指南提供了50个官方认证放流点。</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4 text-[11px] text-tertiary/50">
+<span>昨天 14:20</span>
+<span>阅读 8,945</span>
+</div>
+<span class="material-symbols-outlined text-tertiary/40">arrow_forward</span>
+</div>
+</div>
+<div class="w-28 h-28 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="peaceful sunrise over a calm river with light mist and silhouettes of birds" class="w-full h-full object-cover" data-alt="cinematic sunrise landscape over a wide tranquil river with morning mist and distant silhouettes of flying herons" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5-bo1DeXEs-DgcB4oZTqn-LAPv_PCJ_JpURR8av0qy89fSk0Fizchc9fEYo1WKzf3NZWdaIRs5NlN8ELC-qP-SgksVornh-KyWsqQW2cI6Kchbxm3mMRScK80v4wkYC7G2V8oh5NOTf_Ht7p2tzhrZSib4LCp71-P_AxVTwJ7oS-k6qOVdgapUvbNaKpVx-XPj_XzSIgPI0yIYesuyjbbszTVQvCTSPAMpzsqoJqReLA-dh9xlGTOzUwARWDd4h6tmyVAQsNHA9ck"/>
+</div>
+</article>
+<!-- List Item 3 -->
+<article class="bg-surface-container-lowest p-5 rounded-lg flex gap-6 hover:shadow-[0_12px_40px_rgba(74,93,78,0.06)] transition-all cursor-pointer">
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<span class="px-2 py-0.5 bg-surface-container-high text-primary-container text-[10px] font-bold rounded mb-2 inline-block">科普教育</span>
+<h4 class="font-serif text-lg leading-snug text-primary">【物种识读】如何辨别外来入侵物种“鳄龟”及其对本土生态的危害</h4>
+<p class="text-sm text-tertiary/80 mt-2 line-clamp-2">图文对比展示鳄龟与本土龟类的外形差异，呼吁广大善信切勿盲目放生此类破坏性物种。</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4 text-[11px] text-tertiary/50">
+<span>2024.10.22</span>
+<span>阅读 5,210</span>
+</div>
+<span class="material-symbols-outlined text-tertiary/40">arrow_forward</span>
+</div>
+</div>
+<div class="w-28 h-28 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img alt="close-up of a snapping turtle head showing detailed textures of skin and eyes" class="w-full h-full object-cover" data-alt="detailed macro shot of an alligator snapping turtle's eye and textured skin with moody natural lighting in a forest setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJxj43FU-mBko0PD95MpeGdSz2i8_N2Z2vfpDBa8hr7EU-YhbXkOmg90UpfiDrgA8ER8VVR0YDmbqz_pynL0QkCGYfct_JIbdShy4hjA6qTALSN3L7YdOHVQx5jz_VbDcRoVlbFi0rAeFzIXVUfh8shFf3vIU0OF7oxfT6edKKHP3nPrdcccyTzH9zA8gdLzP8x657OZlpU6nbltc-43m3U9G6a5ScyfhH_qoOPHdUvbZInSUWiDotm8jzCSpvNjLzDMZW71-h3Kl-"/>
+</div>
+</article>
+</section>
+<!-- Floating Action Button - Contextual (Suppressed per rule on sub-content if necessary, but keep if useful for "Add Note/Post") -->
+<!-- Suppressing FAB based on "Details" or "Transactional" rule if this is deep list, but adding for 'Post/Inquiry' if intended -->
+</main>
+<!-- BottomNavBar -->
+<footer class="fixed bottom-0 w-full z-50 flex justify-around items-center px-6 pb-4 pt-2 bg-[#FAF9F4]/40 dark:bg-stone-900/40 backdrop-blur-md border-t-[0.5px] border-[#334537]/15">
+<div class="flex flex-col items-center justify-center text-[#533d20] opacity-70 hover:opacity-100 transition-all cursor-pointer active:scale-90 duration-200">
+<span class="material-symbols-outlined">library_music</span>
+<span class="font-sans text-[11px] font-medium">梵音</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#C9B037] text-[#FAF9F4] rounded-lg px-3 py-1 transition-all cursor-pointer active:scale-90 duration-200">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-sans text-[11px] font-medium">禅理</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#533d20] opacity-70 hover:opacity-100 transition-all cursor-pointer active:scale-90 duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-sans text-[11px] font-medium">我的</span>
+</div>
+</footer>
+</body></html>

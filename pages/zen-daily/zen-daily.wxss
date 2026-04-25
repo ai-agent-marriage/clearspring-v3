@@ -1,0 +1,207 @@
+@import "../../theme.wxss";
+
+.container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========== 加载状态 ========== */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--stitch-bg-primary) 0%, var(--stitch-bg-secondary) 100%);
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid rgba(212, 184, 123, 0.2);
+  border-top-color: var(--stitch-gold-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: var(--stitch-spacing-md);
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+}
+
+/* ========== 背景图 ========== */
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20rpx) brightness(0.6);
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: var(--stitch-spacing-lg);
+  padding-bottom: calc(var(--stitch-spacing-lg) + env(safe-area-inset-bottom));
+}
+
+/* ========== 禅理卡片 ========== */
+
+.zen-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border-radius: var(--stitch-radius-lg);
+  padding: var(--stitch-spacing-lg);
+  margin-bottom: var(--stitch-spacing-lg);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.15);
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+}
+
+.zen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--stitch-spacing-md);
+  padding-bottom: var(--stitch-spacing-sm);
+  border-bottom: 1rpx solid var(--stitch-border-divider);
+}
+
+.zen-date {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+  font-family: var(--stitch-font-sans);
+}
+
+.zen-category {
+  font-size: 24rpx;
+  color: var(--stitch-gold-primary);
+  background: rgba(212, 184, 123, 0.1);
+  padding: 4rpx 16rpx;
+  border-radius: var(--stitch-radius-sm);
+}
+
+.zen-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--stitch-spacing-xl) 0;
+}
+
+.zen-text {
+  font-size: 40rpx;
+  font-weight: 600;
+  font-family: var(--stitch-font-serif);
+  color: var(--stitch-text-primary);
+  line-height: 1.8;
+  margin-bottom: var(--stitch-spacing-md);
+  background: linear-gradient(135deg, var(--stitch-text-primary) 0%, var(--stitch-gold-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.zen-source {
+  font-size: 28rpx;
+  color: var(--stitch-text-secondary);
+  font-style: italic;
+}
+
+.bg-switcher {
+  display: flex;
+  justify-content: center;
+  gap: var(--stitch-spacing-sm);
+  margin-top: var(--stitch-spacing-md);
+  padding-top: var(--stitch-spacing-md);
+  border-top: 1rpx solid var(--stitch-border-divider);
+}
+
+.bg-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--stitch-border-primary);
+  transition: all 0.3s ease;
+}
+
+.bg-dot.active {
+  background: var(--stitch-gold-primary);
+  transform: scale(1.2);
+}
+
+/* ========== 操作按钮 ========== */
+
+.action-buttons {
+  display: flex;
+  gap: var(--stitch-spacing-md);
+}
+
+.action-buttons .btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--stitch-spacing-xs);
+}
+
+.btn-icon {
+  font-size: 32rpx;
+}
+
+/* ========== 海报预览弹窗 ========== */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--stitch-spacing-md);
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 600rpx;
+  background: var(--stitch-bg-white);
+  border-radius: var(--stitch-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20rpx 60rpx rgba(0, 0, 0, 0.3);
+}
+
+.poster-preview {
+  padding: var(--stitch-spacing-md);
+}
+
+.poster-image {
+  width: 100%;
+  border-radius: var(--stitch-radius-md);
+}
+
+.modal-actions {
+  padding: var(--stitch-spacing-md);
+  padding-bottom: calc(var(--stitch-spacing-md) + env(safe-area-inset-bottom));
+  display: flex;
+  gap: var(--stitch-spacing-sm);
+}
+
+.modal-actions .btn {
+  flex: 1;
+}

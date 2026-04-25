@@ -9,6 +9,13 @@ Page({
     cameraContext: null
   },
 
+  onUnload() {
+    // 清理定时器，防止内存泄漏
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+  },
+
   onLoad() {
     // 创建相机上下文
     this.data.cameraContext = wx.createCameraContext();
@@ -52,7 +59,8 @@ Page({
     ctx.takePhoto({
       quality: 'high',
       success: (res) => {
-        this.setData({
+        // 性能优化：建议合并连续的 setData 调用
+    this.setData({
           lastPhoto: res.tempImagePath
         });
         

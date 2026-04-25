@@ -1,0 +1,47 @@
+<!-- 清如 ClearSpring - 虚拟列表组件模板 -->
+
+<view class="virtual-list-container" style="height: {{containerHeight}}px; overflow: hidden;">
+  <!-- 虚拟列表模式 -->
+  <scroll-view 
+    wx:if="{{enableVirtual}}" 
+    class="virtual-scroll" 
+    scroll-y="{{true}}"
+    scroll-top="{{scrollTop}}"
+    bindscroll="_onScroll"
+    style="height: {{containerHeight}}px;"
+  >
+    <view class="virtual-spacer" style="height: {{totalHeight}}px; position: relative;">
+      <view 
+        class="virtual-item" 
+        wx:for="{{visibleItems}}" 
+        wx:key="_virtualIndex"
+        data-index="{{index}}"
+        data-item="{{item}}"
+        bindtap="_onItemTap"
+        style="position: absolute; top: {{offsetTop + index * itemHeight}}px; height: {{itemHeight}}px; width: 100%;"
+      >
+        <slot item="{{item}}" index="{{item._virtualIndex}}"></slot>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 普通列表模式（数据量少时） -->
+  <scroll-view 
+    wx:else 
+    class="normal-scroll" 
+    scroll-y="{{true}}"
+    style="height: {{containerHeight}}px;"
+  >
+    <view 
+      class="normal-item" 
+      wx:for="{{list}}" 
+      wx:key="*this"
+      data-index="{{index}}"
+      data-item="{{item}}"
+      bindtap="_onItemTap"
+      style="height: {{itemHeight}}px;"
+    >
+      <slot item="{{item}}" index="{{index}}"></slot>
+    </view>
+  </scroll-view>
+</view>

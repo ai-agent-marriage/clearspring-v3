@@ -1,0 +1,144 @@
+<!--pages/lunar-calendar/lunar-calendar.wxml-->
+<view class="container">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 主要内容 -->
+  <view wx:else class="content">
+    <!-- 月份选择 -->
+    <view class="month-selector">
+      <view class="month-btn" bindtap="onPrevMonth">
+        <text>‹</text>
+      </view>
+      <view class="month-text">
+        <text>{{currentYear}}年{{currentMonth}}月</text>
+      </view>
+      <view class="month-btn" bindtap="onNextMonth">
+        <text>›</text>
+      </view>
+    </view>
+
+    <!-- 今日禅理 -->
+    <view class="zen-card glass">
+      <view class="zen-header">
+        <text class="zen-label">今日禅理</text>
+        <text class="zen-date">{{todayInfo.lunar_date}}</text>
+      </view>
+      <text class="zen-content">{{todayInfo.zen_content}}</text>
+    </view>
+
+    <!-- 今日打卡状态 -->
+    <view class="checkin-status">
+      <view class="checkin-item {{todayCheckin.morning ? 'completed' : ''}}">
+        <view class="checkin-icon">🌅</view>
+        <text class="checkin-label">晨起礼佛</text>
+        <text class="checkin-status-text">{{todayCheckin.morning ? '已打卡' : '未打卡'}}</text>
+      </view>
+      <view class="checkin-item {{todayCheckin.evening ? 'completed' : ''}}">
+        <view class="checkin-icon">🌙</view>
+        <text class="checkin-label">晚间打坐</text>
+        <text class="checkin-status-text">{{todayCheckin.evening ? '已打卡' : '未打卡'}}</text>
+      </view>
+    </view>
+
+    <!-- 日历网格 -->
+    <view class="calendar-grid">
+      <!-- 星期头 -->
+      <view class="weekday-header">
+        <text wx:for="{{weekdays}}" wx:key="index" class="weekday-item">
+          {{item}}
+        </text>
+      </view>
+
+      <!-- 日期网格 -->
+      <view class="days-grid">
+        <view 
+          class="day-cell {{item.is_today ? 'today' : ''}} {{item.has_checkin ? 'checked' : ''}}"
+          wx:for="{{days}}"
+          wx:key="date"
+          bindtap="onDayTap"
+          data-day="{{item}}"
+        >
+          <text class="day-number">{{item.day}}</text>
+          <text class="day-lunar">{{item.lunar_short}}</text>
+          <view wx:if="{{item.has_checkin}}" class="checkin-dot"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 选中日期详情 -->
+    <view wx:if="{{selectedDay}}" class="day-detail-card glass">
+      <view class="detail-header">
+        <text class="detail-date">{{selectedDay.date}}</text>
+        <text class="detail-lunar">{{selectedDay.lunar_date}}</text>
+      </view>
+
+      <view class="detail-content">
+        <view class="detail-section">
+          <text class="section-label">宜</text>
+          <view class="suitable-list">
+            <text 
+              wx:for="{{selectedDay.suitable}}"
+              wx:key="index"
+              class="suitable-item"
+            >{{item}}</text>
+          </view>
+        </view>
+
+        <view class="detail-section">
+          <text class="section-label avoid">忌</text>
+          <view class="avoid-list">
+            <text 
+              wx:for="{{selectedDay.avoid}}"
+              wx:key="index"
+              class="avoid-item"
+            >{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view wx:if="{{!selectedDay.has_checkin && !selectedDay.is_future}}" class="checkin-actions">
+        <button 
+          class="btn btn-primary"
+          bindtap="onCheckin"
+          data-type="morning"
+        >
+          🌅 晨起打卡
+        </button>
+        <button 
+          class="btn btn-secondary"
+          bindtap="onCheckin"
+          data-type="evening"
+        >
+          🌙 晚间打卡
+        </button>
+      </view>
+    </view>
+
+    <!-- 统计信息 -->
+    <view class="stats-card glass">
+      <view class="stats-title">修行统计</view>
+      <view class="stats-grid">
+        <view class="stat-item">
+          <text class="stat-value">{{stats.total_checkin_days}}</text>
+          <text class="stat-label">累计打卡</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.continuous_days}}</text>
+          <text class="stat-label">连续天数</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.morning_count}}</text>
+          <text class="stat-label">晨起打卡</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.evening_count}}</text>
+          <text class="stat-label">晚间打卡</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

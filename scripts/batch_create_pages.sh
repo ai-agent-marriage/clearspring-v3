@@ -3,7 +3,7 @@
 # 批量创建祈福者端 P2 页面 - 自动化脚本
 # 创建 Q-16 到 Q-34 的页面结构
 
-PAGES_DIR="/root/.openclaw/workspace/pages"
+PAGES_DIR="/home/admin/.openclaw/workspace/pages"
 
 # 页面列表 (剩余 14 个)
 declare -A PAGES=(

@@ -27,8 +27,8 @@ PAGES=(
   "q_33:q-33-feedback"
 )
 
-PRD_DIR="/root/.openclaw/workspace/stitch_prd"
-PAGES_DIR="/root/.openclaw/workspace/pages"
+PRD_DIR="/home/admin/.openclaw/workspace/stitch_prd"
+PAGES_DIR="/home/admin/.openclaw/workspace/pages"
 
 echo "开始转换祈福者端 P2 页面..."
 echo "共 ${#PAGES[@]} 个页面"

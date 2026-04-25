@@ -2,7 +2,7 @@
 <view class="container">
   <!-- Logo 和版本信息 -->
   <view class="header-section">
-    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <image class="logo" lazy-load="true" src="/images/logo.png" mode="aspectFit"></image>
     <view class="app-name">清如 ClearSpring</view>
     <view class="version-info">
       <text class="version">v{{version}}</text>
@@ -51,7 +51,7 @@
     </view>
     <view class="team-grid">
       <view class="team-member" wx:for="{{teamMembers}}" wx:key="name">
-        <image class="member-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <image class="member-avatar" lazy-load="true" src="{{item.avatar}}" mode="aspectFill"></image>
         <view class="member-name">{{item.name}}</view>
         <view class="member-role">{{item.role}}</view>
         <view class="member-desc">{{item.desc}}</view>

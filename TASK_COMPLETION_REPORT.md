@@ -95,11 +95,11 @@
 ## 📁 交付物
 
 ### 1. 详细报告
-**文件**: `/root/.openclaw/workspace/STITCH_COLOR_FIX_REPORT.md`  
+**文件**: `/home/admin/.openclaw/workspace/STITCH_COLOR_FIX_REPORT.md`  
 **内容**: 完整的修复统计、映射表、前后对比、验证结果
 
 ### 2. 完成摘要
-**文件**: `/root/.openclaw/workspace/STITCH_COLOR_FIX_SUMMARY.md`  
+**文件**: `/home/admin/.openclaw/workspace/STITCH_COLOR_FIX_SUMMARY.md`  
 **内容**: 简洁的核心成果和验证方法
 
 ### 3. 备份文件
