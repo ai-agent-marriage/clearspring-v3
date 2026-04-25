@@ -1,29 +1,78 @@
 <view class="container">
-  <!-- 欢迎卡片 -->
-  <view class="card welcome-card">
-    <view class="welcome-title">清如 ClearSpring</view>
-    <view class="welcome-subtitle">专业服务，值得信赖</view>
+  <!-- 顶部导航 -->
+  <view class="top-nav">
+    <view class="nav-left">
+      <image class="nav-icon" src="/images/icons/settings.svg" mode="aspectFit"/>
+    </view>
+    <view class="nav-title">清如</view>
+    <view class="nav-right">
+      <image class="avatar" src="/images/avatar-placeholder.png" mode="aspectFill"/>
+    </view>
   </view>
 
-  <!-- 服务分类 -->
-  <view class="card">
-    <view class="section-title">热门服务</view>
-    <view class="service-grid">
-      <view class="service-item" wx:for="{{services}}" wx:key="id" bindtap="goToService">
-        <image class="service-icon" src="{{item.icon}}" mode="aspectFill"></image>
-        <text class="service-name">{{item.name}}</text>
+  <!-- 佛历日历卡片 -->
+  <view class="calendar-card">
+    <!-- 日期层 -->
+    <view class="date-section">
+      <view class="buddhist-era">佛历 {{buddhistYear}} 年</view>
+      <view class="day-number">{{lunarDay}}</view>
+      <view class="solar-info">{{solarMonth}}月 {{solarDate}}日 · {{solarYear}}年 {{solarMonthStr}}</view>
+      <view class="lunar-info">农历 {{lunarMonthStr}} {{lunarDayStr}}</view>
+    </view>
+
+    <!-- 宜忌层 -->
+    <view class="fortune-section">
+      <view class="fortune-item fortune-right">
+        <view class="fortune-label">宜</view>
+        <view class="fortune-text">{{appropriate}}</view>
+      </view>
+      <view class="fortune-item fortune-forbid">
+        <view class="fortune-label">忌</view>
+        <view class="fortune-text">{{forbidden}}</view>
+      </view>
+    </view>
+
+    <!-- 禅语层 -->
+    <view class="quote-section">
+      <view class="quote-mark">"</view>
+      <view class="quote-text">{{quote}}</view>
+      <view class="quote-source">——《{{quoteSource}}》</view>
+    </view>
+  </view>
+
+  <!-- 打卡按钮 -->
+  <view class="checkin-grid">
+    <view class="checkin-btn {{morningChecked ? 'checked' : ''}}" bindtap="onMorningCheck">
+      <image class="checkin-icon" src="/images/icons/sun.svg" mode="aspectFit"/>
+      <view class="checkin-label">晨起礼佛</view>
+    </view>
+    <view class="checkin-btn {{eveningChecked ? 'checked' : ''}}" bindtap="onEveningCheck">
+      <image class="checkin-icon" src="/images/icons/moon.svg" mode="aspectFit"/>
+      <view class="checkin-label">晚间打坐</view>
+    </view>
+  </view>
+
+  <!-- 功德统计 -->
+  <view class="stats-card">
+    <view class="stats-info">
+      <view class="stats-title">功德统计</view>
+      <view class="stats-desc">精进不懈，因果不虚</view>
+    </view>
+    <view class="stats-numbers">
+      <view class="stat-item">
+        <view class="stat-value">{{consecutiveDays}}</view>
+        <view class="stat-label">连续</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value">{{totalDays}}</view>
+        <view class="stat-label">累计</view>
       </view>
     </view>
   </view>
 
-  <!-- 公告区域 -->
-  <view class="card">
-    <view class="section-title">最新公告</view>
-    <view class="notice-list">
-      <view class="notice-item" wx:for="{{notices}}" wx:key="id">
-        <text class="notice-text">{{item.title}}</text>
-        <text class="notice-date">{{item.date}}</text>
-      </view>
-    </view>
+  <!-- 护生功德林按钮 -->
+  <view class="merit-btn" bindtap="goToMeritForest">
+    <image class="merit-icon" src="/images/icons/tree.svg" mode="aspectFit"/>
+    <view class="merit-label">护生功德林</view>
   </view>
 </view>

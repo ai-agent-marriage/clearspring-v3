@@ -19,7 +19,12 @@
     "pages/executor-profile/profile",
     "pages/executor-qualification-manage/manage",
     "pages/executor-message-center/messages",
-    "pages/executor-settings/settings"
+    "pages/executor-settings/settings",
+    "pages/help/index",
+    "pages/help/detail",
+    "pages/pay/pay",
+    "pages/certificate/certificate",
+    "pages/certificate/detail"
   ],
   "subPackages": [
     {
@@ -28,6 +33,99 @@
         "index",
         "agreement",
         "privacy"
+      ]
+    },
+    {
+      "root": "pages/admin",
+      "pages": [
+        "dashboard",
+        "order",
+        "executor",
+        "qualification",
+        "qualification-org",
+        "financial",
+        "config",
+        "settings",
+        "export",
+        "final",
+        "appeal"
+      ]
+    },
+    {
+      "root": "pages/org",
+      "pages": [
+        "home",
+        "order-detail",
+        "task-assign",
+        "volunteer-detail",
+        "qualification",
+        "settings",
+        "financial-report"
+      ]
+    },
+    {
+      "root": "pages/executor",
+      "pages": [
+        "qualification",
+        "status",
+        "camera"
+      ]
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        "detail",
+        "create",
+        "confirm",
+        "list"
+      ]
+    },
+    {
+      "root": "pages/wiki",
+      "pages": [
+        "detail"
+      ]
+    },
+    {
+      "root": "pages/zen-daily",
+      "pages": [
+        "zen-daily"
+      ]
+    },
+    {
+      "root": "pages/species-list",
+      "pages": [
+        "species-list"
+      ]
+    },
+    {
+      "root": "pages/species-detail",
+      "pages": [
+        "species-detail"
+      ]
+    },
+    {
+      "root": "pages/lunar-calendar",
+      "pages": [
+        "lunar-calendar"
+      ]
+    },
+    {
+      "root": "pages/protect-self-register",
+      "pages": [
+        "protect-self-register"
+      ]
+    },
+    {
+      "root": "pages/protect-record-detail",
+      "pages": [
+        "protect-record-detail"
+      ]
+    },
+    {
+      "root": "pages/protect-order-create",
+      "pages": [
+        "protect-order-create"
       ]
     }
   ],
@@ -42,7 +140,11 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "梵音"
+      },
+      {
+        "pagePath": "pages/zen/index",
+        "text": "禅理"
       },
       {
         "pagePath": "pages/profile/profile",

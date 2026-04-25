@@ -1,0 +1,60 @@
+<view class="container">
+  <!-- 禅理功能聚合主页 -->
+  <view class="top-nav">
+    <view class="nav-title">禅理</view>
+  </view>
+
+  <!-- 每日一禅卡片 -->
+  <view class="daily-zen-card" bindtap="goToDailyZen">
+    <view class="zen-quote">
+      <view class="zen-quote-mark">"</view>
+      <view class="zen-quote-text">{{dailyQuote}}</view>
+      <view class="zen-quote-source">——《{{zenSource}}》</view>
+    </view>
+    <view class="zen-action">
+      <view class="zen-action-label">查看完整禅理</view>
+      <view class="zen-action-arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 四大功能入口 -->
+  <view class="feature-grid">
+    <view class="feature-item" bindtap="goToCalendar">
+      <view class="feature-icon">
+        <image src="/images/icons/calendar.svg" mode="aspectFit"/>
+      </view>
+      <view class="feature-name">修行日历</view>
+      <view class="feature-desc">打卡记录</view>
+    </view>
+    <view class="feature-item" bindtap="goToCollection">
+      <view class="feature-icon">
+        <image src="/images/icons/bookmark.svg" mode="aspectFit"/>
+      </view>
+      <view class="feature-name">禅理收藏</view>
+      <view class="feature-desc">我的收藏</view>
+    </view>
+    <view class="feature-item" bindtap="goToShare">
+      <view class="feature-icon">
+        <image src="/images/icons/share.svg" mode="aspectFit"/>
+      </view>
+      <view class="feature-name">禅理分享</view>
+      <view class="feature-desc">生成海报</view>
+    </view>
+    <view class="feature-item" bindtap="goToAudio">
+      <view class="feature-icon">
+        <image src="/images/icons/headphones.svg" mode="aspectFit"/>
+      </view>
+      <view class="feature-name">伴读梵音</view>
+      <view class="feature-desc">静心聆听</view>
+    </view>
+  </view>
+
+  <!-- 禅理列表 -->
+  <view class="zen-list">
+    <view class="list-title">历史禅理</view>
+    <view class="zen-list-item" wx:for="{{zenList}}" wx:key="id" bindtap="goToZenDetail" data-id="{{item.id}}">
+      <view class="zen-list-date">{{item.date}}</view>
+      <view class="zen-list-quote">{{item.quote}}</view>
+    </view>
+  </view>
+</view>
