@@ -1,0 +1,104 @@
+<!-- 禅理功能聚合主页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header glass-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="icon-back">←</text>
+    </view>
+    <view class="header-title">禅意智慧</view>
+    <view class="header-right" bindtap="openSettings">
+      <text class="icon-settings">⚙</text>
+    </view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- Section 1: 每日一禅 -->
+    <view class="section-daily-wisdom">
+      <view class="wisdom-card">
+        <view class="card-header">
+          <text class="tag">Daily Wisdom • 每日一禅</text>
+          <text class="date">{{todayDate}}</text>
+        </view>
+        <view class="wisdom-content">
+          <text class="wisdom-text">{{dailyWisdom.text}}</text>
+        </view>
+        <view class="card-footer">
+          <view class="action-btn" bindtap="shareWisdom">
+            <text class="icon-share">↗</text>
+            <text class="btn-text">分享</text>
+          </view>
+          <view class="action-btn" bindtap="collectWisdom">
+            <text class="icon-collect {{isCollected ? 'active' : ''}}">♥</text>
+            <text class="btn-text">{{isCollected ? '已收藏' : '收藏'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Section 2: 物种查询入口 -->
+    <view class="section-species-inquiry">
+      <view class="species-card" bindtap="navigateToSpecies">
+        <image class="species-bg" src="/images/species-bg.jpg" mode="aspectFill"></image>
+        <view class="species-overlay">
+          <view class="species-icon">🌿</view>
+          <text class="species-title">护生物种查询</text>
+          <text class="species-desc">了解可放生物种清单</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- Section 3: 功能网格 -->
+    <view class="section-grid">
+      <!-- 功德证书 -->
+      <view class="grid-item" bindtap="navigateToCerts">
+        <view class="grid-icon-wrapper">
+          <text class="grid-icon">🏆</text>
+        </view>
+        <text class="grid-title">功德证书</text>
+        <text class="grid-desc">查看我的证书</text>
+      </view>
+
+      <!-- 修行数据 -->
+      <view class="grid-item" bindtap="navigateToPractice">
+        <view class="grid-icon-wrapper">
+          <text class="grid-icon">📊</text>
+        </view>
+        <text class="grid-title">修行数据</text>
+        <text class="grid-desc">我的修行记录</text>
+      </view>
+
+      <!-- 梵音收听 -->
+      <view class="grid-item" bindtap="navigateToAudio">
+        <view class="grid-icon-wrapper">
+          <text class="grid-icon">🎵</text>
+        </view>
+        <text class="grid-title">梵音收听</text>
+        <text class="grid-desc">收听记录</text>
+      </view>
+
+      <!-- 禅理收藏 -->
+      <view class="grid-item" bindtap="navigateToCollect">
+        <view class="grid-icon-wrapper">
+          <text class="grid-icon">♥</text>
+        </view>
+        <text class="grid-title">禅理收藏</text>
+        <text class="grid-desc">我的收藏</text>
+      </view>
+    </view>
+
+    <!-- Section 4: 科普专区入口 -->
+    <view class="section-science">
+      <view class="science-card" bindtap="navigateToWiki">
+        <view class="science-left">
+          <text class="science-icon">📖</text>
+          <view class="science-info">
+            <text class="science-title">护生科普专区</text>
+            <text class="science-desc">学习护生知识</text>
+          </view>
+        </view>
+        <text class="science-arrow">›</text>
+      </view>
+    </view>
+  </view>
+</view>

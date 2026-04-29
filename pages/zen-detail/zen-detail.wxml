@@ -1,0 +1,93 @@
+<!-- 每日一禅详情&分享页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header glass-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="icon-back">←</text>
+    </view>
+    <view class="header-title">每日一禅</view>
+    <view class="header-right" bindtap="sharePoster">
+      <text class="icon-share">↗</text>
+    </view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 禅理卡片 -->
+    <view class="wisdom-card-large">
+      <view class="card-decoration-top">
+        <text class="decoration-icon">☸</text>
+      </view>
+      
+      <view class="wisdom-body">
+        <text class="wisdom-category">{{wisdom.category}}</text>
+        <text class="wisdom-text">{{wisdom.text}}</text>
+        <text class="wisdom-source">—— {{wisdom.source}}</text>
+      </view>
+      
+      <view class="card-decoration-bottom">
+        <text class="decoration-icon">☸</text>
+      </view>
+    </view>
+
+    <!-- 操作按钮区 -->
+    <view class="action-section">
+      <view class="action-row">
+        <view class="action-btn-large" bindtap="collectWisdom">
+          <text class="btn-icon {{isCollected ? 'active' : ''}}">♥</text>
+          <text class="btn-label">{{isCollected ? '已收藏' : '收藏'}}</text>
+        </view>
+        <view class="action-btn-large" bindtap="copyText">
+          <text class="btn-icon">📋</text>
+          <text class="btn-label">复制</text>
+        </view>
+      </view>
+      <view class="action-row">
+        <view class="action-btn-large" bindtap="shareWechat">
+          <text class="btn-icon">💬</text>
+          <text class="btn-label">分享给朋友</text>
+        </view>
+        <view class="action-btn-large" bindtap="shareTimeline">
+          <text class="btn-icon">🌐</text>
+          <text class="btn-label">分享到朋友圈</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 相关禅理推荐 -->
+    <view class="related-section">
+      <view class="section-header">
+        <text class="section-title">相关禅理</text>
+        <text class="section-more" bindtap="viewAll">查看全部 ›</text>
+      </view>
+      <scroll-view class="related-scroll" scroll-x>
+        <view 
+          class="related-item" 
+          wx:for="{{relatedWisdoms}}" 
+          wx:key="id"
+          bindtap="selectRelated"
+          data-id="{{item.id}}"
+        >
+          <view class="related-card">
+            <text class="related-text">{{item.text}}</text>
+            <text class="related-source">{{item.source}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 海报分享弹窗 -->
+  <view class="poster-modal {{showPosterModal ? 'visible' : ''}}" catchtouchmove="preventMove">
+    <view class="modal-mask" bindtap="closePosterModal"></view>
+    <view class="modal-content">
+      <view class="poster-preview">
+        <image class="poster-image" src="{{posterImageUrl}}" mode="aspectFit"></image>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn primary" bindtap="savePoster">保存到相册</view>
+        <view class="modal-btn secondary" bindtap="closePosterModal">关闭</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,94 @@
+<!-- 梵音音频播放详情页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header glass-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="icon-back">←</text>
+    </view>
+    <view class="header-title">梵音播放</view>
+    <view class="header-right">
+      <text class="icon-more">⋯</text>
+    </view>
+  </view>
+
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 专辑封面 -->
+    <view class="album-cover">
+      <image class="cover-image" src="{{currentTrack.coverUrl}}" mode="aspectFill"></image>
+      <view class="cover-overlay">
+        <text class="track-name">{{currentTrack.name}}</text>
+        <text class="track-artist">{{currentTrack.artist}}</text>
+      </view>
+    </view>
+
+    <!-- 播放控制区 -->
+    <view class="player-controls">
+      <!-- 进度条 -->
+      <view class="progress-section">
+        <slider 
+          class="progress-slider"
+          value="{{progress}}" 
+          min="0" 
+          max="100" 
+          block-size="12"
+          background-color="#E9E8E3"
+          active-color="#4A5D4E"
+          bindchange="onProgressChange"
+        ></slider>
+        <view class="time-display">
+          <text class="current-time">{{currentTime}}</text>
+          <text class="total-time">{{totalTime}}</text>
+        </view>
+      </view>
+
+      <!-- 控制按钮 -->
+      <view class="control-buttons">
+        <view class="btn-circle btn-secondary" bindtap="toggleLoop">
+          <text class="icon-loop {{isLooping ? 'active' : ''}}">🔁</text>
+        </view>
+        <view class="btn-circle btn-prev" bindtap="playPrevious">
+          <text class="icon-prev">⏮</text>
+        </view>
+        <view class="btn-circle btn-play" bindtap="togglePlay">
+          <text class="icon-play">{{isPlaying ? '⏸' : '▶'}}</text>
+        </view>
+        <view class="btn-circle btn-next" bindtap="playNext">
+          <text class="icon-next">⏭</text>
+        </view>
+        <view class="btn-circle btn-shuffle" bindtap="toggleShuffle">
+          <text class="icon-shuffle {{isShuffling ? 'active' : ''}}">🔀</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 曲目列表 -->
+    <view class="track-list">
+      <view class="list-header">
+        <text class="header-title">播放列表</text>
+        <text class="track-count">{{tracks.length}} 首</text>
+      </view>
+      <scroll-view class="list-scroll" scroll-y>
+        <view 
+          class="track-item {{item.id === currentTrack.id ? 'active' : ''}}"
+          wx:for="{{tracks}}" 
+          wx:key="id"
+          bindtap="selectTrack"
+          data-id="{{item.id}}"
+        >
+          <view class="track-info">
+            <text class="track-index">{{index + 1}}</text>
+            <view class="track-detail">
+              <text class="track-name">{{item.name}}</text>
+              <text class="track-duration">{{item.duration}}</text>
+            </view>
+          </view>
+          <view class="track-action">
+            <text class="icon-play-sm" wx:if="{{item.id === currentTrack.id && isPlaying}}">⏸</text>
+            <text class="icon-play-sm" wx:else>▶</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

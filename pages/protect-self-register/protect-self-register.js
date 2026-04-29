@@ -1,244 +1,161 @@
-// pages/protect-self-register/protect-self-register.js
+// 免费自主护生登记页
 const app = getApp();
 
 Page({
   data: {
-    formData: {
-      species_id: '',
-      species_name: '',
-      quantity: '',
-      protect_date: '',
-      water_area: '',
-      photos: [],
-      wish_message: '',
-      commitment_accepted: true
-    },
-    minDate: '',
-    maxDate: '',
-    canSubmit: false,
-    submitting: false,
-    showSuccessModal: false,
-    recordId: null
+    // 今日日期
+    today: '',
+    // 物种列表
+    speciesList: [
+      { id: 'species_001', name: '鲫鱼', category: '鱼类' },
+      { id: 'species_002', name: '鲤鱼', category: '鱼类' },
+      { id: 'species_003', name: '草鱼', category: '鱼类' },
+      { id: 'species_004', name: '鲢鱼', category: '鱼类' },
+      { id: 'species_005', name: '鳙鱼', category: '鱼类' },
+      { id: 'species_006', name: '泥鳅', category: '鱼类' },
+      { id: 'species_007', name: '黄鳝', category: '鱼类' },
+      { id: 'species_008', name: '乌龟', category: '爬行类' },
+      { id: 'species_009', name: '中华花龟', category: '爬行类' },
+      { id: 'species_010', name: '巴西龟', category: '爬行类' }
+    ],
+    // 表单数据
+    speciesIndex: -1,
+    quantity: '',
+    location: [],
+    address: '',
+    date: '',
+    wish: '',
+    photos: []
   },
 
-  onLoad(options) {
-    // 初始化日期范围
-    const today = new Date();
-    const maxDate = new Date();
-    maxDate.setDate(today.getDate() + 7);
-    
-    this.setData({
-      minDate: this.formatDate(today),
-      maxDate: this.formatDate(maxDate)
-    });
-
-    // 从上一页传递物种信息
-    if (options.species_id && options.species_name) {
-      this.setData({
-        'formData.species_id': options.species_id,
-        'formData.species_name': options.species_name
-      });
-    }
-
-    this.checkCanSubmit();
+  onLoad() {
+    // 设置今日日期
+    this.setTodayDate();
   },
 
-  // 格式化日期
-  formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  // 设置今日日期
+  setTodayDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    this.setData({ today: `${year}-${month}-${day}` });
   },
 
-  // 选择物种
-  onSelectSpecies() {
-    wx.navigateTo({
-      url: '/pages/species-list/species-list?selectMode=true'
-    });
+  // 物种选择变化
+  onSpeciesChange(e) {
+    this.setData({ speciesIndex: e.detail.value });
   },
 
   // 数量输入
   onQuantityInput(e) {
-    const value = e.detail.value;
-    this.setData({ 'formData.quantity': value });
-    this.checkCanSubmit();
+    this.setData({ quantity: e.detail.value });
   },
 
-  // 日期选择
+  // 地点选择变化
+  onLocationChange(e) {
+    this.setData({ location: e.detail.value });
+  },
+
+  // 详细地址输入
+  onAddressInput(e) {
+    this.setData({ address: e.detail.value });
+  },
+
+  // 日期选择变化
   onDateChange(e) {
-    this.setData({ 'formData.protect_date': e.detail.value });
-    this.checkCanSubmit();
+    this.setData({ date: e.detail.value });
   },
 
-  // 水域输入
-  onWaterAreaInput(e) {
-    this.setData({ 'formData.water_area': e.detail.value });
-    this.checkCanSubmit();
+  // 愿望输入
+  onWishInput(e) {
+    this.setData({ wish: e.detail.value });
   },
 
-  // 上传照片
-  onUploadPhoto() {
-    const maxCount = 6 - this.data.formData.photos.length;
-    
-    wx.chooseMedia({
-      count: maxCount,
-      mediaType: ['image'],
+  // 选择照片
+  choosePhoto() {
+    wx.chooseImage({
+      count: 9 - this.data.photos.length,
+      sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: (res) => {
-        const newPhotos = res.tempFiles.map(file => ({
-          path: file.tempFilePath,
-          url: file.tempFilePath
-        }));
-
-        this.setData({
-          'formData.photos': [...this.data.formData.photos, ...newPhotos]
-        });
-        this.checkCanSubmit();
+        const newPhotos = [...this.data.photos, ...res.tempFilePaths];
+        this.setData({ photos: newPhotos });
       }
-    });
-  },
-
-  // 预览照片
-  onPreviewPhoto(e) {
-    const index = e.currentTarget.dataset.index;
-    const urls = this.data.formData.photos.map(p => p.url);
-    
-    wx.previewImage({
-      urls,
-      current: index
     });
   },
 
   // 删除照片
-  onDeletePhoto(e) {
+  deletePhoto(e) {
     const index = e.currentTarget.dataset.index;
-    const photos = this.data.formData.photos;
-    photos.splice(index, 1);
-    
-    this.setData({ 'formData.photos': photos });
-    this.checkCanSubmit();
+    const photos = this.data.photos.filter((_, i) => i !== index);
+    this.setData({ photos });
   },
 
-  // 心愿输入
-  onWishInput(e) {
-    this.setData({ 'formData.wish_message': e.detail.value });
+  // 验证表单
+  validateForm() {
+    if (this.data.speciesIndex < 0) {
+      wx.showToast({ title: '请选择放生物种', icon: 'none' });
+      return false;
+    }
+    if (!this.data.quantity || parseInt(this.data.quantity) <= 0) {
+      wx.showToast({ title: '请输入有效的放生数量', icon: 'none' });
+      return false;
+    }
+    if (this.data.location.length === 0) {
+      wx.showToast({ title: '请选择放生地点', icon: 'none' });
+      return false;
+    }
+    if (!this.data.date) {
+      wx.showToast({ title: '请选择放生日期', icon: 'none' });
+      return false;
+    }
+    return true;
   },
 
-  // 承诺勾选
-  onCommitmentChange(e) {
-    this.setData({ 
-      'formData.commitment_accepted': e.detail.value.length > 0 
-    });
-    this.checkCanSubmit();
-  },
-
-  // 检查是否可以提交
-  checkCanSubmit() {
-    const { species_id, quantity, protect_date, water_area, photos, commitment_accepted } = this.data.formData;
-    
-    const canSubmit = !!(
-      species_id &&
-      quantity &&
-      parseInt(quantity) > 0 &&
-      protect_date &&
-      water_area &&
-      photos.length > 0 &&
-      commitment_accepted
-    );
-
-    this.setData({ canSubmit });
-  },
-
-  // 提交登记
-  async onSubmit() {
-    if (!this.data.canSubmit || this.data.submitting) return;
+  // 提交表单
+  submitForm() {
+    if (!this.validateForm()) {
+      return;
+    }
 
     wx.showLoading({ title: '提交中...' });
-    this.setData({ submitting: true });
 
-    try {
-      // 先上传照片
-      const photoUrls = await this.uploadPhotos();
-      
-      // 提交登记
-      const res = await app.api.request({
-        url: '/api/v1/protect-life/self-submit',
-        method: 'POST',
-        data: {
-          protect_date: this.data.formData.protect_date,
-          water_area: this.data.formData.water_area,
-          species_id: this.data.formData.species_id,
-          quantity: parseInt(this.data.formData.quantity),
-          photos: photoUrls,
-          wish_message: this.data.formData.wish_message
-        }
-      });
-
-      if (res.code === 200) {
-        wx.hideLoading();
-        this.setData({
-          submitting: false,
-          showSuccessModal: true,
-          recordId: res.data.record_id
-        });
-      } else {
-        wx.hideLoading();
-        this.setData({ submitting: false });
-        wx.showToast({ title: res.message || '提交失败', icon: 'none' });
-      }
-    } catch (error) {
-      console.error('提交失败:', error);
-      wx.hideLoading();
-      this.setData({ submitting: false });
-      wx.showToast({ title: '提交失败，请稍后重试', icon: 'none' });
-    }
-  },
-
-  // 上传照片
-  async uploadPhotos() {
-    const uploadPromises = this.data.formData.photos.map(photo => {
-      return new Promise((resolve, reject) => {
-        wx.uploadFile({
-          url: `${app.api.baseUrl}/api/v1/upload/image`,
-          filePath: photo.path,
-          name: 'file',
-          formData: { scene: 'protect_life' },
-          success: (res) => {
-            const data = JSON.parse(res.data);
-            if (data.code === 200) {
-              resolve(data.data.url);
-            } else {
-              reject(new Error(data.message));
-            }
-          },
-          fail: reject
-        });
-      });
-    });
-
-    return await Promise.all(uploadPromises);
-  },
-
-  // 查看记录
-  onViewRecord() {
-    wx.redirectTo({
-      url: `/pages/protect-record-detail/protect-record-detail?record_id=${this.data.recordId}&type=self`
-    });
-  },
-
-  // 返回首页
-  onGoHome() {
-    wx.switchTab({
-      url: '/pages/index/index'
-    });
-  },
-
-  // 分享给好友
-  onShareAppMessage() {
-    return {
-      title: '自主护生登记 - 清如',
-      path: '/pages/protect-self-register/protect-self-register'
+    // 构建提交数据
+    const submitData = {
+      species: this.data.speciesList[this.data.speciesIndex],
+      quantity: parseInt(this.data.quantity),
+      location: this.data.location,
+      address: this.data.address,
+      date: this.data.date,
+      wish: this.data.wish,
+      photos: this.data.photos,
+      status: 'pending',
+      createdAt: new Date().toISOString()
     };
+
+    // 模拟提交（实际项目中需要调用云函数）
+    setTimeout(() => {
+      wx.hideLoading();
+      
+      // 保存到本地存储
+      const records = wx.getStorageSync('selfProtectRecords') || [];
+      records.push(submitData);
+      wx.setStorageSync('selfProtectRecords', records);
+      
+      wx.showToast({ title: '登记成功', icon: 'success' });
+      
+      // 跳转到记录详情页
+      setTimeout(() => {
+        wx.navigateTo({ 
+          url: `/pages/protect-record-detail/protect-record-detail?id=${records.length - 1}` 
+        });
+      }, 1500);
+    }, 1000);
+  },
+
+  // 返回上一页
+  goBack() {
+    wx.navigateBack();
   }
 });

@@ -1057,3 +1057,61 @@ sessions_spawn({
 ---
 
 *此文件由 AI Agent 维护，记录关键决策和上下文*
+
+## Promoted From Short-Term Memory (2026-04-25)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-03-29.md:40:81 -->
+- - ✅ 功德林（证书墙 + 功德统计） - ✅ 科普百科（物种正面清单 + 放生禁忌） - ✅ 管理端核心功能（资质审核 + 订单管理） **延后功能**（V2.0+）： - ⏳ 申诉仲裁系统 - ⏳ 用户评价系统 - ⏳ 营销工具 - ⏳ 数据分析 --- ### 决策 3：开发节奏 **决策内容**：最快速度开发（不按互联网企业 6 里程碑） **开发策略**： - ✅ 调动所有 Agent 并行开发 - ✅ 服务器配置已就绪 - ✅ 文档已完整（V2.0） - ✅ 实时汇报进度 **否决方案**： - ❌ 豆包建议的 6 里程碑（8-10 周） - ❌ KIMI 建议的分阶段投喂 **理由**：用户已购买足够服务器配置，要求最快速度上线 --- ### 决策 4：Agent 团队配置 **决策内容**：5 个 Agent 并行开发 **Agent 配置**： | Agent | 职责 | 交付物 | |-------|------|--------| | **前端开发 Agent** | 小程序前端开发（30 个页面） | 可运行的小程序前端代码 | | **后端开发 Agent** | 火山云后端 API 开发（32 个接口） | 可运行的后端 API 服务 | | **数据库与安全 Agent** 🔴 | 数据库设计 + 异常流程 + 安全体系 | 数据库设计文档 + 异常流程定义 + 安全体系设计 | | **质量监督 Agent** 🔴 | 代码审查 + 质量验收 + 进度跟踪 | Code Review 报告 + 质量验收报告 | [score=0.961 recalls=5 avg=1.000 source=memory/2026-03-29.md:40-81]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:131:165 -->
+- --- [score=0.913 recalls=4 avg=1.000 source=memory/2026-04-15.md:53-54]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:158:196 -->
+- --- [score=0.828 recalls=3 avg=1.000 source=memory/2026-04-15.md:53-54]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-15.md:77:139 -->
+- --- [score=0.828 recalls=3 avg=1.000 source=memory/2026-04-15.md:53-54]
+
+## Promoted From Short-Term Memory (2026-04-26)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-04.md:33:57 -->
+- - Commit 1: feat: 完善微信订阅消息接口 + 站内信优化 + 推送服务优化 - Commit 2: test: 新增消息模板服务测试（15 个测试用例） ### 文档 - 创建飞书进度报告：Phase 1 Week 3 Day 15 后端开发进度报告 - 文档 ID: XyWTdhF3cofVRUx946ecdtXJnDd ### 修改文件清单 1. MessageController.java - API 路径更新 2. MessagePushService.java - 完整重写，添加重试和记录 3. AsyncConfig.java - 新增 messagePushExecutor 线程池 4. MessageControllerTest.java - 新增 7 个测试 5. MessageServiceTest.java - 新增 15 个测试 6. MessagePushServiceTest.java - 新增 5 个测试 7. MessageTemplateServiceTest.java - 新增 15 个测试 ### 验收标准全部达成 ✅ - 微信订阅消息接口已实现（3 个）✅ - 站内信接口已实现（5 个）✅ - 消息推送服务已优化（4 项）✅ - 代码符合 Java 规范 ✅ - 新增测试≥25 个（42 个）✅ - Git 提交≥2 次（2 次）✅ - 创建 Day 15 进度报告 ✅ [score=0.803 recalls=3 avg=1.000 source=memory/2026-04-04.md:33-57]
+
+## Promoted From Short-Term Memory (2026-04-28)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:3:5 -->
+- **日期**: 2026-04-21 **记录时间**: 2026-04-21 23:00:01 **自动生成**: ✅ [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:15:17 -->
+- | 代码新增 | 0 行 | | 代码删除 | 0 行 | | 最新提交 | 19e15431 chore: 每日记忆更新 2026-04-20 (自动) | [score=0.850 recalls=0 avg=0.620 source=memory/2026-04-21.md:15-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:3:5 -->
+- **日期**: 2026-04-23 **记录时间**: 2026-04-23 23:00:01 **自动生成**: ✅ [score=0.844 recalls=0 avg=0.620 source=memory/2026-04-23.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:15:17 -->
+- | 代码新增 | 0 行 | | 代码删除 | 0 行 | | 最新提交 | 837306cb chore: 每日记忆更新 2026-04-22 (自动) | [score=0.844 recalls=0 avg=0.620 source=memory/2026-04-23.md:15-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:3:5 -->
+- **日期**: 2026-04-22 **记录时间**: 2026-04-22 23:00:01 **自动生成**: ✅ [score=0.843 recalls=0 avg=0.620 source=memory/2026-04-22.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:15:17 -->
+- | 代码新增 | 0 行 | | 代码删除 | 0 行 | | 最新提交 | 74ad58cb chore: 每日记忆更新 2026-04-21 (自动) | [score=0.843 recalls=0 avg=0.620 source=memory/2026-04-22.md:15-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:11:13 -->
+- | 指标 | 数值 | |------|------| | Git 提交数 | 0 [score=0.840 recalls=0 avg=0.620 source=memory/2026-04-21.md:11-13]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-21.md:23:23 -->
+- （待补充详细工作内容） [score=0.840 recalls=0 avg=0.620 source=memory/2026-04-21.md:23-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:11:13 -->
+- | 指标 | 数值 | |------|------| | Git 提交数 | 0 [score=0.834 recalls=0 avg=0.620 source=memory/2026-04-23.md:11-13]
+
+## Promoted From Short-Term Memory (2026-04-29)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:11:13 -->
+- | 指标 | 数值 | |------|------| | Git 提交数 | 0 [score=0.865 recalls=0 avg=0.620 source=memory/2026-04-22.md:11-13]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:23:23 -->
+- （待补充详细工作内容） [score=0.865 recalls=0 avg=0.620 source=memory/2026-04-22.md:23-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:23:23 -->
+- （待补充详细工作内容） [score=0.864 recalls=0 avg=0.620 source=memory/2026-04-23.md:23-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:29:29 -->
+- （待补充进度信息） [score=0.855 recalls=0 avg=0.620 source=memory/2026-04-22.md:29-29]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:29:29 -->
+- （待补充进度信息） [score=0.854 recalls=0 avg=0.620 source=memory/2026-04-23.md:29-29]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-24.md:3:5 -->
+- **日期**: 2026-04-24 **记录时间**: 2026-04-24 23:00:01 **自动生成**: ✅ [score=0.849 recalls=0 avg=0.620 source=memory/2026-04-24.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-24.md:15:17 -->
+- | 代码新增 | 0 行 | | 代码删除 | 0 行 | | 最新提交 | 92615440 chore: 每日记忆更新 2026-04-23 (自动) | [score=0.849 recalls=0 avg=0.620 source=memory/2026-04-24.md:15-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-22.md:35:35 -->
+- （待补充技术细节） [score=0.845 recalls=0 avg=0.620 source=memory/2026-04-22.md:35-35]
+<!-- openclaw-memory-promotion:memory:memory/2026-04-23.md:35:35 -->
+- （待补充技术细节） [score=0.844 recalls=0 avg=0.620 source=memory/2026-04-23.md:35-35]

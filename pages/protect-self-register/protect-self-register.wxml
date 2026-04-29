@@ -1,141 +1,145 @@
-<!--pages/protect-self-register/protect-self-register.wxml-->
+<!-- 免费自主护生登记页 -->
 <view class="container">
-  <!-- 表单内容 -->
-  <view class="form-section">
-    <!-- 护生物种 -->
-    <view class="form-item">
-      <text class="form-label required">护生物种</text>
-      <view class="form-input" bindtap="onSelectSpecies">
-        <text wx:if="{{!formData.species_id}}" class="placeholder">请选择物种</text>
-        <text wx:else class="selected-text">{{formData.species_name}}</text>
-        <text class="arrow">›</text>
-      </view>
+  <!-- 顶部导航栏 -->
+  <view class="header glass-header">
+    <view class="header-left" bindtap="goBack">
+      <text class="icon-back">←</text>
     </view>
+    <view class="header-title">自主护生登记</view>
+    <view class="header-right"></view>
+  </view>
 
-    <!-- 投放数量 -->
-    <view class="form-item">
-      <text class="form-label required">投放数量</text>
-      <view class="input-wrapper">
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 表单区域 -->
+    <view class="form-section">
+      <!-- 物种选择 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">放生物种</text>
+          <text class="label-required">*</text>
+        </view>
+        <picker 
+          class="item-picker" 
+          mode="selector" 
+          range="{{speciesList}}" 
+          range-key="name"
+          value="{{speciesIndex}}"
+          bindchange="onSpeciesChange"
+        >
+          <view class="picker-value {{speciesIndex >= 0 ? 'selected' : ''}}">
+            {{speciesIndex >= 0 ? speciesList[speciesIndex].name : '请选择物种'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 数量输入 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">放生数量</text>
+          <text class="label-required">*</text>
+        </view>
         <input 
-          class="form-input"
-          type="number"
+          class="item-input" 
+          type="number" 
           placeholder="请输入数量"
-          value="{{formData.quantity}}"
+          value="{{quantity}}"
           bindinput="onQuantityInput"
         />
-        <text class="input-suffix">尾/只</text>
       </view>
-    </view>
 
-    <!-- 护生日期 -->
-    <view class="form-item">
-      <text class="form-label required">护生日期</text>
-      <picker 
-        mode="date" 
-        value="{{formData.protect_date}}"
-        start="{{minDate}}"
-        end="{{maxDate}}"
-        bindchange="onDateChange"
-      >
-        <view class="form-input">
-          <text wx:if="{{!formData.protect_date}}" class="placeholder">请选择日期</text>
-          <text wx:else>{{formData.protect_date}}</text>
-          <text class="arrow">›</text>
+      <!-- 地点选择 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">放生地点</text>
+          <text class="label-required">*</text>
         </view>
-      </picker>
-    </view>
-
-    <!-- 投放水域 -->
-    <view class="form-item">
-      <text class="form-label required">投放水域</text>
-      <input 
-        class="form-input"
-        placeholder="请输入投放水域名称"
-        value="{{formData.water_area}}"
-        bindinput="onWaterAreaInput"
-      />
-    </view>
-
-    <!-- 现场照片 -->
-    <view class="form-item">
-      <text class="form-label required">现场照片</text>
-      <text class="form-tip">至少上传 1 张，最多 6 张</text>
-      <view class="photo-grid">
-        <view 
-          class="photo-item"
-          wx:for="{{formData.photos}}"
-          wx:key="index"
+        <picker 
+          class="item-picker" 
+          mode="region" 
+          value="{{location}}"
+          bindchange="onLocationChange"
         >
-          <image 
-            class="photo-image"
-            src="{{item.url}}"
-            mode="aspectFill"
-            bindtap="onPreviewPhoto"
-            data-index="{{index}}"
-          ></image>
-          <view class="photo-delete" bindtap="onDeletePhoto" data-index="{{index}}">
-            <text>✕</text>
+          <view class="picker-value {{location.length > 0 ? 'selected' : ''}}">
+            {{location.length > 0 ? location.join(' ') : '请选择地点'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 详细地址 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">详细地址</text>
+        </view>
+        <input 
+          class="item-input" 
+          type="text" 
+          placeholder="请输入详细地址"
+          value="{{address}}"
+          bindinput="onAddressInput"
+        />
+      </view>
+
+      <!-- 日期选择 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">放生日期</text>
+          <text class="label-required">*</text>
+        </view>
+        <picker 
+          class="item-picker" 
+          mode="date" 
+          value="{{date}}"
+          start="{{today}}"
+          bindchange="onDateChange"
+        >
+          <view class="picker-value {{date ? 'selected' : ''}}">
+            {{date || '请选择日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 愿望输入 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">祈福愿望</text>
+        </view>
+        <textarea 
+          class="item-textarea" 
+          placeholder="请输入您的祈福愿望（可选）"
+          value="{{wish}}"
+          bindinput="onWishInput"
+          maxlength="200"
+        />
+        <view class="textarea-counter">{{wish.length}}/200</view>
+      </view>
+
+      <!-- 照片上传 -->
+      <view class="form-item">
+        <view class="item-label">
+          <text class="label-text">现场照片</text>
+        </view>
+        <view class="photo-upload">
+          <view 
+            class="photo-item" 
+            wx:for="{{photos}}" 
+            wx:key="index"
+          >
+            <image class="photo-image" src="{{item}}" mode="aspectFill"></image>
+            <view class="photo-delete" bindtap="deletePhoto" data-index="{{index}}">×</view>
+          </view>
+          <view class="photo-add" bindtap="choosePhoto" wx:if="{{photos.length < 9}}">
+            <text class="add-icon">+</text>
+            <text class="add-text">添加照片</text>
           </view>
         </view>
-        
-        <view 
-          wx:if="{{formData.photos.length < 6}}"
-          class="photo-upload"
-          bindtap="onUploadPhoto"
-        >
-          <text class="upload-icon">+</text>
-          <text class="upload-text">上传照片</text>
-        </view>
       </view>
     </view>
 
-    <!-- 护生心愿 -->
-    <view class="form-item">
-      <text class="form-label">护生心愿</text>
-      <text class="form-tip">可选，最多 200 字</text>
-      <textarea 
-        class="form-textarea"
-        placeholder="写下您的美好祝愿"
-        maxlength="200"
-        value="{{formData.wish_message}}"
-        bindinput="onWishInput"
-      ></textarea>
-    </view>
-
-    <!-- 合规承诺 -->
-    <view class="form-item commitment">
-      <checkbox-group bindchange="onCommitmentChange">
-        <label class="commitment-label">
-          <checkbox value="1" checked="{{formData.commitment_accepted}}" />
-          <text class="commitment-text">
-            我承诺本次护生行动符合科学放生要求，不使用外来入侵物种，不在饮用水源地投放
-          </text>
-        </label>
-      </checkbox-group>
-    </view>
-  </view>
-
-  <!-- 提交按钮 -->
-  <view class="submit-bar">
-    <button 
-      class="btn btn-primary btn-lg"
-      bindtap="onSubmit"
-      disabled="{{!canSubmit}}"
-    >
-      提交登记
-    </button>
-  </view>
-
-  <!-- 提交成功弹窗 -->
-  <view class="modal" wx:if="{{showSuccessModal}}">
-    <view class="modal-content">
-      <view class="success-icon">✓</view>
-      <text class="success-title">登记成功</text>
-      <text class="success-text">您的护生记录已提交审核</text>
-      <view class="modal-actions">
-        <button class="btn btn-primary" bindtap="onViewRecord">查看记录</button>
-        <button class="btn btn-secondary" bindtap="onGoHome">返回首页</button>
-      </view>
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="submit-btn" bindtap="submitForm">提交登记</button>
+      <text class="submit-tip">* 请确保信息真实有效</text>
     </view>
   </view>
 </view>

@@ -1,162 +1,110 @@
-<!--pages/protect-order-create/protect-order-create.wxml-->
+<!-- 付费委托护生下单页 -->
 <view class="container">
-  <!-- 表单内容 -->
-  <view class="form-section">
-    <!-- 护生物种 -->
-    <view class="form-item">
-      <text class="form-label required">护生物种</text>
-      <view class="form-input" bindtap="onSelectSpecies">
-        <text wx:if="{{!formData.species_id}}" class="placeholder">请选择物种</text>
-        <text wx:else class="selected-text">{{formData.species_name}}</text>
-        <text class="arrow">›</text>
-      </view>
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="header-left" bindtap="goBack">
+      <text class="icon-back">←</text>
     </view>
-
-    <!-- 物种规格 -->
-    <view class="form-item">
-      <text class="form-label required">物种规格</text>
-      <input 
-        class="form-input"
-        placeholder="例如：10-15cm"
-        value="{{formData.species_spec}}"
-        bindinput="onSpecInput"
-      />
-    </view>
-
-    <!-- 投放数量 -->
-    <view class="form-item">
-      <text class="form-label required">投放数量</text>
-      <view class="input-wrapper">
-        <input 
-          class="form-input"
-          type="number"
-          placeholder="请输入数量"
-          value="{{formData.quantity}}"
-          bindinput="onQuantityInput"
-        />
-        <text class="input-suffix">尾/只</text>
-      </view>
-    </view>
-
-    <!-- 护生日期 -->
-    <view class="form-item">
-      <text class="form-label required">护生日期</text>
-      <text class="form-tip">选择未来 7-30 天的日期</text>
-      <picker 
-        mode="date" 
-        value="{{formData.protection_date}}"
-        start="{{minDate}}"
-        end="{{maxDate}}"
-        bindchange="onDateChange"
-      >
-        <view class="form-input">
-          <text wx:if="{{!formData.protection_date}}" class="placeholder">请选择日期</text>
-          <text wx:else>{{formData.protection_date}}</text>
-          <text class="arrow">›</text>
-        </view>
-      </picker>
-    </view>
-
-    <!-- 投放水域 -->
-    <view class="form-item">
-      <text class="form-label required">投放水域</text>
-      <picker 
-        mode="selector"
-        range="{{waterAreas}}"
-        range-key="name"
-        value="{{waterAreaIndex}}"
-        bindchange="onWaterAreaChange"
-      >
-        <view class="form-input">
-          <text wx:if="{{waterAreaIndex < 0}}" class="placeholder">请选择合规水域</text>
-          <text wx:else>{{waterAreas[waterAreaIndex].name}}</text>
-          <text class="arrow">›</text>
-        </view>
-      </picker>
-    </view>
-
-    <!-- 服务项目 -->
-    <view class="form-item">
-      <text class="form-label required">服务项目</text>
-      <view class="service-list">
-        <view 
-          class="service-item {{formData.service_items.includes(item.value) ? 'selected' : ''}}"
-          wx:for="{{serviceItems}}"
-          wx:key="value"
-          bindtap="onServiceToggle"
-          data-value="{{item.value}}"
-        >
-          <view class="service-info">
-            <text class="service-name">{{item.label}}</text>
-            <text class="service-desc">{{item.desc}}</text>
-          </view>
-          <view class="service-price">¥{{item.price}}</view>
-        </view>
-      </view>
-    </view>
-
-    <!-- 护生心愿 -->
-    <view class="form-item">
-      <text class="form-label">护生心愿</text>
-      <text class="form-tip">可选，最多 200 字</text>
-      <textarea 
-        class="form-textarea"
-        placeholder="写下您的美好祝愿"
-        maxlength="200"
-        value="{{formData.wish}}"
-        bindinput="onWishInput"
-      ></textarea>
-    </view>
-
-    <!-- 协议勾选 -->
-    <view class="form-item agreement">
-      <checkbox-group bindchange="onAgreementChange">
-        <label class="agreement-label">
-          <checkbox value="commitment" checked="{{formData.commitment_accepted}}" />
-          <text class="agreement-text">
-            我承诺本次护生行动符合科学放生要求，理解并接受二次合规承诺
-          </text>
-        </label>
-        <label class="agreement-label">
-          <checkbox value="agreement" checked="{{formData.agreement_accepted}}" />
-          <text class="agreement-text">
-            我已阅读并同意《委托服务协议》
-          </text>
-        </label>
-      </checkbox-group>
-    </view>
-
-    <!-- 费用明细 -->
-    <view class="price-section glass">
-      <view class="price-title">费用明细</view>
-      <view class="price-item">
-        <text class="price-label">物种费用</text>
-        <text class="price-value">¥{{speciesPrice}}</text>
-      </view>
-      <view class="price-item">
-        <text class="price-label">服务费用</text>
-        <text class="price-value">¥{{servicePrice}}</text>
-      </view>
-      <view class="price-divider"></view>
-      <view class="price-total">
-        <text class="total-label">合计</text>
-        <text class="total-value">¥{{totalPrice}}</text>
-      </view>
-    </view>
+    <view class="header-title">护生委托服务</view>
+    <view class="header-right"></view>
   </view>
 
-  <!-- 提交按钮 -->
-  <view class="submit-bar">
-    <view class="price-info">
-      <text class="price-label">应付</text>
-      <text class="price-value">¥{{totalPrice}}</text>
+  <!-- 主内容区 -->
+  <view class="main-content">
+    <!-- 合规声明 -->
+    <view class="compliance-section">
+      <view class="section-header">
+        <text class="header-icon">⚖</text>
+        <text class="header-title">合规声明</text>
+      </view>
+      <view class="compliance-content">
+        <text class="compliance-text">1. 严格遵守法律法规，所有物种合法且经评估。</text>
+        <text class="compliance-text">2. 执行水域经调研，确保不对生态造成负面影响。</text>
+        <text class="compliance-text">3. 委托方承诺动机纯粹，不涉及非法交易。</text>
+      </view>
+      <view class="compliance-check" bindtap="toggleCompliance">
+        <text class="check-icon {{isComplianceChecked ? 'checked' : ''}}">☑</text>
+        <text class="check-text">我已阅读并知晓相关规则</text>
+      </view>
     </view>
-    <button 
-      class="btn btn-primary btn-lg"
-      bindtap="onSubmit"
-      disabled="{{!canSubmit}}"
-    >
-      立即支付
-    </button>
+
+    <!-- 委托单详情表单 -->
+    <view class="form-section">
+      <view class="form-header">
+        <view class="form-title-wrapper">
+          <text class="form-icon">📋</text>
+          <text class="form-title">委托单详情</text>
+        </view>
+        <text class="form-required-tip">* 为必填项</text>
+      </view>
+
+      <!-- 执行日期 -->
+      <view class="form-row">
+        <text class="row-label">执行日期 <text class="required">*</text></text>
+        <picker mode="date" value="{{executeDate}}" start="{{today}}" bindchange="onExecuteDateChange">
+          <view class="row-value {{executeDate ? 'selected' : ''}}">
+            {{executeDate || '请选择日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 执行水域 -->
+      <view class="form-row">
+        <text class="row-label">执行水域 <text class="required">*</text></text>
+        <picker mode="selector" range="{{waterList}}" range-key="name" value="{{waterIndex}}" bindchange="onWaterChange">
+          <view class="row-value {{waterIndex >= 0 ? 'selected' : ''}}">
+            {{waterIndex >= 0 ? waterList[waterIndex].name : '请选择水域'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 物种规格 -->
+      <view class="form-row">
+        <text class="row-label">物种规格 <text class="required">*</text></text>
+        <picker mode="selector" range="{{speciesList}}" range-key="name" value="{{speciesIndex}}" bindchange="onSpeciesChange">
+          <view class="row-value {{speciesIndex >= 0 ? 'selected' : ''}}">
+            {{speciesIndex >= 0 ? speciesList[speciesIndex].name : '请选择物种'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 放生数量 -->
+      <view class="form-row">
+        <text class="row-label">放生数量 <text class="required">*</text></text>
+        <input class="row-input" type="number" placeholder="请输入数量" value="{{quantity}}" bindinput="onQuantityInput"/>
+      </view>
+
+      <!-- 祈福愿望 -->
+      <view class="form-row">
+        <text class="row-label">祈福愿望</text>
+        <textarea class="row-textarea" placeholder="请输入您的祈福愿望（可选）" value="{{wish}}" bindinput="onWishInput" maxlength="200"/>
+        <view class="textarea-counter">{{wish.length}}/200</view>
+      </view>
+    </view>
+
+    <!-- 费用说明 -->
+    <view class="fee-section">
+      <view class="fee-header">
+        <text class="fee-title">费用说明</text>
+      </view>
+      <view class="fee-item">
+        <text class="fee-label">物种费用</text>
+        <text class="fee-value">¥{{speciesPrice}}</text>
+      </view>
+      <view class="fee-item">
+        <text class="fee-label">服务费</text>
+        <text class="fee-value">¥{{serviceFee}}</text>
+      </view>
+      <view class="fee-item total">
+        <text class="fee-label">总计</text>
+        <text class="fee-value total-price">¥{{totalPrice}}</text>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <button class="submit-btn" bindtap="submitOrder">确认委托</button>
+      <text class="submit-tip">支付后不可退款，请确认信息无误</text>
+    </view>
   </view>
 </view>

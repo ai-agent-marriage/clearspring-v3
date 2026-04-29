@@ -1,6 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "委托护生下单",
-  "navigationBarBackgroundColor": "#4A5D4E",
-  "navigationBarTextStyle": "white"
+  "navigationBarTitleText": "护生委托服务",
+  "navigationBarBackgroundColor": "#334537",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {}
 }
